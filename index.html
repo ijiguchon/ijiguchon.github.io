@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hebron - 테스트</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: sans-serif; 
+            padding-bottom: 80px;
+            background: #f5f5f5;
+        }
+        
+        .content {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        /* 네비게이션 바 */
+        .bottom-nav {
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            background: white !important;
+            display: flex !important;
+            justify-content: space-around !important;
+            padding: 10px 0 !important;
+            border-top: 2px solid #eee !important;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1) !important;
+            z-index: 999999 !important;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px 10px;
+            color: #666;
+            transition: all 0.3s;
+        }
+        
+        .nav-item:hover {
+            color: #1F4788;
+            transform: scale(1.1);
+        }
+        
+        .nav-item.active {
+            color: #1F4788;
+            font-weight: bold;
+        }
+        
+        .nav-icon {
+            font-size: 1.5rem;
+            margin-bottom: 3px;
+        }
+        
+        .nav-label {
+            font-size: 0.7rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="card">
+            <h1>✅ 테스트 페이지</h1>
+            <p>이 페이지가 보인다면 HTML은 정상입니다!</p>
+        </div>
+        
+        <div class="card">
+            <h2>📋 체크리스트</h2>
+            <p>✅ HTML 로드 완료</p>
+            <p id="js-check">⏳ JavaScript 확인 중...</p>
+            <p id="nav-check">⏳ 네비게이션 확인 중...</p>
+        </div>
+        
+        <div class="card">
+            <h2>🔍 네비게이션 바 테스트</h2>
+            <p>화면 맨 아래에 5개 버튼이 보여야 합니다:</p>
+            <p>📖 일지 | 👥 목장 | 📚 가이드 | 🎯 21일 | 🎤 통역</p>
+        </div>
+    </div>
+
+    <!-- 네비게이션 바 -->
+    <nav class="bottom-nav" id="test-nav">
+        <div class="nav-item active" onclick="alert('일지 클릭!')">
+            <div class="nav-icon">📖</div>
+            <div class="nav-label">일지</div>
+        </div>
+        <div class="nav-item" onclick="alert('목장 클릭!')">
+            <div class="nav-icon">👥</div>
+            <div class="nav-label">목장</div>
+        </div>
+        <div class="nav-item" onclick="alert('가이드 클릭!')">
+            <div class="nav-icon">📚</div>
+            <div class="nav-label">가이드</div>
+        </div>
+        <div class="nav-item" onclick="alert('21일 클릭!')">
+            <div class="nav-icon">🎯</div>
+            <div class="nav-label">21일</div>
+        </div>
+        <div class="nav-item" onclick="alert('통역 클릭!')">
+            <div class="nav-icon">🎤</div>
+            <div class="nav-label">통역</div>
+        </div>
+    </nav>
+
+    <script>
+        console.log('✅ JavaScript 실행 중!');
+        
+        // JavaScript 체크
+        document.getElementById('js-check').innerHTML = '✅ JavaScript 로드 완료!';
+        document.getElementById('js-check').style.color = 'green';
+        
+        // 네비게이션 체크
+        const nav = document.getElementById('test-nav');
+        if (nav) {
+            const rect = nav.getBoundingClientRect();
+            document.getElementById('nav-check').innerHTML = 
+                `✅ 네비게이션 발견! (위치: bottom=${rect.bottom}, height=${rect.height})`;
+            document.getElementById('nav-check').style.color = 'green';
+            console.log('네비게이션 바 정보:', rect);
+        } else {
+            document.getElementById('nav-check').innerHTML = '❌ 네비게이션 없음!';
+            document.getElementById('nav-check').style.color = 'red';
+        }
+        
+        // 1초마다 강제 표시
+        setInterval(() => {
+            const nav = document.getElementById('test-nav');
+            if (nav) {
+                nav.style.display = 'flex';
+                nav.style.visibility = 'visible';
+                nav.style.opacity = '1';
+                console.log('✅ 네비게이션 체크 완료');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
