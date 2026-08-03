@@ -662,6 +662,9 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
 .term-d b{color:var(--text-1);font-weight:800}
 .course-d{margin-top:2px;font-size:11.5px;font-weight:500;color:var(--text-3);line-height:1.5}
 .why-study{padding:16px;margin-top:16px;background:var(--surface-2);border-color:var(--border)}
+.ws-pace{padding:16px;margin-top:10px;background:var(--accent-pale);border-color:rgba(200,148,74,.3)}
+.ws-pace .ws-t{color:var(--accent)}
+.ws-pace .ws-d b{color:var(--text-1);font-weight:800}
 .ws-t{font-size:13.5px;font-weight:800;letter-spacing:-.3px;color:var(--primary)}
 .ws-d{margin-top:7px;font-size:12.5px;line-height:1.75;color:var(--text-2);font-weight:500}
 .btn-ghost-line{background:var(--surface);border:1px solid var(--border);color:var(--text-2)}
@@ -764,6 +767,17 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
 
 /* hidden 속성은 display 규칙보다 항상 우선 (잠금/열림 토글이 확실히 먹도록) */
 [hidden]{display:none!important}
+
+/* 예배 순서 (연합예배 탭) */
+.wo-intro{margin:-4px 0 12px;font-size:12.5px;line-height:1.75;color:var(--text-2);font-weight:500}
+.wo-intro b{color:var(--primary);font-weight:800}
+.worship-order{padding:4px 16px}
+.wo-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border)}
+.wo-row:last-child{border-bottom:none}
+.wo-k{flex-shrink:0;width:78px;font-size:12.5px;font-weight:800;letter-spacing:-.4px;color:var(--text-1)}
+.wo-v{flex:1;font-size:11.5px;font-weight:500;color:var(--text-3);line-height:1.5}
+.wo-accent .wo-k{color:var(--accent)}
+.wo-accent .wo-v{color:var(--text-2)}
 
 /* 이번 주 목장 모임 (시트 연동) */
 .mokjang-week{padding:6px 16px 14px}
@@ -2089,6 +2103,14 @@ button.bp:active{transform:scale(.985)}
         </p>
       </div>
 
+      <div class="card ws-pace">
+        <div class="ws-t"><span class="ko">서두르지 않습니다</span><span class="en">We don't rush</span></div>
+        <p class="ws-d">
+          <span class="ko">정보를 많이 담는 공부가 아닙니다. <b>1년에 한 과목</b>이라도, 충분히 소화하고 삶으로 살아낸 뒤 다음으로 갑니다. 수료 후에는 <b>간증</b>으로 은혜를 나눕니다 — 아는 것이 아니라 <b>변한 삶</b>이 열매입니다.</span>
+          <span class="en">This isn't about cramming information. Even <b>one course a year</b> — fully digested and lived out before the next. After finishing, we share a <b>testimony</b>. The fruit isn't knowledge; it's <b>a changed life</b>.</span>
+        </p>
+      </div>
+
       <div style="margin-top:22px">
         <button class="btn btn-primary btn-full" onclick="openModal('study')">
           <span class="ko i">삶공부 등록하기</span><span class="en i">Register for a course</span>
@@ -2142,6 +2164,26 @@ button.bp:active{transform:scale(.985)}
         <button class="btn btn-primary btn-full" style="margin-top:12px" onclick="openModal('mokjang')">
           <span class="ko i">목장과 연결되기</span><span class="en i">Connect with a mokjang</span>
         </button>
+      </div>
+
+      <div class="sec-head">
+        <h2 class="sec-title"><span class="ko">예배 순서</span><span class="en">Order of Worship</span></h2>
+        <span class="sec-note"><span class="ko i">흩어진 목장이 한 자리에</span><span class="en i">Scattered homes, one table</span></span>
+      </div>
+      <p class="wo-intro">
+        <span class="ko">주일연합목장예배 — 흩어진 세 목장이 한 자리에 모입니다. 예배의 은혜는 기획이 아니라 <b>한 주간 살아낸 삶</b>에서 옵니다.</span>
+        <span class="en">United Mokjang Worship — the three scattered homes gather as one. The grace of worship comes not from production, but from <b>a week lived out</b>.</span>
+      </p>
+      <div class="card worship-order">
+        <div class="wo-row"><span class="wo-k"><span class="ko i">공동체 시간</span><span class="en i">Community Hour</span></span><span class="wo-v"><span class="ko i">환영과 교회 소식</span><span class="en i">Welcome &amp; news</span></span></div>
+        <div class="wo-row"><span class="wo-k"><span class="ko i">경배와 찬양</span><span class="en i">Praise &amp; Worship</span></span><span class="wo-v"><span class="ko i">지구촌 찬양팀</span><span class="en i">Praise team</span></span></div>
+        <div class="wo-row"><span class="wo-k"><span class="ko i">봉헌</span><span class="en i">Offering</span></span><span class="wo-v"><span class="ko i">감사한 마음으로</span><span class="en i">With thanksgiving</span></span></div>
+        <div class="wo-row wo-accent"><span class="wo-k"><span class="ko i">주의 만찬</span><span class="en i">The Lord's Supper</span></span><span class="wo-v"><span class="ko i">매달 첫 주일</span><span class="en i">First Sunday of the month</span></span></div>
+        <div class="wo-row"><span class="wo-k"><span class="ko i">대표기도</span><span class="en i">Representative Prayer</span></span><span class="wo-v"><span class="ko i">다같이 · 이번 주 순번은 잠금층에</span><span class="en i">See servers in the members area</span></span></div>
+        <div class="wo-row"><span class="wo-k"><span class="ko i">성경 합독</span><span class="en i">Scripture Reading</span></span><span class="wo-v"><span class="ko i">다같이</span><span class="en i">Together</span></span></div>
+        <div class="wo-row wo-accent"><span class="wo-k"><span class="ko i">말씀</span><span class="en i">Message</span></span><span class="wo-v"><span class="ko i">김성수 목사 · 사도행전 강해</span><span class="en i">Pastor Sung Soo Kim · Acts</span></span></div>
+        <div class="wo-row"><span class="wo-k"><span class="ko i">헌신과 결단</span><span class="en i">Commitment</span></span><span class="wo-v"><span class="ko i">앞으로 나와 결단합니다</span><span class="en i">Step forward and respond</span></span></div>
+        <div class="wo-row"><span class="wo-k"><span class="ko i">축도</span><span class="en i">Benediction</span></span><span class="wo-v"><span class="ko i">인도자</span><span class="en i">Leader</span></span></div>
       </div>
 
       <div class="sermon-hero">
