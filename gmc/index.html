@@ -1237,9 +1237,9 @@ button.bp:active{transform:scale(.985)}
         </button>
         <div class="sermon-body">
           <div class="sermon-title">문 닫히면 창문을 열어라</div>
-          <div class="sermon-meta">
-            <span class="ko i">김성수 목사 · 사도행전 13:13–52 · 2026.08.02 · 주의 만찬</span>
-            <span class="en i">Pastor Sung Soo Kim · Acts 13:13–52 · Aug 2, 2026 · The Lord's Supper</span>
+          <div class="sermon-meta" data-communion-date="2026-08-02">
+            <span class="ko i">김성수 목사 · 사도행전 13:13–52 · 2026.08.02<span data-communion-ko></span></span>
+            <span class="en i">Pastor Sung Soo Kim · Acts 13:13–52 · Aug 2, 2026<span data-communion-en></span></span>
           </div>
         </div>
       </div>
@@ -1277,7 +1277,7 @@ button.bp:active{transform:scale(.985)}
       <div class="evt">
         <div class="evt-date"><div class="evt-d">2</div><div class="evt-m"><span class="ko i">주일</span><span class="en i">SUN</span></div></div>
         <div class="evt-body">
-          <div class="evt-title"><span class="ko">주일연합예배 · 주의 만찬</span><span class="en">Sunday Worship · The Lord's Supper</span></div>
+          <div class="evt-title" data-communion-date="2026-08-02"><span class="ko">주일연합예배<span data-communion-ko></span></span><span class="en">Sunday Worship<span data-communion-en></span></span></div>
           <div class="evt-meta"><span class="ko i">오후 1:00 · 친교 — 이스라엘 목장2</span><span class="en i">1:00 PM · Fellowship: Israel Group 2</span></div>
         </div>
       </div>
@@ -2229,6 +2229,23 @@ const SERVICE = {
 const changed = () => new Date() >= new Date(SERVICE.effective + 'T00:00:00');
 const svcTime = () => changed() ? SERVICE.after : SERVICE.before;
 
+/* 주의 만찬 = 매달 첫 주일. 날짜(주일)가 그 달 7일 이하이면 첫 주일입니다.
+   [data-communion-date] 요소의 날짜로 자동 판별해, 해당 span에 " · 주의 만찬"을 채웁니다.
+   → 하드코딩 없이 규칙으로. 8/9엔 자동으로 사라지고 9/6엔 자동으로 붙습니다. */
+function isCommunionSunday(iso){
+  const d = new Date(iso + 'T00:00:00');
+  return d.getDay() === 0 && d.getDate() <= 7;   // 일요일이고 그 달 첫 주
+}
+function renderCommunion(){
+  document.querySelectorAll('[data-communion-date]').forEach(el => {
+    const on = isCommunionSunday(el.getAttribute('data-communion-date'));
+    const ko = el.querySelector('[data-communion-ko]');
+    const en = el.querySelector('[data-communion-en]');
+    if(ko) ko.textContent = on ? ' · 주의 만찬' : '';
+    if(en) en.textContent = on ? " · The Lord's Supper" : '';
+  });
+}
+
 function fmtDate(iso){
   const d = new Date(iso + 'T00:00:00');
   return (d.getMonth()+1) + '월 ' + d.getDate() + '일';
@@ -2676,6 +2693,7 @@ function applyLang(lang){
   buildModals();
   renderSermons();
   renderServices();
+  renderCommunion();
 }
 
 function toggleLang(){
