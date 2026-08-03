@@ -3564,11 +3564,12 @@ async function doInstall(){
       deferredPrompt.prompt();
       await deferredPrompt.userChoice.catch(()=>{});
       deferredPrompt = null;
-      hideInstall(false);
+      hideInstall(true);   // 설치를 진행했으니 배너는 다시 조르지 않음
       return;
     }
   }catch(_){ deferredPrompt = null; }
-  showInstallHelp();     // 네이티브 프롬프트가 없거나 실패 → 기기별 설치 안내
+  hideInstall(true);       // 설치 의사 표시(특히 iOS: appinstalled 이벤트 없음) → 다시 안 띄움
+  showInstallHelp();       // 네이티브 프롬프트가 없거나 실패 → 기기별 설치 안내
 }
 
 function showInstallHelp(){
@@ -3605,7 +3606,7 @@ function hideInstall(remember){
   if(remember){ try{ localStorage.setItem('church-install-dismissed','1'); }catch(_){} }
 }
 
-window.addEventListener('appinstalled', ()=>{ hideInstall(false); deferredPrompt = null; });
+window.addEventListener('appinstalled', ()=>{ hideInstall(true); deferredPrompt = null; });
 
 function registerSW(){
   if(!('serviceWorker' in navigator)) return;
