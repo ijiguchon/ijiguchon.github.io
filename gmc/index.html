@@ -762,6 +762,18 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
   padding-left:12px;border-left:1px solid var(--border);
 }
 
+/* hidden 속성은 display 규칙보다 항상 우선 (잠금/열림 토글이 확실히 먹도록) */
+[hidden]{display:none!important}
+
+/* 이번 주 목장 모임 (시트 연동) */
+.mokjang-week{padding:6px 16px 14px}
+.mw-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border)}
+.mw-row:last-of-type{border-bottom:none}
+.mw-name{flex-shrink:0;width:84px;font-size:13px;font-weight:800;letter-spacing:-.3px;color:var(--text-1)}
+.mw-detail{flex:1;font-size:12.5px;font-weight:600;color:var(--text-2);line-height:1.5}
+.mw-tba{flex:1;font-size:11.5px;font-weight:700;color:var(--text-3)}
+.mw-foot{margin-top:11px;padding-top:10px;border-top:1px dashed var(--border);font-size:11px;line-height:1.5;color:var(--text-3);font-weight:500}
+
 /* 목장식구 잠금층 */
 .member-lock{display:flex;align-items:flex-start;gap:13px;padding:15px 16px;background:var(--surface-2)}
 .ml-icon{width:40px;height:40px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--surface);border:1px solid var(--border)}
@@ -1462,6 +1474,15 @@ button.bp:active{transform:scale(.985)}
           </div>
           <p class="serve-note"><span class="ko i">서로 알고 서로를 지원하기 위해 — 섬기는 분들을 위해 함께 기도해요.</span><span class="en i">So we know and support one another — let's pray for those serving.</span></p>
           <button class="ml-relock" onclick="relock()"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg><span class="ko i">잠그기</span><span class="en i">Lock</span></button>
+        </div>
+
+        <div class="sec-head member-only" hidden style="margin-top:18px">
+          <h2 class="sec-title"><span class="ko">이번 주 목장 모임</span><span class="en">This Week's Mokjang</span></h2>
+          <span class="sec-note"><span class="ko i">목자가 올린 그대로</span><span class="en i">As posted by hosts</span></span>
+        </div>
+        <div class="card mokjang-week member-only" id="mokjangWeek" hidden>
+          <div id="mokjangWeekRows"></div>
+          <p class="mw-foot"><span class="ko i">정확한 위치는 목장 목자에게 문의하세요.</span><span class="en i">Ask your host for the exact location.</span></p>
         </div>
       </div>
 
@@ -2544,6 +2565,7 @@ async function _applyMemberData(code){
   ROSTER = data.roster || null;
   applyMemberState(true);
   renderRoster();
+  fetchMokjangWeek();          // 목장식구 열람 시 구글시트에서 이번 주 목장 모임 로드
 }
 async function tryUnlock(btn){
   const card = btn.closest('.member-lock');
@@ -2567,6 +2589,45 @@ async function initMember(){
   try{ code = localStorage.getItem('gmc-mkey'); }catch(_){}
   if(code){ try{ await _applyMemberData(code); return; }catch(_){ try{localStorage.removeItem('gmc-mkey');}catch(e){} } }
   applyMemberState(false);
+}
+
+/* ── 이번 주 목장 모임 — 목자들이 채우는 구글시트(CSV)에서 실시간 로드 ── */
+const SHEET_MOKJANG_CSV = 'https://docs.google.com/spreadsheets/d/1uaQudM68JnwR9u7T5-5wifpCJnRb6_oeQZuSV5DmWmA/gviz/tq?tqx=out:csv&gid=0';
+function parseCSVLine(line){
+  const out=[]; let cur=''; let q=false;
+  for(let i=0;i<line.length;i++){
+    const c=line[i];
+    if(q){ if(c==='"'){ if(line[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=c; }
+    else { if(c==='"') q=true; else if(c===','){ out.push(cur); cur=''; } else cur+=c; }
+  }
+  out.push(cur); return out;
+}
+async function fetchMokjangWeek(){
+  const rows = document.getElementById('mokjangWeekRows');
+  if(!rows) return;
+  const MJ = [
+    {key:'이스라엘', ko:'이스라엘 목장', en:'Israel'},
+    {key:'멕시코',   ko:'멕시코 목장',   en:'Mexico'},
+    {key:'인도네시아', ko:'인도네시아 목장', en:'Indonesia'}
+  ];
+  const data = {};
+  try{
+    const r = await fetch(SHEET_MOKJANG_CSV, {cache:'no-store'});
+    const txt = await r.text();
+    txt.split('\n').map(l=>l.replace(/\r$/,'')).filter(Boolean).slice(1).forEach(line=>{
+      const f = parseCSVLine(line);
+      const name = (f[0]||'').replace(/목장/g,'').trim();   // 나라 이름만 (목장 제거)
+      if(name) data[name] = {day:(f[1]||'').trim(), time:(f[2]||'').trim(), place:(f[3]||'').trim()};
+    });
+  }catch(e){ /* 오프라인·오류 → 안내 예정 */ }
+  rows.innerHTML = MJ.map(m=>{
+    const d = data[m.key] || {};
+    const parts = [d.day, d.time, d.place].filter(Boolean);
+    const detail = parts.length
+      ? '<span class="mw-detail">'+esc(parts.join(' · '))+'</span>'
+      : '<span class="mw-tba"><span class="ko i">안내 예정</span><span class="en i">to be posted</span></span>';
+    return '<div class="mw-row"><span class="mw-name">'+esc(m.ko)+'</span>'+detail+'</div>';
+  }).join('');
 }
 
 const SERMON_PLAN = {
