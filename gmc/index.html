@@ -739,6 +739,20 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
 .basics-lead{margin:-4px 0 14px;font-size:12.5px;line-height:1.75;color:var(--text-2);font-weight:500}
 .basics-lead b{color:var(--primary);font-weight:800}
 
+/* 기본기 아코디언 목차 — 필요한 사람만 펼쳐 봄 */
+.fold{border:1px solid var(--border);border-radius:var(--r-lg);background:var(--surface);margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow-xs)}
+.fold > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:14px 15px;-webkit-tap-highlight-color:transparent}
+.fold > summary::-webkit-details-marker{display:none}
+.fold-t{flex:1;min-width:0}
+.fold-title{font-size:14px;font-weight:800;letter-spacing:-.35px;color:var(--text-1)}
+.fold-sub{margin-top:2px;font-size:11px;font-weight:600;color:var(--text-3)}
+.fold-chev{width:16px;height:16px;stroke:var(--text-3);fill:none;stroke-width:2.4;flex-shrink:0;transition:transform .22s}
+.fold[open] > summary{border-bottom:1px solid var(--border)}
+.fold[open] > summary .fold-chev{transform:rotate(90deg)}
+.fold-body{padding:14px 14px 4px;animation:fadeIn .25s ease both}
+/* 펼친 안쪽에선 첫 섹션 상단 여백 정리 */
+.fold-body > .sec-head:first-child{margin-top:0!important;padding-top:0!important;border-top:none!important}
+
 /* ── 이번 주 목회칼럼 (홈) ── */
 .week-col{padding:15px;display:block;width:100%;text-align:left;margin-top:12px;background:var(--surface-2);border-color:var(--border)}
 .wc-k{font-size:9.5px;font-weight:800;letter-spacing:.5px;color:var(--accent);text-transform:uppercase}
@@ -1350,13 +1364,16 @@ button.bp:active{transform:scale(.985)}
         <span class="en">This isn't a lesson. It's us re-rooting — together — in what we already know, for this season. The three axes in balance, one step at a time.</span>
       </p>
 
-      <!-- 하나님 나라 (사명·교리 블록) -->
-      <div class="sec-head">
-        <h2 class="sec-title"><span class="ko">하나님 나라</span><span class="en">The Kingdom of God</span></h2>
-        <span class="sec-note"><span class="ko i">도시에서 시작해 도시로</span><span class="en i">From the city, back to the city</span></span>
-      </div>
-
-      <div class="hosp-wrap">
+      <details class="fold">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">하나님 나라</span><span class="en">The Kingdom of God</span></div>
+            <div class="fold-sub"><span class="ko i">흘어진 목장에서, 도시로</span><span class="en i">From scattered homes, to the city</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+<div class="hosp-wrap">
         <div class="hw-label">
           <span class="hw-k"><span class="ko i">환대</span><span class="en i">Hospitality</span></span>
           <span class="hw-v"><span class="ko">아래 전부가 <b>환대의 자세</b> 위에서 일어납니다 — 생활전도</span><span class="en">All of it happens on <b>a posture of hospitality</b> — witness by living</span></span>
@@ -1421,12 +1438,18 @@ button.bp:active{transform:scale(.985)}
       </div>
       </div>
 
-      <!-- 세 축 -->
-      <div class="sec-head">
-        <h2 class="sec-title"><span class="ko">세 축</span><span class="en">The Three Axes</span></h2>
-        <span class="sec-note"><span class="ko i">정 · 지 · 의</span><span class="en i">Heart · Mind · Will</span></span>
-      </div>
-      <p class="axis-intro">
+        </div>
+      </details>
+      <details class="fold">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">세 축과 한 사람이 걷는 길</span><span class="en">The three axes & the path</span></div>
+            <div class="fold-sub"><span class="ko i">목장 · 삶공부 · 연합예배</span><span class="en i">Mokjang · studies · worship</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+<p class="axis-intro">
         <span class="ko">사람은 정(情)과 지(知)와 의(意)로 되어 있습니다. 세 축은 각각 그 다른 부분을 만집니다. 그래서 셋 중 하나만 있으면 사람이 온전히 바뀌지 않습니다.</span>
         <span class="en">A person is heart, mind, and will. Each axis touches a different one. With only one of the three, a person doesn't fully change.</span>
       </p>
@@ -1561,12 +1584,18 @@ button.bp:active{transform:scale(.985)}
         </div>
       </div>
 
-      <!-- 네 기둥 -->
-      <div class="sec-head">
-        <h2 class="sec-title"><span class="ko">네 기둥</span><span class="en">The Four Pillars</span></h2>
-        <span class="sec-note"><span class="ko i">교회를 떠받치는 성경 본문</span><span class="en i">The texts that hold it up</span></span>
-      </div>
-      <div class="card pillars">
+        </div>
+      </details>
+      <details class="fold">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">네 기둥과 핵심가치</span><span class="en">Four pillars & our creed</span></div>
+            <div class="fold-sub"><span class="ko i">무엇 위에 섬는가 · 성경대로</span><span class="en i">What we stand on · as the Bible says</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+<div class="card pillars">
         <div class="plr">
           <div class="plr-n">1</div>
           <div class="plr-b">
@@ -1611,6 +1640,8 @@ button.bp:active{transform:scale(.985)}
         </p>
       </div>
 
+        </div>
+      </details>
     </section>
 
     <!-- ────────── TAB 2 : COMMUNITY ────────── -->
@@ -2683,7 +2714,13 @@ function scrollToStages(){
   const el = document.getElementById('stages');
   const area = document.getElementById('contentArea');
   if(!el || !area) return;
-  area.scrollTo({top: el.offsetTop - 68, behavior:'smooth'});
+  // 단계는 접힌 아코디언(fold) 안에 있으니 먼저 펼치고, 레이아웃 후 스크롤
+  const fold = el.closest('details.fold');
+  const target = fold || el;
+  if(fold && !fold.open) fold.open = true;
+  requestAnimationFrame(() => {
+    area.scrollTo({top: target.offsetTop - 68, behavior:'smooth'});
+  });
 }
 
 /* 목장 카드 → 해당 목장을 미리 골라둔 채로 연결 폼을 엽니다 */
