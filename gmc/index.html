@@ -11,6 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="지구촌">
 <meta name="theme-color" content="#1a3560">
+<meta name="robots" content="noindex, nofollow">
 
 <!-- 배포 시 사용됩니다. 파일이 없으면(단일 파일로 열 때) 스크립트가 런타임 생성으로 대체합니다. -->
 <link rel="manifest" href="manifest.json" id="manifestLink">
@@ -761,6 +762,22 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
   padding-left:12px;border-left:1px solid var(--border);
 }
 
+/* 목장식구 잠금층 */
+.member-lock{display:flex;align-items:flex-start;gap:13px;padding:15px 16px;background:var(--surface-2)}
+.ml-icon{width:40px;height:40px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--surface);border:1px solid var(--border)}
+.ml-icon svg{width:20px;height:20px;stroke:var(--primary);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.ml-body{flex:1;min-width:0}
+.ml-t{font-size:13.5px;font-weight:800;letter-spacing:-.3px;color:var(--text-1)}
+.ml-d{margin-top:3px;font-size:11.5px;line-height:1.6;color:var(--text-3);font-weight:500}
+.ml-form{display:flex;gap:8px;margin-top:11px}
+.ml-input{flex:1;min-width:0;height:40px;padding:0 13px;border:1.5px solid var(--border);border-radius:var(--r-md);background:var(--surface);font-size:14px;font-family:inherit;color:var(--text-1);outline:none;transition:border-color .15s}
+.ml-input:focus{border-color:var(--primary-mid)}
+.ml-btn{flex-shrink:0;height:40px;padding:0 16px;border:none;border-radius:var(--r-md);background:linear-gradient(180deg,var(--primary-mid),var(--primary));color:#fff;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer}
+.ml-btn:active{transform:scale(.96)}
+.ml-err{display:none;margin-top:8px;font-size:11.5px;font-weight:700;color:#DC2626}
+.ml-relock{margin-top:12px;display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border:1px solid var(--border);border-radius:var(--r-pill);background:var(--surface-2);font-size:11px;font-weight:700;color:var(--text-3);font-family:inherit;cursor:pointer}
+.ml-relock svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
+
 /* 이번 주 섬김 순번 */
 .serve{padding:6px 16px 14px}
 .sv-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border)}
@@ -1416,7 +1433,21 @@ button.bp:active{transform:scale(.985)}
           <h2 class="sec-title"><span class="ko">이번 주 섬김</span><span class="en">This Week's Servers</span></h2>
           <span class="sec-note" data-roster-date></span>
         </div>
-        <div class="card serve" id="serveCard">
+
+        <div class="card member-lock" data-member-lock>
+          <div class="ml-icon"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15" r="1.4" fill="currentColor" stroke="none"/></svg></div>
+          <div class="ml-body">
+            <div class="ml-t"><span class="ko">목장식구 전용</span><span class="en">Members only</span></div>
+            <div class="ml-d"><span class="ko">섬김 명단은 목장식구만 봅니다. 교회 공동 암호를 넣어주세요.</span><span class="en">Serving names are for members. Enter the church code.</span></div>
+            <div class="ml-form">
+              <input type="password" class="ml-input" placeholder="공동 암호" autocomplete="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter'){event.preventDefault();this.nextElementSibling.click();}">
+              <button class="ml-btn" onclick="tryUnlock(this)"><span class="ko i">열기</span><span class="en i">Unlock</span></button>
+            </div>
+            <div class="ml-err"><span class="ko i">암호가 맞지 않습니다.</span><span class="en i">Wrong code.</span></div>
+          </div>
+        </div>
+
+        <div class="card serve member-only" id="serveCard" hidden>
           <div class="sv-row">
             <span class="sv-k"><span class="ko i">대표기도</span><span class="en i">Prayer</span></span>
             <span class="sv-v" data-serve="prayer"></span>
@@ -1430,6 +1461,7 @@ button.bp:active{transform:scale(.985)}
             <span class="sv-v" data-serve="fellowship"></span>
           </div>
           <p class="serve-note"><span class="ko i">서로 알고 서로를 지원하기 위해 — 섬기는 분들을 위해 함께 기도해요.</span><span class="en i">So we know and support one another — let's pray for those serving.</span></p>
+          <button class="ml-relock" onclick="relock()"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg><span class="ko i">잠그기</span><span class="en i">Lock</span></button>
         </div>
       </div>
 
@@ -2444,13 +2476,7 @@ function renderCommunion(){
    섬김 순번 (대표기도 · 봉헌 · 친교) — 날짜별 명단 → 오늘 날짜로 자동 표시
    ※ 매주 바뀌는 값. 명단이 오면 여기 날짜만 추가하면 됩니다. (나중엔 구글 시트로)
    ══════════════════════════════════════ */
-const ROSTER = {
-  '2026-08-02': {prayer:'박보라', offering:'홍진희', fellowship:'이스라엘 목장2'},
-  '2026-08-09': {prayer:'이윤아', offering:'박소연', fellowship:'이인규/윤아 목장'},
-  '2026-08-16': {prayer:'박성건', offering:'장희주', fellowship:'멕시코 목장'},
-  '2026-08-23': {prayer:'이인규', offering:'민명자', fellowship:'이스라엘 목장1'},
-  '2026-08-30': {prayer:'박보라', offering:'정경선', fellowship:'이스라엘 목장2'}
-};
+let ROSTER = null;   // 목장식구 잠금 해제 시 MEMBER_BLOB에서 복호화되어 채워짐 (평문 노출 방지)
 
 /* 이번 주 주일(오늘이 주일이면 오늘, 아니면 다가오는 주일)의 ISO 날짜 */
 function relevantSunday(){
@@ -2460,6 +2486,7 @@ function relevantSunday(){
   return s.getFullYear() + '-' + String(s.getMonth()+1).padStart(2,'0') + '-' + String(s.getDate()).padStart(2,'0');
 }
 function pickRoster(){
+  if(!ROSTER) return null;
   const iso = relevantSunday();
   if(ROSTER[iso]) return {iso, r: ROSTER[iso]};
   const today = new Date().toISOString().slice(0,10);
@@ -2471,13 +2498,75 @@ function renderRoster(){
   const card = document.getElementById('serveCard');
   if(!wrap || !card) return;
   const pick = pickRoster();
-  if(!pick){ wrap.style.display = 'none'; return; }
-  wrap.style.display = '';
+  if(!pick) return;   // ROSTER 없음(잠김) → 잠금 UI가 처리
   const d = new Date(pick.iso + 'T00:00:00');
   const head = wrap.querySelector('[data-roster-date]');
   if(head) head.textContent = (d.getMonth()+1) + '월 ' + d.getDate() + '일';
   const set = (k,v) => { const el = card.querySelector('[data-serve="'+k+'"]'); if(el) el.textContent = v || '—'; };
   set('prayer', pick.r.prayer); set('offering', pick.r.offering); set('fellowship', pick.r.fellowship);
+}
+
+/* ══════════════════════════════════════
+   목장식구 잠금층 (J1224 · AES-GCM 암호화)
+   섬김 명단 등 목장식구 전용 데이터는 MEMBER_BLOB에 암호문으로만 존재.
+   공동 암호 없이는 복호화 불가 → 소스를 봐도 이름이 안 보임.
+   ══════════════════════════════════════ */
+const MEMBER_BLOB = '+mtzUKoDPnnNX7via9sEsr5VTAJgkXBF+wnflhXrAFlDCLg2WZvmnAsKt/WuYL39hSzlk+UNy4lYNExFyrIYcyhk2LE7h6MiNL3JfQbYQ+RbV00FOPf+CCg41JVRws6O/n842q1+EXCAPsgo9gzFqV55330Bn6KkHv8Q3r7dnV20qrmrGPGKiXfWgCdXxyFdr6pU9RVX4nMXp8S917qjnCLhGxZP5E63hfefeII32QN0z4pRS9y6fWj8rn7Sr4NSXQKqyXCdc7d8+vYXnTNtj1UGDSslB/MRPMD1KbLNEMqUV5SMfma036BwnAhxmka/EC6qLETcvFSZa/+xWExPDE7cfMQfS0Oj8309L5QLmZduSPPaSnG2RkYCVROWhtzp40fh6J1NH3rYqLpguEOHHH/FIRB290NtsL4UPcxA69oKNJtdwJW67kO/sBCBU17hddkNu+hRb3ygHmeL7Ut3NuKUmvdAnQnGqUo8wv2Pbhd5BFfzBBdpgSZLrjc9I9ivZJ5polVbnIpez/Qr+d7YlVWxJqvQn1G9cbMG2t/c/qu6S9q+ALiaKGHtAd3ww70IX8XNkIfbTjUnRkiSLBL+W4PS89uG2Poejh74FPTDS4UWj+p0VgDUUuU9x4ImvcGWIReWRWbUD9Owq4JE0irSFxk0fPAiam0VLnUDo1AvPk97dgMC2hMw/kAUqHD9IoopUyA=';
+async function _deriveKey(pass, salt){
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2', salt, iterations:120000, hash:'SHA-256'},
+    base, {name:'AES-GCM', length:256}, false, ['encrypt','decrypt']);
+}
+async function encryptMember(text, pass){   // 빌드용(암호문 생성)
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const key = await _deriveKey(pass, salt);
+  const ct = new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM', iv}, key, new TextEncoder().encode(text)));
+  const packed = new Uint8Array(28 + ct.length);
+  packed.set(salt,0); packed.set(iv,16); packed.set(ct,28);
+  let s=''; packed.forEach(b=>s+=String.fromCharCode(b));
+  return btoa(s);
+}
+async function decryptMember(b64, pass){
+  const packed = Uint8Array.from(atob(b64), c=>c.charCodeAt(0));
+  const key = await _deriveKey(pass, packed.slice(0,16));
+  const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv: packed.slice(16,28)}, key, packed.slice(28));
+  return new TextDecoder().decode(pt);
+}
+let memberUnlocked = false;
+function applyMemberState(on){
+  memberUnlocked = on;
+  document.querySelectorAll('.member-only').forEach(el => el.hidden = !on);
+  document.querySelectorAll('.member-lock').forEach(el => el.hidden = on);
+}
+async function _applyMemberData(code){
+  const data = JSON.parse(await decryptMember(MEMBER_BLOB, code));
+  ROSTER = data.roster || null;
+  applyMemberState(true);
+  renderRoster();
+}
+async function tryUnlock(btn){
+  const card = btn.closest('.member-lock');
+  const inp = card.querySelector('.ml-input');
+  const err = card.querySelector('.ml-err');
+  err.style.display = 'none';
+  try{
+    await _applyMemberData((inp.value || '').trim());
+    try{ localStorage.setItem('gmc-mkey', (inp.value||'').trim()); }catch(_){}
+    inp.value = '';
+  }catch(e){ err.style.display = 'block'; }
+}
+function relock(){
+  try{ localStorage.removeItem('gmc-mkey'); }catch(_){}
+  ROSTER = null;
+  document.querySelectorAll('[data-serve]').forEach(el => el.textContent = '');
+  applyMemberState(false);
+}
+async function initMember(){
+  let code = null;
+  try{ code = localStorage.getItem('gmc-mkey'); }catch(_){}
+  if(code){ try{ await _applyMemberData(code); return; }catch(_){ try{localStorage.removeItem('gmc-mkey');}catch(e){} } }
+  applyMemberState(false);
 }
 
 const SERMON_PLAN = {
@@ -3268,6 +3357,7 @@ function registerSW(){
   applyLang(lang);          // also builds modals + sermon list
   ensureManifest();
   registerSW();
+  initMember();
 
   // 홈 화면 바로가기(?open=prayer 등)로 진입하면 해당 시트를 바로 엽니다
   try{
