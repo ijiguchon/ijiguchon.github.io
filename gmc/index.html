@@ -735,6 +735,17 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
 }
 .hb-line b{color:var(--accent-light);font-weight:800}
 
+/* 이번 주 섬김 순번 */
+.serve{padding:6px 16px 14px}
+.sv-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border)}
+.sv-k{
+  flex-shrink:0;width:64px;padding:4px 0;border-radius:var(--r-pill);text-align:center;
+  background:var(--surface-2);border:1px solid var(--border);
+  font-size:11px;font-weight:800;color:var(--primary);
+}
+.sv-v{flex:1;font-size:14px;font-weight:700;color:var(--text-1);letter-spacing:-.3px}
+.serve-note{padding-top:11px;font-size:11.5px;line-height:1.6;color:var(--text-3);font-weight:500}
+
 /* 재정초 — 함께 다지는 기본기 안내문 */
 .basics-lead{margin:-4px 0 14px;font-size:12.5px;line-height:1.75;color:var(--text-2);font-weight:500}
 .basics-lead b{color:var(--primary);font-weight:800}
@@ -1282,10 +1293,10 @@ button.bp:active{transform:scale(.985)}
           <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M7 4.5l13 7.5-13 7.5z"/></svg></span>
         </button>
         <div class="sermon-body">
-          <div class="sermon-title">문 닫히면 창문을 열어라</div>
-          <div class="sermon-meta" data-communion-date="2026-08-02">
-            <span class="ko i">김성수 목사 · 사도행전 13:13–52 · 2026.08.02<span data-communion-ko></span></span>
-            <span class="en i">Pastor Sung Soo Kim · Acts 13:13–52 · Aug 2, 2026<span data-communion-en></span></span>
+          <div class="sermon-title" data-sermon-title>문 닫히면 창문을 열어라</div>
+          <div class="sermon-meta" data-sermon-meta data-communion-date="2026-08-02">
+            <span class="ko i"><span data-sermon-meta-ko>김성수 목사 · 사도행전 13:13–52 · 2026.08.02</span><span data-communion-ko></span></span>
+            <span class="en i"><span data-sermon-meta-en>Pastor Sung Soo Kim · Acts 13:13–52 · Aug 2, 2026</span><span data-communion-en></span></span>
           </div>
         </div>
       </div>
@@ -1324,7 +1335,7 @@ button.bp:active{transform:scale(.985)}
         <div class="evt-date"><div class="evt-d">2</div><div class="evt-m"><span class="ko i">주일</span><span class="en i">SUN</span></div></div>
         <div class="evt-body">
           <div class="evt-title" data-communion-date="2026-08-02"><span class="ko">주일연합예배<span data-communion-ko></span></span><span class="en">Sunday Worship<span data-communion-en></span></span></div>
-          <div class="evt-meta"><span class="ko i">오후 1:00 · 친교 — 이스라엘 목장2</span><span class="en i">1:00 PM · Fellowship: Israel Group 2</span></div>
+          <div class="evt-meta"><span class="ko i">오후 1:00</span><span class="en i">1:00 PM</span></div>
         </div>
       </div>
 
@@ -1340,7 +1351,7 @@ button.bp:active{transform:scale(.985)}
         <div class="evt-date"><div class="evt-d">9</div><div class="evt-m"><span class="ko i">주일</span><span class="en i">SUN</span></div></div>
         <div class="evt-body">
           <div class="evt-title"><span class="ko">주일연합예배</span><span class="en">Sunday Worship</span></div>
-          <div class="evt-meta"><span class="ko i">오후 1:00 · 친교 — 이인규/이윤아 목장</span><span class="en i">1:00 PM · Fellowship: In Kyu &amp; Yoon A's group</span></div>
+          <div class="evt-meta"><span class="ko i">오후 1:00</span><span class="en i">1:00 PM</span></div>
         </div>
       </div>
 
@@ -1354,6 +1365,30 @@ button.bp:active{transform:scale(.985)}
         </div>
         <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
       </button>
+
+      <!-- 이번 주 섬김 (날짜 자동) -->
+      <div id="serveSection">
+        <div class="sec-head">
+          <h2 class="sec-title"><span class="ko">이번 주 섬김</span><span class="en">This Week's Servers</span></h2>
+          <span class="sec-note" data-roster-date></span>
+        </div>
+        <div class="card serve" id="serveCard">
+          <div class="sv-row">
+            <span class="sv-k"><span class="ko i">대표기도</span><span class="en i">Prayer</span></span>
+            <span class="sv-v" data-serve="prayer"></span>
+          </div>
+          <div class="sv-row">
+            <span class="sv-k"><span class="ko i">봉헌</span><span class="en i">Offering</span></span>
+            <span class="sv-v" data-serve="offering"></span>
+          </div>
+          <div class="sv-row">
+            <span class="sv-k"><span class="ko i">친교</span><span class="en i">Fellowship</span></span>
+            <span class="sv-v" data-serve="fellowship"></span>
+          </div>
+          <p class="serve-note"><span class="ko i">서로 알고 서로를 지원하기 위해 — 섬기는 분들을 위해 함께 기도해요.</span><span class="en i">So we know and support one another — let's pray for those serving.</span></p>
+        </div>
+      </div>
+
       <!-- 교리 블록 시작 (재정초: 함께 다지는 기본기) -->
       <div class="sec-head" style="margin-top:30px;padding-top:20px;border-top:1px solid var(--border)">
         <h2 class="sec-title"><span class="ko">함께 다시 다지는 기본기</span><span class="en">Back to the basics, together</span></h2>
@@ -2335,6 +2370,121 @@ function renderCommunion(){
   });
 }
 
+/* ══════════════════════════════════════
+   섬김 순번 (대표기도 · 봉헌 · 친교) — 날짜별 명단 → 오늘 날짜로 자동 표시
+   ※ 매주 바뀌는 값. 명단이 오면 여기 날짜만 추가하면 됩니다. (나중엔 구글 시트로)
+   ══════════════════════════════════════ */
+const ROSTER = {
+  '2026-08-02': {prayer:'박보라', offering:'홍진희', fellowship:'이스라엘 목장2'},
+  '2026-08-09': {prayer:'이윤아', offering:'박소연', fellowship:'이인규/윤아 목장'},
+  '2026-08-16': {prayer:'박성건', offering:'장희주', fellowship:'멕시코 목장'},
+  '2026-08-23': {prayer:'이인규', offering:'민명자', fellowship:'이스라엘 목장1'},
+  '2026-08-30': {prayer:'박보라', offering:'정경선', fellowship:'이스라엘 목장2'}
+};
+
+/* 이번 주 주일(오늘이 주일이면 오늘, 아니면 다가오는 주일)의 ISO 날짜 */
+function relevantSunday(){
+  const d = new Date();
+  const diff = d.getDay() === 0 ? 0 : (7 - d.getDay());
+  const s = new Date(d); s.setDate(d.getDate() + diff);
+  return s.getFullYear() + '-' + String(s.getMonth()+1).padStart(2,'0') + '-' + String(s.getDate()).padStart(2,'0');
+}
+function pickRoster(){
+  const iso = relevantSunday();
+  if(ROSTER[iso]) return {iso, r: ROSTER[iso]};
+  const today = new Date().toISOString().slice(0,10);
+  const up = Object.keys(ROSTER).filter(k => k >= today).sort()[0];
+  return up ? {iso: up, r: ROSTER[up]} : null;
+}
+function renderRoster(){
+  const wrap = document.getElementById('serveSection');
+  const card = document.getElementById('serveCard');
+  if(!wrap || !card) return;
+  const pick = pickRoster();
+  if(!pick){ wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+  const d = new Date(pick.iso + 'T00:00:00');
+  const head = wrap.querySelector('[data-roster-date]');
+  if(head) head.textContent = (d.getMonth()+1) + '월 ' + d.getDate() + '일';
+  const set = (k,v) => { const el = card.querySelector('[data-serve="'+k+'"]'); if(el) el.textContent = v || '—'; };
+  set('prayer', pick.r.prayer); set('offering', pick.r.offering); set('fellowship', pick.r.fellowship);
+}
+
+const SERMON_PLAN = {
+  '2026-03-08': {ref:'사도행전 3:1–10', title:'못 걷던 사람이 뛰다'},
+  '2026-03-15': {ref:'사도행전 3:11–26', title:'당신이 모르는 기적의 출처'},
+  '2026-03-22': {ref:'사도행전 4:1–22', title:'입을 막을 수 없는 사람들'},
+  '2026-03-29': {ref:'사도행전 4:23–37', title:'기도하면 건물이 흔들린다'},
+  '2026-04-05': {ref:'누가복음 24:1–12 · 사도행전 1:3', title:'빈 무덤이 증명한 것'},
+  '2026-04-12': {ref:'사도행전 5:1–16', title:'거짓말이 무서운 진짜 이유'},
+  '2026-04-19': {ref:'사도행전 5:17–42', title:'맞아도 웃는 사람들'},
+  '2026-04-26': {ref:'사도행전 6:1–7', title:'당신도 사역자입니다'},
+  '2026-05-03': {ref:'사도행전 6:8–7:60', title:'이렇게 죽을 수 있다면'},
+  '2026-05-10': {ref:'사도행전 8:1–25', title:'흩어졌는데 더 강해졌다'},
+  '2026-05-17': {ref:'사도행전 8:26–40', title:'사막에서 만난 운명적 동승'},
+  '2026-05-24': {ref:'사도행전 9:1–19', title:'180도 인생역전'},
+  '2026-05-31': {ref:'사도행전 9:20–43', title:'증거가 말해준다'},
+  '2026-06-07': {ref:'사도행전 10:1–23', title:'하나님에게 차별금지법이 있다면'},
+  '2026-06-14': {ref:'사도행전 10:24–48', title:'성령, 예고 없이 내리다'},
+  '2026-06-21': {ref:'사도행전 11:1–18', title:'고정관념 깨는 데 3초면 된다'},
+  '2026-06-28': {ref:'사도행전 11:19–30', title:'안디옥은 이렇게 탄생했다'},
+  '2026-07-05': {ref:'사도행전 12:1–19', title:'기도가 감옥 문을 열었다'},
+  '2026-07-12': {ref:'사도행전 12:20–25', title:'스포트라이트의 함정'},
+  '2026-07-19': {ref:'사도행전 13:1–12', title:'보내는 교회가 진짜 교회다'},
+  '2026-07-26': {ref:'야외연합예배', title:'야외예배 (설교 순연)'},
+  '2026-08-02': {ref:'사도행전 13:13–52', title:'문 닫히면 창문을 열어라'},
+  '2026-08-09': {ref:'사도행전 14:1–20', title:'혼자면 약하고, 함께면 강하다'},
+  '2026-08-16': {ref:'사도행전 14:21–28', title:'교회는 개척하는 것이다'},
+  '2026-08-23': {ref:'사도행전 15:1–21', title:'구원에 조건을 붙이지 마세요'},
+  '2026-08-30': {ref:'사도행전 15:22–41', title:'다르지만 하나로 결정했다'},
+  '2026-09-06': {ref:'사도행전 16:1–15', title:'하나님의 GPS를 켜라'},
+  '2026-09-13': {ref:'사도행전 16:16–40', title:'감옥에서 부른 찬양의 비밀'},
+  '2026-09-20': {ref:'사도행전 17:1–15', title:'팩트체크하는 신앙이 건강하다'},
+  '2026-09-27': {ref:'사도행전 17:16–34', title:'철학자도 멈추게 한 한마디'},
+  '2026-10-04': {ref:'사도행전 18:1–17', title:'1년 6개월의 법칙'},
+  '2026-10-11': {ref:'사도행전 18:18–28', title:'평신도 부부가 교수를 가르치다'},
+  '2026-10-18': {ref:'사도행전 19:1–20', title:'성령 받은 사람은 다릅니다'},
+  '2026-10-25': {ref:'사도행전 19:21–41', title:'복음이 경제를 흔들다'},
+  '2026-11-01': {ref:'사도행전 20:1–16', title:'거실이 예배당이 됩니다'},
+  '2026-11-08': {ref:'사도행전 20:17–38', title:'마지막이라면 뭘 말하겠습니까?'},
+  '2026-11-15': {ref:'사도행전 21:1–16', title:'각오가 된 사람은 무섭다'},
+  '2026-11-22': {ref:'사도행전 21:17–40', title:'오해받아도 포기하지 않는다'},
+  '2026-11-29': {ref:'사도행전 22:1–21', title:'당신만의 3분 스토리'},
+  '2026-12-06': {ref:'사도행전 23:1–11', title:'무서울 게 뭐 있어요?'},
+  '2026-12-13': {ref:'사도행전 24:1–27', title:'권력 앞에서도 흔들리지 않는다'},
+  '2026-12-20': {ref:'누가복음 2:1–20 · 요한복음 1:14', title:'하나님이 이사 오신 날'},
+  '2026-12-27': {ref:'사도행전 25:1–27', title:'황제 앞에 서겠습니다'},
+  '2026-12-31': {ref:'사도행전 27–28 · 빌립보서 3:13–14', title:'To Be Continued…'},
+};
+
+/* 이번 주 말씀 — 주일 설교계획표에서 오늘 날짜로 자동 표시 */
+function thisSermon(){
+  const iso = relevantSunday();
+  if(SERMON_PLAN[iso]) return {iso, s: SERMON_PLAN[iso]};
+  const today = new Date().toISOString().slice(0,10);
+  const up = Object.keys(SERMON_PLAN).filter(k => k >= today).sort()[0];
+  return up ? {iso: up, s: SERMON_PLAN[up]} : null;
+}
+function renderSermonHero(){
+  const pick = thisSermon();
+  if(!pick) return;
+  const t = document.querySelector('[data-sermon-title]');
+  if(t) t.textContent = pick.s.title;
+  const meta = document.querySelector('[data-sermon-meta]');
+  if(meta){
+    const iso = pick.iso;
+    const refEn = pick.s.ref.replace('사도행전','Acts').replace('누가복음','Luke').replace('요한복음','John').replace('빌립보서','Phil').replace('야외연합예배','Outdoor Worship');
+    const koDate = iso.replace(/-/g,'.');
+    const enDate = fmtDateEn(iso) + ', ' + iso.slice(0,4);
+    const ko = meta.querySelector('[data-sermon-meta-ko]');
+    const en = meta.querySelector('[data-sermon-meta-en]');
+    if(ko) ko.textContent = '김성수 목사 · ' + pick.s.ref + ' · ' + koDate;
+    if(en) en.textContent = 'Pastor Sung Soo Kim · ' + refEn + ' · ' + enDate;
+    meta.setAttribute('data-communion-date', iso);
+  }
+  renderCommunion();
+}
+
 function fmtDate(iso){
   const d = new Date(iso + 'T00:00:00');
   return (d.getMonth()+1) + '월 ' + d.getDate() + '일';
@@ -2789,6 +2939,8 @@ function applyLang(lang){
   renderSermons();
   renderServices();
   renderCommunion();
+  renderRoster();
+  renderSermonHero();
 }
 
 function toggleLang(){
