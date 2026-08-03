@@ -735,6 +735,15 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
 }
 .hb-line b{color:var(--accent-light);font-weight:800}
 
+/* 월~금 새벽기도 — HebronAltar */
+.altar{display:flex;align-items:center;gap:13px;padding:14px;margin-bottom:18px;width:100%;text-align:left;background:linear-gradient(150deg,#152c50,#1a3560);border:none}
+.altar-icon{width:42px;height:42px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.12)}
+.altar-icon svg{width:22px;height:22px;stroke:var(--accent-light);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.altar-body{flex:1;min-width:0}
+.altar-t{font-size:13.5px;font-weight:800;letter-spacing:-.3px;color:#fff}
+.altar-d{margin-top:3px;font-size:11.5px;line-height:1.55;color:rgba(255,255,255,.72);font-weight:500}
+.altar .mj-arrow{stroke:rgba(255,255,255,.6)}
+
 /* 이번 주 토요새벽 */
 .sat-card{display:flex;align-items:center;gap:13px;padding:14px;margin-bottom:14px;background:var(--blue-pale,var(--surface-2))}
 .sat-icon{
@@ -988,19 +997,16 @@ button.bp:active{transform:scale(.985)}
 }
 .mj-card:active{transform:scale(.985);box-shadow:var(--shadow-sm)}
 .mj-mark{
-  width:50px;height:50px;border-radius:14px;flex-shrink:0;position:relative;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-  box-shadow:0 1px 2px rgba(0,0,0,.10), 0 4px 11px rgba(0,0,0,.17), inset 0 1.2px 0 rgba(255,255,255,.32);
+  width:50px;height:34px;border-radius:7px;flex-shrink:0;overflow:hidden;
+  box-shadow:0 1px 2px rgba(0,0,0,.14), inset 0 0 0 1px rgba(0,0,0,.06);
+  background:var(--surface-2);
 }
-.mj-mark::after{
-  content:'';position:absolute;left:0;right:0;top:0;height:48%;
-  background:linear-gradient(180deg,rgba(255,255,255,.26),rgba(255,255,255,0));
-}
-.mj-mark span{position:relative;z-index:1;color:#fff;font-size:19px;font-weight:900;letter-spacing:-.5px}
-.mj-israel .mj-mark{background:linear-gradient(180deg,#3C70EC 0%,#1A3CA0 55%,#0E2670 100%)}
-.mj-mexico .mj-mark{background:linear-gradient(180deg,#FF6352 0%,#DF1E0C 55%,#BF1408 100%)}
-.mj-indo   .mj-mark{background:linear-gradient(180deg,#2FBF7A 0%,#149257 55%,#0B6B3E 100%)}
+.mj-mark img{width:100%;height:100%;object-fit:cover;display:block}
 .mj-body{flex:1;min-width:0}
+/* 선교적 정체성 안내 */
+.mission-note{padding:14px 16px;background:var(--accent-pale);border-color:rgba(200,148,74,.3);margin-bottom:12px}
+.mn-lead{font-size:12.5px;line-height:1.75;color:var(--text-2);font-weight:500}
+.mn-lead b{color:var(--accent);font-weight:800}
 .mj-field{font-size:9.5px;font-weight:800;letter-spacing:1.4px;color:var(--text-3)}
 .mj-name{margin-top:1px;font-size:15px;font-weight:800;letter-spacing:-.35px}
 .mj-host{margin-top:2px;font-size:11.5px;font-weight:600;color:var(--text-3)}
@@ -1074,6 +1080,12 @@ button.bp:active{transform:scale(.985)}
   font-size:11.5px;font-weight:800;color:var(--primary-mid);
 }
 .tt-cta svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.4}
+.tt-when{
+  display:flex;align-items:center;gap:6px;margin-top:11px;padding:9px 11px;
+  border-radius:var(--r-md);background:var(--surface-2);border:1px dashed var(--border);
+  font-size:11px;font-weight:700;color:var(--text-3);line-height:1.4;
+}
+.tt-when svg{width:14px;height:14px;stroke:var(--blue-mid,#3468A0);fill:none;stroke-width:2;flex-shrink:0}
 
 /* 환대는 어디서든 */
 .where{padding:4px 14px}
@@ -1752,9 +1764,16 @@ button.bp:active{transform:scale(.985)}
         </p>
       </div>
 
+      <div class="card mission-note">
+        <p class="mn-lead">
+          <span class="ko">각 목장은 <b>한 선교지를 품습니다.</b> 가정교회는 본래 <b>선교적 가정교회</b> — 지역선교와 해외선교를 함께 감당합니다. 그래서 목장 이름이 이스라엘 · 멕시코 · 인도네시아입니다.</span>
+          <span class="en">Each mokjang <b>carries a mission field.</b> A house church is, by nature, a <b>missional house church</b> — local and global mission together. That's why the homes are named Israel, Mexico, and Indonesia.</span>
+        </p>
+      </div>
+
       <div class="mj-list">
         <button class="mj-card mj-israel" onclick="openMokjang('이스라엘')">
-          <div class="mj-mark"><span>이</span></div>
+          <div class="mj-mark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAABQCAYAAADSm7GJAAAJ3UlEQVR42u2de3BU1R3HP79zd0MSCIFgAkQIjbzkqUR0pFYRpmAZZxyLoqi8avHRTjvQdjpSrGitOtTRUrHO2PoAfAM6RVpHIAOUl3WQTkMURQQEBCFAsiEvwu6959c/9i6EyKP9ozR3935nzmRn996dyfns75zf49xzhFZSVUdEPP91CXAnMAoYBBT7lwmh/h9S/+/XwDZgLfCGiOxrzY4zgUpdoKrdgUeBW4DOYb+2acWAd4A5InKwNWQ5A9wbgIVAN/8jz79OQsttU5acao7/3iFgmoisbAnZtIJ7D7DCh+u2+AITwm1TEp+J4zNyfWYrVPUen6UDIC3gjgFWtbBYE/ZjoGRbGORYESlXVUdUVYAioBIo9C8K4QYXsgBHgKHAYSMiCjzhQ/ZCuIGW8RkWAU+IiIqq9gA+BTqEIVBahVINwEADTALyWph3qOA7YNZnOsn4SYxQ6alRkkh4h8RIV1VVEQktOB3GaJ+lWq0SVdWwS9JXkTVbqkPLTWdL5rL3QgtOZws27SNhL6QzYGtDAybNMx+hQsChQsChQsChQsChQsCh/rs42EgmZXZQhUz6nyO20c2cn3NUwAi2ycuYwqis2VKd9pkOzyqOEd7/8Chbd9bz4JRLiLsWJwMsOaOqSWNnbOGjj2s5uGI02VmZ4X5EvDRPVbqekhUxLHjvAOVrqkDg3rnbeGXOEOIJi+NIaMHBdaqSC5Rq6xIMumMjh6qaQaBd1LBpwQjK+ndEVdPa6UrrccpaxQjMW7yXQ1/U0704h6ED8jlRE+eXz+1A5NQKtRBwW7TOczTPS1rm5/saeWrRbnCE3/24HwsfGgxZhnUbD/P2miocI7ienvf7QsAXem6RczfHEURg5rztNB9pZsjwLkweV8ywfh2589YSbEOCh/78Ba6nRPxrz9UC62QFcuhVJVbn4jiCqn4jpPUsOAY2VMRYsa6KaH6UOXf3prY+gQIzJ5Twl/KDbP+klt++vIufTex18p7WC4xFkhZe0DGCCSDpwDlZ1ioKjJ9VwfpNR3Dyonj+XJvqf1WwCvWNLmoVJ2ooyIuQcBURMCLUNrpY1+J5Sqf8KIJgTIv7reI4Bq8+wchrCnln7uXJB7YC5pAFErAxwuZPjzFiygdYI8ms1HHvlMdkgHYOOAJxC64mzbrlL8AxYMDkOFhPIWEhrqceu8v2n8pstqx+6WpGDy84mTAJh+j/pdNgBM9TrhqYz9TxJSx4/Us6FGWzcO4wCjpGAaiqOcH0x7fReKSZn9zdm/HXd8XqKThJixfWV8R4ZP522uVGmPvAIC7rk4cq1DW53P+7bVTtamDapNIkXE+DGTNrAOVZVc+zevBos140ZrXKpcv1yde+PPn5jHmfqfR7V/vdsl4bmtxzfteV0/6h9FmmNz3wr5Pv/f6tPcqly7Xz6HLd+VWjWqvqWRvErtJAetHGj1+7dWnHb+7rixph9jPbOXCkmc3bjjF/0W40avj19N60z3GIJyye1dNaPGEBeHpmfyL5WSx/7wDLNxzmcCzOw8/tAE+ZeVcpvXvknrT4MJN1weNgxSoMnbSJz/5Zw0039yThWt5ftp+R44pZ/exwUM46tKZCpGmPfcKil3ZSdn1XLinO4e2lX9H3sk5sXjCCjrkOIhLYUCnQqcqU07NqczU3TP8w6VipEnUMH76STEWmnLKzhVsC7DpwnCsmbaKuzk06Zo0urzxdxuRxxcGde9MhVekYwbPK2Ku6MO22XhhPEVf54a09Kevf8WQ26+xDvWAt9OmRy+zpfRCrOKqM+1537hjbPfBw0yIXnRp/SotzUKuIQo/C7NOehP5PnpbuWeTf41ouLsomkiZVpkAP0dYqIsKOfY0MmbiRRCIZ73YpzOaTN6+ha0EWinA2I07N43VNHsOnfsCuXQ2QZTCesvbFq7luWOdAxr5pY8Hq56RnPLOdRE2cAX3zGDggn+rdDcx+/gtEBD1Hvdvz5+f5S/ayqyJGcUl7hvTLwza4zHlxJ57VwJebTNAdrPLN1axcWwVZwqI5g3n8vr4QFV5d9hXrK2I4zpmrRan7dx84zh9e/xIcYdbkUl57ZCimfYR166p4Y9VBHCeZWAkBX+B5V4B4wjJz3nZodLnr1l5cOSCfm0cW8d0x3XFr4jz8wk4UzlgtckzyvdnP7yC2p5HBV17Ej8b3ZGifPH4woQSaPR57eRe1DW6ybqwh4Auej37qzb18WhkjtyibGRNKiNUlqK1P8KsppeR2y+Hv66p4Ydl+ausTHD2W/Ky2PkG1//qvGw6z+G8HiHbOYubEXjQe96ipS3D/zT3p8q0O7NgaY/6Svcn0aECXNgWv2KDJTNaR2jiDbttI7Fgck+2QnxvB+mt0IhGhpt7FJiwYIa+9881qkV9twiomarioY5QTfnYrGhEajnvEmzzych22vHYNpcU5WA1eRitwgD3fc779wQrefmsvdM46S7UouQaabCdJ84RfVRJ/o6Hs81SbjECWgeo44yf2YukTl6MaPI86kGGS5ykbK2NYe/oKj9O841S16NnPaZfr8MdZg+jdIxcUauoSTH30YxqPNvP9G3vw0wklp1WbWsbXAogRvjO0UyCTHoFc0eE4wshhBee9btQVBSwuP8hnFTWs2lzNkpt6APDk63toOnScwp7t+dOsgRR2yoJw0V3bG6rP1VLVomd+PgCyHZa+u5/1FTG+PnqCB+dvRwVmTiqlsFPWGatNrVuYyWrDsfLEhypZ/OYehl9XRGn3HJYu3Uv/sgIqX/22H0IJ6bqRVFoDTqUyd+5vYvDtG4gnklkO8ZTFT5cxYXS3wKcizztEn289cJBbakVk3565/GLKJXDcw1jl2hGFTBjdDddLOmNp3QeZ8vBZU7PH5ZM/YOfuBiqXXMvg3h3IiIfPYvUJ0n1vXdcmH0CbeuPFbKiMUVqcQ/WxOI6RtH90RTqPWa2ZsDs2mlxPbS0Ykxy+M2H380isNk6oNAYsEcm8De8z6F+OqGbwqQaE2yiFCgGHCgGHCgGHCgGHCrcyDJXZWxlmoGT1R0dteKwO6XusTngwVpoP0a5rq8Kj7dL3aLtIJGK2AmNBLKfOgw8V7Jk3ydLIVgOsDTskbbU2PCA63Q+IFpH9wFIfrBf2T+Dl+SyXish+UVUheeZ7JVDo/wLCDFcwlTrF/QgwFDhskltVSBXJo97FB2zDvgok3NRyhkk+U2NExFNVR0TKgXt9T9oAbmaVxgM957o+Mwe4V0TKfaaetIidHB/2DcBCoFurMV1CB6xNQU21VGh7CJgmIitTLGk517aw5JVAGfAiEGth0SHctrUaOGWxMZ9VWWu4ZwyJWl6gqiXAncAoYBBQHIZSbSIE+hrY5ucw3hCRfa3ZpfRvec12His/BrEAAAAASUVORK5CYII=" alt="이스라엘 국기"></div>
           <div class="mj-body">
             <div class="mj-field">ISRAEL</div>
             <div class="mj-name"><span class="ko">이스라엘 목장</span><span class="en">Israel Mokjang</span></div>
@@ -1764,7 +1783,7 @@ button.bp:active{transform:scale(.985)}
         </button>
 
         <button class="mj-card mj-mexico" onclick="openMokjang('멕시코')">
-          <div class="mj-mark"><span>멕</span></div>
+          <div class="mj-mark"><img src="data:image/png;base64,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" alt="멕시코 국기"></div>
           <div class="mj-body">
             <div class="mj-field">MEXICO</div>
             <div class="mj-name"><span class="ko">멕시코 목장</span><span class="en">Mexico Mokjang</span></div>
@@ -1774,7 +1793,7 @@ button.bp:active{transform:scale(.985)}
         </button>
 
         <button class="mj-card mj-indo" onclick="openMokjang('인도네시아')">
-          <div class="mj-mark"><span>인</span></div>
+          <div class="mj-mark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAABQCAYAAADSm7GJAAACjUlEQVR42u2dMU7cUBRFz7NTJiUEUMQCgkTBDigS9oAoaGApbCIpqGjYAAQJ1gASWQBCiAEJmpRjXor5DpaVlFHGzjnS14w8f6b4Z679nyXrBT0S6oCmvF8FtoFNYA1YKdMC+Rdkeb0DroEL4Cjgpu/uT9+uy+tywpeEp4R0zPV4Kq6Wuw7pJ7G1n7AFHAJL5aOmzAuTO1dJbkcr9B7YDTjtJrnqyd0DTorcaecHKuXOFVGc1MXRtDg7SdgrLmuA6Mj9BHzrJLZyHQfFSyeQnwPOEurImcxF4ApYKJOUO1zJATwC68BDFTOhB0Vyo9xBUxWHi8BBQEbCB+A78NYSaFSl1A/gYwXsAO868Zbhb8BeitOdqtzEkHGyGTmrn96XaJvg8ZymA5hEvp6zZaS7LgWPOMneoRr5hsua9z84RYuCRcGiYFGwKFgULApWsChYFCwKFgWLgkXBChYFi4JFwaJgUbAoWBQ8ct5Q6XjM+GzS6BN8fu4qjDrBmSZ41AluGlfBBItlkihYFCwKFgWLghUsChYFi4JFwaJgUbCCRcGiYFGwKFgULAoWBStYFCy21RFsqyP8lbY6k17XShlPB9JJBVzy2lxYGE2jaIDLCrhwPUbLRWSmDaLH3CA6Im6B4yLWZ0mHT1NcHkfEbWRmMOv5fgUslH+A9fFwr70BPALrwEMFVBExYdbqPYpgN1zDlNs2ht4pTqsqIprMrCPiDNgH6pLgqaXTYK650+KsBvYj4qw4bX5tqNoDmbkFHAJLvXN6uAGbK6ntqMuxe2A3Ik5bl3SvtZ0knwIbwFfguZNo5c4P0Unsc3G10Zf725KoOyEzV4FtYBNYA1YspeaiBLoDrss9jKOIuOm7a/kJwQqTdTEhzPgAAAAASUVORK5CYII=" alt="인도네시아 국기"></div>
           <div class="mj-body">
             <div class="mj-field">INDONESIA</div>
             <div class="mj-name"><span class="ko">인도네시아 목장</span><span class="en">Indonesia Mokjang</span></div>
@@ -1832,6 +1851,11 @@ button.bp:active{transform:scale(.985)}
           <span class="ko">영어가 필요한 이웃과 마주 앉아 이야기를 나눕니다. 전도 집회가 아니라 <b>그냥 대화</b>입니다. 믿든 안 믿든 누구나 오셔도 됩니다.</span>
           <span class="en">We sit down with neighbours who need English and simply talk. Not an outreach event — <b>just conversation</b>. Come whether you believe or not.</span>
         </p>
+        <div class="tt-when">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span class="ko i">모임 시간·장소 — 곧 알림 (9월 예배 개편에 맞춰 조정)</span>
+          <span class="en i">Time &amp; place — coming soon (adjusting with the September change)</span>
+        </div>
         <span class="tt-cta"><span class="ko i">톡타임 문의하기</span><span class="en i">Ask about Talk Time</span>
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </button>
@@ -2034,7 +2058,18 @@ button.bp:active{transform:scale(.985)}
       </div>
 
       <div class="svc-notice" data-svc-notice></div>
-      <div class="svc-card" style="margin-bottom:18px" data-services></div>
+      <div class="svc-card" style="margin-bottom:14px" data-services></div>
+
+      <button class="card altar" onclick="go(LINKS.hebronAltar)">
+        <div class="altar-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3v4M12 7c-2 0-3.5 1.5-3.5 3.5h7C15.5 8.5 14 7 12 7z"/><path d="M4 14h16M6 14v6M18 14v6M9 20h6"/></svg>
+        </div>
+        <div class="altar-body">
+          <div class="altar-t"><span class="ko">월~금 새벽기도 — 각자 집에서</span><span class="en">Mon–Fri Dawn Prayer — at home</span></div>
+          <div class="altar-d"><span class="ko">헤브론제단(HebronAltar)으로 개인이 드립니다. 흩어진 자리에서, 같은 마음으로.</span><span class="en">Prayed individually with HebronAltar. Scattered, yet of one heart.</span></div>
+        </div>
+        <svg class="mj-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
 
       <div class="card place">
         <div class="place-t"><span class="ko">예배 장소</span><span class="en">Where we gather</span></div>
@@ -2353,7 +2388,8 @@ const LINKS = {
   staff     : 'https://www.ijiguchon.org/chnet2/home/?type=sub&step1=1&sid=62',
   // 지도 링크는 두지 않습니다 (자택). HebronGuide 시애틀 = 도시의 첫 얼굴.
   hebron    : 'https://hebronguide.com',
-  hebronSea : 'https://hebronguide.com/seattle/'
+  hebronSea : 'https://hebronguide.com/seattle/',
+  hebronAltar: 'https://hebron-ijiguchon.web.app'   // 헤브론제단 — 개인 새벽기도 앱
 };
 
 function go(url){ window.open(url, '_blank', 'noopener'); }
@@ -2377,6 +2413,8 @@ const SERVICE = {
   weekly    : [
     {ko:'목장', en:'Mokjang',
      tKo:'매주 주중 · 각 목장별로', tEn:'Weekly, midweek — each home'},
+    {ko:'새벽기도 (월~금)', en:'Dawn Prayer (Mon–Fri)',
+     tKo:'각자 집에서 · HebronAltar', tEn:'At home · HebronAltar'},
     {ko:'토요새벽기도회', en:'Saturday Prayer',
      tKo:'토 오전 6:00–7:00', tEn:'Sat 6:00–7:00 AM'}
   ]
