@@ -1223,6 +1223,17 @@ button.bp:active{transform:scale(.985)}
 .wr-greet b{color:#B24A38}
 .wr-msg{margin-top:9px;font-size:13px;line-height:1.9;color:#7a5a4a;font-weight:500}
 .wr-sign{margin-top:14px;font-size:11.5px;font-weight:700;color:#B08968;font-style:italic}
+.wr-hebron{margin-bottom:11px;padding:9px 12px;border-radius:var(--r-md);background:rgba(200,148,74,.12);border:1px dashed rgba(200,148,74,.5);font-size:12px;line-height:1.6;color:#9a6a3a;font-weight:600}
+.wr-invite{
+  display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:15px;
+  padding:13px;border-radius:var(--r-pill);
+  background:linear-gradient(180deg,#E9967A,#C86B5A);color:#fff;
+  font-size:13.5px;font-weight:800;letter-spacing:-.2px;
+  box-shadow:0 4px 14px rgba(200,107,90,.32), inset 0 1px 0 rgba(255,255,255,.24);
+  -webkit-tap-highlight-color:transparent;transition:transform .14s;
+}
+.wr-invite:active{transform:scale(.98)}
+.wr-invite svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.4;flex-shrink:0}
 
 /* ── 분가 ── */
 .multi{padding:16px}
@@ -1388,9 +1399,14 @@ button.bp:active{transform:scale(.985)}
       <!-- 환영의 방 — 새가족 만남의 방에 초대된 듯 (VIP 입장, 아무것도 요구하지 않음) -->
       <div class="welcome-room">
         <div class="wr-badge"><span class="ko i">환영합니다</span><span class="en i">Welcome</span></div>
+        <p class="wr-hebron" id="wrHebron" hidden><span class="ko">헤브론가이드에서 오셨군요. 낯선 도시에서 마주친 분이라 더 반갑습니다.</span><span class="en">You came from HebronGuide — meeting you in a new city makes it all the sweeter.</span></p>
         <p class="wr-greet"><span class="ko">처음 오셨나요? <b>진심으로 반갑습니다.</b></span><span class="en">Just arrived? <b>We're so glad you're here.</b></span></p>
         <p class="wr-msg"><span class="ko">여기서는 아무것도 하지 않으셔도 됩니다. 편하게 둘러보시고, 머물고 싶은 만큼 머무세요. 잘 차려진 밥상처럼, 당신을 위한 자리가 이미 마련되어 있습니다.</span><span class="en">You don't have to do anything here. Look around, and stay as long as you like. Like a table already set, there's a place kept just for you.</span></p>
         <div class="wr-sign"><span class="ko i">— 시애틀지구촌교회 목장 식구들 드림</span><span class="en i">— from the family at GMC</span></div>
+        <button class="wr-invite" onclick="openModal('mokjang')">
+          <span class="ko i">원하실 때, 밥 한 끼 함께해요 — 목장으로 초대합니다</span><span class="en i">When you're ready, share a meal — a mokjang welcomes you</span>
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
       </div>
 
       <!-- Quick actions -->
@@ -2758,6 +2774,17 @@ function welcomeSlides(){
     {grad:'linear-gradient(140deg,#DCEBF7 0%,#A9CBEA 40%,#E9DCA9 100%)'}                  // 아침 빛 느낌
   ];
 }
+/* 헤브론가이드에서 온 VIP면 환영의 방에 맞춤 인사를 켭니다 (?from=hebron 또는 referrer) */
+function markHebronArrival(){
+  let fromHebron = false;
+  try{
+    const p = new URLSearchParams(location.search).get('from');
+    fromHebron = (p === 'hebron' || p === 'hebronguide') || /hebronguide\.com/i.test(document.referrer || '');
+  }catch(_){}
+  const el = document.getElementById('wrHebron');
+  if(el && fromHebron) el.hidden = false;
+}
+
 let __wheroTimer = null;
 function renderWelcome(){
   const frame = document.getElementById('wheroFrame');
@@ -3435,6 +3462,7 @@ function applyLang(lang){
   renderSermonHero();
   renderSaturday();
   renderWelcome();
+  markHebronArrival();
 }
 
 function toggleLang(){
