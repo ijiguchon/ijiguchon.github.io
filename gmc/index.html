@@ -1343,7 +1343,9 @@ button.bp:active{transform:scale(.985)}
    14. INSTALL BANNER + TOAST
    ══════════════════════════════════════ */
 .install{
-  position:fixed;left:50%;transform:translateX(-50%) translateY(140%);
+  position:fixed;left:50%;
+  /* 숨김: 자기 높이 전체 + 하단 여백(내비·세이프영역)까지 내려 화면 완전 바깥으로 (140%만으론 하단에 걸쳐 남았음) */
+  transform:translateX(-50%) translateY(calc(100% + var(--h-nav) + var(--safe-b) + 40px));
   bottom:calc(var(--h-nav) + var(--safe-b) + 12px);
   z-index:800;
   width:min(400px, calc(100vw - 28px));
