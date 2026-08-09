@@ -1503,7 +1503,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </button>
       </div>
 
-      <!-- 우리 행복할까요? — 치유와 상담 프로그램 (VIP 문턱 낮추기, 접이식으로 세로 공간 절약)
+      <!-- 우리 행복할까요? — 이웃과 함께하는 배움 (VIP 문턱 낮추기, 접이식으로 세로 공간 절약)
            ※ id="careFold" — 삶공부 탭에서 openCare()로 열고 스크롤합니다 -->
       <details class="fold" id="careFold">
         <summary>
@@ -1537,7 +1537,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
             <div class="care-d"><span class="ko">상처와 아픔, 혼자 지지 마세요. 회복으로 함께 갑니다.</span><span class="en">Don't carry the hurt alone — heal, together.</span></div></div>
           <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
-        <!-- 부부의 삶 · 자녀교육의 삶은 치유·상담이 아니라 삶공부 선택 과정으로 옮겼습니다 (목사님, 2026-08-09) -->
+        <!-- 부부의 삶 · 자녀교육의 삶은 여기가 아니라 삶공부 선택 과정으로 옮겼습니다 (목사님, 2026-08-09) -->
         <button class="care-card" onclick="openModal('contact')">
           <div class="care-ico ci-talk2"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-9.6a4 4 0 0 1 7.5-2 4 4 0 0 1 7.5 2c0 5-7.5 9.6-7.5 9.6z"/></svg></div>
           <div class="care-b"><div class="care-t"><span class="ko">가족치유 마음치유</span><span class="en">Family &amp; Inner Healing</span></div>
@@ -2354,10 +2354,10 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       <button class="card term" style="margin-top:14px;text-align:left;width:100%;display:block" onclick="openCare()">
         <div class="term-t"><span class="ko">행복한 삶 · 회복의 삶을 찾으셨나요?</span><span class="en">Looking for Happy Life or Restored Life?</span></div>
         <p class="term-d">
-          <span class="ko">이 두 과정은 <b>치유와 상담</b> 쪽에 있습니다. 홈 화면의 <b>"우리 행복할까요?"</b>에서 함께 보실 수 있어요.</span>
-          <span class="en">Those two sit on the <b>healing &amp; counseling</b> side. You'll find them under <b>"Shall we be happy?"</b> on the home screen.</span>
+          <span class="ko">이 두 과정은 삶공부가 아니라 <b>이웃과 함께하는 배움</b> 쪽에 있습니다. 홈 화면의 <b>"우리 행복할까요?"</b>에서 함께 보실 수 있어요.</span>
+          <span class="en">Those two aren't in the Life Studies — they sit under <b>learning together with neighbours</b>. You'll find them in <b>"Shall we be happy?"</b> on the home screen.</span>
         </p>
-        <span class="wc-cta" style="margin-top:9px"><span class="ko i">치유·상담 프로그램 보기</span><span class="en i">See healing &amp; counseling</span>
+        <span class="wc-cta" style="margin-top:9px"><span class="ko i">이웃과 함께하는 배움 보기</span><span class="en i">See what's open to neighbours</span>
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </button>
 
@@ -3457,8 +3457,8 @@ const MODALS = {
         {ko:'전도의 삶 (선택)', en:'Evangelism Life (elective)'},
         {ko:'선교의 삶 (선택)', en:'Missional Life (elective)'},
         {ko:'뿌리내린 삶 (선택)', en:'Rooted Life (elective)'},
-        {ko:'행복한 삶 (치유·상담)', en:'Happy Life (healing & counseling)'},
-        {ko:'회복의 삶 (치유·상담)', en:'Restored Life (healing & counseling)'},
+        {ko:'행복한 삶 (이웃과 함께하는 배움)', en:'Happy Life (open to neighbours)'},
+        {ko:'회복의 삶 (이웃과 함께하는 배움)', en:'Restored Life (open to neighbours)'},
         {ko:'어떤 과정이 좋을지 상담하고 싶어요', en:"Not sure — please advise"}
       ]}
     ]
@@ -3746,7 +3746,7 @@ function scrollToStages(){
   });
 }
 
-/* 삶공부 탭 → 홈의 "우리 행복할까요?"(치유·상담)를 펼쳐서 보여줍니다 */
+/* 삶공부 탭 → 홈의 "우리 행복할까요?"(이웃과 함께하는 배움)를 펼쳐서 보여줍니다 */
 function openCare(){
   switchTab('home');
   const fold = document.getElementById('careFold');
