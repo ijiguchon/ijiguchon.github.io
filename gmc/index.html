@@ -652,8 +652,21 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
 }
 .c-core .course-n{background:linear-gradient(180deg,#FFB830,#C47212);color:#fff;box-shadow:0 2px 6px rgba(196,114,18,.3), inset 0 1px 0 rgba(255,255,255,.3)}
 .c-opt .course-n{background:var(--surface-2);color:var(--text-3);border:1px solid var(--border)}
-.c-one .course-n{background:linear-gradient(180deg,#4FA8D8,#2C77B0);color:#fff;font-size:11px;box-shadow:0 2px 6px rgba(44,119,176,.3), inset 0 1px 0 rgba(255,255,255,.3)}
 .course-b{flex:1;min-width:0}
+/* 과정 이름 옆 형식 표시 — 분류가 아니라 "한 사람과 마주 앉아 한다"는 진행 형식.
+   빈도 표시(연 3회, 주황)와 구분되도록 파랑. */
+.course-mode{
+  display:inline-block;margin-left:6px;padding:1.5px 7px;border-radius:var(--r-pill);
+  background:rgba(44,119,176,.10);border:1px solid rgba(44,119,176,.3);
+  font-size:9px;font-weight:800;color:#2C77B0;white-space:nowrap;vertical-align:middle;
+}
+/* 선택 과정 — 이름만 알약으로 (수가 많아 카드로 두면 화면이 길어집니다) */
+.el-list{display:flex;flex-wrap:wrap;gap:6px}
+.el-pill{
+  padding:6px 11px;border-radius:var(--r-pill);
+  background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-xs);
+  font-size:11.5px;font-weight:700;color:var(--text-2);
+}
 .course-t{font-size:14px;font-weight:800;letter-spacing:-.3px}
 .course-tag{
   display:inline-block;margin-left:6px;padding:1.5px 7px;border-radius:var(--r-pill);
@@ -1267,6 +1280,13 @@ button.bp:active{transform:scale(.985)}
 .care-d{margin-top:3px;font-size:12px;line-height:1.55;color:var(--text-3);font-weight:500}
 .care-arr{width:16px;height:16px;stroke:var(--text-3);fill:none;stroke-width:2.2;flex-shrink:0;opacity:.5}
 .care-foot{margin-top:11px;text-align:center;font-size:11.5px;font-weight:700;color:var(--accent)}
+/* 대상 = 누구나 (교회 밖 이웃도 편히 오시도록) */
+.care-open{
+  margin-bottom:10px;padding:10px 12px;border-radius:var(--r-md);
+  background:var(--accent-pale);border:1px solid rgba(200,148,74,.3);
+  font-size:12px;line-height:1.6;color:var(--text-2);font-weight:500;
+}
+.care-open b{color:var(--text-1);font-weight:800}
 
 /* ── 환영의 방 (VIP 인사 카드) ── */
 .welcome-room{
@@ -1324,6 +1344,8 @@ button.bp:active{transform:scale(.985)}
   color:#fff;font-size:19px;font-weight:900;letter-spacing:-.5px;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.22), 0 2px 8px rgba(26,53,96,.24);
 }
+/* 사진이 있으면 같은 자리에 얼굴이, 없으면 이름 첫 글자가 나옵니다 */
+img.person-photo{object-fit:cover;object-position:center 22%;background:var(--surface-2)}
 .person-body{flex:1;min-width:0}
 .person-name{font-size:14.5px;font-weight:800;letter-spacing:-.3px}
 .person-role{margin-top:2px;font-size:11.5px;font-weight:700;color:var(--accent)}
@@ -1460,7 +1482,7 @@ button.bp:active{transform:scale(.985)}
         <div class="whero-text">
           <div class="whero-eyebrow"><span class="ko i">시애틀지구촌교회</span><span class="en i">GMC of Greater Seattle</span></div>
           <h1 class="whero-title"><span class="ko">당신을 위한<br>자리가 있습니다</span><span class="en">There's a place<br>just for you</span></h1>
-          <p class="whero-sub"><span class="ko i">시애틀에서, 밥 한 끼로 시작해요</span><span class="en i">In Seattle — it starts with a meal</span></p>
+          <p class="whero-sub"><span class="ko i">시애틀에서, 커피 한 잔과 편안한 식사 한 자리로 초대합니다</span><span class="en i">In Seattle — you're invited for a coffee and an easy meal together</span></p>
         </div>
       </div>
 
@@ -1481,27 +1503,26 @@ button.bp:active{transform:scale(.985)}
         </button>
       </div>
 
-      <!-- 우리 행복할까요? — 치유와 상담 프로그램 (VIP 문턱 낮추기, 접이식으로 세로 공간 절약) -->
-      <details class="fold">
+      <!-- 우리 행복할까요? — 치유와 상담 프로그램 (VIP 문턱 낮추기, 접이식으로 세로 공간 절약)
+           ※ id="careFold" — 삶공부 탭에서 openCare()로 열고 스크롤합니다 -->
+      <details class="fold" id="careFold">
         <summary>
           <div class="fold-t">
             <div class="fold-title"><span class="ko">우리 행복할까요?</span><span class="en">Shall we be happy?</span></div>
-            <div class="fold-sub"><span class="ko i">치유, 상담 프로그램</span><span class="en i">Healing &amp; counseling</span></div>
+            <div class="fold-sub"><span class="ko i">치유, 상담 프로그램 · 누구나</span><span class="en i">Healing &amp; counseling · open to anyone</span></div>
           </div>
           <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </summary>
         <div class="fold-body">
+      <p class="care-open">
+        <span class="ko"><b>누구나 오실 수 있어요.</b> 믿음이 있든 없든 상관없습니다.</span>
+        <span class="en"><b>Anyone is welcome</b> — believing or not.</span>
+      </p>
       <div class="care-list">
         <button class="care-card" onclick="openModal('contact')">
           <div class="care-ico ci-talk"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-9a8.4 8.4 0 1 1 16.9-.5z"/></svg></div>
           <div class="care-b"><div class="care-t"><span class="ko">영어 톡타임</span><span class="en">English Talk Time</span></div>
             <div class="care-d"><span class="ko">영어가 필요한 이웃과 마주 앉아 편하게 이야기 나눠요.</span><span class="en">Sit and talk with neighbours who need English.</span></div></div>
-          <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-        <button class="care-card" onclick="openModal('contact')">
-          <div class="care-ico ci-home"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M12 20v-5"/></svg></div>
-          <div class="care-b"><div class="care-t"><span class="ko">가정행복학교</span><span class="en">Family Happiness School</span></div>
-            <div class="care-d"><span class="ko">부부가 다시 웃고, 가정이 회복되도록 함께 배워요.</span><span class="en">Learn together so marriages smile again.</span></div></div>
           <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
         <button class="care-card" onclick="openModal('contact')">
@@ -1516,16 +1537,17 @@ button.bp:active{transform:scale(.985)}
             <div class="care-d"><span class="ko">상처와 아픔, 혼자 지지 마세요. 회복으로 함께 갑니다.</span><span class="en">Don't carry the hurt alone — heal, together.</span></div></div>
           <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
+        <!-- 부부의 삶 · 자녀교육의 삶은 치유·상담이 아니라 삶공부 선택 과정으로 옮겼습니다 (목사님, 2026-08-09) -->
         <button class="care-card" onclick="openModal('contact')">
-          <div class="care-ico ci-couple"><svg viewBox="0 0 24 24"><path d="M20.5 5.6a5 5 0 0 0-7 0L12 7l-1.5-1.4a5 5 0 0 0-7 7L12 21l8.5-8.4a5 5 0 0 0 0-7z"/></svg></div>
-          <div class="care-b"><div class="care-t"><span class="ko">부부의 삶</span><span class="en">Marriage Life</span></div>
-            <div class="care-d"><span class="ko">서로를 다시 이해하고, 부부 사이에 사랑을 회복해요.</span><span class="en">Understand each other again, and rekindle the love.</span></div></div>
+          <div class="care-ico ci-home"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M9.2 20v-4.2h5.6V20"/></svg></div>
+          <div class="care-b"><div class="care-t"><span class="ko">가족치유</span><span class="en">Family Healing</span></div>
+            <div class="care-d"><span class="ko">가족 사이에 얽힌 마음, 서두르지 않고 함께 풀어가요.</span><span class="en">Untangling what's knotted between family — unhurried, together.</span></div></div>
           <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
         <button class="care-card" onclick="openModal('contact')">
-          <div class="care-ico ci-child"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3.2"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg></div>
-          <div class="care-b"><div class="care-t"><span class="ko">자녀교육의 삶</span><span class="en">Parenting Life</span></div>
-            <div class="care-d"><span class="ko">자녀를 지혜롭게 키우는 길, 함께 고민하고 배워요.</span><span class="en">Raising kids wisely — think it through, together.</span></div></div>
+          <div class="care-ico ci-talk2"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-9.6a4 4 0 0 1 7.5-2 4 4 0 0 1 7.5 2c0 5-7.5 9.6-7.5 9.6z"/></svg></div>
+          <div class="care-b"><div class="care-t"><span class="ko">마음치유</span><span class="en">Inner Healing</span></div>
+            <div class="care-d"><span class="ko">지친 마음을 안전한 자리에서 함께 돌봅니다.</span><span class="en">Tending a worn-out heart, in a safe place, together.</span></div></div>
           <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
         <button class="care-card" onclick="openModal('contact')">
@@ -2222,20 +2244,32 @@ button.bp:active{transform:scale(.985)}
         <div class="panel-eyebrow">Axis 02 · Life Studies</div>
         <h1 class="panel-title"><span class="ko">삶공부</span><span class="en">Life Studies</span></h1>
         <p class="panel-sub">
-          <span class="ko">사명의 뒤 절반, <b>제자 만들기</b>가 여기서 일어납니다. 아는 것을 늘리는 공부가 아니라, 배운 것을 삶으로 살아내는 훈련입니다.</span>
-          <span class="en">The second half of the mission — <b>making disciples</b> — happens here. Not a course to know more, but training to live what you learn.</span>
+          <span class="ko">아는 것을 늘리는 공부가 아닙니다. 배운 것을 <b>삶으로 살아내는</b> 자리예요. 여기서 한 사람이 천천히 세워집니다.</span>
+          <span class="en">Not a course to know more. A place to <b>live out</b> what you learn — where one person is slowly built up.</span>
+        </p>
+      </div>
+
+      <div class="card term" style="background:var(--accent-pale);border-color:rgba(200,148,74,.3)">
+        <div class="term-t"><span class="ko">삶공부가 뭔가요?</span><span class="en">What is a Life Study?</span></div>
+        <p class="term-d">
+          <span class="ko">몇 사람이 둘러앉아 한 과목을 함께 읽고, <b>자기 이야기를 나누는 시간</b>입니다. 잘 아는 사람이 가르치는 자리가 아니라 같이 배우고 같이 살아보는 자리예요. 믿음이 있든 없든 편하게 들어오셔도 됩니다.</span>
+          <span class="en">A few people sit together, read through one course, and <b>share their own stories</b>. Not a class where the expert teaches — a place where we learn and live it together. Come whether you believe or not.</span>
         </p>
       </div>
 
       <div class="card term">
         <div class="term-t"><span class="ko">언제 열리나요?</span><span class="en">When do they run?</span></div>
         <p class="term-d">
-          <span class="ko">한 해를 <b>상반기 · 하반기</b>로 나눠 엽니다. 다만 <b>생명의 삶</b>은 첫 과정이라 상·중·하반기 <b>세 번</b> 엽니다 — 복음을 만나는 일을 오래 기다리게 하지 않으려고요.</span>
-          <span class="en">Courses run in a <b>first-half</b> and <b>second-half</b> term. But <b>Life of Christ</b> — the first course — runs <b>three times</b> a year, so no one waits long to meet the gospel.</span>
+          <span class="ko"><b>봄 학기(2–5월)</b>와 <b>가을 학기(9–12월)</b>에 과정 전체를 엽니다. <b>여름(6월)</b>에는 <b>생명의 삶</b>만 따로 엽니다 — 첫 걸음을 오래 기다리시지 않도록 한 해 세 번 여는 과정이에요.</span>
+          <span class="en">The full set opens in the <b>spring term (Feb–May)</b> and the <b>fall term (Sep–Dec)</b>. In <b>summer (June)</b> only <b>Living Life</b> runs — the first course opens three times a year so no one waits long for that first step.</span>
+        </p>
+        <p class="term-d" style="margin-top:7px">
+          <span class="ko">여럿이 모이는 과정은 <b>3명 이상</b>이면 엽니다. <b>1:1 과정</b>은 학기와 상관없이 <b>수시로</b> 시작할 수 있어요.</span>
+          <span class="en">Group courses open once <b>three or more</b> sign up. The <b>1:1 courses</b> can start <b>any time</b>, regardless of term.</span>
         </p>
       </div>
 
-      <div class="sec-head"><h2 class="sec-title"><span class="ko">필수 과정</span><span class="en">Core courses</span></h2>
+      <div class="sec-head"><h2 class="sec-title"><span class="ko">기본 과정</span><span class="en">Core courses</span></h2>
         <span class="sec-note"><span class="ko i">순서대로 걷습니다</span><span class="en i">Walked in order</span></span>
       </div>
       <div class="course-list">
@@ -2243,80 +2277,114 @@ button.bp:active{transform:scale(.985)}
           <div class="course-n">1</div>
           <div class="course-b">
             <div class="course-t">
-              <span class="ko">생명의 삶</span><span class="en">Life of Christ</span>
+              <span class="ko i">생명의 삶</span><span class="en i">Living Life</span>
               <span class="course-tag"><span class="ko i">연 3회</span><span class="en i">3× a year</span></span>
             </div>
-            <div class="course-d"><span class="ko">복음이 무엇인지 처음부터 만납니다. 오래 기다리지 않도록 상·중·하반기 세 번 엽니다.</span><span class="en">Meeting the gospel from the beginning. Opened three times a year so no one waits long.</span></div>
+            <div class="course-d"><span class="ko">예수님이 어떤 분인지 처음부터 함께 알아갑니다. 오래 기다리지 않도록 <b>봄·여름·가을</b> 세 번 엽니다.</span><span class="en">Getting to know who Jesus is, from the beginning. Opened in <b>spring, summer and fall</b> so no one waits long.</span></div>
+          </div>
+          <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <button class="course c-core" onclick="openStudy('확신의 삶')">
+          <div class="course-n">2</div>
+          <div class="course-b">
+            <div class="course-t">
+              <span class="ko i">확신의 삶</span><span class="en i">Assured Life</span>
+              <span class="course-mode"><span class="ko i">1:1 과정</span><span class="en i">1:1</span></span>
+            </div>
+            <div class="course-d"><span class="ko">구원의 확신을 함께 다집니다. <b>목자·목녀와 목장식구</b>가 마주 앉아 진행하고, 생명의 삶 <b>전이나 후</b>에 하시길 권합니다.</span><span class="en">Settling the assurance of salvation together. A <b>host and one member</b> sit down together — recommended <b>before or after</b> Life of Christ.</span></div>
           </div>
           <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
         <button class="course c-core" onclick="openStudy('새로운 삶')">
-          <div class="course-n">2</div>
+          <div class="course-n">3</div>
           <div class="course-b">
             <div class="course-t"><span class="ko">새로운 삶</span><span class="en">New Life</span></div>
-            <div class="course-d"><span class="ko">믿은 뒤 무엇이 달라지는지 배웁니다</span><span class="en">What changes after you believe</span></div>
+            <div class="course-d"><span class="ko">믿은 뒤 무엇이 달라지는지 — 나는 누구인가에서 시작합니다</span><span class="en">What changes after you believe — starting with who you are</span></div>
           </div>
           <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
         <button class="course c-core" onclick="openStudy('경건의 삶')">
-          <div class="course-n">3</div>
+          <div class="course-n">4</div>
           <div class="course-b">
-            <div class="course-t"><span class="ko">경건의 삶</span><span class="en">Godly Life</span></div>
-            <div class="course-d"><span class="ko">날마다 하나님과 걷는 습관을 들입니다</span><span class="en">Building the daily habit of walking with God</span></div>
+            <div class="course-t"><span class="ko">경건의 삶</span><span class="en">Growing Life</span></div>
+            <div class="course-d"><span class="ko">날마다 하나님과 걷는 습관을 들입니다 — 묵상·기도·말씀</span><span class="en">Building the daily habit of walking with God — devotion, prayer, the Word</span></div>
+          </div>
+          <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <button class="course c-core" onclick="openStudy('하나님을 경험하는 삶')">
+          <div class="course-n">5</div>
+          <div class="course-b">
+            <div class="course-t">
+              <span class="ko i">하나님을 경험하는 삶</span><span class="en i">Experiencing God Life</span>
+              <span class="course-mode"><span class="ko i">1:1 과정</span><span class="en i">1:1</span></span>
+            </div>
+            <div class="course-d"><span class="ko">일상에서 하나님을 만나고 따라가는 훈련입니다. <b>목사님과 예비목자</b>가 마주 앉아 진행하고, 경건의 삶을 마친 뒤 <b>목장을 섬기기 시작하기 전이나 후</b>에 하시길 권합니다.</span><span class="en">Training to meet and follow God in everyday life. The <b>pastor and a host-in-training</b> sit down together, after Godly Life — <b>just before or after</b> beginning to serve a mokjang.</span></div>
           </div>
           <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
       </div>
+      <p class="place-note" style="margin-top:10px">
+        <span class="ko">이름 옆에 <b>1:1 과정</b>이라 적힌 둘은 따로 있는 분류가 아니라, 여러 사람이 모이는 대신 <b>한 사람과 마주 앉아</b> 하는 진행 형식입니다.</span>
+        <span class="en">The two marked <b>1:1</b> next to their names aren't a separate track — it's simply how they're walked: <b>with one person</b> rather than in a group.</span>
+      </p>
 
-      <div class="sec-head"><h2 class="sec-title"><span class="ko">1대1 과정</span><span class="en">One-on-one</span></h2>
-        <span class="sec-note"><span class="ko i">한 사람과 마주 앉아</span><span class="en i">One person, in depth</span></span>
+      <div class="sec-head" style="margin-top:22px"><h2 class="sec-title"><span class="ko">선택 과정</span><span class="en">Electives</span></h2>
+        <span class="sec-note"><span class="ko i">필요한 때, 필요한 과정으로</span><span class="en i">Whichever you need, whenever</span></span>
       </div>
-      <div class="course-list">
-        <button class="course c-one" onclick="openStudy('확신의 삶')">
-          <div class="course-n">1:1</div>
-          <div class="course-b">
-            <div class="course-t"><span class="ko">확신의 삶</span><span class="en">Assurance</span></div>
-            <div class="course-d"><span class="ko">구원의 확신을 한 사람과 마주 앉아 다집니다</span><span class="en">Settling assurance of salvation, one-on-one</span></div>
-          </div>
-          <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-        <button class="course c-one" onclick="openStudy('하나님을 경험하는 삶')">
-          <div class="course-n">1:1</div>
-          <div class="course-b">
-            <div class="course-t"><span class="ko">하나님을 경험하는 삶</span><span class="en">Experiencing God</span></div>
-            <div class="course-d"><span class="ko">일상에서 하나님을 만나고 따라가는 훈련입니다</span><span class="en">Meeting and following God in everyday life</span></div>
-          </div>
-          <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
+      <p class="wo-intro">
+        <span class="ko">기본 과정 외에도 삶의 자리마다 과정이 있습니다. <b>3명 이상</b> 모이면 봄·가을 학기에 엽니다.</span>
+        <span class="en">Beyond the core path, there's a course for each season of life. Each opens in the spring or fall term once <b>three or more</b> sign up.</span>
+      </p>
+      <div class="el-list">
+        <span class="el-pill"><span class="ko i">새교회의 삶</span><span class="en i">New Church Life</span></span>
+        <span class="el-pill"><span class="ko i">예수님을 따르는 삶</span><span class="en i">Discipleship Life</span></span>
+        <span class="el-pill"><span class="ko i">부부의 삶</span><span class="en i">Married Life</span></span>
+        <span class="el-pill"><span class="ko i">커플의 삶</span><span class="en i">Couple Life</span></span>
+        <span class="el-pill"><span class="ko i">이성교제의 삶</span><span class="en i">Dating Life</span></span>
+        <span class="el-pill"><span class="ko i">싱글의 삶</span><span class="en i">Single Life</span></span>
+        <span class="el-pill"><span class="ko i">부모의 삶</span><span class="en i">Parent Life</span></span>
+        <span class="el-pill"><span class="ko i">언약의 삶</span><span class="en i">Covenant Life</span></span>
+        <span class="el-pill"><span class="ko i">목자·목녀의 삶</span><span class="en i">Shepherd Life</span></span>
+        <span class="el-pill"><span class="ko i">말씀의 삶</span><span class="en i">Word Life</span></span>
+        <span class="el-pill"><span class="ko i">말씀 중보기도의 삶</span><span class="en i">Intercessory Life</span></span>
+        <span class="el-pill"><span class="ko i">일터의 삶</span><span class="en i">Workplace Life</span></span>
+        <span class="el-pill"><span class="ko i">소명의 삶</span><span class="en i">Vocational Life</span></span>
+        <span class="el-pill"><span class="ko i">전도의 삶</span><span class="en i">Evangelism Life</span></span>
+        <span class="el-pill"><span class="ko i">선교의 삶</span><span class="en i">Missional Life</span></span>
+        <span class="el-pill"><span class="ko i">뿌리내린 삶</span><span class="en i">Rooted Life</span></span>
       </div>
+      <button class="btn btn-ghost-line btn-full" style="margin-top:10px" onclick="openModal('study')">
+        <span class="ko i">듣고 싶은 과정 문의하기</span><span class="en i">Ask about a course</span>
+      </button>
 
-      <div class="sec-head"><h2 class="sec-title"><span class="ko">선택 과정</span><span class="en">Electives</span></h2></div>
-      <div class="course-list">
-        <button class="course c-opt" onclick="openStudy('행복한 삶')">
-          <div class="course-n">＋</div>
-          <div class="course-b">
-            <div class="course-t"><span class="ko">행복한 삶</span><span class="en">Happy Life</span></div>
-            <div class="course-d"><span class="ko">가정과 관계를 다시 세웁니다</span><span class="en">Rebuilding home and relationships</span></div>
-          </div>
-          <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-        <button class="course c-opt" onclick="openStudy('회복의 삶')">
-          <div class="course-n">＋</div>
-          <div class="course-b">
-            <div class="course-t"><span class="ko">회복의 삶</span><span class="en">Restored Life</span></div>
-            <div class="course-d"><span class="ko">행복한 삶을 마친 분이 듣습니다</span><span class="en">For those who finished Happy Life</span></div>
-          </div>
-          <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-      </div>
+      <button class="card term" style="margin-top:14px;text-align:left;width:100%;display:block" onclick="openCare()">
+        <div class="term-t"><span class="ko">행복한 삶 · 회복의 삶을 찾으셨나요?</span><span class="en">Looking for Happy Life or Restored Life?</span></div>
+        <p class="term-d">
+          <span class="ko">이 두 과정은 <b>치유와 상담</b> 쪽에 있습니다. 홈 화면의 <b>"우리 행복할까요?"</b>에서 함께 보실 수 있어요.</span>
+          <span class="en">Those two sit on the <b>healing &amp; counseling</b> side. You'll find them under <b>"Shall we be happy?"</b> on the home screen.</span>
+        </p>
+        <span class="wc-cta" style="margin-top:9px"><span class="ko i">치유·상담 프로그램 보기</span><span class="en i">See healing &amp; counseling</span>
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
 
-      <div class="card why-study">
-        <div class="ws-t"><span class="ko">왜 삶공부가 축입니까?</span><span class="en">Why is this an axis?</span></div>
+      <details class="fold" style="margin-top:16px">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">왜 함께 배우나요?</span><span class="en">Why learn together?</span></div>
+            <div class="fold-sub"><span class="ko i">삶공부가 우리 교회의 한 축인 이유</span><span class="en i">Why this is one of our three axes</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+      <div class="card why-study" style="margin-top:0">
+        <div class="ws-t"><span class="ko">목장에서 마음이 열리고, 여기서 한 사람이 세워집니다</span><span class="en">Hearts open in the mokjang; people are built up here</span></div>
         <p class="ws-d">
-          <span class="ko">목장에서 영혼이 구원받고(사명의 앞 절반), 삶공부에서 제자가 됩니다(뒤 절반). 둘 중 하나만 있으면 사명이 반쪽입니다. 그래서 삶공부는 선택 프로그램이 아니라 축입니다.</span>
-          <span class="en">Souls are saved in the mokjang — the first half. Disciples are formed in the studies — the second half. With only one, the mission is half done. That's why this isn't a program; it's an axis.</span>
+          <span class="ko">목장에서 사람을 만나고 마음이 열립니다. 삶공부에서는 그 사람이 한 걸음씩 세워집니다. 둘 중 하나만 있으면 반쪽이에요. 그래서 삶공부는 곁가지 프로그램이 아니라 <b>우리 교회의 한 축</b>입니다.</span>
+          <span class="en">In the mokjang you meet people and your heart opens. Here, that person is built up step by step. With only one of the two, it's half a thing. That's why this isn't a side program — it's <b>one of our three axes</b>.</span>
         </p>
       </div>
+        </div>
+      </details>
 
       <div class="card ws-pace">
         <div class="ws-t"><span class="ko">서두르지 않습니다</span><span class="en">We don't rush</span></div>
@@ -2333,6 +2401,10 @@ button.bp:active{transform:scale(.985)}
         <button class="btn btn-ghost-line btn-full" style="margin-top:8px" onclick="go(LINKS.study)">
           <span class="ko i">교회 홈페이지에서 일정 보기</span><span class="en i">See the schedule on the church site</span>
         </button>
+        <p class="form-note">
+          <span class="ko">어느 과정부터 시작할지 모르셔도 괜찮습니다. 문의만 주시면 함께 정해요.</span>
+          <span class="en">Not sure which course to start with? Just ask — we'll figure it out together.</span>
+        </p>
       </div>
     </section>
 
@@ -2350,10 +2422,17 @@ button.bp:active{transform:scale(.985)}
       <div class="svc-notice" data-svc-notice></div>
       <div class="svc-card" style="margin-bottom:14px" data-services></div>
 
+      <div class="card term" style="background:var(--accent-pale);border-color:rgba(200,148,74,.3)">
+        <div class="term-t"><span class="ko">처음 오시면 이렇습니다</span><span class="en">If it's your first time</span></div>
+        <p class="term-d">
+          <span class="ko">한 주간 각자의 자리에서 살다가, 주일에 한자리에 모입니다. 잘 준비된 공연이 아니라 <b>각자 한 주를 살아낸 이야기를 들고 오는 자리</b>예요. 처음 오신 분은 아무 순서도 맡지 않으셔도 됩니다 — 그냥 앉아서 함께 계시면 충분합니다. 예배가 끝나면 <b>다 같이 점심을 먹습니다.</b></span>
+          <span class="en">We live the week scattered, then gather on Sunday. Not a polished production — <b>a room where everyone brings the week they've lived</b>. If you're new, you don't have to take part in anything; just sit and be with us. Afterward, <b>we all share lunch.</b></span>
+        </p>
+      </div>
+
       <!-- This week's message -->
       <div class="sec-head">
         <h2 class="sec-title"><span class="ko">이번 주 말씀</span><span class="en">This Week's Message</span></h2>
-        <button class="sec-link" onclick="switchTab('worship')"><span class="ko i">전체보기</span><span class="en i">See all</span></button>
       </div>
 
       <div class="sermon-hero">
@@ -2413,8 +2492,12 @@ button.bp:active{transform:scale(.985)}
       <div class="card place">
         <div class="place-t"><span class="ko">예배 장소</span><span class="en">Where we gather</span></div>
         <p class="place-d">
-          <span class="ko"><b>당분간 한 가정에서 드립니다.</b> 예배당 건물이 아니라 밥상이 있는 집입니다. 그래서 주소를 공개하지 않습니다.</span>
-          <span class="en"><b>For now we gather in a home</b> — not a sanctuary, but a house with a table in it. So we don't post the address publicly.</span>
+          <span class="ko"><b>당분간 가정에서 드립니다.</b> 예배당 건물이 아니라 밥상이 있는 집입니다. 그래서 주소를 공개하지 않습니다.</span>
+          <span class="en"><b>For now we gather in homes</b> — not a sanctuary, but houses with a table in them. So we don't post the address publicly.</span>
+        </p>
+        <p class="place-d" style="margin-top:9px">
+          <span class="ko">어른들은 <b>두 가정을 번갈아</b> 가며 모입니다. 온라인은 정기 순서가 아니라 <b>필요할 때</b> 함께 연결합니다. <b>9월부터</b>는 어린이·청소년이 다른 한 가정에서 따로 모이고, <b>점심은 모두 한자리에 모여 함께 먹습니다.</b> 흩어져 모이고, 한 밥상에서 하나가 됩니다.</span>
+          <span class="en">The adults gather in <b>two homes, by turn</b>. Online isn't a fixed part of it — we connect that way <b>when it's needed</b>. <b>From September</b>, children and youth meet in another home, and <b>for lunch everyone comes together at one table.</b> Scattered to gather — one table in the end.</span>
         </p>
         <div class="place-area">
           <svg viewBox="0 0 24 24"><path d="M20 10.5c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10.5" r="2.8"/></svg>
@@ -2430,10 +2513,15 @@ button.bp:active{transform:scale(.985)}
         </button>
       </div>
 
-      <div class="sec-head">
-        <h2 class="sec-title"><span class="ko">예배 순서</span><span class="en">Order of Worship</span></h2>
-        <span class="sec-note"><span class="ko i">흩어진 목장이 한 자리에</span><span class="en i">Scattered homes, one table</span></span>
-      </div>
+      <details class="fold">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">예배는 어떻게 드리나요?</span><span class="en">How the service goes</span></div>
+            <div class="fold-sub"><span class="ko i">예배 순서 · 흩어진 목장이 한 자리에</span><span class="en i">Order of worship · scattered homes, one table</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
       <p class="wo-intro">
         <span class="ko">주일연합목장예배 — 흩어진 세 목장이 한 자리에 모입니다. 예배의 은혜는 기획이 아니라 <b>한 주간 살아낸 삶</b>에서 옵니다.</span>
         <span class="en">United Mokjang Worship — the three scattered homes gather as one. The grace of worship comes not from production, but from <b>a week lived out</b>.</span>
@@ -2443,12 +2531,18 @@ button.bp:active{transform:scale(.985)}
         <div class="wo-row"><span class="wo-k"><span class="ko i">경배와 찬양</span><span class="en i">Praise &amp; Worship</span></span><span class="wo-v"><span class="ko i">지구촌 찬양팀</span><span class="en i">Praise team</span></span></div>
         <div class="wo-row"><span class="wo-k"><span class="ko i">봉헌</span><span class="en i">Offering</span></span><span class="wo-v"><span class="ko i">감사한 마음으로</span><span class="en i">With thanksgiving</span></span></div>
         <div class="wo-row wo-accent"><span class="wo-k"><span class="ko i">주의 만찬</span><span class="en i">The Lord's Supper</span></span><span class="wo-v"><span class="ko i">매달 첫 주일</span><span class="en i">First Sunday of the month</span></span></div>
-        <div class="wo-row"><span class="wo-k"><span class="ko i">대표기도</span><span class="en i">Representative Prayer</span></span><span class="wo-v"><span class="ko i">다같이 · 이번 주 순번은 잠금층에</span><span class="en i">See servers in the members area</span></span></div>
+        <div class="wo-row"><span class="wo-k"><span class="ko i">대표기도</span><span class="en i">Representative Prayer</span></span><span class="wo-v"><span class="ko i">다같이 · 이번 주 순번은 목장식구 화면에</span><span class="en i">See servers in the members area</span></span></div>
         <div class="wo-row"><span class="wo-k"><span class="ko i">성경 합독</span><span class="en i">Scripture Reading</span></span><span class="wo-v"><span class="ko i">다같이</span><span class="en i">Together</span></span></div>
         <div class="wo-row wo-accent"><span class="wo-k"><span class="ko i">말씀</span><span class="en i">Message</span></span><span class="wo-v"><span class="ko i">김성수 목사 · 사도행전 강해</span><span class="en i">Pastor Sung Soo Kim · Acts</span></span></div>
-        <div class="wo-row"><span class="wo-k"><span class="ko i">헌신과 결단</span><span class="en i">Commitment</span></span><span class="wo-v"><span class="ko i">앞으로 나와 결단합니다</span><span class="en i">Step forward and respond</span></span></div>
+        <div class="wo-row"><span class="wo-k"><span class="ko i">헌신과 결단</span><span class="en i">Commitment</span></span><span class="wo-v"><span class="ko i">원하는 분은 앞으로 나와 응답합니다</span><span class="en i">Anyone who wishes may step forward</span></span></div>
         <div class="wo-row"><span class="wo-k"><span class="ko i">축도</span><span class="en i">Benediction</span></span><span class="wo-v"><span class="ko i">인도자</span><span class="en i">Leader</span></span></div>
       </div>
+      <p class="place-note" style="margin-top:10px">
+        <span class="ko">처음 오신 분은 <b>어느 순서도 하지 않으셔도 괜찮습니다.</b> 봉헌도, 결단도 마음이 움직일 때 하시면 됩니다. 그냥 앉아 계셔도 아무도 이상하게 보지 않아요.</span>
+        <span class="en">If you're new, <b>you don't have to take part in any of it.</b> Offering, commitment — only when your heart moves. Simply sitting with us is completely fine.</span>
+      </p>
+        </div>
+      </details>
 
       <div class="sermon-hero">
         <button class="sermon-thumb" onclick="openPlayer('tvQVralkkHw','2026 서북미 목자연합수련회 — Reset for Restoration')" style="width:100%">
@@ -2829,10 +2923,11 @@ const SERVICE = {
   effective : '2026-09-06',                       // 9월 첫 주일부터 오전 11시
   before    : {ko:'주일 오후 1:00',  en:'Sun 1:00 PM'},
   after     : {ko:'주일 오전 11:00', en:'Sun 11:00 AM'},
-  // 연합예배는 대면(한 가정)과 온라인(줌·유튜브 라이브)을 격주로 번갈아 드립니다
+  // 어른 연합예배는 두 가정을 번갈아 가며 대면으로 드립니다.
+  // 온라인(줌·유튜브)은 정기 순서가 아니라 필요할 때만 함께 여는 하이브리드입니다.
   modes     : [
-    {ko:'대면 — 한 가정에서',        en:'In person — in a home'},
-    {ko:'온라인 — 줌 · 유튜브 라이브', en:'Online — Zoom · YouTube Live'}
+    {ko:'대면 — 두 가정을 번갈아',      en:'In person — two homes, by turn'},
+    {ko:'온라인 — 필요할 때 (줌 · 유튜브)', en:'Online — when needed (Zoom · YouTube)'}
   ],
   congs     : {ko:'한어부 · 영어부 · 어린이 · 청소년 함께', en:'Korean · English · Children · Youth together'},
   // 목장은 연합예배와 달리 매주, 각 목장별로 모입니다
@@ -3253,7 +3348,7 @@ function biHtml(ko, en){
 function renderServices(){
   const t = svcTime();
 
-  // 연합예배 — 시간 하나에 대면/온라인 두 모드가 격주로
+  // 연합예배 — 대면은 두 가정 번갈아, 온라인은 필요할 때만(정기 아님)
   const sunday =
       '<div class="svc-head">'
     +   '<div class="svc-l"><span class="svc-dot"></span>'
@@ -3262,8 +3357,7 @@ function renderServices(){
     + '</div>'
     + '<div class="svc-congs">'+bi(SERVICE.congs.ko, SERVICE.congs.en, true)+'</div>'
     + '<div class="svc-modes">'
-    +   SERVICE.modes.map(m => '<span class="svc-mode">'+bi(m.ko, m.en, true)+'</span>').join(
-          '<span class="svc-alt">'+bi('격주로 번갈아','alternating',true)+'</span>')
+    +   SERVICE.modes.map(m => '<span class="svc-mode">'+bi(m.ko, m.en, true)+'</span>').join('')
     + '</div>';
 
   const rows = SERVICE.weekly.map(f =>
@@ -3348,13 +3442,29 @@ const MODALS = {
       {n:'이름', en:'Name', t:'text', req:true, ph:'홍길동', phEn:'Your name'},
       {n:'연락처', en:'Phone or Email', t:'text', req:true, ph:'전화번호 또는 이메일', phEn:'Phone or email'},
       {n:'과정 선택', en:'Course', t:'select', req:true, opts:[
-        {ko:'생명의 삶 (필수)', en:'Life of Christ (core)'},
-        {ko:'새로운 삶 (필수)', en:'New Life (core)'},
-        {ko:'경건의 삶 (필수)', en:'Godly Life (core)'},
-        {ko:'확신의 삶 (1대1)', en:'Assurance (1:1)'},
-        {ko:'하나님을 경험하는 삶 (1대1)', en:'Experiencing God (1:1)'},
-        {ko:'행복한 삶 (선택)', en:'Happy Life (elective)'},
-        {ko:'회복의 삶 (선택 · 행복한 삶 이수자)', en:'Restored Life (elective · after Happy Life)'},
+        {ko:'생명의 삶 (기본)', en:'Living Life (core)'},
+        {ko:'확신의 삶 (기본 · 1:1)', en:'Assured Life (core · 1:1)'},
+        {ko:'새로운 삶 (기본)', en:'New Life (core)'},
+        {ko:'경건의 삶 (기본)', en:'Growing Life (core)'},
+        {ko:'하나님을 경험하는 삶 (기본 · 1:1)', en:'Experiencing God Life (core · 1:1)'},
+        {ko:'새교회의 삶 (선택)', en:'New Church Life (elective)'},
+        {ko:'예수님을 따르는 삶 (선택)', en:'Discipleship Life (elective)'},
+        {ko:'부부의 삶 (선택)', en:'Married Life (elective)'},
+        {ko:'커플의 삶 (선택)', en:'Couple Life (elective)'},
+        {ko:'이성교제의 삶 (선택)', en:'Dating Life (elective)'},
+        {ko:'싱글의 삶 (선택)', en:'Single Life (elective)'},
+        {ko:'부모의 삶 (선택)', en:'Parent Life (elective)'},
+        {ko:'언약의 삶 (선택)', en:'Covenant Life (elective)'},
+        {ko:'목자·목녀의 삶 (선택)', en:'Shepherd Life (elective)'},
+        {ko:'말씀의 삶 (선택)', en:'Word Life (elective)'},
+        {ko:'말씀 중보기도의 삶 (선택)', en:'Intercessory Life (elective)'},
+        {ko:'일터의 삶 (선택)', en:'Workplace Life (elective)'},
+        {ko:'소명의 삶 (선택)', en:'Vocational Life (elective)'},
+        {ko:'전도의 삶 (선택)', en:'Evangelism Life (elective)'},
+        {ko:'선교의 삶 (선택)', en:'Missional Life (elective)'},
+        {ko:'뿌리내린 삶 (선택)', en:'Rooted Life (elective)'},
+        {ko:'행복한 삶 (치유·상담)', en:'Happy Life (healing & counseling)'},
+        {ko:'회복의 삶 (치유·상담)', en:'Restored Life (healing & counseling)'},
         {ko:'어떤 과정이 좋을지 상담하고 싶어요', en:"Not sure — please advise"}
       ]}
     ]
@@ -3434,16 +3544,19 @@ const MODALS = {
     info:true,
     ko:{title:'교역자 소개', sub:'언제든 편하게 인사 나눠 주세요.'},
     en:{title:'Our Pastors', sub:'Please say hello anytime — really.'},
+    /* photo: 얼굴 사진을 넣는 자리입니다. 비워두면 이름 첫 글자가 나옵니다.
+       사진은 인터넷 주소가 아니라 data URI로 파일 안에 심습니다(오프라인에서도 보이도록).
+       넣는 법: 정사각형 사진을 photos/ 폴더에 두고 Claude에게 "사진 넣어줘" 하시면 변환해 채웁니다. */
     people:[
-      {initial:'김', name:'김성수 (Sung Soo Kim)',
+      {photo:'', initial:'김', name:'김성수 (Sung Soo Kim)',
        roleKo:'대표목사 · Lead Pastor', roleEn:'Lead Pastor',
        noteKo:'가정교회 사역과 환대를 통해 한 가정씩 세워가는 일에 마음을 두고 있습니다. 기도 요청은 목사님께 직접 전달됩니다.',
        noteEn:'Committed to building the church one home at a time, through house groups and hospitality. Prayer requests reach him directly.'},
-      {initial:'W', name:'Garrett Woods',
+      {photo:'', initial:'W', name:'Garrett Woods',
        roleKo:'청소년 담당 · Youth Pastor', roleEn:'Youth Pastor',
        noteKo:'청소년(Ember)이 있는 그대로 환영받는 자리를 만들어갑니다.',
        noteEn:'Building a place where students are welcomed exactly as they are.'},
-      {initial:'김', name:'김지영 (Joy Kim)',
+      {photo:'', initial:'김', name:'김지영 (Joy Kim)',
        roleKo:'어린이 사역 · Children Ministry Director', roleEn:'Children Ministry Director',
        noteKo:'아이들이 사랑받는 경험을 먼저 하도록 돕습니다.',
        noteEn:'Helping children experience being loved, first of all.'}
@@ -3550,11 +3663,24 @@ function renderAside(a){
     + '</button>';
 }
 
+/* 사진이 깨지면 조용히 이름 첫 글자로 되돌립니다 */
+function avatarFail(img, initial){
+  const d = document.createElement('div');
+  d.className = 'person-photo';
+  d.textContent = initial;
+  img.replaceWith(d);
+}
+
 /* 폼이 없는 안내용 모달 (교역자 소개 등) */
 function renderInfoModal(type, m){
   const people = m.people.map(p =>
     '<div class="person">'
-    + '<div class="person-photo">'+esc(p.initial)+'</div>'
+    /* photo가 채워져 있으면 얼굴 사진, 비어 있으면 이름 첫 글자.
+       ※ loading="lazy" 절대 금지 — 모달은 열기 전까지 display:none이라 빈 칸이 됩니다. */
+    + (p.photo
+        ? '<img class="person-photo" src="'+p.photo+'" alt=""'
+          + ' onerror="avatarFail(this,\''+esc(p.initial)+'\')">'
+        : '<div class="person-photo">'+esc(p.initial)+'</div>')
     + '<div class="person-body">'
     +   '<div class="person-name">'+esc(p.name)+'</div>'
     +   '<div class="person-role">'+bi(p.roleKo, p.roleEn, true)+'</div>'
@@ -3623,6 +3749,18 @@ function scrollToStages(){
   if(fold && !fold.open) fold.open = true;
   requestAnimationFrame(() => {
     area.scrollTo({top: target.offsetTop - 68, behavior:'smooth'});
+  });
+}
+
+/* 삶공부 탭 → 홈의 "우리 행복할까요?"(치유·상담)를 펼쳐서 보여줍니다 */
+function openCare(){
+  switchTab('home');
+  const fold = document.getElementById('careFold');
+  const area = document.getElementById('contentArea');
+  if(!fold || !area) return;
+  fold.open = true;
+  requestAnimationFrame(() => {
+    area.scrollTo({top: fold.offsetTop - 68, behavior:'smooth'});
   });
 }
 
