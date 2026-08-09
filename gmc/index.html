@@ -41,6 +41,23 @@
   --text-3:#6b7894;
   --border:#e4e9f2;
 
+  /* ══ 색의 언어 ═══════════════════════════════════════════
+     색을 "자리"가 아니라 "그것 자체"에 붙입니다.
+     어느 화면에서 만나든 같은 색이면 같은 것 — 색만 보고도 무엇인지 알게.
+     교회의 흐름 그대로: 환영 → 관계 → 배움 → 예배 → 응답
+     ─────────────────────────────────────────────────────
+     금빛  환영·환대  — 처음 만나는 자리, 말 건네는 자리 (환영의 방·우리 행복할까요·목회칼럼)
+     산호  목장·관계  — 밥상의 온기 (목장 탭·목장 배너·목장 연결)
+     하늘  삶공부·배움 — 맑게 알아가는 자리
+     남색  예배·말씀  — 함께 서는 자리
+     자주  헌신·기도  — 마음을 드리는 자리 (헌신카드·기도 요청)
+     ═════════════════════════════════════════════════════ */
+  --c-welcome:#C8944A;  --c-welcome-bg:#FDF4E6;
+  --c-mokjang:#E0526F;  --c-mokjang-bg:#FDEEF1;
+  --c-study:#2C8FD8;    --c-study-bg:#ECF5FD;
+  --c-worship:#3B62B8;  --c-worship-bg:#EDF1FB;
+  --c-commit:#A03352;   --c-commit-bg:#FBEFF3;
+
   --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:20px; --r-2xl:28px; --r-pill:100px;
 
   --shadow-xs:0 1px 3px rgba(26,53,96,0.06);
@@ -173,8 +190,36 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
    5. PRIMITIVES
    ══════════════════════════════════════ */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);box-shadow:var(--shadow-xs)}
+/* ══ 큰 타이틀 — 탭마다 고유한 색을 띠게 ══════════════════
+   탭 하나가 곧 축 하나(목장 情 · 삶공부 知 · 연합예배 意)라
+   색으로 그 성격을 알아보게 합니다. 설명은 접어 두고 제목만 눈에 띄게. */
+/* 탭의 기본 색 = 그 탭이 주로 다루는 것의 색.
+   단, 탭 안에서 다른 것을 말하는 자리는 그것의 색을 따로 씁니다(색은 자리가 아니라 뜻을 따릅니다). */
+#tab-home     {--sec-c:var(--c-welcome); --sec-bg:var(--c-welcome-bg)}
+#tab-community{--sec-c:var(--c-mokjang); --sec-bg:var(--c-mokjang-bg)}
+#tab-study    {--sec-c:var(--c-study);   --sec-bg:var(--c-study-bg)}
+#tab-worship  {--sec-c:var(--c-worship); --sec-bg:var(--c-worship-bg)}
+#tab-more     {--sec-c:#8A97AA;          --sec-bg:#F1F4F8}   /* 안내 — 뜻이 없는 자리라 무채색 */
+
+/* 뜻에 따라 색을 갈아입는 자리들 */
+.is-welcome{--sec-c:var(--c-welcome); --sec-bg:var(--c-welcome-bg)}
+.is-mokjang{--sec-c:var(--c-mokjang); --sec-bg:var(--c-mokjang-bg)}
+.is-study  {--sec-c:var(--c-study);   --sec-bg:var(--c-study-bg)}
+.is-worship{--sec-c:var(--c-worship); --sec-bg:var(--c-worship-bg)}
+.is-commit {--sec-c:var(--c-commit);  --sec-bg:var(--c-commit-bg)}
+
 .sec-head{display:flex;align-items:baseline;justify-content:space-between;margin:26px 2px 12px}
-.sec-title{font-size:16px;font-weight:800;letter-spacing:-.4px;color:var(--text-1)}
+.sec-title{
+  position:relative;padding-left:13px;
+  font-size:17px;font-weight:900;letter-spacing:-.45px;color:var(--text-1);
+}
+.sec-title::before{
+  content:'';position:absolute;left:0;top:.16em;bottom:.16em;width:4px;
+  border-radius:2px;background:var(--sec-c,var(--accent));
+}
+/* 핵심 타이틀 — 그 탭에서 가장 먼저 봐야 할 하나. 색 글씨로 한 단계 올립니다 */
+.sec-title.key{font-size:19px;color:var(--sec-c,var(--accent));padding-left:15px}
+.sec-title.key::before{width:5px;top:.1em;bottom:.1em}
 .sec-link{font-size:12px;font-weight:600;color:var(--text-3)}
 .sec-link:active{color:var(--primary)}
 
@@ -467,6 +512,10 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
 .b-teal  {background:linear-gradient(180deg,#34c3b5,#12857c)}
 .b-green {background:linear-gradient(180deg,#4fcf85,#1d8a4c)}
 .b-navy  {background:linear-gradient(180deg,#2248a8,#1a3560)}
+/* 기도 요청 — 마음을 드리는 자리라 헌신카드와 같은 자주 */
+.b-commit{background:linear-gradient(180deg,#c04a70,#8a2b46)}
+/* 배지 안 그림 — 글자 배지와 같은 무게로 보이도록 흰색 채움(선 아님) */
+.ci-badge svg{width:22px;height:22px;fill:#fff;stroke:none}
 .ci-body{flex:1;min-width:0}
 .ci-title{font-size:13.5px;font-weight:700;letter-spacing:-.3px}
 .ci-sub{margin-top:3px;font-size:11.5px;color:var(--text-3);font-weight:500;line-height:1.4}
@@ -837,7 +886,20 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
 .basics-lead b{color:var(--primary);font-weight:800}
 
 /* 기본기 아코디언 목차 — 필요한 사람만 펼쳐 봄 */
-.fold{border:1px solid var(--border);border-radius:var(--r-lg);background:var(--surface);margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow-xs)}
+/* 접이식도 하나의 큰 타이틀입니다 — 왼쪽에 그 탭의 색을 띠게 해 제목처럼 보이게 */
+.fold{position:relative;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--surface);margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow-xs)}
+.fold::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3.5px;background:var(--sec-c,var(--accent));opacity:.9}
+.fold > summary{padding-left:18px}
+.fold-title{font-size:14.5px}
+/* 서로 다른 성격의 큰 타이틀은 제목 줄에 옅은 색을 깔아 한눈에 구분되게 */
+.fold-tint > summary{background:var(--fold-bg,var(--surface))}
+.fold-tint .fold-title{color:var(--sec-c)}
+/* 핵심 접이식 — 그 탭에서 꼭 열어봐야 할 것. 탭 색을 옅게 깔고 제목도 색 글씨로 */
+.fold-key{border-color:var(--sec-c)}
+.fold-key::before{width:5px;opacity:1}
+.fold-key > summary{background:var(--sec-bg)}
+.fold-key .fold-title{color:var(--sec-c);font-size:15.5px}
+.fold-key .fold-chev{stroke:var(--sec-c)}
 .fold > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:14px 15px;-webkit-tap-highlight-color:transparent}
 .fold > summary::-webkit-details-marker{display:none}
 .fold-t{flex:1;min-width:0}
@@ -856,6 +918,62 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
 .wc-t{margin-top:3px;font-size:16px;font-weight:900;letter-spacing:-.45px;color:var(--text-1)}
 .wc-sub{margin-top:2px;font-size:11.5px;font-weight:700;color:var(--text-3)}
 .wc-d{margin-top:9px;font-size:12.5px;line-height:1.75;color:var(--text-2);font-weight:500}
+/* ── 목회칼럼 — 대표목사와 성도가 매주 만나는 창구라 크게 둡니다 ── */
+.col-hero{
+  display:block;width:100%;text-align:left;margin-top:10px;padding:20px 18px;
+  background:linear-gradient(160deg,#fdfaf5,#f6efe3);
+  border:1px solid rgba(200,148,74,.38);border-radius:var(--r-xl);
+  box-shadow:var(--shadow-xs);transition:transform .14s;
+}
+.col-hero:active{transform:scale(.99)}
+.col-badge{
+  display:inline-block;padding:3.5px 11px;border-radius:var(--r-pill);
+  background:var(--accent);color:#fff;font-size:9.5px;font-weight:800;letter-spacing:.4px;
+}
+.col-t{margin-top:12px;font-size:20px;font-weight:900;letter-spacing:-.6px;line-height:1.34;color:var(--primary)}
+.col-sub{margin-top:6px;font-size:12.5px;font-weight:700;color:var(--accent)}
+.col-d{margin-top:13px;font-size:13px;line-height:1.85;color:var(--text-2);font-weight:500}
+.col-by{
+  margin-top:14px;padding-top:12px;border-top:1px solid rgba(200,148,74,.3);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  font-size:11.5px;font-weight:700;color:var(--text-3);
+}
+/* ── 헌신카드 — 연합예배 탭에서 가장 중요한 행동이라 가장 무겁게 ── */
+.commit-card{
+  display:block;width:100%;text-align:left;padding:18px 17px;
+  border-radius:var(--r-xl);border:2px solid var(--sec-c);
+  background:linear-gradient(160deg,#ffffff,var(--sec-bg));
+  box-shadow:0 3px 14px rgba(0,0,0,.13);transition:transform .14s;
+}
+.commit-card:active{transform:scale(.99)}
+.cc-head{display:flex;align-items:center;gap:10px}
+.cc-icon{
+  width:34px;height:34px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;background:var(--sec-c);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28);
+}
+.cc-icon svg{width:19px;height:19px;stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.cc-t{font-size:17px;font-weight:900;letter-spacing:-.5px;color:var(--sec-c)}
+.cc-d{margin-top:11px;font-size:12.5px;line-height:1.75;color:var(--text-2);font-weight:500}
+.cc-d b{color:var(--text-1);font-weight:800}
+.cc-items{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px}
+.cc-chip{
+  padding:5px 10px;border-radius:var(--r-pill);
+  background:#fff;border:1px solid currentColor;
+  font-size:11px;font-weight:800;color:var(--sec-c);
+}
+.cc-note{
+  margin-top:11px;padding-top:10px;border-top:1px solid rgba(0,0,0,.12);
+  font-size:11.5px;line-height:1.6;color:var(--text-3);font-weight:500;
+}
+.cc-note b{color:var(--sec-c);font-weight:800}
+.cc-cta{
+  display:flex;align-items:center;justify-content:center;gap:6px;margin-top:13px;
+  padding:12px;border-radius:var(--r-lg);background:var(--sec-c);
+  font-size:13.5px;font-weight:800;color:#fff;
+}
+.cc-cta svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.4}
+
 .wc-cta{display:inline-flex;align-items:center;gap:4px;margin-top:10px;font-size:11.5px;font-weight:800;color:var(--primary-mid)}
 .wc-cta svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.4}
 
@@ -1065,6 +1183,9 @@ button.bp:active{transform:scale(.985)}
   background:var(--surface-2);
 }
 .mj-mark img{width:100%;height:100%;object-fit:cover;display:block}
+/* GMC Y(청소년 목장) — 나라를 품는 목장이 아니라 세대를 품는 목장이라 국기 대신 표식 */
+.mj-mark.mj-y{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#34c3b5,#12857c)}
+.mj-mark.mj-y svg{width:23px;height:23px;fill:#fff;stroke:none}
 .mj-body{flex:1;min-width:0}
 /* 선교적 정체성 안내 */
 .mission-note{padding:14px 16px;background:var(--accent-pale);border-color:rgba(200,148,74,.3);margin-bottom:12px}
@@ -1505,7 +1626,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
 
       <!-- 우리 행복할까요? — 이웃과 함께하는 배움 (VIP 문턱 낮추기, 접이식으로 세로 공간 절약)
            ※ id="careFold" — 삶공부 탭에서 openCare()로 열고 스크롤합니다 -->
-      <details class="fold" id="careFold">
+      <details class="fold fold-key" id="careFold">
         <summary>
           <div class="fold-t">
             <div class="fold-title"><span class="ko">우리 행복할까요?</span><span class="en">Shall we be happy?</span></div>
@@ -1572,34 +1693,13 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <summary>
           <div class="fold-t">
             <div class="fold-title"><span class="ko">이번 주 일정</span><span class="en">This Week</span></div>
-            <div class="fold-sub"><span class="ko i">예배 · 모임 · 주보</span><span class="en i">Worship · gatherings · bulletin</span></div>
+            <div class="fold-sub" data-week-label></div>
           </div>
           <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </summary>
         <div class="fold-body">
-      <div class="evt">
-        <div class="evt-date"><div class="evt-d">2</div><div class="evt-m"><span class="ko i">주일</span><span class="en i">SUN</span></div></div>
-        <div class="evt-body">
-          <div class="evt-title" data-communion-date="2026-08-02"><span class="ko">주일연합예배<span data-communion-ko></span></span><span class="en">Sunday Worship<span data-communion-en></span></span></div>
-          <div class="evt-meta"><span class="ko i">오후 1:00</span><span class="en i">1:00 PM</span></div>
-        </div>
-      </div>
-
-      <div class="evt">
-        <div class="evt-date"><div class="evt-d">2</div><div class="evt-m"><span class="ko i">주일</span><span class="en i">SUN</span></div></div>
-        <div class="evt-body">
-          <div class="evt-title"><span class="ko">목자들 모임</span><span class="en">Hosts' Gathering</span></div>
-          <div class="evt-meta"><span class="ko i">오후 5:30 · 이인규/이윤아 목자 가정</span><span class="en i">5:30 PM · at In Kyu &amp; Yoon A's home</span></div>
-        </div>
-      </div>
-
-      <div class="evt">
-        <div class="evt-date"><div class="evt-d">9</div><div class="evt-m"><span class="ko i">주일</span><span class="en i">SUN</span></div></div>
-        <div class="evt-body">
-          <div class="evt-title"><span class="ko">주일연합예배</span><span class="en">Sunday Worship</span></div>
-          <div class="evt-meta"><span class="ko i">오후 1:00</span><span class="en i">1:00 PM</span></div>
-        </div>
-      </div>
+      <!-- 이번 주 일정은 날짜에 맞춰 자동으로 채워집니다 (SPECIAL_EVENTS + 되풀이 일정) -->
+      <div id="weekEvents"></div>
 
       <button class="evt evt-link" onclick="go(LINKS.bulletin)" style="width:100%;text-align:left">
         <div class="evt-date" style="background:var(--accent-pale)">
@@ -1611,6 +1711,20 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
         <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
       </button>
+        </div>
+      </details>
+
+      <!-- 다음 주 일정 — 이번 주와 같은 방식으로 자동 생성 -->
+      <details class="fold" id="upcomingFold">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">다음 주 일정</span><span class="en">Next Week</span></div>
+            <div class="fold-sub" data-upcoming-sub></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+          <div id="upcomingEvents"></div>
         </div>
       </details>
 
@@ -1658,6 +1772,14 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <div class="card mokjang-week member-only" id="mokjangWeek" hidden>
           <div id="mokjangWeekRows"></div>
           <p class="mw-foot"><span class="ko i">정확한 위치는 목장 목자에게 문의하세요.</span><span class="en i">Ask your host for the exact location.</span></p>
+          <!-- 목자용 — 폰에서 바로 열어 이번 주 모임을 올립니다 (매주 주일 전) -->
+          <button class="btn btn-ghost-line btn-full" style="margin-top:10px" onclick="go(LINKS.mokjangSheet)">
+            <span class="ko i">목자용 — 이번 주 모임 올리기</span><span class="en i">Hosts — post this week's meeting</span>
+          </button>
+          <p class="mw-foot" style="margin-top:8px">
+            <span class="ko i">목자님은 <b>주일 전까지</b> 요일·시간·동네를 올려주세요. 올리시는 즉시 목장식구 화면에 반영됩니다.</span>
+            <span class="en i">Hosts: please post the day, time and neighbourhood <b>before Sunday</b>. It appears here right away.</span>
+          </p>
         </div>
       </div>
 
@@ -2013,8 +2135,8 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       </div>
 
       <div class="sec-head" style="margin-top:22px">
-        <h2 class="sec-title"><span class="ko">세 목장, 세 목자</span><span class="en">Three homes, three hosts</span></h2>
-        <span class="sec-note"><span class="ko i">눌러서 인사하거나 이메일로 바로 연락하세요</span><span class="en i">Tap to say hi, or email directly</span></span>
+        <h2 class="sec-title"><span class="ko">목장과 목자</span><span class="en">Our homes and hosts</span></h2>
+        <span class="sec-note"><span class="ko i">세 가정 목장 · 청소년 GMC Y</span><span class="en i">Three homes · GMC Y for youth</span></span>
       </div>
       <div class="mj-list">
         <div class="mj-card mj-israel" onclick="openMokjang('이스라엘')" role="button" tabindex="0">
@@ -2024,7 +2146,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
             <div class="mj-name"><span class="ko">이스라엘 목장</span><span class="en">Israel Mokjang</span></div>
             <div class="mj-host"><span class="ko i">김지영 목자</span><span class="en i">Host: Joy Kim</span></div>
           </div>
-          <a class="mj-mail" href="mailto:children@ijiguchon.org" onclick="event.stopPropagation()" aria-label="이메일"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7.5l8 5.5 8-5.5"/></svg></a>
+          <a class="mj-mail" href="mailto:jiyoung.kim@ijiguchon.org" onclick="event.stopPropagation()" aria-label="이메일"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7.5l8 5.5 8-5.5"/></svg></a>
           <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </div>
 
@@ -2049,6 +2171,27 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <a class="mj-mail" href="mailto:leengue.lee@ijiguchon.org" onclick="event.stopPropagation()" aria-label="이메일"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7.5l8 5.5 8-5.5"/></svg></a>
           <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </div>
+
+        <!-- GMC Y — 뉴 제네레이션 소속 청소년 목장. 나라가 아니라 세대를 품습니다 -->
+        <div class="mj-card mj-gmcy" onclick="openMokjang('GMC Y')" role="button" tabindex="0">
+          <div class="mj-mark mj-y" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="5.4" r="2.7"/>
+              <circle cx="4.6" cy="7.6" r="2.2"/><circle cx="19.4" cy="7.6" r="2.2"/>
+              <path d="M12 9c-2.4 0-4.3 1.7-4.7 4l-.5 3h10.4l-.5-3c-.4-2.3-2.3-4-4.7-4z"/>
+              <path d="M4.6 11.2c-1.8 0-3.2 1.3-3.5 3L.7 16.5h4.6l.6-3.4c.1-.7.4-1.3.8-1.8-.7-.1-1.4-.1-2.1-.1z"/>
+              <path d="M19.4 11.2c-.7 0-1.4 0-2.1.1.4.5.7 1.1.8 1.8l.6 3.4h4.6l-.4-2.3c-.3-1.7-1.7-3-3.5-3z"/>
+              <rect x="6.2" y="17.4" width="11.6" height="3.2" rx="1.6"/>
+            </svg>
+          </div>
+          <div class="mj-body">
+            <div class="mj-field">NEW GENERATION</div>
+            <div class="mj-name"><span class="ko">GMC Y</span><span class="en">GMC Y</span></div>
+            <div class="mj-host"><span class="ko i">Garrett Woods 목자 · 청소년</span><span class="en i">Host: Garrett Woods · Youth</span></div>
+          </div>
+          <a class="mj-mail" href="mailto:garrett.woods@ijiguchon.org" onclick="event.stopPropagation()" aria-label="이메일"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7.5l8 5.5 8-5.5"/></svg></a>
+          <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </div>
       </div>
 
       <button class="wr-kakao" style="margin-top:14px" onclick="go(LINKS.kakaoChat)">
@@ -2062,11 +2205,11 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <a href="tel:+14253500191">425-350-0191</a>
       </div>
 
-      <details class="fold">
+      <details class="fold fold-key">
         <summary>
           <div class="fold-t">
-            <div class="fold-title"><span class="ko">환대 — 우리가 사람을 대하는 방식</span><span class="en">Hospitality — how we treat people</span></div>
-            <div class="fold-sub"><span class="ko i">밥 한 끼에 담긴 마음</span><span class="en i">The heart behind a shared meal</span></div>
+            <div class="fold-title"><span class="ko">환대와 섬김</span><span class="en">Hospitality &amp; Serving</span></div>
+            <div class="fold-sub"><span class="ko i">"들어오세요" 그리고 "제가 도와드릴게요"</span><span class="en i">"Come in" — and "let me help"</span></div>
           </div>
           <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </summary>
@@ -2263,9 +2406,15 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </p>
       </div>
 
-      <div class="sec-head"><h2 class="sec-title"><span class="ko">기본 과정</span><span class="en">Core courses</span></h2>
-        <span class="sec-note"><span class="ko i">순서대로 걷습니다</span><span class="en i">Walked in order</span></span>
-      </div>
+      <details class="fold fold-key is-study" style="margin-top:14px">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">기본 과정</span><span class="en">Core courses</span></div>
+            <div class="fold-sub"><span class="ko i">다섯 과정을 순서대로 걷습니다</span><span class="en i">Five courses, walked in order</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
       <div class="course-list">
         <button class="course c-core" onclick="openStudy('생명의 삶')">
           <div class="course-n">1</div>
@@ -2321,10 +2470,18 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <span class="ko">이름 옆에 <b>1:1 과정</b>이라 적힌 둘은 따로 있는 분류가 아니라, 여러 사람이 모이는 대신 <b>한 사람과 마주 앉아</b> 하는 진행 형식입니다.</span>
         <span class="en">The two marked <b>1:1</b> next to their names aren't a separate track — it's simply how they're walked: <b>with one person</b> rather than in a group.</span>
       </p>
+        </div>
+      </details>
 
-      <div class="sec-head" style="margin-top:22px"><h2 class="sec-title"><span class="ko">선택 과정</span><span class="en">Electives</span></h2>
-        <span class="sec-note"><span class="ko i">필요한 때, 필요한 과정으로</span><span class="en i">Whichever you need, whenever</span></span>
-      </div>
+      <details class="fold fold-tint is-study" style="--fold-bg:var(--c-study-bg)">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">선택 과정</span><span class="en">Electives</span></div>
+            <div class="fold-sub"><span class="ko i">삶의 자리마다 하나씩 · 열여섯 과정</span><span class="en i">One for each season of life · sixteen</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
       <p class="wo-intro">
         <span class="ko">기본 과정 외에도 삶의 자리마다 과정이 있습니다. <b>3명 이상</b> 모이면 봄·가을 학기에 엽니다.</span>
         <span class="en">Beyond the core path, there's a course for each season of life. Each opens in the spring or fall term once <b>three or more</b> sign up.</span>
@@ -2350,6 +2507,8 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       <button class="btn btn-ghost-line btn-full" style="margin-top:10px" onclick="openModal('study')">
         <span class="ko i">듣고 싶은 과정 문의하기</span><span class="en i">Ask about a course</span>
       </button>
+        </div>
+      </details>
 
       <button class="card term" style="margin-top:14px;text-align:left;width:100%;display:block" onclick="openCare()">
         <div class="term-t"><span class="ko">행복한 삶 · 회복의 삶을 찾으셨나요?</span><span class="en">Looking for Happy Life or Restored Life?</span></div>
@@ -2406,7 +2565,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
     <section class="tab-panel" id="tab-worship">
       <div class="panel-head">
         <div class="panel-eyebrow">Axis 03 · United Worship</div>
-        <h1 class="panel-title"><span class="ko">연합예배</span><span class="en">United Worship</span></h1>
+        <h1 class="panel-title"><span class="ko">주일연합예배</span><span class="en">Sunday United Worship</span></h1>
         <p class="panel-sub">
           <span class="ko">흩어져 있던 세 가정이 <b>한 회중</b>으로 모입니다. 목장이 흩어짐이라면, 연합예배는 모임입니다.</span>
           <span class="en">The three scattered homes gather as <b>one congregation</b>. If the mokjang is the scattering, this is the gathering.</span>
@@ -2426,7 +2585,8 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
 
       <!-- This week's message -->
       <div class="sec-head">
-        <h2 class="sec-title"><span class="ko">이번 주 말씀</span><span class="en">This Week's Message</span></h2>
+        <h2 class="sec-title key"><span class="ko">이번 주 말씀</span><span class="en">This Week's Message</span></h2>
+        <span class="sec-note" data-week-label></span>
       </div>
 
       <div class="sermon-hero">
@@ -2444,6 +2604,15 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       </div>
 
       <!-- 이번 주 토요새벽 (날짜 자동) -->
+      <details class="fold" style="margin-top:16px">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">기도 모임</span><span class="en">Prayer gatherings</span></div>
+            <div class="fold-sub"><span class="ko i">토요새벽 · 월~금 각자 집에서</span><span class="en i">Saturday dawn · weekdays at home</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
       <div id="satSection">
         <div class="card sat-card">
           <div class="sat-icon">
@@ -2458,21 +2627,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </div>
 
-      <!-- 이번 주 목회칼럼 -->
-      <button class="card week-col" onclick="go(LINKS.column)">
-        <div class="wc-k"><span class="ko i">이번 주 목회칼럼</span><span class="en i">This week's column</span></div>
-        <div class="wc-t"><span class="ko">내 삶이 하나님의 증거</span><span class="en">My life, God's evidence</span></div>
-        <div class="wc-sub"><span class="ko i">삶의 변화가 곧 영광입니다</span><span class="en i">A changed life is the glory</span></div>
-        <p class="wc-d">
-          <span class="ko">"하나님께 영광을 돌린다는 것은 인간의 삶을 통해 하나님의 존재가 가시화되는 것입니다." 분노하던 사람이 분노를 다스리고, 용서 못 하던 사람이 용서를 선택할 때 — 그 일상의 변화가 세상이 못 보는 하나님을 보이게 합니다. 목장은 바로 그 변화의 현장입니다.</span>
-          <span class="en">"To glorify God is for His presence to become visible through a human life." When someone who raged learns to master anger, when someone who couldn't forgive chooses to — that everyday change makes the unseen God visible. The mokjang is where that change happens.</span>
-        </p>
-        <span class="wc-cta"><span class="ko i">칼럼 전문 읽기</span><span class="en i">Read the full column</span>
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </button>
-
-
-      <button class="card altar" onclick="go(LINKS.hebronAltar)">
+      <button class="card altar" style="margin-top:10px" onclick="go(LINKS.hebronAltar)">
         <div class="altar-icon">
           <svg viewBox="0 0 24 24"><path d="M12 3v4M12 7c-2 0-3.5 1.5-3.5 3.5h7C15.5 8.5 14 7 12 7z"/><path d="M4 14h16M6 14v6M18 14v6M9 20h6"/></svg>
         </div>
@@ -2482,8 +2637,45 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
         <svg class="mj-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
       </button>
+        </div>
+      </details>
 
-      <div class="card place">
+      <!-- 목회칼럼 — 대표목사와 성도 사이의 소통 창구라 독립 섹션으로 크게 둡니다 -->
+      <div class="sec-head" style="margin-top:26px">
+        <h2 class="sec-title key is-welcome"><span class="ko">목회칼럼</span><span class="en">Pastor's Column</span></h2>
+        <span class="sec-note"><span class="ko i">매주 한 편</span><span class="en i">Weekly</span></span>
+      </div>
+      <p class="wo-intro">
+        <span class="ko">대표목사가 성도들에게 매주 건네는 편지입니다. 설교에서 다 하지 못한 이야기, 요즘 마음에 두고 있는 것들이 여기 담깁니다.</span>
+        <span class="en">A weekly letter from our lead pastor to the church — what the sermon didn't have room for, and what's been on his heart.</span>
+      </p>
+
+      <!-- 내용은 COLUMN_PLAN에서 날짜에 맞춰 채워집니다 -->
+      <button class="col-hero" onclick="go(LINKS.column)" data-column></button>
+
+      <button class="btn btn-primary btn-full" style="margin-top:9px" onclick="openModal('topastor')">
+        <span class="ko i">읽고 나서 — 목사님께 한마디</span><span class="en i">Write back to the pastor</span>
+      </button>
+      <p class="form-note">
+        <span class="ko">공감한 대목도, 묻고 싶은 것도 좋습니다. 대표목사님께만 갑니다.</span>
+        <span class="en">What resonated, or what you'd like to ask. It goes to the lead pastor alone.</span>
+      </p>
+
+      <button class="btn btn-ghost-line btn-full" style="margin-top:10px" onclick="go(LINKS.column)">
+        <span class="ko i">지난 칼럼 모두 보기</span><span class="en i">All past columns</span>
+      </button>
+
+
+      <details class="fold">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">예배 장소</span><span class="en">Where we gather</span></div>
+            <div class="fold-sub"><span class="ko i">가정에서 · 처음 오시는 분 안내</span><span class="en i">In homes · if you're new</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+      <div class="card place" style="margin-bottom:4px">
         <div class="place-t"><span class="ko">예배 장소</span><span class="en">Where we gather</span></div>
         <p class="place-d">
           <span class="ko"><b>당분간 가정에서 드립니다.</b> 예배당 건물이 아니라 밥상이 있는 집입니다. 그래서 주소를 공개하지 않습니다.</span>
@@ -2506,6 +2698,8 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <span class="ko i">목장과 연결되기</span><span class="en i">Connect with a mokjang</span>
         </button>
       </div>
+        </div>
+      </details>
 
       <details class="fold">
         <summary>
@@ -2528,7 +2722,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <div class="wo-row"><span class="wo-k"><span class="ko i">대표기도</span><span class="en i">Representative Prayer</span></span><span class="wo-v"><span class="ko i">다같이 · 이번 주 순번은 목장식구 화면에</span><span class="en i">See servers in the members area</span></span></div>
         <div class="wo-row"><span class="wo-k"><span class="ko i">성경 합독</span><span class="en i">Scripture Reading</span></span><span class="wo-v"><span class="ko i">다같이</span><span class="en i">Together</span></span></div>
         <div class="wo-row wo-accent"><span class="wo-k"><span class="ko i">말씀</span><span class="en i">Message</span></span><span class="wo-v"><span class="ko i">김성수 목사 · 사도행전 강해</span><span class="en i">Pastor Sung Soo Kim · Acts</span></span></div>
-        <div class="wo-row"><span class="wo-k"><span class="ko i">헌신과 결단</span><span class="en i">Commitment</span></span><span class="wo-v"><span class="ko i">원하는 분은 앞으로 나와 응답합니다</span><span class="en i">Anyone who wishes may step forward</span></span></div>
+        <div class="wo-row"><span class="wo-k"><span class="ko i">헌신과 결단</span><span class="en i">Commitment</span></span><span class="wo-v"><span class="ko i">앞으로 나오는 것이 원칙 · 어려우면 헌신카드로</span><span class="en i">Normally come forward; the card if that's hard</span></span></div>
         <div class="wo-row"><span class="wo-k"><span class="ko i">축도</span><span class="en i">Benediction</span></span><span class="wo-v"><span class="ko i">인도자</span><span class="en i">Leader</span></span></div>
       </div>
       <p class="place-note" style="margin-top:10px">
@@ -2538,6 +2732,46 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </details>
 
+      <!-- 헌신카드 — 이 탭에서 가장 중요한 행동. 종이 카드를 대신하며 접이식 밖에 둡니다. -->
+      <div class="sec-head" style="margin-top:24px">
+        <h2 class="sec-title key is-commit"><span class="ko">헌신카드</span><span class="en">Commitment Card</span></h2>
+        <span class="sec-note"><span class="ko i">예배 전 · 중</span><span class="en i">Before or during</span></span>
+      </div>
+      <button class="commit-card is-commit" onclick="openModal('commit')">
+        <div class="cc-head">
+          <span class="cc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6 2.5h9l5 5v14H6z"/><path d="M15 2.5v5h5"/><path d="M9.5 13.5l2 2 4-4.5"/></svg>
+          </span>
+          <span class="cc-t"><span class="ko">오늘, 마음을 올려드립니다</span><span class="en">Respond today</span></span>
+        </div>
+        <p class="cc-d">
+          <span class="ko">헌신은 <b>강단 앞으로 나와</b> 하는 것이 원칙입니다. 다만 나오시기 어려운 분은 <b>예배 전이나 중간에</b> 이 카드로 하셔도 됩니다.</span>
+          <span class="en">Coming to the front is how we normally respond. If that's hard for you, use this card <b>before or during</b> the service instead.</span>
+        </p>
+        <div class="cc-items">
+          <span class="cc-chip"><span class="ko i">교회 등록</span><span class="en i">Register</span></span>
+          <span class="cc-chip"><span class="ko i">예수 영접</span><span class="en i">Receive Christ</span></span>
+          <span class="cc-chip"><span class="ko i">침례</span><span class="en i">Baptism</span></span>
+          <span class="cc-chip"><span class="ko i">헌신</span><span class="en i">Commit</span></span>
+          <span class="cc-chip"><span class="ko i">기도 제목</span><span class="en i">Prayer</span></span>
+        </div>
+        <p class="cc-note">
+          <span class="ko">적어주신 기도 제목은 <b>대표목사님이 한 주간 기도</b>합니다.</span>
+          <span class="en"><b>Prayed over for a week</b> by our lead pastor.</span>
+        </p>
+        <span class="cc-cta"><span class="ko i">헌신카드 작성하기</span><span class="en i">Fill out the card</span>
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+
+      <details class="fold" style="margin-top:12px">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">지난 말씀 다시 보기</span><span class="en">Message archive</span></div>
+            <div class="fold-sub"><span class="ko i">최신 영상 · 주일 · 토요 · 시리즈</span><span class="en i">Latest video · Sunday · Saturday · series</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
       <div class="sermon-hero">
         <button class="sermon-thumb" onclick="openPlayer('tvQVralkkHw','2026 서북미 목자연합수련회 — Reset for Restoration')" style="width:100%">
           <img class="sermon-img" src="https://i.ytimg.com/vi/tvQVralkkHw/hqdefault.jpg" alt="" onerror="this.remove()">
@@ -2567,9 +2801,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </div>
 
-      <div class="sec-head"><h2 class="sec-title"><span class="ko">지난 말씀</span><span class="en">Archive</span></h2></div>
-
-      <div class="filters">
+      <div class="filters" style="margin-top:14px">
         <button class="chip active" onclick="setFilter(this,'all')"><span class="ko i">전체</span><span class="en i">All</span></button>
         <button class="chip" onclick="setFilter(this,'sun')"><span class="ko i">주일설교</span><span class="en i">Sunday</span></button>
         <button class="chip" onclick="setFilter(this,'sat')"><span class="ko i">토요설교</span><span class="en i">Saturday</span></button>
@@ -2577,6 +2809,8 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       </div>
 
       <div id="sermonList" style="margin-top:12px"></div>
+        </div>
+      </details>
     </section>
 
     <!-- ────────── TAB 5 : MORE ──────────
@@ -2599,7 +2833,14 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </summary>
         <div class="fold-body">
       <button class="connect-item" onclick="openModal('heonasik')">
-        <div class="ci-badge b-purple"><span class="ko i">헌</span><span class="en i" style="font-size:11px">DED</span></div>
+        <div class="ci-badge b-purple" aria-hidden="true">
+          <!-- 헌아식 — 두 손 위에 안긴 아기 -->
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="7.2" r="3"/>
+            <path d="M12 10.8c-2.5 0-4.5 1.7-5.1 4.1l-.3 1.3h10.8l-.3-1.3c-.6-2.4-2.6-4.1-5.1-4.1z"/>
+            <path d="M3.6 16.6c-.5-.4-1.2-.3-1.6.2s-.3 1.2.2 1.6l4.8 3.5c.3.2.6.3.9.3h8.2c.3 0 .6-.1.9-.3l4.8-3.5c.5-.4.6-1.1.2-1.6s-1.1-.6-1.6-.2L16.4 19.7H7.6z"/>
+          </svg>
+        </div>
         <div class="ci-body">
           <div class="ci-title"><span class="ko">헌아식 신청</span><span class="en">Child Dedication</span></div>
           <div class="ci-sub"><span class="ko">아이를 온 공동체가 함께 축복합니다</span><span class="en">The whole community blesses your child</span></div>
@@ -2608,7 +2849,14 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       </button>
 
       <button class="connect-item" onclick="openModal('children')">
-        <div class="ci-badge b-orange"><span class="ko i">아</span><span class="en i" style="font-size:11px">KIDS</span></div>
+        <div class="ci-badge b-orange" aria-hidden="true">
+          <!-- 어린이 — 손을 맞잡은 두 아이 -->
+          <svg viewBox="0 0 24 24">
+            <circle cx="7" cy="5.6" r="2.6"/><circle cx="17" cy="5.6" r="2.6"/>
+            <path d="M7 9c-2.1 0-3.7 1.5-4 3.5L2.4 16h2.3l.4 5.4h3.8L9.3 16h2.3l-.6-3.5C10.7 10.5 9.1 9 7 9z"/>
+            <path d="M17 9c-2.1 0-3.7 1.5-4 3.5L12.4 16h2.3l.4 5.4h3.8L19.3 16h2.3l-.6-3.5C20.7 10.5 19.1 9 17 9z"/>
+          </svg>
+        </div>
         <div class="ci-body">
           <div class="ci-title"><span class="ko">어린이 사역</span><span class="en">Children's Ministry</span></div>
           <div class="ci-sub"><span class="ko i">김지영 (Joy Kim) · Children Ministry Director</span><span class="en i">Joy Kim · Children Ministry Director</span></div>
@@ -2617,7 +2865,17 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       </button>
 
       <button class="connect-item" onclick="openModal('youth')">
-        <div class="ci-badge b-teal"><span class="ko i">청</span><span class="en i" style="font-size:11px">YTH</span></div>
+        <div class="ci-badge b-teal" aria-hidden="true">
+          <!-- 청소년 — 어깨 겯은 세 사람 -->
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="5.4" r="2.7"/>
+            <circle cx="4.6" cy="7.6" r="2.2"/><circle cx="19.4" cy="7.6" r="2.2"/>
+            <path d="M12 9c-2.4 0-4.3 1.7-4.7 4l-.5 3h10.4l-.5-3c-.4-2.3-2.3-4-4.7-4z"/>
+            <path d="M4.6 11.2c-1.8 0-3.2 1.3-3.5 3L.7 16.5h4.6l.6-3.4c.1-.7.4-1.3.8-1.8-.7-.1-1.4-.1-2.1-.1z"/>
+            <path d="M19.4 11.2c-.7 0-1.4 0-2.1.1.4.5.7 1.1.8 1.8l.6 3.4h4.6l-.4-2.3c-.3-1.7-1.7-3-3.5-3z"/>
+            <rect x="6.2" y="17.4" width="11.6" height="3.2" rx="1.6"/>
+          </svg>
+        </div>
         <div class="ci-body">
           <div class="ci-title"><span class="ko">청소년 사역</span><span class="en">Youth Ministry</span></div>
           <div class="ci-sub">Garrett Woods · Youth Pastor</div>
@@ -2628,10 +2886,16 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       </details>
 
       <button class="connect-item" onclick="openModal('prayer')" style="margin-top:8px">
-        <div class="ci-badge b-navy"><span class="ko i">기</span><span class="en i" style="font-size:11px">PRY</span></div>
+        <div class="ci-badge b-commit" aria-hidden="true">
+          <!-- 두 손으로 받든 마음 — 기도하는 손은 이 크기(22px)에서 뭉개져 이 모양으로 -->
+          <svg viewBox="0 0 24 24">
+            <path d="M12 7.4c-.8-1.1-2.1-1.7-3.3-1.3-1.5.4-2.4 1.8-2.4 3.3 0 1 .4 1.9 1.1 2.6L12 16l4.6-4c.7-.7 1.1-1.6 1.1-2.6 0-1.5-.9-2.9-2.4-3.3-1.2-.4-2.5.2-3.3 1.3z"/>
+            <path d="M4.2 16.4c-.5-.4-1.2-.3-1.6.2s-.3 1.2.2 1.6l4.6 3.4c.3.2.6.3.9.3h7.4c.3 0 .6-.1.9-.3l4.6-3.4c.5-.4.6-1.1.2-1.6s-1.1-.6-1.6-.2l-4.2 3.1H8.4z"/>
+          </svg>
+        </div>
         <div class="ci-body">
           <div class="ci-title"><span class="ko">기도 요청</span><span class="en">Prayer Request</span></div>
-          <div class="ci-sub"><span class="ko">담임목사님께 바로 전달됩니다</span><span class="en">Goes straight to our senior pastor</span></div>
+          <div class="ci-sub"><span class="ko">대표목사님께 바로 전달됩니다</span><span class="en">Goes straight to our lead pastor</span></div>
         </div>
         <div class="ci-tail"><svg class="ci-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
       </button>
@@ -2856,8 +3120,8 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
    EMAIL ROUTING
    ══════════════════════════════════════ */
 const EMAILS = {
-  newcomer : 'info@ijiguchon.org',       // 새가족 만남 (외부 VIP)
-  contact  : 'info@ijiguchon.org',       // 일반 교회 문의
+  newcomer : 'office@ijiguchon.org',     // 새가족 만남 — 박보라 행정간사
+  contact  : 'office@ijiguchon.org',     // 일반 교회 문의 — 박보라 행정간사
   accept   : 'office@ijiguchon.org',     // 예수 영접 모임
   baptism  : 'office@ijiguchon.org',     // 침례식 신청
   study    : 'office@ijiguchon.org',     // 삶 공부 등록
@@ -2865,7 +3129,99 @@ const EMAILS = {
   mokjang  : 'office@ijiguchon.org',     // 목장 찾기
   children : 'children@ijiguchon.org',   // 어린이 사역 (김지영 Joy Kim)
   youth    : 'youth@ijiguchon.org',      // 청소년 사역 (Garrett Woods)
-  prayer   : 'pastor@ijiguchon.org',     // 기도 요청 (담임목사 직접)
+  prayer   : 'pastor@ijiguchon.org',     // 기도 요청 (대표목사 직접 · 참조 없음)
+  commit   : 'pastor@ijiguchon.org',     // 헌신카드 (대표목사가 기도 · 행정은 참조)
+  topastor : 'pastor@ijiguchon.org',     // 목회칼럼 읽고 목사님께 한마디 (목사님만)
+};
+
+/* 참조(CC) — 받는 사람에게 먼저 가고, 사본이 info@와 대표목사님께 갑니다.
+   담당자는 자기 받은편지함에서 바로 답하고(책임 분명), 사역자들은 info@에서 함께 보고,
+   대표목사님은 전체를 확인하십니다.
+   ⚠ 기도 요청(prayer)과 헌신카드(commit)는 규칙이 다릅니다 — 아래 참조. */
+const CC_TEAM = 'info@ijiguchon.org,pastor@ijiguchon.org';
+const CC_SKIP = new Set(['prayer', 'commit', 'topastor']);
+
+/* 기도 요청은 언제나 대표목사님(pastor@)께 갑니다.
+   여기에 더해 — '대표목사님만 보게 해주세요'를 체크하지 않은 일반 기도 요청은
+   김지영 사모님도 함께 받아 같이 기도합니다. 체크하시면 목사님 한 분만 보십니다. */
+const PRAYER_CC = 'jiyoung.kim@ijiguchon.org';   // 김지영 사모 (개인 주소)
+
+/* 헌신카드도 대표목사님께 갑니다(카드에 기도 제목이 적히므로 info@에는 보내지 않습니다).
+   등록·침례·영접은 행정 처리가 필요해 박보라 간사가 함께 받습니다. */
+const COMMIT_CC = 'office@ijiguchon.org';     // 박보라 행정간사
+
+/* ══════════════════════════════════════
+   헌신카드 → 구글 시트에 한 줄씩 쌓기
+   ──────────────────────────────────────
+   메일은 그때그때 보고 넘기지만, 헌신은 쌓여야 관리가 됩니다.
+   (누가 무엇에 헌신했는지 · 등록 대기자 · 침례 대상자 · 기도 제목 모음)
+
+   켜는 법: 구글 시트에 Apps Script를 배포하고 받은 주소를 아래 따옴표 안에 붙여 넣으세요.
+            자세한 순서는 같은 폴더의 `헌신카드_구글시트_연결.md` 에 있습니다.
+   ※ 비워 두면 메일로만 갑니다 — 앱은 그대로 잘 작동합니다.
+   ══════════════════════════════════════ */
+/* ══════════════════════════════════════
+   목회칼럼 — 날짜가 지나면 앱이 알아서 최신 칼럼으로 바꿉니다
+   ──────────────────────────────────────
+   새 칼럼을 쓰시면 아래에 한 줄만 더하면 됩니다. 오늘 날짜 이전 중
+   가장 최근 것이 "이번 주" 칼럼으로 뜹니다.
+     d   = 날짜(YYYY-MM-DD)   t/tEn = 제목   sub/subEn = 부제(없어도 됨)
+     x/xEn = 발췌(없어도 됨 — 없으면 제목만 뜨고 '전문 읽기'로 이어집니다)
+   ══════════════════════════════════════ */
+const COLUMN_PLAN = [
+  /* 날짜는 교회 홈페이지 목회칼럼 게시판의 실제 게시일입니다(파일명 날짜와 다릅니다) */
+  {d:'2026-03-28', t:'제자로 부름받은 정체성', tEn:'Called, and named a disciple',
+   sub:'온전한 영성을 향한 12.1', subEn:'Toward wholeness · 12.1'},
+  {d:'2026-04-05', t:'하나님과의 연결', tEn:'Connected to God',
+   sub:'온전한 영성을 향한 12.2', subEn:'Toward wholeness · 12.2'},
+  {d:'2026-04-12', t:'말씀과 기도, 가장 중요한 두 가지', tEn:'The Word and prayer',
+   sub:'온전한 영성을 향한 12.3', subEn:'Toward wholeness · 12.3'},
+  {d:'2026-04-19', t:'일상이 예배가 되는 삶', tEn:'When daily life becomes worship',
+   sub:'온전한 영성을 향한 12.4', subEn:'Toward wholeness · 12.4'},
+  {d:'2026-04-29', t:'신약교회로서의 목장 확인', tEn:'The mokjang as a New Testament church',
+   sub:'온전한 영성을 향한 12.5', subEn:'Toward wholeness · 12.5'},
+  {d:'2026-05-02', t:'신뢰로 내딛는 순종', tEn:'Obedience that steps out in trust',
+   sub:'온전한 영성을 향한 12.6', subEn:'Toward wholeness · 12.6'},
+  {d:'2026-05-09', t:'고난 속 영성', tEn:'Spirituality inside suffering',
+   sub:'온전한 영성을 향한 12.7', subEn:'Toward wholeness · 12.7'},
+  {d:'2026-05-25', t:'삶으로 흘러 넘치는 전도', tEn:'A life that overflows',
+   sub:'온전한 영성을 향한 12.9', subEn:'Toward wholeness · 12.9'},
+  {d:'2026-05-31', t:'관계 속 1대1 동행', tEn:'Walking one-on-one',
+   sub:'온전한 영성을 향한 12.10', subEn:'Toward wholeness · 12.10'},
+  {d:'2026-06-07', t:'분가와 파송의 기쁨', tEn:'The joy of multiplying and sending',
+   sub:'온전한 영성을 향한 12.11', subEn:'Toward wholeness · 12.11'},
+  {d:'2026-06-19', t:'비전의 계승', tEn:'Passing on the vision',
+   sub:'온전한 영성을 향한 12.12 · 창세기 13:14', subEn:'Toward wholeness · 12.12 · Genesis 13:14'},
+  {d:'2026-06-21', t:'꼼꼼하게 일하는 사람의 가치', tEn:'The worth of careful work'},
+  {d:'2026-06-28', t:'어머니가 남겨 주신 것', tEn:'What my mother left behind'},
+  {d:'2026-07-04', t:'슬픔과 기쁨 사이에서', tEn:'Between sorrow and joy'},
+  {d:'2026-07-12', t:'환대는 하나님 나라의 시작입니다', tEn:'Hospitality begins the Kingdom',
+   sub:'마음의 문을 열어주는 행위', subEn:'The act of opening your heart',
+   x:'환대는 손님을 맞이하는 예의가 아닙니다. 타인을 있는 그대로 받아들이고, 그가 안전하게 머물도록 마음과 공간을 열어주는 영적 행위입니다. 내가 가진 것을 나누는 행위가 아니라, 내 마음의 문을 열어주는 행위입니다.',
+   xEn:"Hospitality isn't good manners toward a guest. It is receiving another exactly as they are, and opening your heart and space so they can stay safely — not sharing what you have, but opening the door of your heart."},
+  {d:'2026-07-18', t:'바쁜 사람이 더 많은 일을 합니다', tEn:'The busy ones get more done'},
+  {d:'2026-07-28', t:'목장, 왜 하는가?', tEn:'Why do we do mokjang?',
+   sub:'목장 사역의 본질을 찾아서 ①', subEn:'The heart of mokjang · 1'},
+  {d:'2026-08-02', t:'내 삶이 하나님의 증거', tEn:"My life, God's evidence",
+   sub:'목장 사역의 본질을 찾아서 ②', subEn:'The heart of mokjang · 2',
+   x:'"하나님께 영광을 돌린다는 것은 인간의 삶을 통해 하나님의 존재가 가시화되는 것입니다." 분노하던 사람이 분노를 다스리고, 용서 못 하던 사람이 용서를 선택할 때 — 그 일상의 변화가 세상이 못 보는 하나님을 보이게 합니다. 목장은 바로 그 변화의 현장입니다.',
+   xEn:'"To glorify God is for His presence to become visible through a human life." When someone who raged learns to master anger, when someone who couldn\'t forgive chooses to — that everyday change makes the unseen God visible. The mokjang is where that change happens.'},
+  {d:'2026-08-09', t:'VIP가 변화되려면', tEn:'What actually changes a person',
+   sub:'목장 사역의 본질을 찾아서 ③ · 사랑이 먼저입니다', subEn:'The heart of mokjang · 3 · Love comes first',
+   x:'논리로 설득하거나 교리를 가르친다고 쉽게 변하지 않습니다. 먼저 사랑을 경험해야 합니다. 이름을 기억해주고, 식사를 함께하고, 힘든 이야기에 귀를 기울이는 것 — 이 작은 섬김들이 마음을 여는 열쇠입니다. 사랑은 프로그램이 아니라 관계에서 피어납니다.',
+   xEn:'Arguments and doctrine rarely change anyone. Love has to be experienced first. Remembering a name, sharing a meal, listening to the hard story — these small acts of service are what open a heart. It grows out of relationship, never out of a program.'}
+];
+
+const SHEET_URL = '';
+
+/* 시트 안에서 나뉠 탭 이름. 폼마다 다른 탭에 쌓입니다.
+   ⚠ '기도요청'과 '헌신카드'에는 사적인 기도 제목이 들어갑니다.
+      이 시트는 대표목사님(과 꼭 필요한 분)만 볼 수 있게 공유 범위를 좁혀 주세요. */
+const SHEET_TABS = {
+  commit:'헌신카드', prayer:'기도요청(비공개)', topastor:'목사님께 한마디',
+  newcomer:'새가족', contact:'일반문의', mokjang:'목장연결', study:'삶공부',
+  accept:'영접모임', baptism:'침례', heonasik:'헌아식',
+  children:'어린이', youth:'청소년'
 };
 
 /* ══════════════════════════════════════
@@ -2896,6 +3252,8 @@ const LINKS = {
   column    : 'https://www.ijiguchon.org/chnet2/home/?type=sub&step1=2&sid=23',
   bulletin  : 'https://www.ijiguchon.org/chnet2/home/?type=sub&step1=8&sid=51',
   mokjang   : 'https://www.ijiguchon.org/chnet2/home/?type=sub&step1=3&sid=50',
+  /* 목자들이 이번 주 목장 모임(요일·시간·동네)을 올리는 구글 시트 — 편집 화면 */
+  mokjangSheet: 'https://docs.google.com/spreadsheets/d/1uaQudM68JnwR9u7T5-5wifpCJnRb6_oeQZuSV5DmWmA/edit',
   study     : 'https://www.ijiguchon.org/chnet2/home/?type=sub&step1=4&sid=12',
   staff     : 'https://www.ijiguchon.org/chnet2/home/?type=sub&step1=1&sid=62',
   // 지도 링크는 두지 않습니다 (자택). HebronGuide 시애틀 = 도시의 첫 얼굴.
@@ -2935,8 +3293,9 @@ const SERVICE = {
   ]
 };
 
-const changed = () => new Date() >= new Date(SERVICE.effective + 'T00:00:00');
-const svcTime = () => changed() ? SERVICE.after : SERVICE.before;
+/* 날짜를 넣으면 그날 기준으로 판단합니다(다음 주 일정이 9월을 넘어갈 때 필요) */
+const changed = (when) => (when || new Date()) >= new Date(SERVICE.effective + 'T00:00:00');
+const svcTime = (when) => changed(when) ? SERVICE.after : SERVICE.before;
 
 /* 주의 만찬 = 매달 첫 주일. 날짜(주일)가 그 달 7일 이하이면 첫 주일입니다.
    [data-communion-date] 요소의 날짜로 자동 판별해, 해당 span에 " · 주의 만찬"을 채웁니다.
@@ -3157,7 +3516,8 @@ async function fetchMokjangWeek(){
   const MJ = [
     {key:'이스라엘', ko:'이스라엘 목장', en:'Israel'},
     {key:'멕시코',   ko:'멕시코 목장',   en:'Mexico'},
-    {key:'인도네시아', ko:'인도네시아 목장', en:'Indonesia'}
+    {key:'인도네시아', ko:'인도네시아 목장', en:'Indonesia'},
+    {key:'GMC Y',    ko:'GMC Y (청소년)',   en:'GMC Y (Youth)'}
   ];
   const data = {};
   try{
@@ -3339,6 +3699,137 @@ function biHtml(ko, en){
   return '<span class="ko">'+ko+'</span><span class="en">'+en+'</span>';
 }
 
+/* ══════════════════════════════════════
+   "이번 주"가 정확히 언제인지 — 달과 주차, 날짜 범위까지 밝힙니다
+   한 주는 교회 관행대로 주일(일)에 시작해 토요일에 끝납니다.
+   몇째 주는 그 주일이 그 달의 몇 번째 주일인지로 셉니다(주의 만찬 계산과 같은 방식).
+   ══════════════════════════════════════ */
+const ORD_KO = ['첫째','둘째','셋째','넷째','다섯째','여섯째'];
+const MON_EN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function weekLabel(when){
+  const now = when || new Date();
+  const sun = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay());
+  const sat = new Date(sun.getFullYear(), sun.getMonth(), sun.getDate() + 6);
+  const nth = ORD_KO[Math.floor((sun.getDate() - 1) / 7)] || '';
+  const sameMonth = sun.getMonth() === sat.getMonth();
+
+  const ko = (sun.getMonth() + 1) + '월 ' + nth + ' 주 · '
+    + (sun.getMonth() + 1) + '월 ' + sun.getDate() + '일(일)~'
+    + (sameMonth ? '' : (sat.getMonth() + 1) + '월 ') + sat.getDate() + '일(토)';
+
+  const en = MON_EN[sun.getMonth()] + ' · week ' + (Math.floor((sun.getDate() - 1) / 7) + 1) + ' · '
+    + MON_EN[sun.getMonth()] + ' ' + sun.getDate() + '–'
+    + (sameMonth ? '' : MON_EN[sat.getMonth()] + ' ') + sat.getDate();
+
+  return {ko, en};
+}
+
+function renderWeekLabel(){
+  const w = weekLabel();
+  document.querySelectorAll('[data-week-label]').forEach(el => {
+    el.innerHTML = bi(w.ko, w.en, true);
+  });
+}
+
+/* ══════════════════════════════════════
+   일정 — 되풀이되는 것(주일예배·주의 만찬·토요새벽)은 규칙으로 자동 생성하고,
+   한 번뿐인 일만 아래에 날짜와 함께 적어 둡니다.
+   ※ 새 일정을 넣으시려면 SPECIAL_EVENTS에 한 줄만 더하면 됩니다.
+     지난 일정은 앱이 알아서 감춥니다.
+   ══════════════════════════════════════ */
+const SPECIAL_EVENTS = [
+  {d:'2026-08-02', t:'목자들 모임', tEn:"Hosts' Gathering",
+   m:'오후 5:30 · 이인규/이윤아 목자 가정', mEn:"5:30 PM · at In Kyu & Yoon A's home"},
+  {d:'2026-09-06', t:'예배 시간 변경 — 오전 11시 첫 주일', tEn:'New service time — first Sunday at 11 AM',
+   m:'이번 주부터 오전 11:00 · 어린이·청소년은 다른 가정에서', mEn:'From this week, 11:00 AM · children and youth in another home'}
+];
+
+const ISO = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+const DOW_KO = ['주일','월','화','수','목','금','토'];
+const DOW_EN = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+
+function evtRow(date, tKo, tEn, mKo, mEn){
+  return '<div class="evt">'
+    + '<div class="evt-date"><div class="evt-d">'+date.getDate()+'</div>'
+    +   '<div class="evt-m">'+bi(DOW_KO[date.getDay()], DOW_EN[date.getDay()], true)+'</div></div>'
+    + '<div class="evt-body">'
+    +   '<div class="evt-title">'+bi(tKo, tEn)+'</div>'
+    +   '<div class="evt-meta">'+bi(mKo, mEn, true)+'</div>'
+    + '</div></div>';
+}
+
+/* 어느 한 주(주일~토요일)의 일정을 만듭니다 — 이번 주와 다음 주에 똑같이 씁니다 */
+function weekRows(sun){
+  const sat = new Date(sun.getFullYear(), sun.getMonth(), sun.getDate() + 6);
+  const t = svcTime(sun);
+  const rows = [];
+
+  /* 주일연합예배 — 그 달 첫 주일이면 주의 만찬이 함께 */
+  const communion = sun.getDate() <= 7;
+  rows.push({when: sun, html: evtRow(sun,
+    '주일연합예배' + (communion ? ' · 주의 만찬' : ''),
+    'Sunday United Worship' + (communion ? " · The Lord's Supper" : ''),
+    t.ko.replace('주일 ',''), t.en.replace('Sun ',''))});
+
+  /* 그 주에 걸린 특별 일정 */
+  SPECIAL_EVENTS.filter(e => e.d >= ISO(sun) && e.d <= ISO(sat)).forEach(e => {
+    const d = new Date(e.d + 'T12:00:00');
+    rows.push({when: d, html: evtRow(d, e.t, e.tEn, e.m, e.mEn)});
+  });
+
+  /* 토요새벽기도회 */
+  rows.push({when: sat, html: evtRow(sat, '토요새벽기도회', 'Saturday Dawn Prayer',
+    '오전 6:00–7:00', '6:00–7:00 AM')});
+
+  rows.sort((a, b) => a.when - b.when);
+  return rows.map(r => r.html).join('');
+}
+
+function renderSchedule(){
+  const now = new Date();
+  const sun = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay());
+  const nextSun = new Date(sun.getFullYear(), sun.getMonth(), sun.getDate() + 7);
+
+  const box = document.getElementById('weekEvents');
+  if(box) box.innerHTML = weekRows(sun);
+
+  const list = document.getElementById('upcomingEvents');
+  if(list) list.innerHTML = weekRows(nextSun);
+
+  const w = weekLabel(nextSun);
+  document.querySelectorAll('[data-upcoming-sub]').forEach(el => {
+    el.innerHTML = bi(w.ko, w.en, true);
+  });
+}
+
+/* 목회칼럼 — 오늘 날짜 이전 중 가장 최근 칼럼을 골라 그립니다 */
+function currentColumn(){
+  const today = new Date(); today.setHours(23,59,59,999);
+  let pick = null;
+  for(const c of COLUMN_PLAN){
+    if(new Date(c.d + 'T00:00:00') <= today && (!pick || c.d > pick.d)) pick = c;
+  }
+  return pick || COLUMN_PLAN[COLUMN_PLAN.length - 1];
+}
+
+function renderColumn(){
+  const box = document.querySelector('[data-column]');
+  if(!box) return;
+  const c = currentColumn();
+  const [y, m, d] = c.d.split('-');
+  box.innerHTML =
+      '<span class="col-badge">'+bi('이번 주','THIS WEEK',true)+'</span>'
+    + '<div class="col-t">'+bi(c.t, c.tEn)+'</div>'
+    + (c.sub ? '<div class="col-sub">'+bi(c.sub, c.subEn, true)+'</div>' : '')
+    + (c.x   ? '<p class="col-d">'+bi(c.x, c.xEn)+'</p>' : '')
+    + '<div class="col-by">'
+    +   '<span>'+bi('김성수 목사 · '+y+'.'+m+'.'+d, 'Pastor Sung Soo Kim · '+y+'.'+m+'.'+d, true)+'</span>'
+    +   '<span class="wc-cta" style="margin-top:0">'+bi('칼럼 전문 읽기','Read in full',true)
+    +     '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>'
+    + '</div>';
+}
+
 function renderServices(){
   const t = svcTime();
 
@@ -3389,7 +3880,8 @@ const MODALS = {
         btn:'Request a meetup', okT:'So glad you reached out!', okM:"We'll be in touch soon\nto find a time that works."},
     fields:[
       {n:'이름', en:'Name', t:'text', req:true, ph:'홍길동', phEn:'Your name'},
-      {n:'연락처', en:'Phone or Email', t:'text', req:true, ph:'전화번호 또는 이메일', phEn:'Phone or email'},
+      {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
+      {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
       {n:'한마디', en:'Anything to share', t:'textarea', req:false, ph:'궁금한 점이나 하고 싶은 말이 있다면 편하게 적어주세요 (선택)', phEn:'Questions or anything else (optional)'}
     ],
     // 시애틀에 막 도착한 분에게는 교회 이야기보다 정착이 먼저입니다
@@ -3407,7 +3899,8 @@ const MODALS = {
         btn:'Sign me up', okT:'You\'re signed up', okM:"We'll reach out shortly."},
     fields:[
       {n:'이름', en:'Name', t:'text', req:true, ph:'홍길동', phEn:'Your name'},
-      {n:'연락처', en:'Phone or Email', t:'text', req:true, ph:'전화번호 또는 이메일', phEn:'Phone or email'}
+      {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
+      {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'}
     ]
   },
   baptism:{
@@ -3418,7 +3911,8 @@ const MODALS = {
         btn:'Request baptism', okT:'Request received', okM:"We'll follow up with the schedule."},
     fields:[
       {n:'이름', en:'Name', t:'text', req:true, ph:'홍길동', phEn:'Your name'},
-      {n:'연락처', en:'Phone or Email', t:'text', req:true, ph:'전화번호 또는 이메일', phEn:'Phone or email'},
+      {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
+      {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
       {n:'희망 시기', en:'Preferred timing', t:'select', req:false, opts:[
         {ko:'가장 빠른 일정', en:'Earliest available'},
         {ko:'다음 침례식', en:'Next scheduled baptism'},
@@ -3434,7 +3928,8 @@ const MODALS = {
         btn:'Register', okT:'You\'re registered', okM:"We'll send you the start details."},
     fields:[
       {n:'이름', en:'Name', t:'text', req:true, ph:'홍길동', phEn:'Your name'},
-      {n:'연락처', en:'Phone or Email', t:'text', req:true, ph:'전화번호 또는 이메일', phEn:'Phone or email'},
+      {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
+      {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
       {n:'과정 선택', en:'Course', t:'select', req:true, opts:[
         {ko:'생명의 삶 (기본)', en:'Living Life (core)'},
         {ko:'확신의 삶 (기본 · 1:1)', en:'Assured Life (core · 1:1)'},
@@ -3472,7 +3967,8 @@ const MODALS = {
     fields:[
       {n:'부모 이름', en:'Parent name', t:'text', req:true, ph:'홍길동', phEn:'Parent name'},
       {n:'아이 이름', en:"Child's name", t:'text', req:true, ph:'아이 이름', phEn:"Child's name"},
-      {n:'연락처', en:'Phone or Email', t:'text', req:true, ph:'전화번호 또는 이메일', phEn:'Phone or email'},
+      {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
+      {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
       {n:'생년월일', en:'Date of birth', t:'date', req:false}
     ]
   },
@@ -3484,12 +3980,14 @@ const MODALS = {
         btn:'Request an introduction', okT:"We'll connect you!", okM:'A host\nwill reach out soon.'},
     fields:[
       {n:'이름', en:'Name', t:'text', req:true, ph:'홍길동', phEn:'Your name'},
-      {n:'연락처', en:'Phone or Email', t:'text', req:true, ph:'전화번호 또는 이메일', phEn:'Phone or email'},
+      {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
+      {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
       {n:'관심 목장', en:'Which mokjang', t:'select', req:false, opts:[
         {ko:'어디든 추천해 주세요', en:'Please recommend one'},
         {ko:'이스라엘 목장 (김지영 목자)', en:'Israel Mokjang (Joy Kim)'},
         {ko:'멕시코 목장 (박성건 목자)', en:'Mexico Mokjang (Sung Gun Park)'},
-        {ko:'인도네시아 목장 (이인규 목자)', en:'Indonesia Mokjang (In Kyu Lee)'}
+        {ko:'인도네시아 목장 (이인규 목자)', en:'Indonesia Mokjang (In Kyu Lee)'},
+        {ko:'GMC Y — 청소년 (Garrett Woods 목자)', en:'GMC Y — Youth (Garrett Woods)'}
       ]},
       {n:'거주 지역', en:'Neighborhood', t:'text', req:false, ph:'예) Lynnwood, Bellevue (선택)', phEn:'e.g. Lynnwood, Bellevue (optional)'}
     ]
@@ -3503,7 +4001,8 @@ const MODALS = {
     fields:[
       {n:'부모 이름', en:'Parent name', t:'text', req:true, ph:'홍길동', phEn:'Parent name'},
       {n:'자녀 이름 / 나이', en:"Child's name / age", t:'text', req:true, ph:'예) 홍민준 / 7세', phEn:'e.g. Emma / age 7'},
-      {n:'연락처', en:'Phone or Email', t:'text', req:true, ph:'전화번호 또는 이메일', phEn:'Phone or email'},
+      {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
+      {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
       {n:'문의 내용', en:'Your question', t:'textarea', req:false, ph:'궁금한 점을 편하게 적어주세요 (선택)', phEn:'Anything you\'d like to ask (optional)'}
     ]
   },
@@ -3516,22 +4015,92 @@ const MODALS = {
     fields:[
       {n:'부모 이름', en:'Parent name', t:'text', req:true, ph:'홍길동', phEn:'Parent name'},
       {n:'청소년 이름 / 학년', en:"Student's name / grade", t:'text', req:true, ph:'예) 홍서연 / 9학년', phEn:'e.g. Noah / 9th grade'},
-      {n:'연락처', en:'Phone or Email', t:'text', req:true, ph:'전화번호 또는 이메일', phEn:'Phone or email'},
+      {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
+      {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
       {n:'문의 내용', en:'Your question', t:'textarea', req:false, ph:'궁금한 점을 편하게 적어주세요 (선택)', phEn:'Anything you\'d like to ask (optional)'}
+    ]
+  },
+  /* 종이 헌신카드(서식 2022-05)를 그대로 옮긴 전자 카드.
+     예배 전·중·후 언제든 쓸 수 있어 축도 후 강단에 나오지 않아도 됩니다.
+     ※ 종이 카드의 '참석예배 1부/2부'는 연합예배 하나뿐이라 뺐습니다. */
+  commit:{
+    subject:'[GMC] 헌신카드',
+    ko:{title:'헌신카드', sub:'예배 전이나 중간에 작성하시면 됩니다. 적어주신 기도 제목은 대표목사님이 한 주간 기도합니다.',
+        btn:'헌신카드 보내기', okT:'잘 받았습니다', okM:'한 주간 기도하겠습니다.\n담당자가 곧 연락드리겠습니다.'},
+    en:{title:'Commitment Card', sub:'Fill this in before or during the service. Your prayer request is prayed over for a week by our lead pastor.',
+        btn:'Send my card', okT:'Received with thanks', okM:'We will pray through the week.\nOur staff will follow up soon.'},
+    fields:[
+      {n:'이름', en:'Name', t:'text', req:true, ph:'홍길동', phEn:'Your name'},
+      {n:'영문 이름', en:'Name in English', t:'text', req:false, ph:'등록하시는 분만 (선택)', phEn:'Only if registering (optional)'},
+      {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
+      {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
+      {n:'목장', en:'Mokjang', t:'select', req:false, opts:[
+        {ko:'아직 목장이 없어요', en:'Not in a mokjang yet'},
+        {ko:'이스라엘 목장', en:'Israel Mokjang'},
+        {ko:'멕시코 목장', en:'Mexico Mokjang'},
+        {ko:'인도네시아 목장', en:'Indonesia Mokjang'}
+      ]},
+      {n:'교회 등록', en:'Registration', t:'checkbox',
+        ko:'교회에 등록하기를 원합니다', koSub:'등록 담당자가 연락드립니다.',
+        enLabel:'I would like to register', enSub:'Our staff will reach out.'},
+      {n:'영접 모임', en:'Starting Point', t:'checkbox',
+        ko:'예수 영접 모임에 참석하기 원합니다', koSub:'처음이신 분도, 확인하고 싶은 분도 좋습니다.',
+        enLabel:'I want to join the Starting Point meeting', enSub:'For first steps, or to make sure.'},
+      {n:'침례', en:'Baptism', t:'checkbox',
+        ko:'침례 받기를 원합니다', koSub:'일정을 안내해 드립니다.',
+        enLabel:'I would like to be baptized', enSub:"We'll share the schedule."},
+      {n:'헌신', en:'Commitment', t:'checkbox',
+        ko:'하나님께 (재)헌신합니다', koSub:'아래에서 섬기고 싶은 자리를 골라 주세요.',
+        enLabel:'I (re)commit myself to God', enSub:'Pick where below.'},
+      {n:'헌신할 자리', en:'Where', t:'select', req:false, opts:[
+        {ko:'(해당 없음)', en:'(not applicable)'},
+        {ko:'목장 사역', en:'Mokjang'},
+        {ko:'삶공부', en:'Life Studies'},
+        {ko:'교회 사역', en:'Church ministry'},
+        {ko:'특별 헌금', en:'Special offering'},
+        {ko:'교사', en:'Teaching'},
+        {ko:'선교', en:'Missions'},
+        {ko:'기타 (아래에 적어주세요)', en:'Other (write below)'}
+      ]},
+      {n:'기도 받기', en:'Prayer', t:'checkbox',
+        ko:'기도 받기를 원합니다', koSub:'대표목사님께서 한 주간 기도해 주십니다.',
+        enLabel:'I would like prayer', enSub:'Our lead pastor prays through the week.'},
+      {n:'기도 제목 · 남기실 말씀', en:'Prayer request or note', t:'textarea', req:false,
+        ph:'기도 제목이나 헌신할 내용을 적어주세요 (선택)', phEn:'Your prayer request or commitment note (optional)'},
+      {n:'중보기도팀 공유', en:'Share with prayer team', t:'checkbox',
+        ko:'중보기도팀과 함께 기도해 주세요', koSub:'그냥 두시면 대표목사님만 보십니다.',
+        enLabel:'Please have the prayer team pray too', enSub:'Left unchecked, only the lead pastor sees it.'}
+    ]
+  },
+  /* 목회칼럼을 읽고 대표목사님께 바로 답하는 창구 — 칼럼을 한쪽 방향이 아니게 만듭니다 */
+  topastor:{
+    subject:'[GMC] 목사님께 한마디',
+    ko:{title:'목사님께 한마디', sub:'칼럼을 읽고 떠오른 생각을 편하게 적어 주세요. 대표목사님께만 갑니다.',
+        btn:'한마디 보내기', okT:'잘 읽겠습니다', okM:'보내주신 마음, 감사합니다.\n목사님이 직접 읽으십니다.'},
+    en:{title:'A word to the pastor', sub:'Whatever the column stirred in you. It goes to our lead pastor alone.',
+        btn:'Send', okT:'Thank you', okM:'Your note goes straight to the pastor.'},
+    fields:[
+      {n:'이름', en:'Name', t:'text', req:true, ph:'홍길동', phEn:'Your name'},
+      {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
+      {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
+      {n:'한마디', en:'Your note', t:'textarea', req:true,
+        ph:'공감한 대목, 묻고 싶은 것, 내 이야기 — 무엇이든 좋습니다', phEn:'What resonated, what you\'d ask, your own story — anything'}
     ]
   },
   prayer:{
     subject:'[GMC] 기도 요청',
-    ko:{title:'기도 요청', sub:'담임목사님께 바로 전달됩니다. 짧아도 괜찮습니다.',
+    ko:{title:'기도 요청', sub:'대표목사님께 바로 전달됩니다. 짧아도 괜찮습니다.',
         btn:'기도 요청 보내기', okT:'함께 기도하겠습니다', okM:'보내주신 마음, 잘 받았습니다.\n조용히 그러나 진심으로 기도할게요.'},
-    en:{title:'Prayer Request', sub:'Goes straight to our senior pastor. A sentence is enough.',
+    en:{title:'Prayer Request', sub:'Goes straight to our lead pastor. A sentence is enough.',
         btn:'Send request', okT:"We're praying with you", okM:'Thank you for trusting us with this.\nWe will pray — quietly and sincerely.'},
     fields:[
-      {n:'이름', en:'Name', t:'text', req:false, ph:'익명으로 두셔도 괜찮습니다 (선택)', phEn:'You may leave this blank (optional)'},
+      {n:'이름', en:'Name', t:'text', req:true, ph:'홍길동', phEn:'Your name'},
       {n:'기도 제목', en:'Prayer request', t:'textarea', req:true, ph:'어떤 기도가 필요하신가요?', phEn:'What would you like prayer for?'},
+      {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
+      {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
       {n:'비공개 요청', en:'Keep private', t:'checkbox',
-        ko:'담임목사님만 보게 해주세요', koSub:'체크하시면 목장·주보에 공유되지 않습니다.',
-        enLabel:'For the senior pastor only', enSub:'It will not be shared with groups or the bulletin.'}
+        ko:'대표목사님만 보게 해주세요', koSub:'그냥 두시면 김지영 사모님과 함께 기도합니다. 체크하시면 목사님만 보십니다.',
+        enLabel:'For the lead pastor only', enSub:'Left unchecked, Joy Kim prays with him. Checked, he alone sees it.'}
     ]
   },
   pastor:{
@@ -3564,7 +4133,8 @@ const MODALS = {
         btn:'Send message', okT:'Message sent', okM:"We'll get back to you shortly."},
     fields:[
       {n:'이름', en:'Name', t:'text', req:true, ph:'홍길동', phEn:'Your name'},
-      {n:'연락처', en:'Phone or Email', t:'text', req:true, ph:'전화번호 또는 이메일', phEn:'Phone or email'},
+      {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
+      {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
       {n:'문의 내용', en:'Message', t:'textarea', req:true, ph:'어떤 것이든 편하게 적어주세요', phEn:'Tell us what you need'}
     ]
   }
@@ -3601,8 +4171,10 @@ function renderField(f){
   } else if(f.t === 'textarea'){
     control = '<textarea class="textarea" name="'+name+'" placeholder="'+esc(langIsEn()?(f.phEn||''):(f.ph||''))+'"'+(f.req?' required':'')+'></textarea>';
   } else {
-    const type = f.t === 'date' ? 'date' : 'text';
-    control = '<input class="input" type="'+type+'" name="'+name+'" placeholder="'+esc(langIsEn()?(f.phEn||''):(f.ph||''))+'"'+(f.req?' required':'')+'>';
+    /* email·tel은 휴대폰에서 맞는 자판이 올라오고, 이메일은 형식도 걸러줍니다 */
+    const type = (f.t === 'date' || f.t === 'email' || f.t === 'tel') ? f.t : 'text';
+    const auto = f.t === 'email' ? ' autocomplete="email"' : (f.t === 'tel' ? ' autocomplete="tel"' : '');
+    control = '<input class="input" type="'+type+'" name="'+name+'"'+auto+' placeholder="'+esc(langIsEn()?(f.phEn||''):(f.ph||''))+'"'+(f.req?' required':'')+'>';
   }
 
   return '<div class="field"><label class="field-label">'+bi(f.n, f.en, true)+req+'</label>'+control+'</div>';
@@ -3696,8 +4268,8 @@ function renderInfoModal(type, m){
     +       bi('교회 홈페이지에서 더 보기', 'More on the church website', true)
     +     '</button>'
     +     '<p class="form-note">'+bi(
-             '예배 후 새교우실에서 담임 목사님을 직접 만나보실 수 있습니다.',
-             'You can meet our senior pastor in the newcomer room right after the service.'
+             '예배 후 새교우실에서 대표목사님을 직접 만나보실 수 있습니다.',
+             'You can meet our lead pastor in the newcomer room right after the service.'
            )+'</p>'
     +   '</div>'
     + '</div></div>';
@@ -3778,6 +4350,23 @@ function closeModal(e,id){
   if(typeof applyPendingReloadIfIdle === 'function') applyPendingReloadIfIdle();
 }
 
+/* 폼 한 장을 구글 시트로 보냅니다 — 메일과 별개로 기록이 쌓이도록.
+   실패해도 사용자에게는 아무 일도 일어나지 않습니다(메일이 이미 갔기 때문). */
+function saveToSheet(sheetName, body){
+  if(!SHEET_URL) return;
+  const row = {'시트': sheetName};
+  for(const [k, v] of body.entries()){
+    if(!k.startsWith('_') && k !== '접수경로') row[k] = v;
+  }
+  row['보낸시각'] = new Date().toLocaleString('ko-KR');
+  fetch(SHEET_URL, {
+    method:'POST',
+    mode:'no-cors',                                  // 구글 응답은 읽지 않고 보내기만 합니다
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify(row)
+  }).catch(()=>{});
+}
+
 async function submitForm(e,type){
   e.preventDefault();
   const form = e.target;
@@ -3786,9 +4375,30 @@ async function submitForm(e,type){
   btn.textContent = langIsEn() ? 'Sending…' : '보내는 중…';
 
   const email = EMAILS[type] || 'office@ijiguchon.org';
+  const body  = new FormData(form);
+
+  /* 받는 사람 = 담당 사역자(바로 답할 수 있게), 참조 = info@(코디네이터와 사역자들이 함께 확인).
+     ⚠ 기도 요청은 참조하지 않습니다 — 사적인 내용이라 대표목사님께만 갑니다.
+        새가족·일반문의는 받는 사람이 이미 info@라 참조가 필요 없습니다. */
+  if(type === 'prayer'){
+    /* 비공개 체크(값 '예')가 없을 때만 김지영 사모님이 함께 받습니다 */
+    if(String(body.get('비공개 요청') || '') !== '예') body.append('_cc', PRAYER_CC);
+  } else if(type === 'commit'){
+    body.append('_cc', COMMIT_CC);
+  } else if(!CC_SKIP.has(type)){
+    body.append('_cc', CC_TEAM);
+  }
+
+  /* 답장 버튼이 신청하신 분에게 바로 가도록 이메일을 Reply-To로 넣습니다 */
+  const mail = String(body.get('이메일') || '').trim();
+  if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) body.append('_replyto', mail);
+
+  /* 메일과 별개로 구글 시트에도 한 줄 쌓습니다 — 나중에 세어보고, 모아보고, 엮을 수 있게 */
+  saveToSheet(SHEET_TABS[type] || type, body);
+
   await fetch('https://formsubmit.co/ajax/' + email, {
     method:'POST',
-    body:new FormData(form),
+    body,
     headers:{'Accept':'application/json'}
   }).catch(()=>{});
 
@@ -3839,6 +4449,9 @@ function applyLang(lang){
   renderSaturday();
   renderWelcome();
   renderHostDir();
+  renderColumn();
+  renderWeekLabel();
+  renderSchedule();
   markHebronArrival();
 }
 
@@ -3846,12 +4459,12 @@ function applyLang(lang){
    tel/email 을 채우기만 하면 자동으로 전화/이메일 버튼이 나타납니다.
    둘 다 비우면 "곧 안내"로 표시됩니다. */
 const HOSTS = [
-  {mj:'이스라엘 목장', mjEn:'Israel Mokjang', nm:'김지영 목자', nmEn:'Host: Joy Kim',   badge:'ISR', cls:'hb-israel', tel:'', email:'children@ijiguchon.org'},
+  {mj:'이스라엘 목장', mjEn:'Israel Mokjang', nm:'김지영 목자', nmEn:'Host: Joy Kim',   badge:'ISR', cls:'hb-israel', tel:'', email:'jiyoung.kim@ijiguchon.org'},
   {mj:'멕시코 목장',   mjEn:'Mexico Mokjang', nm:'박성건 목자', nmEn:'Host: Sung Gun Park', badge:'MEX', cls:'hb-mexico', tel:'', email:'songkon.pak@ijiguchon.org'},
   {mj:'인도네시아 목장', mjEn:'Indonesia Mokjang', nm:'이인규 목자', nmEn:'Host: In Kyu Lee', badge:'IDN', cls:'hb-indo',  tel:'', email:'leengue.lee@ijiguchon.org'}
 ];
 const STAFF = [
-  {mj:'담임목사', mjEn:'Lead Pastor',   nm:'김성수 목사', nmEn:'Pastor Sung Soo Kim', badge:'담임', cls:'sb-pastor', tel:'425-350-0191', email:'pastor@ijiguchon.org'},
+  {mj:'대표목사', mjEn:'Lead Pastor',   nm:'김성수 목사', nmEn:'Pastor Sung Soo Kim', badge:'대표', cls:'sb-pastor', tel:'425-350-0191', email:'pastor@ijiguchon.org'},
   {mj:'행정간사', mjEn:'Church Office', nm:'박보라 간사', nmEn:'Bora Park',           badge:'행정', cls:'sb-admin',  tel:'', email:'office@ijiguchon.org'},
   {mj:'어린이 사역', mjEn:"Children's Ministry", nm:'김지영 (Joy Kim)', nmEn:'Joy Kim', badge:'어린이', cls:'sb-kids', tel:'', email:'children@ijiguchon.org'},
   {mj:'청소년 사역', mjEn:'Youth Ministry', nm:'Garrett Woods', nmEn:'Garrett Woods · Youth Pastor', badge:'청소년', cls:'sb-youth', tel:'', email:'youth@ijiguchon.org'},
