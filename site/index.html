@@ -147,6 +147,13 @@
   .reg-ok{display:none;max-width:560px;margin:26px auto 0;text-align:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 22px}
   .reg-ok .t{font-size:20px;font-weight:900;color:var(--navy)}
   .reg-ok p{margin-top:8px;color:var(--ink-2);font-size:15px}
+  .reg-benefits{max-width:580px;margin:26px auto 0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 22px 14px;text-align:left}
+  .reg-benefits h3{font-size:16px;font-weight:900;color:var(--navy);margin-bottom:14px}
+  .reg-benefits .bi{display:flex;gap:10px;align-items:flex-start;margin-bottom:11px;font-size:14.5px;line-height:1.5}
+  .reg-benefits .bi svg{width:20px;height:20px;flex-shrink:0;stroke:var(--gold-2);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+  .reg-benefits .bi b{font-weight:800;color:var(--ink)}
+  .reg-tier{max-width:580px;margin:14px auto 0;font-size:13px;color:var(--ink-2);text-align:center;line-height:1.65}
+  .reg-tier b{color:var(--navy);font-weight:800}
 
   /* Footer */
   footer{background:#12182a;color:rgba(255,255,255,.66);text-align:center;padding:40px 0;font-size:13.5px}
@@ -355,8 +362,19 @@
 <section class="reg sec" id="register">
   <div class="wrap">
     <div class="sec-eyebrow"><span class="ko">온라인 교회 등록</span><span class="en">Register online</span></div>
-    <h2 class="sec-title"><span class="ko">지구촌 어디서나, 함께해요</span><span class="en">Join us — from anywhere</span></h2>
-    <p class="sec-lead"><span class="ko">간단히 등록하시면 반갑게 연락드립니다. 온라인으로도, 가까운 목장으로도 함께할 수 있어요.</span><span class="en">Register in a minute and we'll warmly reach out — join online or at a nearby mokjang.</span></p>
+    <h2 class="sec-title"><span class="ko">등록교인이 되세요</span><span class="en">Become a registered member</span></h2>
+    <p class="sec-lead"><span class="ko">지구촌 어디에 계셔도 시애틀지구촌교회의 등록교인으로 함께할 수 있어요. 등록하시면 이 모든 것을 누리십니다.</span><span class="en">Wherever you are in the world, you can belong as a registered member — and receive all of this.</span></p>
+
+    <div class="reg-benefits">
+      <h3><span class="ko">등록교인이 누리는 것</span><span class="en">What registered members receive</span></h3>
+      <div class="bi"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><div><span class="ko"><b>삶공부·제자 훈련</b> — 생명의 삶부터 함께 자랍니다</span><span class="en"><b>Life studies & discipleship</b> — grow from the very first course</span></div></div>
+      <div class="bi"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><div><span class="ko"><b>대표목사와 중보기도팀의 기도</b> — 기도제목을 올리면 함께 기도합니다</span><span class="en"><b>Prayer from the pastor & intercessors</b> — share a request, we pray with you</span></div></div>
+      <div class="bi"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><div><span class="ko"><b>목장 연결·심방·돌봄</b> — 혼자가 아니라 함께</span><span class="en"><b>A mokjang, visits & care</b> — never alone</span></div></div>
+      <div class="bi"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><div><span class="ko"><b>주일연합예배에 온라인으로 함께</b> — 어디서든 예배자로</span><span class="en"><b>Join Sunday worship online</b> — as a worshipper, anywhere</span></div></div>
+      <div class="bi"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><div><span class="ko"><b>당신의 가정을 교회(목장)로</b> 세워가도록 안내·코칭</span><span class="en"><b>Guidance to make your home a church</b> — a mokjang of your own</span></div></div>
+      <div class="bi"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><div><span class="ko"><b>가정·부부·자녀·영어 톡타임</b> 등 필요 프로그램 안내</span><span class="en"><b>Family, marriage, kids & English</b> programs</span></div></div>
+    </div>
+    <p class="reg-tier"><span class="ko">시애틀지구촌교회는 <b>등록교인 → 회원교인</b>으로 함께 자랍니다. 등록교인은 위 모든 것을 누리고, 회원교인은 삶공부 이수·서약 등 절차로 더 깊이 헌신합니다.</span><span class="en">We grow together from <b>registered member → covenant member</b>. Registered members enjoy all of the above; covenant members commit more deeply through courses and a vow.</span></p>
 
     <form id="regForm" class="reg-form" action="https://formsubmit.co/info@ijiguchon.org" method="POST">
       <input type="hidden" name="_subject" value="[온라인 교회 등록] 새 등록">
