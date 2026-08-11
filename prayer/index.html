@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>지구촌 중보기도 사역 / 시애틀지구촌교회</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:   #0f2447;
+  --blue:   #1a3a5c;
+  --sky:    #2563eb;
+  --sky2:   #3b82f6;
+  --blue-light: #dbeafe;
+  --rose:   #be123c;
+  --rose-light: #fff1f2;
+  --purple: #7c3aed;
+  --purple-light: #f5f3ff;
+  --green:  #15803d;
+  --green-light: #dcfce7;
+  --teal:   #0d9488;
+  --amber:  #b45309;
+  --amber-light: #fffbeb;
+  --border: #e2e8f0;
+  --text:   #0f172a;
+  --sub:    #64748b;
+  --bg:     #e8edf4;
+  --white:  #ffffff;
+  --radius: 18px;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-md: 0 8px 32px rgba(0,0,0,0.11), 0 2px 8px rgba(0,0,0,0.06);
+}
+
+body {
+  font-family: -apple-system, 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
+  background-color: var(--bg);
+  background-image: radial-gradient(rgba(100,116,139,0.18) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.site-header {
+  background: linear-gradient(90deg, #080f1f 0%, #0f2447 40%, #1a3a5c 100%);
+  color: #fff;
+  padding: 13px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.22);
+}
+.header-logo-wrap {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.28);
+  flex-shrink: 0; overflow: hidden;
+}
+.header-logo { width: 30px; height: 30px; object-fit: contain; }
+.header-church { font-size: 14px; font-weight: 800; letter-spacing: -0.01em; }
+.header-en { font-size: 10px; opacity: 0.52; margin-top: 1px; letter-spacing: 0.05em; }
+.lang-btn {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.26);
+  color: #fff; padding: 6px 14px;
+  border-radius: 20px; font-size: 12px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; transition: all 0.18s;
+  backdrop-filter: blur(4px); letter-spacing: 0.02em;
+}
+.lang-btn:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.46); }
+
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(145deg, #070e1c 0%, #0f2447 28%, #1a3a5c 58%, #1e4db7 82%, #2563eb 100%);
+  color: #fff; text-align: center; padding: 36px 24px 32px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content:''; position:absolute; top:-90px; right:-70px;
+  width:300px; height:300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 68%);
+  border-radius:50%;
+}
+.hero::after {
+  content:''; position:absolute; bottom:-55px; left:-55px;
+  width:220px; height:220px;
+  background: radial-gradient(circle, rgba(99,179,237,0.10) 0%, transparent 68%);
+  border-radius:50%;
+}
+.hero-badge {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:10px; font-weight:800; letter-spacing:0.18em; text-transform:uppercase;
+  background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.20);
+  border-radius:20px; padding:6px 18px; margin-bottom:18px;
+  position:relative; z-index:1; backdrop-filter:blur(6px);
+}
+.hero h1 {
+  font-size:30px; font-weight:900; letter-spacing:-0.04em; margin-bottom:13px;
+  position:relative; z-index:1; line-height:1.15;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.28);
+}
+.hero-sub {
+  font-size:15px; opacity:0.90; max-width:360px; margin:0 auto;
+  line-height:1.85; position:relative; z-index:1; font-weight:400;
+}
+.hero-verse {
+  margin-top:20px; font-size:11.5px; opacity:0.42; font-style:italic;
+  position:relative; z-index:1; line-height:1.7;
+}
+
+/* ── Process bar ── */
+.process-bar {
+  background: var(--white);
+  border-bottom: 1px solid #f1f5f9;
+  padding: 16px 20px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+.proc-step {
+  display: flex; flex-direction: column; align-items: center;
+  min-width: 64px;
+}
+.proc-num {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--sky) 100%);
+  color: #fff; font-size: 12px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 5px;
+  box-shadow: 0 3px 10px rgba(37,99,235,0.32);
+}
+.proc-label { font-size: 10px; font-weight: 700; color: var(--sub); white-space: nowrap; letter-spacing:0.03em; }
+.proc-arrow {
+  flex:1; max-width:36px; min-width:18px; height: 2px;
+  background: linear-gradient(90deg, #2563eb, #93c5fd);
+  margin: 0 4px; margin-bottom: 16px; flex-shrink: 0;
+}
+
+/* ── Mission note ── */
+.mission-note {
+  max-width: 580px; margin: 0 auto;
+  padding: 0 16px;
+}
+.mission-banner {
+  background: linear-gradient(135deg, #1a3a5c 0%, #2563eb 60%, #3b82f6 100%);
+  color: #fff;
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin-top: 20px; margin-bottom: 4px;
+  font-size: 13px; line-height: 1.7;
+  display: flex; align-items: flex-start; gap: 11px;
+  box-shadow: 0 4px 18px rgba(37,99,235,0.26);
+}
+.mission-banner svg { width:20px; height:20px; flex-shrink:0; margin-top:1px; opacity:0.9; }
+
+/* ── Main ── */
+.main { max-width: 580px; margin: 0 auto; padding: 14px 16px 80px; }
+
+/* ── Type cards (3) ── */
+.type-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 4px; }
+.type-card {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 8px 14px;
+  text-align: center; cursor: pointer;
+  transition: all 0.20s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.type-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.type-card .tc-icon {
+  width: 36px; height: 36px; margin: 0 auto 9px;
+  color: #a0aec0; transition: color 0.20s;
+}
+.type-card .tc-icon svg { width:100%; height:100%; display:block; }
+.type-card .tc-title { font-size: 12px; font-weight: 800; color: var(--text); line-height:1.3; }
+.type-card .tc-desc { font-size: 10px; color: var(--sub); margin-top: 3px; line-height: 1.3; }
+
+/* Per-type selected colors */
+#tcSelf:hover, #tcSelf.selected { border-color: var(--sky2); background: var(--blue-light); }
+#tcSelf.selected .tc-icon, #tcSelf:hover .tc-icon { color: var(--sky2); }
+#tcSelf.selected { box-shadow: 0 0 0 3px rgba(59,130,246,0.18), var(--shadow-md); }
+
+#tcVip:hover, #tcVip.selected { border-color: var(--rose); background: var(--rose-light); }
+#tcVip.selected .tc-icon, #tcVip:hover .tc-icon { color: var(--rose); }
+#tcVip.selected { box-shadow: 0 0 0 3px rgba(190,18,60,0.14), var(--shadow-md); }
+
+#tcWorld:hover, #tcWorld.selected { border-color: var(--purple); background: var(--purple-light); }
+#tcWorld.selected .tc-icon, #tcWorld:hover .tc-icon { color: var(--purple); }
+#tcWorld.selected { box-shadow: 0 0 0 3px rgba(124,58,237,0.14), var(--shadow-md); }
+
+/* ── Card ── */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 20px;
+  margin-bottom: 14px;
+  border-left: 4px solid var(--sky2);
+}
+.card-title {
+  font-size: 11px; font-weight: 800; color: var(--navy);
+  text-transform: uppercase; letter-spacing: 0.10em;
+  margin-bottom: 16px; padding-bottom: 9px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── VIP salvation callout ── */
+.salvation-note {
+  display: none;
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+  border: 1.5px solid #b794f4;
+  border-radius: 8px;
+  padding: 10px 13px;
+  margin-bottom: 14px;
+  font-size: 12px; color: #553c9a; line-height: 1.6;
+}
+
+/* ── Form ── */
+label {
+  display: block; font-size: 13px; font-weight: 600; color: var(--text);
+  margin-bottom: 5px; margin-top: 16px;
+}
+label:first-of-type { margin-top: 0; }
+.opt { font-size: 11px; font-weight: 400; color: var(--sub); margin-left: 4px; }
+.req { color: #e53e3e; }
+
+input[type="text"], textarea {
+  width: 100%; padding: 10px 13px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px; font-size: 14px; font-family: inherit;
+  color: var(--text); background: #fafbfc;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+input:focus, textarea:focus {
+  outline: none; border-color: var(--sky);
+  box-shadow: 0 0 0 3px rgba(49,130,206,0.12); background: #fff;
+}
+textarea { min-height: 96px; resize: vertical; }
+
+/* ── Chips ── */
+.chip-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 7px; margin-top: 8px;
+}
+.chip {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 9px 3px 8px;
+  border: 1.5px solid var(--border); border-radius: 9px;
+  font-size: 10px; font-weight: 600; text-align: center;
+  cursor: pointer; background: #fff; color: var(--sub);
+  transition: all 0.15s; line-height: 1.3;
+}
+.chip svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+/* Category colors */
+.chip:nth-child(1) { --cc:#c53030; --cb:#fff5f5; }  /* 건강 */
+.chip:nth-child(2) { --cc:#c05621; --cb:#fffaf0; }  /* 가족 */
+.chip:nth-child(3) { --cc:#b7791f; --cb:#fefcbf; }  /* 직장 */
+.chip:nth-child(4) { --cc:#276749; --cb:#f0fff4; }  /* 영적 */
+.chip:nth-child(5) { --cc:#6b46c1; --cb:#faf5ff; }  /* 구원 — mission */
+.chip:nth-child(6) { --cc:#2c7a7b; --cb:#e6fffa; }  /* 세계·선교 */
+.chip:nth-child(7) { --cc:#0369a1; --cb:#e0f2fe; }  /* 삶공부 */
+.chip:nth-child(8) { --cc:#9f580a; --cb:#fef9c3; }  /* 목장참석 */
+.chip:nth-child(9) { --cc:#5b21b6; --cb:#ede9fe; }  /* 예배참석 */
+.chip.chip-other   { --cc:#4a5568; --cb:#edf2f7;    /* 기타 */
+  grid-column: 1 / -1; flex-direction: row; gap: 6px;
+  padding: 8px 12px; justify-content: center; font-size: 11px;
+}
+
+.chip:hover  { border-color: var(--cc); color: var(--cc); background: var(--cb); }
+.chip.selected { border-color: var(--cc); color: var(--cc); background: var(--cb); box-shadow: 0 0 0 2px rgba(0,0,0,0.06); }
+
+/* Mission chip pulse */
+.chip.mission-chip.selected { animation: pulse-border 1.5s ease-in-out 1; }
+@keyframes pulse-border {
+  0%  { box-shadow: 0 0 0 0 rgba(107,70,193,0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(107,70,193,0); }
+  100%{ box-shadow: 0 0 0 0 rgba(107,70,193,0); }
+}
+
+/* ── Urgency ── */
+.urgency-row { display: flex; gap: 8px; margin-top: 8px; }
+.urgency-btn {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px; border: 1.5px solid var(--border); border-radius: 8px;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  background: #fff; color: var(--sub); transition: all 0.15s;
+}
+.urgency-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+.urgency-btn.selected { border-color: var(--sky); background: var(--blue-light); color: #2b6cb0; box-shadow: 0 0 0 2px rgba(49,130,206,0.12); }
+.urgency-btn.urgent.selected { border-color: var(--rose); background: var(--rose-light); color: var(--rose); box-shadow: 0 0 0 2px rgba(197,48,48,0.10); }
+
+/* ── Connect card ── */
+.connect-card {
+  background: var(--green-light);
+  border: 1.5px solid #9ae6b4;
+  border-left: 4px solid #38a169;
+  border-radius: var(--radius);
+  padding: 22px 20px; margin-bottom: 13px;
+  box-shadow: var(--shadow);
+}
+.connect-card .card-title { color: var(--green); border-color: #9ae6b4; }
+.connect-note {
+  font-size: 12px; color: #276749; background: #c6f6d5;
+  padding: 9px 13px; border-radius: 7px; margin-bottom: 14px; line-height: 1.6;
+}
+
+/* VIP invite — highlighted */
+.vip-invite {
+  background: #fff; border: 2px solid #68d391; border-radius: 10px;
+  padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px;
+  margin-bottom: 12px; cursor: pointer; transition: background 0.15s;
+}
+.vip-invite:hover { background: #f0fff4; }
+.vip-invite input[type="checkbox"] { width:17px; height:17px; margin-top:2px; flex-shrink:0; cursor:pointer; accent-color:#38a169; }
+.vip-invite strong { display:block; font-size:13px; font-weight:700; color:#276749; margin-bottom:2px; }
+.vip-invite span { font-size:11px; color:var(--sub); line-height:1.4; }
+
+.check-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid #c6f6d5;
+}
+.check-row:last-child { border-bottom: none; padding-bottom: 0; }
+.check-row input[type="checkbox"] { width:17px; height:17px; margin-top:2px; flex-shrink:0; cursor:pointer; accent-color:#38a169; }
+.check-label strong { display:block; font-size:13px; font-weight:600; color:var(--green); margin-bottom:1px; }
+.check-label span { font-size:11px; color:var(--sub); line-height:1.4; }
+
+/* ── Submit ── */
+.submit-btn {
+  width: 100%; padding: 17px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--sky) 60%, var(--sky2) 100%);
+  color: #fff; border: none; border-radius: 14px;
+  font-size: 16px; font-weight: 800;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 9px;
+  transition: transform 0.15s, box-shadow 0.15s; margin-top: 6px;
+  box-shadow: 0 6px 24px rgba(37,99,235,0.40); letter-spacing: 0.02em;
+  position: relative; overflow: hidden;
+}
+.submit-btn::after {
+  content: '';
+  position: absolute; top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+  animation: shimmer 2.4s infinite;
+}
+@keyframes shimmer {
+  0%   { left: -100%; }
+  60%  { left: 120%; }
+  100% { left: 120%; }
+}
+.submit-btn svg { width:20px; height:20px; }
+.submit-btn:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(37,99,235,0.48); }
+.submit-btn:active { transform:translateY(0); box-shadow:0 4px 14px rgba(37,99,235,0.32); }
+.submit-btn:disabled { opacity:0.75; cursor:not-allowed; transform:none; }
+.spin { animation: spin-anim 0.9s linear infinite; }
+@keyframes spin-anim { to { transform: rotate(360deg); } }
+
+/* ── Success ── */
+.success-screen { display:none; text-align:center; padding:52px 20px 60px; }
+.success-icon-wrap {
+  width:86px; height:86px; margin:0 auto 20px; border-radius:50%;
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 6px 24px rgba(21,128,61,0.18);
+}
+.success-icon { width:52px; height:52px; color:#15803d; }
+.success-icon svg { width:100%; height:100%; }
+.success-screen h2 { font-size:24px; font-weight:800; color:var(--navy); margin-bottom:9px; letter-spacing:-0.02em; }
+.success-screen p { font-size:13px; color:var(--sub); line-height:1.9; max-width:320px; margin:0 auto 22px; }
+.success-process {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; margin: 0 auto 28px; max-width: 320px;
+}
+.sp-step { display:flex; flex-direction:column; align-items:center; min-width:56px; }
+.sp-num {
+  width:28px; height:28px; border-radius:50%;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--sky) 100%);
+  color:#fff; font-size:11px; font-weight:800;
+  display:flex; align-items:center; justify-content:center; margin-bottom:5px;
+  box-shadow: 0 3px 10px rgba(37,99,235,0.30);
+}
+.sp-lbl { font-size:10px; color:var(--sub); font-weight:700; }
+.sp-arr { width:28px; height:2px; background: linear-gradient(90deg, #2563eb, #93c5fd); margin-bottom:16px; flex-shrink:0; }
+.new-btn {
+  padding:13px 32px;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--sky) 100%);
+  color:#fff; border:none; border-radius:10px;
+  font-size:14px; font-weight:700; cursor:pointer;
+  box-shadow:0 4px 14px rgba(37,99,235,0.30);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.new-btn:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(37,99,235,0.38); }
+
+/* ── Pastor card ── */
+.pastor-card {
+  background: linear-gradient(135deg, #fffdf5 0%, #fef9ec 60%, #fef6e0 100%);
+  border: 1.5px solid #f0d060;
+  border-left: 4px solid #d69e2e;
+  border-radius: var(--radius);
+  padding: 20px 20px 18px;
+  margin-bottom: 13px;
+  box-shadow: 0 4px 18px rgba(214,158,46,0.14);
+}
+.pastor-header {
+  display: flex; align-items: center; gap: 13px; margin-bottom: 14px;
+}
+.pastor-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, #92400e 0%, #d69e2e 50%, #f6ad55 100%);
+  color: #fff; font-size: 16px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(214,158,46,0.35);
+}
+.pastor-meta {}
+.pastor-name { font-size: 14px; font-weight: 800; color: #5f4200; }
+.pastor-tag {
+  font-size: 10px; font-weight: 700; color: #92400e;
+  background: linear-gradient(90deg, #fef3c7, #fde68a);
+  padding: 2px 9px; border-radius: 10px;
+  display: inline-block; margin-top: 3px;
+}
+.pastor-items { list-style: none; padding: 0; margin: 0; }
+.pastor-items li {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 7px 0; border-bottom: 1px dashed #fde68a;
+  font-size: 13px; color: #5f4a00; line-height: 1.55;
+}
+.pastor-items li:last-child { border-bottom: none; }
+.pastor-items li::before {
+  content: ''; width: 5px; height: 5px; border-radius: 50%;
+  background: #d97706; flex-shrink: 0; margin-top: 8px;
+}
+.pastor-sig {
+  margin-top: 13px; text-align: right;
+  font-size: 12px; color: #92400e; font-style: italic; font-weight: 600;
+}
+
+/* ── Success pastor ask ── */
+.success-pastor-ask { margin: 0 0 22px; }
+.spa-divider { height: 1px; background: var(--border); margin: 22px 0 18px; }
+.spa-invite {
+  font-size: 13px; font-weight: 600; color: var(--sub);
+  margin-bottom: 13px; text-align: center;
+}
+.success-screen .pastor-card { box-shadow: 0 2px 12px rgba(214,158,46,0.10); }
+
+/* ── Share card ── */
+.share-card {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1.5px solid #bae6fd;
+  border-radius: 14px;
+  padding: 16px 18px 18px;
+  margin: 0 0 18px;
+  text-align: center;
+}
+.share-card-title {
+  font-size: 12px; font-weight: 700; color: #0369a1; margin-bottom: 3px;
+}
+.share-card-sub {
+  font-size: 11px; color: #64748b; margin-bottom: 13px; line-height: 1.5;
+}
+.share-btns { display: flex; gap: 9px; justify-content: center; }
+.share-btn {
+  flex: 1; max-width: 150px;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 10px 14px; border: none; border-radius: 10px;
+  font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.15s;
+}
+.share-btn-copy {
+  background: #fff; color: #0369a1;
+  border: 1.5px solid #bae6fd;
+  box-shadow: 0 2px 8px rgba(3,105,161,0.10);
+}
+.share-btn-copy:hover { background: #e0f2fe; }
+.share-btn-kakao {
+  background: #FAE300; color: #3A1D1D;
+  box-shadow: 0 2px 10px rgba(250,227,0,0.40);
+}
+.share-btn-kakao:hover { background: #F5D800; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(250,227,0,0.50); }
+.share-btn svg { width:15px; height:15px; flex-shrink:0; }
+.share-copy-toast {
+  font-size:11px; color:#0369a1; margin-top:8px;
+  opacity:0; transition:opacity 0.3s; height:16px;
+}
+.share-copy-toast.show { opacity:1; }
+
+/* ── Footer ── */
+.footer-note {
+  text-align:center; font-size:11px; color:var(--sub);
+  padding:14px 20px 48px; line-height:1.8;
+}
+
+/* ════════════════════════════════════════════
+   폴더 탭 네비게이션
+════════════════════════════════════════════ */
+.tab-nav {
+  background: linear-gradient(90deg, #070e1c 0%, #0f2447 60%, #1a3a5c 100%);
+  display: flex; padding: 0 16px;
+  border-bottom: 2px solid rgba(255,255,255,0.06);
+}
+.tab-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 12px 20px 10px;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  border: none; background: transparent; color: rgba(255,255,255,0.45);
+  border-bottom: 3px solid transparent; margin-bottom: -2px;
+  transition: all 0.18s; letter-spacing: 0.01em;
+  border-radius: 8px 8px 0 0;
+  white-space: nowrap;
+}
+.tab-btn:hover { color: rgba(255,255,255,0.80); background: rgba(255,255,255,0.06); }
+.tab-btn.active {
+  color: #fff; border-bottom-color: #3b82f6;
+  background: rgba(255,255,255,0.10);
+}
+.tab-btn svg { width:15px; height:15px; flex-shrink:0; }
+.tab-badge {
+  font-size:10px; font-weight:800; background:#3b82f6; color:#fff;
+  padding:1px 6px; border-radius:10px; min-width:18px; text-align:center;
+}
+.tab-badge.red { background:#be123c; }
+
+/* ════════════════════════════════════════════
+   2면 — 기도 목록
+════════════════════════════════════════════ */
+#page2 { max-width: 620px; margin: 0 auto; padding: 16px 16px 80px; }
+
+/* 통계 바 */
+.stat-bar {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;
+}
+.stat-card {
+  background: var(--white); border-radius: 12px; padding: 13px 10px;
+  text-align: center; box-shadow: var(--shadow);
+  cursor: pointer; transition: all 0.15s;
+  border: 2px solid transparent;
+}
+.stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.stat-card.active-filter { border-color: var(--sky2); }
+.stat-num { font-size: 22px; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+.stat-lbl { font-size: 10px; font-weight: 600; color: var(--sub); }
+.stat-card.s-urgent .stat-num { color: var(--rose); }
+.stat-card.s-done   .stat-num { color: var(--green); }
+.stat-card.s-active .stat-num { color: var(--sky); }
+
+/* 검색 바 */
+.list-search {
+  display: flex; gap: 8px; margin-bottom: 14px; align-items: center;
+}
+.list-search input {
+  flex: 1; padding: 10px 13px; border: 1.5px solid var(--border);
+  border-radius: 10px; font-size: 13px; font-family: inherit;
+  background: #fff; color: var(--text);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.list-search input:focus {
+  outline:none; border-color: var(--sky2); box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+}
+.list-clear-btn {
+  padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 10px;
+  background: #fff; font-size: 12px; font-weight: 600; color: var(--sub); cursor: pointer;
+  white-space: nowrap; transition: all 0.15s;
+}
+.list-clear-btn:hover { background: #fff1f2; border-color: var(--rose); color: var(--rose); }
+
+/* 기도 카드 */
+.prayer-card {
+  background: var(--white); border-radius: var(--radius);
+  box-shadow: var(--shadow); margin-bottom: 12px;
+  border-left: 4px solid var(--sky2); overflow: hidden;
+  transition: box-shadow 0.15s;
+}
+.prayer-card:hover { box-shadow: var(--shadow-md); }
+.prayer-card.urgent { border-left-color: var(--rose); }
+.prayer-card.done   { border-left-color: var(--green); opacity: 0.80; }
+
+.pc-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 16px 0; gap: 8px;
+}
+.pc-meta { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; flex: 1; }
+.pc-name { font-size: 14px; font-weight: 800; color: var(--navy); }
+.pc-type {
+  font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+  background: var(--blue-light); color: var(--sky);
+}
+.pc-cat {
+  font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px;
+  background: #f1f5f9; color: var(--sub);
+}
+.pc-urgent-badge {
+  font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px;
+  background: var(--rose-light); color: var(--rose);
+}
+.pc-date { font-size: 10px; color: #94a3b8; white-space: nowrap; }
+
+.pc-body { padding: 10px 16px 14px; }
+.pc-vip { font-size: 12px; color: var(--sub); margin-bottom: 5px; font-style: italic; }
+.pc-text {
+  font-size: 13px; color: var(--text); line-height: 1.7;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.pc-text.expanded { display: block; -webkit-line-clamp: unset; }
+.pc-expand {
+  font-size: 11px; color: var(--sky2); cursor: pointer; margin-top: 4px;
+  font-weight: 600; display: none;
+}
+
+.pc-connect { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; }
+.pc-tag {
+  font-size: 10px; padding: 2px 8px; border-radius: 8px;
+  background: var(--green-light); color: var(--green); font-weight: 600;
+}
+.pc-contact {
+  font-size: 11px; color: var(--sub); margin-top: 6px;
+}
+
+.pc-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 16px; border-top: 1px solid #f1f5f9; background: #fafbfc;
+  gap: 8px;
+}
+.pc-status {
+  font-size: 12px; font-weight: 600; border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 5px 10px; background: #fff;
+  cursor: pointer; color: var(--text); font-family: inherit;
+  transition: all 0.15s;
+}
+.pc-status:focus { outline: none; border-color: var(--sky2); }
+.pc-status[data-s="praying"]  { color:#1d4ed8; border-color:#bfdbfe; background:#eff6ff; }
+.pc-status[data-s="answered"] { color:#15803d; border-color:#bbf7d0; background:#f0fdf4; }
+.pc-status[data-s="partial"]  { color:#b45309; border-color:#fde68a; background:#fffbeb; }
+.pc-status[data-s="ongoing"]  { color:#0369a1; border-color:#bae6fd; background:#f0f9ff; }
+.pc-status[data-s="closed"]   { color:#64748b; border-color:#e2e8f0; background:#f8fafc; }
+.pc-del-btn {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 11px; color: #94a3b8; background: none; border: none;
+  cursor: pointer; padding: 4px 6px; border-radius: 6px; transition: all 0.15s;
+}
+.pc-del-btn:hover { color: var(--rose); background: var(--rose-light); }
+.pc-del-btn svg { width:13px; height:13px; }
+
+/* 빈 상태 */
+.empty-state {
+  text-align: center; padding: 60px 20px;
+  color: var(--sub);
+}
+.empty-state svg { width:56px; height:56px; opacity:0.25; margin:0 auto 14px; display:block; }
+.empty-state p { font-size:14px; font-weight:600; margin-bottom:6px; color: var(--text); }
+.empty-state span { font-size:12px; }
+
+@media (max-width: 480px) {
+  .type-row { grid-template-columns: repeat(3,1fr); }
+  .chip-grid { grid-template-columns: repeat(2,1fr); }
+  .hero h1 { font-size:24px; }
+  .hero-sub { font-size:13.5px; }
+  .proc-arrow { width:18px; }
+  .card { padding: 18px 16px; }
+  .stat-bar { grid-template-columns: repeat(2, 1fr); }
+  .tab-btn { padding: 11px 14px 9px; font-size:12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="site-header">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div class="header-logo-wrap">
+      <img src="gmc-logo.png" alt="GMC Logo" class="header-logo">
+    </div>
+    <div>
+      <div class="header-church" id="h_church">시애틀지구촌교회</div>
+      <div class="header-en">GMC of Greater Seattle</div>
+    </div>
+  </div>
+  <button class="lang-btn" id="langBtn" onclick="toggleLang()">English</button>
+</div>
+
+<!-- 폴더 탭 네비게이션 -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab(1)" id="tab1Btn">
+    <svg viewBox="0 0 20 20" fill="currentColor"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg>
+    <span id="tab1_lbl">기도 제목 제출</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab(2)" id="tab2Btn">
+    <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 000-2h-3z" clip-rule="evenodd"/></svg>
+    <span id="tab2_lbl">기도 목록</span>
+    <span class="tab-badge" id="tab2Badge" style="display:none">0</span>
+  </button>
+</div>
+
+<!-- 1면: 제출 폼 -->
+<div id="page1">
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-badge" id="h_badge">지구촌 중보기도 사역</div>
+  <h1 id="h_title">중보기도 요청서</h1>
+  <p class="hero-verse" id="h_verse">"그는 항상 살아 계셔서 그들을 위하여 간구하시느니라." — 히 7:25</p>
+</div>
+
+<!-- Process bar -->
+<div class="process-bar">
+  <div class="proc-step">
+    <div class="proc-num">1</div>
+    <div class="proc-label" id="proc1">수집</div>
+  </div>
+  <div class="proc-arrow"></div>
+  <div class="proc-step">
+    <div class="proc-num">2</div>
+    <div class="proc-label" id="proc2">전달</div>
+  </div>
+  <div class="proc-arrow"></div>
+  <div class="proc-step">
+    <div class="proc-num">3</div>
+    <div class="proc-label" id="proc3">기도</div>
+  </div>
+  <div class="proc-arrow"></div>
+  <div class="proc-step">
+    <div class="proc-num">4</div>
+    <div class="proc-label" id="proc4">응답</div>
+  </div>
+</div>
+
+<!-- Mission banner -->
+<div class="mission-note">
+  <div class="mission-banner">
+    <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"/></svg>
+    <span id="h_mission">중보기도팀이 접수된 기도 제목을 위해 <strong>1주 2회, 3분</strong> 기도합니다. 기도 응답은 공동체 안에서 나눕니다.</span>
+  </div>
+</div>
+
+<!-- Form -->
+<div class="main">
+  <div id="formArea">
+
+    <!-- 기도 유형 (3-way) -->
+    <div class="card" style="border-left-color: var(--sky);">
+      <div class="card-title" id="t_who">기도 요청 유형</div>
+      <div class="type-row">
+        <div class="type-card selected" onclick="selectType(this,'self')" id="tcSelf">
+          <div class="tc-icon">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="tc-title" id="t_self">나를 위한 기도</div>
+          <div class="tc-desc" id="t_self_sub">내 삶의 기도 제목</div>
+        </div>
+        <div class="type-card" onclick="selectType(this,'vip')" id="tcVip">
+          <div class="tc-icon">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="tc-title" id="t_vip">소중한 분을 위해</div>
+          <div class="tc-desc" id="t_vip_sub">가족·친구 대신 요청</div>
+        </div>
+        <div class="type-card" onclick="selectType(this,'world')" id="tcWorld">
+          <div class="tc-icon">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="tc-title" id="t_world">세계·선교</div>
+          <div class="tc-desc" id="t_world_sub">선교·사회·열방을 위해</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 기도 제목 -->
+    <div class="card">
+      <div class="card-title" id="t_sec1">기도 제목</div>
+
+      <!-- Salvation callout (shown when 구원 category selected) -->
+      <div class="salvation-note" id="salvationNote">
+        <strong id="t_sal_title">구원을 위한 기도는 가장 강력한 선교입니다.</strong><br>
+        <span id="t_sal_sub">기도하는 분의 이름을 함께 적어 주시면, 저희가 그분의 구원을 위해 더욱 집중하여 기도하겠습니다.</span>
+      </div>
+
+      <label id="lbl_name">이름 <span class="req">*</span></label>
+      <input type="text" id="name"
+        data-ko-ph="예: 홍길동"
+        data-en-ph="e.g., John Smith">
+
+      <div id="vipNameRow" style="display:none;">
+        <label id="lbl_vipName">기도할 분의 이름 <span class="opt">(선택)</span></label>
+        <input type="text" id="vipName"
+          data-ko-ph="예: 어머니, 친구 민준이 (닉네임도 괜찮아요)"
+          data-en-ph="e.g., Mom, my friend John (nickname is fine)">
+      </div>
+
+      <label id="lbl_req">기도 제목 <span class="req">*</span></label>
+      <textarea id="prayerReq"
+        data-ko-ph="마음에 담아두신 기도 제목을 자유롭게 적어 주세요."
+        data-en-ph="Please share your prayer request freely."></textarea>
+
+      <label id="t_cat">분류</label>
+      <div class="chip-grid" id="catGrid">
+        <div class="chip" onclick="selectChip(this)" data-val="건강·치유">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+          <span class="chip-text">건강·치유</span>
+        </div>
+        <div class="chip" onclick="selectChip(this)" data-val="가족·관계">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
+          <span class="chip-text">가족·관계</span>
+        </div>
+        <div class="chip" onclick="selectChip(this)" data-val="직장·진로">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/><path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"/></svg>
+          <span class="chip-text">직장·진로</span>
+        </div>
+        <div class="chip" onclick="selectChip(this)" data-val="영적 성장">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 2h2v6h6v2h-6v8H9v-8H3V8h6z"/></svg>
+          <span class="chip-text">영적 성장</span>
+        </div>
+        <div class="chip mission-chip" onclick="selectChip(this)" data-val="구원·전도">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"/></svg>
+          <span class="chip-text">구원·전도</span>
+        </div>
+        <div class="chip" onclick="selectChip(this)" data-val="목장참석">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
+          <span class="chip-text">목장참석</span>
+        </div>
+        <div class="chip" onclick="selectChip(this)" data-val="예배참석">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 3.75A2.75 2.75 0 018.75 1h2.5A2.75 2.75 0 0114 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 016 4.193V3.75zm6.5 0v.325a41.622 41.622 0 00-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25zM10 10a1 1 0 00-1 1v.01a1 1 0 001 1h.01a1 1 0 001-1V11a1 1 0 00-1-1H10z" clip-rule="evenodd"/><path d="M3 15.055v-.684c.126.053.255.1.39.142 2.1.642 4.317.987 6.61.987 2.293 0 4.51-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 01-9.274 0C3.985 17.585 3 16.402 3 15.055z"/></svg>
+          <span class="chip-text">예배참석</span>
+        </div>
+        <div class="chip" onclick="selectChip(this)" data-val="삶공부">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/></svg>
+          <span class="chip-text">삶공부</span>
+        </div>
+        <div class="chip" onclick="selectChip(this)" data-val="세계·선교">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/></svg>
+          <span class="chip-text">세계·선교</span>
+        </div>
+        <div class="chip chip-other" onclick="selectChip(this)" data-val="기타">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"/></svg>
+          <span class="chip-text">기타 (직접 입력)</span>
+        </div>
+      </div>
+      <input type="hidden" id="category" value="">
+
+      <div id="otherCatRow" style="display:none; margin-top:8px;">
+        <input type="text" id="otherCatInput" maxlength="30"
+               placeholder="직접 입력해 주세요"
+               oninput="document.getElementById('category').value = this.value.trim() || (currentLang==='ko'?'기타':'Other')">
+      </div>
+
+      <label id="t_urgency">긴급도</label>
+      <div class="urgency-row">
+        <div class="urgency-btn selected" onclick="selectUrgency(this,'일반')" id="u_normal">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
+          <span id="u_normal_txt">일반</span>
+        </div>
+        <div class="urgency-btn urgent" onclick="selectUrgency(this,'긴급')" id="u_urgent">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.381z" clip-rule="evenodd"/></svg>
+          <span id="u_urgent_txt">긴급</span>
+        </div>
+      </div>
+      <input type="hidden" id="urgency" value="일반">
+    </div>
+
+    <!-- 연결 — VIP 선교 경로 -->
+    <div class="connect-card">
+      <div class="card-title" id="t_sec2">연결 <span style="font-size:10px;font-weight:400;color:#48bb78;margin-left:4px;" id="t_opt2">(선택 사항)</span></div>
+      <div class="connect-note" id="t_connectNote">
+        기도를 통해 공동체와 연결될 수 있습니다. 해당되는 항목을 체크해 주세요.
+      </div>
+
+      <!-- VIP pathway: highlighted -->
+      <div class="vip-invite">
+        <input type="checkbox" id="chkInvited">
+        <div>
+          <strong id="t_invited">저를 위해 기도해 주시는 분이 있어요</strong>
+          <span id="t_invitedSub">교인 지인이 저를 위해 기도하고 있으며, 교회를 소개받았습니다.</span>
+        </div>
+      </div>
+
+      <div class="check-row">
+        <input type="checkbox" id="chkFollowup">
+        <div class="check-label">
+          <strong id="t_chk1">기도 응답 소식 받기</strong>
+          <span id="t_chk1s">응답이 있을 때 이메일이나 문자로 알려드립니다.</span>
+        </div>
+      </div>
+      <div class="check-row">
+        <input type="checkbox" id="chkGroup">
+        <div class="check-label">
+          <strong id="t_chk2">소그룹(목장)에서 함께 기도하고 싶어요</strong>
+          <span id="t_chk2s">홈 그룹에서 직접 만나 함께 기도할 수 있습니다.</span>
+        </div>
+      </div>
+      <div class="check-row">
+        <input type="checkbox" id="chkChurch">
+        <div class="check-label">
+          <strong id="t_chk3">교회에 대해 더 알고 싶어요</strong>
+          <span id="t_chk3s">예배, 목장, 각종 사역을 편하게 소개해 드립니다.</span>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;">
+        <label id="lbl_contact">연락처 <span class="opt" id="t_opt3">(이메일 또는 전화)</span></label>
+        <input type="text" id="contact"
+          data-ko-ph="예: email@gmail.com 또는 010-0000-0000"
+          data-en-ph="e.g., email@email.com or phone number">
+      </div>
+    </div>
+
+    <button class="submit-btn" onclick="submitForm()">
+      <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
+      <span id="t_submit">기도 제목 제출하기</span>
+    </button>
+
+  </div><!-- /formArea -->
+
+  <!-- Success screen -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon-wrap">
+      <div class="success-icon">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+      </div>
+    </div>
+    <h2 id="s_title">기도 제목을 받았습니다</h2>
+    <p id="s_desc">지구촌 중보기도팀이 성심껏 기도하겠습니다.<br>주님의 응답이 있기를 함께 믿고 기다립니다.</p>
+    <div class="success-process">
+      <div class="sp-step"><div class="sp-num">1</div><div class="sp-lbl" id="sp1">수집</div></div>
+      <div class="sp-arr"></div>
+      <div class="sp-step"><div class="sp-num">2</div><div class="sp-lbl" id="sp2">전달</div></div>
+      <div class="sp-arr"></div>
+      <div class="sp-step"><div class="sp-num">3</div><div class="sp-lbl" id="sp3">기도</div></div>
+      <div class="sp-arr"></div>
+      <div class="sp-step"><div class="sp-num">4</div><div class="sp-lbl" id="sp4">응답</div></div>
+    </div>
+    <!-- 목사님 기도 요청 — 제출 후 초대 -->
+    <div class="success-pastor-ask">
+      <div class="spa-divider"></div>
+      <p class="spa-invite" id="spa_invite">한 가지만 더 부탁드려도 될까요?</p>
+      <div class="pastor-card" style="text-align:left; margin-bottom:0;">
+        <div class="pastor-header">
+          <div class="pastor-avatar">김</div>
+          <div class="pastor-meta">
+            <div class="pastor-name" id="pc_name">김성수 대표목사</div>
+            <span class="pastor-tag" id="pc_tag">이번 달 기도 요청</span>
+          </div>
+        </div>
+        <ul class="pastor-items">
+          <li id="pc_item1">주일 설교 준비와 성령의 역사</li>
+          <li id="pc_item2">시애틀지구촌교회 가을 목장 부흥</li>
+          <li id="pc_item3">가정과 건강을 위해</li>
+        </ul>
+        <div class="pastor-sig" id="pc_sig">함께 기도해 주셔서 감사합니다. — 김성수</div>
+      </div>
+    </div>
+
+    <!-- 공유하기 -->
+    <div class="share-card">
+      <div class="share-card-title" id="sh_title">기도가 필요한 분께 전달해 주세요</div>
+      <div class="share-card-sub" id="sh_sub">카카오톡으로 이 폼을 공유하면<br>더 많은 분들이 기도 도움을 받을 수 있습니다</div>
+      <div class="share-btns">
+        <button class="share-btn share-btn-copy" onclick="copyShareLink()" id="sh_copy">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/><path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/></svg>
+          <span id="sh_copy_lbl">링크 복사</span>
+        </button>
+        <button class="share-btn share-btn-kakao" onclick="shareKakao()" id="sh_kakao">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.582 2 11.006c0 2.888 1.712 5.42 4.32 6.9-.19.673-.686 2.43-.786 2.81-.124.472.173.465.364.338.15-.1 2.383-1.617 3.347-2.27.879.128 1.792.196 2.755.196 5.523 0 10-3.582 10-8.006C22 6.582 17.523 3 12 3z"/></svg>
+          <span id="sh_kakao_lbl">카카오톡 공유</span>
+        </button>
+      </div>
+      <div class="share-copy-toast" id="shareCopyToast">✓ 링크가 복사되었습니다</div>
+    </div>
+
+    <button class="new-btn" onclick="resetForm()" id="s_btn">새 기도 제목 제출</button>
+  </div>
+</div>
+
+<div class="footer-note" id="t_footer">
+  제출하신 기도 제목은 기도팀 코디네이터에게만 전달됩니다.<br>
+  연결 항목을 체크하신 경우에만 담당자가 별도로 연락드립니다.
+</div>
+
+</div><!-- /page1 -->
+
+<!-- 2면: 기도 목록 -->
+<div id="page2" style="display:none">
+  <!-- 통계 바 -->
+  <div class="stat-bar" id="statBar">
+    <div class="stat-card" onclick="filterPrayers('all')" id="sf_all">
+      <div class="stat-num" id="st_total">0</div>
+      <div class="stat-lbl" id="st_total_lbl">전체</div>
+    </div>
+    <div class="stat-card s-active" onclick="filterPrayers('active')" id="sf_active">
+      <div class="stat-num" id="st_active">0</div>
+      <div class="stat-lbl">기도 중</div>
+    </div>
+    <div class="stat-card s-urgent" onclick="filterPrayers('urgent')" id="sf_urgent">
+      <div class="stat-num" id="st_urgent">0</div>
+      <div class="stat-lbl" id="st_urgent_lbl">긴급</div>
+    </div>
+    <div class="stat-card s-done" onclick="filterPrayers('done')" id="sf_done">
+      <div class="stat-num" id="st_done">0</div>
+      <div class="stat-lbl" id="st_done_lbl">응답됨</div>
+    </div>
+  </div>
+
+  <!-- 검색 -->
+  <div class="list-search">
+    <input type="text" id="prayerSearch" placeholder="이름 또는 기도 제목 검색…" oninput="renderPrayerList()">
+    <button class="list-clear-btn" onclick="clearAllPrayers()" id="clearAllBtn">전체 삭제</button>
+  </div>
+
+  <!-- 목록 -->
+  <div id="prayerList"></div>
+</div><!-- /page2 -->
+
+<script>
+let currentLang = 'ko';
+let whoType = 'self';
+
+const S = {
+  ko: {
+    langBtn: 'English',
+    h_badge: '지구촌 중보기도 사역', h_title: '중보기도 요청서',
+    h_sub: '기도는 가장 강력한 선교입니다.\n당신의 기도 제목을 나눠 주세요.',
+    h_verse: '"그는 항상 살아 계셔서 그들을 위하여 간구하시느니라." — 히브리서 7:25',
+    h_mission: '중보기도팀이 접수된 기도 제목을 위해 <strong>1주 2회, 3분</strong> 기도합니다. 기도 응답은 공동체 안에서 나눕니다.',
+    proc: ['수집','전달','기도','응답'],
+    t_who: '기도 요청 유형',
+    t_self: '나를 위한 기도', t_self_sub: '내 삶의 기도 제목',
+    t_vip: '소중한 분을 위해', t_vip_sub: '가족·친구 대신 요청',
+    t_world: '세계·선교', t_world_sub: '선교·사회·열방을 위해',
+    t_sec1: '기도 제목',
+    t_sal_title: '구원을 위한 기도는 가장 강력한 선교입니다.',
+    t_sal_sub: '기도하는 분의 이름을 함께 적어 주시면, 저희가 그분의 구원을 위해 더욱 집중하여 기도하겠습니다.',
+    lbl_name_self: '이름', lbl_name_vip: '제 이름 (요청자)', lbl_name_world: '이름',
+    lbl_vipName: '기도할 분의 이름',
+    lbl_req: '기도 제목',
+    t_cat: '분류',
+    cats: ['건강·치유','가족·관계','직장·진로','영적 성장','구원·전도','목장참석','예배참석','삶공부','세계·선교','기타'],
+    t_urgency: '긴급도', u_normal: '일반', u_urgent: '긴급',
+    t_sec2: '연결', t_opt2: '(선택 사항)',
+    t_connectNote: '기도를 통해 공동체와 연결될 수 있습니다. 해당되는 항목을 체크해 주세요.',
+    t_invited: '저를 위해 기도해 주시는 분이 있어요',
+    t_invitedSub: '교인 지인이 저를 위해 기도하고 있으며, 교회를 소개받았습니다.',
+    t_chk1: '기도 응답 소식 받기', t_chk1s: '응답이 있을 때 이메일이나 문자로 알려드립니다.',
+    t_chk2: '소그룹(목장)에서 함께 기도하고 싶어요', t_chk2s: '홈 그룹에서 직접 만나 함께 기도할 수 있습니다.',
+    t_chk3: '교회에 대해 더 알고 싶어요', t_chk3s: '예배, 목장, 각종 사역을 편하게 소개해 드립니다.',
+    lbl_contact: '연락처', t_opt3: '(이메일 또는 전화)',
+    t_submit: '기도 제목 제출하기',
+    spa_invite: '한 가지만 더 부탁드려도 될까요?',
+    s_title: '기도 제목을 받았습니다',
+    s_desc: '지구촌 중보기도팀이 성심껏 기도하겠습니다.\n주님의 응답이 있기를 함께 믿고 기다립니다.',
+    s_btn: '새 기도 제목 제출',
+    sh_title: '기도가 필요한 분께 전달해 주세요',
+    sh_sub: '카카오톡으로 이 폼을 공유하면\n더 많은 분들이 기도 도움을 받을 수 있습니다',
+    sh_copy: '링크 복사', sh_kakao: '카카오톡 공유',
+    sh_toast: '✓ 링크가 복사되었습니다',
+    t_footer: '제출하신 기도 제목은 기도팀 코디네이터에게만 전달됩니다.\n허락 없이 외부에 공개되지 않으며, 연결 항목을 체크하신 경우에만 담당자가 별도로 연락드립니다.',
+    pc_name: '김성수 대표목사', pc_tag: '이번 달 기도 요청',
+    pc_items: ['주일 설교 준비와 성령의 역사', '시애틀지구촌교회 가을 목장 부흥', '가정과 건강을 위해'],
+    pc_sig: '함께 기도해 주셔서 감사합니다. — 김성수',
+    alert_name: '이름을 입력해 주세요.', alert_req: '기도 제목을 입력해 주세요.',
+    ph_name_self: '예: 홍길동', ph_name_vip: '예: 홍길동 (요청자)', ph_name_world: '예: 홍길동',
+    ph_vipName: '예: 어머니, 친구 민준이 (닉네임도 괜찮아요)',
+    ph_req_self: '마음에 담아두신 기도 제목을 자유롭게 적어 주세요.',
+    ph_req_vip: '소중한 분을 위한 기도 제목을 적어 주세요.',
+    ph_req_world: '세계·선교를 위한 기도 제목을 적어 주세요.',
+    ph_contact: '예: email@gmail.com 또는 010-0000-0000',
+    tab1: '기도 제출', tab2: '기도 목록',
+    plist_search: '이름 또는 기도 제목 검색…',
+    plist_clear: '전체 삭제',
+    plist_empty_title: '아직 기도 제목이 없습니다',
+    plist_empty_sub: '1면에서 기도 제목을 제출하면 여기에 표시됩니다.',
+    plist_confirm_clear: '저장된 기도 제목을 모두 삭제할까요?',
+    plist_confirm_del: '이 기도 제목을 삭제할까요?',
+    status_opts: ['기도 중','응답됨','부분 응답','진행 중','종료'],
+    status_keys: ['praying','answered','partial','ongoing','closed'],
+  },
+  en: {
+    langBtn: '한국어',
+    h_badge: 'Intercession Prayer Ministry', h_title: 'Prayer Request',
+    h_sub: 'Prayer is the most powerful mission.\nShare your prayer request with us.',
+    h_verse: '"He always lives to intercede for them." — Hebrews 7:25',
+    h_mission: 'Our prayer team prays for each request <strong>2 times a week, 3 minutes</strong>. Answers are shared within the community.',
+    proc: ['Gather','Assign','Pray','Answer'],
+    t_who: 'Request Type',
+    t_self: 'For Myself', t_self_sub: 'My personal prayer need',
+    t_vip: 'For Someone', t_vip_sub: 'Family or friend request',
+    t_world: 'World·Mission', t_world_sub: 'Missions, society, nations',
+    t_sec1: 'Prayer Request',
+    t_sal_title: 'Prayer for salvation is the most powerful mission.',
+    t_sal_sub: 'If you share the name of the person, we will pray more specifically for their salvation.',
+    lbl_name_self: 'Your Name', lbl_name_vip: 'Your Name (requester)', lbl_name_world: 'Your Name',
+    lbl_vipName: 'Name of person to pray for',
+    lbl_req: 'Prayer Request',
+    t_cat: 'Category',
+    cats: ['Health·Healing','Family·Relationship','Work·Career','Spiritual Growth','Salvation·Outreach','Home Group','Worship Attendance','Life Study','World·Mission','Other'],
+    t_urgency: 'Urgency', u_normal: 'General', u_urgent: 'Urgent',
+    t_sec2: 'Connect', t_opt2: '(optional)',
+    t_connectNote: 'Check below if you\'d like to connect with our community through prayer.',
+    t_invited: 'Someone has been praying for me',
+    t_invitedSub: 'A church member prays for me and has introduced me to this church.',
+    t_chk1: 'Receive prayer updates', t_chk1s: 'We\'ll let you know when your prayer is answered.',
+    t_chk2: 'Pray together in a small group', t_chk2s: 'Meet in a Home Group (목장) to pray together.',
+    t_chk3: 'Learn more about our church', t_chk3s: 'We\'ll introduce worship, Home Groups, and ministries.',
+    lbl_contact: 'Contact', t_opt3: '(email or phone)',
+    t_submit: 'Submit Prayer Request',
+    s_title: 'Prayer Request Received',
+    s_desc: 'Our prayer team will pray wholeheartedly.\nWe trust God\'s answer together.',
+    s_btn: 'Submit Another Request',
+    sh_title: 'Share with someone who needs prayer',
+    sh_sub: 'Share this form via KakaoTalk\nso more people can receive prayer support.',
+    sh_copy: 'Copy Link', sh_kakao: 'Share on KakaoTalk',
+    sh_toast: '✓ Link copied to clipboard',
+    t_footer: 'Your prayer request is shared only with the prayer coordinator.\nIt will not be made public without your consent. If you checked any connection items, our team may reach out separately.',
+    spa_invite: 'May we ask one more thing?',
+    pc_name: 'Rev. Sung-soo Kim, Lead Pastor', pc_tag: 'This Month\'s Prayer Requests',
+    pc_items: ['Preparation and the Holy Spirit\'s work in Sunday sermons', 'Revival of fall Home Groups at GMC Seattle', 'For health and family'],
+    pc_sig: 'Thank you for praying with us. — Pastor Kim',
+    alert_name: 'Please enter your name.', alert_req: 'Please enter your prayer request.',
+    ph_name_self: 'e.g., John Smith', ph_name_vip: 'e.g., John Smith (requester)', ph_name_world: 'e.g., John Smith',
+    ph_vipName: 'e.g., Mom, my friend John (nickname is fine)',
+    ph_req_self: 'Please share your prayer request freely.',
+    ph_req_vip: 'Please share your prayer request for this person.',
+    ph_req_world: 'Please share your prayer for the world or missions.',
+    ph_contact: 'e.g., email@email.com or phone number',
+    tab1: 'Submit', tab2: 'Prayer List',
+    plist_search: 'Search name or prayer request…',
+    plist_clear: 'Clear All',
+    plist_empty_title: 'No prayer requests yet',
+    plist_empty_sub: 'Submit a request on the first tab to see it here.',
+    plist_confirm_clear: 'Delete all saved prayer requests?',
+    plist_confirm_del: 'Delete this prayer request?',
+    status_opts: ['Praying','Answered','Partial','Ongoing','Closed'],
+    status_keys: ['praying','answered','partial','ongoing','closed'],
+  }
+};
+
+function toggleLang() {
+  currentLang = currentLang === 'ko' ? 'en' : 'ko';
+  applyLang();
+}
+
+function setText(id, val) { const el=document.getElementById(id); if(el) el.textContent=val; }
+function setHTML(id, val) { const el=document.getElementById(id); if(el) el.innerHTML=val.replace(/\n/g,'<br>'); }
+
+function applyLang() {
+  const s = S[currentLang];
+  setText('langBtn', s.langBtn);
+  setText('h_badge', s.h_badge); setText('h_title', s.h_title);
+  setText('h_verse', s.h_verse);
+  setText('tab1_lbl', s.tab1); setText('tab2_lbl', s.tab2);
+  const si = document.getElementById('prayerSearch'); if(si) si.placeholder = s.plist_search;
+  const cb = document.getElementById('clearAllBtn'); if(cb) cb.textContent = s.plist_clear;
+  setHTML('h_mission', s.h_mission);
+  ['proc1','proc2','proc3','proc4'].forEach((id,i) => setText(id, s.proc[i]));
+  ['sp1','sp2','sp3','sp4'].forEach((id,i) => setText(id, s.proc[i]));
+  setText('t_who', s.t_who);
+  setText('t_self', s.t_self); setText('t_self_sub', s.t_self_sub);
+  setText('t_vip', s.t_vip); setText('t_vip_sub', s.t_vip_sub);
+  setText('t_world', s.t_world); setText('t_world_sub', s.t_world_sub);
+  setText('t_sec1', s.t_sec1);
+  setText('t_sal_title', s.t_sal_title); setText('t_sal_sub', s.t_sal_sub);
+  setText('lbl_vipName', s.lbl_vipName);
+  setText('lbl_req', s.lbl_req);
+  setText('t_cat', s.t_cat);
+  document.querySelectorAll('#catGrid .chip-text').forEach((el,i) => { el.textContent = s.cats[i]; });
+  const vals_ko = ['건강·치유','가족·관계','직장·진로','영적 성장','구원·전도','목장참석','예배참석','삶공부','세계·선교','기타'];
+  const vals_en = ['Health·Healing','Family·Relationship','Work·Career','Spiritual Growth','Salvation·Outreach','Home Group','Worship Attendance','Life Study','World·Mission','Other'];
+  document.querySelectorAll('#catGrid .chip').forEach((el,i) => { el.dataset.val = currentLang==='ko' ? vals_ko[i] : vals_en[i]; });
+  setText('t_urgency', s.t_urgency);
+  setText('u_normal_txt', s.u_normal); setText('u_urgent_txt', s.u_urgent);
+  setText('t_sec2', s.t_sec2); setText('t_opt2', s.t_opt2);
+  setText('t_connectNote', s.t_connectNote);
+  setText('t_invited', s.t_invited); setText('t_invitedSub', s.t_invitedSub);
+  setText('t_chk1', s.t_chk1); setText('t_chk1s', s.t_chk1s);
+  setText('t_chk2', s.t_chk2); setText('t_chk2s', s.t_chk2s);
+  setText('t_chk3', s.t_chk3); setText('t_chk3s', s.t_chk3s);
+  setText('lbl_contact', s.lbl_contact); setText('t_opt3', s.t_opt3);
+  setText('t_submit', s.t_submit);
+  setText('s_title', s.s_title); setHTML('s_desc', s.s_desc); setText('s_btn', s.s_btn);
+  setText('sh_title', s.sh_title); setHTML('sh_sub', s.sh_sub);
+  setText('sh_copy_lbl', s.sh_copy); setText('sh_kakao_lbl', s.sh_kakao);
+  setText('shareCopyToast', s.sh_toast);
+  setHTML('t_footer', s.t_footer);
+  // Pastor card + invite
+  setText('spa_invite', s.spa_invite);
+  setText('pc_name', s.pc_name); setText('pc_tag', s.pc_tag); setText('pc_sig', s.pc_sig);
+  ['pc_item1','pc_item2','pc_item3'].forEach((id,i) => setText(id, s.pc_items[i]));
+  updateNameLabel();
+  updatePlaceholders();
+  document.documentElement.lang = currentLang;
+}
+
+function updateNameLabel() {
+  const s = S[currentLang];
+  const key = whoType === 'vip' ? 'lbl_name_vip' : whoType === 'world' ? 'lbl_name_world' : 'lbl_name_self';
+  const lbl = document.getElementById('lbl_name');
+  if (lbl) lbl.innerHTML = s[key] + ' <span class="req">*</span>';
+}
+function updatePlaceholders() {
+  const s = S[currentLang];
+  const phKey = whoType === 'vip' ? 'ph_name_vip' : whoType === 'world' ? 'ph_name_world' : 'ph_name_self';
+  const reqKey = whoType === 'vip' ? 'ph_req_vip' : whoType === 'world' ? 'ph_req_world' : 'ph_req_self';
+  document.getElementById('name').placeholder = s[phKey];
+  document.getElementById('prayerReq').placeholder = s[reqKey];
+  document.getElementById('vipName').placeholder = s.ph_vipName;
+  document.getElementById('contact').placeholder = s.ph_contact;
+}
+
+function selectType(el, type) {
+  whoType = type;
+  document.querySelectorAll('.type-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('vipNameRow').style.display = (type === 'vip') ? 'block' : 'none';
+  updateNameLabel();
+  updatePlaceholders();
+}
+
+function selectChip(el) {
+  document.querySelectorAll('#catGrid .chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  const val = el.dataset.val;
+  document.getElementById('category').value = val;
+
+  const isOther     = val === '기타' || val === 'Other';
+  const isSalvation = val === '구원·전도' || val === 'Salvation·Outreach';
+
+  const otherRow = document.getElementById('otherCatRow');
+  const otherInput = document.getElementById('otherCatInput');
+  otherRow.style.display = isOther ? 'block' : 'none';
+  if (isOther) {
+    otherInput.focus();
+  } else {
+    otherInput.value = '';
+  }
+
+  document.getElementById('salvationNote').style.display = isSalvation ? 'block' : 'none';
+}
+
+function selectUrgency(el, val) {
+  document.querySelectorAll('.urgency-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('urgency').value = val;
+}
+
+// ▶ Google Apps Script 배포 URL (설정 후 교체)
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxizUq-RZFvC7VsW15I76mQREomiZGUgz3_w28d7nD7gIyXaI6PiSFty7IpYFq9MVzgRA/exec';
+
+function submitForm() {
+  const s = S[currentLang];
+  const name = document.getElementById('name').value.trim();
+  const req  = document.getElementById('prayerReq').value.trim();
+  if (!name) { alert(s.alert_name); document.getElementById('name').focus(); return; }
+  if (!req)  { alert(s.alert_req);  document.getElementById('prayerReq').focus(); return; }
+
+  const data = {
+    whoType,
+    name,
+    vipName:   whoType === 'vip' ? document.getElementById('vipName').value.trim() : '',
+    prayerReq: req,
+    category:  (() => {
+      const base = document.getElementById('category').value;
+      const custom = document.getElementById('otherCatInput').value.trim();
+      if ((base === '기타' || base === 'Other') && custom) return custom;
+      return base || (currentLang === 'ko' ? '기타' : 'Other');
+    })(),
+    urgency:   document.getElementById('urgency').value,
+    chkInvited:  document.getElementById('chkInvited').checked,
+    chkFollowup: document.getElementById('chkFollowup').checked,
+    chkGroup:    document.getElementById('chkGroup').checked,
+    chkChurch:   document.getElementById('chkChurch').checked,
+    contact:   document.getElementById('contact').value.trim(),
+    lang:      currentLang,
+    submittedAt: new Date().toISOString(),
+  };
+
+  const btn = document.querySelector('.submit-btn');
+  const origHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<svg class="spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/></svg> ' + (currentLang === 'ko' ? '전송 중…' : 'Sending…');
+
+  const showSuccess = () => {
+    btn.disabled = false; btn.innerHTML = origHTML;
+    savePrayer(data);
+    document.getElementById('formArea').style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+    window.scrollTo(0, 0);
+  };
+
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+    setTimeout(showSuccess, 400);
+    return;
+  }
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+    .then(() => showSuccess())
+    .catch(() => showSuccess());
+}
+
+/* ══════════════════════════════════════════════
+   탭 전환
+══════════════════════════════════════════════ */
+let currentFilter = 'all';
+
+function switchTab(n) {
+  document.getElementById('page1').style.display = n === 1 ? '' : 'none';
+  document.getElementById('page2').style.display = n === 2 ? '' : 'none';
+  document.getElementById('tab1Btn').classList.toggle('active', n === 1);
+  document.getElementById('tab2Btn').classList.toggle('active', n === 2);
+  if (n === 2) { currentFilter = 'all'; renderPrayerList(); }
+  window.scrollTo(0, 0);
+}
+
+/* ══════════════════════════════════════════════
+   localStorage 기도 목록
+══════════════════════════════════════════════ */
+const STORAGE_KEY = 'gmc_prayers_v1';
+
+function loadPrayers() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+  catch { return []; }
+}
+function savePrayers(list) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+}
+function savePrayer(data) {
+  const list = loadPrayers();
+  list.unshift({ ...data, id: Date.now(), status: '기도 중' });
+  savePrayers(list);
+  updateTabBadge();
+}
+function updateTabBadge() {
+  const list = loadPrayers();
+  const badge = document.getElementById('tab2Badge');
+  if (!badge) return;
+  if (list.length > 0) {
+    badge.textContent = list.length;
+    badge.style.display = '';
+    const hasUrgent = list.some(p => p.urgency === '긴급' || p.urgency === 'Urgent');
+    badge.className = 'tab-badge' + (hasUrgent ? ' red' : '');
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+function filterPrayers(type) {
+  currentFilter = type;
+  ['all','active','urgent','done'].forEach(k => {
+    document.getElementById('sf_' + k)?.classList.toggle('active-filter', k === type);
+  });
+  renderPrayerList();
+}
+
+function renderPrayerList() {
+  const s    = S[currentLang];
+  const all  = loadPrayers();
+  const q    = (document.getElementById('prayerSearch')?.value || '').toLowerCase();
+
+  const filtered = all.filter(p => {
+    if (currentFilter === 'urgent') return p.urgency === '긴급' || p.urgency === 'Urgent';
+    if (currentFilter === 'active') return p.status && p.status.includes('기도 중') || p.status && p.status.includes('Praying');
+    if (currentFilter === 'done')   return p.status && (p.status.includes('응답') || p.status.includes('Answered'));
+    return true;
+  }).filter(p => {
+    if (!q) return true;
+    return (p.name||'').toLowerCase().includes(q) || (p.prayerReq||'').toLowerCase().includes(q);
+  });
+
+  // Stats
+  const urgent = all.filter(p => p.urgency === '긴급' || p.urgency === 'Urgent').length;
+  const done   = all.filter(p => p.status && (p.status.includes('응답') || p.status.includes('Answered'))).length;
+  const active = all.filter(p => p.status && (p.status.includes('기도 중') || p.status.includes('Praying'))).length;
+  setText('st_total', all.length);
+  setText('st_active', active);
+  setText('st_urgent', urgent);
+  setText('st_done', done);
+
+  const container = document.getElementById('prayerList');
+  if (!container) return;
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.966 8.966 0 00-6 2.292m0-14.25v14.25"/>
+        </svg>
+        <p>${s.plist_empty_title}</p>
+        <span>${s.plist_empty_sub}</span>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map(p => {
+    const date = p.submittedAt ? p.submittedAt.slice(0,10) : '';
+    const isUrgent = p.urgency === '긴급' || p.urgency === 'Urgent';
+    const isDone   = p.status && (p.status.includes('응답') || p.status.includes('Answered') || p.status.includes('종료') || p.status.includes('Closed'));
+    const cardClass = isUrgent ? 'prayer-card urgent' : isDone ? 'prayer-card done' : 'prayer-card';
+
+    const typeLabel = { self: currentLang==='ko'?'나':'Me', vip: currentLang==='ko'?'소중한 분':'For', world: currentLang==='ko'?'선교':'World' }[p.whoType] || '';
+
+    const connects = [
+      p.chkFollowup && (currentLang==='ko'?'응답 소식':'Updates'),
+      p.chkGroup    && (currentLang==='ko'?'목장':'Small Group'),
+      p.chkChurch   && (currentLang==='ko'?'교회 소개':'Church Info'),
+      p.chkInvited  && (currentLang==='ko'?'기도 받는 중':'Being Prayed For'),
+    ].filter(Boolean);
+
+    const statusOpts = s.status_opts.map(o =>
+      `<option value="${o}" ${p.status===o?'selected':''}>${o}</option>`
+    ).join('');
+    const statusIdx = s.status_opts.indexOf(p.status);
+    const statusKey = statusIdx >= 0 ? s.status_keys[statusIdx] : 'praying';
+
+    return `
+    <div class="${cardClass}" id="pc_${p.id}">
+      <div class="pc-head">
+        <div class="pc-meta">
+          <span class="pc-name">${escHtml(p.name)}</span>
+          <span class="pc-type">${typeLabel}</span>
+          ${p.category ? `<span class="pc-cat">${escHtml(p.category)}</span>` : ''}
+          ${isUrgent   ? `<span class="pc-urgent-badge">${currentLang==='ko'?'긴급':'Urgent'}</span>` : ''}
+        </div>
+        <span class="pc-date">${date}</span>
+      </div>
+      <div class="pc-body">
+        ${p.vipName ? `<div class="pc-vip">→ ${escHtml(p.vipName)}</div>` : ''}
+        <div class="pc-text" id="pct_${p.id}">${escHtml(p.prayerReq)}</div>
+        <div class="pc-expand" id="pce_${p.id}" onclick="toggleExpand('${p.id}')">더 보기 ▾</div>
+        ${connects.length ? `<div class="pc-connect">${connects.map(c=>`<span class="pc-tag">${c}</span>`).join('')}</div>` : ''}
+        ${p.contact ? `<div class="pc-contact"><svg width="11" height="11" viewBox="0 0 20 20" fill="currentColor" style="opacity:.45;vertical-align:middle;margin-right:4px"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>${escHtml(p.contact)}</div>` : ''}
+      </div>
+      <div class="pc-foot">
+        <select class="pc-status" data-s="${statusKey}" onchange="updateStatus(${p.id},this.value)">${statusOpts}</select>
+        <button class="pc-del-btn" onclick="deletePrayer(${p.id})">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+          ${currentLang==='ko'?'삭제':'Delete'}
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Show "더 보기" for long texts
+  filtered.forEach(p => {
+    const el = document.getElementById('pct_' + p.id);
+    const btn = document.getElementById('pce_' + p.id);
+    if (el && btn && el.scrollHeight > el.clientHeight + 2) btn.style.display = 'block';
+  });
+}
+
+function toggleExpand(id) {
+  const el  = document.getElementById('pct_' + id);
+  const btn = document.getElementById('pce_' + id);
+  if (!el || !btn) return;
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? (currentLang==='ko'?'접기 ▴':'Less ▴') : (currentLang==='ko'?'더 보기 ▾':'More ▾');
+}
+
+function updateStatus(id, status) {
+  const list = loadPrayers();
+  const item = list.find(p => p.id === id);
+  if (item) { item.status = status; savePrayers(list); updateTabBadge(); renderPrayerList(); }
+}
+
+function deletePrayer(id) {
+  if (!confirm(S[currentLang].plist_confirm_del)) return;
+  savePrayers(loadPrayers().filter(p => p.id !== id));
+  updateTabBadge(); renderPrayerList();
+}
+
+function clearAllPrayers() {
+  if (!confirm(S[currentLang].plist_confirm_clear)) return;
+  savePrayers([]); updateTabBadge(); renderPrayerList();
+}
+
+function escHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ── Share ── */
+// Firebase 호스팅 후 실제 URL로 교체: 'https://gmc-prayer-prod.web.app'
+const SHARE_URL = window.location.href.startsWith('http') ? window.location.href : '';
+
+function copyShareLink() {
+  const url = SHARE_URL || window.location.href;
+  const toast = document.getElementById('shareCopyToast');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => showCopyToast(toast));
+  } else {
+    const el = document.createElement('textarea');
+    el.value = url; el.style.position = 'fixed'; el.style.opacity = '0';
+    document.body.appendChild(el); el.select();
+    document.execCommand('copy'); document.body.removeChild(el);
+    showCopyToast(toast);
+  }
+}
+function showCopyToast(el) {
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+function shareKakao() {
+  const url = SHARE_URL || window.location.href;
+  const title = currentLang === 'ko' ? '시애틀지구촌교회 중보기도 요청서' : 'GMC Seattle — Prayer Request Form';
+  const desc  = currentLang === 'ko' ? '기도가 필요하신 분께 이 링크를 전달해 주세요.' : 'Share this with someone who needs prayer.';
+  if (navigator.share) {
+    navigator.share({ title, text: desc, url }).catch(() => {});
+  } else {
+    const kakaoUrl = 'https://sharer.kakao.com/talk/friends/picker/easylink'
+      + '?app_key=KAKAO_APP_KEY'
+      + '&validation_action=default'
+      + '&link_ver=4.0'
+      + '&template_id=KAKAO_TEMPLATE_ID';
+    window.open(url.startsWith('http') ? kakaoUrl : '#', '_blank');
+    if (!url.startsWith('http')) {
+      copyShareLink();
+      alert(currentLang === 'ko'
+        ? '링크를 복사했습니다. 카카오톡에 붙여넣기 해 주세요.'
+        : 'Link copied. Paste it into KakaoTalk.');
+    }
+  }
+}
+
+function resetForm() {
+  document.getElementById('formArea').style.display = 'block';
+  document.getElementById('successScreen').style.display = 'none';
+  ['prayerReq','name','vipName','contact'].forEach(id => document.getElementById(id).value='');
+  ['chkInvited','chkFollowup','chkGroup','chkChurch'].forEach(id => document.getElementById(id).checked=false);
+  document.getElementById('category').value='';
+  document.getElementById('salvationNote').style.display='none';
+  document.getElementById('otherCatInput').value='';
+  document.getElementById('otherCatRow').style.display='none';
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
+  selectUrgency(document.getElementById('u_normal'),'일반');
+  selectType(document.getElementById('tcSelf'),'self');
+  window.scrollTo(0,0);
+}
+
+// Init
+updatePlaceholders();
+updateTabBadge();
+</script>
+</body>
+</html>
