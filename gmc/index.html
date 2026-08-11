@@ -1607,9 +1607,17 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </div>
 
-      <!-- 환영의 방 — 새가족 만남의 방에 초대된 듯 (VIP 입장, 아무것도 요구하지 않음) -->
-      <div class="welcome-room">
-        <div class="wr-badge"><span class="ko i">환영합니다</span><span class="en i">Welcome</span></div>
+      <!-- 환영의 방 — 접이식(교인은 지나치고, 처음 오신 분은 펼쳐 봄). 히어로가 첫인상을 맡음 -->
+      <details class="fold fold-key" id="welcomeFold">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">처음 오셨나요?</span><span class="en">First time here?</span></div>
+            <div class="fold-sub"><span class="ko i">환영합니다 · 목사님의 인사</span><span class="en i">Welcome · a note from the pastor</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+      <div class="welcome-room" style="margin-top:0">
         <p class="wr-hebron" id="wrHebron" hidden><span class="ko">헤브론가이드에서 오셨군요. 낯선 도시에서 마주친 분이라 더 반갑습니다.</span><span class="en">You came from HebronGuide — meeting you in a new city makes it all the sweeter.</span></p>
         <p class="wr-greet"><span class="ko">처음 오셨나요? <b>진심으로 환영하고 축하합니다.</b></span><span class="en">Just arrived? <b>We warmly welcome and celebrate you.</b></span></p>
         <p class="wr-msg"><span class="ko">편하게 둘러보시고, 머물고 싶은 만큼 머무세요. 잘 차려진 밥상처럼, 당신을 위한 자리를 이미 마련하고 기다리고 있었습니다. 잘 오셨어요~ 곧 만나요.</span><span class="en">Look around, and stay as long as you like. Like a table already set, we've been keeping a place ready for you. So glad you're here — see you soon.</span></p>
@@ -1623,6 +1631,8 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <span class="ko i">카카오톡으로 편하게 인사하기</span><span class="en i">Say hello on KakaoTalk</span>
         </button>
       </div>
+        </div>
+      </details>
 
       <!-- 우리 행복할까요? — 이웃과 함께하는 배움 (VIP 문턱 낮추기, 접이식으로 세로 공간 절약)
            ※ id="careFold" — 삶공부 탭에서 openCare()로 열고 스크롤합니다 -->
@@ -2361,33 +2371,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </button>
 
-      <details class="fold" style="margin-top:16px">
-        <summary>
-          <div class="fold-t">
-            <div class="fold-title"><span class="ko">왜 함께 배우나요?</span><span class="en">Why learn together?</span></div>
-            <div class="fold-sub"><span class="ko i">삶공부가 우리 교회의 한 축인 이유</span><span class="en i">Why this is one of our three axes</span></div>
-          </div>
-          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </summary>
-        <div class="fold-body">
-      <div class="card why-study" style="margin-top:0">
-        <div class="ws-t"><span class="ko">목장에서 마음이 열리고, 여기서 한 사람이 세워집니다</span><span class="en">Hearts open in the mokjang; people are built up here</span></div>
-        <p class="ws-d">
-          <span class="ko">목장에서 사람을 만나고 마음이 열립니다. 삶공부에서는 그 사람이 한 걸음씩 세워집니다. 둘 중 하나만 있으면 반쪽이에요. 그래서 삶공부는 곁가지 프로그램이 아니라 <b>우리 교회의 한 축</b>입니다.</span>
-          <span class="en">In the mokjang you meet people and your heart opens. Here, that person is built up step by step. With only one of the two, it's half a thing. That's why this isn't a side program — it's <b>one of our three axes</b>.</span>
-        </p>
-      </div>
-        </div>
-      </details>
-
-      <div class="card ws-pace">
-        <div class="ws-t"><span class="ko">서두르지 않습니다</span><span class="en">We don't rush</span></div>
-        <p class="ws-d">
-          <span class="ko">정보를 많이 담는 공부가 아닙니다. <b>1년에 한 과목</b>이라도, 충분히 소화하고 삶으로 살아낸 뒤 다음으로 갑니다. 수료 후에는 <b>간증</b>으로 은혜를 나눕니다 — 아는 것이 아니라 <b>변한 삶</b>이 열매입니다.</span>
-          <span class="en">This isn't about cramming information. Even <b>one course a year</b> — fully digested and lived out before the next. After finishing, we share a <b>testimony</b>. The fruit isn't knowledge; it's <b>a changed life</b>.</span>
-        </p>
-      </div>
-
       <div style="margin-top:22px">
         <button class="btn btn-primary btn-full" onclick="openModal('study')">
           <span class="ko i">삶공부 등록하기</span><span class="en i">Register for a course</span>
@@ -2736,7 +2719,16 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
         <div class="ci-body">
           <div class="ci-title"><span class="ko">기도 요청</span><span class="en">Prayer Request</span></div>
-          <div class="ci-sub"><span class="ko">대표목사님께 바로 전달됩니다</span><span class="en">Goes straight to our lead pastor</span></div>
+          <div class="ci-sub"><span class="ko">대표목사님께 바로 · 비공개 가능</span><span class="en">Straight to the pastor · can be private</span></div>
+        </div>
+        <div class="ci-tail"><svg class="ci-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
+      </button>
+
+      <button class="connect-item" onclick="go('https://ijiguchon.github.io/prayer/')">
+        <div class="ci-badge b-teal"><span class="ko i">중보</span><span class="en i" style="font-size:11px">PRAY</span></div>
+        <div class="ci-body">
+          <div class="ci-title"><span class="ko">지구촌 중보기도</span><span class="en">Global Intercession</span></div>
+          <div class="ci-sub"><span class="ko">기도팀이 함께 중보합니다 · 요청서 작성</span><span class="en">Our prayer team intercedes · open the form</span></div>
         </div>
         <div class="ci-tail"><svg class="ci-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
       </button>
@@ -2935,6 +2927,32 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <span class="ko">"눈을 들어 너 있는 곳에서 북쪽과 남쪽, 동쪽과 서쪽을 바라보라" — 창세기 13:14</span>
           <span class="en">"Lift up your eyes from where you are — look north and south, east and west." — Genesis 13:14</span>
         </div>
+      </div>
+        </div>
+      </details>
+
+      <details class="fold">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">왜 함께 배우나요?</span><span class="en">Why learn together?</span></div>
+            <div class="fold-sub"><span class="ko i">삶공부가 우리 교회의 한 축인 이유</span><span class="en i">Why this is one of our three axes</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+      <div class="card why-study" style="margin-top:0">
+        <div class="ws-t"><span class="ko">목장에서 마음이 열리고, 여기서 한 사람이 세워집니다</span><span class="en">Hearts open in the mokjang; people are built up here</span></div>
+        <p class="ws-d">
+          <span class="ko">목장에서 사람을 만나고 마음이 열립니다. 삶공부에서는 그 사람이 한 걸음씩 세워집니다. 둘 중 하나만 있으면 반쪽이에요. 그래서 삶공부는 곁가지 프로그램이 아니라 <b>우리 교회의 한 축</b>입니다.</span>
+          <span class="en">In the mokjang you meet people and your heart opens. Here, that person is built up step by step. With only one of the two, it's half a thing. That's why this isn't a side program — it's <b>one of our three axes</b>.</span>
+        </p>
+      </div>
+      <div class="card ws-pace" style="margin-top:12px">
+        <div class="ws-t"><span class="ko">서두르지 않습니다</span><span class="en">We don't rush</span></div>
+        <p class="ws-d">
+          <span class="ko">정보를 많이 담는 공부가 아닙니다. <b>1년에 한 과목</b>이라도, 충분히 소화하고 삶으로 살아낸 뒤 다음으로 갑니다. 수료 후에는 <b>간증</b>으로 은혜를 나눕니다 — 아는 것이 아니라 <b>변한 삶</b>이 열매입니다.</span>
+          <span class="en">This isn't about cramming information. Even <b>one course a year</b> — fully digested and lived out before the next. After finishing, we share a <b>testimony</b>. The fruit isn't knowledge; it's <b>a changed life</b>.</span>
+        </p>
       </div>
         </div>
       </details>
