@@ -716,6 +716,12 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
   background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-xs);
   font-size:11.5px;font-weight:700;color:var(--text-2);
 }
+.el-course{padding:13px 0;border-top:1px solid var(--border)}
+.el-course:first-child{padding-top:2px;border-top:0}
+.el-name{font-size:13.5px;font-weight:800;letter-spacing:-.3px;color:var(--primary)}
+.el-name .tag{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:var(--r-pill);background:var(--surface-2);border:1px solid var(--border);font-size:9.5px;font-weight:800;color:var(--text-3);vertical-align:middle}
+.el-d{margin-top:5px;font-size:12.5px;line-height:1.72;color:var(--text-2);font-weight:500}
+.el-d b{color:var(--text-1);font-weight:800}
 .course-t{font-size:14px;font-weight:800;letter-spacing:-.3px}
 .course-tag{
   display:inline-block;margin-left:6px;padding:1.5px 7px;border-radius:var(--r-pill);
@@ -2328,7 +2334,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <summary>
           <div class="fold-t">
             <div class="fold-title"><span class="ko">선택 과정</span><span class="en">Electives</span></div>
-            <div class="fold-sub"><span class="ko i">삶의 자리마다 하나씩 · 열여섯 과정</span><span class="en i">One for each season of life · sixteen</span></div>
+            <div class="fold-sub"><span class="ko i">삶의 자리마다 하나씩 · 학기별로 열림</span><span class="en i">One for each season of life</span></div>
           </div>
           <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </summary>
@@ -2337,24 +2343,32 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <span class="ko">기본 과정 외에도 삶의 자리마다 과정이 있습니다. <b>3명 이상</b> 모이면 봄·가을 학기에 엽니다.</span>
         <span class="en">Beyond the core path, there's a course for each season of life. Each opens in the spring or fall term once <b>three or more</b> sign up.</span>
       </p>
-      <div class="el-list">
-        <span class="el-pill"><span class="ko i">새교회의 삶</span><span class="en i">New Church Life</span></span>
-        <span class="el-pill"><span class="ko i">예수님을 따르는 삶</span><span class="en i">Discipleship Life</span></span>
-        <span class="el-pill"><span class="ko i">부부의 삶</span><span class="en i">Married Life</span></span>
-        <span class="el-pill"><span class="ko i">커플의 삶</span><span class="en i">Couple Life</span></span>
-        <span class="el-pill"><span class="ko i">이성교제의 삶</span><span class="en i">Dating Life</span></span>
-        <span class="el-pill"><span class="ko i">싱글의 삶</span><span class="en i">Single Life</span></span>
-        <span class="el-pill"><span class="ko i">부모의 삶</span><span class="en i">Parent Life</span></span>
-        <span class="el-pill"><span class="ko i">언약의 삶</span><span class="en i">Covenant Life</span></span>
-        <span class="el-pill"><span class="ko i">목자·목녀의 삶</span><span class="en i">Shepherd Life</span></span>
-        <span class="el-pill"><span class="ko i">말씀의 삶</span><span class="en i">Word Life</span></span>
-        <span class="el-pill"><span class="ko i">말씀 중보기도의 삶</span><span class="en i">Intercessory Life</span></span>
-        <span class="el-pill"><span class="ko i">일터의 삶</span><span class="en i">Workplace Life</span></span>
-        <span class="el-pill"><span class="ko i">소명의 삶</span><span class="en i">Vocational Life</span></span>
-        <span class="el-pill"><span class="ko i">전도의 삶</span><span class="en i">Evangelism Life</span></span>
-        <span class="el-pill"><span class="ko i">선교의 삶</span><span class="en i">Missional Life</span></span>
-        <span class="el-pill"><span class="ko i">뿌리내린 삶</span><span class="en i">Rooted Life</span></span>
+      <div class="el-desc-list">
+        <div class="el-course">
+          <div class="el-name"><span class="ko">커플의 삶</span><span class="en">Couple Life</span></div>
+          <p class="el-d"><span class="ko">사귀거나 결혼을 앞둔 분들을 위해 — 나와 상대를 바로 알고, 결혼을 바르게 기대하고 준비합니다. 결혼 뒤 겪을 크고 작은 문제도 미리 생각하고 예방해요.</span><span class="en">For those dating or engaged — knowing yourself and your partner, and preparing for marriage with the right hopes. We look ahead at the joys and struggles to come, together.</span></p>
+        </div>
+        <div class="el-course">
+          <div class="el-name"><span class="ko">부부의 삶</span><span class="en">Married Life</span></div>
+          <p class="el-d"><span class="ko">개리 채프먼(Gary Chapman)의 『Building Relationships』 교안을 바탕으로, 가정이 하나님이 지으신 남편과 아내의 모습으로 바로 서도록 배우고 실천합니다.</span><span class="en">Built on Gary Chapman's <b>Building Relationships</b> — learning and living so a home stands as the husband and wife God designed.</span></p>
+        </div>
+        <div class="el-course">
+          <div class="el-name"><span class="ko">목자·목녀의 삶</span><span class="en">Shepherd Life</span></div>
+          <p class="el-d"><span class="ko">목자·목녀로서 어떤 마음을 품고, 목장을 어떻게 섬겨야 하는지 함께 배웁니다.</span><span class="en">For hosts — the heart to carry, and how to serve a mokjang well.</span></p>
+        </div>
+        <div class="el-course">
+          <div class="el-name"><span class="ko">말씀의 삶</span><span class="en">Word Life</span></div>
+          <p class="el-d"><span class="ko">성경을 창세기부터 요한계시록까지 통독하며, 그 속에서 하나님의 사랑과 은혜를 만납니다.</span><span class="en">Reading Scripture through, Genesis to Revelation — meeting God's love and grace within it.</span></p>
+        </div>
+        <div class="el-course">
+          <div class="el-name"><span class="ko">변화의 삶</span><span class="en">Transformed Life</span><span class="tag"><span class="ko i">생명언어의 삶</span><span class="en i">Life-Giving Words</span></span></div>
+          <p class="el-d"><span class="ko">말에는 사람을 변화시키는 힘이 있습니다. 땅에 찌든 우리의 언어를, 나와 이웃을 살리는 <b>생명언어</b>로 훈련하고 실천합니다.</span><span class="en">Words have the power to change a person. We train worn-down speech into <b>life-giving words</b> that heal us and those around us.</span></p>
+        </div>
       </div>
+      <p class="place-note" style="margin-top:11px">
+        <span class="ko"><b>행복한 삶</b>(관계전도)은 아래 <b>“우리 행복할까요?”</b>와 같은 과정입니다 — 홈 화면에서 함께 보실 수 있어요.</span>
+        <span class="en"><b>Happy Life</b> (relational evangelism) is the same course as <b>“Shall we be happy?”</b> below — find it on the home screen.</span>
+      </p>
       <button class="btn btn-ghost-line btn-full" style="margin-top:10px" onclick="openModal('study')">
         <span class="ko i">듣고 싶은 과정 문의하기</span><span class="en i">Ask about a course</span>
       </button>
@@ -3962,23 +3976,12 @@ const MODALS = {
         {ko:'새로운 삶 (기본)', en:'New Life (core)'},
         {ko:'경건의 삶 (기본)', en:'Growing Life (core)'},
         {ko:'하나님을 경험하는 삶 (기본 · 1:1)', en:'Experiencing God Life (core · 1:1)'},
-        {ko:'새교회의 삶 (선택)', en:'New Church Life (elective)'},
-        {ko:'예수님을 따르는 삶 (선택)', en:'Discipleship Life (elective)'},
-        {ko:'부부의 삶 (선택)', en:'Married Life (elective)'},
         {ko:'커플의 삶 (선택)', en:'Couple Life (elective)'},
-        {ko:'이성교제의 삶 (선택)', en:'Dating Life (elective)'},
-        {ko:'싱글의 삶 (선택)', en:'Single Life (elective)'},
-        {ko:'부모의 삶 (선택)', en:'Parent Life (elective)'},
-        {ko:'언약의 삶 (선택)', en:'Covenant Life (elective)'},
+        {ko:'부부의 삶 (선택)', en:'Married Life (elective)'},
         {ko:'목자·목녀의 삶 (선택)', en:'Shepherd Life (elective)'},
         {ko:'말씀의 삶 (선택)', en:'Word Life (elective)'},
-        {ko:'말씀 중보기도의 삶 (선택)', en:'Intercessory Life (elective)'},
-        {ko:'일터의 삶 (선택)', en:'Workplace Life (elective)'},
-        {ko:'소명의 삶 (선택)', en:'Vocational Life (elective)'},
-        {ko:'전도의 삶 (선택)', en:'Evangelism Life (elective)'},
-        {ko:'선교의 삶 (선택)', en:'Missional Life (elective)'},
-        {ko:'뿌리내린 삶 (선택)', en:'Rooted Life (elective)'},
-        {ko:'행복한 삶 (이웃과 함께하는 배움)', en:'Happy Life (open to neighbours)'},
+        {ko:'변화의 삶 · 생명언어 (선택)', en:'Transformed Life · Life-Giving Words (elective)'},
+        {ko:'행복한 삶 · 관계전도 (우리 행복할까요?)', en:'Happy Life · relational evangelism'},
         {ko:'회복의 삶 (이웃과 함께하는 배움)', en:'Restored Life (open to neighbours)'},
         {ko:'어떤 과정이 좋을지 상담하고 싶어요', en:"Not sure — please advise"}
       ]}
