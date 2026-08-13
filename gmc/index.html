@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
 <title>시애틀지구촌교회 · GMC of Greater Seattle</title>
-<meta name="description" content="시애틀지구촌교회 — 한 가정씩, 하나님 나라를 확장하라. 가정교회 공동체 앱.">
+<meta name="description" content="시애틀지구촌교회 — 시애틀에서 지구촌 땅 끝까지. 내 가정이 교회가 되고, 같은 지역 세 가정이 모이면 한 목장. 온라인으로도 함께하는 가정교회 공동체 앱.">
 
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -366,6 +366,18 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
 .mb-title{font-size:14px;font-weight:800;color:#6b4715;letter-spacing:-.3px}
 .mb-sub{margin-top:3px;font-size:11.5px;color:#8a5f1e;font-weight:500;line-height:1.45}
 .mb-arrow{width:18px;height:18px;stroke:#8a5f1e;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;position:relative;z-index:1}
+
+/* 제4공간 비전 카드 — 어디서나: 가정=교회 → 같은 지역 세 가정=목장 → 땅끝 */
+.vision4{margin-top:10px;padding:18px;background:linear-gradient(160deg,#f6f0ff,#eef4ff);border-color:#dfe0f4}
+.v4-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:.2px;color:var(--accent);text-transform:none}
+.v4-t{margin-top:6px;font-size:15px;font-weight:900;letter-spacing:-.4px;color:var(--primary)}
+.v4-d{margin-top:8px;font-size:12.5px;line-height:1.75;color:var(--text-2);font-weight:500}
+.v4-d b{color:var(--text-1);font-weight:800}
+.v4-steps{display:flex;align-items:center;gap:7px;margin-top:12px;flex-wrap:wrap}
+.v4-step{flex:1;min-width:78px;text-align:center;padding:9px 6px;border-radius:11px;background:rgba(255,255,255,.72);border:1px solid #e2e3f2}
+.v4-step .n{font-size:10px;font-weight:800;color:var(--accent)}
+.v4-step .t{margin-top:3px;font-size:11px;font-weight:700;color:var(--primary);line-height:1.3;display:block}
+.v4-arrow{color:#b9bce0;font-weight:900;flex:0 0 auto}
 
 .evt{display:flex;gap:13px;padding:13px 14px;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--border);margin-bottom:8px}
 .evt-link{transition:transform .14s}
@@ -1611,7 +1623,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <div class="whero-text">
           <div class="whero-eyebrow"><span class="ko i">시애틀지구촌교회</span><span class="en i">GMC of Greater Seattle</span></div>
           <h1 class="whero-title"><span class="ko">당신을 위한<br>자리가 있습니다</span><span class="en">There's a place<br>just for you</span></h1>
-          <p class="whero-sub"><span class="ko i">시애틀에서, 커피 한 잔과 편안한 식사 한 자리로 초대합니다</span><span class="en i">In Seattle — you're invited for a coffee and an easy meal together</span></p>
+          <p class="whero-sub"><span class="ko i">시애틀에서 지구촌 땅 끝까지 — 어디에 계시든, 한 밥상으로 초대합니다</span><span class="en i">From Seattle to the ends of the earth — wherever you are, you're invited to the table</span></p>
         </div>
       </div>
 
@@ -1654,8 +1666,8 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </summary>
         <div class="fold-body">
       <p class="care-open">
-        <span class="ko">시애틀 <b>이웃 누구나</b> 오실 수 있어요. 참가비는 없고, 믿음이 있든 없든 상관없습니다.</span>
-        <span class="en"><b>Any neighbour in Seattle</b> is welcome. No fee, and it makes no difference whether you believe.</span>
+        <span class="ko"><b>누구나</b> 오실 수 있어요 — 시애틀에서든, 온라인으로든. 참가비는 없고, 믿음이 있든 없든 상관없습니다.</span>
+        <span class="en"><b>Anyone</b> is welcome — in Seattle or online. No fee, and it makes no difference whether you believe.</span>
       </p>
       <div class="care-list">
         <button class="care-card" onclick="openModal('contact')">
@@ -1701,10 +1713,30 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
         <div class="mb-text">
           <div class="mb-title"><span class="ko">가까운 목장을 찾아보세요</span><span class="en">Find a house group near you</span></div>
-          <div class="mb-sub"><span class="ko">시애틀 전역 · 밥 먹고, 이야기하고, 함께 웃는 자리</span><span class="en">Across Seattle · Share a meal, share your life</span></div>
+          <div class="mb-sub"><span class="ko">시애틀 전역 · 온라인으로도 함께</span><span class="en">Across Seattle · online from anywhere</span></div>
         </div>
         <svg class="mb-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
       </button>
+
+      <!-- 제4공간 비전 — 어디에 계시든: 내 가정이 교회, 같은 지역 세 가정이면 한 목장 -->
+      <div class="card vision4">
+        <div class="v4-eyebrow"><span class="ko i">시애틀에서 지구촌 땅 끝까지 · 사도행전 1:8</span><span class="en i">From Seattle to the ends of the earth · Acts 1:8</span></div>
+        <div class="v4-t"><span class="ko">멀리 계셔도, 함께 교회입니다</span><span class="en">Far away? You're still the church, with us</span></div>
+        <p class="v4-d">
+          <span class="ko">당신의 <b>가정이 곧 교회</b>입니다. 온라인으로 함께 예배하고, 같은 지역에 <b>세 가정 이상</b>이 모이면 <b>하나의 목장</b>이 됩니다 — 한 집에서 시작해 땅 끝까지 번져갑니다.</span>
+          <span class="en">Your <b>home is a church</b>. Worship with us online, and when <b>three or more homes</b> gather in one area they become <b>a mokjang</b> — spreading from one home to the ends of the earth.</span>
+        </p>
+        <div class="v4-steps" aria-hidden="true">
+          <div class="v4-step"><span class="n">1</span><span class="t"><span class="ko">내 가정이<br>교회</span><span class="en">Your home,<br>a church</span></span></div>
+          <span class="v4-arrow">→</span>
+          <div class="v4-step"><span class="n">2</span><span class="t"><span class="ko">같은 지역<br>세 가정</span><span class="en">Three homes<br>nearby</span></span></div>
+          <span class="v4-arrow">→</span>
+          <div class="v4-step"><span class="n">3</span><span class="t"><span class="ko">하나의<br>목장</span><span class="en">One<br>mokjang</span></span></div>
+        </div>
+        <button class="btn btn-primary btn-full" style="margin-top:13px" onclick="openModal('mokjang')">
+          <span class="ko i">온라인·멀리서 함께하고 싶어요</span><span class="en i">I'd like to join from afar</span>
+        </button>
+      </div>
 
       <!-- Schedule (접이식) -->
       <details class="fold">
