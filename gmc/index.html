@@ -2159,10 +2159,15 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </button>
       </div>
 
-      <div class="sec-head" style="margin-top:22px">
-        <h2 class="sec-title"><span class="ko">목장과 목자</span><span class="en">Our homes and hosts</span></h2>
-        <span class="sec-note"><span class="ko i">세 가정 목장 · 청소년 GMC Y</span><span class="en i">Three homes · GMC Y for youth</span></span>
-      </div>
+      <details class="fold" style="margin-top:22px">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">목장과 목자</span><span class="en">Our homes and hosts</span></div>
+            <div class="fold-sub"><span class="ko i">우리 목장 · 청소년 GMC Y</span><span class="en i">Our homes · GMC Y for youth</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
       <div class="mj-list">
         <div class="mj-card mj-israel" onclick="openMokjang('이스라엘')" role="button" tabindex="0">
           <div class="mj-mark"><img src="data:image/png;base64,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" alt="이스라엘 국기"></div>
@@ -2229,8 +2234,10 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <span class="host-dot">·</span>
         <a href="tel:+14253500191">425-350-0191</a>
       </div>
+        </div>
+      </details>
 
-      
+
 
       <div class="member-only" hidden>
       <div class="sec-head"><h2 class="sec-title"><span class="ko">초대 3단계</span><span class="en">Inviting one person</span></h2>
