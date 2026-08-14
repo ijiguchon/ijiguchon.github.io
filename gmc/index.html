@@ -2565,29 +2565,15 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </details>
 
-      <!-- 목회칼럼 — 대표목사와 성도 사이의 소통 창구라 독립 섹션으로 크게 둡니다 -->
+      <!-- 목회칼럼 — 압축(칼럼 카드 + 목사님께 한마디). 소개·지난칼럼은 더보기 메뉴로 -->
       <div class="sec-head" style="margin-top:26px">
-        <h2 class="sec-title key is-welcome"><span class="ko">목회칼럼</span><span class="en">Pastor's Column</span></h2>
+        <h2 class="sec-title"><span class="ko">목회칼럼</span><span class="en">Pastor's Column</span></h2>
         <span class="sec-note"><span class="ko i">매주 한 편</span><span class="en i">Weekly</span></span>
       </div>
-      <p class="wo-intro">
-        <span class="ko">대표목사가 성도들에게 매주 건네는 편지입니다. 설교에서 다 하지 못한 이야기, 요즘 마음에 두고 있는 것들이 여기 담깁니다.</span>
-        <span class="en">A weekly letter from our lead pastor to the church — what the sermon didn't have room for, and what's been on his heart.</span>
-      </p>
-
       <!-- 내용은 COLUMN_PLAN에서 날짜에 맞춰 채워집니다 -->
       <button class="col-hero" onclick="go(LINKS.column)" data-column></button>
-
       <button class="btn btn-primary btn-full" style="margin-top:9px" onclick="openModal('topastor')">
         <span class="ko i">읽고 나서 — 목사님께 한마디</span><span class="en i">Write back to the pastor</span>
-      </button>
-      <p class="form-note">
-        <span class="ko">공감한 대목도, 묻고 싶은 것도 좋습니다. 대표목사님께만 갑니다.</span>
-        <span class="en">What resonated, or what you'd like to ask. It goes to the lead pastor alone.</span>
-      </p>
-
-      <button class="btn btn-ghost-line btn-full" style="margin-top:10px" onclick="go(LINKS.column)">
-        <span class="ko i">지난 칼럼 모두 보기</span><span class="en i">All past columns</span>
       </button>
 
 
