@@ -3335,6 +3335,7 @@ function applyMemberState(on){
   document.querySelectorAll('.member-lock').forEach(el => el.hidden = on);
 }
 async function _applyMemberData(code){
+  code = String(code||'').trim().replace(/\s+/g,'').toUpperCase();   // 대소문자·공백 무시(J1224=j1224)
   const data = JSON.parse(await decryptMember(MEMBER_BLOB, code));
   ROSTER = data.roster || null;
   applyMemberState(true);
