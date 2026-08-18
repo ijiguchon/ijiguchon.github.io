@@ -3053,7 +3053,7 @@ const EMAILS = {
    담당자는 자기 받은편지함에서 바로 답하고(책임 분명), 사역자들은 info@에서 함께 보고,
    대표목사님은 전체를 확인하십니다.
    ⚠ 기도 요청(prayer)과 헌신카드(commit)는 규칙이 다릅니다 — 아래 참조. */
-const CC_TEAM = 'info@ijiguchon.org,pastor@ijiguchon.org';
+const CC_TEAM = 'info@ijiguchon.org';   // 공통 참조는 info@(코디네이터)만. 목사님은 본인 영역(plant·commit·prayer·topastor) TO로만 받음
 const CC_SKIP = new Set(['prayer', 'commit', 'topastor']);
 
 /* 기도 요청은 언제나 대표목사님(pastor@)께 갑니다.
@@ -4325,8 +4325,18 @@ async function submitForm(e,type){
   btn.disabled = true;
   btn.textContent = langIsEn() ? 'Sending…' : '보내는 중…';
 
-  const email = EMAILS[type] || 'office@ijiguchon.org';
+  let email = EMAILS[type] || 'office@ijiguchon.org';
   const body  = new FormData(form);
+
+  /* 목장 연결 신청 → 선택한 목장의 목자에게 바로. '추천 요청'이면 행정(office@)이 배정. 백업 참조는 info@ */
+  if(type === 'mokjang'){
+    const pick = String(body.get('관심 목장') || '');
+    if(pick.includes('이스라엘'))        email = 'jiyoung.kim@ijiguchon.org';
+    else if(pick.includes('멕시코'))      email = 'songkon.pak@ijiguchon.org';
+    else if(pick.includes('인도네시아'))  email = 'leengue.lee@ijiguchon.org';
+    else if(pick.includes('GMC Y') || pick.includes('청소년')) email = 'garrett.woods@ijiguchon.org';
+    else email = 'office@ijiguchon.org';
+  }
 
   /* 받는 사람 = 담당 사역자(바로 답할 수 있게), 참조 = info@(코디네이터와 사역자들이 함께 확인).
      ⚠ 기도 요청은 참조하지 않습니다 — 사적인 내용이라 대표목사님께만 갑니다.
