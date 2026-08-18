@@ -3128,6 +3128,10 @@ const COLUMN_PLAN = [
 ];
 
 const SHEET_URL = '';
+/* 통합 폼 백엔드(구글 앱스 스크립트) 웹앱 URL(.../exec).
+   설정하면 모든 폼이 여기로 들어가 서버가 라우팅+백업+시트 저장을 처리합니다(주소별 활성화 불필요).
+   비어 있으면 아래 FormSubmit 방식으로 동작합니다. 설치: PWA_폼백엔드_통합설치.gs */
+const SCRIPT_URL = '';
 
 /* 시트 안에서 나뉠 탭 이름. 폼마다 다른 탭에 쌓입니다.
    ⚠ '기도요청'과 '헌신카드'에는 사적인 기도 제목이 들어갑니다.
@@ -4327,6 +4331,30 @@ async function submitForm(e,type){
 
   let email = EMAILS[type] || 'office@ijiguchon.org';
   const body  = new FormData(form);
+
+  /* ── 통합 백엔드(구글 앱스 스크립트)가 연결돼 있으면 그리로 ──
+     서버가 담당 목자·스탭 라우팅 + 백업 참조 + 구글 시트 저장을 모두 처리합니다.
+     (주소별 활성화 불필요) SCRIPT_URL 이 비어 있으면 아래 FormSubmit 경로로 갑니다. */
+  if(SCRIPT_URL){
+    const mail0 = String(body.get('이메일') || '').trim();
+    const fields = {};
+    for(const [k,v] of body.entries()){ if(!k.startsWith('_')) fields[k] = v; }
+    const payload = {
+      type,
+      subject: (MODALS[type] && MODALS[type].subject) || ('[GMC] ' + type),
+      fields,
+      replyTo: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail0) ? mail0 : ''
+    };
+    fetch(SCRIPT_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify(payload)
+    }).catch(()=>{});
+    document.getElementById('form-'+type+'-body').style.display = 'none';
+    document.getElementById('success-'+type).classList.add('show');
+    setTimeout(()=>closeModal(null,type), 2800);
+    return;
+  }
 
   /* 목장 연결 신청 → 선택한 목장의 목자에게 바로. '추천 요청'이면 행정(office@)이 배정. 백업 참조는 info@ */
   if(type === 'mokjang'){
