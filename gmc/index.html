@@ -2531,6 +2531,20 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </div>
 
+      <!-- 주일 설교 오디오 — 드라이브 폴더에서 날짜순 자동 연결 -->
+      <details class="fold" style="margin-top:14px" id="sermonAudioFold">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">설교 다시 듣기</span><span class="en">Listen again</span></div>
+            <div class="fold-sub"><span class="ko i">주일 설교 오디오 · 최신순</span><span class="en i">Sunday sermon audio</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+          <div id="sermonAudioList"><p class="form-note"><span class="ko">불러오는 중…</span><span class="en">Loading…</span></p></div>
+        </div>
+      </details>
+
       <!-- 이번 주 토요새벽 (날짜 자동) -->
       <details class="fold" style="margin-top:16px">
         <summary>
@@ -4442,6 +4456,7 @@ function applyLang(lang){
   renderWeekLabel();
   renderSchedule();
   markHebronArrival();
+  loadSermonAudio();
 }
 
 /* ── 연락처 디렉터리 (목자·사역자 공용) ──
@@ -4480,6 +4495,47 @@ function renderContactDir(list, elId){
   }).join('');
 }
 function renderHostDir(){ renderContactDir(HOSTS, 'hostDir'); renderContactDir(STAFF, 'staffDir'); }
+
+/* 주일 설교 오디오 — 백엔드(드라이브 폴더)에서 날짜순으로 불러와 재생 */
+async function loadSermonAudio(){
+  const box = document.getElementById('sermonAudioList');
+  if(!box) return;
+  if(!SCRIPT_URL){
+    box.innerHTML = '<p class="form-note"><span class="ko">곧 올라옵니다.</span><span class="en">Coming soon.</span></p>';
+    return;
+  }
+  try{
+    const res  = await fetch(SCRIPT_URL + '?list=sermons');
+    const data = await res.json();
+    const list = (data && data.sermons) || [];
+    if(!list.length){
+      box.innerHTML = '<p class="form-note"><span class="ko">주일 후 설교 오디오가 여기 올라옵니다.</span><span class="en">Sunday sermon audio will appear here.</span></p>';
+      return;
+    }
+    const top = list[0];
+    let html = '<div class="card" style="padding:14px">'
+      + '<div class="ws-t">' + esc(top.title) + '</div>'
+      + (top.date ? '<div class="form-note" style="margin:3px 0 8px">' + esc(top.date) + '</div>' : '')
+      + '<audio id="sermonPlayer" controls preload="none" style="width:100%" src="' + esc(top.url) + '"></audio>'
+      + '</div>';
+    if(list.length > 1){
+      html += '<div class="el-more-h" style="margin-top:12px"><span class="ko">지난 설교</span><span class="en">Past sermons</span></div>';
+      html += list.slice(1, 16).map(function(s){
+        return '<button class="connect-item" onclick="playSermon(\'' + esc(s.url) + '\')">'
+          + '<div class="ci-body"><div class="ci-title">' + esc(s.title) + '</div>'
+          + (s.date ? '<div class="ci-sub">' + esc(s.date) + '</div>' : '') + '</div>'
+          + '<div class="ci-tail"><svg class="ci-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div></button>';
+      }).join('');
+    }
+    box.innerHTML = html;
+  }catch(e){
+    box.innerHTML = '<p class="form-note"><span class="ko">목록을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.</span><span class="en">Couldn\'t load. Please try again.</span></p>';
+  }
+}
+function playSermon(url){
+  const a = document.getElementById('sermonPlayer');
+  if(a){ a.src = url; a.play().catch(function(){}); a.scrollIntoView({block:'nearest'}); }
+}
 
 function toggleLang(){
   applyLang(langIsEn() ? 'ko' : 'en');
