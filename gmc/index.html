@@ -1187,7 +1187,7 @@ button.bp:active{transform:scale(.985)}
 }
 .stg-loop svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round}
 
-/* ── 세 목장 (United Mokjang Church) ── */
+/* ── 세 목장 (United House Churches) ── */
 .mj-list{display:flex;flex-direction:column;gap:10px}
 .mj-card{
   display:flex;align-items:center;gap:13px;width:100%;text-align:left;cursor:pointer;
@@ -1636,9 +1636,9 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
 
       <!-- 한 줄 방향 — 3초 안에 교회의 방향 파악: 가정→목장→땅끝 -->
       <div class="dir-flow" aria-label="교회의 방향">
-        <span class="df-i"><span class="ko">가정이 곧 교회</span><span class="en">Home is church</span></span>
+        <span class="df-i"><span class="ko">집에서 함께 예배</span><span class="en">Worship at home</span></span>
         <span class="df-sep">→</span>
-        <span class="df-i"><span class="ko">목장으로 모임</span><span class="en">Gather as mokjang</span></span>
+        <span class="df-i"><span class="ko">목장으로 모임</span><span class="en">Gather in house churches</span></span>
         <span class="df-sep">→</span>
         <span class="df-i"><span class="ko">시애틀에서 땅끝까지</span><span class="en">Seattle to the ends</span></span>
       </div>
@@ -1659,7 +1659,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <p class="wr-msg"><span class="ko">편하게 둘러보시고, 머물고 싶은 만큼 머무세요. 잘 차려진 밥상처럼, 당신을 위한 자리를 이미 마련하고 기다리고 있었습니다. 잘 오셨어요~ 곧 만나요.</span><span class="en">Look around, and stay as long as you like. Like a table already set, we've been keeping a place ready for you. So glad you're here — see you soon.</span></p>
         <div class="wr-sign"><span class="ko i">— 김성수 목사와 시애틀지구촌교회 가족 일동</span><span class="en i">— Pastor Sung Soo Kim and the GMC family</span></div>
         <button class="wr-invite" onclick="openModal('mokjang')">
-          <span class="ko i">원하실 때, 밥 한 끼 함께해요 — 목장으로 초대합니다</span><span class="en i">When you're ready, share a meal — a mokjang welcomes you</span>
+          <span class="ko i">원하실 때, 밥 한 끼 함께해요 — 목장으로 초대합니다</span><span class="en i">When you're ready, share a meal — a house church welcomes you</span>
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
         <button class="wr-kakao" onclick="go(LINKS.kakaoChat)">
@@ -1728,7 +1728,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M9.5 20v-5.4h5V20"/></svg>
         </div>
         <div class="mb-text">
-          <div class="mb-title"><span class="ko">가까운 목장을 찾아보세요</span><span class="en">Find a house group near you</span></div>
+          <div class="mb-title"><span class="ko">가까운 목장을 찾아보세요</span><span class="en">Find a House Church near you</span></div>
           <div class="mb-sub"><span class="ko">시애틀 전역 · 온라인으로도 함께</span><span class="en">Across Seattle · online from anywhere</span></div>
         </div>
         <svg class="mb-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
@@ -1785,7 +1785,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <div class="ml-icon"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15" r="1.4" fill="currentColor" stroke="none"/></svg></div>
           <div class="ml-body">
             <div class="ml-t"><span class="ko">목장식구 전용</span><span class="en">Members only</span></div>
-            <div class="ml-d"><span class="ko">섬김 명단은 목장식구만 봅니다. 암호는 목장 목자님께 물어보세요.</span><span class="en">Serving names are for members. Ask your mokjang host for the code.</span></div>
+            <div class="ml-d"><span class="ko">섬김 명단은 목장식구만 봅니다. 암호는 목장 목자님께 물어보세요.</span><span class="en">Serving names are for members. Ask your house-church host for the code.</span></div>
             <div class="ml-form">
               <input type="password" class="ml-input" placeholder="공동 암호" autocomplete="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter'){event.preventDefault();this.nextElementSibling.click();}">
               <button class="ml-btn" onclick="tryUnlock(this)"><span class="ko i">열기</span><span class="en i">Unlock</span></button>
@@ -1812,7 +1812,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
 
         <div class="sec-head member-only" hidden style="margin-top:18px">
-          <h2 class="sec-title"><span class="ko">이번 주 목장 모임</span><span class="en">This Week's Mokjang</span></h2>
+          <h2 class="sec-title"><span class="ko">이번 주 목장 모임</span><span class="en">This Week's House Church</span></h2>
           <span class="sec-note"><span class="ko i">목자가 올린 그대로</span><span class="en i">As posted by hosts</span></span>
         </div>
         <div class="card mokjang-week member-only" id="mokjangWeek" hidden>
@@ -1879,7 +1879,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <div class="bp-link"><span></span><em><span class="ko i">자연스럽게</span><span class="en i">naturally</span></em></div>
 
         <button class="bp bp-mj" onclick="switchTab('community')">
-          <div class="bp-ring"><span class="ko i">목장</span><span class="en i">Mokjang</span></div>
+          <div class="bp-ring"><span class="ko i">목장</span><span class="en i">House Church</span></div>
           <div class="bp-b">
             <div class="bp-t"><span class="ko">우리 목장 — 이스라엘 · 멕시코 · 인도네시아</span><span class="en">Our homes — Israel · Mexico · Indonesia</span></div>
             <div class="bp-d"><span class="ko">도시에서 만난 한 사람이 한 가정의 밥상에 앉습니다. 이 가정이 곧 교회입니다.</span><span class="en">Someone met in the city sits down at a family table. This home <em>is</em> the church.</span></div>
@@ -1892,7 +1892,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <div class="bp bp-axes">
           <div class="bp-ring"><span class="ko i">세 축</span><span class="en i">Axes</span></div>
           <div class="bp-b">
-            <div class="bp-t"><span class="ko">목장 · 삶공부 · 연합예배</span><span class="en">Mokjang · Studies · Worship</span></div>
+            <div class="bp-t"><span class="ko">목장 · 삶공부 · 연합예배</span><span class="en">House Church · Studies · Worship</span></div>
             <div class="bp-d"><span class="ko">정(情) · 지(知) · 의(意) — 한 사람이 온전히 바뀝니다. 영혼이 구원받고 제자가 됩니다.</span><span class="en">Heart, mind, will — a person fully changes. A soul is saved; a disciple is formed.</span></div>
           </div>
         </div>
@@ -1920,7 +1920,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <summary>
           <div class="fold-t">
             <div class="fold-title"><span class="ko">세 축과 한 사람이 걷는 길</span><span class="en">The three axes & the path</span></div>
-            <div class="fold-sub"><span class="ko i">목장 · 삶공부 · 연합예배</span><span class="en i">Mokjang · studies · worship</span></div>
+            <div class="fold-sub"><span class="ko i">목장 · 삶공부 · 연합예배</span><span class="en i">House Church · studies · worship</span></div>
           </div>
           <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </summary>
@@ -1935,7 +1935,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <div class="axis-head">
             <span class="axis-glyph">情</span>
             <div>
-              <div class="axis-t"><span class="ko">목장</span><span class="en">Mokjang</span></div>
+              <div class="axis-t"><span class="ko">목장</span><span class="en">House Church</span></div>
               <div class="axis-d"><span class="ko">가족공동체를 경험합니다 — 정적인 부분</span><span class="en">Experiencing family — the heart</span></div>
             </div>
             <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
@@ -2004,10 +2004,10 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <button class="stg" onclick="openModal('mokjang')">
           <div class="stg-rail"><span class="stg-num">2</span></div>
           <div class="stg-body">
-            <div class="stg-k"><span class="ko i">목장</span><span class="en i">Mokjang</span></div>
+            <div class="stg-k"><span class="ko i">목장</span><span class="en i">House Church</span></div>
             <div class="stg-t"><span class="ko">한 가정에 속합니다</span><span class="en">You belong to a home</span></div>
             <div class="stg-d"><span class="ko">매주 함께 밥 먹고 삶을 나누는 사이가 됩니다. 이 가정이 곧 교회입니다.</span><span class="en">You become a regular at the table. This home <em>is</em> the church.</span></div>
-            <span class="stg-cta"><span class="ko i">목장과 연결되기</span><span class="en i">Connect with a mokjang</span></span>
+            <span class="stg-cta"><span class="ko i">목장과 연결되기</span><span class="en i">Connect with a House Church</span></span>
           </div>
         </button>
         <button class="stg stg-key" onclick="openModal('accept')">
@@ -2124,11 +2124,11 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
     <!-- ────────── TAB 2 : COMMUNITY ────────── -->
     <section class="tab-panel" id="tab-community">
       <div class="panel-head">
-        <div class="panel-eyebrow">United Mokjang Church</div>
+        <div class="panel-eyebrow">United House Churches</div>
         <h1 class="panel-title"><span class="ko">목장이 모여<br>한 교회입니다</span><span class="en">Homes gather,<br>one church</span></h1>
         <p class="panel-sub">
           <span class="ko">목장은 교회 안의 모임이 아닙니다. 목장 하나하나가 그 자체로 가정교회이고, 이 목장들이 모여 시애틀지구촌교회라는 한 회중이 됩니다. 각 목장은 <b>매주 주중</b>에 모입니다.</span>
-          <span class="en">A mokjang isn't a group inside the church — each one <em>is</em> a house church. These mokjangs together are the one congregation called GMC of Greater Seattle. Each one gathers <b>every week, midweek</b>.</span>
+          <span class="en">A house church isn't a group inside a bigger church — it <em>is</em> a church that meets in a home (3–15 households). Together these house churches form one congregation, GMC of Greater Seattle. Each gathers <b>every week, midweek</b>.</span>
         </p>
       </div>
 
@@ -2136,11 +2136,11 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <div class="door-t"><span class="ko">교회로 들어오는 문은 여기입니다</span><span class="en">This is the door into the church</span></div>
         <p class="door-d">
           <span class="ko">주일 예배가 아니라 <b>목장이 문</b>입니다. 처음 오시는 분은 예배당을 찾지 않으셔도 됩니다. 한 목장의 밥상에 앉는 것으로 시작하고, 그 목자가 예배 자리로 함께 옵니다.</span>
-          <span class="en">The door isn't the Sunday service — <b>it's a mokjang</b>. You don't have to find a sanctuary. You start by sitting at one family's table, and your host walks with you into worship.</span>
+          <span class="en">The door isn't the Sunday service — <b>it's a house church</b>. You don't have to find a sanctuary. You start by sitting at one family's table, and your host walks with you into worship.</span>
         </p>
         <p class="door-n">
           <span class="ko">믿든 안 믿든, 어디서 왔든, 목장은 누구라도 환대합니다.</span>
-          <span class="en">Believing or not, from anywhere — a mokjang welcomes anyone.</span>
+          <span class="en">Believing or not, from anywhere — a house church welcomes anyone.</span>
         </p>
       </div>
 
@@ -2167,20 +2167,20 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       <!-- 제4공간 비전 — 어디에 계시든: 내 가정이 교회, 같은 지역 세 가정이면 한 목장 -->
       <div class="card vision4" style="margin-top:14px">
         <div class="v4-eyebrow"><span class="ko i">시애틀에서 지구촌 땅 끝까지 · 사도행전 1:8</span><span class="en i">From Seattle to the ends of the earth · Acts 1:8</span></div>
-        <div class="v4-t"><span class="ko">멀리 계셔도, 함께 교회입니다</span><span class="en">Far away? You're still the church, with us</span></div>
+        <div class="v4-t"><span class="ko">멀리 있어도, 우리는 한 교회입니다</span><span class="en">Far apart, still one church</span></div>
         <p class="v4-d">
-          <span class="ko">당신의 <b>가정이 곧 교회</b>입니다. 온라인으로 함께 예배하고, 같은 지역에 <b>세 가정 이상</b>이 모이면 <b>하나의 목장</b>이 됩니다 — 한 집에서 시작해 땅 끝까지 번져갑니다.</span>
-          <span class="en">Your <b>home is a church</b>. Worship with us online, and when <b>three or more homes</b> gather in one area they become <b>a mokjang</b> — spreading from one home to the ends of the earth.</span>
+          <span class="ko">교회는 건물이 아니라 <b>말씀 앞에 모인 사람들</b>입니다. 그래서 <b>당신도 개척 목장을 시작할 수 있습니다</b> — 멀리 계셔도 온라인으로 함께 예배하고, 같은 지역에 <b>세 가정</b>이 모이면 <b>한 교회 안에서</b> 목장을 세웁니다. 한 집에서 시작해 <b>땅 끝까지</b> 복음을 전하는 일에, 함께 동참하지 않으실래요?</span>
+          <span class="en">The church isn't a building — it's <b>people gathered before God's Word</b>. So <b>you, too, can start a pioneer house church</b>: even far away, worship together online, and when <b>three homes</b> gather in one area, you raise up a house church <b>within one church</b>. Won't you join in carrying the gospel <b>to the ends of the earth</b>, beginning in one home?</span>
         </p>
         <div class="v4-steps" aria-hidden="true">
-          <div class="v4-step"><span class="n">1</span><span class="t"><span class="ko">내 가정이<br>교회</span><span class="en">Your home,<br>a church</span></span></div>
+          <div class="v4-step"><span class="n">1</span><span class="t"><span class="ko">집에서<br>함께 예배</span><span class="en">Worship<br>at home</span></span></div>
           <span class="v4-arrow">→</span>
           <div class="v4-step"><span class="n">2</span><span class="t"><span class="ko">같은 지역<br>세 가정</span><span class="en">Three homes<br>nearby</span></span></div>
           <span class="v4-arrow">→</span>
-          <div class="v4-step"><span class="n">3</span><span class="t"><span class="ko">하나의<br>목장</span><span class="en">One<br>mokjang</span></span></div>
+          <div class="v4-step"><span class="n">3</span><span class="t"><span class="ko">목장을 세움<br>= 지역 선교</span><span class="en">Plant a House Church<br>= local mission</span></span></div>
         </div>
-        <button class="btn btn-primary btn-full" style="margin-top:13px" onclick="openModal('mokjang')">
-          <span class="ko i">온라인·멀리서 함께하고 싶어요</span><span class="en i">I'd like to join from afar</span>
+        <button class="btn btn-primary btn-full" style="margin-top:13px" onclick="openModal('plant')">
+          <span class="ko i">개척 목장, 함께 시작하고 싶어요</span><span class="en i">Start a house church with us</span>
         </button>
       </div>
 
@@ -2198,7 +2198,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <div class="mj-mark"><img src="data:image/png;base64,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" alt="이스라엘 국기"></div>
           <div class="mj-body">
             <div class="mj-field">ISRAEL</div>
-            <div class="mj-name"><span class="ko">이스라엘 목장</span><span class="en">Israel Mokjang</span></div>
+            <div class="mj-name"><span class="ko">이스라엘 목장</span><span class="en">Israel House Church</span></div>
             <div class="mj-host"><span class="ko i">김지영 목자</span><span class="en i">Host: Joy Kim</span></div>
           </div>
           <a class="mj-mail" href="mailto:jiyoung.kim@ijiguchon.org" onclick="event.stopPropagation()" aria-label="이메일"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7.5l8 5.5 8-5.5"/></svg></a>
@@ -2209,7 +2209,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <div class="mj-mark"><img src="data:image/png;base64,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" alt="멕시코 국기"></div>
           <div class="mj-body">
             <div class="mj-field">MEXICO</div>
-            <div class="mj-name"><span class="ko">멕시코 목장</span><span class="en">Mexico Mokjang</span></div>
+            <div class="mj-name"><span class="ko">멕시코 목장</span><span class="en">Mexico House Church</span></div>
             <div class="mj-host"><span class="ko i">박성건 목자</span><span class="en i">Host: Sung Gun Park</span></div>
           </div>
           <a class="mj-mail" href="mailto:songkon.pak@ijiguchon.org" onclick="event.stopPropagation()" aria-label="이메일"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7.5l8 5.5 8-5.5"/></svg></a>
@@ -2220,7 +2220,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <div class="mj-mark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAABQCAYAAADSm7GJAAACjUlEQVR42u2dMU7cUBRFz7NTJiUEUMQCgkTBDigS9oAoaGApbCIpqGjYAAQJ1gASWQBCiAEJmpRjXor5DpaVlFHGzjnS14w8f6b4Z679nyXrBT0S6oCmvF8FtoFNYA1YKdMC+Rdkeb0DroEL4Cjgpu/uT9+uy+tywpeEp4R0zPV4Kq6Wuw7pJ7G1n7AFHAJL5aOmzAuTO1dJbkcr9B7YDTjtJrnqyd0DTorcaecHKuXOFVGc1MXRtDg7SdgrLmuA6Mj9BHzrJLZyHQfFSyeQnwPOEurImcxF4ApYKJOUO1zJATwC68BDFTOhB0Vyo9xBUxWHi8BBQEbCB+A78NYSaFSl1A/gYwXsAO868Zbhb8BeitOdqtzEkHGyGTmrn96XaJvg8ZymA5hEvp6zZaS7LgWPOMneoRr5hsua9z84RYuCRcGiYFGwKFgULApWsChYFCwKFgWLgkXBChYFi4JFwaJgUbAoWBQ8ct5Q6XjM+GzS6BN8fu4qjDrBmSZ41AluGlfBBItlkihYFCwKFgWLghUsChYFi4JFwaJgUbCCRcGiYFGwKFgULAoWBStYFCy21RFsqyP8lbY6k17XShlPB9JJBVzy2lxYGE2jaIDLCrhwPUbLRWSmDaLH3CA6Im6B4yLWZ0mHT1NcHkfEbWRmMOv5fgUslH+A9fFwr70BPALrwEMFVBExYdbqPYpgN1zDlNs2ht4pTqsqIprMrCPiDNgH6pLgqaXTYK650+KsBvYj4qw4bX5tqNoDmbkFHAJLvXN6uAGbK6ntqMuxe2A3Ik5bl3SvtZ0knwIbwFfguZNo5c4P0Unsc3G10Zf725KoOyEzV4FtYBNYA1YspeaiBLoDrss9jKOIuOm7a/kJwQqTdTEhzPgAAAAASUVORK5CYII=" alt="인도네시아 국기"></div>
           <div class="mj-body">
             <div class="mj-field">INDONESIA</div>
-            <div class="mj-name"><span class="ko">인도네시아 목장</span><span class="en">Indonesia Mokjang</span></div>
+            <div class="mj-name"><span class="ko">인도네시아 목장</span><span class="en">Indonesia House Church</span></div>
             <div class="mj-host"><span class="ko i">이인규 목자</span><span class="en i">Host: In Kyu Lee</span></div>
           </div>
           <a class="mj-mail" href="mailto:leengue.lee@ijiguchon.org" onclick="event.stopPropagation()" aria-label="이메일"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7.5l8 5.5 8-5.5"/></svg></a>
@@ -2291,7 +2291,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
 
       <div style="margin-top:24px">
         <button class="btn btn-primary btn-full" onclick="openModal('mokjang')">
-          <span class="ko i">목장과 연결되기</span><span class="en i">Connect with a mokjang</span>
+          <span class="ko i">목장과 연결되기</span><span class="en i">Connect with a House Church</span>
         </button>
         <p class="form-note">
           <span class="ko">부담 없이 한 번 와서 밥만 드시고 가셔도 좋습니다.</span>
@@ -2396,7 +2396,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
               <span class="ko i">하나님을 경험하는 삶</span><span class="en i">Experiencing God Life</span>
               <span class="course-mode"><span class="ko i">1:1 과정</span><span class="en i">1:1</span></span>
             </div>
-            <div class="course-d"><span class="ko">일상에서 하나님을 만나고 따라가는 훈련입니다. <b>목사님과 예비목자</b>가 마주 앉아 진행하고, 경건의 삶을 마친 뒤 <b>목장을 섬기기 시작하기 전이나 후</b>에 하시길 권합니다.</span><span class="en">Training to meet and follow God in everyday life. The <b>pastor and a host-in-training</b> sit down together, after Godly Life — <b>just before or after</b> beginning to serve a mokjang.</span></div>
+            <div class="course-d"><span class="ko">일상에서 하나님을 만나고 따라가는 훈련입니다. <b>목사님과 예비목자</b>가 마주 앉아 진행하고, 경건의 삶을 마친 뒤 <b>목장을 섬기기 시작하기 전이나 후</b>에 하시길 권합니다.</span><span class="en">Training to meet and follow God in everyday life. The <b>pastor and a host-in-training</b> sit down together, after Godly Life — <b>just before or after</b> beginning to serve a house church.</span></div>
           </div>
           <svg class="mj-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
@@ -2452,7 +2452,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
         <div class="el-course">
           <div class="el-name"><span class="ko">목자·목녀의 삶</span><span class="en">Shepherd Life</span><span class="tag"><span class="ko i">목자 헌신</span><span class="en i">Host</span></span></div>
-          <p class="el-d"><span class="ko">목자·목녀로서 어떤 마음을 품고, 목장을 어떻게 섬겨야 하는지 함께 배우고 헌신합니다.</span><span class="en">The heart to carry as a host, and how to serve a mokjang well.</span></p>
+          <p class="el-d"><span class="ko">목자·목녀로서 어떤 마음을 품고, 목장을 어떻게 섬겨야 하는지 함께 배우고 헌신합니다.</span><span class="en">The heart to carry as a host, and how to serve a house church well.</span></p>
         </div>
       </div>
       <p class="place-note" style="margin-top:11px">
@@ -2500,7 +2500,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <h1 class="panel-title"><span class="ko">주일연합예배</span><span class="en">Sunday United Worship</span></h1>
         <p class="panel-sub">
           <span class="ko">흩어져 있던 목장들이 <b>한 회중</b>으로 모입니다. 목장이 흩어짐이라면, 연합예배는 모임입니다.</span>
-          <span class="en">Our scattered homes gather as <b>one congregation</b>. If the mokjang is the scattering, this is the gathering.</span>
+          <span class="en">Our scattered homes gather as <b>one congregation</b>. If the house church is the scattering, this is the gathering.</span>
         </p>
       </div>
 
@@ -2603,10 +2603,10 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
         <p class="place-note">
           <span class="ko">처음 오시는 분은 연합예배가 아니라 <b>목장</b>에서 시작하시는 게 좋습니다. 목장에서 먼저 만나고, 그 목자가 예배 자리로 함께 옵니다. 우리 교회는 그렇게 연결됩니다.</span>
-          <span class="en">If you're new, start with a <b>mokjang</b> rather than the Sunday gathering. You meet there first, and your host comes with you to worship. That's how our church connects.</span>
+          <span class="en">If you're new, start with a <b>house church</b> rather than the Sunday gathering. You meet there first, and your host comes with you to worship. That's how our church connects.</span>
         </p>
         <button class="btn btn-primary btn-full" style="margin-top:12px" onclick="openModal('mokjang')">
-          <span class="ko i">목장과 연결되기</span><span class="en i">Connect with a mokjang</span>
+          <span class="ko i">목장과 연결되기</span><span class="en i">Connect with a House Church</span>
         </button>
       </div>
         </div>
@@ -2623,7 +2623,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <div class="fold-body">
       <p class="wo-intro">
         <span class="ko">주일연합목장예배 — 흩어진 목장들이 한 자리에 모입니다. 예배의 은혜는 기획이 아니라 <b>한 주간 살아낸 삶</b>에서 옵니다.</span>
-        <span class="en">United Mokjang Worship — our scattered homes gather as one. The grace of worship comes not from production, but from <b>a week lived out</b>.</span>
+        <span class="en">United Worship — our scattered house churches gather as one. The grace of worship comes not from production, but from <b>a week lived out</b>.</span>
       </p>
       <div class="card worship-order">
         <div class="wo-row"><span class="wo-k"><span class="ko i">공동체 시간</span><span class="en i">Community Hour</span></span><span class="wo-v"><span class="ko i">환영과 교회 소식</span><span class="en i">Welcome &amp; news</span></span></div>
@@ -2860,12 +2860,12 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           </div>
           <div class="loc-addr">
             <span class="ko i">시애틀지구촌교회</span><span class="en i">Global Mission Church of Greater Seattle</span>
-            <div class="loc-note"><span class="ko i">처음 오시는 분은 목장에서 시작합니다</span><span class="en i">If you're new, you start at a mokjang</span></div>
+            <div class="loc-note"><span class="ko i">처음 오시는 분은 목장에서 시작합니다</span><span class="en i">If you're new, you start at a house church</span></div>
             <div class="loc-note">info@ijiguchon.org · www.ijiguchon.org</div>
           </div>
         </div>
         <button class="btn btn-primary btn-full" style="margin-top:14px" onclick="openModal('mokjang')">
-          <span class="ko i">목장과 연결되기</span><span class="en i">Find a mokjang</span>
+          <span class="ko i">목장과 연결되기</span><span class="en i">Find a House Church</span>
         </button>
         <a class="btn btn-tel btn-full" style="margin-top:8px" href="tel:+14253500191">
           <svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2"><path d="M21 16.4v2.8a1.9 1.9 0 0 1-2.1 1.9 18.6 18.6 0 0 1-8.1-2.9 18.3 18.3 0 0 1-5.6-5.6A18.6 18.6 0 0 1 2.3 4.4 1.9 1.9 0 0 1 4.2 2.3H7a1.9 1.9 0 0 1 1.9 1.6c.1.9.3 1.8.7 2.6a1.9 1.9 0 0 1-.4 2l-1.2 1.2a15 15 0 0 0 5.6 5.6l1.2-1.2a1.9 1.9 0 0 1 2-.4c.8.3 1.7.6 2.6.7A1.9 1.9 0 0 1 21 16.4z"/></svg>
@@ -2879,7 +2879,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <div class="vs-title"><span class="ko">한 가정씩,<br>하나님 나라를 확장하라</span><span class="en">Expand the Kingdom,<br>one home at a time</span></div>
           <div class="vs-desc">
             <span class="ko">네 기둥(마28 · 막3 · 엡4 · 막10) 위에 세 축(목장 · 삶공부 · 연합예배)으로 세워지는 가정교회. 한 가정이 건강해질 때, 그 가정이 또 한 가정을 품습니다.</span>
-            <span class="en">A house church built on four pillars (Mt 28, Mk 3, Eph 4, Mk 10) and three axes (mokjang, life studies, united worship). As one home grows healthy, it embraces the next.</span>
+            <span class="en">A house church built on four pillars (Mt 28, Mk 3, Eph 4, Mk 10) and three axes (house church, life studies, united worship). As one home grows healthy, it embraces the next.</span>
           </div>
           <div class="vs-verse">
             <span class="ko">&lt;2026 우리의 기도&gt; 한 가정씩 복음으로 하나님 나라를 확장케 하소서! 가정이 건강한 가정교회로 세워지게 하소서!</span>
@@ -3043,6 +3043,7 @@ const EMAILS = {
   prayer   : 'pastor@ijiguchon.org',     // 기도 요청 (대표목사 직접 · 참조 없음)
   commit   : 'pastor@ijiguchon.org',     // 헌신카드 (대표목사가 기도 · 행정은 참조)
   topastor : 'pastor@ijiguchon.org',     // 목회칼럼 읽고 목사님께 한마디 (목사님만)
+  plant    : 'pastor@ijiguchon.org',     // 개척 목장 신청 — 대표목사가 직접 훈련·동행 (info@ 참조)
 };
 
 /* 참조(CC) — 받는 사람에게 먼저 가고, 사본이 info@와 대표목사님께 갑니다.
@@ -3089,7 +3090,7 @@ const COLUMN_PLAN = [
    sub:'온전한 영성을 향한 12.3', subEn:'Toward wholeness · 12.3'},
   {d:'2026-04-19', t:'일상이 예배가 되는 삶', tEn:'When daily life becomes worship',
    sub:'온전한 영성을 향한 12.4', subEn:'Toward wholeness · 12.4'},
-  {d:'2026-04-29', t:'신약교회로서의 목장 확인', tEn:'The mokjang as a New Testament church',
+  {d:'2026-04-29', t:'신약교회로서의 목장 확인', tEn:'The house church as a New Testament church',
    sub:'온전한 영성을 향한 12.5', subEn:'Toward wholeness · 12.5'},
   {d:'2026-05-02', t:'신뢰로 내딛는 순종', tEn:'Obedience that steps out in trust',
    sub:'온전한 영성을 향한 12.6', subEn:'Toward wholeness · 12.6'},
@@ -3111,14 +3112,14 @@ const COLUMN_PLAN = [
    x:'환대는 손님을 맞이하는 예의가 아닙니다. 타인을 있는 그대로 받아들이고, 그가 안전하게 머물도록 마음과 공간을 열어주는 영적 행위입니다. 내가 가진 것을 나누는 행위가 아니라, 내 마음의 문을 열어주는 행위입니다.',
    xEn:"Hospitality isn't good manners toward a guest. It is receiving another exactly as they are, and opening your heart and space so they can stay safely — not sharing what you have, but opening the door of your heart."},
   {d:'2026-07-18', t:'바쁜 사람이 더 많은 일을 합니다', tEn:'The busy ones get more done'},
-  {d:'2026-07-28', t:'목장, 왜 하는가?', tEn:'Why do we do mokjang?',
-   sub:'목장 사역의 본질을 찾아서 ①', subEn:'The heart of mokjang · 1'},
+  {d:'2026-07-28', t:'목장, 왜 하는가?', tEn:'Why do we do house church?',
+   sub:'목장 사역의 본질을 찾아서 ①', subEn:'The heart of the house church · 1'},
   {d:'2026-08-02', t:'내 삶이 하나님의 증거', tEn:"My life, God's evidence",
-   sub:'목장 사역의 본질을 찾아서 ②', subEn:'The heart of mokjang · 2',
+   sub:'목장 사역의 본질을 찾아서 ②', subEn:'The heart of the house church · 2',
    x:'"하나님께 영광을 돌린다는 것은 인간의 삶을 통해 하나님의 존재가 가시화되는 것입니다." 분노하던 사람이 분노를 다스리고, 용서 못 하던 사람이 용서를 선택할 때 — 그 일상의 변화가 세상이 못 보는 하나님을 보이게 합니다. 목장은 바로 그 변화의 현장입니다.',
-   xEn:'"To glorify God is for His presence to become visible through a human life." When someone who raged learns to master anger, when someone who couldn\'t forgive chooses to — that everyday change makes the unseen God visible. The mokjang is where that change happens.'},
+   xEn:'"To glorify God is for His presence to become visible through a human life." When someone who raged learns to master anger, when someone who couldn\'t forgive chooses to — that everyday change makes the unseen God visible. The house church is where that change happens.'},
   {d:'2026-08-09', t:'VIP가 변화되려면', tEn:'What actually changes a person',
-   sub:'목장 사역의 본질을 찾아서 ③ · 사랑이 먼저입니다', subEn:'The heart of mokjang · 3 · Love comes first',
+   sub:'목장 사역의 본질을 찾아서 ③ · 사랑이 먼저입니다', subEn:'The heart of the house church · 3 · Love comes first',
    x:'논리로 설득하거나 교리를 가르친다고 쉽게 변하지 않습니다. 먼저 사랑을 경험해야 합니다. 이름을 기억해주고, 식사를 함께하고, 힘든 이야기에 귀를 기울이는 것 — 이 작은 섬김들이 마음을 여는 열쇠입니다. 사랑은 프로그램이 아니라 관계에서 피어납니다.',
    xEn:'Arguments and doctrine rarely change anyone. Love has to be experienced first. Remembering a name, sharing a meal, listening to the hard story — these small acts of service are what open a heart. It grows out of relationship, never out of a program.'}
 ];
@@ -3132,7 +3133,7 @@ const SHEET_TABS = {
   commit:'헌신카드', prayer:'기도요청(비공개)', topastor:'목사님께 한마디',
   newcomer:'새가족', contact:'일반문의', mokjang:'목장연결', study:'삶공부',
   accept:'영접모임', baptism:'침례', heonasik:'헌아식',
-  children:'어린이', youth:'청소년'
+  children:'어린이', youth:'청소년', plant:'개척목장'
 };
 
 /* ══════════════════════════════════════
@@ -3185,7 +3186,7 @@ async function shareApp(){
   const data = {
     title: '시애틀지구촌교회',
     text : (typeof langIsEn === 'function' && langIsEn())
-             ? 'GMC of Greater Seattle — mokjang, life studies, and worship in one place'
+             ? 'GMC of Greater Seattle — house church, life studies, and worship in one place'
              : '시애틀지구촌교회 앱 — 목장·삶공부·연합예배를 한 곳에서',
     url
   };
@@ -3219,7 +3220,7 @@ const SERVICE = {
   congs     : {ko:'한어부 · 영어부 · 어린이 · 청소년 함께', en:'Korean · English · Children · Youth together'},
   // 목장은 연합예배와 달리 매주, 각 목장별로 모입니다
   weekly    : [
-    {ko:'목장', en:'Mokjang',
+    {ko:'목장', en:'House Church',
      tKo:'매주 주중 · 각 목장별로', tEn:'Weekly, midweek — each home'}
   ]
 };
@@ -3908,20 +3909,35 @@ const MODALS = {
     subject:'[GMC] 목장 연결 신청',
     ko:{title:'목장과 연결되기', sub:'가까운 목장 한 곳으로 초대해 드립니다. 한 번 와서 밥만 드시고 가셔도 좋아요.',
         btn:'연결 요청하기', okT:'연결해드릴게요!', okM:'목자님이\n곧 연락드릴 거예요.'},
-    en:{title:'Connect with a Mokjang', sub:"We'll introduce you to a mokjang near you. Come once, just for dinner.",
+    en:{title:'Connect with a House Church', sub:"We'll introduce you to a house church near you. Come once, just for dinner.",
         btn:'Request an introduction', okT:"We'll connect you!", okM:'A host\nwill reach out soon.'},
     fields:[
       {n:'이름', en:'Name', t:'text', req:true, ph:'홍길동', phEn:'Your name'},
       {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
       {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
-      {n:'관심 목장', en:'Which mokjang', t:'select', req:false, opts:[
+      {n:'관심 목장', en:'Which house church', t:'select', req:false, opts:[
         {ko:'어디든 추천해 주세요', en:'Please recommend one'},
-        {ko:'이스라엘 목장 (김지영 목자)', en:'Israel Mokjang (Joy Kim)'},
-        {ko:'멕시코 목장 (박성건 목자)', en:'Mexico Mokjang (Sung Gun Park)'},
-        {ko:'인도네시아 목장 (이인규 목자)', en:'Indonesia Mokjang (In Kyu Lee)'},
+        {ko:'이스라엘 목장 (김지영 목자)', en:'Israel House Church (Joy Kim)'},
+        {ko:'멕시코 목장 (박성건 목자)', en:'Mexico House Church (Sung Gun Park)'},
+        {ko:'인도네시아 목장 (이인규 목자)', en:'Indonesia House Church (In Kyu Lee)'},
         {ko:'GMC Y — 청소년 (Garrett Woods 목자)', en:'GMC Y — Youth (Garrett Woods)'}
       ]},
       {n:'거주 지역', en:'Neighborhood', t:'text', req:false, ph:'예) Lynnwood, Bellevue (선택)', phEn:'e.g. Lynnwood, Bellevue (optional)'}
+    ]
+  },
+  plant:{
+    subject:'[GMC] 개척 목장(House Church) 신청',
+    ko:{title:'개척 목장, 함께 시작하기', sub:'집에서 예배를 시작하려는 마음, 환영합니다. 훈련은 목사님이 함께 도와드립니다.',
+        btn:'신청하기', okT:'신청되었습니다', okM:'목사님이\n곧 연락드릴 거예요.'},
+    en:{title:'Start a House Church', sub:'Want to begin worship at home? Welcome — the pastor will help you train.',
+        btn:'Apply', okT:'Received', okM:'The pastor\nwill reach out soon.'},
+    fields:[
+      {n:'이름', en:'Name', t:'text', req:true, ph:'홍길동', phEn:'Your name'},
+      {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
+      {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
+      {n:'지역 / 도시', en:'Area / City', t:'text', req:true, ph:'예) Lynnwood, WA / Dallas, TX', phEn:'e.g. Lynnwood, WA'},
+      {n:'함께할 가정 (예상)', en:'Homes joining (est.)', t:'text', req:false, ph:'예) 우리 가정 + 1~2가정 (선택)', phEn:'e.g. mine + 1-2 homes (optional)'},
+      {n:'나누고 싶은 말', en:'Anything to share', t:'textarea', req:false, ph:'마음, 상황, 궁금한 점을 편하게 (선택)', phEn:'Your heart, situation, or questions (optional)'}
     ]
   },
   children:{
@@ -3966,11 +3982,11 @@ const MODALS = {
       {n:'영문 이름', en:'Name in English', t:'text', req:false, ph:'등록하시는 분만 (선택)', phEn:'Only if registering (optional)'},
       {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
       {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
-      {n:'목장', en:'Mokjang', t:'select', req:false, opts:[
-        {ko:'아직 목장이 없어요', en:'Not in a mokjang yet'},
-        {ko:'이스라엘 목장', en:'Israel Mokjang'},
-        {ko:'멕시코 목장', en:'Mexico Mokjang'},
-        {ko:'인도네시아 목장', en:'Indonesia Mokjang'}
+      {n:'목장', en:'House Church', t:'select', req:false, opts:[
+        {ko:'아직 목장이 없어요', en:'Not in a house church yet'},
+        {ko:'이스라엘 목장', en:'Israel House Church'},
+        {ko:'멕시코 목장', en:'Mexico House Church'},
+        {ko:'인도네시아 목장', en:'Indonesia House Church'}
       ]},
       {n:'교회 등록', en:'Registration', t:'checkbox',
         ko:'교회에 등록하기를 원합니다', koSub:'등록 담당자가 연락드립니다.',
@@ -3986,7 +4002,7 @@ const MODALS = {
         enLabel:'I (re)commit myself to God', enSub:'Pick where below.'},
       {n:'헌신할 자리', en:'Where', t:'select', req:false, opts:[
         {ko:'(해당 없음)', en:'(not applicable)'},
-        {ko:'목장 사역', en:'Mokjang'},
+        {ko:'목장 사역', en:'House Church'},
         {ko:'삶공부', en:'Life Studies'},
         {ko:'교회 사역', en:'Church ministry'},
         {ko:'특별 헌금', en:'Special offering'},
@@ -4046,7 +4062,7 @@ const MODALS = {
       {photo:'', initial:'김', name:'김성수 (Sung Soo Kim)',
        roleKo:'대표목사 · Lead Pastor', roleEn:'Lead Pastor',
        noteKo:'가정교회 사역과 환대를 통해 한 가정씩 세워가는 일에 마음을 두고 있습니다. 기도 요청은 목사님께 직접 전달됩니다.',
-       noteEn:'Committed to building the church one home at a time, through house groups and hospitality. Prayer requests reach him directly.'},
+       noteEn:'Committed to building the church one home at a time, through house churches and hospitality. Prayer requests reach him directly.'},
       {photo:'', initial:'W', name:'Garrett Woods',
        roleKo:'청소년 담당 · Youth Pastor', roleEn:'Youth Pastor',
        noteKo:'청소년(Ember)이 있는 그대로 환영받는 자리를 만들어갑니다.',
@@ -4391,9 +4407,9 @@ function applyLang(lang){
    tel/email 을 채우기만 하면 자동으로 전화/이메일 버튼이 나타납니다.
    둘 다 비우면 "곧 안내"로 표시됩니다. */
 const HOSTS = [
-  {mj:'이스라엘 목장', mjEn:'Israel Mokjang', nm:'김지영 목자', nmEn:'Host: Joy Kim',   badge:'ISR', cls:'hb-israel', tel:'', email:'jiyoung.kim@ijiguchon.org'},
-  {mj:'멕시코 목장',   mjEn:'Mexico Mokjang', nm:'박성건 목자', nmEn:'Host: Sung Gun Park', badge:'MEX', cls:'hb-mexico', tel:'', email:'songkon.pak@ijiguchon.org'},
-  {mj:'인도네시아 목장', mjEn:'Indonesia Mokjang', nm:'이인규 목자', nmEn:'Host: In Kyu Lee', badge:'IDN', cls:'hb-indo',  tel:'', email:'leengue.lee@ijiguchon.org'}
+  {mj:'이스라엘 목장', mjEn:'Israel House Church', nm:'김지영 목자', nmEn:'Host: Joy Kim',   badge:'ISR', cls:'hb-israel', tel:'', email:'jiyoung.kim@ijiguchon.org'},
+  {mj:'멕시코 목장',   mjEn:'Mexico House Church', nm:'박성건 목자', nmEn:'Host: Sung Gun Park', badge:'MEX', cls:'hb-mexico', tel:'', email:'songkon.pak@ijiguchon.org'},
+  {mj:'인도네시아 목장', mjEn:'Indonesia House Church', nm:'이인규 목자', nmEn:'Host: In Kyu Lee', badge:'IDN', cls:'hb-indo',  tel:'', email:'leengue.lee@ijiguchon.org'}
 ];
 const STAFF = [
   {mj:'대표목사', mjEn:'Lead Pastor',   nm:'김성수', nmEn:'Sung Soo Kim', badge:'대표', cls:'sb-pastor', tel:'', email:'pastor@ijiguchon.org'},
