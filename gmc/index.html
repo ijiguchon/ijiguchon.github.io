@@ -3476,14 +3476,24 @@ const SHEET_MOKJANG_CSV = 'https://docs.google.com/spreadsheets/d/1uaQudM68JnwR9
 
 /* ── 이번 주 목장 나눔지 — 주일 설교 나눔지(구글문서). 시트(날짜·문서링크)에서 매주 자동으로 그 주 것을 가져옵니다. ── */
 const SHEET_SHARE_CSV = '';   // 나눔지 시트 CSV(1열 날짜 YYYY-MM-DD, 2열 구글문서 링크). 목사님 시트 링크 받으면 여기 채움 → 매주 자동.
+/* 나눔지 기준 설교 = 지난 주일(가장 최근 지나간 주일)의 설교. 목·금·토 모임용이라 다가올 주일이 아니라 방금 전한 설교 기준. */
+function lastSermon(){
+  const d = new Date();
+  const s = new Date(d); s.setDate(d.getDate() - d.getDay());   // 지난 주일(오늘이 일요일이면 오늘)
+  const iso = s.getFullYear() + '-' + String(s.getMonth()+1).padStart(2,'0') + '-' + String(s.getDate()).padStart(2,'0');
+  if(typeof SERMON_PLAN !== 'undefined' && SERMON_PLAN[iso]) return {iso, s: SERMON_PLAN[iso]};
+  const past = (typeof SERMON_PLAN !== 'undefined') ? Object.keys(SERMON_PLAN).filter(k => k <= iso).sort() : [];
+  const k = past[past.length - 1];
+  return k ? {iso: k, s: SERMON_PLAN[k]} : null;
+}
 let __shareUrl = '';
 async function fetchShareSheet(){
   const card = document.getElementById('shareCard');
   if(!card) return;
   const sub = card.querySelector('[data-share-sermon]');
   const cta = card.querySelector('[data-share-cta]');
-  // 이번 주 설교 제목 자동 표시 (시트 없어도 동작)
-  try{ const p = thisSermon(); if(sub && p && p.s) sub.innerHTML = bi(p.s.ref + ' · ' + p.s.title, p.s.ref + ' · ' + p.s.title, true); }catch(_){}
+  // 지난 주일 설교 제목 자동 표시 (시트 없어도 동작) — 나눔지는 방금 전한 설교 기반
+  try{ const p = lastSermon(); if(sub && p && p.s) sub.innerHTML = bi(p.s.ref + ' · ' + p.s.title, p.s.ref + ' · ' + p.s.title, true); }catch(_){}
   // 시트가 연결돼 있으면 오늘 기준 가장 최근 주의 나눔지 링크를 가져옴
   if(SHEET_SHARE_CSV){
     try{
