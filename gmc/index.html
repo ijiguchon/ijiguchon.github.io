@@ -3273,11 +3273,8 @@ const SERVICE = {
     {ko:'온라인 — 필요할 때 (줌 · 유튜브)', en:'Online — when needed (Zoom · YouTube)'}
   ],
   congs     : {ko:'한어부 · 영어부 · 어린이 · 청소년 함께', en:'Korean · English · Children · Youth together'},
-  // 목장은 연합예배와 달리 매주, 각 목장별로 모입니다
-  weekly    : [
-    {ko:'목장', en:'House Church',
-     tKo:'매주 주중 · 각 목장별로', tEn:'Weekly, midweek — each home'}
-  ]
+  // 목장 안내는 홈(목장별 상세)·목장 탭으로 옮겨 중복 제거 → 연합예배 카드엔 주일연합예배만
+  weekly    : []
 };
 
 /* 날짜를 넣으면 그날 기준으로 판단합니다(다음 주 일정이 9월을 넘어갈 때 필요) */
