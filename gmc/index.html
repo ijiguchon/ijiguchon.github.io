@@ -3519,14 +3519,22 @@ async function driveFindByDate(folderUrl, iso){
       + encodeURIComponent("'"+fid+"' in parents and trashed=false")
       + '&key=' + GDRIVE_API_KEY
       + '&fields=' + encodeURIComponent('files(id,name,mimeType,webViewLink)')
+      + '&includeItemsFromAllDrives=true&supportsAllDrives=true'   // 공개 폴더 목록을 익명(API 키)으로 조회하려면 필수
       + '&orderBy=modifiedTime desc&pageSize=200';
     const r = await fetch(url);
     if(!r.ok) return '';
     const j = await r.json();
     const files = (j.files || []).filter(f => f.mimeType !== 'application/vnd.google-apps.folder');
+    const score = f => f.mimeType==='application/pdf' ? 3           // PDF 우선(교인이 열기 편함)
+                     : f.mimeType==='application/vnd.google-apps.document' ? 2   // 구글 문서
+                     : 1;                                                        // docx 등
     for(const c of cands){
-      const hit = files.find(f => (f.name||'').replace(/\D/g,'').includes(c));
-      if(hit) return hit.webViewLink || ('https://drive.google.com/file/d/'+hit.id+'/view');
+      const matches = files.filter(f => (f.name||'').replace(/\D/g,'').includes(c));
+      if(matches.length){
+        matches.sort((a,b) => score(b) - score(a));
+        const hit = matches[0];
+        return hit.webViewLink || ('https://drive.google.com/file/d/'+hit.id+'/view');
+      }
     }
   }catch(_){}
   return '';
