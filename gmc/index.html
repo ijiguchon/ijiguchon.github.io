@@ -2143,16 +2143,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </p>
       </div>
 
-      <!-- 이번 주 목장 나눔지 — 주일 설교 나눔지(구글문서), 매주 자동 -->
-      <button class="card share-card" id="shareCard" onclick="openShare()">
-        <div class="share-badge"><span class="ko i">지난 주일</span><span class="en i">LAST SUN</span></div>
-        <div class="share-b">
-          <div class="share-t"><span class="ko">목장 나눔지</span><span class="en">House Church Sharing Guide</span></div>
-          <div class="share-sub" data-share-sermon><span class="ko i">지난 주일 설교로 이번 주 목장에서 나눠요</span><span class="en i">This week's homes share last Sunday's message</span></div>
-        </div>
-        <span class="share-cta" data-share-cta><span class="ko i">준비 중</span><span class="en i">soon</span><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span>
-      </button>
-
       <details class="fold" style="margin-top:14px">
         <summary>
           <div class="fold-t">
@@ -2308,6 +2298,16 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <span class="en">Come once, just for dinner. No expectations.</span>
         </p>
       </div>
+
+      <!-- 이번 주 목장 나눔지 (목장 식구용) — 지난 주일 설교 나눔지 -->
+      <button class="card share-card" id="shareCard" onclick="openShare()" style="margin-top:22px">
+        <div class="share-badge"><span class="ko i">지난 주일</span><span class="en i">LAST SUN</span></div>
+        <div class="share-b">
+          <div class="share-t"><span class="ko">목장 나눔지</span><span class="en">House Church Sharing Guide</span></div>
+          <div class="share-sub" data-share-sermon><span class="ko i">지난 주일 설교로 이번 주 목장에서 나눠요</span><span class="en i">This week's homes share last Sunday's message</span></div>
+        </div>
+        <span class="share-cta" data-share-cta><span class="ko i">준비 중</span><span class="en i">soon</span><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span>
+      </button>
     </section>
 
     <!-- ────────── TAB 3 : SERMONS ────────── -->
