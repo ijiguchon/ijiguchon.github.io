@@ -1756,17 +1756,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <div class="fold-body">
       <!-- 이번 주 일정은 날짜에 맞춰 자동으로 채워집니다 (SPECIAL_EVENTS + 되풀이 일정) -->
       <div id="weekEvents"></div>
-
-      <button class="evt evt-link" onclick="go(bulletinUrl())" style="width:100%;text-align:left">
-        <div class="evt-date" style="background:var(--accent-pale)">
-          <div class="evt-d" style="color:var(--accent)">주보</div>
-        </div>
-        <div class="evt-body">
-          <div class="evt-title"><span class="ko">이번 주 주보 보기</span><span class="en">This week's bulletin</span></div>
-          <div class="evt-meta"><span class="ko i"><span data-bulletin-when></span>교회 소식 · 헌금 · 봉사 순서</span><span class="en i"><span data-bulletin-when-en></span>News, giving &amp; serving</span></div>
-        </div>
-        <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
-      </button>
         </div>
       </details>
 
@@ -2548,6 +2537,18 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           </div>
         </div>
       </div>
+
+      <!-- 이번 주 주보 (오는 주일 · 토요일 게시) -->
+      <button class="evt evt-link" onclick="go(bulletinUrl())" style="width:100%;text-align:left;margin-top:12px">
+        <div class="evt-date" style="background:var(--accent-pale)">
+          <div class="evt-d" style="color:var(--accent)">주보</div>
+        </div>
+        <div class="evt-body">
+          <div class="evt-title"><span class="ko">이번 주 주보 보기</span><span class="en">This week's bulletin</span></div>
+          <div class="evt-meta"><span class="ko i"><span data-bulletin-when></span>교회 소식 · 헌금 · 봉사 순서</span><span class="en i"><span data-bulletin-when-en></span>News, giving &amp; serving</span></div>
+        </div>
+        <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
 
       <!-- 주일 설교 오디오 — 드라이브 폴더에서 날짜순 자동 연결 -->
       <details class="fold" style="margin-top:14px" id="sermonAudioFold">
