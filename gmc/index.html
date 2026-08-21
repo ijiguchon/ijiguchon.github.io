@@ -1696,39 +1696,39 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <span class="en"><b>Anyone</b> is welcome — in Seattle or online. No fee, and it makes no difference whether you believe.</span>
       </p>
       <div class="care-list">
-        <button class="care-card" onclick="openModal('contact')">
+        <button class="care-card" onclick="openModal('care')">
           <div class="care-ico ci-talk"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-9a8.4 8.4 0 1 1 16.9-.5z"/></svg></div>
           <div class="care-b"><div class="care-t"><span class="ko">영어 톡타임</span><span class="en">English Talk Time</span></div>
             <div class="care-d"><span class="ko">영어가 필요한 이웃과 마주 앉아 편하게 이야기 나눠요.</span><span class="en">Sit and talk with neighbours who need English.</span></div></div>
           <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
-        <button class="care-card" onclick="openModal('contact')">
+        <button class="care-card" onclick="openModal('care')">
           <div class="care-ico ci-happy"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
           <div class="care-b"><div class="care-t"><span class="ko">행복한 삶</span><span class="en">Happy Life</span></div>
             <div class="care-d"><span class="ko">지친 마음, 다시 행복을 찾아가는 길을 함께 걸어요.</span><span class="en">Walk the road back to joy, together.</span></div></div>
           <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
-        <button class="care-card" onclick="openModal('contact')">
+        <button class="care-card" onclick="openModal('care')">
           <div class="care-ico ci-heal"><svg viewBox="0 0 24 24"><path d="M20.8 5.6a5.1 5.1 0 0 0-7.2 0L12 7.1l-1.6-1.5a5.1 5.1 0 0 0-7.2 7.2L12 21l8.8-8.2a5.1 5.1 0 0 0 0-7.2z"/></svg></div>
           <div class="care-b"><div class="care-t"><span class="ko">회복의 삶</span><span class="en">Restored Life</span></div>
             <div class="care-d"><span class="ko">상처와 아픔, 혼자 지지 마세요. 회복으로 함께 갑니다.</span><span class="en">Don't carry the hurt alone — heal, together.</span></div></div>
           <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
         <!-- 부부의 삶 · 자녀교육의 삶은 여기가 아니라 삶공부 선택 과정으로 옮겼습니다 (목사님, 2026-08-09) -->
-        <button class="care-card" onclick="openModal('contact')">
+        <button class="care-card" onclick="openModal('care')">
           <div class="care-ico ci-talk2"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-9.6a4 4 0 0 1 7.5-2 4 4 0 0 1 7.5 2c0 5-7.5 9.6-7.5 9.6z"/></svg></div>
           <div class="care-b"><div class="care-t"><span class="ko">가족치유 마음치유</span><span class="en">Family &amp; Inner Healing</span></div>
             <div class="care-d"><span class="ko">팀 슬레지의 책 『가족치유 마음치유』로 진행하는 치유 사역 과정입니다. 지나온 자리의 아픔을 안전한 자리에서 함께 돌봅니다.</span><span class="en">A healing ministry course built on Tim Sledge's book — tending the hurt we carry from where we've been, in a safe place, together.</span></div></div>
           <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
-        <button class="care-card" onclick="openModal('contact')">
+        <button class="care-card" onclick="openModal('care')">
           <div class="care-ico ci-coach"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></div>
           <div class="care-b"><div class="care-t"><span class="ko">라이프 코칭</span><span class="en">Life Coaching</span></div>
             <div class="care-d"><span class="ko">진로·결정·삶의 방향 앞에서, 함께 생각을 정리해요.</span><span class="en">Sort out direction, choices, and next steps — together.</span></div></div>
           <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
       </div>
-      <p class="care-foot"><a href="mailto:office@ijiguchon.org" style="color:inherit;text-decoration:none"><span class="ko">문의: 박보라 행정간사</span><span class="en">Inquiries: Bora Park (Church Office)</span></a></p>
+      <p class="care-foot"><button onclick="openModal('care')" style="background:none;border:none;cursor:pointer;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px"><span class="ko">문의 신청 · 담당 박보라 행정간사</span><span class="en">Inquire · Bora Park (Church Office)</span></button></p>
         </div>
       </details>
 
@@ -2927,7 +2927,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       <div class="more-menu">
         <button class="mm-item" onclick="openModal('pastor')">
           <div class="mm-ico"><svg viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-          <span class="mm-label"><span class="ko i">교역자 소개</span><span class="en i">Our Pastors</span></span>
+          <span class="mm-label"><span class="ko i">교회 스탭</span><span class="en i">Church Staff</span></span>
           <svg class="mm-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
         <button class="mm-item" onclick="go(LINKS.give)">
@@ -3069,6 +3069,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
 const EMAILS = {
   newcomer : 'office@ijiguchon.org',     // 새가족 만남 — 박보라 행정간사
   contact  : 'office@ijiguchon.org',     // 일반 교회 문의 — 박보라 행정간사
+  care     : 'info@ijiguchon.org',       // "우리 행복할까요?" 문의 — 담당 박보라 행정간사, info@로 스텝 공동 수신
   accept   : 'office@ijiguchon.org',     // 예수 영접 모임
   baptism  : 'office@ijiguchon.org',     // 침례식 신청
   study    : 'office@ijiguchon.org',     // 삶 공부 등록
@@ -4161,8 +4162,8 @@ const MODALS = {
   },
   pastor:{
     info:true,
-    ko:{title:'교역자 소개', sub:'언제든 편하게 인사 나눠 주세요.'},
-    en:{title:'Our Pastors', sub:'Please say hello anytime — really.'},
+    ko:{title:'교회 스탭', sub:'언제든 편하게 인사 나눠 주세요.'},
+    en:{title:'Church Staff', sub:'Please say hello anytime — really.'},
     /* photo: 얼굴 사진을 넣는 자리입니다. 비워두면 이름 첫 글자가 나옵니다.
        사진은 인터넷 주소가 아니라 data URI로 파일 안에 심습니다(오프라인에서도 보이도록).
        넣는 법: 정사각형 사진을 photos/ 폴더에 두고 Claude에게 "사진 넣어줘" 하시면 변환해 채웁니다. */
@@ -4178,7 +4179,11 @@ const MODALS = {
       {photo:'', initial:'김', name:'김지영 (Joy Kim)',
        roleKo:'어린이 사역 · Children Ministry Director', roleEn:'Children Ministry Director',
        noteKo:'아이들이 사랑받는 경험을 먼저 하도록 돕습니다.',
-       noteEn:'Helping children experience being loved, first of all.'}
+       noteEn:'Helping children experience being loved, first of all.'},
+      {photo:'', initial:'박', name:'박보라 (Bora Park)',
+       roleKo:'행정간사 · Church Office', roleEn:'Church Office',
+       noteKo:'등록·문의·행정을 도우며, 처음 오신 분들을 살뜰히 챙깁니다. 문의는 박보라 간사가 먼저 받습니다.',
+       noteEn:'Handles registration, inquiries, and church admin — and looks after newcomers.'}
     ]
   },
   contact:{
@@ -4192,6 +4197,26 @@ const MODALS = {
       {n:'이메일', en:'Email', t:'email', req:true, ph:'hong@example.com', phEn:'you@example.com'},
       {n:'전화번호', en:'Phone', t:'tel', req:true, ph:'425-000-0000', phEn:'425-000-0000'},
       {n:'문의 내용', en:'Message', t:'textarea', req:true, ph:'어떤 것이든 편하게 적어주세요', phEn:'Tell us what you need'}
+    ]
+  },
+  care:{
+    subject:'[GMC] "우리 행복할까요?" 문의',
+    ko:{title:'문의 신청', sub:'담당 박보라 행정간사가 받고, 알맞은 분이 곧 연락드려요. 부담 갖지 마세요.',
+        btn:'문의 보내기', okT:'전달되었습니다', okM:'박보라 간사와 담당자가 확인하고 곧 연락드릴게요.'},
+    en:{title:'Ask about a program', sub:'Bora Park (Church Office) receives this, and the right person follows up. No pressure.',
+        btn:'Send', okT:'Message sent', okM:"We'll follow up soon."},
+    fields:[
+      {n:'이름', en:'Name', t:'text', req:true, ph:'홍길동', phEn:'Your name'},
+      {n:'연락처 (전화 또는 이메일)', en:'Phone or email', t:'text', req:true, ph:'425-000-0000 또는 이메일', phEn:'Phone or email'},
+      {n:'관심 프로그램', en:'Program', t:'select', req:false, opts:[
+        {ko:'영어 톡타임', en:'English Talk Time'},
+        {ko:'행복한 삶', en:'Happy Life'},
+        {ko:'회복의 삶', en:'Restored Life'},
+        {ko:'가족치유 마음치유', en:'Family & Inner Healing'},
+        {ko:'라이프 코칭', en:'Life Coaching'},
+        {ko:'무엇이든 · 아직 모름', en:'Anything · not sure'}
+      ]},
+      {n:'문의 내용', en:'Message', t:'textarea', req:false, ph:'궁금한 점을 편하게 적어주세요 (선택)', phEn:"Anything you'd like to ask (optional)"}
     ]
   }
 };
