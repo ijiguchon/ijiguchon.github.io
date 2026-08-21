@@ -1757,13 +1757,13 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       <!-- 이번 주 일정은 날짜에 맞춰 자동으로 채워집니다 (SPECIAL_EVENTS + 되풀이 일정) -->
       <div id="weekEvents"></div>
 
-      <button class="evt evt-link" onclick="go(LINKS.bulletin)" style="width:100%;text-align:left">
+      <button class="evt evt-link" onclick="go(bulletinUrl())" style="width:100%;text-align:left">
         <div class="evt-date" style="background:var(--accent-pale)">
           <div class="evt-d" style="color:var(--accent)">주보</div>
         </div>
         <div class="evt-body">
           <div class="evt-title"><span class="ko">이번 주 주보 보기</span><span class="en">This week's bulletin</span></div>
-          <div class="evt-meta"><span class="ko i">교회 소식 · 헌금 · 봉사 순서</span><span class="en i">News, giving, and serving schedule</span></div>
+          <div class="evt-meta"><span class="ko i"><span data-bulletin-when></span>교회 소식 · 헌금 · 봉사 순서</span><span class="en i"><span data-bulletin-when-en></span>News, giving &amp; serving</span></div>
         </div>
         <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
       </button>
@@ -3481,6 +3481,23 @@ const SHARE_DOCS = {
   '2026-08-16': 'https://drive.google.com/file/d/1hxOFcrjI5LbgDqVErQQrrv89HHOosscb/view',   // 목장나눔지 · 교회는 개척하는 것이다(PDF)
 };
 const SHARE_FOLDER = 'https://drive.google.com/drive/folders/1o_SKaeBlgaRzUQvJCgAMuPPHroRx7rlx';  // 나눔지 전체 폴더(공개) — 그 주 링크가 아직 없을 때 여기로 연결
+
+/* 주보 — 오는 주일(다가올 예배) 주보. 보통 토요일에 폴더에 올라옴. 나눔지와 같은 방식, 다른 폴더·날짜(오는 주일). */
+const BULLETIN_DOCS = {
+  // '2026-08-23': '...링크...',   // 오는 주일 주보 직접 링크(있으면). 없으면 폴더로 연결.
+};
+const BULLETIN_FOLDER = 'https://drive.google.com/drive/folders/19nPkxG9NX9pF1iAt3hQwgS3YXFKJ9lFA';  // 주보 폴더(공개)
+function bulletinUrl(){
+  try{ const iso = relevantSunday(); if(BULLETIN_DOCS[iso]) return BULLETIN_DOCS[iso]; }catch(_){}
+  return BULLETIN_FOLDER || (typeof LINKS !== 'undefined' ? LINKS.bulletin : '#');
+}
+function renderBulletin(){
+  try{
+    const md = relevantSunday().slice(5).replace('-','.');
+    document.querySelectorAll('[data-bulletin-when]').forEach(el => { el.textContent = '오는 주일 ' + md + ' · '; });
+    document.querySelectorAll('[data-bulletin-when-en]').forEach(el => { el.textContent = 'This Sun ' + md + ' · '; });
+  }catch(_){}
+}
 /* 나눔지 기준 설교 = 지난 주일(가장 최근 지나간 주일)의 설교. 목·금·토 모임용이라 다가올 주일이 아니라 방금 전한 설교 기준. */
 function lastSermon(){
   const d = new Date();
@@ -4525,6 +4542,7 @@ function applyLang(lang){
   renderWeekLabel();
   renderSchedule();
   fetchShareSheet();
+  renderBulletin();
   markHebronArrival();
   loadSermonAudio();
 }
