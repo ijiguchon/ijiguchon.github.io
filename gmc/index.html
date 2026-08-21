@@ -3977,14 +3977,16 @@ function renderColumn(){
 }
 
 function renderServices(){
-  const t = svcTime();
+  // 카드에는 새 예배시간(오전 11시)을 앞세우고, 9/6 전에는 "(9월 6일부터)"를 덧붙임(그날 지나면 자동으로 사라짐)
+  const timeKo = SERVICE.after.ko + (changed() ? '' : ' (9월 6일부터)');
+  const timeEn = SERVICE.after.en + (changed() ? '' : ' (from Sep 6)');
 
   // 연합예배 — 대면은 두 가정 번갈아, 온라인은 필요할 때만(정기 아님)
   const sunday =
       '<div class="svc-head">'
     +   '<div class="svc-l"><span class="svc-dot"></span>'
     +     '<span class="svc-name">'+bi('주일연합예배','Sunday United Worship',true)+'</span></div>'
-    +   '<span class="svc-time">'+bi(t.ko, t.en, true)+'</span>'
+    +   '<span class="svc-time">'+bi(timeKo, timeEn, true)+'</span>'
     + '</div>'
     + '<div class="svc-congs">'+bi(SERVICE.congs.ko, SERVICE.congs.en, true)+'</div>'
     + '<div class="svc-modes">'
