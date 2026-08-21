@@ -3496,16 +3496,53 @@ const SHEET_SHARE_CSV = '';   // 나눔지 시트 CSV(1열 날짜 YYYY-MM-DD, 2�
 const SHARE_DOCS = {
   '2026-08-16': 'https://drive.google.com/file/d/1hxOFcrjI5LbgDqVErQQrrv89HHOosscb/view',   // 목장나눔지 · 교회는 개척하는 것이다(PDF)
 };
-const SHARE_FOLDER = 'https://drive.google.com/drive/folders/1cI-EjCLWOhFFH1TfI6_m6mQX7TMCc659';  // 나눔지 전체 폴더(공개) — 그 주 링크가 아직 없을 때 여기로 연결
+const SHARE_FOLDER = 'https://drive.google.com/drive/folders/1o_SKaeBlgaRzUQvJCgAMuPPHroRx7rlx';  // 나눔지 전체 폴더(공개) — 그 주 링크가 아직 없을 때 여기로 연결
 
 /* 주보 — 오는 주일(다가올 예배) 주보. 보통 토요일에 폴더에 올라옴. 나눔지와 같은 방식, 다른 폴더·날짜(오는 주일). */
 const BULLETIN_DOCS = {
   // '2026-08-23': '...링크...',   // 오는 주일 주보 직접 링크(있으면). 없으면 폴더로 연결.
 };
 const BULLETIN_FOLDER = 'https://drive.google.com/drive/folders/19nPkxG9NX9pF1iAt3hQwgS3YXFKJ9lFA';  // 주보 폴더(공개)
+
+/* ── 구글 드라이브 자동 검색 (읽기 전용 API 키) ──
+   공개 폴더에 "날짜 이름" 파일을 넣으면, 그 주 날짜에 맞는 파일을 자동으로 찾아 링크합니다.
+   파일 이름의 날짜 인식 형태: 081626 · 20260816 · 08162026 · 260816 · 0816 (구분기호 -,_,. 아무거나 OK). */
+const GDRIVE_API_KEY = 'AIzaSyBL3EXN_i8b9RkcXPa4x_FD2M3sKTQpVgY';   // Drive 읽기 전용(공개 폴더 파일 목록 조회용)
+async function driveFindByDate(folderUrl, iso){
+  if(!GDRIVE_API_KEY || !folderUrl || !iso) return '';
+  const fid = (String(folderUrl).match(/folders\/([-\w]+)/) || [])[1];
+  if(!fid) return '';
+  const [y,m,d] = iso.split('-'); const yy = y.slice(2);
+  const cands = [ m+d+yy, y+m+d, m+d+y, yy+m+d, m+d ];   // 가장 구체적인(연도 포함) 것부터
+  try{
+    const url = 'https://www.googleapis.com/drive/v3/files?q='
+      + encodeURIComponent("'"+fid+"' in parents and trashed=false")
+      + '&key=' + GDRIVE_API_KEY
+      + '&fields=' + encodeURIComponent('files(id,name,mimeType,webViewLink)')
+      + '&orderBy=modifiedTime desc&pageSize=200';
+    const r = await fetch(url);
+    if(!r.ok) return '';
+    const j = await r.json();
+    const files = (j.files || []).filter(f => f.mimeType !== 'application/vnd.google-apps.folder');
+    for(const c of cands){
+      const hit = files.find(f => (f.name||'').replace(/\D/g,'').includes(c));
+      if(hit) return hit.webViewLink || ('https://drive.google.com/file/d/'+hit.id+'/view');
+    }
+  }catch(_){}
+  return '';
+}
+
+/* 목회칼럼 전용 폴더(공개) — 칼럼 PDF/문서를 날짜 이름으로 넣는 곳. 비어 있으면 홈페이지 칼럼 게시판으로 연결. */
+const COLUMN_FOLDER = 'https://drive.google.com/drive/folders/1cI-EjCLWOhFFH1TfI6_m6mQX7TMCc659';   // 목회칼럼 전체 폴더(공개) — 칼럼별 수동 링크 없으면 여기서 날짜로 자동 검색
+
+let __bulletinUrl = '';
+async function resolveBulletin(){
+  __bulletinUrl = '';
+  try{ const iso = relevantSunday(); if(BULLETIN_DOCS[iso]) __bulletinUrl = BULLETIN_DOCS[iso]; }catch(_){}
+  if(!__bulletinUrl){ try{ __bulletinUrl = await driveFindByDate(BULLETIN_FOLDER, relevantSunday()); }catch(_){} }
+}
 function bulletinUrl(){
-  try{ const iso = relevantSunday(); if(BULLETIN_DOCS[iso]) return BULLETIN_DOCS[iso]; }catch(_){}
-  return BULLETIN_FOLDER || (typeof LINKS !== 'undefined' ? LINKS.bulletin : '#');
+  return __bulletinUrl || BULLETIN_FOLDER || (typeof LINKS !== 'undefined' ? LINKS.bulletin : '#');
 }
 function renderBulletin(){
   try{
@@ -3547,8 +3584,9 @@ async function fetchShareSheet(){
       if(pick) __shareUrl = pick.link;
     }catch(_){ /* 오프라인·오류 → 준비 중 표시 */ }
   }
-  // 링크 우선순위: 시트 → 코드 목록(그 주 정확 링크) → 폴더(예비)
+  // 링크 우선순위: 시트 → 코드 목록(수동 지정) → 드라이브 폴더 자동 검색(날짜) → 폴더(예비)
   if(!__shareUrl){ try{ const p2 = lastSermon(); if(p2 && SHARE_DOCS[p2.iso]) __shareUrl = SHARE_DOCS[p2.iso]; }catch(_){} }
+  if(!__shareUrl){ try{ const p3 = lastSermon(); if(p3) __shareUrl = await driveFindByDate(SHARE_FOLDER, p3.iso); }catch(_){} }
   if(!__shareUrl && typeof SHARE_FOLDER === 'string' && SHARE_FOLDER) __shareUrl = SHARE_FOLDER;
   if(cta) cta.innerHTML = __shareUrl
     ? bi('나눔지 열기','Open the guide',true) + '<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>'
@@ -3912,8 +3950,11 @@ function renderColumn(){
   const box = document.querySelector('[data-column]');
   if(!box) return;
   const c = currentColumn();
-  // 칼럼별 개별 링크(c.url)가 있으면 그 칼럼 전문(구글문서/PDF)으로, 없으면 홈페이지 칼럼 게시판으로
+  // 링크 우선순위: 칼럼별 수동 링크(c.url) → 칼럼 폴더 자동 검색(날짜) → 홈페이지 칼럼 게시판
   box.onclick = ()=>go(c.url || LINKS.column);
+  if(!c.url && COLUMN_FOLDER){
+    driveFindByDate(COLUMN_FOLDER, c.d).then(u => { if(u) box.onclick = ()=>go(u); }).catch(()=>{});
+  }
   const [y, m, d] = c.d.split('-');
   box.innerHTML =
       '<span class="col-badge">'+bi('이번 주','THIS WEEK',true)+'</span>'
@@ -4626,6 +4667,7 @@ function applyLang(lang){
   fetchShareSheet();
   fetchMokjangPublic();
   renderBulletin();
+  resolveBulletin();
   markHebronArrival();
   loadSermonAudio();
 }
