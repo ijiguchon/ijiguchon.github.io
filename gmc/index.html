@@ -1221,6 +1221,18 @@ button.bp:active{transform:scale(.985)}
 .share-sub{margin-top:2px;font-size:11.5px;font-weight:600;color:var(--text-3)}
 .share-cta{flex-shrink:0;display:inline-flex;align-items:center;gap:2px;font-size:12px;font-weight:800;color:var(--accent)}
 .share-cta svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.4}
+/* 홈 목장별 모임 요약 */
+.mjs-card{margin-top:10px;padding:12px 14px;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--shadow-xs)}
+.mjs-card:empty{display:none}
+.mjs-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mjs-title{font-size:12.5px;font-weight:800;color:var(--text-2)}
+.mjs-more{display:inline-flex;align-items:center;gap:1px;background:none;border:none;cursor:pointer;font-size:12px;font-weight:800;color:var(--accent);font-family:inherit;-webkit-tap-highlight-color:transparent}
+.mjs-more svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.4}
+.mjs-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 0 0;margin-top:7px;border-top:1px solid var(--border)}
+.mjs-name{font-size:13px;font-weight:700;color:var(--text-1)}
+.mjs-when{font-size:12.5px;font-weight:700;color:var(--accent)}
+.mjs-tba{font-size:11.5px;font-weight:600;color:var(--text-3)}
+.mjs-note{margin-top:9px;font-size:11px;line-height:1.6;color:var(--text-3)}
 .mn-lead{font-size:12.5px;line-height:1.75;color:var(--text-2);font-weight:500}
 .mn-lead b{color:var(--accent);font-weight:800}
 .mj-field{font-size:9.5px;font-weight:800;letter-spacing:1.4px;color:var(--text-3)}
@@ -1756,6 +1768,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <div class="fold-body">
       <!-- 이번 주 일정은 날짜에 맞춰 자동으로 채워집니다 (SPECIAL_EVENTS + 되풀이 일정) -->
       <div id="weekEvents"></div>
+      <div class="mjs-card" data-mokjang-summary></div>
         </div>
       </details>
 
@@ -1770,6 +1783,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </summary>
         <div class="fold-body">
           <div id="upcomingEvents"></div>
+          <div class="mjs-card" data-mokjang-summary></div>
         </div>
       </details>
 
@@ -3551,6 +3565,46 @@ function parseCSVLine(line){
   }
   out.push(cur); return out;
 }
+/* 홈 이번 주/다음 주 일정 — 목장별 모임 요약(공개: 목장명·요일·시간, 장소 제외). 상세는 목장 연결 폼으로. */
+async function fetchMokjangPublic(){
+  const boxes = document.querySelectorAll('[data-mokjang-summary]');
+  if(!boxes.length) return;
+  const MJ = [
+    {key:'이스라엘', ko:'이스라엘 목장', en:'Israel'},
+    {key:'멕시코', ko:'멕시코 목장', en:'Mexico'},
+    {key:'인도네시아', ko:'인도네시아 목장', en:'Indonesia'},
+    {key:'GMC Y', ko:'GMC Y · 청소년', en:'GMC Y · Youth'}
+  ];
+  const data = {};
+  try{
+    const r = await fetch(SHEET_MOKJANG_CSV, {cache:'no-store'});
+    const txt = await r.text();
+    txt.split('\n').map(l=>l.replace(/\r$/,'')).filter(Boolean).slice(1).forEach(line=>{
+      const f = parseCSVLine(line);
+      const name = (f[0]||'').replace(/목장/g,'').trim();
+      if(name) data[name] = {day:(f[1]||'').trim(), time:(f[2]||'').trim()};   // 장소(f[3])는 공개하지 않음
+    });
+  }catch(_){}
+  const moreBtn = '<button class="mjs-more" onclick="openModal(\'mokjang\')">'+bi('자세히','More',true)
+    + '<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>';
+  const head = '<div class="mjs-head"><span class="mjs-title">'+bi('목장별 모임 · 매주 주중','House Church · midweek',true)+'</span>'+moreBtn+'</div>';
+  const anyData = MJ.some(m => { const d = data[m.key] || {}; return d.day || d.time; });
+  let html;
+  if(!anyData){
+    html = head + '<p class="mjs-note">'+bi('각 목장이 요일·시간·장소를 곧 올립니다. 연결하시면 목자가 안내해 드려요.','Each home posts its day, time and place soon — connect and your host will guide you.',true)+'</p>';
+  }else{
+    const rows = MJ.map(m => {
+      const d = data[m.key] || {};
+      const when = [d.day, d.time].filter(Boolean).join(' ');
+      const detail = when ? '<span class="mjs-when">'+esc(when)+'</span>'
+                          : '<span class="mjs-tba">'+bi('안내 예정','TBA',true)+'</span>';
+      return '<div class="mjs-row"><span class="mjs-name">'+bi(m.ko, m.en, true)+'</span>'+detail+'</div>';
+    }).join('');
+    html = head + rows + '<p class="mjs-note">'+bi('정확한 장소는 목장 목자에게 안내받습니다.','Your host shares the exact place.',true)+'</p>';
+  }
+  boxes.forEach(b => b.innerHTML = html);
+}
+
 async function fetchMokjangWeek(){
   const rows = document.getElementById('mokjangWeekRows');
   if(!rows) return;
@@ -4568,6 +4622,7 @@ function applyLang(lang){
   renderWeekLabel();
   renderSchedule();
   fetchShareSheet();
+  fetchMokjangPublic();
   renderBulletin();
   markHebronArrival();
   loadSermonAudio();
