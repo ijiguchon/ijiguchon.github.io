@@ -3475,7 +3475,12 @@ function renderWelcome(){
 const SHEET_MOKJANG_CSV = 'https://docs.google.com/spreadsheets/d/1uaQudM68JnwR9u7T5-5wifpCJnRb6_oeQZuSV5DmWmA/gviz/tq?tqx=out:csv&gid=0';
 
 /* ── 이번 주 목장 나눔지 — 주일 설교 나눔지(구글문서). 시트(날짜·문서링크)에서 매주 자동으로 그 주 것을 가져옵니다. ── */
-const SHEET_SHARE_CSV = '';   // 나눔지 시트 CSV(1열 날짜 YYYY-MM-DD, 2열 구글문서 링크). 목사님 시트 링크 받으면 여기 채움 → 매주 자동.
+const SHEET_SHARE_CSV = '';   // 나눔지 시트 CSV(1열 날짜 YYYY-MM-DD, 2열 문서링크). 시트 연결하면 이게 우선.
+/* 나눔지 링크 목록 — 키=바탕 주일설교 날짜(일요일), 값=그 주 나눔지 문서/PDF(공개 뷰어). 매주 한 줄만 추가하면 됩니다. */
+const SHARE_DOCS = {
+  '2026-08-16': 'https://drive.google.com/file/d/1hxOFcrjI5LbgDqVErQQrrv89HHOosscb/view',   // 목장나눔지 · 교회는 개척하는 것이다(PDF)
+};
+const SHARE_FOLDER = 'https://drive.google.com/drive/folders/1o_SKaeBlgaRzUQvJCgAMuPPHroRx7rlx';  // 나눔지 전체 폴더(공개) — 그 주 링크가 아직 없을 때 여기로 연결
 /* 나눔지 기준 설교 = 지난 주일(가장 최근 지나간 주일)의 설교. 목·금·토 모임용이라 다가올 주일이 아니라 방금 전한 설교 기준. */
 function lastSermon(){
   const d = new Date();
@@ -3509,6 +3514,9 @@ async function fetchShareSheet(){
       if(pick) __shareUrl = pick.link;
     }catch(_){ /* 오프라인·오류 → 준비 중 표시 */ }
   }
+  // 링크 우선순위: 시트 → 코드 목록(그 주 정확 링크) → 폴더(예비)
+  if(!__shareUrl){ try{ const p2 = lastSermon(); if(p2 && SHARE_DOCS[p2.iso]) __shareUrl = SHARE_DOCS[p2.iso]; }catch(_){} }
+  if(!__shareUrl && typeof SHARE_FOLDER === 'string' && SHARE_FOLDER) __shareUrl = SHARE_FOLDER;
   if(cta) cta.innerHTML = __shareUrl
     ? bi('나눔지 열기','Open the guide',true) + '<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>'
     : bi('곧 올라옵니다','coming soon',true);
