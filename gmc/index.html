@@ -2156,10 +2156,10 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
 
       <!-- 이번 주 목장 나눔지 — 주일 설교 나눔지(구글문서), 매주 자동 -->
       <button class="card share-card" id="shareCard" onclick="openShare()">
-        <div class="share-badge"><span class="ko i">이번 주</span><span class="en i">THIS WEEK</span></div>
+        <div class="share-badge"><span class="ko i">지난 주일</span><span class="en i">LAST SUN</span></div>
         <div class="share-b">
           <div class="share-t"><span class="ko">목장 나눔지</span><span class="en">House Church Sharing Guide</span></div>
-          <div class="share-sub" data-share-sermon><span class="ko i">주일 설교로 함께 나눠요</span><span class="en i">Share around Sunday's message</span></div>
+          <div class="share-sub" data-share-sermon><span class="ko i">지난 주일 설교로 이번 주 목장에서 나눠요</span><span class="en i">This week's homes share last Sunday's message</span></div>
         </div>
         <span class="share-cta" data-share-cta><span class="ko i">준비 중</span><span class="en i">soon</span><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span>
       </button>
@@ -3492,8 +3492,8 @@ async function fetchShareSheet(){
   if(!card) return;
   const sub = card.querySelector('[data-share-sermon]');
   const cta = card.querySelector('[data-share-cta]');
-  // 지난 주일 설교 제목 자동 표시 (시트 없어도 동작) — 나눔지는 방금 전한 설교 기반
-  try{ const p = lastSermon(); if(sub && p && p.s) sub.innerHTML = bi(p.s.ref + ' · ' + p.s.title, p.s.ref + ' · ' + p.s.title, true); }catch(_){}
+  // 지난 주일 설교 제목 자동 표시 (시트 없어도 동작) — 나눔지는 방금 전한 설교 기반, 날짜 병기
+  try{ const p = lastSermon(); if(sub && p && p.s){ const dt = p.iso.slice(5).replace('-','.'); sub.innerHTML = bi(dt + ' · ' + p.s.ref + ' · ' + p.s.title, dt + ' · ' + p.s.ref + ' · ' + p.s.title, true); } }catch(_){}
   // 시트가 연결돼 있으면 오늘 기준 가장 최근 주의 나눔지 링크를 가져옴
   if(SHEET_SHARE_CSV){
     try{
