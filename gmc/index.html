@@ -2621,7 +2621,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <span class="sec-note"><span class="ko i">매주 한 편</span><span class="en i">Weekly</span></span>
       </div>
       <!-- 내용은 COLUMN_PLAN에서 날짜에 맞춰 채워집니다 -->
-      <button class="col-hero" onclick="go(LINKS.column)" data-column></button>
+      <button class="col-hero" data-column></button>
       <button class="btn btn-primary btn-full" style="margin-top:9px" onclick="openModal('topastor')">
         <span class="ko i">읽고 나서 — 목사님께 한마디</span><span class="en i">Write back to the pastor</span>
       </button>
@@ -3172,7 +3172,10 @@ const COLUMN_PLAN = [
   {d:'2026-08-09', t:'VIP가 변화되려면', tEn:'What actually changes a person',
    sub:'목장 사역의 본질을 찾아서 ③ · 사랑이 먼저입니다', subEn:'The heart of the house church · 3 · Love comes first',
    x:'논리로 설득하거나 교리를 가르친다고 쉽게 변하지 않습니다. 먼저 사랑을 경험해야 합니다. 이름을 기억해주고, 식사를 함께하고, 힘든 이야기에 귀를 기울이는 것 — 이 작은 섬김들이 마음을 여는 열쇠입니다. 사랑은 프로그램이 아니라 관계에서 피어납니다.',
-   xEn:'Arguments and doctrine rarely change anyone. Love has to be experienced first. Remembering a name, sharing a meal, listening to the hard story — these small acts of service are what open a heart. It grows out of relationship, never out of a program.'}
+   xEn:'Arguments and doctrine rarely change anyone. Love has to be experienced first. Remembering a name, sharing a meal, listening to the hard story — these small acts of service are what open a heart. It grows out of relationship, never out of a program.'},
+  {d:'2026-08-17', t:'우리 목장은 어떤 공동체인가?', tEn:'What kind of community is our house church?',
+   sub:'목장 사역의 본질을 찾아서 ④', subEn:'The heart of the house church · 4',
+   url:'https://drive.google.com/file/d/1koyqSO7zIu1p9rWxw8vL0bYiFot3TGG-/view'}
 ];
 
 const SHEET_URL = '';
@@ -3491,7 +3494,7 @@ const SHEET_MOKJANG_CSV = 'https://docs.google.com/spreadsheets/d/1uaQudM68JnwR9
 const SHEET_SHARE_CSV = '';   // 나눔지 시트 CSV(1열 날짜 YYYY-MM-DD, 2열 문서링크). 시트 연결하면 이게 우선.
 /* 나눔지 링크 목록 — 키=바탕 주일설교 날짜(일요일), 값=그 주 나눔지 문서/PDF(공개 뷰어). 매주 한 줄만 추가하면 됩니다. */
 const SHARE_DOCS = {
-  '2026-08-16': 'https://drive.google.com/file/d/1koyqSO7zIu1p9rWxw8vL0bYiFot3TGG-/view',   // 목장나눔지 · 교회는 개척하는 것이다(PDF)
+  '2026-08-16': 'https://drive.google.com/file/d/1hxOFcrjI5LbgDqVErQQrrv89HHOosscb/view',   // 목장나눔지 · 교회는 개척하는 것이다(PDF)
 };
 const SHARE_FOLDER = 'https://drive.google.com/drive/folders/1cI-EjCLWOhFFH1TfI6_m6mQX7TMCc659';  // 나눔지 전체 폴더(공개) — 그 주 링크가 아직 없을 때 여기로 연결
 
@@ -3909,6 +3912,8 @@ function renderColumn(){
   const box = document.querySelector('[data-column]');
   if(!box) return;
   const c = currentColumn();
+  // 칼럼별 개별 링크(c.url)가 있으면 그 칼럼 전문(구글문서/PDF)으로, 없으면 홈페이지 칼럼 게시판으로
+  box.onclick = ()=>go(c.url || LINKS.column);
   const [y, m, d] = c.d.split('-');
   box.innerHTML =
       '<span class="col-badge">'+bi('이번 주','THIS WEEK',true)+'</span>'
