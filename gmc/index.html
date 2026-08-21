@@ -2552,6 +2552,18 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </div>
 
+      <!-- 유튜브 라이브 (주일 예배 시간대에만 자동 표시 · 방송 안 하면 채널로) -->
+      <button class="evt evt-link" data-live-btn onclick="go(LINKS.live)" style="width:100%;text-align:left;margin-top:12px;display:none">
+        <div class="evt-date" style="background:rgba(220,38,38,.10)">
+          <div class="evt-d" style="color:#dc2626;font-size:11px;font-weight:800">LIVE</div>
+        </div>
+        <div class="evt-body">
+          <div class="evt-title"><span class="ko">유튜브 라이브 보기</span><span class="en">Watch live on YouTube</span></div>
+          <div class="evt-meta"><span class="ko i">주일 예배 · 방송 중일 때</span><span class="en i">Sunday worship · when we're live</span></div>
+        </div>
+        <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+
       <!-- 이번 주 주보 (오는 주일 · 토요일 게시) -->
       <button class="evt evt-link" onclick="go(bulletinUrl())" style="width:100%;text-align:left;margin-top:12px">
         <div class="evt-date" style="background:var(--accent-pale)">
@@ -3218,6 +3230,8 @@ const LINKS = {
   media     : 'https://www.youtube.com/channel/UCgVYf5bUdOgPk3B2VUjJBgA/videos',
   // 교회 공식 채널
   channel   : 'https://www.youtube.com/@ijiguchon2030',
+  // 유튜브 라이브 — 방송 중이면 그 라이브로, 아니면 채널로 이동
+  live      : 'https://www.youtube.com/@ijiguchon2030/live',
   sermonPage: 'https://www.ijiguchon.org/chnet2/home/?type=sub&step1=2&sid=22',
   column    : 'https://www.ijiguchon.org/chnet2/home/?type=sub&step1=2&sid=23',
   bulletin  : 'https://www.ijiguchon.org/chnet2/home/?type=sub&step1=8&sid=51',
@@ -3976,6 +3990,16 @@ function renderColumn(){
     + '</div>';
 }
 
+/* 유튜브 라이브 버튼 — 주일 예배 시간대(오전 9시~오후 3시)에만 자동으로 보입니다.
+   방송을 안 하면 눌러도 채널로 갈 뿐이라, 매주 방송 안 해도 문제 없습니다. */
+function renderLive(){
+  const btns = document.querySelectorAll('[data-live-btn]');
+  if(!btns.length) return;
+  const d = new Date();
+  const on = (d.getDay() === 0) && d.getHours() >= 9 && d.getHours() < 15;   // 주일 09:00~15:00
+  btns.forEach(b => b.style.display = on ? '' : 'none');
+}
+
 function renderServices(){
   // 카드에는 새 예배시간(오전 11시)을 앞세우고, 9/6 전에는 "(9월 6일부터)"를 덧붙임(그날 지나면 자동으로 사라짐)
   const timeKo = SERVICE.after.ko + (changed() ? '' : ' (9월 6일부터)');
@@ -4678,6 +4702,7 @@ function applyLang(lang){
   fetchMokjangPublic();
   renderBulletin();
   resolveBulletin();
+  renderLive();
   markHebronArrival();
   loadSermonAudio();
 }
