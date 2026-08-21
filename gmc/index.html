@@ -1212,6 +1212,15 @@ button.bp:active{transform:scale(.985)}
 .mj-body{flex:1;min-width:0}
 /* 선교적 정체성 안내 */
 .mission-note{padding:14px 16px;background:var(--accent-pale);border-color:rgba(200,148,74,.3);margin-bottom:12px}
+/* 이번 주 목장 나눔지 카드 */
+.share-card{display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;margin-top:12px;padding:14px;border-radius:var(--r-lg);background:var(--accent-pale);border:1px solid rgba(200,148,74,.32);box-shadow:var(--shadow-xs);transition:transform .14s;-webkit-tap-highlight-color:transparent}
+.share-card:active{transform:scale(.99)}
+.share-badge{flex-shrink:0;padding:7px 9px;border-radius:9px;background:var(--accent);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.02em;white-space:nowrap}
+.share-b{flex:1;min-width:0}
+.share-t{font-size:14.5px;font-weight:800;letter-spacing:-.35px;color:var(--text-1)}
+.share-sub{margin-top:2px;font-size:11.5px;font-weight:600;color:var(--text-3)}
+.share-cta{flex-shrink:0;display:inline-flex;align-items:center;gap:2px;font-size:12px;font-weight:800;color:var(--accent)}
+.share-cta svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.4}
 .mn-lead{font-size:12.5px;line-height:1.75;color:var(--text-2);font-weight:500}
 .mn-lead b{color:var(--accent);font-weight:800}
 .mj-field{font-size:9.5px;font-weight:800;letter-spacing:1.4px;color:var(--text-3)}
@@ -2145,7 +2154,15 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </p>
       </div>
 
-      
+      <!-- 이번 주 목장 나눔지 — 주일 설교 나눔지(구글문서), 매주 자동 -->
+      <button class="card share-card" id="shareCard" onclick="openShare()">
+        <div class="share-badge"><span class="ko i">이번 주</span><span class="en i">THIS WEEK</span></div>
+        <div class="share-b">
+          <div class="share-t"><span class="ko">목장 나눔지</span><span class="en">House Church Sharing Guide</span></div>
+          <div class="share-sub" data-share-sermon><span class="ko i">주일 설교로 함께 나눠요</span><span class="en i">Share around Sunday's message</span></div>
+        </div>
+        <span class="share-cta" data-share-cta><span class="ko i">준비 중</span><span class="en i">soon</span><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span>
+      </button>
 
       <details class="fold" style="margin-top:14px">
         <summary>
@@ -3456,6 +3473,38 @@ function renderWelcome(){
 
 /* ── 이번 주 목장 모임 — 목자들이 채우는 구글시트(CSV)에서 실시간 로드 ── */
 const SHEET_MOKJANG_CSV = 'https://docs.google.com/spreadsheets/d/1uaQudM68JnwR9u7T5-5wifpCJnRb6_oeQZuSV5DmWmA/gviz/tq?tqx=out:csv&gid=0';
+
+/* ── 이번 주 목장 나눔지 — 주일 설교 나눔지(구글문서). 시트(날짜·문서링크)에서 매주 자동으로 그 주 것을 가져옵니다. ── */
+const SHEET_SHARE_CSV = '';   // 나눔지 시트 CSV(1열 날짜 YYYY-MM-DD, 2열 구글문서 링크). 목사님 시트 링크 받으면 여기 채움 → 매주 자동.
+let __shareUrl = '';
+async function fetchShareSheet(){
+  const card = document.getElementById('shareCard');
+  if(!card) return;
+  const sub = card.querySelector('[data-share-sermon]');
+  const cta = card.querySelector('[data-share-cta]');
+  // 이번 주 설교 제목 자동 표시 (시트 없어도 동작)
+  try{ const p = thisSermon(); if(sub && p && p.s) sub.innerHTML = bi(p.s.ref + ' · ' + p.s.title, p.s.ref + ' · ' + p.s.title, true); }catch(_){}
+  // 시트가 연결돼 있으면 오늘 기준 가장 최근 주의 나눔지 링크를 가져옴
+  if(SHEET_SHARE_CSV){
+    try{
+      const r = await fetch(SHEET_SHARE_CSV, {cache:'no-store'});
+      const txt = await r.text();
+      const today = new Date().toISOString().slice(0,10);
+      let pick = null;
+      txt.split('\n').map(l=>l.replace(/\r$/,'')).filter(Boolean).slice(1).forEach(line=>{
+        const f = parseCSVLine(line);
+        const d = (f[0]||'').trim(), link = (f[1]||'').trim();
+        if(d && link && d <= today && (!pick || d > pick.d)) pick = {d, link};
+      });
+      if(pick) __shareUrl = pick.link;
+    }catch(_){ /* 오프라인·오류 → 준비 중 표시 */ }
+  }
+  if(cta) cta.innerHTML = __shareUrl
+    ? bi('나눔지 열기','Open the guide',true) + '<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>'
+    : bi('곧 올라옵니다','coming soon',true);
+  card.classList.toggle('share-ready', !!__shareUrl);
+}
+function openShare(){ if(__shareUrl) go(__shareUrl); }
 function parseCSVLine(line){
   const out=[]; let cur=''; let q=false;
   for(let i=0;i<line.length;i++){
@@ -4457,6 +4506,7 @@ function applyLang(lang){
   renderColumn();
   renderWeekLabel();
   renderSchedule();
+  fetchShareSheet();
   markHebronArrival();
   loadSermonAudio();
 }
