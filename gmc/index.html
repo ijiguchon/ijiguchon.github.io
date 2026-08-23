@@ -2564,6 +2564,18 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
       </button>
 
+      <!-- 오늘 설교 자료(PPT) — 예배 전/중 각자 슬라이드 보기. 자료 있을 때만 표시 -->
+      <button id="pptSection" class="evt evt-link" onclick="go(pptUrl())" style="width:100%;text-align:left;margin-top:12px;display:none">
+        <div class="evt-date" style="background:var(--accent-pale)">
+          <div class="evt-d" style="color:var(--accent)">PPT</div>
+        </div>
+        <div class="evt-body">
+          <div class="evt-title"><span class="ko">오늘 설교 자료 보기</span><span class="en">Today's slides</span></div>
+          <div class="evt-meta"><span class="ko i"><span data-ppt-when></span>설교 슬라이드 · 각자 따라보기</span><span class="en i"><span data-ppt-when-en></span>Sermon slides · follow along</span></div>
+        </div>
+        <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+
       <!-- 이번 주 주보 (오는 주일 · 토요일 게시) -->
       <button class="evt evt-link" onclick="go(bulletinUrl())" style="width:100%;text-align:left;margin-top:12px">
         <div class="evt-date" style="background:var(--accent-pale)">
@@ -3573,6 +3585,22 @@ function renderBulletin(){
     document.querySelectorAll('[data-bulletin-when-en]').forEach(el => { el.textContent = 'This Sun ' + md + ' · '; });
   }catch(_){}
 }
+
+/* 설교 자료(PPT) — 오는 주일 설교 슬라이드. 폴더에 날짜 이름 파일(PDF·PPT)을 넣으면 자동 연결. 자료가 있을 때만 버튼 표시. */
+const PPT_FOLDER = 'https://drive.google.com/drive/folders/15X69zjXfZ3yW9VgV8PTDIr732YPT3_EJ';   // 설교 자료 폴더(공개 필요)
+let __pptUrl = '';
+async function resolvePpt(){
+  __pptUrl = '';
+  try{ __pptUrl = await driveFindByDate(PPT_FOLDER, relevantSunday()); }catch(_){}
+  const sec = document.getElementById('pptSection');
+  if(sec) sec.style.display = __pptUrl ? '' : 'none';   // 자료 없으면 숨김(죽은 버튼 방지)
+  try{
+    const md = relevantSunday().slice(5).replace('-','.');
+    document.querySelectorAll('[data-ppt-when]').forEach(el => { el.textContent = '오는 주일 ' + md + ' · '; });
+    document.querySelectorAll('[data-ppt-when-en]').forEach(el => { el.textContent = 'This Sun ' + md + ' · '; });
+  }catch(_){}
+}
+function pptUrl(){ return __pptUrl || PPT_FOLDER; }
 /* 나눔지 기준 설교 = 지난 주일(가장 최근 지나간 주일)의 설교. 목·금·토 모임용이라 다가올 주일이 아니라 방금 전한 설교 기준. */
 function lastSermon(){
   const d = new Date();
@@ -4702,6 +4730,7 @@ function applyLang(lang){
   fetchMokjangPublic();
   renderBulletin();
   resolveBulletin();
+  resolvePpt();
   renderLive();
   markHebronArrival();
   loadSermonAudio();
