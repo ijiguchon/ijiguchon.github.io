@@ -1656,13 +1656,13 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </div>
 
-      <!-- 한 줄 방향 — 3초 안에 교회의 방향 파악: 가정→목장→땅끝 -->
+      <!-- 한 줄 방향 — 오늘 시애틀 → 내일 미국 → 모레 땅끝 -->
       <div class="dir-flow" aria-label="교회의 방향">
-        <span class="df-i"><span class="ko">집에서 함께 예배</span><span class="en">Worship at home</span></span>
+        <span class="df-i"><span class="ko">오늘은 시애틀</span><span class="en">Today, Seattle</span></span>
         <span class="df-sep">→</span>
-        <span class="df-i"><span class="ko">목장으로 모임</span><span class="en">Gather in house churches</span></span>
+        <span class="df-i"><span class="ko">내일은 미국</span><span class="en">Tomorrow, America</span></span>
         <span class="df-sep">→</span>
-        <span class="df-i"><span class="ko">시애틀에서 땅끝까지</span><span class="en">Seattle to the ends</span></span>
+        <span class="df-i"><span class="ko">모레는 지구촌 땅끝까지</span><span class="en">Then, the ends of the earth</span></span>
       </div>
 
       <!-- 환영의 방 — 접이식(교인은 지나치고, 처음 오신 분은 펼쳐 봄). 히어로가 첫인상을 맡음 -->
@@ -2646,6 +2646,15 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       </div>
       <!-- 내용은 COLUMN_PLAN에서 날짜에 맞춰 채워집니다 -->
       <button class="col-hero" data-column></button>
+      <!-- 칼럼 슬라이드 — 같은 날짜 _슬라이드 파일이 있을 때만 자동 표시 -->
+      <button id="colSlides" class="evt evt-link" style="width:100%;text-align:left;margin-top:8px;display:none">
+        <div class="evt-date" style="background:var(--accent-pale)"><div class="evt-d" style="color:var(--accent)">PPT</div></div>
+        <div class="evt-body">
+          <div class="evt-title"><span class="ko">칼럼 슬라이드 보기</span><span class="en">Column slides</span></div>
+          <div class="evt-meta"><span class="ko i">같은 칼럼을 슬라이드로 · 나눔용</span><span class="en i">The same column, as slides</span></div>
+        </div>
+        <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
       <button class="btn btn-primary btn-full" style="margin-top:9px" onclick="openModal('topastor')">
         <span class="ko i">읽고 나서 — 목사님께 한마디</span><span class="en i">Write back to the pastor</span>
       </button>
@@ -3199,7 +3208,8 @@ const COLUMN_PLAN = [
    xEn:'Arguments and doctrine rarely change anyone. Love has to be experienced first. Remembering a name, sharing a meal, listening to the hard story — these small acts of service are what open a heart. It grows out of relationship, never out of a program.'},
   {d:'2026-08-16', t:'우리 목장은 어떤 공동체인가?', tEn:'What kind of community is our house church?',
    sub:'목장 사역의 본질을 찾아서 ④', subEn:'The heart of the house church · 4',
-   url:'https://drive.google.com/file/d/1koyqSO7zIu1p9rWxw8vL0bYiFot3TGG-/view'}
+   url:'https://drive.google.com/file/d/1koyqSO7zIu1p9rWxw8vL0bYiFot3TGG-/view'},
+  {d:'2026-08-23', t:'삶을 나누는 이유', tEn:'Healing Through Vulnerability'}
 ];
 
 const SHEET_URL = '';
@@ -3996,19 +4006,12 @@ function currentColumn(){
   return pick || COLUMN_PLAN[COLUMN_PLAN.length - 1];
 }
 
-function renderColumn(){
-  const box = document.querySelector('[data-column]');
-  if(!box) return;
-  const c = currentColumn();
-  // 링크 우선순위: 칼럼별 수동 링크(c.url) → 칼럼 폴더 자동 검색(날짜) → 홈페이지 칼럼 게시판
-  box.onclick = ()=>go(c.url || LINKS.column);
-  if(!c.url && COLUMN_FOLDER){
-    driveFindByDate(COLUMN_FOLDER, c.d).then(u => { if(u) box.onclick = ()=>go(u); }).catch(()=>{});
-  }
-  const [y, m, d] = c.d.split('-');
+/* 칼럼 카드 그리기 (공통) — c: {iso,koT,enT,sub,subEn,x,xEn,bodyUrl,slidesUrl} */
+function paintColumn(box, c){
+  const [y, m, d] = c.iso.split('-');
   box.innerHTML =
       '<span class="col-badge">'+bi('이번 주','THIS WEEK',true)+'</span>'
-    + '<div class="col-t">'+bi(c.t, c.tEn)+'</div>'
+    + '<div class="col-t">'+bi(c.koT, c.enT)+'</div>'
     + (c.sub ? '<div class="col-sub">'+bi(c.sub, c.subEn, true)+'</div>' : '')
     + (c.x   ? '<p class="col-d">'+bi(c.x, c.xEn)+'</p>' : '')
     + '<div class="col-by">'
@@ -4016,6 +4019,97 @@ function renderColumn(){
     +   '<span class="wc-cta" style="margin-top:0">'+bi('칼럼 전문 읽기','Read in full',true)
     +     '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>'
     + '</div>';
+  box.onclick = ()=>go(c.bodyUrl || (typeof LINKS!=='undefined'?LINKS.column:'#'));
+  const sb = document.getElementById('colSlides');   // 슬라이드 버튼은 슬라이드 파일이 있을 때만
+  if(sb){
+    if(c.slidesUrl){ sb.style.display=''; sb.onclick = ()=>go(c.slidesUrl); }
+    else sb.style.display='none';
+  }
+}
+
+/* 파일 이름에서 칼럼 제목(한/영) 추출: MMDDYY_한글제목(English).pdf → {ko,en} */
+function columnTitles(name){
+  let s = (name||'').replace(/\.[a-z0-9]+$/i,'');           // 확장자 제거
+  s = s.replace(/^\s*\d{6}[_\s.\-]*/,'');                    // 앞 날짜(MMDDYY) 제거
+  s = s.replace(/[_\s\-]*(슬라이드|slides?|ppt)\s*$/i,'');    // 슬라이드 표시 제거
+  let en = null;
+  const p = s.match(/\(([^)]+)\)/);                          // 괄호 안 영어 병기
+  if(p){ en = p[1].replace(/[_]+/g,' ').trim(); s = s.replace(/\s*\([^)]*\)\s*/,' ').trim(); }
+  const ko = s.replace(/[_]+/g,' ').trim();
+  return { ko: ko, en: (en || ko) };
+}
+
+/* 목회칼럼 폴더에서 오늘 이전 가장 최근 칼럼 자동 검색 (제목·날짜·본문·슬라이드) */
+async function driveLatestColumn(){
+  if(!GDRIVE_API_KEY || !COLUMN_FOLDER) return null;
+  const fid = (String(COLUMN_FOLDER).match(/folders\/([-\w]+)/)||[])[1];
+  if(!fid) return null;
+  const nd = new Date();
+  const todayIso = nd.getFullYear()+'-'+String(nd.getMonth()+1).padStart(2,'0')+'-'+String(nd.getDate()).padStart(2,'0');
+  const url = 'https://www.googleapis.com/drive/v3/files?q='+encodeURIComponent("'"+fid+"' in parents and trashed=false")
+    + '&key='+GDRIVE_API_KEY+'&fields='+encodeURIComponent('files(id,name,mimeType,webViewLink)')
+    + '&includeItemsFromAllDrives=true&supportsAllDrives=true&pageSize=300';
+  let files;
+  try{ const r=await fetch(url); if(!r.ok) return null; const j=await r.json(); files=(j.files||[]).filter(f=>f.mimeType!=='application/vnd.google-apps.folder'); }
+  catch(_){ return null; }
+  const link = f => f.webViewLink || ('https://drive.google.com/file/d/'+f.id+'/view');
+  const isSlide = f => /(슬라이드|slides?|_ppt|ppt\b)/i.test(f.name||'');
+  const hasKo = s => /[가-힣]/.test(s||'');
+  const score = f => f.mimeType==='application/pdf'?3 : f.mimeType==='application/vnd.google-apps.document'?2 : 1;
+  const byDate = {};
+  for(const f of files){
+    const mm = (f.name||'').match(/^\s*(\d{2})(\d{2})(\d{2})/);   // MMDDYY 시작
+    if(!mm) continue;
+    const iso = '20'+mm[3]+'-'+mm[1]+'-'+mm[2];
+    (byDate[iso] = byDate[iso] || []).push(f);
+  }
+  const dates = Object.keys(byDate).filter(dd => dd <= todayIso).sort();
+  const iso = dates[dates.length-1];
+  if(!iso) return null;
+  const group = byDate[iso];
+  const slides = group.filter(isSlide).sort((a,b)=>score(b)-score(a))[0];
+  const body = group.filter(f=>!isSlide(f)).sort((a,b)=>{
+    const ka=hasKo(a.name)?1:0, kb=hasKo(b.name)?1:0;
+    if(ka!==kb) return kb-ka;                    // 한글 제목 본문 우선
+    const pa=/\(/.test(a.name)?1:0, pb=/\(/.test(b.name)?1:0;
+    if(pa!==pb) return pb-pa;                    // 영어 병기(괄호) 있는 것 우선
+    return score(b)-score(a);
+  })[0];
+  if(!body) return null;
+  const t = columnTitles(body.name);
+  return { iso, koTitle:t.ko, enTitle:t.en, bodyUrl:link(body), slidesUrl: slides?link(slides):'' };
+}
+
+function renderColumn(){
+  const box = document.querySelector('[data-column]');
+  if(!box) return;
+  const c = currentColumn();   // 먼저 COLUMN_PLAN으로 즉시 표시(폴더 로딩 전)
+  paintColumn(box, {iso:c.d, koT:c.t, enT:c.tEn, sub:c.sub, subEn:c.subEn, x:c.x, xEn:c.xEn, bodyUrl:c.url||'', slidesUrl:''});
+  resolveColumn(box);          // 폴더 자동 검색으로 최신 칼럼 갱신
+}
+
+/* 폴더 자동 우선 → COLUMN_PLAN에 같은 날짜 곁들임(소제목·발췌·영문제목)이 있으면 합쳐 더 풍성하게 */
+async function resolveColumn(box){
+  box = box || document.querySelector('[data-column]');
+  if(!box) return;
+  let auto = null;
+  try{ auto = await driveLatestColumn(); }catch(_){}
+  if(auto){
+    const plan = COLUMN_PLAN.find(x => x.d === auto.iso) || {};
+    paintColumn(box, {
+      iso: auto.iso,
+      koT: plan.t || auto.koTitle,
+      enT: plan.tEn || auto.enTitle,
+      sub: plan.sub, subEn: plan.subEn, x: plan.x, xEn: plan.xEn,
+      bodyUrl: plan.url || auto.bodyUrl,
+      slidesUrl: auto.slidesUrl
+    });
+    return;
+  }
+  const c = currentColumn();   // 폴더 비었거나 오류 → COLUMN_PLAN + 날짜 링크
+  let bodyUrl = c.url || '';
+  if(!bodyUrl && COLUMN_FOLDER){ try{ bodyUrl = await driveFindByDate(COLUMN_FOLDER, c.d); }catch(_){} }
+  paintColumn(box, {iso:c.d, koT:c.t, enT:c.tEn, sub:c.sub, subEn:c.subEn, x:c.x, xEn:c.xEn, bodyUrl:bodyUrl||(typeof LINKS!=='undefined'?LINKS.column:'#'), slidesUrl:''});
 }
 
 /* 유튜브 라이브 버튼 — 주일 예배 시간대(오전 9시~오후 3시)에만 자동으로 보입니다.
