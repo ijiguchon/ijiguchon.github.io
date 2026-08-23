@@ -2612,21 +2612,11 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </summary>
         <div class="fold-body">
-      <div id="satSection">
-        <div class="card sat-card">
-          <div class="sat-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 3v2M5.6 5.6l1.4 1.4M3 12h2M19 12h2M17 7l1.4-1.4M12 8a4 4 0 0 0-4 4h8a4 4 0 0 0-4-4z"/><path d="M3 16h18M5 20h14"/></svg>
-          </div>
-          <div class="sat-body">
-            <div class="sat-eyebrow"><span class="ko i">이번 주 토요새벽기도회</span><span class="en i">This Saturday · Dawn Prayer</span></div>
-            <div class="sat-title" data-sat-title></div>
-            <div class="sat-ref" data-sat-ref></div>
-          </div>
-          <div class="sat-time"><span class="ko i">토 오전<br>6:00</span><span class="en i">Sat<br>6 AM</span></div>
-        </div>
-      </div>
+      <!-- 이 주간 명명 (주일~토요일) — 자동 계산 -->
+      <div style="font-size:11px;font-weight:800;color:var(--accent);text-align:center;margin-bottom:12px;letter-spacing:.2px"><span class="ko i" data-prayer-week></span><span class="en i" data-prayer-week-en></span></div>
 
-      <button class="card altar" style="margin-top:10px" onclick="go(LINKS.hebronAltar)">
+      <!-- 순서: 월~금 먼저, 토요 나중 (주중→주말, 단계적) -->
+      <button class="card altar" onclick="go(LINKS.hebronAltar)">
         <div class="altar-icon">
           <svg viewBox="0 0 24 24"><path d="M12 3v4M12 7c-2 0-3.5 1.5-3.5 3.5h7C15.5 8.5 14 7 12 7z"/><path d="M4 14h16M6 14v6M18 14v6M9 20h6"/></svg>
         </div>
@@ -2636,6 +2626,20 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
         <svg class="mj-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
       </button>
+
+      <div id="satSection" style="margin-top:10px">
+        <div class="card sat-card">
+          <div class="sat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3v2M5.6 5.6l1.4 1.4M3 12h2M19 12h2M17 7l1.4-1.4M12 8a4 4 0 0 0-4 4h8a4 4 0 0 0-4-4z"/><path d="M3 16h18M5 20h14"/></svg>
+          </div>
+          <div class="sat-body">
+            <div class="sat-eyebrow"><span class="ko i">토요새벽기도회 · <span data-sat-when></span></span><span class="en i">Saturday Dawn Prayer · <span data-sat-when-en></span></span></div>
+            <div class="sat-title" data-sat-title></div>
+            <div class="sat-ref" data-sat-ref></div>
+          </div>
+          <div class="sat-time"><span class="ko i">토 오전<br>6:00</span><span class="en i">Sat<br>6 AM</span></div>
+        </div>
+      </div>
         </div>
       </details>
 
@@ -3837,10 +3841,11 @@ function renderSaturday(){
   if(!wrap) return;
   const iso = thisSaturday();
   let s = SAT_PLAN[iso];
+  let shownIso = iso;
   if(!s){
     const today = new Date().toISOString().slice(0,10);
     const up = Object.keys(SAT_PLAN).filter(k => k >= today).sort()[0];
-    if(up){ s = SAT_PLAN[up]; }
+    if(up){ s = SAT_PLAN[up]; shownIso = up; }
   }
   if(!s || s.title === '결강'){ wrap.style.display = 'none'; return; }
   wrap.style.display = '';
@@ -3848,6 +3853,22 @@ function renderSaturday(){
   const r = wrap.querySelector('[data-sat-ref]');
   if(t) t.textContent = s.title;
   if(r) r.textContent = s.ref === '—' ? '' : s.ref;
+  const [ , mm, dd] = shownIso.split('-');
+  wrap.querySelectorAll('[data-sat-when]').forEach(el => el.textContent = Number(mm)+'월 '+Number(dd)+'일');
+  wrap.querySelectorAll('[data-sat-when-en]').forEach(el => el.textContent = MON_EN[Number(mm)-1]+' '+Number(dd));
+}
+
+/* 이 주간(주일~토요일) 명명 — "8월 23일(주일) ~ 29일(토) 주간 기도 모임" */
+function renderPrayerWeek(){
+  const el = document.querySelector('[data-prayer-week]');
+  const en = document.querySelector('[data-prayer-week-en]');
+  if(!el && !en) return;
+  const d = new Date();
+  const sun = new Date(d); sun.setDate(d.getDate() - d.getDay());   // 이번 주 주일(오늘이 주일이면 오늘)
+  const sat = new Date(sun); sat.setDate(sun.getDate() + 6);        // 그 주 토요일
+  const sm = sun.getMonth()+1, sd = sun.getDate(), em = sat.getMonth()+1, ed = sat.getDate();
+  if(el) el.textContent = sm+'월 '+sd+'일(주일) ~ '+((em===sm)?ed+'일(토)':em+'월 '+ed+'일(토)')+' 주간 기도 모임';
+  if(en) en.textContent = 'Week of '+MON_EN[sm-1]+' '+sd+' (Sun) – '+((em===sm)?ed:MON_EN[em-1]+' '+ed)+' (Sat)';
 }
 
 /* 이번 주 말씀 — 주일 설교계획표에서 오늘 날짜로 자동 표시 */
@@ -4815,6 +4836,7 @@ function applyLang(lang){
   renderRoster();
   renderSermonHero();
   renderSaturday();
+  renderPrayerWeek();
   renderWelcome();
   renderHostDir();
   renderColumn();
