@@ -2606,15 +2606,12 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       <details class="fold" style="margin-top:16px">
         <summary>
           <div class="fold-t">
-            <div class="fold-title"><span class="ko">기도 모임</span><span class="en">Prayer gatherings</span></div>
+            <div class="fold-title"><span class="ko">주간 묵상 및 기도 모임</span><span class="en">Weekly Meditation &amp; Prayer</span></div>
             <div class="fold-sub"><span class="ko i">토요새벽 · 월~금 각자 집에서</span><span class="en i">Saturday dawn · weekdays at home</span></div>
           </div>
           <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </summary>
         <div class="fold-body">
-      <!-- 이 주간 명명 (주일~토요일) — 자동 계산 -->
-      <div style="font-size:11px;font-weight:800;color:var(--accent);text-align:center;margin-bottom:12px;letter-spacing:.2px"><span class="ko i" data-prayer-week></span><span class="en i" data-prayer-week-en></span></div>
-
       <!-- 순서: 월~금 먼저, 토요 나중 (주중→주말, 단계적) -->
       <button class="card altar" onclick="go(LINKS.hebronAltar)">
         <div class="altar-icon">
@@ -4836,7 +4833,6 @@ function applyLang(lang){
   renderRoster();
   renderSermonHero();
   renderSaturday();
-  renderPrayerWeek();
   renderWelcome();
   renderHostDir();
   renderColumn();
