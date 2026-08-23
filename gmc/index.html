@@ -3851,8 +3851,11 @@ function renderSaturday(){
   if(t) t.textContent = s.title;
   if(r) r.textContent = s.ref === '—' ? '' : s.ref;
   const [ , mm, dd] = shownIso.split('-');
-  wrap.querySelectorAll('[data-sat-when]').forEach(el => el.textContent = Number(mm)+'월 '+Number(dd)+'일');
-  wrap.querySelectorAll('[data-sat-when-en]').forEach(el => el.textContent = MON_EN[Number(mm)-1]+' '+Number(dd));
+  const todayIso = new Date().toISOString().slice(0,10);
+  const soonKo = (shownIso > todayIso) ? '오는 ' : '';     // 미래면 '오는'(예고), 오늘(토)이면 생략
+  const soonEn = (shownIso > todayIso) ? 'Upcoming ' : '';
+  wrap.querySelectorAll('[data-sat-when]').forEach(el => el.textContent = soonKo + Number(mm)+'월 '+Number(dd)+'일');
+  wrap.querySelectorAll('[data-sat-when-en]').forEach(el => el.textContent = soonEn + MON_EN[Number(mm)-1]+' '+Number(dd));
 }
 
 /* 이 주간(주일~토요일) 명명 — "8월 23일(주일) ~ 29일(토) 주간 기도 모임" */
