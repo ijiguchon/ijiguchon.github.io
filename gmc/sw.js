@@ -11,7 +11,7 @@
    배포 후 내용을 바꾸면 CACHE_VERSION 을 올려주세요.
    ══════════════════════════════════════════════════════════ */
 
-const CACHE_VERSION = 'gmc-v98';
+const CACHE_VERSION = 'gmc-v99';
 const SHELL_CACHE = CACHE_VERSION + '-shell';
 const ASSET_CACHE = CACHE_VERSION + '-assets';
 const IMG_CACHE   = CACHE_VERSION + '-img';
