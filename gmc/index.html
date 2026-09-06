@@ -3580,11 +3580,42 @@ async function driveFindByDate(folderUrl, iso){
 /* 목회칼럼 전용 폴더(공개) — 칼럼 PDF/문서를 날짜 이름으로 넣는 곳. 비어 있으면 홈페이지 칼럼 게시판으로 연결. */
 const COLUMN_FOLDER = 'https://drive.google.com/drive/folders/1cI-EjCLWOhFFH1TfI6_m6mQX7TMCc659';   // 목회칼럼 전체 폴더(공개) — 칼럼별 수동 링크 없으면 여기서 날짜로 자동 검색
 
+/* 폴더에서 maxIso(오는 주일) 이하 중 가장 최근 날짜의 파일(PDF 우선)을 찾음.
+   파일명 날짜 형식: MM.DD.YYYY · MMDDYY · YYYYMMDD 모두 인식. 정확한 날짜 매칭 실패 시의 '최신 주보' 폴백. */
+async function driveLatestByDate(folderUrl, maxIso){
+  if(!GDRIVE_API_KEY || !folderUrl) return '';
+  const fid = (String(folderUrl).match(/folders\/([-\w]+)/)||[])[1];
+  if(!fid) return '';
+  const url = 'https://www.googleapis.com/drive/v3/files?q='+encodeURIComponent("'"+fid+"' in parents and trashed=false")
+    + '&key='+GDRIVE_API_KEY+'&fields='+encodeURIComponent('files(id,name,mimeType,webViewLink)')
+    + '&includeItemsFromAllDrives=true&supportsAllDrives=true&pageSize=300';
+  let files;
+  try{ const r=await fetch(url); if(!r.ok) return ''; const j=await r.json(); files=(j.files||[]).filter(f=>f.mimeType!=='application/vnd.google-apps.folder'); }
+  catch(_){ return ''; }
+  const score = f => f.mimeType==='application/pdf'?3 : f.mimeType==='application/vnd.google-apps.document'?2 : 1;
+  const isoOf = name => {
+    const d = name||''; let m;
+    if((m = d.match(/(\d{1,2})[.\-\/](\d{1,2})[.\-\/](20\d{2})/))) return m[3]+'-'+m[1].padStart(2,'0')+'-'+m[2].padStart(2,'0'); // MM.DD.YYYY
+    if((m = d.match(/^\s*(\d{2})(\d{2})(\d{2})(?!\d)/)))          return '20'+m[3]+'-'+m[1]+'-'+m[2];                         // MMDDYY
+    if((m = d.match(/(20\d{2})(\d{2})(\d{2})/)))                  return m[1]+'-'+m[2]+'-'+m[3];                              // YYYYMMDD
+    return '';
+  };
+  let best=null, bestIso='';
+  for(const f of files){
+    const iso = isoOf(f.name); if(!iso) continue;
+    if(maxIso && iso > maxIso) continue;                       // 미래(다음다음주 등)는 제외
+    if(iso > bestIso || (iso === bestIso && score(f) > score(best))){ best=f; bestIso=iso; }
+  }
+  return best ? (best.webViewLink || ('https://drive.google.com/file/d/'+best.id+'/view')) : '';
+}
+
 let __bulletinUrl = '';
 async function resolveBulletin(){
   __bulletinUrl = '';
-  try{ const iso = relevantSunday(); if(BULLETIN_DOCS[iso]) __bulletinUrl = BULLETIN_DOCS[iso]; }catch(_){}
-  if(!__bulletinUrl){ try{ __bulletinUrl = await driveFindByDate(BULLETIN_FOLDER, relevantSunday()); }catch(_){} }
+  const iso = (function(){ try{ return relevantSunday(); }catch(_){ return ''; } })();
+  try{ if(iso && BULLETIN_DOCS[iso]) __bulletinUrl = BULLETIN_DOCS[iso]; }catch(_){}                 // 1) 수동 지정
+  if(!__bulletinUrl && iso){ try{ __bulletinUrl = await driveFindByDate(BULLETIN_FOLDER, iso); }catch(_){} }  // 2) 오는 주일 정확 매칭
+  if(!__bulletinUrl){ try{ __bulletinUrl = await driveLatestByDate(BULLETIN_FOLDER, iso); }catch(_){} }        // 3) 최신 주보 PDF 폴백
 }
 function bulletinUrl(){
   return __bulletinUrl || BULLETIN_FOLDER || (typeof LINKS !== 'undefined' ? LINKS.bulletin : '#');
@@ -5220,6 +5251,15 @@ function applyPendingReloadIfIdle(){
 /* ══════════════════════════════════════
    BOOT
    ══════════════════════════════════════ */
+/* 앱이 다시 화면에 돌아올 때(백그라운드→앞으로) 날짜·드라이브 의존 데이터를 다시 불러옵니다.
+   → 목사님이 주보 PDF를 새로 올리고 앱을 다시 열면, 새로고침 버튼 없이 최신으로 갱신됩니다. */
+function refreshDynamic(){
+  [renderSermonHero, renderSaturday, renderColumn, renderWeekLabel, renderSchedule,
+   renderServices, renderCommunion, fetchShareSheet, fetchMokjangPublic,
+   renderBulletin, resolveBulletin, resolvePpt, renderLive, loadSermonAudio]
+   .forEach(fn => { try{ fn(); }catch(_){} });
+}
+
 (function init(){
   let saved = null;
   try{ saved = localStorage.getItem('church-lang'); }catch(_){}
@@ -5240,6 +5280,14 @@ function applyPendingReloadIfIdle(){
     if(e.key !== 'Escape') return;
     const open = document.querySelector('.modal-overlay.open');
     if(open) closeModal(null, open.id.replace('modal-',''));
+  });
+
+  // 앱을 다시 열 때(30초 이상 백그라운드였다가 복귀) 최신 데이터 자동 갱신
+  let __lastActive = Date.now();
+  document.addEventListener('visibilitychange', ()=>{
+    if(document.visibilityState !== 'visible') return;
+    if(Date.now() - __lastActive > 30000){ try{ refreshDynamic(); }catch(_){} }
+    __lastActive = Date.now();
   });
 })();
 </script>
