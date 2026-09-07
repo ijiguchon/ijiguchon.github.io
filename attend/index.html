@@ -170,11 +170,11 @@ const DEMO_CLASSES = {
   'GMC Y': ['박성은', '박성민', 'Lily Woods', 'Aaron Woods']
 };
 
-// 부서별 담당 교사 (부서 고르면 자동으로 채워짐)
-// 유초등부 디렉터=김지영 · GMC Y 교사/Assistant Pastor=Garrett Woods
+// 부서별 담당 교사 (부서 고르면 자동으로 채워짐 · 언어별 이름)
+// 유초등부 디렉터=김지영(Jiyoung Joy Kim) · GMC Y 교사/Assistant Pastor=Garrett Woods
 const TEACHERS = {
-  '유초등부': '김지영',
-  'GMC Y': 'Garrett Woods'
+  '유초등부': { ko:'김지영', en:'Jiyoung Joy Kim' },
+  'GMC Y':   { ko:'Garrett Woods', en:'Garrett Woods' }
 };
 
 const V = ['대면','온라인','결석'];
@@ -226,6 +226,9 @@ function applyLang(){
   $('teacherInp').placeholder = d.teacherPh;
   $('homeInp').placeholder = d.homePh;
   $('addName').placeholder = d.addPh;
+  // 교사 이름도 언어 따라 전환 (자동입력된 경우에만, 직접 고친 이름은 유지)
+  const ti = $('teacherInp'); const cd = TEACHERS[$('classSel').value];
+  if(ti && cd){ const other = (lang==='ko'? cd.en : cd.ko); if(ti.value.trim()==='' || ti.value.trim()===other) ti.value = cd[lang] || cd.ko; }
   const mo = $('modeAll').options;
   if(mo.length >= 4){ mo[0].text = d.fill; mo[1].text = d.allIn; mo[2].text = d.allOn; mo[3].text = d.allOff; }
   document.querySelectorAll('.s-note input').forEach(i => i.placeholder = d.notePh);
@@ -311,7 +314,7 @@ function addStudentUI(){
 /* 명단 그리기 */
 function renderRoster(){
   const cls = $('classSel').value;
-  if(TEACHERS[cls] && $('teacherInp')) $('teacherInp').value = TEACHERS[cls];
+  if(TEACHERS[cls] && $('teacherInp')) $('teacherInp').value = TEACHERS[cls][lang] || TEACHERS[cls].ko;
   const list = CLASSES[cls] || [];
   marks = {}; notes = {};
   const box = $('roster');
