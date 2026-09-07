@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="robots" content="noindex"/>
+<title>교회학교 출석부 · 시애틀지구촌교회</title>
+<style>
+  /* ══ 교회 브랜드(네이비·골드) ══ */
+  :root{
+    --navy:#1a3560; --navy-2:#26407A; --gold:#C8944A;
+    --ink:#1d2430; --ink-2:#48505e; --ink-3:#8a93a2;
+    --cream:#FBF7F0; --line:#ECE6DC; --card:#fff;
+    --ok:#1f9d63; --on:#2b6cb0; --off:#b23b3b;
+    --r:16px; --r-sm:11px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,sans-serif;
+    color:var(--ink); background:var(--cream); line-height:1.6; -webkit-font-smoothing:antialiased;
+    padding:0 0 120px;
+  }
+  .en{display:none} body.lang-en .ko{display:none} body.lang-en .en{display:inline}
+  .wrap{max-width:560px;margin:0 auto;padding:0 16px}
+
+  header{background:linear-gradient(180deg,var(--navy-2),var(--navy));color:#fff;padding:18px 16px 20px}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .h-title{font-weight:900;font-size:17px;letter-spacing:-.3px}
+  .h-sub{font-size:12px;opacity:.85;font-weight:600;margin-top:2px}
+  .lang{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800;cursor:pointer}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px;box-shadow:0 2px 10px rgba(26,53,96,.05)}
+  .step{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gold)}
+  label.lbl{display:block;font-weight:800;font-size:14px;margin:2px 0 8px}
+  select,input[type=date],input[type=text]{
+    width:100%;font-size:16px;font-family:inherit;color:var(--ink);
+    border:1.5px solid var(--line);border-radius:var(--r-sm);padding:12px 12px;background:#fff;
+  }
+  select:focus,input:focus{outline:none;border-color:var(--navy-2)}
+  .row2{display:flex;gap:10px} .row2>*{flex:1}
+
+  .roster{margin-top:6px}
+  .r-head{display:flex;justify-content:space-between;align-items:center;margin:4px 2px 10px}
+  .r-count{font-size:13px;color:var(--ink-2);font-weight:700}
+  .quick{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:7px 12px;font-size:12.5px;font-weight:800;color:var(--navy);cursor:pointer}
+
+  .student{display:flex;align-items:center;gap:10px;padding:9px 4px;border-bottom:1px solid var(--line)}
+  .student:last-child{border-bottom:0}
+  .s-name{flex:1;font-weight:700;font-size:15px}
+  .s-btns{display:flex;gap:6px}
+  .sb{border:1.5px solid var(--line);background:#fff;color:var(--ink-2);border-radius:999px;padding:7px 10px;font-size:12.5px;font-weight:800;cursor:pointer;transition:.12s;min-width:52px;text-align:center}
+  .sb.on[data-v="대면"]{background:var(--ok);border-color:var(--ok);color:#fff}
+  .sb.on[data-v="온라인"]{background:var(--on);border-color:var(--on);color:#fff}
+  .sb.on[data-v="결석"]{background:var(--off);border-color:var(--off);color:#fff}
+
+  .empty{color:var(--ink-3);text-align:center;padding:26px 10px;font-size:14px}
+
+  .bar{position:fixed;left:0;right:0;bottom:0;background:rgba(251,247,240,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+  .bar .wrap{display:flex;align-items:center;gap:12px}
+  .tally{flex:1;font-size:13px;font-weight:800;color:var(--ink-2)}
+  .tally b{color:var(--navy)}
+  .submit{background:linear-gradient(180deg,#E4A85C,#C8843A);color:#fff;border:0;border-radius:999px;padding:14px 22px;font-size:15px;font-weight:900;cursor:pointer;box-shadow:0 6px 16px rgba(200,132,58,.34)}
+  .submit:disabled{opacity:.5;box-shadow:none;cursor:default}
+
+  .toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 18px;border-radius:12px;font-weight:800;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transition:.25s;pointer-events:none;max-width:90%}
+  .toast.show{opacity:1}
+  .note{font-size:12px;color:var(--ink-3);margin-top:10px;line-height:1.5}
+  .demo{display:inline-block;background:#FDECEC;color:#b23b3b;border-radius:999px;padding:2px 9px;font-size:11px;font-weight:800;margin-left:6px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div>
+      <div class="h-title"><span class="ko">교회학교 출석부</span><span class="en">Church School Attendance</span></div>
+      <div class="h-sub">시애틀지구촌교회 · GMC of Greater Seattle</div>
+    </div>
+    <button class="lang" id="langBtn">EN</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="card">
+    <div class="step">STEP 1</div>
+    <label class="lbl"><span class="ko">부서 · 반을 고르세요</span><span class="en">Choose department / class</span></label>
+    <select id="classSel"></select>
+  </div>
+
+  <div class="card">
+    <div class="step">STEP 2</div>
+    <label class="lbl"><span class="ko">예배 날짜 (주일)</span><span class="en">Worship date (Sunday)</span></label>
+    <div class="row2">
+      <input type="date" id="dateInp"/>
+      <select id="modeAll" title="한 번에 채우기">
+        <option value=""><span>한 번에 채우기</span></option>
+        <option value="대면">모두 대면</option>
+        <option value="온라인">모두 온라인</option>
+        <option value="결석">모두 결석</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="step">STEP 3<span class="demo" id="demoTag" hidden>데모 모드</span></div>
+    <div class="r-head">
+      <label class="lbl" style="margin:0"><span class="ko">출석 체크</span><span class="en">Mark attendance</span></label>
+      <span class="r-count" id="rCount"></span>
+    </div>
+    <div class="roster" id="roster"></div>
+    <div class="note ko">각 이름 옆에서 <b>대면 · 온라인 · 결석</b>을 눌러 주세요. 안 누른 학생은 결석으로 저장되지 않고 "미표시"로 남습니다.</div>
+    <div class="note en">Tap <b>In-person / Online / Absent</b> next to each name. Unmarked students are saved as "not marked", not absent.</div>
+  </div>
+
+  <div class="note ko">명단에 없는 학생이 왔나요? 담임목사님(또는 관리자)께 알려 주시면 명단에 추가해 드립니다.</div>
+  <div class="note en">New student not on the list? Let the pastor/admin know to add them.</div>
+</div>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="tally" id="tally"><span class="ko">대면 <b>0</b> · 온라인 <b>0</b> · 결석 <b>0</b></span><span class="en">In-person <b>0</b> · Online <b>0</b> · Absent <b>0</b></span></div>
+    <button class="submit" id="submitBtn"><span class="ko">제출</span><span class="en">Submit</span></button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ══════════════════════════════════════════════════════════
+   교회학교 출석부 — 설정
+   ────────────────────────────────────────────────────────
+   · SCRIPT_URL 이 비어 있으면 "데모 모드"(저장 안 됨, 화면 연습용).
+   · 목사님이 출석부_통합설치.gs 를 설치·배포하면 나오는
+     웹앱 주소(.../exec)를 아래 SCRIPT_URL 에 넣어 주세요.
+   · 그러면 반 명단은 구글 시트 "명단" 탭에서 자동으로 불러오고,
+     출석 결과는 "출석" 탭에 자동 저장됩니다.
+   ══════════════════════════════════════════════════════════ */
+const SCRIPT_URL = '';   // ← 백엔드 설치 후 여기에 .../exec 주소
+
+// 데모용 임시 명단 (백엔드 연결 전, 화면 연습용)
+// 실제 명단은 시트에서 관리하므로 여기 이름은 예시입니다.
+const DEMO_CLASSES = {
+  '어린이부': ['김하은', '박도윤', '이서준', '최지우'],
+  '청소년부': ['박민서', '이하준', '정예린']
+};
+
+const V = ['대면','온라인','결석'];
+let CLASSES = DEMO_CLASSES;
+let marks = {};   // 이름 -> 상태
+
+const $ = (id) => document.getElementById(id);
+
+/* 언어 토글 */
+$('langBtn').onclick = () => {
+  document.body.classList.toggle('lang-en');
+  $('langBtn').textContent = document.body.classList.contains('lang-en') ? '한국어' : 'EN';
+};
+
+/* 이번(가장 가까운) 주일 날짜 */
+function nearestSunday(){
+  const d = new Date();
+  const day = d.getDay();           // 0=일
+  if(day !== 0) d.setDate(d.getDate() - day);  // 이번 주 일요일로
+  return d.toISOString().slice(0,10);
+}
+
+/* 반 선택 채우기 */
+function fillClasses(){
+  const sel = $('classSel');
+  sel.innerHTML = '';
+  Object.keys(CLASSES).forEach(c => {
+    const o = document.createElement('option'); o.value = c; o.textContent = c; sel.appendChild(o);
+  });
+}
+
+/* 명단 그리기 */
+function renderRoster(){
+  const cls = $('classSel').value;
+  const list = CLASSES[cls] || [];
+  marks = {};
+  const box = $('roster');
+  box.innerHTML = '';
+  if(!list.length){ box.innerHTML = '<div class="empty">이 반에 등록된 학생이 없습니다.</div>'; updateTally(); return; }
+  list.forEach(name => {
+    const row = document.createElement('div'); row.className = 'student';
+    const nm = document.createElement('div'); nm.className = 's-name'; nm.textContent = name;
+    const btns = document.createElement('div'); btns.className = 's-btns';
+    V.forEach(v => {
+      const b = document.createElement('button');
+      b.className = 'sb'; b.dataset.v = v; b.textContent = v;
+      b.onclick = () => {
+        marks[name] = (marks[name] === v) ? null : v;
+        btns.querySelectorAll('.sb').forEach(x => x.classList.toggle('on', x.dataset.v === marks[name]));
+        updateTally();
+      };
+      btns.appendChild(b);
+    });
+    row.appendChild(nm); row.appendChild(btns); box.appendChild(row);
+  });
+  $('rCount').textContent = list.length + '명';
+  updateTally();
+}
+
+/* 한 번에 채우기 */
+$('modeAll').onchange = (e) => {
+  const v = e.target.value; if(!v) return;
+  document.querySelectorAll('.student').forEach(row => {
+    const name = row.querySelector('.s-name').textContent;
+    marks[name] = v;
+    row.querySelectorAll('.sb').forEach(x => x.classList.toggle('on', x.dataset.v === v));
+  });
+  e.target.value = '';
+  updateTally();
+};
+
+/* 집계 */
+function updateTally(){
+  let a=0,o=0,x=0;
+  Object.values(marks).forEach(v => { if(v==='대면')a++; else if(v==='온라인')o++; else if(v==='결석')x++; });
+  $('tally').querySelector('.ko').innerHTML = `대면 <b>${a}</b> · 온라인 <b>${o}</b> · 결석 <b>${x}</b>`;
+  $('tally').querySelector('.en').innerHTML = `In-person <b>${a}</b> · Online <b>${o}</b> · Absent <b>${x}</b>`;
+  $('submitBtn').disabled = (a+o+x === 0);
+}
+
+/* 토스트 */
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2600); }
+
+/* 제출 */
+$('submitBtn').onclick = async () => {
+  const cls = $('classSel').value;
+  const date = $('dateInp').value;
+  const records = Object.keys(marks).filter(n => marks[n]).map(n => ({ 이름:n, 상태:marks[n] }));
+  if(!records.length){ toast('한 명 이상 체크해 주세요.'); return; }
+  if(!date){ toast('날짜를 골라 주세요.'); return; }
+
+  if(!SCRIPT_URL){
+    toast('데모 모드: ' + cls + ' ' + records.length + '명 (저장 안 됨)');
+    return;
+  }
+  $('submitBtn').disabled = true;
+  try{
+    await fetch(SCRIPT_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify({ type:'attendance', 부서반:cls, 날짜:date, records })
+    });
+    toast('저장했습니다 · ' + cls + ' ' + records.length + '명');
+    // 저장 후 초기화
+    document.querySelectorAll('.sb').forEach(x=>x.classList.remove('on'));
+    marks = {}; updateTally();
+  }catch(err){
+    toast('저장 실패 — 다시 시도해 주세요.');
+  }finally{
+    $('submitBtn').disabled = false;
+  }
+};
+
+/* 백엔드에서 명단 불러오기 (설치 후) */
+async function loadRoster(){
+  if(!SCRIPT_URL){ $('demoTag').hidden = false; return; }
+  try{
+    const res = await fetch(SCRIPT_URL + '?list=roster');
+    const data = await res.json();
+    if(data && data.ok && data.classes && Object.keys(data.classes).length){
+      CLASSES = data.classes;
+    }
+  }catch(err){ /* 실패 시 데모 명단 유지 */ }
+}
+
+/* 시작 */
+(async function init(){
+  $('dateInp').value = nearestSunday();
+  await loadRoster();
+  fillClasses();
+  renderRoster();
+  $('classSel').onchange = renderRoster;
+})();
+</script>
+</body>
+</html>
