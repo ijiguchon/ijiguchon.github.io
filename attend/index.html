@@ -159,8 +159,8 @@ const SCRIPT_URL = '';   // ← 백엔드 설치 후 여기에 .../exec 주소
 // 데모용 임시 명단 (백엔드 연결 전, 화면 연습용)
 // 실제 명단은 시트에서 관리하므로 여기 이름은 예시입니다.
 const DEMO_CLASSES = {
-  '유초등부': ['김하은', '박도윤', '이서준', '최지우'],
-  '중고등부': ['박민서', '이하준', '정예린']
+  '유초등부': ['이서은', '이진서'],
+  'GMC Y': ['박성은', '박성민', 'Lily Woods', 'Aaron Woods']
 };
 
 const V = ['대면','온라인','결석'];
@@ -175,7 +175,7 @@ let lang = 'ko';
 const T = {
   ko: {
     langBtn:'EN', vL:{'대면':'대면','온라인':'온라인','결석':'결석'},
-    clsL:{'유초등부':'유초등부','중고등부':'중고등부','영유아부':'영유아부'},
+    clsL:{'유초등부':'유초등부','GMC Y':'GMC Y (청소년·청년)','영유아부':'영유아부'},
     teacherPh:'예: 김지영 교사', homePh:'예: 이번 주 요절을 저녁 식탁에서 함께 외워요',
     notePh:'오늘 어땠나요? (부모님께 전달)', noteOpen:'나눔+', noteClose:'나눔 닫기',
     fill:'한 번에 채우기', allIn:'모두 대면', allOn:'모두 온라인', allOff:'모두 결석',
@@ -185,7 +185,7 @@ const T = {
   },
   en: {
     langBtn:'한국어', vL:{'대면':'In-person','온라인':'Online','결석':'Absent'},
-    clsL:{'유초등부':'Elementary (K–5)','중고등부':'Middle/High (Youth)','영유아부':'Nursery/Preschool'},
+    clsL:{'유초등부':'Elementary (K–5)','GMC Y':'GMC Y (Youth/Young Adult)','영유아부':'Nursery/Preschool'},
     teacherPh:'e.g., Teacher Kim', homePh:'e.g., memorize this week’s verse together at dinner',
     notePh:'How was today? (shared with the parent)', noteOpen:'Note+', noteClose:'Close note',
     fill:'Fill all at once', allIn:'All in-person', allOn:'All online', allOff:'All absent',
