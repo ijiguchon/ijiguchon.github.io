@@ -61,6 +61,9 @@
   .s-note input{font-size:14px;padding:9px 10px}
 
   .empty{color:var(--ink-3);text-align:center;padding:26px 10px;font-size:14px}
+  .add-row{display:flex;gap:8px;margin-top:12px}
+  .add-row input{flex:1}
+  .add-row .quick{white-space:nowrap}
 
   .bar{position:fixed;left:0;right:0;bottom:0;background:rgba(251,247,240,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
   .bar .wrap{display:flex;align-items:center;gap:12px}
@@ -117,6 +120,10 @@
       <span class="r-count" id="rCount"></span>
     </div>
     <div class="roster" id="roster"></div>
+    <div class="add-row">
+      <input type="text" id="addName" placeholder="새 학생 이름"/>
+      <button id="addBtn" class="quick"><span class="ko">+ 학생 추가</span><span class="en">+ Add student</span></button>
+    </div>
     <div class="note ko">각 이름 옆에서 <b>대면 · 온라인 · 결석</b>을 눌러 주세요. 안 누른 학생은 결석으로 저장되지 않고 "미표시"로 남습니다.</div>
     <div class="note en">Tap <b>In-person / Online / Absent</b> next to each name. Unmarked students are saved as "not marked", not absent.</div>
     <div class="note ko" style="margin-top:12px">아이별 <b>나눔+</b>를 누르면 오늘 그 아이에 대한 짧은 나눔·기도제목을 적을 수 있어요. 적으면 부모님께 함께 전해집니다.</div>
@@ -181,7 +188,8 @@ const T = {
     fill:'한 번에 채우기', allIn:'모두 대면', allOn:'모두 온라인', allOff:'모두 결석',
     unit:(n)=>n+'명', empty:'이 반에 등록된 학생이 없습니다.',
     tDemo:(c,n)=>'데모 모드: '+c+' '+n+'명 (저장 안 됨)', tNeed:'한 명 이상 체크해 주세요.',
-    tDate:'날짜를 골라 주세요.', tSaved:(c,n)=>'저장했습니다 · '+c+' '+n+'명', tFail:'저장 실패 — 다시 시도해 주세요.', demo:'데모 모드'
+    tDate:'날짜를 골라 주세요.', tSaved:(c,n)=>'저장했습니다 · '+c+' '+n+'명', tFail:'저장 실패 — 다시 시도해 주세요.', demo:'데모 모드',
+    addPh:'새 학생 이름', tDupe:(n)=>n+' — 이미 명단에 있어요.', tAdded:(n)=>n+' 추가됨 (명단에 저장)', tAddedDemo:(n)=>'데모: '+n+' 추가됨 (저장 안 됨)'
   },
   en: {
     langBtn:'한국어', vL:{'대면':'In-person','온라인':'Online','결석':'Absent'},
@@ -191,7 +199,8 @@ const T = {
     fill:'Fill all at once', allIn:'All in-person', allOn:'All online', allOff:'All absent',
     unit:(n)=>n+' students', empty:'No students in this class yet.',
     tDemo:(c,n)=>'Demo mode: '+c+' '+n+' (not saved)', tNeed:'Please mark at least one student.',
-    tDate:'Please choose a date.', tSaved:(c,n)=>'Saved · '+c+' '+n, tFail:'Save failed — please try again.', demo:'Demo'
+    tDate:'Please choose a date.', tSaved:(c,n)=>'Saved · '+c+' '+n, tFail:'Save failed — please try again.', demo:'Demo',
+    addPh:'New student name', tDupe:(n)=>n+' is already on the list.', tAdded:(n)=>n+' added (saved)', tAddedDemo:(n)=>'Demo: '+n+' added (not saved)'
   }
 };
 function t(){ return T[lang]; }
@@ -209,6 +218,7 @@ function applyLang(){
   $('langBtn').textContent = d.langBtn;
   $('teacherInp').placeholder = d.teacherPh;
   $('homeInp').placeholder = d.homePh;
+  $('addName').placeholder = d.addPh;
   const mo = $('modeAll').options;
   if(mo.length >= 4){ mo[0].text = d.fill; mo[1].text = d.allIn; mo[2].text = d.allOn; mo[3].text = d.allOff; }
   document.querySelectorAll('.s-note input').forEach(i => i.placeholder = d.notePh);
@@ -240,6 +250,57 @@ function fillClasses(){
   });
 }
 
+/* 학생 한 줄 만들기 (출석 버튼 + 나눔+) */
+function makeStudentRow(name){
+  const wrap = document.createElement('div'); wrap.className = 's-wrap';
+  const row = document.createElement('div'); row.className = 'student';
+  const nm = document.createElement('div'); nm.className = 's-name'; nm.textContent = name;
+  const btns = document.createElement('div'); btns.className = 's-btns';
+  V.forEach(v => {
+    const b = document.createElement('button');
+    b.className = 'sb'; b.dataset.v = v; b.textContent = t().vL[v];
+    b.onclick = () => {
+      marks[name] = (marks[name] === v) ? null : v;
+      btns.querySelectorAll('.sb').forEach(x => x.classList.toggle('on', x.dataset.v === marks[name]));
+      updateTally();
+    };
+    btns.appendChild(b);
+  });
+  row.appendChild(nm); row.appendChild(btns); wrap.appendChild(row);
+  const noteBox = document.createElement('div'); noteBox.className = 's-note'; noteBox.hidden = true;
+  const noteInp = document.createElement('input'); noteInp.type = 'text'; noteInp.placeholder = t().notePh;
+  noteInp.oninput = () => { notes[name] = noteInp.value; };
+  noteBox.appendChild(noteInp);
+  const toggle = document.createElement('button'); toggle.className = 'note-toggle'; toggle.textContent = t().noteOpen;
+  toggle.onclick = () => { noteBox.hidden = !noteBox.hidden; toggle.textContent = noteBox.hidden ? t().noteOpen : t().noteClose; if(!noteBox.hidden) noteInp.focus(); };
+  wrap.appendChild(toggle); wrap.appendChild(noteBox);
+  return wrap;
+}
+
+/* 교사가 새 학생 추가 */
+function addStudentUI(){
+  const cls = $('classSel').value;
+  const name = $('addName').value.trim();
+  if(!name){ $('addName').focus(); return; }
+  if(!CLASSES[cls]) CLASSES[cls] = [];
+  if(CLASSES[cls].indexOf(name) >= 0){ toast(t().tDupe(name)); return; }
+  CLASSES[cls].push(name);
+  // 빈 명단 안내가 있으면 지우고, 새 줄 추가
+  const box = $('roster');
+  if(box.querySelector('.empty')) box.innerHTML = '';
+  box.appendChild(makeStudentRow(name));
+  $('rCount').textContent = t().unit(CLASSES[cls].length);
+  $('addName').value = '';
+  // 백엔드에 저장 (다음 주에도 나오도록)
+  if(SCRIPT_URL){
+    fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify({ type:'addStudent', 부서반:cls, 이름:name }) }).catch(()=>{});
+    toast(t().tAdded(name));
+  } else {
+    toast(t().tAddedDemo(name));
+  }
+}
+
 /* 명단 그리기 */
 function renderRoster(){
   const cls = $('classSel').value;
@@ -248,35 +309,7 @@ function renderRoster(){
   const box = $('roster');
   box.innerHTML = '';
   if(!list.length){ box.innerHTML = '<div class="empty">' + t().empty + '</div>'; $('rCount').textContent=''; updateTally(); return; }
-  list.forEach(name => {
-    const wrap = document.createElement('div'); wrap.className = 's-wrap';
-    const row = document.createElement('div'); row.className = 'student';
-    const nm = document.createElement('div'); nm.className = 's-name'; nm.textContent = name;
-    const btns = document.createElement('div'); btns.className = 's-btns';
-    V.forEach(v => {
-      const b = document.createElement('button');
-      b.className = 'sb'; b.dataset.v = v; b.textContent = t().vL[v];
-      b.onclick = () => {
-        marks[name] = (marks[name] === v) ? null : v;
-        btns.querySelectorAll('.sb').forEach(x => x.classList.toggle('on', x.dataset.v === marks[name]));
-        updateTally();
-      };
-      btns.appendChild(b);
-    });
-    row.appendChild(nm); row.appendChild(btns); wrap.appendChild(row);
-
-    // 나눔+ (아이별 짧은 나눔·기도 → 부모에게 함께 전달)
-    const noteBox = document.createElement('div'); noteBox.className = 's-note'; noteBox.hidden = true;
-    const noteInp = document.createElement('input'); noteInp.type = 'text';
-    noteInp.placeholder = t().notePh;
-    noteInp.oninput = () => { notes[name] = noteInp.value; };
-    noteBox.appendChild(noteInp);
-    const toggle = document.createElement('button'); toggle.className = 'note-toggle'; toggle.textContent = t().noteOpen;
-    toggle.onclick = () => { noteBox.hidden = !noteBox.hidden; toggle.textContent = noteBox.hidden ? t().noteOpen : t().noteClose; if(!noteBox.hidden) noteInp.focus(); };
-    wrap.appendChild(toggle); wrap.appendChild(noteBox);
-
-    box.appendChild(wrap);
-  });
+  list.forEach(name => box.appendChild(makeStudentRow(name)));
   $('rCount').textContent = t().unit(list.length);
   updateTally();
 }
@@ -358,6 +391,8 @@ async function loadRoster(){
   renderRoster();
   applyLang();
   $('classSel').onchange = renderRoster;
+  $('addBtn').onclick = addStudentUI;
+  $('addName').addEventListener('keydown', e => { if(e.key === 'Enter') addStudentUI(); });
 })();
 </script>
 </body>
