@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="robots" content="noindex"/>
+<title>분기 성장 기록 · 시애틀지구촌교회</title>
+<style>
+  :root{
+    --navy:#1a3560; --navy-2:#26407A; --gold:#C8944A;
+    --ink:#1d2430; --ink-2:#48505e; --ink-3:#8a93a2;
+    --cream:#FBF7F0; --line:#ECE6DC; --card:#fff;
+    --seed:#9aa4b2; --sprout:#7cae7c; --grow:#3f9d6b; --bloom:#c8843a;
+    --r:16px; --r-sm:11px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 40px}
+  .en{display:none} body.lang-en .ko{display:none} body.lang-en .en{display:inline}
+  body.lang-en .en.blk{display:block}
+  .wrap{max-width:620px;margin:0 auto;padding:0 16px}
+  header{background:linear-gradient(180deg,var(--navy-2),var(--navy));color:#fff;padding:18px 16px 20px}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .h-title{font-weight:900;font-size:17px;letter-spacing:-.3px}
+  .h-sub{font-size:12px;opacity:.85;font-weight:600;margin-top:2px}
+  .lang{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800;cursor:pointer}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px;box-shadow:0 2px 10px rgba(26,53,96,.05)}
+  .step{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gold)}
+  .stage-h{font-size:15px;font-weight:900;margin:2px 0 2px}
+  .stage-cap{font-size:12.5px;color:var(--ink-3);margin-bottom:10px}
+  label.lbl{display:block;font-weight:800;font-size:14px;margin:10px 0 7px}
+  select,input[type=text],textarea{width:100%;font-size:16px;font-family:inherit;color:var(--ink);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:11px 12px;background:#fff}
+  textarea{min-height:60px;resize:vertical;line-height:1.5}
+  select:focus,input:focus,textarea:focus{outline:none;border-color:var(--navy-2)}
+  .row2{display:flex;gap:10px}.row2>*{flex:1}
+  .badge{display:inline-block;font-size:11px;font-weight:800;padding:2px 9px;border-radius:999px;margin-left:6px}
+  .b1{background:#EAF1FB;color:#26407A}.b2{background:#EAF5EE;color:#2f7d54}.b3{background:#FBF0E2;color:#a5631f}
+
+  /* 열매 행 */
+  .fruit{padding:10px 2px;border-bottom:1px solid var(--line)}
+  .fruit:last-child{border-bottom:0}
+  .fruit-top{display:flex;align-items:center;gap:8px}
+  .fruit-name{font-weight:800;font-size:14.5px}
+  .fruit-obs{font-size:12.5px;color:var(--ink-3);margin:2px 0 8px}
+  .star{margin-left:auto;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800;color:var(--ink-3);cursor:pointer;white-space:nowrap}
+  .star.on{background:#FDF3E0;border-color:var(--gold);color:#a5631f}
+  .stages{display:flex;gap:6px;flex-wrap:wrap}
+  .sg{border:1.5px solid var(--line);background:#fff;color:var(--ink-2);border-radius:999px;padding:6px 11px;font-size:12.5px;font-weight:800;cursor:pointer}
+  .sg.on{color:#fff}
+  .sg.on[data-s="0"]{background:var(--seed);border-color:var(--seed)}
+  .sg.on[data-s="1"]{background:var(--sprout);border-color:var(--sprout)}
+  .sg.on[data-s="2"]{background:var(--grow);border-color:var(--grow)}
+  .sg.on[data-s="3"]{background:var(--bloom);border-color:var(--bloom)}
+
+  /* 가정통신문 미리보기 */
+  .letter{background:#fffdf9;border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-top:14px;white-space:pre-wrap;font-size:14px;line-height:1.7;color:var(--ink)}
+  .letter h4{font-size:15px;color:var(--navy);margin-bottom:6px}
+  .actions{display:flex;gap:10px;margin-top:14px}
+  .btn{flex:1;border:0;border-radius:999px;padding:13px;font-size:15px;font-weight:900;cursor:pointer}
+  .btn-ghost{background:#fff;border:1.5px solid var(--navy);color:var(--navy)}
+  .btn-gold{background:linear-gradient(180deg,#E4A85C,#C8843A);color:#fff;box-shadow:0 6px 16px rgba(200,132,58,.34)}
+  .note{font-size:12px;color:var(--ink-3);margin-top:10px;line-height:1.5}
+  .demo{display:inline-block;background:#FDECEC;color:#b23b3b;border-radius:999px;padding:2px 9px;font-size:11px;font-weight:800;margin-left:6px}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 18px;border-radius:12px;font-weight:800;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transition:.25s;pointer-events:none;max-width:90%}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div>
+      <div class="h-title"><span class="ko">분기 성장 기록</span><span class="en">Quarterly Growth Record</span></div>
+      <div class="h-sub">시애틀지구촌교회 · 영혼구원하여 그리스도의 제자 만드는 교회</div>
+    </div>
+    <button class="lang" id="langBtn">EN</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- STEP 1 -->
+  <div class="card">
+    <div class="step">STEP 1</div>
+    <div class="row2">
+      <div><label class="lbl"><span class="ko">부서 · 반</span><span class="en">Department</span></label><select id="classSel"></select></div>
+      <div><label class="lbl"><span class="ko">분기</span><span class="en">Quarter</span></label><select id="quarterSel"></select></div>
+    </div>
+    <label class="lbl"><span class="ko">교사 · 목자</span><span class="en">Teacher / Shepherd</span></label>
+    <input type="text" id="teacherInp"/>
+    <label class="lbl"><span class="ko">학생</span><span class="en">Student</span></label>
+    <select id="studentSel"></select>
+  </div>
+
+  <!-- STAGE 1: 구원 -->
+  <div class="card">
+    <div class="stage-h"><span class="ko">1단계 · 구원</span><span class="en">Stage 1 · Salvation</span><span class="badge b1">마 28 · Matt 28</span></div>
+    <div class="stage-cap"><span class="ko">사명의 시작 — 어디쯤 오셨는지 알고 함께 기도·전도하기 위함(성적 아님).</span><span class="en">The mission's beginning — to know where they are and pray together (not a grade).</span></div>
+    <select id="salSel"></select>
+  </div>
+
+  <!-- STAGE 2: 성품 -->
+  <div class="card">
+    <div class="stage-h"><span class="ko">2단계 · 성품 (성령의 아홉 열매)</span><span class="en">Stage 2 · Character (Fruit of the Spirit)</span><span class="badge b2">갈 5:22-23 · Gal 5</span></div>
+    <div class="stage-cap"><span class="ko">그리스도를 닮아감. 이번 분기 <b>빛난 열매</b>를 눌러 격려해 주세요.</span><span class="en">Becoming like Christ. Tap the fruit that <b>shone</b> this quarter.</span></div>
+    <div id="fruits"></div>
+  </div>
+
+  <!-- STAGE 3: 사역 -->
+  <div class="card">
+    <div class="stage-h"><span class="ko">3단계 · 사역 (성령의 은사)</span><span class="en">Stage 3 · Ministry (Gifts of the Spirit)</span><span class="badge b3">엡 4:11-12 · Eph 4</span></div>
+    <div class="stage-cap"><span class="ko">받은 은사로 섬김 → 세움(어린이 목자 / 목자).</span><span class="en">Serving with gifts → being raised up (child shepherd / shepherd).</span></div>
+    <select id="minSel"></select>
+    <label class="lbl"><span class="ko">발견된 은사 · 섬김 (선택)</span><span class="en">Gifts / service seen (optional)</span></label>
+    <input type="text" id="giftInp" placeholder="예: 찬양 · 어린 동생 돌봄 · 기도"/>
+  </div>
+
+  <!-- 나눔 -->
+  <div class="card">
+    <div class="step"><span class="ko">교사의 나눔</span><span class="en">Teacher's words</span></div>
+    <label class="lbl"><span class="ko">축복 한마디</span><span class="en">A word of blessing</span></label>
+    <textarea id="blessInp" placeholder="이 아이의 이번 분기를 축복하는 한마디"></textarea>
+    <label class="lbl"><span class="ko">가정에서 함께하면 좋을 것</span><span class="en">To do together at home</span></label>
+    <textarea id="homeInp" placeholder="예: 저녁 식탁에서 감사 한 가지씩 나누기"></textarea>
+    <label class="lbl"><span class="ko">함께 기도할 제목</span><span class="en">To pray together</span></label>
+    <textarea id="prayInp"></textarea>
+  </div>
+
+  <!-- 미리보기 -->
+  <div class="card">
+    <div class="step"><span class="ko">가정통신문 미리보기</span><span class="en">Home report preview</span><span class="demo" id="demoTag" hidden>데모 모드</span></div>
+    <div class="letter" id="letter"></div>
+    <div class="actions">
+      <button class="btn btn-ghost" id="copyBtn"><span class="ko">복사</span><span class="en">Copy</span></button>
+      <button class="btn btn-gold" id="sendBtn"><span class="ko">부모님께 보내기</span><span class="en">Send to parent</span></button>
+    </div>
+    <div class="note ko">성경 인용은 새번역(한국어)·ESV(English)로 담깁니다. (본문 구절은 다음 단계에서 정식 인용으로 채워집니다.)</div>
+    <div class="note en">Scripture will use 새번역 (Korean) and ESV (English), added next step.</div>
+  </div>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ══ 설정 ══ SCRIPT_URL 비면 데모(저장·발송 안 됨) */
+const SCRIPT_URL = '';
+const CLASSES = { '유아부':['Everlyn'], '유초등부':['이서은','이진서'], 'GMC Y':['박성은','박성민','Lily Woods','Aaron Woods'] };
+const TEACHERS = { '유아부':{ko:'김지영',en:'Jiyoung Joy Kim'}, '유초등부':{ko:'김지영',en:'Jiyoung Joy Kim'}, 'GMC Y':{ko:'Garrett Woods',en:'Garrett Woods'} };
+const CLS_L = { ko:{'유아부':'유아부','유초등부':'유초등부','GMC Y':'GMC Y (청소년·청년)'}, en:{'유아부':'Nursery/Preschool','유초등부':'Elementary (K–5)','GMC Y':'GMC Y (Youth/Young Adult)'} };
+
+const SALV = [
+  {ko:'찾는 중', en:'Exploring'},
+  {ko:'마음이 열림', en:'Heart opening'},
+  {ko:'믿음의 결단', en:'Decided to believe'},
+  {ko:'침례로 고백', en:'Confessed in baptism'}
+];
+const FRUITS = [
+  {ko:'사랑',en:'Love',oko:'친구를 아끼고 먼저 다가가요',oen:'Cares for others, reaches out first'},
+  {ko:'희락(기쁨)',en:'Joy',oko:'예배와 만남을 기뻐해요',oen:'Delights in worship and gathering'},
+  {ko:'화평',en:'Peace',oko:'다툼을 풀고 사이좋게 지내요',oen:'Makes peace, gets along'},
+  {ko:'오래참음(인내)',en:'Patience',oko:'기다릴 줄 알고 쉽게 포기하지 않아요',oen:'Waits well, does not give up easily'},
+  {ko:'자비',en:'Kindness',oko:'약한 친구를 돌보고 나눠요',oen:'Cares for the weak, shares'},
+  {ko:'양선(선함)',en:'Goodness',oko:'옳은 것을 선택하려 해요',oen:'Chooses to do good'},
+  {ko:'충성',en:'Faithfulness',oko:'맡은 일과 약속을 지켜요',oen:'Keeps tasks and promises'},
+  {ko:'온유',en:'Gentleness',oko:'부드럽게 말하고 화를 다스려요',oen:'Speaks gently, handles anger'},
+  {ko:'절제',en:'Self-control',oko:'자기 마음과 행동을 다스려요',oen:'Governs feelings and actions'}
+];
+const FSTAGE = [{ko:'씨앗',en:'Seed'},{ko:'새싹',en:'Sprout'},{ko:'자라는 중',en:'Growing'},{ko:'활짝',en:'Blooming'}];
+const MINISTRY = [
+  {ko:'은사 발견', en:'Discovering gifts'},
+  {ko:'처음 섬김', en:'First serving'},
+  {ko:'꾸준히 섬김', en:'Serving faithfully'},
+  {ko:'세움 (목자)', en:'Raised up (shepherd)'}
+];
+
+let lang='ko';
+const $=(id)=>document.getElementById(id);
+// 상태: 열매별 {stage, shine}
+let fruitState = FRUITS.map(()=>({stage:2, shine:false}));
+
+$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; renderAll(); };
+
+function fillSelect(sel, arr, fn){ sel.innerHTML=''; arr.forEach((v,i)=>{ const o=document.createElement('option'); o.value=i; o.textContent=fn(v); sel.appendChild(o); }); }
+
+function currentQuarter(){ const m=new Date().getMonth(); return Math.floor(m/3); } // 0~3
+function quarters(){ const y=new Date().getFullYear(); return [1,2,3,4].map(q=>({ko:y+'년 '+q+'분기', en:y+' Q'+q})); }
+
+function fillClasses(){
+  const s=$('classSel'); s.innerHTML='';
+  Object.keys(CLASSES).forEach(c=>{ const o=document.createElement('option'); o.value=c; o.textContent=CLS_L[lang][c]||c; s.appendChild(o); });
+}
+function fillStudents(){
+  const cls=$('classSel').value; const s=$('studentSel'); s.innerHTML='';
+  (CLASSES[cls]||[]).forEach(n=>{ const o=document.createElement('option'); o.value=n; o.textContent=n; s.appendChild(o); });
+}
+function fillFruits(){
+  const box=$('fruits'); box.innerHTML='';
+  FRUITS.forEach((f,i)=>{
+    const row=document.createElement('div'); row.className='fruit';
+    const top=document.createElement('div'); top.className='fruit-top';
+    const nm=document.createElement('div'); nm.className='fruit-name'; nm.textContent=(lang==='ko'?f.ko:f.en);
+    const star=document.createElement('button'); star.className='star'+(fruitState[i].shine?' on':''); star.textContent=(lang==='ko'?'빛난 열매':'Shone');
+    star.onclick=()=>{ fruitState[i].shine=!fruitState[i].shine; star.classList.toggle('on',fruitState[i].shine); renderLetter(); };
+    top.appendChild(nm); top.appendChild(star); row.appendChild(top);
+    const obs=document.createElement('div'); obs.className='fruit-obs'; obs.textContent=(lang==='ko'?f.oko:f.oen); row.appendChild(obs);
+    const stages=document.createElement('div'); stages.className='stages';
+    FSTAGE.forEach((sg,si)=>{
+      const b=document.createElement('button'); b.className='sg'+(fruitState[i].stage===si?' on':''); b.dataset.s=si; b.textContent=(lang==='ko'?sg.ko:sg.en);
+      b.onclick=()=>{ fruitState[i].stage=si; stages.querySelectorAll('.sg').forEach(x=>x.classList.toggle('on',+x.dataset.s===si)); renderLetter(); };
+      stages.appendChild(b);
+    });
+    row.appendChild(stages); box.appendChild(row);
+  });
+}
+
+function renderLetter(){
+  const cls=$('classSel').value;
+  const student=$('studentSel').value||'';
+  const teacher=$('teacherInp').value.trim();
+  const q=quarters()[+$('quarterSel').value];
+  const sal=SALV[+$('salSel').value];
+  const min=MINISTRY[+$('minSel').value];
+  const gift=$('giftInp').value.trim();
+  const bless=$('blessInp').value.trim();
+  const home=$('homeInp').value.trim();
+  const pray=$('prayInp').value.trim();
+  const shine=FRUITS.filter((f,i)=>fruitState[i].shine);
+
+  const L=[];
+  if(lang==='ko'){
+    L.push('[ '+(q?q.ko:'')+' 성장 이야기 ]');
+    L.push(student+' · '+(CLS_L.ko[cls]||cls));
+    L.push('');
+    L.push('사랑하는 부모님께,');
+    L.push(student+'이(가) 이번 분기 그리스도 안에서 자라는 모습을 함께 나눕니다.');
+    L.push('');
+    L.push('1) 구원의 여정 — '+sal.ko);
+    L.push('2) 성품 (성령의 열매)');
+    if(shine.length){ L.push('   이번 분기 특별히 빛난 열매: '+shine.map(f=>f.ko).join(' · ')); }
+    else { L.push('   아홉 열매가 고르게 자라는 중입니다.'); }
+    L.push('3) 사역 (성령의 은사) — '+min.ko+(gift?(' · '+gift):''));
+    if(bless){ L.push(''); L.push('교사의 축복: '+bless); }
+    if(home){ L.push(''); L.push('가정에서 함께: '+home); }
+    if(pray){ L.push(''); L.push('함께 기도할 제목: '+pray); }
+    L.push('');
+    L.push('아이의 신앙은 가정에서 자랍니다. 교회와 가정이 함께 세워 갑니다.');
+    L.push('— 시애틀지구촌교회 교회학교'+(teacher?(' · '+teacher):''));
+  } else {
+    L.push('[ '+(q?q.en:'')+' Growth Story ]');
+    L.push(student+' · '+(CLS_L.en[cls]||cls));
+    L.push('');
+    L.push('Dear parent,');
+    L.push('Here is how '+student+' has been growing in Christ this quarter.');
+    L.push('');
+    L.push('1) Salvation journey — '+sal.en);
+    L.push('2) Character (Fruit of the Spirit)');
+    if(shine.length){ L.push('   Shone this quarter: '+shine.map(f=>f.en).join(' · ')); }
+    else { L.push('   All nine fruits are growing steadily.'); }
+    L.push('3) Ministry (Gifts of the Spirit) — '+min.en+(gift?(' · '+gift):''));
+    if(bless){ L.push(''); L.push('Teacher’s blessing: '+bless); }
+    if(home){ L.push(''); L.push('Together at home: '+home); }
+    if(pray){ L.push(''); L.push('Let’s pray: '+pray); }
+    L.push('');
+    L.push('Faith grows at home. Church and family, building together.');
+    L.push('— GMC of Greater Seattle Church School'+(teacher?(' · '+teacher):''));
+  }
+  $('letter').textContent=L.join('\n');
+}
+
+function renderAll(){
+  fillClasses(); fillStudents();
+  fillSelect($('quarterSel'), quarters(), v=>lang==='ko'?v.ko:v.en); $('quarterSel').value=currentQuarter();
+  fillSelect($('salSel'), SALV, v=>lang==='ko'?v.ko:v.en);
+  fillSelect($('minSel'), MINISTRY, v=>lang==='ko'?v.ko:v.en);
+  const cls=$('classSel').value; if(TEACHERS[cls]) $('teacherInp').value=TEACHERS[cls][lang]||TEACHERS[cls].ko;
+  fillFruits(); renderLetter();
+}
+
+function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2600); }
+
+$('classSel').onchange=()=>{ const cls=$('classSel').value; if(TEACHERS[cls]) $('teacherInp').value=TEACHERS[cls][lang]||TEACHERS[cls].ko; fillStudents(); renderLetter(); };
+['quarterSel','studentSel','teacherInp','salSel','minSel','giftInp','blessInp','homeInp','prayInp'].forEach(id=>{
+  const el=$(id); el.addEventListener('input',renderLetter); el.addEventListener('change',renderLetter);
+});
+
+$('copyBtn').onclick=()=>{ const t=$('letter').textContent; (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast(lang==='ko'?'복사했습니다':'Copied')).catch(()=>toast(lang==='ko'?'길게 눌러 복사해 주세요':'Long-press to copy')); };
+
+$('sendBtn').onclick=async()=>{
+  if(!SCRIPT_URL){ toast(lang==='ko'?'데모 모드 · 저장·발송 안 됨':'Demo · not sent'); return; }
+  const payload={ type:'growth', 부서반:$('classSel').value, 학생:$('studentSel').value, 분기:quarters()[+$('quarterSel').value].ko,
+    교사:$('teacherInp').value.trim(), 구원:SALV[+$('salSel').value].ko, 사역:MINISTRY[+$('minSel').value].ko, 은사:$('giftInp').value.trim(),
+    열매:FRUITS.map((f,i)=>({이름:f.ko,단계:FSTAGE[fruitState[i].stage].ko,빛남:fruitState[i].shine})),
+    축복:$('blessInp').value.trim(), 가정:$('homeInp').value.trim(), 기도:$('prayInp').value.trim(), 본문:$('letter').textContent };
+  try{ await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}); toast(lang==='ko'?'보냈습니다':'Sent'); }
+  catch(e){ toast(lang==='ko'?'실패 — 다시 시도':'Failed — retry'); }
+};
+
+/* 시작 */
+(function init(){ if(!SCRIPT_URL) $('demoTag').hidden=false; renderAll(); })();
+</script>
+</body>
+</html>
