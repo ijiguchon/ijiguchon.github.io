@@ -6,8 +6,8 @@
 <title>이제, 제4공간의 시대입니다 · 시애틀지구촌교회</title>
 <meta name="description" content="시애틀지구촌교회 앱 — 지금 설치하고 온라인으로 연결되세요. 온·오프라인의 교회를 함께 확산시켜 갑시다.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="이제, 제4공간의 시대입니다">
-<meta property="og:description" content="시애틀지구촌교회 앱 — 지금 설치하고 온라인으로 연결되세요.">
+<meta property="og:title" content="이제, 제4공간의 시대입니다 · The Fourth Space">
+<meta property="og:description" content="시애틀지구촌교회 앱 — 지금 설치하고 온라인으로 연결되세요. / Install the GMC app and connect online.">
 <meta property="og:image" content="https://ijiguchon.github.io/gmc/icons/icon-512.png">
 <meta property="og:url" content="https://ijiguchon.github.io/gmc/join.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,6 +35,11 @@
     display:flex; align-items:center; justify-content:center;
     padding:26px 16px;
   }
+  /* language toggle: default Korean; body.lang-en shows English (.en2 motto always shown) */
+  .en{display:none}
+  body.lang-en .ko{display:none}
+  body.lang-en .en{display:inline}
+
   .card{
     width:100%; max-width:452px;
     background:linear-gradient(168deg,var(--card-top) 0%, var(--card-bot) 78%);
@@ -50,10 +55,20 @@
     background:radial-gradient(circle,var(--halo) 0%,rgba(231,179,104,0) 70%);
     pointer-events:none;
   }
+  .langbtn{
+    position:absolute; top:16px; right:16px; z-index:3;
+    display:inline-flex; align-items:center; gap:5px;
+    padding:6px 11px; border-radius:999px;
+    background:rgba(231,179,104,.12); border:1px solid var(--faint);
+    color:var(--gold); font-family:"Noto Sans KR",sans-serif; font-size:11.5px; font-weight:700; letter-spacing:.04em;
+    cursor:pointer;
+  }
+  .langbtn:hover{background:rgba(231,179,104,.2)}
+  .langbtn:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
   .eyebrow{
     position:relative; display:flex; align-items:center; gap:9px;
-    font-size:11px; font-weight:700; letter-spacing:.16em;
-    color:var(--gold); margin-bottom:22px;
+    font-size:11px; font-weight:700; letter-spacing:.14em;
+    color:var(--gold); margin-bottom:22px; padding-right:54px;
   }
   .eyebrow .rule{height:1px; flex:1; background:linear-gradient(90deg,var(--faint),transparent)}
   .gen{font-family:"Cormorant Garamond",serif; font-style:italic; font-size:14px; letter-spacing:.02em; color:var(--muted)}
@@ -63,8 +78,10 @@
     font-size:34px; line-height:1.22; letter-spacing:-.01em;
     margin:0 0 4px; text-wrap:balance; color:var(--ink);
   }
+  body.lang-en h1{font-family:"Cormorant Garamond","Gowun Batang",serif; font-size:37px; line-height:1.14}
   h1 .accent{color:var(--gold)}
-  .lead{ font-size:15px; line-height:1.55; color:#DBD3C4; font-weight:500; margin:14px 0 0; max-width:34ch; }
+  .lead{ font-size:15px; line-height:1.55; color:#DBD3C4; font-weight:500; margin:14px 0 0; max-width:36ch; }
+  .lead b{color:#EAD9BE}
   .scene{position:relative; margin:24px -6px 22px; height:96px}
   .scene svg{display:block; width:100%; height:100%}
   .body{font-size:14.5px; line-height:1.72; color:#CFC7B8; margin:0}
@@ -89,7 +106,8 @@
   .how-t{font-size:12.5px; line-height:1.5; color:var(--muted)}
   .how-t b{color:var(--ink); font-weight:700; display:block; font-size:13px; margin-bottom:1px}
   .foot{ margin-top:24px; text-align:center; font-size:13px; line-height:1.6; color:var(--gold); font-family:"Gowun Batang",serif; }
-  .foot .en{display:block; font-family:"Cormorant Garamond",serif; font-style:italic; font-size:12.5px; color:var(--muted); margin-top:3px; letter-spacing:.02em}
+  body.lang-en .foot{font-family:"Cormorant Garamond",serif; font-style:italic; font-size:14px}
+  .foot .en2{display:block; font-family:"Cormorant Garamond",serif; font-style:italic; font-size:12.5px; color:var(--muted); margin-top:3px; letter-spacing:.02em}
   @media (prefers-reduced-motion:no-preference){
     .twinkle{animation:tw 4.2s ease-in-out infinite}
     .twinkle.b{animation-delay:1.1s} .twinkle.c{animation-delay:2.3s} .twinkle.d{animation-delay:1.7s}
@@ -99,14 +117,28 @@
 </head>
 <body>
 <main class="card">
+  <button class="langbtn" id="langbtn" onclick="toggleLang()" aria-label="언어 전환 / Switch language">
+    <span class="ko">EN</span><span class="en">한국어</span>
+  </button>
+
   <div class="eyebrow">
-    <span>시애틀지구촌교회</span>
+    <span><span class="ko">시애틀지구촌교회</span><span class="en">GMC of Greater Seattle</span></span>
     <span class="rule"></span>
     <span class="gen">Genesis 1314</span>
   </div>
-  <p class="kicker">흩어진 가정이 한 교회로</p>
-  <h1>이제,<br><span class="accent">제4공간</span>의 시대입니다</h1>
-  <p class="lead">집도, 일터도, 카페도 아닌 — 온·오프라인이 하나로 이어지는 <b style="color:#EAD9BE">네 번째 공간.</b> 시애틀지구촌교회가 이 시대를 앞장서 열어갑니다.</p>
+
+  <p class="kicker"><span class="ko">흩어진 가정이 한 교회로</span><span class="en">Scattered homes, one church</span></p>
+
+  <h1>
+    <span class="ko">이제,<br><span class="accent">제4공간</span>의 시대입니다</span>
+    <span class="en">The era of the<br><span class="accent">Fourth Space</span> is here</span>
+  </h1>
+
+  <p class="lead">
+    <span class="ko">집도, 일터도, 카페도 아닌 — 온·오프라인이 하나로 이어지는 <b>네 번째 공간.</b> 시애틀지구촌교회가 이 시대를 앞장서 열어갑니다.</span>
+    <span class="en">Not home, not work, not the café — a <b>fourth space</b> where online and offline become one. GMC of Greater Seattle is leading the way.</span>
+  </p>
+
   <div class="scene" aria-hidden="true">
     <svg viewBox="0 0 420 96" preserveAspectRatio="xMidYMid meet">
       <path d="M58 62 Q140 20 210 54 T362 46" fill="none" stroke="rgba(231,179,104,.28)" stroke-width="1.2" stroke-dasharray="2 6" stroke-linecap="round"/>
@@ -119,23 +151,55 @@
       <line x1="16" y1="80" x2="404" y2="80" stroke="rgba(255,255,255,.10)" stroke-width="1"/>
     </svg>
   </div>
-  <p class="body">아직 교회 앱을 <b>폰과 노트북</b>에 설치하지 않으셨다면, 지금 설치하고 <b>온라인으로 연결</b>되세요. 예배·목장·삶공부·주보가 한 손 안에 있습니다.</p>
+
+  <p class="body">
+    <span class="ko">아직 교회 앱을 <b>폰과 노트북</b>에 설치하지 않으셨다면, 지금 설치하고 <b>온라인으로 연결</b>되세요. 예배·목장·삶공부·주보가 한 손 안에 있습니다.</span>
+    <span class="en">If you haven't installed the church app on your <b>phone and laptop</b> yet, install it now and <b>connect online.</b> Worship, house church, life studies and the bulletin — all in one hand.</span>
+  </p>
+
   <a class="cta" href="https://ijiguchon.github.io/gmc/">
-    지금 앱 설치하고 연결하기
+    <span class="ko">지금 앱 설치하고 연결하기</span><span class="en">Install the app &amp; connect</span>
     <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </a>
   <p class="url">ijiguchon.github.io/gmc</p>
+
   <div class="how">
     <div class="how-row">
       <span class="how-ic"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10 18.5h4"/></svg></span>
-      <span class="how-t"><b>폰 (아이폰·안드로이드)</b>브라우저로 위 주소를 연 뒤 “공유 → 홈 화면에 추가”를 누르면 앱처럼 설치됩니다.</span>
+      <span class="how-t">
+        <b><span class="ko">폰 (아이폰·안드로이드)</span><span class="en">Phone (iPhone · Android)</span></b>
+        <span class="ko">브라우저로 위 주소를 연 뒤 “공유 → 홈 화면에 추가”를 누르면 앱처럼 설치됩니다.</span>
+        <span class="en">Open the address above in your browser, then tap Share → Add to Home Screen to install it like an app.</span>
+      </span>
     </div>
     <div class="how-row">
       <span class="how-ic"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="13" rx="2"/><path d="M8 21h8M12 17.5V21"/></svg></span>
-      <span class="how-t"><b>노트북 (크롬·엣지)</b>위 주소를 열면 주소창 오른쪽에 설치 아이콘이 뜹니다. 눌러서 설치하세요.</span>
+      <span class="how-t">
+        <b><span class="ko">노트북 (크롬·엣지)</span><span class="en">Laptop (Chrome · Edge)</span></b>
+        <span class="ko">위 주소를 열면 주소창 오른쪽에 설치 아이콘이 뜹니다. 눌러서 설치하세요.</span>
+        <span class="en">Open the address; an install icon appears at the right of the address bar. Click it to install.</span>
+      </span>
     </div>
   </div>
-  <p class="foot">온·오프라인의 교회를 함께 확산시켜 갑시다<span class="en">Expanding the Kingdom, one home at a time</span></p>
+
+  <p class="foot">
+    <span class="ko">온·오프라인의 교회를 함께 확산시켜 갑시다</span><span class="en">Let’s expand the church, online and offline, together</span>
+    <span class="en2">Expanding the Kingdom, one home at a time</span>
+  </p>
 </main>
+
+<script>
+  function applyLang(en){
+    document.body.classList.toggle('lang-en', en);
+    document.documentElement.lang = en ? 'en' : 'ko';
+    try{ localStorage.setItem('gmc-join-lang', en ? 'en' : 'ko'); }catch(_){}
+  }
+  function toggleLang(){ applyLang(!document.body.classList.contains('lang-en')); }
+  (function(){
+    var saved=null; try{ saved=localStorage.getItem('gmc-join-lang'); }catch(_){}
+    var en = saved ? (saved==='en') : ((navigator.language||'ko').toLowerCase().indexOf('ko')!==0);
+    applyLang(en);
+  })();
+</script>
 </body>
 </html>
