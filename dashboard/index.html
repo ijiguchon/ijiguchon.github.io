@@ -73,6 +73,16 @@
 <div class="wrap" id="content">
   <div class="card"><div class="empty" id="loading"><span class="ko">불러오는 중…</span><span class="en">Loading…</span></div></div>
 </div>
+<div class="wrap" id="quartersWrap"></div>
+<div class="wrap"><div class="card">
+  <div class="sec" style="font-size:13px;font-weight:900;color:#1a3560"><span class="ko">개인 신상기록 조회</span><span class="en">Individual record lookup</span></div>
+  <div style="font-size:12px;color:#8a93a2;margin:4px 0 10px"><span class="ko">이름으로 한 사람의 신상·출석·성장을 한눈에 (담임 전용).</span><span class="en">One person's profile, attendance, growth (pastor only).</span></div>
+  <div style="display:flex;gap:8px">
+    <input id="pInput" placeholder="이름 / Name" style="flex:1;font-size:16px;border:1.5px solid #ECE6DC;border-radius:11px;padding:11px"/>
+    <button id="pBtn" style="background:#1a3560;color:#fff;border:0;border-radius:999px;padding:0 20px;font-weight:800;cursor:pointer"><span class="ko">조회</span><span class="en">Find</span></button>
+  </div>
+  <div id="personResult" style="margin-top:12px"></div>
+</div></div>
 <div class="wrap" id="codesWrap"></div>
 </div>
 
@@ -83,7 +93,7 @@ const $=(id)=>document.getElementById(id);
 let lang='ko';
 
 // 언어
-$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; if(window.__stats) render(window.__stats); if(window.__codes) renderCodes(); };
+$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; if(window.__stats){ render(window.__stats); renderQuarters(); } if(window.__codes) renderCodes(); };
 
 // 암호 게이트
 function unlock(){ $('gate').hidden=true; $('app').hidden=false; load(); }
@@ -122,12 +132,64 @@ function renderCodes(){
   w.innerHTML=h;
 }
 
+// 분기별 전체 통계
+function renderQuarters(){
+  const j=window.__stats, w=$('quartersWrap'); if(!w) return;
+  if(!j||!j.ok){ w.innerHTML=''; return; }
+  const qa=(j.attendance&&j.attendance.quarters)||[], qg=(j.growth&&j.growth.quarters)||[];
+  if(!qa.length && !qg.length){ w.innerHTML=''; return; }
+  let h='<div class="card"><div class="sec" style="font-size:13px;font-weight:900;color:#1a3560">'+(lang==='ko'?'분기별 전체 통계':'By quarter')+'</div>';
+  if(qa.length){ const max=Math.max.apply(null,qa.map(function(x){return x.total;}).concat([1]));
+    h+='<div style="font-size:12px;color:#8a93a2;margin:6px 0 8px">'+(lang==='ko'?'출석 (성인+교회학교)':'Attendance')+'</div>';
+    qa.forEach(function(q){ const pct=Math.round(q.total/max*100);
+      h+='<div style="display:flex;align-items:center;gap:8px;padding:4px 0"><div style="width:96px;font-size:12.5px;color:#48505e">'+q.분기+'</div><div style="flex:1;background:#eef1f5;border-radius:6px;overflow:hidden;height:16px"><div style="width:'+pct+'%;height:100%;background:#1f9d63"></div></div><div style="width:40px;text-align:right;font-size:12.5px;font-weight:700">'+q.total+'</div></div>'; });
+  }
+  if(qg.length){ h+='<div style="font-size:12px;color:#8a93a2;margin:10px 0 4px">'+(lang==='ko'?'분기 성장평가 건수':'Growth records')+'</div>';
+    qg.forEach(function(q){ h+='<div style="display:flex;justify-content:space-between;padding:3px 0;font-size:13px"><span>'+q.분기+'</span><b>'+q.count+'</b></div>'; });
+  }
+  w.innerHTML=h+'</div>';
+}
+
+// 개인 신상기록 조회
+async function personLookup(){
+  const name=$('pInput').value.trim(); if(!name) return;
+  $('personResult').innerHTML='<div style="color:#8a93a2;padding:8px">'+(lang==='ko'?'조회 중…':'Searching…')+'</div>';
+  try{ const r=await fetch(SCRIPT_URL+'?person='+encodeURIComponent(name)+'&pcode='+encodeURIComponent(DASH_CODE)); renderPerson(await r.json(),name); }
+  catch(e){ $('personResult').innerHTML='<div style="color:#b23b3b;padding:8px">'+(lang==='ko'?'조회 실패':'Failed')+'</div>'; }
+}
+function renderPerson(j,name){
+  const el=$('personResult');
+  if(!j||!j.ok){ el.innerHTML='<div style="color:#b23b3b;padding:8px">'+(lang==='ko'?'권한이 없거나 조회 실패':'Not allowed / failed')+'</div>'; return; }
+  const p=j.profile;
+  let h='<div style="background:#f7f9fc;border:1px solid #ECE6DC;border-radius:12px;padding:12px">';
+  h+='<div style="font-weight:900;font-size:16px;color:#1a3560">'+name+'</div>';
+  if(p){ const f=[['목장',p['목장']],['구분',p['구분']],['휴대폰',p['휴대폰']],['이메일',p['이메일']],['생년',p['생년']],['주소',p['주소']],['침례',p['침례']],['방문유형',p['방문유형']]].filter(function(x){return x[1];});
+    h+='<div style="font-size:13px;color:#48505e;margin-top:6px">'+f.map(function(x){return x[0]+': '+x[1];}).join(' · ')+'</div>';
+  } else { h+='<div style="font-size:13px;color:#8a93a2;margin-top:6px">'+(lang==='ko'?'신상 기록 없음 (출석/성장만)':'No profile record')+'</div>'; }
+  h+='<div style="margin-top:8px;font-size:14px"><b>'+(lang==='ko'?'출석률':'Rate')+': '+j.rate+'%</b> <span style="color:#8a93a2">('+j.present+'/'+j.total+')</span></div></div>';
+  if(j.growth&&j.growth.length){ h+='<div class="card" style="margin-top:10px"><div class="sec" style="font-weight:900;color:#1a3560">'+(lang==='ko'?'성장 여정':'Growth journey')+'</div>';
+    j.growth.slice().reverse().forEach(function(x){ h+='<div style="border-bottom:1px solid #ECE6DC;padding:8px 0;font-size:13px">';
+      if(x.종류==='분기평가'){ h+='<b>'+(x.분기||'')+'</b> · '+(lang==='ko'?'구원':'Salv')+':'+(x.구원||'-')+' · '+(lang==='ko'?'사역':'Min')+':'+(x.사역||'-')+(x.빛난열매?(' · '+(lang==='ko'?'열매':'Fruit')+':'+x.빛난열매):''); if(x.축복)h+='<div style="color:#48505e;margin-top:2px">'+x.축복+'</div>'; }
+      else { h+='<span style="color:#8a93a2">'+(x.날짜||'')+'</span> '+(x.나눔||''); }
+      if(x.기도)h+='<div style="color:#8a5a1a;margin-top:2px">'+(lang==='ko'?'기도':'Prayer')+': '+x.기도+'</div>';
+      h+='</div>'; });
+    h+='</div>';
+  }
+  if(j.attendance&&j.attendance.length){ h+='<div class="card" style="margin-top:10px"><div class="sec" style="font-weight:900;color:#1a3560">'+(lang==='ko'?'출석 이력':'Attendance')+'</div>';
+    j.attendance.slice(0,20).forEach(function(x){ h+='<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #ECE6DC;font-size:13px"><span>'+(x.날짜||'')+' · '+(x.구분||'')+'</span><b>'+(x.상태||'')+'</b></div>'; });
+    h+='</div>';
+  }
+  el.innerHTML=h;
+}
+
 async function load(){
-  try{ const r=await fetch(SCRIPT_URL+'?stats=1'); const j=await r.json(); window.__stats=j; render(j); }
+  try{ const r=await fetch(SCRIPT_URL+'?stats=1'); const j=await r.json(); window.__stats=j; render(j); renderQuarters(); }
   catch(e){ $('content').innerHTML='<div class="card"><div class="empty">'+(lang==='ko'?'불러오기 실패 — 새로고침 해 주세요.':'Load failed — please refresh.')+'</div></div>'; }
   loadCodes();
 }
 $('reload').onclick=load;
+$('pBtn').onclick=personLookup;
+$('pInput').addEventListener('keydown',function(e){ if(e.key==='Enter') personLookup(); });
 
 function bar(segs){ // segs: [{cls,val}]
   const tot=segs.reduce((s,x)=>s+x.val,0)||1;
