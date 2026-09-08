@@ -145,9 +145,9 @@
     <textarea id="hope" placeholder="편하게 나눠 주세요 / Share freely"></textarea>
   </div>
 
-  <!-- 배우자 (등록+) -->
-  <div class="card f-reg">
-    <div class="sec"><span class="ko">배우자</span><span class="en">Spouse</span></div>
+  <!-- 배우자 (모든 단계 — 부부가 함께 온 경우) -->
+  <div class="card">
+    <div class="sec"><span class="ko">배우자 (부부가 함께 오셨나요?)</span><span class="en">Spouse (came as a couple?)</span></div>
     <div class="seg" id="spouseSeg">
       <button type="button" data-s="no" class="on"><span class="ko">없음 / 해당 없음</span><span class="en">None</span></button>
       <button type="button" data-s="yes"><span class="ko">있어요</span><span class="en">Yes</span></button>
@@ -236,7 +236,7 @@ $('spouseSeg').querySelectorAll('button').forEach(b=>b.onclick=()=>{ hasSpouse=(
 function addChildRow(){
   const wrap=document.createElement('div'); wrap.className='child';
   const gOpts=GRADES.map((g,i)=>`<option value="${i}">${lang==='ko'?g.ko:g.en}</option>`).join('');
-  wrap.innerHTML=`<button type="button" class="rm">${lang==='ko'?'삭제':'Remove'}</button>
+  wrap.innerHTML=`<button type="button" class="rm">${lang==='ko'?'이 줄 빼기':'Remove row'}</button>
     <div class="row2"><div><label class="lbl">${lang==='ko'?'한글 이름':'Korean'}</label><input type="text" class="c-ko"/></div><div><label class="lbl">${lang==='ko'?'영문 이름':'English'}</label><input type="text" class="c-en"/></div></div>
     <div class="row2"><div><label class="lbl">${lang==='ko'?'학년':'Grade'}</label><select class="c-grade"><option value=""></option>${gOpts}</select></div><div><label class="lbl">${lang==='ko'?'성별':'Gender'}</label><select class="c-gender"><option value=""></option><option>남</option><option>여</option></select></div></div>
     <label class="lbl">${lang==='ko'?'특이사항 (선택)':'Notes'}</label><input type="text" class="c-note"/><div class="dept-tag" hidden></div>`;
