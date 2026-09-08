@@ -66,8 +66,9 @@
     <div class="step">STEP 1</div>
     <label class="lbl"><span class="ko">무엇을 체크하나요?</span><span class="en">What are you checking?</span></label>
     <div class="seg" id="ctxSeg">
-      <button type="button" data-c="주일연합예배" class="on"><span class="ko">주일연합예배</span><span class="en">Sunday Worship</span></button>
-      <button type="button" data-c="목장모임"><span class="ko">목장모임</span><span class="en">House-church</span></button>
+      <button type="button" data-c="주일연합예배" class="on"><span class="ko">주일예배</span><span class="en">Sunday</span></button>
+      <button type="button" data-c="토요기도회"><span class="ko">토요기도회</span><span class="en">Sat. Prayer</span></button>
+      <button type="button" data-c="목장모임"><span class="ko">목장</span><span class="en">Mokjang</span></button>
     </div>
     <div id="mokjangWrap" hidden>
       <label class="lbl"><span class="ko">목장 선택</span><span class="en">Choose house-church</span></label>
@@ -131,12 +132,14 @@ function t(){return T[lang];}
 $('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; applyLang(); render(); };
 
 function nearestSunday(){ const d=new Date(); const g=d.getDay(); if(g!==0) d.setDate(d.getDate()-g); return d.toISOString().slice(0,10); }
+function nearestSaturday(){ const d=new Date(); const g=d.getDay(); d.setDate(d.getDate()-((g+1)%7)); return d.toISOString().slice(0,10); }
 function today(){ return new Date().toISOString().slice(0,10); }
+function ctxDate(){ return ctx==='주일연합예배'?nearestSunday():(ctx==='토요기도회'?nearestSaturday():today()); }
 
 $('ctxSeg').querySelectorAll('button').forEach(b=>b.onclick=()=>{
   ctx=b.dataset.c; $('ctxSeg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
   $('mokjangWrap').hidden=(ctx!=='목장모임');
-  $('dateInp').value=(ctx==='주일연합예배')?nearestSunday():today();
+  $('dateInp').value=ctxDate();
   render();
 });
 
@@ -144,7 +147,7 @@ function mokjangList(){ const keys=Object.keys(ADULTS); const all=FIXED_MOKJANG.
 function fillMokjang(){ const s=$('mokjangSel'); s.innerHTML=''; mokjangList().forEach(m=>{ const o=document.createElement('option'); o.value=m; o.textContent=m; s.appendChild(o); }); }
 
 function currentList(){
-  if(ctx==='주일연합예배'){ var all=[]; Object.keys(ADULTS).forEach(k=>ADULTS[k].forEach(n=>{ if(all.indexOf(n)<0) all.push(n); })); return all; }
+  if(ctx!=='목장모임'){ var all=[]; Object.keys(ADULTS).forEach(k=>ADULTS[k].forEach(n=>{ if(all.indexOf(n)<0) all.push(n); })); return all; }
   return (ADULTS[$('mokjangSel').value]||[]).slice();
 }
 
