@@ -83,8 +83,8 @@
       <button type="button" data-k="등록교인"><span class="ko">등록교인</span><span class="en">Registered</span></button>
       <button type="button" data-k="회원교인"><span class="ko">회원교인</span><span class="en">Member</span></button>
     </div>
-    <div class="hint ko"><b>방문자</b> 처음 오셨어요 · <b>등록교인</b> 목장에 소속되어 연합교회에 등록 · <b>회원교인</b> 목장 소속·연합예배·생명의 삶 수료·침례 후 등록. 잘 모르시면 방문자로 시작하세요.</div>
-    <div class="hint en blk"><b>Visitor</b> first time · <b>Registered</b> belong to a house church, then register with the church · <b>Member</b> after house church, worship, "Life of Life" course, and baptism. Not sure? Start as Visitor.</div>
+    <div class="hint ko"><b>방문자</b> 처음 오셨어요 · <b>등록교인</b> 목장에 소속되어 연합교회에 등록 · <b>회원교인</b> 목장 소속·연합예배·<b>예수 영접 모임</b>·생명의 삶 수료·침례 후 등록. 잘 모르시면 방문자로 시작하세요.</div>
+    <div class="hint en blk"><b>Visitor</b> first time · <b>Registered</b> belong to a house church, then register · <b>Member</b> after house church, worship, <b>Jesus-acceptance meeting</b>, "Life of Life" course, and baptism. Not sure? Start as Visitor.</div>
   </div>
 
   <!-- 본인 -->
@@ -179,6 +179,10 @@
     <label class="lbl"><span class="ko">예수님을 주님으로 영접하셨나요?</span><span class="en">Have you received Jesus as Lord?</span></label>
     <select id="accept"><option value=""></option><option>예</option><option>아직 / 알아가는 중</option></select>
     <div class="row2">
+      <div><label class="lbl"><span class="ko">예수 영접 모임 참석 (침례 전)</span><span class="en">Jesus-acceptance meeting (before baptism)</span></label><select id="acceptMeeting"><option value=""></option><option>예</option><option>아니오</option></select></div>
+      <div><label class="lbl"><span class="ko">영접 모임 날짜</span><span class="en">Meeting date</span></label><input type="date" id="acceptDate"/></div>
+    </div>
+    <div class="row2">
       <div><label class="lbl"><span class="ko">침례 받으셨나요?</span><span class="en">Baptized?</span></label><select id="baptized"><option value=""></option><option>예</option><option>아니오</option></select></div>
       <div><label class="lbl"><span class="ko">침례 받은 교회</span><span class="en">Church of baptism</span></label><input type="text" id="bapChurch"/></div>
     </div>
@@ -196,7 +200,6 @@
   <div class="chk" style="padding:0 4px"><input type="checkbox" id="consent"/><label for="consent"><span class="ko">위 정보를 교회의 목양·돌봄 목적으로 교회 시스템에 보관하는 데 동의합니다. <span class="req">*</span></span><span class="en">I agree to store this info for pastoral care. <span class="req">*</span></span></label></div>
 
   <button class="submit" id="submitBtn"><span class="ko">등록 신청하기</span><span class="en">Submit</span><span class="demo" id="demoTag" hidden>데모</span></button>
-  <div class="hint ko" style="text-align:center">단계가 오르면 이전에 적은 정보는 그대로 이어집니다.</div>
 </div>
 
 <div class="wrap"><div class="done" id="doneArea">
@@ -258,7 +261,7 @@ $('submitBtn').onclick=async()=>{
     본인:{한글:koName,영문:$('enName').value.trim(),생년:$('birth').value,성별:$('gender').value,휴대폰:phone,이메일:email,도시:$('city').value.trim()||$('city2').value.trim(),목장:$('mokjang').value.trim(),주소:addr,인도자:$('inviter').value.trim(),인도자관계:$('inviterRel').value.trim(),방문유형:visitTypes.join(' · '),이전교회:$('prevChurch').value.trim(),알게된경로:$('howHeard').value.trim(),기대:$('hope').value.trim()},
     배우자: hasSpouse?{한글:$('spKo').value.trim(),영문:$('spEn').value.trim(),생년:$('spBirth').value,휴대폰:$('spPhone').value.trim(),이메일:$('spEmail').value.trim()}:null,
     자녀:children,
-    신앙: kind==='회원교인'?{영접:$('accept').value,침례:$('baptized').value,침례교회:$('bapChurch').value.trim(),이전교회:$('prevChurch').value.trim(),서약1:$('vow1').checked,서약2:$('vow2').checked}:null,
+    신앙: kind==='회원교인'?{영접:$('accept').value,영접모임:$('acceptMeeting').value,영접모임일:$('acceptDate').value,침례:$('baptized').value,침례교회:$('bapChurch').value.trim(),이전교회:$('prevChurch').value.trim(),서약1:$('vow1').checked,서약2:$('vow2').checked}:null,
     나눔:$('share').value.trim() };
   if(!SCRIPT_URL){ toast(lang==='ko'?'데모 · 저장 안 됨':'Demo · not saved'); return; }
   $('submitBtn').disabled=true;
