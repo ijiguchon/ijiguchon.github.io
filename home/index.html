@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;700&display=swap">
+<title>시애틀지구촌교회 · 홈</title>
+<style>
+  :root{
+    --cream:#FFF8EE; --gold:#E8A33D; --honey:#F6C15A; --coral:#EE7C5E; --rose:#D2789A;
+    --navy:#1E3A6B; --ink:#2E2A26; --muted:#7A7168; --white:#fff; --line:#F0E4D2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .en{display:none} body.lang-en .ko{display:none} body.lang-en .en{display:inline} body.lang-en .en.blk{display:block}
+  .wrap{max-width:720px;margin:0 auto;padding:0 18px}
+  a{text-decoration:none;color:inherit}
+
+  /* ── 히어로: 밝고 따뜻·살아있는 ── */
+  .hero{position:relative;overflow:hidden;color:#fff;padding:40px 0 46px;
+    background:linear-gradient(120deg,#F6A64D 0%,#EE7C5E 42%,#D2789A 100%);
+    background-size:200% 200%;animation:flow 14s ease infinite}
+  @keyframes flow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.35;pointer-events:none}
+  .orb.a{width:150px;height:150px;background:#FFE9B0;top:-40px;right:-30px;animation:float 9s ease-in-out infinite}
+  .orb.b{width:90px;height:90px;background:#FFD08A;bottom:-20px;left:8%;animation:float 11s ease-in-out infinite reverse}
+  .orb.c{width:60px;height:60px;background:#fff;top:40%;left:-20px;opacity:.2;animation:float 13s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+  .hero .wrap{position:relative;z-index:1}
+  .hbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+  .hbar .logo{font-weight:900;font-size:15px;letter-spacing:-.3px}
+  .hbar .logo small{display:block;font-size:10.5px;opacity:.85;font-weight:500}
+  .lang{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.5);color:#fff;border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit}
+  .hero h1{font-family:"Noto Serif KR",serif;font-size:29px;font-weight:700;letter-spacing:-.6px;line-height:1.32;margin-bottom:10px;text-wrap:balance}
+  .hero p{font-size:15px;opacity:.95;max-width:520px}
+  .hero .tag{display:inline-block;margin-top:16px;background:rgba(255,255,255,.16);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:600}
+
+  /* ── 섹션 ── */
+  main{padding:26px 0 60px;margin-top:-18px;position:relative;z-index:2}
+  .sec{margin:0 0 24px}
+  .sec-h{display:flex;align-items:center;gap:8px;margin:0 0 12px;padding:0 2px}
+  .sec-h .dot{width:9px;height:9px;border-radius:50%}
+  .sec-h .t{font-size:14px;font-weight:900;color:var(--navy)}
+  .sec-h .s{font-size:12px;color:var(--muted);font-weight:500}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:15px 15px 16px;display:flex;flex-direction:column;gap:7px;
+    box-shadow:0 4px 14px rgba(210,120,80,.06);transition:transform .14s,box-shadow .14s;cursor:pointer}
+  .card:active{transform:scale(.98)}
+  .card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(210,120,80,.16)}
+  .ic{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .ic svg{width:23px;height:23px;fill:#fff}
+  .card b{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-.2px}
+  .card span.d{font-size:12px;color:var(--muted);line-height:1.45}
+  /* 아이콘 색 */
+  .g-warm{background:linear-gradient(135deg,#F6A64D,#EE7C5E)}
+  .g-rose{background:linear-gradient(135deg,#EE7C5E,#D2789A)}
+  .g-gold{background:linear-gradient(135deg,#F6C15A,#E8A33D)}
+  .g-navy{background:linear-gradient(135deg,#2C4F8C,#1E3A6B)}
+  .g-teal{background:linear-gradient(135deg,#4FB89A,#2E9B7C)}
+  .lead{grid-column:1/-1;background:linear-gradient(120deg,#FFF3DF,#FDE7D6);border:1px solid #F3DcC0;border-radius:18px;padding:16px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:transform .14s}
+  .lead:hover{transform:translateY(-2px)}
+  .lead .ic{width:48px;height:48px}
+  .lead .tx b{font-size:16px;color:var(--navy)} .lead .tx span{display:block;font-size:12.5px;color:var(--muted)}
+  .soon{font-size:10.5px;font-weight:700;color:#B06A00;background:#FFE9C2;border-radius:999px;padding:1px 8px;margin-left:6px}
+  .foot{text-align:center;color:var(--muted);font-size:12px;line-height:1.7;padding:8px 0 0}
+  .foot .verse{color:var(--gold);font-weight:600}
+</style>
+</head>
+<body>
+<header class="hero">
+  <span class="orb a"></span><span class="orb b"></span><span class="orb c"></span>
+  <div class="wrap">
+    <div class="hbar">
+      <div class="logo">시애틀지구촌교회<small>GMC of Greater Seattle</small></div>
+      <button class="lang" id="langBtn">EN</button>
+    </div>
+    <h1><span class="ko">흩어져 모이고,<br>한 밥상에서 하나 됩니다</span><span class="en">We scatter to gather,<br>and become one at one table</span></h1>
+    <p><span class="ko">영혼을 구원하여 그리스도의 제자를 만드는 교회 — 집에서 모이는 가정교회입니다.</span><span class="en">A church that wins souls and makes disciples — gathering as house churches in homes.</span></p>
+    <div class="tag"><span class="ko">시애틀에서 지구촌 땅끝까지 · 행 1:8</span><span class="en">From Seattle to the ends of the earth · Acts 1:8</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 함께하기 -->
+  <section class="sec">
+    <div class="sec-h"><span class="dot" style="background:var(--coral)"></span><span class="t"><span class="ko">함께하기</span><span class="en">Belong</span></span><span class="s"><span class="ko">처음 오셨다면 여기부터</span><span class="en">New here? Start here</span></span></div>
+    <div class="grid">
+      <a class="lead" href="../register/">
+        <div class="ic g-warm"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6z"/></svg></div>
+        <div class="tx"><b><span class="ko">처음 오셨나요?</span><span class="en">First time?</span></b><span><span class="ko">환영합니다 — 가볍게 인사하고 등록하세요</span><span class="en">Welcome — say hello & register</span></span></div>
+      </a>
+      <a class="card" href="https://open.kakao.com/o/gJPNOAMi">
+        <div class="ic g-gold"><svg viewBox="0 0 24 24"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.7 6.7-.2.7-.7 2.6-.8 3-.1.5.2.5.4.4.2-.1 2.7-1.8 3.8-2.6.6.1 1.3.1 1.9.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg></div>
+        <b><span class="ko">카톡방</span><span class="en">KakaoTalk</span></b><span class="d"><span class="ko">공식 카톡방에서 인사</span><span class="en">Say hi in our room</span></span>
+      </a>
+      <a class="card" href="../gmc/">
+        <div class="ic g-rose"><svg viewBox="0 0 24 24"><path d="M7 2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2zm5 17a1 1 0 100 2 1 1 0 000-2z"/></svg></div>
+        <b><span class="ko">교인 앱</span><span class="en">Church app</span></b><span class="d"><span class="ko">목장·예배·일정 한 곳에</span><span class="en">Mokjang · worship · more</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 자라기 -->
+  <section class="sec">
+    <div class="sec-h"><span class="dot" style="background:var(--gold)"></span><span class="t"><span class="ko">자라기</span><span class="en">Grow</span></span><span class="s"><span class="ko">한 걸음씩 제자로</span><span class="en">Growing as a disciple</span></span></div>
+    <div class="grid">
+      <a class="card" href="#" onclick="return false">
+        <div class="ic g-teal"><svg viewBox="0 0 24 24"><path d="M12 22V12M12 12C12 8 9 5 4 5c0 5 3 7 8 7zm0-1c0-3 3-6 8-6 0 5-3 7-8 7z"/></svg></div>
+        <b><span class="ko">삶공부</span><span class="en">Life Study</span><span class="soon"><span class="ko">곧</span><span class="en">soon</span></span></b><span class="d"><span class="ko">생명의 삶부터 함께</span><span class="en">Starting with Life of Life</span></span>
+      </a>
+      <a class="card" href="../path/">
+        <div class="ic g-gold"><svg viewBox="0 0 24 24"><path d="M3 20h4v-6H3v6zm7 0h4V9h-4v11zm7 0h4V4h-4v16z"/></svg></div>
+        <b><span class="ko">제자로 자라는 길</span><span class="en">Disciple's path</span></b><span class="d"><span class="ko">방문자에서 목자까지</span><span class="en">Visitor to shepherd</span></span>
+      </a>
+      <a class="card" href="../qual/">
+        <div class="ic g-navy"><svg viewBox="0 0 24 24"><path d="M12 2l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 21l-5.2 2.9 1-5.8L3.6 8.1l5.8-.8z"/></svg></div>
+        <b><span class="ko">안수집사 추천 자격</span><span class="en">Deacon path</span></b><span class="d"><span class="ko">이름 아닌 자라온 열매</span><span class="en">Fruit, not a title</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 섬기기 (교사·목자·리더) -->
+  <section class="sec">
+    <div class="sec-h"><span class="dot" style="background:var(--navy)"></span><span class="t"><span class="ko">섬기기</span><span class="en">Serve</span></span><span class="s"><span class="ko">교사·목자·리더용</span><span class="en">Teachers · shepherds · leaders</span></span></div>
+    <div class="grid">
+      <a class="card" href="../checkin/">
+        <div class="ic g-teal"><svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20 8l-1.4-1.4z"/></svg></div>
+        <b><span class="ko">자가 출석</span><span class="en">Self check-in</span></b><span class="d"><span class="ko">성도 스스로 체크</span><span class="en">Members check in</span></span>
+      </a>
+      <a class="card" href="../worship/">
+        <div class="ic g-navy"><svg viewBox="0 0 24 24"><path d="M7 2h10a2 2 0 012 2v16l-7-3-7 3V4a2 2 0 012-2z"/></svg></div>
+        <b><span class="ko">성인 출석</span><span class="en">Adult attend.</span></b><span class="d"><span class="ko">주일·토요·목장·행사</span><span class="en">Sun · Sat · mokjang</span></span>
+      </a>
+      <a class="card" href="../attend/">
+        <div class="ic g-warm"><svg viewBox="0 0 24 24"><circle cx="7" cy="6" r="2.4"/><circle cx="17" cy="6" r="2.4"/><path d="M7 9c-2 0-3.6 1.5-4 3.5L2.5 16h3l.4 5h2.6L9 12.5C8.6 10.5 9 9 7 9zm10 0c-2 0-1.6 1.5-2 3.5L15.5 21h2.6l.4-5h3l-.5-3.5C20.6 10.5 19 9 17 9z"/></svg></div>
+        <b><span class="ko">교회학교</span><span class="en">Church school</span></b><span class="d"><span class="ko">출석 + 부모 협력</span><span class="en">Attendance + PTA</span></span>
+      </a>
+      <a class="card" href="../growth/">
+        <div class="ic g-rose"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg></div>
+        <b><span class="ko">성장 기록</span><span class="en">Growth</span></b><span class="d"><span class="ko">분기 제자 성장·가정통신문</span><span class="en">Quarterly · home report</span></span>
+      </a>
+      <a class="card" href="../my/">
+        <div class="ic g-gold"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 21.5 7.1 18.2l.9-5.5-4-3.9 5.5-.8z"/></svg></div>
+        <b><span class="ko">내 목양</span><span class="en">My flock</span></b><span class="d"><span class="ko">목자·리더 자기 목장만</span><span class="en">Your flock only</span></span>
+      </a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <span class="verse ko">"영혼을 구원하여 그리스도의 제자를 만드는 교회" · 마 28:19-20</span>
+    <span class="verse en">"Win souls and make disciples" · Matt 28:19-20</span><br>
+    시애틀지구촌교회 · GMC of Greater Seattle
+  </div>
+</main>
+
+<script>
+  document.getElementById('langBtn').onclick=function(){
+    var en=document.body.classList.toggle('lang-en');
+    this.textContent=en?'한국어':'EN';
+  };
+</script>
+</body>
+</html>
