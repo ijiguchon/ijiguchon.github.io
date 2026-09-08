@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;700&display=swap">
+<title>삶공부 · 시애틀지구촌교회</title>
+<style>
+  :root{
+    --cream:#FFF8EE; --gold:#E8A33D; --honey:#F6C15A; --coral:#EE7C5E; --rose:#D2789A;
+    --navy:#1E3A6B; --ink:#2E2A26; --muted:#7A7168; --white:#fff; --line:#F0E4D2;
+    --teal:#2E9B7C; --red:#C00000;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.68;-webkit-font-smoothing:antialiased}
+  .en{display:none} body.lang-en .ko{display:none} body.lang-en .en{display:inline} body.lang-en .en.blk{display:block}
+  .wrap{max-width:720px;margin:0 auto;padding:0 18px}
+  a{text-decoration:none;color:inherit}
+
+  /* 히어로 */
+  .hero{position:relative;overflow:hidden;color:#fff;padding:34px 0 40px;
+    background:linear-gradient(120deg,#F6A64D 0%,#EE7C5E 45%,#D2789A 100%);
+    background-size:200% 200%;animation:flow 15s ease infinite}
+  @keyframes flow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.32;pointer-events:none}
+  .orb.a{width:140px;height:140px;background:#FFE9B0;top:-36px;right:-24px;animation:float 9s ease-in-out infinite}
+  .orb.b{width:80px;height:80px;background:#FFD08A;bottom:-16px;left:10%;animation:float 11s ease-in-out infinite reverse}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  .hero .wrap{position:relative;z-index:1}
+  .hbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+  .hbar .logo{display:flex;align-items:center;gap:9px;font-weight:900;font-size:15px;letter-spacing:-.3px}
+  .hbar .logo img{height:36px;width:auto;background:rgba(255,255,255,.92);border-radius:9px;padding:3px 4px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+  .hbar .logo small{display:block;font-size:10.5px;opacity:.85;font-weight:500}
+  .lang{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.5);color:#fff;border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit}
+  .hero .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;opacity:.9;margin-bottom:6px}
+  .hero h1{font-family:"Noto Serif KR",serif;font-size:30px;font-weight:700;letter-spacing:-.6px;line-height:1.3;margin-bottom:9px}
+  .hero p{font-size:15px;opacity:.96;max-width:540px}
+  .hero .tag{display:inline-block;margin-top:15px;background:rgba(255,255,255,.16);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:600}
+
+  main{padding:24px 0 60px;margin-top:-16px;position:relative;z-index:2}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:0 4px 14px rgba(210,120,80,.06)}
+  .lead-q{background:linear-gradient(120deg,#FFF3DF,#FDE7D6);border:1px solid #F3DCC0;border-radius:16px;padding:16px 18px;font-size:14.5px;color:#8A5A32;line-height:1.7;margin-bottom:14px}
+  .intro-p{font-size:14.5px;margin:10px 0}
+  .intro-p b{color:var(--navy)}
+
+  /* 섹션 제목 */
+  .sec-title{font-family:"Noto Serif KR",serif;font-size:19px;font-weight:700;color:var(--navy);margin:30px 0 6px;letter-spacing:-.3px}
+  .sec-sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+
+  /* 3단계 성장 흐름 */
+  .flow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin:6px 0 4px}
+  .flow .f{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 11px;text-align:center}
+  .flow .f .n{width:26px;height:26px;border-radius:50%;color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 7px}
+  .flow .f b{display:block;font-size:14px;color:var(--ink)}
+  .flow .f span{font-size:11.5px;color:var(--muted);display:block;margin-top:2px}
+  .flow .f .ref{font-size:11px;color:var(--red);font-weight:700;margin-top:5px;display:block}
+  @media(max-width:520px){.flow{grid-template-columns:1fr;gap:8px}}
+
+  /* 성경 본문 */
+  .verse{background:#FCF6EE;border-left:4px solid var(--gold);border-radius:0 12px 12px 0;padding:13px 15px;margin:12px 0}
+  .verse .t{color:var(--red);font-weight:700;font-size:14px;line-height:1.75}
+  .verse .r{color:var(--red);font-weight:700;font-size:12.5px;display:block;margin-top:6px}
+
+  /* 단계(스테이지) */
+  .stage{margin-top:22px}
+  .stage-h{display:flex;align-items:center;gap:11px;margin-bottom:4px}
+  .stage-h .chip{width:34px;height:34px;border-radius:11px;color:#fff;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .stage-h .tt{font-family:"Noto Serif KR",serif;font-size:17px;font-weight:700}
+  .stage-h .mood{font-size:12px;color:var(--muted);font-weight:600}
+  .s1 .chip{background:linear-gradient(135deg,#4FB89A,#2E9B7C)}
+  .s2 .chip{background:linear-gradient(135deg,#F6C15A,#E8A33D)}
+  .s3 .chip{background:linear-gradient(135deg,#EE9C6E,#D2789A)}
+  .s4 .chip{background:linear-gradient(135deg,#2C4F8C,#1E3A6B)}
+  .stage-intro{font-size:13.5px;color:var(--ink);margin:8px 2px 12px}
+
+  .course{border:1px solid var(--line);border-radius:15px;padding:15px 16px;margin-bottom:11px;background:#fffdfa}
+  .course h4{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:3px}
+  .course h4 .en2{font-weight:600;color:var(--muted);font-size:13px}
+  .course .csub{font-size:13px;color:var(--muted);margin-bottom:9px}
+  .pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px}
+  .pill{font-size:11px;font-weight:800;padding:3px 10px;border-radius:999px;background:#F3EBDD;color:#8A5A32}
+  .pill.must{background:#FDEBD0;color:#B06A00}
+  .pill.one{background:#EAF1FB;color:#26407A}
+  .course p{font-size:13.5px;margin:7px 0}
+  .course ul{margin:8px 0 4px 18px}
+  .course li{font-size:13.5px;margin:4px 0}
+  .voice{background:#F7F3EC;border-radius:10px;padding:11px 13px;margin-top:10px;font-size:13px;color:#5f5850;font-style:italic;line-height:1.65}
+
+  /* 개강/등록 */
+  .info{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-bottom:11px}
+  .info h4{font-size:14.5px;color:var(--navy);font-weight:800;margin-bottom:8px}
+  .info ul{margin-left:18px}
+  .info li{font-size:13.5px;margin:5px 0}
+  .info li b{color:var(--teal)}
+  .step-row{display:flex;gap:12px;align-items:flex-start;margin:12px 0}
+  .step-row .sn{width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-row .sx b{font-size:14px}
+  .step-row .sx p{font-size:13px;color:var(--muted);margin-top:2px}
+
+  /* 신청 폼 */
+  .form label{display:block;font-weight:700;font-size:13.5px;margin:12px 0 6px}
+  .form input,.form select,.form textarea{width:100%;font-size:16px;font-family:inherit;color:var(--ink);border:1.5px solid var(--line);border-radius:11px;padding:11px 12px;background:#fff}
+  .form textarea{min-height:64px;resize:vertical;line-height:1.5}
+  .form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--gold)}
+  .row2{display:flex;gap:10px}.row2>*{flex:1}
+  .submit{width:100%;margin-top:16px;border:0;border-radius:999px;padding:14px;font-size:16px;font-weight:900;cursor:pointer;color:#fff;font-family:inherit;
+    background:linear-gradient(135deg,#F6A64D,#EE7C5E);box-shadow:0 8px 20px rgba(238,124,94,.3)}
+  .submit:active{transform:scale(.99)}
+  .fnote{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.6}
+
+  .contact p{font-size:13.5px;margin:5px 0}
+  .contact b{color:var(--navy)}
+  .foot{text-align:center;color:var(--muted);font-size:11.5px;line-height:1.7;padding:14px 4px 0}
+  .foot a{color:var(--gold);font-weight:600}
+  .backhome{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;font-weight:700;color:var(--navy)}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 18px;border-radius:12px;font-weight:800;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transition:.25s;pointer-events:none;max-width:90%;text-align:center}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<header class="hero">
+  <span class="orb a"></span><span class="orb b"></span>
+  <div class="wrap">
+    <div class="hbar">
+      <a class="logo" href="../home/">
+        <img src="../images/logo.png" alt="시애틀지구촌교회 로고">
+        <span>시애틀지구촌교회<small>GMC of Greater Seattle</small></span>
+      </a>
+      <button class="lang" id="langBtn">EN</button>
+    </div>
+    <div class="eyebrow"><span class="ko">삶으로 배우는 신앙</span><span class="en">Faith learned through life</span></div>
+    <h1><span class="ko">삶공부</span><span class="en">Life Study</span></h1>
+    <p><span class="ko">그리스도의 제자로 자라는 훈련의 길입니다. 하나님을 인격적으로 만나고 건강한 신앙생활을 원하는 모든 분을 초대합니다.</span><span class="en">A training path for growing as a disciple of Christ. Everyone longing to meet God personally and live a healthy faith is warmly invited.</span></p>
+    <div class="tag"><span class="ko">영혼 구원하여 그리스도의 제자 만드는 교회</span><span class="en">Winning souls, making disciples of Christ</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 왜 삶공부인가 -->
+  <div class="card">
+    <div class="lead-q">
+      <span class="ko">"주일예배에 빠지지 않고 참석해도, 그리스도와 그분의 몸 된 교회를 잘 모르는 분들이 있습니다. '하나님의 자녀'로 산다는 것이 얼마나 큰 특권인지, 그 기초부터 탄탄히 배울 기회가 없었기 때문입니다."</span>
+      <span class="en">"Some faithfully attend Sunday worship yet hardly know Christ and His body, the church — because they never had the chance to learn, from the ground up, what a privilege it is to live as a child of God."</span>
+    </div>
+    <p class="intro-p"><span class="ko">시애틀지구촌교회의 사명은 <b>그리스도의 제자를 만드는 것</b>이며, 핵심 가치는 <b>성경대로</b> 살아가는 것입니다.</span><span class="en">Our mission is to <b>make disciples of Christ</b>, and our core value is to live <b>according to the Bible</b>.</span></p>
+    <p class="intro-p"><span class="ko"><b>삶공부</b>는 이 사명과 가치를 이루어 가는 가장 기초적이고 중요한 '훈련의 장'입니다. 지식만 쌓는 공부가 아니라, 배운 것을 목장(가정교회)에서 <b>삶으로 살아 내는</b> 경험 중심의 훈련입니다.</span><span class="en"><b>Life Study</b> is the most basic and essential place of training for this mission — not study that merely stores knowledge, but experience-centered training where what we learn is <b>lived out</b> in the mokjang (house church).</span></p>
+  </div>
+
+  <!-- 3단계 성장 -->
+  <div class="sec-title"><span class="ko">삶공부가 그리는 성장의 길</span><span class="en">The growth path Life Study draws</span></div>
+  <div class="sec-sub"><span class="ko">모든 과정은 제자 성장 세 단계를 삶으로 배우도록 이어집니다.</span><span class="en">Every course connects to three stages of a disciple's growth.</span></div>
+  <div class="card">
+    <div class="flow">
+      <div class="f"><div class="n" style="background:#2E9B7C">1</div><b><span class="ko">구원</span><span class="en">Salvation</span></b><span><span class="ko">하나님의 자녀 되기</span><span class="en">Becoming God's child</span></span><span class="ref">마 28 · Matt 28</span></div>
+      <div class="f"><div class="n" style="background:#E8A33D">2</div><b><span class="ko">성품</span><span class="en">Character</span></b><span><span class="ko">그리스도를 닮아감</span><span class="en">Becoming like Christ</span></span><span class="ref">갈 5 · Gal 5</span></div>
+      <div class="f"><div class="n" style="background:#1E3A6B">3</div><b><span class="ko">사역</span><span class="en">Ministry</span></b><span><span class="ko">은사로 섬기며 세움</span><span class="en">Serving & being raised</span></span><span class="ref">엡 4 · Eph 4</span></div>
+    </div>
+    <div class="verse">
+      <div class="t"><span class="ko">"나는 하늘과 땅의 모든 권세를 받았다. 그러므로 너희는 가서, 모든 민족을 제자로 삼아서, 아버지와 아들과 성령의 이름으로 침례를 주고, 내가 너희에게 명령한 모든 것을 그들에게 가르쳐 지키게 하여라. 보아라, 내가 세상 끝 날까지 항상 너희와 함께 있을 것이다."</span><span class="en">"All authority in heaven and on earth has been given to me. Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, teaching them to observe all that I have commanded you. And behold, I am with you always, to the end of the age."</span></div>
+      <span class="r"><span class="ko">마태복음 28:18-20 (새번역)</span><span class="en">Matthew 28:18-20 (ESV)</span></span>
+    </div>
+    <p class="fnote"><span class="ko">※ 새번역 원문은 '세례'이며, 본교회는 침례교 신앙고백에 따라 '침례'로 표기합니다.</span><span class="en">※ The Korean 새번역 reads "세례"; as a Baptist church we render it "침례" (baptism by immersion).</span></p>
+  </div>
+
+  <!-- 1단계 -->
+  <div class="stage s1">
+    <div class="stage-h"><div class="chip">1</div><div><div class="tt"><span class="ko">기초 과정 — 새가족·기초</span><span class="en">Foundation — new family & basics</span></div><div class="mood"><span class="ko">새 생명, 싹트는 성장</span><span class="en">New life, first sprouts</span></div></div></div>
+    <div class="stage-intro"><span class="ko">교회에 새로 오신 분, 신앙의 기초를 처음부터 다지고 싶은 모든 분을 위한 필수 첫걸음입니다.</span><span class="en">The essential first step for anyone new to church, or wanting to build a firm foundation of faith.</span></div>
+
+    <div class="course">
+      <h4><span class="ko">생명의 삶</span><span class="en">Life of Life</span> <span class="en2">(Living Life)</span></h4>
+      <div class="csub"><span class="ko">복음의 핵심을 발견하는 시간</span><span class="en">Discovering the heart of the gospel</span></div>
+      <div class="pills"><span class="pill must"><span class="ko">필수 기초</span><span class="en">Core</span></span><span class="pill"><span class="ko">13주 과정</span><span class="en">13 weeks</span></span></div>
+      <p><span class="ko">복음의 핵심과 구원의 확신을 심어 주어, '하나님의 자녀'로서의 정체성을 분명히 세우는 과정입니다. 더 이상 혼자가 아니며, 하나님께서 나를 얼마나 사랑하시는지 깊이 경험하게 됩니다.</span><span class="en">Plants the heart of the gospel and assurance of salvation, establishing a clear identity as God's child. You discover you are no longer alone, and experience how deeply God loves you.</span></p>
+      <p><b><span class="ko">이런 분께 권합니다</span><span class="en">For you if</span></b></p>
+      <ul>
+        <li><span class="ko">예수님을 처음 만나신 분</span><span class="en">You are meeting Jesus for the first time</span></li>
+        <li><span class="ko">구원의 확신을 갖고 싶으신 분</span><span class="en">You want assurance of salvation</span></li>
+        <li><span class="ko">신앙의 기초를 탄탄히 다지고 싶으신 분</span><span class="en">You want a firm foundation of faith</span></li>
+      </ul>
+      <div class="voice"><span class="ko">"교회에 대한 편견이 많았는데… 이 과정이 하나님께서 나를 사랑하신다는 증거처럼 느껴졌습니다."</span><span class="en">"I had many prejudices about church… this course felt like proof that God loves me."</span></div>
+    </div>
+
+    <div class="course">
+      <h4><span class="ko">확신의 삶</span><span class="en">Assured Life</span></h4>
+      <div class="csub"><span class="ko">나만을 위한 맞춤 신앙 점검</span><span class="en">A personal faith check, just for you</span></div>
+      <div class="pills"><span class="pill one"><span class="ko">1:1 동행</span><span class="en">1:1 walk</span></span></div>
+      <p><span class="ko">'생명의 삶' 수료 후, 소속 목장의 목자가 1:1로 만나 신앙생활의 기본을 함께 점검하고 견고히 다지는 과정입니다. 질문과 고민을 편안하게 나누며 믿음의 기초를 더 단단히 세웁니다.</span><span class="en">After Life of Life, your mokjang shepherd meets with you one-on-one to review and strengthen the basics of the Christian life — a relaxed space to share questions and settle your foundation.</span></p>
+    </div>
+  </div>
+
+  <!-- 2단계 -->
+  <div class="stage s2">
+    <div class="stage-h"><div class="chip">2</div><div><div class="tt"><span class="ko">제자 훈련 과정</span><span class="en">Discipleship training</span></div><div class="mood"><span class="ko">깊이 · 신뢰 · 견고함</span><span class="en">Depth · trust · strength</span></div></div></div>
+    <div class="stage-intro"><span class="ko">'생명의 삶'을 수료한 분이 '그리스도의 제자'로 자라도록 돕는 핵심 훈련이며, 성령의 아홉 열매(성품)가 자라는 자리입니다.</span><span class="en">Core training that helps graduates of Life of Life grow into disciples of Christ — where the nine fruits of the Spirit (character) take root.</span></div>
+
+    <div class="course">
+      <h4><span class="ko">새로운 삶</span><span class="en">New Life</span></h4>
+      <div class="csub"><span class="ko">옛 사람을 벗고 새 사람으로</span><span class="en">Putting off the old, putting on the new</span></div>
+      <div class="pills"><span class="pill"><span class="ko">13주 과정</span><span class="en">13 weeks</span></span></div>
+      <p><span class="ko">그리스도인의 새로운 정체성을 확립하고, 옛 습관을 벗어 구체적인 삶의 변화를 훈련합니다.</span><span class="en">Establishes a Christian's new identity and trains concrete life change — putting off old habits.</span></p>
+      <ul>
+        <li><span class="ko">옛 사람을 벗고 새 사람을 입는 구체적 방법</span><span class="en">Concrete ways to put off the old self and put on the new</span></li>
+        <li><span class="ko">일터와 가정에서 그리스도인답게 사는 지혜</span><span class="en">Wisdom for living as a Christian at work and home</span></li>
+        <li><span class="ko">이웃을 섬기고 사랑하는 실천</span><span class="en">Practicing love and service toward others</span></li>
+      </ul>
+    </div>
+
+    <div class="course">
+      <h4><span class="ko">경건의 삶</span><span class="en">Godly Life</span> <span class="en2">(Growing Life)</span></h4>
+      <div class="csub"><span class="ko">하나님과 매일 동행하는 기쁨</span><span class="en">The joy of walking with God daily</span></div>
+      <div class="pills"><span class="pill"><span class="ko">13주 과정</span><span class="en">13 weeks</span></span></div>
+      <p><span class="ko">매일의 경건의 시간(QT)과 기도를 통해, 하나님과 친밀히 동행하는 습관을 세우는 훈련입니다.</span><span class="en">Builds the habit of intimate daily fellowship with God through quiet time (QT) and prayer.</span></p>
+      <ul>
+        <li><span class="ko">성경을 읽고 묵상하는 실제적인 방법</span><span class="en">Practical ways to read and meditate on Scripture</span></li>
+        <li><span class="ko">하나님과 대화하는 기도의 기쁨</span><span class="en">The joy of prayer as conversation with God</span></li>
+        <li><span class="ko">말씀을 삶에 적용하는 훈련</span><span class="en">Training to apply the Word to daily life</span></li>
+      </ul>
+    </div>
+
+    <div class="verse">
+      <div class="t"><span class="ko">"그러나 성령의 열매는 사랑과 기쁨과 화평과 인내와 친절과 선함과 신실과 온유와 절제입니다. 이런 것들을 막을 법이 없습니다."</span><span class="en">"But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law."</span></div>
+      <span class="r"><span class="ko">갈라디아서 5:22-23 (새번역)</span><span class="en">Galatians 5:22-23 (ESV)</span></span>
+    </div>
+  </div>
+
+  <!-- 3단계 -->
+  <div class="stage s3">
+    <div class="stage-h"><div class="chip">3</div><div><div class="tt"><span class="ko">선택 과정</span><span class="en">Elective courses</span></div><div class="mood"><span class="ko">삶의 자리마다 필요한 지혜</span><span class="en">Wisdom for each season of life</span></div></div></div>
+    <div class="stage-intro"><span class="ko">'생명의 삶'을 수료한 분이, 삶의 실제적인 필요에 따라 자유롭게 선택하여 듣는 과정입니다.</span><span class="en">Graduates of Life of Life may freely choose these according to real needs in their lives.</span></div>
+
+    <div class="course">
+      <h4><span class="ko">부부의 삶</span><span class="en">Covenant Life</span></h4>
+      <div class="csub"><span class="ko">성경적 가정을 세우는 지혜</span><span class="en">Wisdom for building a biblical home</span></div>
+      <p><span class="ko">결혼을 준비하거나 부부 관계를 더 성경적으로 세우기 원하는 분이, 갈등을 지혜롭게 풀고 가정의 원리를 배우는 과정입니다.</span><span class="en">For those preparing for marriage or wanting a more biblical marriage — learning to resolve conflict wisely and grasp the principles of family.</span></p>
+      <div class="voice"><span class="ko">"하나님과의 관계가 좋아진 만큼 배우자와의 관계도 좋아진다는 것을 몸으로 느꼈습니다."</span><span class="en">"I felt in my own life that as my relationship with God grew, so did my relationship with my spouse."</span></div>
+    </div>
+
+    <div class="course">
+      <h4><span class="ko">일터의 삶</span><span class="en">Vocational Life</span></h4>
+      <div class="csub"><span class="ko">일터를 선교지로 바라보기</span><span class="en">Seeing your workplace as a mission field</span></div>
+      <div class="pills"><span class="pill"><span class="ko">모든 성도는 사역자</span><span class="en">Every member a minister</span></span></div>
+      <p><span class="ko">각자의 직장과 일터를 하나님의 부르심(Calling)이 이루어지는 선교지로 바라보고, 그곳에서 그리스도인으로 살아가는 법을 배웁니다.</span><span class="en">Learn to see your job and workplace as a mission field where God's calling unfolds, and how to live as a Christian there.</span></p>
+    </div>
+
+    <div class="course">
+      <h4><span class="ko">선교의 삶</span><span class="en">Missional Life</span></h4>
+      <div class="csub"><span class="ko">모든 성도는 선교사입니다</span><span class="en">Every member is a missionary</span></div>
+      <div class="pills"><span class="pill"><span class="ko">모든 성도는 선교사</span><span class="en">Every member a missionary</span></span></div>
+      <p><span class="ko">모든 성도가 '선교사'라는 부르심을 깨닫고, 삶의 현장에서 복음을 전하는 방법을 배웁니다.</span><span class="en">Awaken to the calling that every believer is a missionary, and learn to share the gospel in everyday life.</span></p>
+    </div>
+
+    <p class="intro-p" style="margin-left:2px"><b><span class="ko">그 밖의 과정</span><span class="en">Other electives</span></b> · <span class="ko">싱글의 삶 (Single Life), 말씀의 삶 (Rooted Life)</span><span class="en">Single Life, Rooted Life</span></p>
+  </div>
+
+  <!-- 4단계 -->
+  <div class="stage s4">
+    <div class="stage-h"><div class="chip">4</div><div><div class="tt"><span class="ko">리더십 과정</span><span class="en">Leadership</span></div><div class="mood"><span class="ko">섬김의 리더로 세워짐</span><span class="en">Raised as a servant leader</span></div></div></div>
+    <div class="stage-intro"><span class="ko">목장(가정교회)의 리더, 혹은 성도를 섬기는 사역자로 헌신하기 원하는 분을 위한 심화 과정입니다. 받은 은사로 섬기며 세워지는 자리입니다.</span><span class="en">A deeper path for those devoting themselves as mokjang leaders or ministers who serve others — where gifts are used in service and leaders are raised up.</span></div>
+
+    <div class="course">
+      <h4><span class="ko">하나님을 경험하는 삶</span><span class="en">Experiencing God</span></h4>
+      <div class="csub"><span class="ko">목자로 헌신하는 특별한 만남</span><span class="en">A special journey into shepherd devotion</span></div>
+      <div class="pills"><span class="pill"><span class="ko">목자 과정</span><span class="en">Shepherd track</span></span><span class="pill one"><span class="ko">1:1 동행</span><span class="en">1:1 walk</span></span></div>
+      <p><span class="ko">목자로 헌신하는 부부가 담임목사와 함께하는 1:1 동행 과정입니다. 하나님의 음성을 듣고 순종하는 법을 깊이 배우며, 섬기는 리더로 성장합니다.</span><span class="en">A one-on-one journey for couples devoting themselves as shepherds, walking with the senior pastor — learning to hear and obey God's voice and growing as servant leaders.</span></p>
+    </div>
+
+    <div class="course">
+      <h4><span class="ko">목자·목녀의 삶</span><span class="en">Shepherd Life</span></h4>
+      <div class="csub"><span class="ko">목장을 섬기는 실제적 훈련</span><span class="en">Practical training to shepherd a mokjang</span></div>
+      <div class="pills"><span class="pill"><span class="ko">목자·목녀 과정</span><span class="en">Shepherd track</span></span></div>
+      <p><span class="ko">목장의 리더로서 필요한 실제적인 섬김과 목양을 훈련하는 과정입니다.</span><span class="en">Training in the practical care and shepherding needed as a mokjang leader.</span></p>
+      <ul>
+        <li><span class="ko">목장 식구를 사랑으로 돌보기</span><span class="en">Caring for mokjang family with love</span></li>
+        <li><span class="ko">목장 모임을 은혜롭게 인도하기</span><span class="en">Leading mokjang gatherings graciously</span></li>
+        <li><span class="ko">새 제자를 양육하고 재생산하기</span><span class="en">Nurturing and reproducing new disciples</span></li>
+        <li><span class="ko">영혼 구원의 열정으로 새가족 섬기기</span><span class="en">Serving new family with a heart for souls</span></li>
+      </ul>
+    </div>
+
+    <div class="verse">
+      <div class="t"><span class="ko">"그분이 어떤 사람은 사도로, 어떤 사람은 예언자로, 어떤 사람은 복음 전도자로, 또 어떤 사람은 목사와 교사로 삼으셨습니다. 그것은 성도들을 준비시켜서, 봉사의 일을 하게 하고, 그리스도의 몸을 세우게 하려고 하는 것입니다. 그리하여 우리 모두가 하나님의 아들을 믿는 일과 아는 일에 하나가 되고, 온전한 사람이 되어서, 그리스도의 충만하심의 경지에까지 다다르게 됩니다."</span><span class="en">"And he gave the apostles, the prophets, the evangelists, the shepherds and teachers, to equip the saints for the work of ministry, for building up the body of Christ, until we all attain to the unity of the faith and of the knowledge of the Son of God, to mature manhood, to the measure of the stature of the fullness of Christ."</span></div>
+      <span class="r"><span class="ko">에베소서 4:11-13 (새번역)</span><span class="en">Ephesians 4:11-13 (ESV)</span></span>
+    </div>
+  </div>
+
+  <!-- 개강 안내 -->
+  <div class="sec-title"><span class="ko">개강 안내</span><span class="en">Term schedule</span></div>
+  <div class="sec-sub"><span class="ko">개강 일정은 교회 상황에 따라 조정될 수 있으니, 신청 후 안내를 확인해 주세요.</span><span class="en">Dates may shift with church needs — please watch for details after you apply.</span></div>
+
+  <div class="info">
+    <h4><span class="ko">생명의 삶 (13주 · 필수 기초)</span><span class="en">Life of Life (13 weeks · core)</span></h4>
+    <ul>
+      <li><span class="ko"><b>상반기</b> 2월 개강 · <b>중반기</b> 6월 개강 · <b>하반기</b> 9월 개강</span><span class="en"><b>Spring</b> Feb · <b>Summer</b> Jun · <b>Fall</b> Sep</span></li>
+      <li><span class="ko">매주 화요일 또는 목요일 저녁 진행 · 연 3회로 등록 기회를 넓혔습니다</span><span class="en">Tuesday or Thursday evenings · offered 3× a year for more chances to join</span></li>
+    </ul>
+  </div>
+  <div class="info">
+    <h4><span class="ko">새로운 삶 · 경건의 삶 (13주 · 제자 훈련)</span><span class="en">New Life · Godly Life (13 weeks)</span></h4>
+    <ul>
+      <li><span class="ko"><b>상반기</b> 2월 개강 · <b>하반기</b> 9월 개강 · 매주 화 또는 목 저녁</span><span class="en"><b>Spring</b> Feb · <b>Fall</b> Sep · Tue or Thu evenings</span></li>
+    </ul>
+  </div>
+  <div class="info">
+    <h4><span class="ko">1:1 동행 과정 (수시)</span><span class="en">1:1 courses (anytime)</span></h4>
+    <ul>
+      <li><span class="ko"><b>확신의 삶</b> — 소속 목장의 목자와 1:1로 진행</span><span class="en"><b>Assured Life</b> — one-on-one with your mokjang shepherd</span></li>
+      <li><span class="ko"><b>하나님을 경험하는 삶</b> — 담임목사와 함께 영적 리더십 세우기</span><span class="en"><b>Experiencing God</b> — with the senior pastor, building spiritual leadership</span></li>
+      <li><span class="ko">준비가 되는 대로 언제든지 시작할 수 있습니다</span><span class="en">May begin anytime, as you are ready</span></li>
+    </ul>
+  </div>
+  <div class="info">
+    <h4><span class="ko">선택 과정</span><span class="en">Electives</span></h4>
+    <ul>
+      <li><span class="ko">부부의 삶 · 싱글의 삶 · 일터의 삶 · 선교의 삶 · 말씀의 삶 — 필요에 따라 개설 (사무실 문의)</span><span class="en">Covenant · Single · Vocational · Missional · Rooted Life — opened as needed (ask the office)</span></li>
+    </ul>
+  </div>
+  <div class="info" style="background:#F4FBF7;border-color:#D6EEE3">
+    <h4 style="color:var(--teal)"><span class="ko">세겹줄 기도회</span><span class="en">Threefold-Cord Prayer</span></h4>
+    <p style="font-size:13.5px"><span class="ko">매년 1월 첫 수요일부터 10일간 '세겹줄 기도회'로 새해를 하나님께 드립니다. 이 기간에는 삶공부가 잠시 쉬어 갑니다.</span><span class="en">Each January, from the first Wednesday, we offer the new year to God through 10 days of Threefold-Cord Prayer. Life Study pauses during this time.</span></p>
+  </div>
+
+  <!-- 등록 방법 -->
+  <div class="sec-title"><span class="ko">등록 방법</span><span class="en">How to register</span></div>
+  <div class="card">
+    <div class="step-row"><div class="sn">1</div><div class="sx"><b><span class="ko">목장 소속 확인</span><span class="en">Belong to a mokjang</span></b><p><span class="ko">삶공부는 혼자가 아니라 목장과 함께하는 여정입니다. 아직 목장이 없으시면 사무실로 문의해 주세요.</span><span class="en">Life Study is a journey with a mokjang, not alone. If you don't have one yet, please ask the office.</span></p></div></div>
+    <div class="step-row"><div class="sn">2</div><div class="sx"><b><span class="ko">온라인 신청</span><span class="en">Apply online</span></b><p><span class="ko">아래 신청서를 작성해 주세요. 개강 2주 전부터 신청을 받습니다.</span><span class="en">Fill out the form below. Applications open two weeks before each term.</span></p></div></div>
+    <div class="step-row"><div class="sn">3</div><div class="sx"><b><span class="ko">확인 연락</span><span class="en">Confirmation</span></b><p><span class="ko">담당 간사가 개강 전에 안내 연락을 드립니다.</span><span class="en">A coordinator will contact you with details before the term begins.</span></p></div></div>
+  </div>
+
+  <!-- 신청 폼 -->
+  <div class="sec-title"><span class="ko">삶공부 신청</span><span class="en">Life Study application</span></div>
+  <div class="card form">
+    <label><span class="ko">신청 과정</span><span class="en">Course</span></label>
+    <select id="course"></select>
+    <div class="row2">
+      <div><label><span class="ko">이름</span><span class="en">Name</span></label><input id="name" type="text" placeholder=""></div>
+      <div><label><span class="ko">목장 (선택)</span><span class="en">Mokjang (opt.)</span></label><input id="mokjang" type="text" placeholder=""></div>
+    </div>
+    <div class="row2">
+      <div><label><span class="ko">휴대폰</span><span class="en">Phone</span></label><input id="phone" type="text" inputmode="tel" placeholder=""></div>
+      <div><label><span class="ko">이메일</span><span class="en">Email</span></label><input id="email" type="text" inputmode="email" placeholder=""></div>
+    </div>
+    <label><span class="ko">신청 동기 · 요청사항 (선택)</span><span class="en">Motivation / requests (opt.)</span></label>
+    <textarea id="memo" placeholder=""></textarea>
+    <button class="submit" id="applyBtn"><span class="ko">신청서 보내기</span><span class="en">Send application</span></button>
+    <div class="fnote"><span class="ko">보내 주시면 교회 사무실로 접수됩니다. 1:1 과정(확신의 삶 · 하나님을 경험하는 삶)은 목자 또는 담임목사에게 직접 문의하셔도 됩니다.</span><span class="en">Your application reaches the church office. For 1:1 courses (Assured Life · Experiencing God), you may also ask your shepherd or the senior pastor directly.</span></div>
+  </div>
+
+  <!-- 문의 -->
+  <div class="sec-title"><span class="ko">문의</span><span class="en">Contact</span></div>
+  <div class="card contact">
+    <p><b><span class="ko">행정간사</span><span class="en">Ministry office</span></b> · <a href="mailto:admin@ijiguchon.org" style="color:var(--gold);font-weight:700">admin@ijiguchon.org</a></p>
+    <p><span class="ko"><b>확신의 삶</b> — 소속 목장의 목자에게 문의</span><span class="en"><b>Assured Life</b> — ask your mokjang shepherd</span></p>
+    <p><span class="ko"><b>하나님을 경험하는 삶</b> — 담임목사에게 문의</span><span class="en"><b>Experiencing God</b> — ask the senior pastor</span></p>
+  </div>
+
+  <div class="card" style="background:linear-gradient(120deg,#FFF3DF,#FDE7D6);border-color:#F3DCC0">
+    <p class="intro-p" style="margin:0"><span class="ko">삶공부의 목표는 '과정 이수'가 아닙니다. 여러분의 <b>삶이 실제로 변화되고</b>, 다른 사람을 섬기는 <b>사역자로 성장하며</b>, 또 다른 제자를 <b>재생산하는</b> 것입니다. 이 여정은 혼자가 아닙니다 — 목장 가족이 함께 걷고 격려합니다. 하나님께서 여러분과 함께하시며 반드시 이 일을 이루실 것입니다.</span><span class="en">The goal of Life Study is not to "complete a course." It is that your <b>life truly changes</b>, that you <b>grow into a minister</b> who serves others, and that you <b>reproduce</b> another disciple. You are not alone — your mokjang family walks with you. God is with you, and He will surely bring it to pass.</span></p>
+  </div>
+
+  <div class="foot">
+    <a class="backhome" href="../home/"><span class="ko">← 홈으로</span><span class="en">← Home</span></a><br><br>
+    <span class="ko">시애틀지구촌교회 · GMC of Greater Seattle</span><span class="en">GMC of Greater Seattle</span><br>
+    <span class="ko">성경 인용: 대한성서공회 새번역(2001년 개정판) · 영문 ESV</span><span class="en">Scripture: 새번역 (Korean Bible Society) · ESV (English)</span>
+  </div>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+  const SCRIPT_URL='https://script.google.com/macros/s/AKfycbzt_mgY8y0IzwKmFGm7Qytg4ryF76cZD9NqnI3BNnyvNqgEVYI5fKsreqjh_1SyYwAR/exec';
+  const COURSES=[
+    {ko:'생명의 삶 (필수 기초)',en:'Life of Life (core)'},
+    {ko:'확신의 삶 (1:1)',en:'Assured Life (1:1)'},
+    {ko:'새로운 삶',en:'New Life'},
+    {ko:'경건의 삶',en:'Godly Life'},
+    {ko:'부부의 삶',en:'Covenant Life'},
+    {ko:'일터의 삶',en:'Vocational Life'},
+    {ko:'선교의 삶',en:'Missional Life'},
+    {ko:'싱글의 삶',en:'Single Life'},
+    {ko:'말씀의 삶',en:'Rooted Life'},
+    {ko:'하나님을 경험하는 삶 (목자 · 1:1)',en:'Experiencing God (shepherd · 1:1)'},
+    {ko:'목자·목녀의 삶',en:'Shepherd Life'},
+    {ko:'아직 정하지 못했어요 · 상담 요청',en:'Not sure yet · please advise'}
+  ];
+  let lang='ko';
+  const $=(id)=>document.getElementById(id);
+  function fillCourses(){ const s=$('course'); s.innerHTML=''; COURSES.forEach(c=>{ const o=document.createElement('option'); o.value=c.ko; o.textContent=(lang==='ko'?c.ko:c.en); s.appendChild(o); }); }
+  $('langBtn').onclick=function(){ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); this.textContent=lang==='ko'?'EN':'한국어'; fillCourses(); };
+  function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2800); }
+
+  $('applyBtn').onclick=async function(){
+    const name=$('name').value.trim();
+    if(!name){ toast(lang==='ko'?'이름을 적어 주세요':'Please enter your name'); $('name').focus(); return; }
+    const payload={ type:'study', 과정:$('course').value, 이름:name, 목장:$('mokjang').value.trim(),
+      휴대폰:$('phone').value.trim(), 이메일:$('email').value.trim(), 요청사항:$('memo').value.trim() };
+    this.disabled=true;
+    try{
+      await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+      toast(lang==='ko'?'신청서를 보냈습니다. 곧 연락드리겠습니다.':'Application sent. We will contact you soon.');
+      $('name').value='';$('mokjang').value='';$('phone').value='';$('email').value='';$('memo').value='';
+    }catch(e){ toast(lang==='ko'?'실패 — 잠시 후 다시 시도해 주세요':'Failed — please try again'); }
+    setTimeout(()=>{ this.disabled=false; },1500);
+  };
+
+  fillCourses();
+</script>
+</body>
+</html>

@@ -83,6 +83,7 @@
   </div>
   <div id="personResult" style="margin-top:12px"></div>
 </div></div>
+<div class="wrap" id="studyWrap"></div>
 <div class="wrap" id="codesWrap"></div>
 <div class="wrap" id="linksWrap"></div>
 </div>
@@ -94,7 +95,7 @@ const $=(id)=>document.getElementById(id);
 let lang='ko';
 
 // 언어
-$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; if(window.__stats){ render(window.__stats); renderQuarters(); } if(window.__codes) renderCodes(); renderLinks(); };
+$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; if(window.__stats){ render(window.__stats); renderQuarters(); } if(window.__codes) renderCodes(); if(window.__study) renderStudy(); renderLinks(); };
 
 // 암호 게이트
 function unlock(){ $('gate').hidden=true; $('app').hidden=false; load(); }
@@ -161,6 +162,31 @@ function renderCodes(){
   w.innerHTML=h;
 }
 
+// 삶공부 신청 현황 (담임 전용)
+async function loadStudy(){
+  try{ const r=await fetch(SCRIPT_URL+'?study='+encodeURIComponent(DASH_CODE)); window.__study=await r.json(); renderStudy(); }catch(e){}
+}
+function fmtD(v){ try{ const d=new Date(v); if(isNaN(d)) return ''; return (d.getMonth()+1)+'/'+d.getDate(); }catch(e){ return ''; } }
+function renderStudy(){
+  const j=window.__study, w=$('studyWrap'); if(!w) return;
+  if(!j||!j.ok){ w.innerHTML=''; return; }
+  const list=j.list||[];
+  let h='<div class="card"><div class="sec" style="font-size:13px;font-weight:900;color:#1a3560">'+(lang==='ko'?'삶공부 신청 현황':'Life Study applications')+' <span style="color:#8a93a2;font-weight:700">('+list.length+')</span></div>';
+  if(!list.length){ h+='<div style="font-size:12.5px;color:#8a93a2;margin-top:6px">'+(lang==='ko'?'아직 신청이 없습니다. (신청은 www.ijiguchon.org/study 에서 접수됩니다)':'No applications yet. (Received at www.ijiguchon.org/study)')+'</div></div>'; w.innerHTML=h; return; }
+  h+='<div style="font-size:12px;color:#8a93a2;margin:4px 0 10px">'+(lang==='ko'?'최근 신청이 위에 있습니다. 상세 내용은 시트 [삶공부신청] 탭에서 볼 수 있습니다.':'Newest first. Full details in the [삶공부신청] sheet tab.')+'</div>';
+  list.forEach(function(s){
+    h+='<div style="padding:9px 2px;border-bottom:1px solid #ECE6DC">'
+      +'<div style="display:flex;justify-content:space-between;gap:10px"><div><b>'+(s.이름||'')+'</b> <span style="color:#48505e;font-size:12.5px">'+(s.과정||'')+'</span></div>'
+      +'<div style="color:#8a93a2;font-size:12px">'+fmtD(s.시각)+'</div></div>';
+    var meta=[s.목장,s.휴대폰,s.이메일].filter(function(x){return String(x||'').trim();}).join(' · ');
+    if(meta) h+='<div style="color:#8a93a2;font-size:12px;margin-top:2px">'+meta+'</div>';
+    if(String(s.요청사항||'').trim()) h+='<div style="color:#48505e;font-size:12.5px;margin-top:3px">'+s.요청사항+'</div>';
+    h+='</div>';
+  });
+  h+='</div>';
+  w.innerHTML=h;
+}
+
 // 분기별 전체 통계
 function renderQuarters(){
   const j=window.__stats, w=$('quartersWrap'); if(!w) return;
@@ -214,7 +240,7 @@ function renderPerson(j,name){
 async function load(){
   try{ const r=await fetch(SCRIPT_URL+'?stats=1'); const j=await r.json(); window.__stats=j; render(j); renderQuarters(); }
   catch(e){ $('content').innerHTML='<div class="card"><div class="empty">'+(lang==='ko'?'불러오기 실패 — 새로고침 해 주세요.':'Load failed — please refresh.')+'</div></div>'; }
-  loadCodes(); renderLinks();
+  loadCodes(); loadStudy(); renderLinks();
 }
 $('reload').onclick=load;
 $('pBtn').onclick=personLookup;
