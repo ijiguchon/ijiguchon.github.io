@@ -132,8 +132,8 @@
       <button class="btn btn-ghost" id="copyBtn"><span class="ko">복사 (카톡 붙여넣기)</span><span class="en">Copy (for KakaoTalk)</span></button>
       <button class="btn btn-gold" id="sendBtn"><span class="ko">이메일로 보내기</span><span class="en">Send by email</span></button>
     </div>
-    <div class="note ko">성경 인용은 새번역(한국어)·ESV(English)로 담깁니다. (본문 구절은 다음 단계에서 정식 인용으로 채워집니다.)</div>
-    <div class="note en">Scripture will use 새번역 (Korean) and ESV (English), added next step.</div>
+    <div class="note ko">성경 인용: 한국어 새번역(대한성서공회) · English ESV. 언어 전환에 따라 해당 역본으로 담깁니다.</div>
+    <div class="note en">Scripture: 새번역 (Korean, Korean Bible Society) · ESV (English), by language.</div>
   </div>
 
 </div>
@@ -170,6 +170,17 @@ const MINISTRY = [
   {ko:'꾸준히 섬김', en:'Serving faithfully'},
   {ko:'세움 (목자)', en:'Raised up (shepherd)'}
 ];
+// 말씀 — 성령의 열매(성품)·은사(사역). 새번역=대한성서공회 직접 확인 / ESV.
+const VERSES = {
+  ko: [
+    '"그러나 성령의 열매는 사랑과 기쁨과 화평과 인내와 친절과 선함과 신실과 온유와 절제입니다. 이런 것들을 막을 법이 없습니다." (갈라디아서 5:22-23, 새번역)',
+    '"그분이 어떤 사람은 사도로, 어떤 사람은 예언자로, 어떤 사람은 복음 전도자로, 또 어떤 사람은 목사와 교사로 삼으셨습니다. 그것은 성도들을 준비시켜서, 봉사의 일을 하게 하고, 그리스도의 몸을 세우게 하려고 하는 것입니다." (에베소서 4:11-12, 새번역)'
+  ],
+  en: [
+    '"But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law." (Galatians 5:22-23, ESV)',
+    '"And he gave the apostles, the prophets, the evangelists, the shepherds and teachers, to equip the saints for the work of ministry, for building up the body of Christ." (Ephesians 4:11-12, ESV)'
+  ]
+};
 
 let lang='ko';
 const $=(id)=>document.getElementById(id);
@@ -241,6 +252,9 @@ function renderLetter(){
     if(home){ L.push(''); L.push('가정에서 함께: '+home); }
     if(pray){ L.push(''); L.push('함께 기도할 제목: '+pray); }
     L.push('');
+    L.push('[ 말씀 ]');
+    VERSES.ko.forEach(v=>L.push(v));
+    L.push('');
     L.push('아이의 신앙은 가정에서 자랍니다. 교회와 가정이 함께 세워 갑니다.');
     L.push('— 시애틀지구촌교회 교회학교'+(teacher?(' · '+teacher):''));
   } else {
@@ -258,6 +272,9 @@ function renderLetter(){
     if(bless){ L.push(''); L.push('Teacher’s blessing: '+bless); }
     if(home){ L.push(''); L.push('Together at home: '+home); }
     if(pray){ L.push(''); L.push('Let’s pray: '+pray); }
+    L.push('');
+    L.push('[ Scripture ]');
+    VERSES.en.forEach(v=>L.push(v));
     L.push('');
     L.push('Faith grows at home. Church and family, building together.');
     L.push('— GMC of Greater Seattle Church School'+(teacher?(' · '+teacher):''));
