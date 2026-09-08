@@ -111,8 +111,9 @@
       </div>
       <div class="row2">
         <div><label class="lbl"><span class="ko">생년월일</span><span class="en">Date of birth</span></label><input type="date" id="spBirth"/></div>
-        <div><label class="lbl"><span class="ko">이메일</span><span class="en">Email</span></label><input type="email" id="spEmail"/></div>
+        <div><label class="lbl"><span class="ko">휴대폰</span><span class="en">Mobile</span></label><input type="tel" id="spPhone"/></div>
       </div>
+      <label class="lbl"><span class="ko">이메일</span><span class="en">Email</span></label><input type="email" id="spEmail"/>
     </div>
   </div>
 
@@ -236,7 +237,7 @@ $('submitBtn').onclick=async()=>{
   }).filter(c=>c.한글||c.영문);
   const payload={ type:'register', 구분:kind,
     본인:{한글:koName,영문:$('enName').value.trim(),생년:$('birth').value,성별:$('gender').value,휴대폰:phone,이메일:email,도시:$('city').value.trim(),목장:$('mokjang').value.trim()},
-    배우자: hasSpouse?{한글:$('spKo').value.trim(),영문:$('spEn').value.trim(),생년:$('spBirth').value,이메일:$('spEmail').value.trim()}:null,
+    배우자: hasSpouse?{한글:$('spKo').value.trim(),영문:$('spEn').value.trim(),생년:$('spBirth').value,휴대폰:$('spPhone').value.trim(),이메일:$('spEmail').value.trim()}:null,
     자녀:children,
     신앙: kind==='회원교인'?{영접:$('accept').value,침례:$('baptized').value,침례교회:$('bapChurch').value.trim(),이전교회:$('prevChurch').value.trim(),서약1:$('vow1').checked,서약2:$('vow2').checked}:null,
     나눔:$('share').value.trim() };
