@@ -95,6 +95,8 @@
     <div class="stage-h"><span class="ko">1단계 · 구원</span><span class="en">Stage 1 · Salvation</span><span class="badge b1">마 28 · Matt 28</span></div>
     <div class="stage-cap"><span class="ko">사명의 시작 — 어디쯤 오셨는지 알고 함께 기도·전도하기 위함(성적 아님).</span><span class="en">The mission's beginning — to know where they are and pray together (not a grade).</span></div>
     <select id="salSel"></select>
+    <label class="lbl" style="font-weight:700;font-size:12.5px;color:var(--ink-3)"><span class="ko">정밀 단계 (엥겔 지수 · 목양 참고 · 선택)</span><span class="en">Detailed (Engel scale · shepherding · optional)</span></label>
+    <select id="engelSel"></select>
   </div>
 
   <!-- STAGE 2: 성품 -->
@@ -151,6 +153,24 @@ const SALV = [
   {ko:'마음이 열림', en:'Heart opening'},
   {ko:'믿음의 결단', en:'Decided to believe'},
   {ko:'침례로 고백', en:'Confessed in baptism'}
+];
+// 엥겔 지수(정밀 · 목양 참고) — 빈야드 공동체 교회 수정판. 새 제자 탄생 기준 −10~+3.
+const ENGEL = [
+  {v:'', ko:'— (선택 안 함)', en:'— (none)'},
+  {v:'-10', ko:'−10 초자연적인 것이 있음을 인식함', en:'−10 Aware of the supernatural'},
+  {v:'-9',  ko:'−9 기독교에 대한 유효한 지식 없음', en:'−9 No effective knowledge of Christianity'},
+  {v:'-8',  ko:'−8 기독교에 대한 최초의 인식', en:'−8 First awareness of Christianity'},
+  {v:'-7',  ko:'−7 기독교에 관심을 가짐', en:'−7 Interested in Christianity'},
+  {v:'-6',  ko:'−6 복음의 기초적인 사실을 인식함', en:'−6 Aware of basic gospel facts'},
+  {v:'-5',  ko:'−5 복음에 긍정적인 태도를 가짐', en:'−5 Positive attitude toward the gospel'},
+  {v:'-4',  ko:'−4 복음의 의미를 파악함', en:'−4 Grasps the meaning of the gospel'},
+  {v:'-3',  ko:'−3 개인적인 필요를 자각함', en:'−3 Aware of personal need'},
+  {v:'-2',  ko:'−2 결단을 내리도록 도전받음', en:'−2 Challenged to decide'},
+  {v:'-1',  ko:'−1 회개와 믿음', en:'−1 Repentance and faith'},
+  {v:'0',   ko:'★ 새 제자의 탄생 (마 28:19-20)', en:'★ New disciple is born (Matt 28:19-20)'},
+  {v:'+1',  ko:'+1 결정을 평가함', en:'+1 Evaluates the decision'},
+  {v:'+2',  ko:'+2 교회에 자발적으로 참여함', en:'+2 Voluntarily joins the church'},
+  {v:'+3',  ko:'+3 다른 사람 제자 삼는 일에 동참 시작', en:'+3 Begins to disciple others'}
 ];
 const FRUITS = [
   {ko:'사랑',en:'Love',oko:'친구를 아끼고 먼저 다가가요',oen:'Cares for others, reaches out first'},
@@ -286,6 +306,7 @@ function renderAll(){
   fillClasses(); fillStudents();
   fillSelect($('quarterSel'), quarters(), v=>lang==='ko'?v.ko:v.en); $('quarterSel').value=currentQuarter();
   fillSelect($('salSel'), SALV, v=>lang==='ko'?v.ko:v.en);
+  fillSelect($('engelSel'), ENGEL, v=>lang==='ko'?v.ko:v.en);
   fillSelect($('minSel'), MINISTRY, v=>lang==='ko'?v.ko:v.en);
   const cls=$('classSel').value; if(TEACHERS[cls]) $('teacherInp').value=TEACHERS[cls][lang]||TEACHERS[cls].ko;
   fillFruits(); renderLetter();
@@ -303,7 +324,7 @@ $('copyBtn').onclick=()=>{ const t=$('letter').textContent; (navigator.clipboard
 $('sendBtn').onclick=async()=>{
   if(!SCRIPT_URL){ toast(lang==='ko'?'데모 모드 · 저장·발송 안 됨':'Demo · not sent'); return; }
   const payload={ type:'growth', 부서반:$('classSel').value, 학생:$('studentSel').value, 분기:quarters()[+$('quarterSel').value].ko,
-    교사:$('teacherInp').value.trim(), 구원:SALV[+$('salSel').value].ko, 사역:MINISTRY[+$('minSel').value].ko, 은사:$('giftInp').value.trim(),
+    교사:$('teacherInp').value.trim(), 구원:SALV[+$('salSel').value].ko, 엥겔:ENGEL[+$('engelSel').value].v, 사역:MINISTRY[+$('minSel').value].ko, 은사:$('giftInp').value.trim(),
     열매:FRUITS.map((f,i)=>({이름:f.ko,단계:FSTAGE[fruitState[i].stage].ko,빛남:fruitState[i].shine})),
     축복:$('blessInp').value.trim(), 가정:$('homeInp').value.trim(), 기도:$('prayInp').value.trim(), 본문:$('letter').textContent };
   try{ await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}); toast(lang==='ko'?'보냈습니다':'Sent'); }
