@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="robots" content="noindex"/>
+<title>성인 출석 · 시애틀지구촌교회</title>
+<style>
+  :root{--navy:#1a3560;--navy-2:#26407A;--gold:#C8944A;--ink:#1d2430;--ink-2:#48505e;--ink-3:#8a93a2;--cream:#FBF7F0;--line:#ECE6DC;--card:#fff;--ok:#1f9d63;--on:#2b6cb0;--off:#b23b3b;--r:16px;--r-sm:11px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  [hidden]{display:none!important}
+  body{font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 120px}
+  .en{display:none} body.lang-en .ko{display:none} body.lang-en .en{display:inline}
+  .wrap{max-width:560px;margin:0 auto;padding:0 16px}
+  header{background:linear-gradient(180deg,var(--navy-2),var(--navy));color:#fff;padding:18px 16px 20px}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .h-title{font-weight:900;font-size:17px}
+  .h-sub{font-size:12px;opacity:.85;font-weight:600;margin-top:2px}
+  .lang{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800;cursor:pointer}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px;box-shadow:0 2px 10px rgba(26,53,96,.05)}
+  .step{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gold)}
+  label.lbl{display:block;font-weight:800;font-size:14px;margin:10px 0 7px}
+  select,input[type=date],input[type=text]{width:100%;font-size:16px;font-family:inherit;color:var(--ink);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:12px;background:#fff}
+  select:focus,input:focus{outline:none;border-color:var(--navy-2)}
+  .seg{display:flex;gap:8px;margin-top:4px}
+  .seg button{flex:1;border:1.5px solid var(--line);background:#fff;color:var(--ink-2);border-radius:var(--r-sm);padding:12px;font-size:14px;font-weight:800;cursor:pointer}
+  .seg button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  .row2{display:flex;gap:10px}.row2>*{flex:1}
+  .r-head{display:flex;justify-content:space-between;align-items:center;margin:4px 2px 10px}
+  .r-count{font-size:13px;color:var(--ink-2);font-weight:700}
+  .person{display:flex;align-items:center;gap:10px;padding:10px 4px;border-bottom:1px solid var(--line)}
+  .person:last-child{border-bottom:0}
+  .p-name{flex:1;font-weight:700;font-size:15px}
+  .s-btns{display:flex;gap:6px}
+  .sb{border:1.5px solid var(--line);background:#fff;color:var(--ink-2);border-radius:999px;padding:7px 10px;font-size:12.5px;font-weight:800;cursor:pointer;min-width:52px;text-align:center}
+  .sb.on[data-v="대면"]{background:var(--ok);border-color:var(--ok);color:#fff}
+  .sb.on[data-v="온라인"]{background:var(--on);border-color:var(--on);color:#fff}
+  .sb.on[data-v="결석"]{background:var(--off);border-color:var(--off);color:#fff}
+  .empty{color:var(--ink-3);text-align:center;padding:24px 10px;font-size:14px}
+  .add-row{display:flex;gap:8px;margin-top:12px}.add-row input{flex:1}
+  .quick{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:7px 12px;font-size:12.5px;font-weight:800;color:var(--navy);cursor:pointer;white-space:nowrap}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:rgba(251,247,240,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+  .bar .wrap{display:flex;align-items:center;gap:12px}
+  .tally{flex:1;font-size:13px;font-weight:800;color:var(--ink-2)}.tally b{color:var(--navy)}
+  .submit{background:linear-gradient(180deg,#E4A85C,#C8843A);color:#fff;border:0;border-radius:999px;padding:14px 22px;font-size:15px;font-weight:900;cursor:pointer;box-shadow:0 6px 16px rgba(200,132,58,.34)}
+  .submit:disabled{opacity:.5;box-shadow:none}
+  .toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 18px;border-radius:12px;font-weight:800;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transition:.25s;pointer-events:none;max-width:90%}
+  .toast.show{opacity:1}
+  .demo{display:inline-block;background:#FDECEC;color:#b23b3b;border-radius:999px;padding:2px 9px;font-size:11px;font-weight:800;margin-left:6px}
+  .note{font-size:12px;color:var(--ink-3);margin-top:10px;line-height:1.5}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div>
+      <div class="h-title"><span class="ko">성인 출석</span><span class="en">Adult Attendance</span></div>
+      <div class="h-sub">시애틀지구촌교회 · GMC of Greater Seattle</div>
+    </div>
+    <button class="lang" id="langBtn">EN</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <div class="step">STEP 1</div>
+    <label class="lbl"><span class="ko">무엇을 체크하나요?</span><span class="en">What are you checking?</span></label>
+    <div class="seg" id="ctxSeg">
+      <button type="button" data-c="주일연합예배" class="on"><span class="ko">주일연합예배</span><span class="en">Sunday Worship</span></button>
+      <button type="button" data-c="목장모임"><span class="ko">목장모임</span><span class="en">House-church</span></button>
+    </div>
+    <div id="mokjangWrap" hidden>
+      <label class="lbl"><span class="ko">목장 선택</span><span class="en">Choose house-church</span></label>
+      <select id="mokjangSel"></select>
+    </div>
+    <label class="lbl"><span class="ko">기록자 (목자·스탭)</span><span class="en">Recorder</span></label>
+    <input type="text" id="byInp" placeholder="예: 김성수 목사 · 김지영 목자"/>
+  </div>
+
+  <div class="card">
+    <div class="step">STEP 2</div>
+    <label class="lbl"><span class="ko">날짜</span><span class="en">Date</span></label>
+    <div class="row2">
+      <input type="date" id="dateInp"/>
+      <select id="modeAll">
+        <option value="">한 번에 채우기</option>
+        <option value="대면">모두 대면</option>
+        <option value="온라인">모두 온라인</option>
+        <option value="결석">모두 결석</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="step">STEP 3<span class="demo" id="demoTag" hidden>데모</span></div>
+    <div class="r-head">
+      <label class="lbl" style="margin:0"><span class="ko">출석 체크</span><span class="en">Mark attendance</span></label>
+      <span class="r-count" id="rCount"></span>
+    </div>
+    <div id="roster"></div>
+    <div class="add-row">
+      <input type="text" id="addName" placeholder="새 성도 이름"/>
+      <button id="addBtn" class="quick"><span class="ko">+ 성도 추가</span><span class="en">+ Add</span></button>
+    </div>
+    <div class="note ko">각 이름 옆에서 대면 · 온라인 · 결석을 눌러 주세요.</div>
+    <div class="note en">Tap In-person / Online / Absent by each name.</div>
+  </div>
+</div>
+
+<div class="bar"><div class="wrap">
+  <div class="tally" id="tally"></div>
+  <button class="submit" id="submitBtn"><span class="ko">제출</span><span class="en">Submit</span></button>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbzt_mgY8y0IzwKmFGm7Qytg4ryF76cZD9NqnI3BNnyvNqgEVYI5fKsreqjh_1SyYwAR/exec';
+const $=(id)=>document.getElementById(id);
+let lang='ko', ctx='주일연합예배', marks={};
+let ADULTS={};                                  // {목장:[이름]}
+const FIXED_MOKJANG=['이스라엘','멕시코','인도네시아','GMC Y','미배정'];
+const V=['대면','온라인','결석'];
+const T={ ko:{vL:{'대면':'대면','온라인':'온라인','결석':'결석'}, fill:'한 번에 채우기',allIn:'모두 대면',allOn:'모두 온라인',allOff:'모두 결석',
+    unit:(n)=>n+'명',empty:'명단이 없습니다. 아래에서 성도를 추가하세요.',addPh:'새 성도 이름',
+    tNeed:'한 명 이상 체크해 주세요.',tDate:'날짜를 골라 주세요.',tSaved:(n)=>'저장했습니다 · '+n+'명',tFail:'저장 실패 — 다시',tDemo:(n)=>'데모 · '+n+'명(저장 안 됨)',tAdd:(n)=>n+' 추가됨',tDupe:(n)=>n+' 이미 있음',demo:'데모'},
+  en:{vL:{'대면':'In-person','온라인':'Online','결석':'Absent'}, fill:'Fill all',allIn:'All in-person',allOn:'All online',allOff:'All absent',
+    unit:(n)=>n+' people',empty:'No list yet. Add people below.',addPh:'New name',
+    tNeed:'Mark at least one.',tDate:'Choose a date.',tSaved:(n)=>'Saved · '+n,tFail:'Failed — retry',tDemo:(n)=>'Demo · '+n+' (not saved)',tAdd:(n)=>n+' added',tDupe:(n)=>n+' already listed',demo:'Demo'} };
+function t(){return T[lang];}
+
+$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; applyLang(); render(); };
+
+function nearestSunday(){ const d=new Date(); const g=d.getDay(); if(g!==0) d.setDate(d.getDate()-g); return d.toISOString().slice(0,10); }
+function today(){ return new Date().toISOString().slice(0,10); }
+
+$('ctxSeg').querySelectorAll('button').forEach(b=>b.onclick=()=>{
+  ctx=b.dataset.c; $('ctxSeg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+  $('mokjangWrap').hidden=(ctx!=='목장모임');
+  $('dateInp').value=(ctx==='주일연합예배')?nearestSunday():today();
+  render();
+});
+
+function mokjangList(){ const keys=Object.keys(ADULTS); const all=FIXED_MOKJANG.slice(); keys.forEach(k=>{ if(all.indexOf(k)<0) all.push(k); }); return all; }
+function fillMokjang(){ const s=$('mokjangSel'); s.innerHTML=''; mokjangList().forEach(m=>{ const o=document.createElement('option'); o.value=m; o.textContent=m; s.appendChild(o); }); }
+
+function currentList(){
+  if(ctx==='주일연합예배'){ var all=[]; Object.keys(ADULTS).forEach(k=>ADULTS[k].forEach(n=>{ if(all.indexOf(n)<0) all.push(n); })); return all; }
+  return (ADULTS[$('mokjangSel').value]||[]).slice();
+}
+
+function makeRow(name){
+  const row=document.createElement('div'); row.className='person';
+  const nm=document.createElement('div'); nm.className='p-name'; nm.textContent=name;
+  const btns=document.createElement('div'); btns.className='s-btns';
+  V.forEach(v=>{ const b=document.createElement('button'); b.className='sb'; b.dataset.v=v; b.textContent=t().vL[v];
+    b.onclick=()=>{ marks[name]=(marks[name]===v)?null:v; btns.querySelectorAll('.sb').forEach(x=>x.classList.toggle('on',x.dataset.v===marks[name])); tally(); };
+    btns.appendChild(b); });
+  row.appendChild(nm); row.appendChild(btns); return row;
+}
+
+function render(){
+  marks={}; const list=currentList(); const box=$('roster'); box.innerHTML='';
+  if(!list.length){ box.innerHTML='<div class="empty">'+t().empty+'</div>'; $('rCount').textContent=''; tally(); return; }
+  list.forEach(n=>box.appendChild(makeRow(n)));
+  $('rCount').textContent=t().unit(list.length); tally();
+}
+
+$('modeAll').onchange=(e)=>{ const v=e.target.value; if(!v) return; document.querySelectorAll('.person').forEach(row=>{ const n=row.querySelector('.p-name').textContent; marks[n]=v; row.querySelectorAll('.sb').forEach(x=>x.classList.toggle('on',x.dataset.v===v)); }); e.target.value=''; tally(); };
+
+function tally(){ let a=0,o=0,x=0; Object.values(marks).forEach(v=>{ if(v==='대면')a++; else if(v==='온라인')o++; else if(v==='결석')x++; });
+  $('tally').innerHTML=(lang==='ko')?('대면 <b>'+a+'</b> · 온라인 <b>'+o+'</b> · 결석 <b>'+x+'</b>'):('In-person <b>'+a+'</b> · Online <b>'+o+'</b> · Absent <b>'+x+'</b>');
+  $('submitBtn').disabled=(a+o+x===0); }
+
+$('mokjangSel').onchange=render;
+
+function addPerson(){
+  const name=$('addName').value.trim(); if(!name){ $('addName').focus(); return; }
+  const mk=(ctx==='목장모임')?$('mokjangSel').value:'미배정';
+  if(!ADULTS[mk]) ADULTS[mk]=[];
+  if(ADULTS[mk].indexOf(name)>=0){ toast(t().tDupe(name)); return; }
+  ADULTS[mk].push(name);
+  const box=$('roster'); if(box.querySelector('.empty')) box.innerHTML='';
+  box.appendChild(makeRow(name)); $('rCount').textContent=t().unit(currentList().length); $('addName').value='';
+  if(SCRIPT_URL){ fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({type:'addAdult',목장:mk,이름:name})}).catch(()=>{}); }
+  toast(t().tAdd(name));
+}
+$('addBtn').onclick=addPerson;
+$('addName').addEventListener('keydown',e=>{ if(e.key==='Enter') addPerson(); });
+
+function toast(m){ const el=$('toast'); el.textContent=m; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),2600); }
+
+$('submitBtn').onclick=async()=>{
+  const date=$('dateInp').value; const by=$('byInp').value.trim();
+  const mk=(ctx==='목장모임')?$('mokjangSel').value:'(전체)';
+  const records=Object.keys(marks).filter(n=>marks[n]).map(n=>({이름:n,상태:marks[n]}));
+  if(!records.length){ toast(t().tNeed); return; } if(!date){ toast(t().tDate); return; }
+  if(!SCRIPT_URL){ toast(t().tDemo(records.length)); return; }
+  $('submitBtn').disabled=true;
+  try{ await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({type:'worship',구분:ctx,목장:mk,날짜:date,기록자:by,records})});
+    toast(t().tSaved(records.length)); document.querySelectorAll('.sb').forEach(x=>x.classList.remove('on')); marks={}; tally();
+  }catch(e){ toast(t().tFail); } finally{ $('submitBtn').disabled=false; }
+};
+
+function applyLang(){
+  const d=t(); $('langBtn').textContent=lang==='ko'?'EN':'한국어';
+  const mo=$('modeAll').options; if(mo.length>=4){ mo[0].text=d.fill; mo[1].text=d.allIn; mo[2].text=d.allOn; mo[3].text=d.allOff; }
+  $('addName').placeholder=d.addPh; const dt=$('demoTag'); if(dt) dt.textContent=d.demo;
+}
+
+async function loadAdults(){
+  if(!SCRIPT_URL){ $('demoTag').hidden=false; ADULTS={'이스라엘':['(예시) 김성수'],'미배정':[]}; return; }
+  try{ const r=await fetch(SCRIPT_URL+'?list=adults'); const j=await r.json(); if(j&&j.ok&&j.mokjangs) ADULTS=j.mokjangs; }catch(e){}
+}
+
+(async function init(){
+  $('dateInp').value=nearestSunday();
+  await loadAdults(); fillMokjang(); applyLang(); render();
+})();
+</script>
+</body>
+</html>
