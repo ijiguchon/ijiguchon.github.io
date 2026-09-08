@@ -73,6 +73,7 @@
 <div class="wrap" id="content">
   <div class="card"><div class="empty" id="loading"><span class="ko">불러오는 중…</span><span class="en">Loading…</span></div></div>
 </div>
+<div class="wrap" id="codesWrap"></div>
 </div>
 
 <script>
@@ -82,7 +83,7 @@ const $=(id)=>document.getElementById(id);
 let lang='ko';
 
 // 언어
-$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; if(window.__stats) render(window.__stats); };
+$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; if(window.__stats) render(window.__stats); if(window.__codes) renderCodes(); };
 
 // 암호 게이트
 function unlock(){ $('gate').hidden=true; $('app').hidden=false; load(); }
@@ -103,9 +104,28 @@ const T={
 function t(){return T[lang];}
 function fmtDate(s){ const d=new Date(s); if(isNaN(d)) return String(s); return (d.getMonth()+1)+'/'+d.getDate(); }
 
+// 리더 코드 목록 (암호로 조회)
+async function loadCodes(){
+  try{ const r=await fetch(SCRIPT_URL+'?codes='+encodeURIComponent(DASH_CODE)); window.__codes=await r.json(); renderCodes(); }catch(e){}
+}
+function renderCodes(){
+  const j=window.__codes, w=$('codesWrap'); if(!w) return;
+  if(!j||!j.ok||!j.list||!j.list.length){ w.innerHTML=''; return; }
+  let h='<div class="card"><div class="sec" style="font-size:13px;font-weight:900;color:#1a3560">'+(lang==='ko'?'리더 코드 (내 목양 접속용)':'Leader codes (for My Flock)')+'</div>';
+  h+='<div style="font-size:12px;color:#8a93a2;margin:4px 0 10px">'+(lang==='ko'?'각 리더에게 /my 링크와 아래 코드를 알려주세요. 잊으면 여기서 확인.':'Give each leader the /my link and their code. Look them up here.')+'</div>';
+  j.list.forEach(function(c){
+    h+='<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px solid #ECE6DC">'
+      +'<div><b>'+c.name+'</b> <span style="color:#8a93a2;font-size:12.5px">'+(c.범위||'')+'</span></div>'
+      +'<div style="font-family:monospace;font-weight:800;color:#26407A;background:#EAF1FB;border-radius:8px;padding:3px 10px">'+c.code+'</div></div>';
+  });
+  h+='<div style="font-size:12px;color:#8a93a2;margin-top:8px">'+(lang==='ko'?'링크: www.ijiguchon.org/my':'Link: www.ijiguchon.org/my')+'</div></div>';
+  w.innerHTML=h;
+}
+
 async function load(){
   try{ const r=await fetch(SCRIPT_URL+'?stats=1'); const j=await r.json(); window.__stats=j; render(j); }
   catch(e){ $('content').innerHTML='<div class="card"><div class="empty">'+(lang==='ko'?'불러오기 실패 — 새로고침 해 주세요.':'Load failed — please refresh.')+'</div></div>'; }
+  loadCodes();
 }
 $('reload').onclick=load;
 
