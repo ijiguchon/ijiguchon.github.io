@@ -66,6 +66,10 @@
     <div class="step"><span class="ko">2. 이름을 찾아 눌러 주세요</span><span class="en">2. Tap your name</span></div>
     <input type="text" id="search" placeholder="이름 검색 / Search"/>
     <div class="names" id="names"><div class="empty" id="loading"><span class="ko">불러오는 중…</span><span class="en">Loading…</span></div></div>
+    <button class="nb" id="visitorBtn" style="border-style:dashed;margin-top:10px"><span class="ko">처음 오셨나요? · 명단에 없어요</span><span class="en">First time? · Not on the list</span></button>
+    <div id="visitorWrap" hidden style="margin-top:10px">
+      <input type="text" id="visitorName" placeholder="이름을 적어 주세요 / Your name"/>
+    </div>
   </div>
 
   <div class="card">
@@ -77,6 +81,7 @@
   </div>
 
   <button class="go" id="goBtn" disabled><span class="ko">출석 체크하기</span><span class="en">Check in</span></button>
+  <div style="text-align:center;margin-top:16px"><a href="../worship/" style="color:var(--navy-2);font-size:13px;font-weight:800;text-decoration:none"><span class="ko">목자·스탭이 대신 체크하기 →</span><span class="en">Leader/staff check for others →</span></a></div>
 </div>
 
 <div class="wrap" id="doneArea" hidden>
@@ -91,7 +96,7 @@
 <script>
 const SCRIPT_URL='https://script.google.com/macros/s/AKfycbzt_mgY8y0IzwKmFGm7Qytg4ryF76cZD9NqnI3BNnyvNqgEVYI5fKsreqjh_1SyYwAR/exec';
 const $=(id)=>document.getElementById(id);
-let lang='ko', ctx='주일연합예배', ADULTS={}, chosen=null, mode=null, nameMokjang={};
+let lang='ko', ctx='주일연합예배', ADULTS={}, chosen=null, mode=null, nameMokjang={}, isVisitor=false;
 
 $('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; $('demoTag').textContent=lang==='ko'?'데모':'Demo'; };
 
@@ -111,15 +116,20 @@ function renderNames(){
   box.innerHTML='';
   if(!list.length){ box.innerHTML='<div class="empty">'+(lang==='ko'?'명단이 없습니다. 목자·스탭에게 문의하세요.':'No names yet. Ask a leader.')+'</div>'; return; }
   list.forEach(n=>{ const b=document.createElement('button'); b.className='nb'+(chosen===n?' on':''); b.textContent=n;
-    b.onclick=()=>{ chosen=(chosen===n)?null:n; box.querySelectorAll('.nb').forEach(x=>x.classList.toggle('on',x.textContent===chosen)); check(); }; box.appendChild(b); });
+    b.onclick=()=>{ chosen=(chosen===n)?null:n; isVisitor=false; $('visitorWrap').hidden=true; $('visitorName').value=''; $('visitorBtn').classList.remove('on'); box.querySelectorAll('.nb').forEach(x=>x.classList.toggle('on',x.textContent===chosen)); check(); }; box.appendChild(b); });
 }
 function check(){ $('goBtn').disabled=!(chosen&&mode); }
+
+// 방문자 · 명단에 없는 분 자가체크
+$('visitorBtn').onclick=()=>{ isVisitor=true; $('visitorWrap').hidden=false; $('visitorBtn').classList.add('on');
+  $('names').querySelectorAll('.nb').forEach(x=>x.classList.remove('on')); chosen=null; $('visitorName').focus(); check(); };
+$('visitorName').addEventListener('input',()=>{ chosen=$('visitorName').value.trim()||null; check(); });
 
 $('goBtn').onclick=async()=>{
   if(!chosen||!mode) return;
   let 구분=ctx; if(ctx==='특별행사'){ 구분=$('eventInp').value.trim(); if(!구분){ alert(lang==='ko'?'행사 이름을 적어 주세요.':'Enter event name.'); return; } }
-  const mk=(ctx==='목장모임')?(nameMokjang[chosen]||'미배정'):'(전체)';
-  const payload={type:'worship',구분:구분,목장:mk,날짜:ctxDate(),기록자:'본인(자가체크)',records:[{이름:chosen,상태:mode}]};
+  const mk=isVisitor?'방문자':((ctx==='목장모임')?(nameMokjang[chosen]||'미배정'):'(전체)');
+  const payload={type:'worship',구분:구분,목장:mk,날짜:ctxDate(),기록자:isVisitor?'방문자(자가체크)':'본인(자가체크)',records:[{이름:chosen,상태:mode}]};
   $('goBtn').disabled=true;
   try{
     if(SCRIPT_URL) await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
@@ -127,7 +137,7 @@ $('goBtn').onclick=async()=>{
     $('app').hidden=true; $('doneArea').hidden=false; window.scrollTo(0,0);
   }catch(e){ alert(lang==='ko'?'전송 실패 — 다시 시도해 주세요.':'Failed — try again.'); $('goBtn').disabled=false; }
 };
-$('againBtn').onclick=()=>{ chosen=null; mode=null; $('search').value=''; $('modeSeg').querySelectorAll('button').forEach(x=>x.classList.remove('on')); renderNames(); check(); $('doneArea').hidden=true; $('app').hidden=false; };
+$('againBtn').onclick=()=>{ chosen=null; mode=null; isVisitor=false; $('search').value=''; $('visitorWrap').hidden=true; $('visitorName').value=''; $('visitorBtn').classList.remove('on'); $('modeSeg').querySelectorAll('button').forEach(x=>x.classList.remove('on')); renderNames(); check(); $('doneArea').hidden=true; $('app').hidden=false; };
 
 async function loadAdults(){
   if(!SCRIPT_URL){ $('demoTag').hidden=false; nameMokjang={'김성수':'미배정','이인규':'인도네시아'}; return; }
