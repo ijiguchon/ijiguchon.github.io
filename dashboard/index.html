@@ -101,6 +101,7 @@ const T={
       need:'If stats are empty, the backend (.gs) may need redeploy. It fills automatically as data grows.'}
 };
 function t(){return T[lang];}
+function fmtDate(s){ const d=new Date(s); if(isNaN(d)) return String(s); return (d.getMonth()+1)+'/'+d.getDate(); }
 
 async function load(){
   try{ const r=await fetch(SCRIPT_URL+'?stats=1'); const j=await r.json(); window.__stats=j; render(j); }
@@ -139,7 +140,7 @@ function render(j){
       +'<div class="kpi"><div class="n">'+last.결석+'</div><div class="l">'+d.off+'</div></div>'
       +'<div class="kpi"><div class="n">'+rate+'%</div><div class="l">'+d.rate+'</div></div></div>';
     h+='<div class="legend"><span><span class="dot" style="background:var(--in)"></span>'+d.inp+'</span><span><span class="dot" style="background:var(--on)"></span>'+d.onl+'</span><span><span class="dot" style="background:var(--off)"></span>'+d.off+'</span></div>';
-    weeks.forEach(w=>{ h+='<div class="row"><div class="lab">'+w.date+'</div>'+bar([{cls:'in',val:w.대면},{cls:'on',val:w.온라인},{cls:'off',val:w.결석}])+'<div class="val">'+w.total+(lang==='ko'?'명':'')+'</div></div>'; });
+    weeks.forEach(w=>{ h+='<div class="row"><div class="lab">'+fmtDate(w.date)+'</div>'+bar([{cls:'in',val:w.대면},{cls:'on',val:w.온라인},{cls:'off',val:w.결석}])+'<div class="val">'+w.total+(lang==='ko'?'명':'')+'</div></div>'; });
   } else { h+='<div class="empty">'+d.noAtt+'</div>'; }
   h+='</div>';
 
