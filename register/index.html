@@ -11,26 +11,37 @@
   [hidden]{display:none!important}
   body{font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 60px}
   .en{display:none} body.lang-en .ko{display:none} body.lang-en .en{display:inline} body.lang-en .en.blk{display:block}
+  /* 단계별 필드 노출 */
+  .f-reg,.f-member{display:none}
+  body.st-reg .f-reg{display:block}
+  body.st-member .f-reg,body.st-member .f-member{display:block}
+  .f-visitreg{display:none}
+  body.st-visitor .f-visitreg,body.st-reg .f-visitreg{display:block}
   .wrap{max-width:620px;margin:0 auto;padding:0 16px}
   header{background:linear-gradient(180deg,var(--navy-2),var(--navy));color:#fff;padding:18px 16px 22px}
   header .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px}
-  .h-title{font-weight:900;font-size:18px;letter-spacing:-.3px}
+  .h-title{font-weight:900;font-size:18px}
   .h-sub{font-size:12px;opacity:.85;font-weight:600;margin-top:2px}
   .lang{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800;cursor:pointer}
   .intro{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px;color:var(--ink-2);font-size:14px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px;box-shadow:0 2px 10px rgba(26,53,96,.05)}
-  .sec{font-size:13px;font-weight:900;color:var(--navy);letter-spacing:.2px;margin-bottom:4px}
+  .sec{font-size:13px;font-weight:900;color:var(--navy);margin-bottom:4px}
   .sec-cap{font-size:12.5px;color:var(--ink-3);margin-bottom:10px}
   label.lbl{display:block;font-weight:800;font-size:13.5px;margin:11px 0 6px}
   label.lbl .req{color:#b23b3b}
   input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{width:100%;font-size:16px;font-family:inherit;color:var(--ink);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:11px 12px;background:#fff}
-  textarea{min-height:64px;resize:vertical;line-height:1.5}
+  textarea{min-height:60px;resize:vertical;line-height:1.5}
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--navy-2)}
   .row2{display:flex;gap:10px}.row2>*{flex:1}
-  .seg{display:flex;gap:8px;margin-top:4px}
-  .seg button{flex:1;border:1.5px solid var(--line);background:#fff;color:var(--ink-2);border-radius:var(--r-sm);padding:12px;font-size:14px;font-weight:800;cursor:pointer}
+  .row3{display:flex;gap:8px}.row3>*{flex:1}
+  .seg{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap}
+  .seg button{flex:1 1 90px;border:1.5px solid var(--line);background:#fff;color:var(--ink-2);border-radius:var(--r-sm);padding:12px 8px;font-size:14px;font-weight:800;cursor:pointer}
   .seg button.on{background:var(--navy);border-color:var(--navy);color:#fff}
   .hint{font-size:12px;color:var(--ink-3);margin-top:6px;line-height:1.5}
+  .found{background:#EAF5EE;border:1px solid #bfe3cd;color:#2f7d54;border-radius:10px;padding:9px 12px;font-size:13px;font-weight:700;margin-top:8px}
+  .chks{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+  .chks label{display:flex;gap:9px;align-items:flex-start;font-size:14px;color:var(--ink-2)}
+  .chks input{margin-top:3px;width:18px;height:18px;flex-shrink:0}
   .child{border:1px solid var(--line);border-radius:var(--r-sm);padding:12px;margin-top:10px;position:relative}
   .child .rm{position:absolute;top:8px;right:10px;border:0;background:none;color:#b23b3b;font-size:12.5px;font-weight:800;cursor:pointer}
   .dept-tag{display:inline-block;background:#EAF1FB;color:#26407A;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:800;margin-top:6px}
@@ -39,16 +50,15 @@
   .chk input{margin-top:3px;width:18px;height:18px;flex-shrink:0}
   .submit{width:100%;margin-top:18px;background:linear-gradient(180deg,#E4A85C,#C8843A);color:#fff;border:0;border-radius:999px;padding:15px;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 6px 16px rgba(200,132,58,.34)}
   .submit:disabled{opacity:.5;box-shadow:none}
-  .faith{display:none} body.show-faith .faith{display:block}
   .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 18px;border-radius:12px;font-weight:800;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transition:.25s;pointer-events:none;max-width:90%}
   .toast.show{opacity:1}
   .demo{display:inline-block;background:#FDECEC;color:#b23b3b;border-radius:999px;padding:2px 9px;font-size:11px;font-weight:800;margin-left:6px}
-  .done{display:none;text-align:center;padding:40px 16px}
-  .done h2{color:var(--navy);font-size:20px;margin-bottom:10px}
+  .done{display:none;text-align:center;padding:44px 16px}
+  .done h2{color:var(--navy);font-size:22px;margin-bottom:10px}
   .done p{color:var(--ink-2);font-size:15px}
 </style>
 </head>
-<body>
+<body class="st-visitor">
 <header>
   <div class="wrap">
     <div>
@@ -60,49 +70,86 @@
 </header>
 
 <div class="wrap" id="formArea">
-
   <div class="intro">
-    <span class="ko">반갑습니다. 어떤 모습으로 오셔도 환영합니다. 아래는 함께 걷기 위한 기본 정보예요. 편하게, 아는 만큼만 적어 주세요. <b>*</b> 표시만 꼭 부탁드립니다.</span>
-    <span class="en blk">Welcome — you're welcome just as you are. This is basic info so we can walk together. Fill in what you can; only <b>*</b> fields are required.</span>
+    <span class="ko">반갑습니다. 어떤 모습으로 오셔도 환영합니다. 처음엔 가볍게 시작하고, 마음이 자라면 조금씩 더 채워가면 됩니다. <b>*</b> 만 꼭 부탁드려요.</span>
+    <span class="en blk">Welcome — just as you are. Start light; add more as you grow. Only <b>*</b> is required.</span>
   </div>
 
-  <!-- 구분 -->
+  <!-- 단계 -->
   <div class="card">
-    <div class="sec"><span class="ko">어떤 등록인가요?</span><span class="en">Which registration?</span></div>
+    <div class="sec"><span class="ko">어느 단계인가요?</span><span class="en">Which step?</span></div>
     <div class="seg" id="kindSeg">
-      <button type="button" data-k="등록교인" class="on"><span class="ko">등록교인</span><span class="en">Registered</span></button>
+      <button type="button" data-k="방문자" class="on"><span class="ko">방문자</span><span class="en">Visitor</span></button>
+      <button type="button" data-k="등록교인"><span class="ko">등록교인</span><span class="en">Registered</span></button>
       <button type="button" data-k="회원교인"><span class="ko">회원교인</span><span class="en">Member</span></button>
     </div>
-    <div class="hint ko"><b>등록교인</b> — 함께 예배하고 목장에 연결되는 첫걸음(온라인으로 바로). <b>회원교인</b> — 예수님을 영접하고 침례로 고백한 분(선거권·사역). 잘 모르시면 등록교인으로 시작하세요.</div>
-    <div class="hint en blk"><b>Registered</b> — first step to worship & house-church (online now). <b>Member</b> — has received Jesus and been baptized (voting/ministry). Not sure? Start as Registered.</div>
+    <div class="hint ko"><b>방문자</b> 처음 오셨어요 · <b>등록교인</b> 목장에 소속되어 연합교회에 등록 · <b>회원교인</b> 목장 소속·연합예배·생명의 삶 수료·침례 후 등록. 잘 모르시면 방문자로 시작하세요.</div>
+    <div class="hint en blk"><b>Visitor</b> first time · <b>Registered</b> belong to a house church, then register with the church · <b>Member</b> after house church, worship, "Life of Life" course, and baptism. Not sure? Start as Visitor.</div>
   </div>
 
   <!-- 본인 -->
   <div class="card">
     <div class="sec"><span class="ko">본인 (가정 대표)</span><span class="en">You (household head)</span></div>
+    <div class="sec-cap"><span class="ko">연락처는 기록을 하나로 연결하는 데만 씁니다. 남의 기록은 어디서도 보이지 않습니다.</span><span class="en">Your contact only links your own record; others' records are never shown.</span></div>
+    <div class="row2">
+      <div><label class="lbl"><span class="ko">휴대폰</span><span class="en">Mobile</span> <span class="req">*</span></label><input type="tel" id="phone"/></div>
+      <div><label class="lbl"><span class="ko">이메일</span><span class="en">Email</span></label><input type="email" id="email"/></div>
+    </div>
     <div class="row2">
       <div><label class="lbl"><span class="ko">한글 이름</span><span class="en">Korean name</span> <span class="req">*</span></label><input type="text" id="koName"/></div>
       <div><label class="lbl"><span class="ko">영문 이름</span><span class="en">English name</span></label><input type="text" id="enName"/></div>
     </div>
-    <div class="row2">
-      <div><label class="lbl"><span class="ko">생년월일</span><span class="en">Date of birth</span></label><input type="date" id="birth"/></div>
-      <div><label class="lbl"><span class="ko">성별</span><span class="en">Gender</span></label><select id="gender"><option value=""></option><option>남</option><option>여</option></select></div>
+    <!-- 등록+ -->
+    <div class="f-reg">
+      <div class="row2">
+        <div><label class="lbl"><span class="ko">사는 도시</span><span class="en">City</span></label><input type="text" id="city" placeholder="예: Lynnwood"/></div>
+        <div><label class="lbl"><span class="ko">관심 · 소속 목장</span><span class="en">House church</span></label><input type="text" id="mokjang" placeholder="예: 미정 · 이스라엘"/></div>
+      </div>
+      <div class="row2">
+        <div><label class="lbl"><span class="ko">인도자 (있으면)</span><span class="en">Invited by</span></label><input type="text" id="inviter"/></div>
+        <div><label class="lbl"><span class="ko">인도자와의 관계</span><span class="en">Relationship</span></label><input type="text" id="inviterRel"/></div>
+      </div>
     </div>
-    <div class="row2">
-      <div><label class="lbl"><span class="ko">휴대폰</span><span class="en">Mobile</span> <span class="req">*</span></label><input type="tel" id="phone"/></div>
-      <div><label class="lbl"><span class="ko">이메일</span><span class="en">Email</span> <span class="req">*</span></label><input type="email" id="email"/></div>
-    </div>
-    <div class="row2">
-      <div><label class="lbl"><span class="ko">사는 도시</span><span class="en">City</span></label><input type="text" id="city" placeholder="예: Lynnwood"/></div>
-      <div><label class="lbl"><span class="ko">관심 · 소속 목장</span><span class="en">House church</span></label><input type="text" id="mokjang" placeholder="예: 미정 · 이스라엘"/></div>
+    <!-- 회원+ (자세히) -->
+    <div class="f-member">
+      <div class="row2">
+        <div><label class="lbl"><span class="ko">생년월일</span><span class="en">Date of birth</span></label><input type="date" id="birth"/></div>
+        <div><label class="lbl"><span class="ko">성별</span><span class="en">Gender</span></label><select id="gender"><option value=""></option><option>남</option><option>여</option></select></div>
+      </div>
+      <label class="lbl"><span class="ko">집 주소</span><span class="en">Home address</span></label>
+      <input type="text" id="addr1" placeholder="Street address" style="margin-bottom:8px"/>
+      <div class="row3">
+        <input type="text" id="city2" placeholder="City"/>
+        <input type="text" id="state" placeholder="State"/>
+        <input type="text" id="zip" placeholder="Zip"/>
+      </div>
     </div>
   </div>
 
-  <!-- 배우자 -->
-  <div class="card">
+  <!-- 방문 유형 (방문자·등록) -->
+  <div class="card f-visitreg">
+    <div class="sec"><span class="ko">어떻게 오셨나요? (해당되는 것 모두)</span><span class="en">How did you come? (all that apply)</span></div>
+    <div class="chks" id="visitTypes">
+      <label><input type="checkbox" value="처음 교회에 나왔습니다"><span class="ko">처음 교회에 나왔습니다</span><span class="en">First time at church</span></label>
+      <label><input type="checkbox" value="이 지역으로 이사 왔습니다"><span class="ko">이 지역으로 이사 왔습니다</span><span class="en">Moved to this area</span></label>
+      <label><input type="checkbox" value="함께할 교회를 찾고 있습니다"><span class="ko">신앙생활을 함께할 교회를 찾고 있습니다</span><span class="en">Looking for a church home</span></label>
+      <label><input type="checkbox" value="장기간 교회 출석을 못했습니다"><span class="ko">신앙생활을 하다가 장기간 출석을 못했습니다</span><span class="en">Away from church for a while</span></label>
+      <label><input type="checkbox" value="침례(세례)를 받은 경험이 있습니다"><span class="ko">침례(세례)를 받은 경험이 있습니다</span><span class="en">Have been baptized before</span></label>
+      <label><input type="checkbox" value="여행 중에 잠깐 방문했습니다"><span class="ko">여행 중에 잠깐 방문했습니다</span><span class="en">Visiting while traveling</span></label>
+      <label><input type="checkbox" value="가정교회를 하던 곳에서 왔습니다"><span class="ko">가정교회를 하던 곳에서 왔습니다</span><span class="en">Came from a house church</span></label>
+    </div>
+    <input type="text" id="prevChurch" placeholder="이전 교회 이름 (있으면) / Previous church" style="margin-top:10px"/>
+    <label class="lbl"><span class="ko">교회를 어떻게 알게 되셨나요?</span><span class="en">How did you hear about us?</span></label>
+    <input type="text" id="howHeard" placeholder="예: 지인 소개 · 온라인 · 지나가다가 / e.g., friend, online"/>
+    <label class="lbl"><span class="ko">무엇을 기대하며 오셨나요? (선택)</span><span class="en">What do you hope for? (optional)</span></label>
+    <textarea id="hope" placeholder="편하게 나눠 주세요 / Share freely"></textarea>
+  </div>
+
+  <!-- 배우자 (등록+) -->
+  <div class="card f-reg">
     <div class="sec"><span class="ko">배우자</span><span class="en">Spouse</span></div>
     <div class="seg" id="spouseSeg">
-      <button type="button" data-s="no" class="on"><span class="ko">없음 / 해당 없음</span><span class="en">None / N/A</span></button>
+      <button type="button" data-s="no" class="on"><span class="ko">없음 / 해당 없음</span><span class="en">None</span></button>
       <button type="button" data-s="yes"><span class="ko">있어요</span><span class="en">Yes</span></button>
     </div>
     <div id="spouseFields" hidden>
@@ -118,136 +165,106 @@
     </div>
   </div>
 
-  <!-- 자녀 -->
+  <!-- 자녀 / 동반가족 -->
   <div class="card">
-    <div class="sec"><span class="ko">자녀 (있는 경우)</span><span class="en">Children (if any)</span></div>
-    <div class="sec-cap"><span class="ko">학년을 고르면 교회학교 부서가 자동으로 연결됩니다.</span><span class="en">Choosing a grade auto-links the church-school department.</span></div>
+    <div class="sec"><span class="ko">자녀 · 동반 가족 (있는 경우)</span><span class="en">Children / family</span></div>
+    <div class="sec-cap"><span class="ko">학년을 고르면 교회학교 부서가 자동 연결됩니다.</span><span class="en">Choosing a grade auto-links the church-school department.</span></div>
     <div id="children"></div>
     <button type="button" class="addbtn" id="addChild"><span class="ko">+ 자녀 추가</span><span class="en">+ Add a child</span></button>
   </div>
 
-  <!-- 신앙 (회원교인) -->
-  <div class="card faith">
-    <div class="sec"><span class="ko">신앙 (회원교인 신청)</span><span class="en">Faith (Member application)</span></div>
+  <!-- 신앙 (회원) -->
+  <div class="card f-member">
+    <div class="sec"><span class="ko">신앙 (회원교인)</span><span class="en">Faith (Member)</span></div>
     <label class="lbl"><span class="ko">예수님을 주님으로 영접하셨나요?</span><span class="en">Have you received Jesus as Lord?</span></label>
     <select id="accept"><option value=""></option><option>예</option><option>아직 / 알아가는 중</option></select>
-    <label class="lbl"><span class="ko">침례를 받으셨나요?</span><span class="en">Have you been baptized (immersion)?</span></label>
-    <select id="baptized"><option value=""></option><option>예</option><option>아니오</option></select>
     <div class="row2">
-      <div><label class="lbl"><span class="ko">침례 받은 교회 (선택)</span><span class="en">Church of baptism</span></label><input type="text" id="bapChurch"/></div>
-      <div><label class="lbl"><span class="ko">이전 교회 (선택)</span><span class="en">Previous church</span></label><input type="text" id="prevChurch"/></div>
+      <div><label class="lbl"><span class="ko">침례 받으셨나요?</span><span class="en">Baptized?</span></label><select id="baptized"><option value=""></option><option>예</option><option>아니오</option></select></div>
+      <div><label class="lbl"><span class="ko">침례 받은 교회</span><span class="en">Church of baptism</span></label><input type="text" id="bapChurch"/></div>
     </div>
-    <div class="chk"><input type="checkbox" id="vow1"/><label for="vow1"><span class="ko">회원교인은 하나님과 교회를 대표하는 사람임을 기억하고, 그렇게 살도록 힘쓰겠습니다.</span><span class="en">As a member, I will remember I represent God and the church, and strive to live so.</span></label></div>
-    <div class="chk"><input type="checkbox" id="vow2"/><label for="vow2"><span class="ko">주일 연합예배와 목장 모임에 성실히 참여하겠습니다.</span><span class="en">I will faithfully take part in Sunday worship and house-church.</span></label></div>
+    <div class="chk"><input type="checkbox" id="vow1"/><label for="vow1"><span class="ko">회원교인은 하나님과 교회를 대표하는 사람임을 기억하고 그렇게 살도록 힘쓰겠습니다.</span><span class="en">As a member, I will remember I represent God and the church.</span></label></div>
+    <div class="chk"><input type="checkbox" id="vow2"/><label for="vow2"><span class="ko">주일 연합예배와 목장 모임에 성실히 참여하겠습니다.</span><span class="en">I will faithfully take part in worship and house-church.</span></label></div>
+    <div class="hint ko" style="margin-top:10px">얼굴·가족 사진은 다음 단계에서 추가됩니다.</div>
   </div>
 
   <!-- 나눔 -->
   <div class="card">
     <div class="sec"><span class="ko">함께 기도했으면 하는 것 (선택)</span><span class="en">Anything we can pray for (optional)</span></div>
-    <div class="sec-cap"><span class="ko">나누고 싶은 만큼만. 목양·기도에만 쓰이고 소중히 지켜집니다.</span><span class="en">Share only what you wish. Used only for care and prayer, kept safe.</span></div>
     <textarea id="share"></textarea>
   </div>
 
-  <div class="chk" style="padding:0 4px"><input type="checkbox" id="consent"/><label for="consent"><span class="ko">위 정보를 교회의 목양·돌봄 목적으로 교회 시스템에 보관하는 데 동의합니다. <span class="req">*</span></span><span class="en">I agree to store this info in the church system for pastoral care. <span class="req">*</span></span></label></div>
+  <div class="chk" style="padding:0 4px"><input type="checkbox" id="consent"/><label for="consent"><span class="ko">위 정보를 교회의 목양·돌봄 목적으로 교회 시스템에 보관하는 데 동의합니다. <span class="req">*</span></span><span class="en">I agree to store this info for pastoral care. <span class="req">*</span></span></label></div>
 
-  <button class="submit" id="submitBtn"><span class="ko">등록 신청하기</span><span class="en">Submit registration</span><span class="demo" id="demoTag" hidden>데모</span></button>
-  <div class="hint ko" style="text-align:center">제출하면 담당 사역자에게 전달되고, 자녀는 교회학교에 자동 연결됩니다.</div>
-  <div class="hint en blk" style="text-align:center">On submit, this reaches our staff and children are auto-linked to church school.</div>
+  <button class="submit" id="submitBtn"><span class="ko">등록 신청하기</span><span class="en">Submit</span><span class="demo" id="demoTag" hidden>데모</span></button>
+  <div class="hint ko" style="text-align:center">단계가 오르면 이전에 적은 정보는 그대로 이어집니다.</div>
 </div>
 
-<div class="wrap done" id="doneArea">
-  <div class="done" style="display:block">
-    <h2><span class="ko">감사합니다!</span><span class="en">Thank you!</span></h2>
-    <p><span class="ko">등록이 접수되었습니다. 곧 사역자가 따뜻하게 연락드릴게요.</span><span class="en">Your registration was received. A minister will reach out warmly soon.</span></p>
-  </div>
-</div>
+<div class="wrap"><div class="done" id="doneArea">
+  <h2><span class="ko">감사합니다!</span><span class="en">Thank you!</span></h2>
+  <p><span class="ko">접수되었습니다. 곧 사역자가 따뜻하게 연락드릴게요.</span><span class="en">Received. A minister will reach out soon.</span></p>
+</div></div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzt_mgY8y0IzwKmFGm7Qytg4ryF76cZD9NqnI3BNnyvNqgEVYI5fKsreqjh_1SyYwAR/exec';
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbzt_mgY8y0IzwKmFGm7Qytg4ryF76cZD9NqnI3BNnyvNqgEVYI5fKsreqjh_1SyYwAR/exec';
 const $=(id)=>document.getElementById(id);
-let lang='ko', kind='등록교인', hasSpouse=false;
-
-// 학년 → 부서 (K-12 + 유아·청년)
+let lang='ko', kind='방문자', hasSpouse=false;
 const GRADES=[
-  {ko:'영유아',en:'Infant/Toddler',dept:'유아부'},
-  {ko:'유치(Pre-K)',en:'Pre-K',dept:'유아부'},
-  {ko:'K (유치원)',en:'Kindergarten',dept:'유초등부'},
-  {ko:'1학년',en:'Grade 1',dept:'유초등부'},{ko:'2학년',en:'Grade 2',dept:'유초등부'},
-  {ko:'3학년',en:'Grade 3',dept:'유초등부'},{ko:'4학년',en:'Grade 4',dept:'유초등부'},{ko:'5학년',en:'Grade 5',dept:'유초등부'},
-  {ko:'6학년',en:'Grade 6',dept:'GMC Y'},{ko:'7학년',en:'Grade 7',dept:'GMC Y'},{ko:'8학년',en:'Grade 8',dept:'GMC Y'},
-  {ko:'9학년',en:'Grade 9',dept:'GMC Y'},{ko:'10학년',en:'Grade 10',dept:'GMC Y'},{ko:'11학년',en:'Grade 11',dept:'GMC Y'},{ko:'12학년',en:'Grade 12',dept:'GMC Y'},
+  {ko:'영유아',en:'Infant',dept:'유아부'},{ko:'유치(Pre-K)',en:'Pre-K',dept:'유아부'},
+  {ko:'K (유치원)',en:'K',dept:'유초등부'},{ko:'1학년',en:'G1',dept:'유초등부'},{ko:'2학년',en:'G2',dept:'유초등부'},{ko:'3학년',en:'G3',dept:'유초등부'},{ko:'4학년',en:'G4',dept:'유초등부'},{ko:'5학년',en:'G5',dept:'유초등부'},
+  {ko:'6학년',en:'G6',dept:'GMC Y'},{ko:'7학년',en:'G7',dept:'GMC Y'},{ko:'8학년',en:'G8',dept:'GMC Y'},{ko:'9학년',en:'G9',dept:'GMC Y'},{ko:'10학년',en:'G10',dept:'GMC Y'},{ko:'11학년',en:'G11',dept:'GMC Y'},{ko:'12학년',en:'G12',dept:'GMC Y'},
   {ko:'청년(대학생 이상)',en:'Young adult',dept:'GMC Y'}
 ];
 const DEPT_L={ko:{'유아부':'유아부','유초등부':'유초등부','GMC Y':'GMC Y'},en:{'유아부':'Nursery','유초등부':'Elementary','GMC Y':'GMC Y'}};
 
-$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; refreshChildTags(); };
+$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; };
 
-// 구분 세그먼트
+// 단계 세그먼트
 $('kindSeg').querySelectorAll('button').forEach(b=>b.onclick=()=>{
   kind=b.dataset.k; $('kindSeg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
-  document.body.classList.toggle('show-faith', kind==='회원교인');
+  document.body.classList.remove('st-visitor','st-reg','st-member');
+  document.body.classList.add(kind==='회원교인'?'st-member':(kind==='등록교인'?'st-reg':'st-visitor'));
 });
-// 배우자 세그먼트
-$('spouseSeg').querySelectorAll('button').forEach(b=>b.onclick=()=>{
-  hasSpouse=(b.dataset.s==='yes'); $('spouseSeg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
-  $('spouseFields').hidden=!hasSpouse;
-});
+// 배우자
+$('spouseSeg').querySelectorAll('button').forEach(b=>b.onclick=()=>{ hasSpouse=(b.dataset.s==='yes'); $('spouseSeg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); $('spouseFields').hidden=!hasSpouse; });
 
-// 자녀 동적 추가
+// 자녀
 function addChildRow(){
   const wrap=document.createElement('div'); wrap.className='child';
   const gOpts=GRADES.map((g,i)=>`<option value="${i}">${lang==='ko'?g.ko:g.en}</option>`).join('');
-  wrap.innerHTML=`
-    <button type="button" class="rm">${lang==='ko'?'삭제':'Remove'}</button>
-    <div class="row2">
-      <div><label class="lbl">${lang==='ko'?'한글 이름':'Korean name'}</label><input type="text" class="c-ko"/></div>
-      <div><label class="lbl">${lang==='ko'?'영문 이름':'English name'}</label><input type="text" class="c-en"/></div>
-    </div>
-    <div class="row2">
-      <div><label class="lbl">${lang==='ko'?'학년':'Grade'}</label><select class="c-grade"><option value=""></option>${gOpts}</select></div>
-      <div><label class="lbl">${lang==='ko'?'성별':'Gender'}</label><select class="c-gender"><option value=""></option><option>남</option><option>여</option></select></div>
-    </div>
-    <label class="lbl">${lang==='ko'?'알레르기 · 특이사항 (선택)':'Allergies / notes (optional)'}</label><input type="text" class="c-note"/>
-    <div class="dept-tag" hidden></div>`;
+  wrap.innerHTML=`<button type="button" class="rm">${lang==='ko'?'삭제':'Remove'}</button>
+    <div class="row2"><div><label class="lbl">${lang==='ko'?'한글 이름':'Korean'}</label><input type="text" class="c-ko"/></div><div><label class="lbl">${lang==='ko'?'영문 이름':'English'}</label><input type="text" class="c-en"/></div></div>
+    <div class="row2"><div><label class="lbl">${lang==='ko'?'학년':'Grade'}</label><select class="c-grade"><option value=""></option>${gOpts}</select></div><div><label class="lbl">${lang==='ko'?'성별':'Gender'}</label><select class="c-gender"><option value=""></option><option>남</option><option>여</option></select></div></div>
+    <label class="lbl">${lang==='ko'?'특이사항 (선택)':'Notes'}</label><input type="text" class="c-note"/><div class="dept-tag" hidden></div>`;
   wrap.querySelector('.rm').onclick=()=>wrap.remove();
-  const gsel=wrap.querySelector('.c-grade'), tag=wrap.querySelector('.dept-tag');
-  gsel.onchange=()=>{ const g=GRADES[+gsel.value]; if(g){ tag.hidden=false; tag.dataset.dept=g.dept; tag.textContent=(lang==='ko'?'교회학교: ':'Church school: ')+(DEPT_L[lang][g.dept]); } else { tag.hidden=true; } };
+  const gsel=wrap.querySelector('.c-grade'),tag=wrap.querySelector('.dept-tag');
+  gsel.onchange=()=>{ const g=GRADES[+gsel.value]; if(g){tag.hidden=false;tag.dataset.dept=g.dept;tag.textContent=(lang==='ko'?'교회학교: ':'Church school: ')+DEPT_L[lang][g.dept];}else tag.hidden=true; };
   $('children').appendChild(wrap);
 }
 $('addChild').onclick=addChildRow;
-
-function refreshChildTags(){
-  document.querySelectorAll('.child').forEach(w=>{
-    const g=GRADES[+w.querySelector('.c-grade').value]; const tag=w.querySelector('.dept-tag');
-    if(g){ tag.textContent=(lang==='ko'?'교회학교: ':'Church school: ')+(DEPT_L[lang][g.dept]); }
-  });
-}
 
 function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2800); }
 
 $('submitBtn').onclick=async()=>{
   const koName=$('koName').value.trim(), phone=$('phone').value.trim(), email=$('email').value.trim();
-  if(!koName||!phone||!email){ toast(lang==='ko'?'이름·휴대폰·이메일을 적어 주세요.':'Name, phone, email are required.'); return; }
-  if(!$('consent').checked){ toast(lang==='ko'?'정보 보관 동의에 체크해 주세요.':'Please check the consent box.'); return; }
-  const children=[...document.querySelectorAll('.child')].map(w=>{
-    const g=GRADES[+w.querySelector('.c-grade').value];
-    return { 한글:w.querySelector('.c-ko').value.trim(), 영문:w.querySelector('.c-en').value.trim(),
-      학년:g?(g.ko):'', 부서:g?g.dept:'', 성별:w.querySelector('.c-gender').value, 특이사항:w.querySelector('.c-note').value.trim() };
-  }).filter(c=>c.한글||c.영문);
+  if(!koName||(!phone&&!email)){ toast(lang==='ko'?'이름과 휴대폰(또는 이메일)을 적어 주세요.':'Name and phone/email required.'); return; }
+  if(!$('consent').checked){ toast(lang==='ko'?'정보 보관 동의에 체크해 주세요.':'Please check consent.'); return; }
+  const visitTypes=[...document.querySelectorAll('#visitTypes input:checked')].map(x=>x.value);
+  const children=[...document.querySelectorAll('.child')].map(w=>{ const g=GRADES[+w.querySelector('.c-grade').value];
+    return {한글:w.querySelector('.c-ko').value.trim(),영문:w.querySelector('.c-en').value.trim(),학년:g?g.ko:'',부서:g?g.dept:'',성별:w.querySelector('.c-gender').value,특이사항:w.querySelector('.c-note').value.trim()}; }).filter(c=>c.한글||c.영문);
+  const addr=[$('addr1').value.trim(),$('city2').value.trim(),$('state').value.trim(),$('zip').value.trim()].filter(x=>x).join(', ');
   const payload={ type:'register', 구분:kind,
-    본인:{한글:koName,영문:$('enName').value.trim(),생년:$('birth').value,성별:$('gender').value,휴대폰:phone,이메일:email,도시:$('city').value.trim(),목장:$('mokjang').value.trim()},
+    본인:{한글:koName,영문:$('enName').value.trim(),생년:$('birth').value,성별:$('gender').value,휴대폰:phone,이메일:email,도시:$('city').value.trim()||$('city2').value.trim(),목장:$('mokjang').value.trim(),주소:addr,인도자:$('inviter').value.trim(),인도자관계:$('inviterRel').value.trim(),방문유형:visitTypes.join(' · '),이전교회:$('prevChurch').value.trim(),알게된경로:$('howHeard').value.trim(),기대:$('hope').value.trim()},
     배우자: hasSpouse?{한글:$('spKo').value.trim(),영문:$('spEn').value.trim(),생년:$('spBirth').value,휴대폰:$('spPhone').value.trim(),이메일:$('spEmail').value.trim()}:null,
     자녀:children,
     신앙: kind==='회원교인'?{영접:$('accept').value,침례:$('baptized').value,침례교회:$('bapChurch').value.trim(),이전교회:$('prevChurch').value.trim(),서약1:$('vow1').checked,서약2:$('vow2').checked}:null,
     나눔:$('share').value.trim() };
   if(!SCRIPT_URL){ toast(lang==='ko'?'데모 · 저장 안 됨':'Demo · not saved'); return; }
   $('submitBtn').disabled=true;
-  try{
-    await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+  try{ await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
     $('formArea').style.display='none'; $('doneArea').style.display='block'; window.scrollTo(0,0);
-  }catch(e){ toast(lang==='ko'?'전송 실패 — 다시 시도':'Failed — retry'); $('submitBtn').disabled=false; }
+  }catch(e){ toast(lang==='ko'?'전송 실패 — 다시':'Failed — retry'); $('submitBtn').disabled=false; }
 };
 
 (function init(){ if(!SCRIPT_URL) $('demoTag').hidden=false; addChildRow(); })();
