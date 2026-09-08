@@ -84,6 +84,7 @@
   <div id="personResult" style="margin-top:12px"></div>
 </div></div>
 <div class="wrap" id="codesWrap"></div>
+<div class="wrap" id="linksWrap"></div>
 </div>
 
 <script>
@@ -93,7 +94,7 @@ const $=(id)=>document.getElementById(id);
 let lang='ko';
 
 // 언어
-$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; if(window.__stats){ render(window.__stats); renderQuarters(); } if(window.__codes) renderCodes(); };
+$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; if(window.__stats){ render(window.__stats); renderQuarters(); } if(window.__codes) renderCodes(); renderLinks(); };
 
 // 암호 게이트
 function unlock(){ $('gate').hidden=true; $('app').hidden=false; load(); }
@@ -113,6 +114,34 @@ const T={
 };
 function t(){return T[lang];}
 function fmtDate(s){ const d=new Date(s); if(isNaN(d)) return String(s); return (d.getMonth()+1)+'/'+d.getDate(); }
+
+// 바로가기 모음 (모든 주소 한눈에)
+var GMC_LINKS=[
+  ['홈 허브','https://www.ijiguchon.org/home/','Home hub'],
+  ['교인 앱','https://www.ijiguchon.org/gmc/','Church app'],
+  ['교회 홈페이지','https://www.ijiguchon.org','Website'],
+  ['교인 등록','https://www.ijiguchon.org/register/','Register'],
+  ['교회학교 출석','https://www.ijiguchon.org/attend/','Church school'],
+  ['성인 출석','https://www.ijiguchon.org/worship/','Adult attendance'],
+  ['자가 출석','https://www.ijiguchon.org/checkin/','Self check-in'],
+  ['성장 기록','https://www.ijiguchon.org/growth/','Growth'],
+  ['내 목양','https://www.ijiguchon.org/my/','My flock'],
+  ['목양 대시보드','https://www.ijiguchon.org/dashboard/','Dashboard'],
+  ['제자로 자라는 길','https://www.ijiguchon.org/path/','Disciple path'],
+  ['안수집사 추천 자격','https://www.ijiguchon.org/qual/','Deacon path'],
+  ['중보기도 요청','https://www.ijiguchon.org/prayer/','Prayer'],
+  ['카톡방','https://open.kakao.com/o/gJPNOAMi','KakaoTalk']
+];
+function renderLinks(){
+  var w=$('linksWrap'); if(!w) return;
+  var h='<div class="card"><div class="sec" style="font-size:13px;font-weight:900;color:#1a3560">'+(lang==='ko'?'바로가기 모음 (모든 주소)':'All links')+'</div>';
+  h+='<div style="font-size:12px;color:#8a93a2;margin:4px 0 10px">'+(lang==='ko'?'주소를 외우지 않아도 여기서 바로 여세요.':'Open anything here — no need to memorize URLs.')+'</div>';
+  h+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">';
+  GMC_LINKS.forEach(function(l){ h+='<a href="'+l[1]+'" target="_blank" rel="noopener" style="display:block;background:#EAF1FB;color:#1a3560;border-radius:10px;padding:9px 12px;font-size:13px;font-weight:700;text-decoration:none">'+(lang==='ko'?l[0]:l[2])+'</a>'; });
+  h+='</div>';
+  h+='<div style="font-size:12px;color:#8a93a2;margin-top:10px;line-height:1.6">'+(lang==='ko'?'※ 데이터베이스(GMC 출석부 시트)·백엔드 스크립트는 구글 드라이브 04.행정운영 / script.google.com 에서.':'DB sheet & backend in Google Drive / script.google.com')+'</div>';
+  w.innerHTML=h+'</div>';
+}
 
 // 리더 코드 목록 (암호로 조회)
 async function loadCodes(){
@@ -185,7 +214,7 @@ function renderPerson(j,name){
 async function load(){
   try{ const r=await fetch(SCRIPT_URL+'?stats=1'); const j=await r.json(); window.__stats=j; render(j); renderQuarters(); }
   catch(e){ $('content').innerHTML='<div class="card"><div class="empty">'+(lang==='ko'?'불러오기 실패 — 새로고침 해 주세요.':'Load failed — please refresh.')+'</div></div>'; }
-  loadCodes();
+  loadCodes(); renderLinks();
 }
 $('reload').onclick=load;
 $('pBtn').onclick=personLookup;
