@@ -118,7 +118,8 @@ async function open(code){
 
 function render(j){
   $('myName').textContent=j.name||'';
-  const scope=[].concat(j.목장||[],j.부서||[]).filter(function(x,i,a){return a.indexOf(x)===i;}).join(' · ');
+  const scope = j.전체 ? (lang==='ko'?'전체 교인 (담임 코치 뷰)':'All members (pastor view)')
+    : [].concat(j.목장||[],j.부서||[]).filter(function(x,i,a){return a.indexOf(x)===i;}).join(' · ');
   $('myScope').textContent=(lang==='ko'?'범위: ':'Scope: ')+scope;
   // 성인
   const ad=$('adults');
