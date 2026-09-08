@@ -22,8 +22,8 @@
   label.lbl{display:block;font-weight:800;font-size:14px;margin:10px 0 7px}
   select,input[type=date],input[type=text]{width:100%;font-size:16px;font-family:inherit;color:var(--ink);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:12px;background:#fff}
   select:focus,input:focus{outline:none;border-color:var(--navy-2)}
-  .seg{display:flex;gap:8px;margin-top:4px}
-  .seg button{flex:1;border:1.5px solid var(--line);background:#fff;color:var(--ink-2);border-radius:var(--r-sm);padding:12px;font-size:14px;font-weight:800;cursor:pointer}
+  .seg{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap}
+  .seg button{flex:1 1 70px;border:1.5px solid var(--line);background:#fff;color:var(--ink-2);border-radius:var(--r-sm);padding:12px 8px;font-size:13.5px;font-weight:800;cursor:pointer}
   .seg button.on{background:var(--navy);border-color:var(--navy);color:#fff}
   .row2{display:flex;gap:10px}.row2>*{flex:1}
   .r-head{display:flex;justify-content:space-between;align-items:center;margin:4px 2px 10px}
@@ -69,10 +69,15 @@
       <button type="button" data-c="주일연합예배" class="on"><span class="ko">주일예배</span><span class="en">Sunday</span></button>
       <button type="button" data-c="토요기도회"><span class="ko">토요기도회</span><span class="en">Sat. Prayer</span></button>
       <button type="button" data-c="목장모임"><span class="ko">목장</span><span class="en">Mokjang</span></button>
+      <button type="button" data-c="특별행사"><span class="ko">특별행사</span><span class="en">Special</span></button>
     </div>
     <div id="mokjangWrap" hidden>
       <label class="lbl"><span class="ko">목장 선택</span><span class="en">Choose house-church</span></label>
       <select id="mokjangSel"></select>
+    </div>
+    <div id="eventWrap" hidden>
+      <label class="lbl"><span class="ko">행사 이름</span><span class="en">Event name</span></label>
+      <input type="text" id="eventInp" placeholder="예: 세겹줄기도회 · 21일 경청훈련 · 성탄절 예배"/>
     </div>
     <label class="lbl"><span class="ko">기록자 (목자·스탭)</span><span class="en">Recorder</span></label>
     <input type="text" id="byInp" placeholder="예: 김성수 목사 · 김지영 목자"/>
@@ -139,6 +144,7 @@ function ctxDate(){ return ctx==='주일연합예배'?nearestSunday():(ctx==='�
 $('ctxSeg').querySelectorAll('button').forEach(b=>b.onclick=()=>{
   ctx=b.dataset.c; $('ctxSeg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
   $('mokjangWrap').hidden=(ctx!=='목장모임');
+  $('eventWrap').hidden=(ctx!=='특별행사');
   $('dateInp').value=ctxDate();
   render();
 });
@@ -195,11 +201,13 @@ function toast(m){ const el=$('toast'); el.textContent=m; el.classList.add('show
 $('submitBtn').onclick=async()=>{
   const date=$('dateInp').value; const by=$('byInp').value.trim();
   const mk=(ctx==='목장모임')?$('mokjangSel').value:'(전체)';
+  let 구분=ctx;
+  if(ctx==='특별행사'){ 구분=$('eventInp').value.trim(); if(!구분){ toast(lang==='ko'?'행사 이름을 적어 주세요.':'Enter the event name.'); return; } }
   const records=Object.keys(marks).filter(n=>marks[n]).map(n=>({이름:n,상태:marks[n]}));
   if(!records.length){ toast(t().tNeed); return; } if(!date){ toast(t().tDate); return; }
   if(!SCRIPT_URL){ toast(t().tDemo(records.length)); return; }
   $('submitBtn').disabled=true;
-  try{ await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({type:'worship',구분:ctx,목장:mk,날짜:date,기록자:by,records})});
+  try{ await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({type:'worship',구분:구분,목장:mk,날짜:date,기록자:by,records})});
     toast(t().tSaved(records.length)); document.querySelectorAll('.sb').forEach(x=>x.classList.remove('on')); marks={}; tally();
   }catch(e){ toast(t().tFail); } finally{ $('submitBtn').disabled=false; }
 };
