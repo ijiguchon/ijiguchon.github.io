@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="robots" content="noindex"/>
+<title>내 목양 · 시애틀지구촌교회</title>
+<style>
+  :root{--navy:#1a3560;--navy-2:#26407A;--gold:#C8944A;--ink:#1d2430;--ink-2:#48505e;--ink-3:#8a93a2;--cream:#FBF7F0;--line:#ECE6DC;--card:#fff;--ok:#1f9d63;--on:#2b6cb0;--off:#b23b3b;--r:16px;--r-sm:11px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  [hidden]{display:none!important}
+  body{font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 50px}
+  .en{display:none} body.lang-en .ko{display:none} body.lang-en .en{display:inline}
+  .wrap{max-width:600px;margin:0 auto;padding:0 16px}
+  header{background:linear-gradient(180deg,var(--navy-2),var(--navy));color:#fff;padding:16px}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .h-title{font-weight:900;font-size:17px}
+  .h-sub{font-size:12px;opacity:.85;font-weight:600;margin-top:2px}
+  .lang{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800;cursor:pointer}
+  .gate{max-width:400px;margin:80px auto 0;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:0 8px 30px rgba(26,53,96,.08);text-align:center}
+  .gate h2{color:var(--navy);font-size:18px;margin-bottom:6px}
+  .gate p{color:var(--ink-3);font-size:13px;margin-bottom:16px}
+  input{width:100%;font-size:16px;font-family:inherit;border:1.5px solid var(--line);border-radius:var(--r-sm);padding:12px;text-align:center}
+  input:focus{outline:none;border-color:var(--navy-2)}
+  .btn{width:100%;margin-top:12px;background:var(--navy);color:#fff;border:0;border-radius:999px;padding:13px;font-size:15px;font-weight:900;cursor:pointer}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px;box-shadow:0 2px 10px rgba(26,53,96,.05)}
+  .sec{font-size:13px;font-weight:900;color:var(--navy);margin-bottom:2px}
+  .sec-cap{font-size:12px;color:var(--ink-3);margin-bottom:10px}
+  .item{display:flex;justify-content:space-between;gap:10px;padding:8px 2px;border-bottom:1px solid var(--line);font-size:14px}
+  .item:last-child{border-bottom:0}
+  .item .nm{font-weight:700}
+  .item .meta{color:var(--ink-3);font-size:12.5px}
+  .tag{display:inline-block;background:#EAF1FB;color:#26407A;border-radius:999px;padding:1px 8px;font-size:11px;font-weight:800;margin-left:6px}
+  .empty{color:var(--ink-3);text-align:center;padding:16px;font-size:13px}
+  .gnote{background:#FBF7EE;border:1px solid #ecdfc4;border-radius:10px;padding:10px 12px;margin-top:8px;font-size:13px}
+  .gnote .who{font-weight:800;color:var(--navy)}
+  .gnote .pr{color:#8a5a1a}
+  .toolbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .toolbtns a{flex:1;text-align:center;background:#fff;border:1.5px solid var(--navy-2);color:var(--navy);border-radius:var(--r-sm);padding:10px;font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap}
+  .err{color:var(--off);font-size:13px;margin-top:10px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div>
+      <div class="h-title"><span class="ko">내 목양</span><span class="en">My Flock</span></div>
+      <div class="h-sub" id="hsub">시애틀지구촌교회 · GMC of Greater Seattle</div>
+    </div>
+    <button class="lang" id="langBtn">EN</button>
+  </div>
+</header>
+
+<!-- 코드 입력 -->
+<div class="gate" id="gate">
+  <h2><span class="ko">내 목양 열기</span><span class="en">Open My Flock</span></h2>
+  <p><span class="ko">목자·리더 전용입니다. 받으신 코드를 넣어 주세요.</span><span class="en">For shepherds/leaders. Enter your code.</span></p>
+  <input type="text" id="code" placeholder="예: MOK-SK" autocapitalize="characters"/>
+  <button class="btn" id="goBtn"><span class="ko">들어가기</span><span class="en">Enter</span></button>
+  <div class="err" id="err" hidden></div>
+</div>
+
+<!-- 내용 -->
+<div class="wrap" id="app" hidden>
+  <div class="card">
+    <div class="sec" id="myName"></div>
+    <div class="sec-cap" id="myScope"></div>
+    <div class="toolbtns">
+      <a href="../worship/"><span class="ko">출석 체크</span><span class="en">Attendance</span></a>
+      <a href="../attend/"><span class="ko">교회학교</span><span class="en">Church school</span></a>
+      <a href="../growth/"><span class="ko">성장 기록</span><span class="en">Growth</span></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec"><span class="ko">우리 목장 식구 (성인)</span><span class="en">Our members (adults)</span></div>
+    <div id="adults"></div>
+  </div>
+
+  <div class="card" id="childCard">
+    <div class="sec"><span class="ko">우리 부서 아이들</span><span class="en">Our children</span></div>
+    <div id="children"></div>
+  </div>
+
+  <div class="card">
+    <div class="sec"><span class="ko">최근 성장 나눔 · 기도제목</span><span class="en">Recent growth & prayer</span></div>
+    <div class="sec-cap"><span class="ko">우리 범위만 보입니다.</span><span class="en">Only your flock is shown.</span></div>
+    <div id="growth"></div>
+  </div>
+
+  <div class="card">
+    <div class="sec"><span class="ko">최근 출석</span><span class="en">Recent attendance</span></div>
+    <div id="attend"></div>
+  </div>
+
+  <div style="text-align:center;margin-top:14px"><button class="lang" id="lockBtn" style="background:var(--navy);border-color:var(--navy)"><span class="ko">잠그기</span><span class="en">Lock</span></button></div>
+</div>
+
+<script>
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbzt_mgY8y0IzwKmFGm7Qytg4ryF76cZD9NqnI3BNnyvNqgEVYI5fKsreqjh_1SyYwAR/exec';
+const $=(id)=>document.getElementById(id);
+let lang='ko';
+$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; };
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+
+async function open(code){
+  $('err').hidden=true;
+  try{
+    const r=await fetch(SCRIPT_URL+'?myview='+encodeURIComponent(code));
+    const j=await r.json();
+    if(!j||!j.ok){ $('err').textContent=(j&&j.error)||'코드가 맞지 않습니다.'; $('err').hidden=false; return; }
+    try{ sessionStorage.setItem('gmcMy',code); }catch(e){}
+    render(j);
+    $('gate').hidden=true; $('app').hidden=false;
+  }catch(e){ $('err').textContent=(lang==='ko'?'연결 실패 — 다시 시도해 주세요.':'Connection failed — retry.'); $('err').hidden=false; }
+}
+
+function render(j){
+  $('myName').textContent=j.name||'';
+  const scope=[].concat(j.목장||[],j.부서||[]).filter(function(x,i,a){return a.indexOf(x)===i;}).join(' · ');
+  $('myScope').textContent=(lang==='ko'?'범위: ':'Scope: ')+scope;
+  // 성인
+  const ad=$('adults');
+  ad.innerHTML=(j.adults&&j.adults.length)? j.adults.map(function(a){
+    return '<div class="item"><div><span class="nm">'+esc(a.이름)+'</span>'+(a.관계==='배우자'?'<span class="tag">배우자</span>':'')+'</div><div class="meta">'+esc(a.목장||'')+(a.휴대폰?(' · '+esc(a.휴대폰)):'')+'</div></div>';
+  }).join('') : '<div class="empty">아직 없음</div>';
+  // 아이
+  const cc=$('childCard'), ch=$('children');
+  if(j.부서&&j.부서.length){ cc.hidden=false;
+    ch.innerHTML=(j.children&&j.children.length)? j.children.map(function(c){
+      return '<div class="item"><div><span class="nm">'+esc(c.이름)+'</span><span class="tag">'+esc(c.부서)+'</span></div><div class="meta">'+esc(c.보호자||'')+'</div></div>';
+    }).join('') : '<div class="empty">아직 없음</div>';
+  } else { cc.hidden=true; }
+  // 성장
+  const g=$('growth');
+  g.innerHTML=(j.growth&&j.growth.length)? j.growth.slice().reverse().map(function(x){
+    return '<div class="gnote"><div><span class="who">'+esc(x.학생)+'</span> <span class="tag">'+esc(x.부서)+'</span> <span class="meta">'+esc(x.날짜||'')+'</span></div>'+(x.나눔?('<div>'+esc(x.나눔)+'</div>'):'')+(x.기도?('<div class="pr">기도: '+esc(x.기도)+'</div>'):'')+'</div>';
+  }).join('') : '<div class="empty">아직 나눔 기록이 없어요</div>';
+  // 출석
+  const at=$('attend');
+  at.innerHTML=(j.attendance&&j.attendance.length)? j.attendance.slice().reverse().slice(0,25).map(function(x){
+    return '<div class="item"><div><span class="nm">'+esc(x.이름)+'</span> <span class="meta">'+esc(x.구분||'')+'</span></div><div class="meta">'+esc(x.날짜||'')+' · '+esc(x.상태||'')+'</div></div>';
+  }).join('') : '<div class="empty">아직 출석 기록이 없어요</div>';
+}
+
+$('goBtn').onclick=()=>{ const c=$('code').value.trim(); if(c) open(c); };
+$('code').addEventListener('keydown',e=>{ if(e.key==='Enter') $('goBtn').click(); });
+$('lockBtn').onclick=()=>{ try{ sessionStorage.removeItem('gmcMy'); }catch(e){} location.reload(); };
+
+(function init(){ let c=''; try{ c=sessionStorage.getItem('gmcMy')||''; }catch(e){} const u=new URLSearchParams(location.search).get('code'); if(u) c=u; if(c){ $('code').value=c; open(c); } })();
+</script>
+</body>
+</html>
