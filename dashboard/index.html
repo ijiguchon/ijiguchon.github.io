@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="robots" content="noindex"/>
+<title>목양 대시보드 · 시애틀지구촌교회</title>
+<style>
+  :root{--navy:#1a3560;--navy-2:#26407A;--gold:#C8944A;--ink:#1d2430;--ink-2:#48505e;--ink-3:#8a93a2;--cream:#FBF7F0;--line:#ECE6DC;--card:#fff;
+    --in:#1f9d63;--on:#2b6cb0;--off:#b23b3b;--r:16px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  [hidden]{display:none!important}
+  body{font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 50px}
+  .en{display:none} body.lang-en .ko{display:none} body.lang-en .en{display:inline}
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px}
+  header{background:linear-gradient(180deg,var(--navy-2),var(--navy));color:#fff;padding:18px 16px 20px}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .h-title{font-weight:900;font-size:18px}
+  .h-sub{font-size:12px;opacity:.85;font-weight:600;margin-top:2px}
+  .top-btns{display:flex;gap:8px}
+  .tb{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800;cursor:pointer}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px;box-shadow:0 2px 10px rgba(26,53,96,.05)}
+  .sec-h{font-size:15px;font-weight:900;color:var(--navy);margin-bottom:2px}
+  .sec-c{font-size:12.5px;color:var(--ink-3);margin-bottom:12px}
+  .kpis{display:flex;gap:10px;flex-wrap:wrap}
+  .kpi{flex:1;min-width:120px;background:#FBF7F0;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .kpi .n{font-size:26px;font-weight:900;color:var(--navy)}
+  .kpi .l{font-size:12.5px;color:var(--ink-2);font-weight:700}
+  .legend{display:flex;gap:14px;font-size:12px;font-weight:700;color:var(--ink-2);margin:2px 0 12px}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
+  .row{display:flex;align-items:center;gap:10px;margin:7px 0}
+  .row .lab{width:110px;font-size:12.5px;font-weight:700;color:var(--ink-2);text-align:right;flex-shrink:0}
+  .bar{flex:1;height:22px;background:#F1EDE5;border-radius:6px;overflow:hidden;display:flex}
+  .seg{height:100%}
+  .seg.in{background:var(--in)}.seg.on{background:var(--on)}.seg.off{background:var(--off)}
+  .seg.v{background:var(--navy-2)}
+  .row .val{width:74px;font-size:12px;font-weight:800;color:var(--ink);flex-shrink:0}
+  .empty{color:var(--ink-3);text-align:center;padding:20px;font-size:13.5px}
+  .note{font-size:12px;color:var(--ink-3);margin-top:10px;line-height:1.5}
+  /* 암호 게이트 */
+  #gate{position:fixed;inset:0;background:var(--cream);display:flex;align-items:center;justify-content:center;z-index:50}
+  .gatebox{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;width:320px;max-width:90%;text-align:center;box-shadow:0 8px 30px rgba(26,53,96,.12)}
+  .gatebox h1{font-size:17px;color:var(--navy);margin-bottom:6px}
+  .gatebox p{font-size:12.5px;color:var(--ink-3);margin-bottom:16px}
+  .gatebox input{width:100%;font-size:16px;border:1.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;margin-bottom:12px}
+  .gatebox button{width:100%;background:var(--navy);color:#fff;border:0;border-radius:999px;padding:13px;font-size:15px;font-weight:800;cursor:pointer}
+</style>
+</head>
+<body>
+<div id="gate">
+  <div class="gatebox">
+    <h1><span class="ko">목양 대시보드</span><span class="en">Shepherding Dashboard</span></h1>
+    <p><span class="ko">목회자·디렉터 전용입니다. 암호를 입력하세요.</span><span class="en">Pastors & directors only. Enter passcode.</span></p>
+    <input type="password" id="code" placeholder="암호 / Passcode" autocomplete="off"/>
+    <button id="enter"><span class="ko">들어가기</span><span class="en">Enter</span></button>
+  </div>
+</div>
+
+<div id="app" hidden>
+<header>
+  <div class="wrap">
+    <div>
+      <div class="h-title"><span class="ko">목양 대시보드</span><span class="en">Shepherding Dashboard</span></div>
+      <div class="h-sub">시애틀지구촌교회 · GMC of Greater Seattle</div>
+    </div>
+    <div class="top-btns">
+      <button class="tb" id="langBtn">EN</button>
+      <button class="tb" id="reload"><span class="ko">새로고침</span><span class="en">Refresh</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap" id="content">
+  <div class="card"><div class="empty" id="loading"><span class="ko">불러오는 중…</span><span class="en">Loading…</span></div></div>
+</div>
+</div>
+
+<script>
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbzt_mgY8y0IzwKmFGm7Qytg4ryF76cZD9NqnI3BNnyvNqgEVYI5fKsreqjh_1SyYwAR/exec';
+const DASH_CODE='gmc1225';   // 목회자·디렉터 암호 (바꾸려면 이 값 수정)
+const $=(id)=>document.getElementById(id);
+let lang='ko';
+
+// 언어
+$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; if(window.__stats) render(window.__stats); };
+
+// 암호 게이트
+function unlock(){ $('gate').hidden=true; $('app').hidden=false; load(); }
+$('enter').onclick=()=>{ if($('code').value.trim()===DASH_CODE){ try{sessionStorage.setItem('gmcDash','1');}catch(e){} unlock(); } else { $('code').value=''; $('code').placeholder=(lang==='ko'?'암호가 맞지 않아요':'Wrong passcode'); } };
+$('code').addEventListener('keydown',e=>{ if(e.key==='Enter') $('enter').click(); });
+try{ if(sessionStorage.getItem('gmcDash')==='1') unlock(); }catch(e){}
+
+const T={
+  ko:{att:'출석 추세',attc:'주일 교회학교 출석(최근)',week:'이번 주',rate:'참석률',inp:'대면',onl:'온라인',off:'결석',
+      dept:'부서별 (누적)',growth:'제자 성장 현황',members:'교인',house:'가정',reg:'등록교인',mem:'회원교인',child:'자녀',
+      sal:'구원 여정',minr:'사역 단계',fruit:'빛난 열매 (분기)',noAtt:'아직 출석 기록이 없습니다.',noGrow:'아직 성장 기록이 없습니다.',
+      need:'통계가 비어 있으면 백엔드(.gs) 재배포가 필요할 수 있어요. 데이터가 쌓이면 자동으로 채워집니다.'},
+  en:{att:'Attendance trend',attc:'Sunday church-school (recent)',week:'This week',rate:'Rate',inp:'In-person',onl:'Online',off:'Absent',
+      dept:'By department (cumulative)',growth:'Discipleship growth',members:'Members',house:'Households',reg:'Registered',mem:'Members',child:'Children',
+      sal:'Salvation journey',minr:'Ministry stage',fruit:'Fruit that shone (quarter)',noAtt:'No attendance records yet.',noGrow:'No growth records yet.',
+      need:'If stats are empty, the backend (.gs) may need redeploy. It fills automatically as data grows.'}
+};
+function t(){return T[lang];}
+
+async function load(){
+  try{ const r=await fetch(SCRIPT_URL+'?stats=1'); const j=await r.json(); window.__stats=j; render(j); }
+  catch(e){ $('content').innerHTML='<div class="card"><div class="empty">'+(lang==='ko'?'불러오기 실패 — 새로고침 해 주세요.':'Load failed — please refresh.')+'</div></div>'; }
+}
+$('reload').onclick=load;
+
+function bar(segs){ // segs: [{cls,val}]
+  const tot=segs.reduce((s,x)=>s+x.val,0)||1;
+  return '<div class="bar">'+segs.map(x=>x.val?`<div class="seg ${x.cls}" style="width:${(x.val/tot*100).toFixed(1)}%"></div>`:'').join('')+'</div>';
+}
+function distRows(obj, order){
+  const keys = order || Object.keys(obj);
+  const max = Math.max(1,...keys.map(k=>obj[k]||0));
+  return keys.filter(k=>obj[k]!==undefined||order).map(k=>{
+    const v=obj[k]||0;
+    return `<div class="row"><div class="lab">${k}</div>${bar([{cls:'v',val:v}])}<div class="val">${v}</div></div>`;
+  }).join('') || `<div class="empty">${t().noGrow}</div>`;
+}
+
+function render(j){
+  const d=t();
+  if(!j||!j.ok){ $('content').innerHTML='<div class="card"><div class="empty">'+d.need+'</div></div>'; return; }
+  const A=j.attendance||{weeks:[],byDept:{}}, G=j.growth||{}, M=j.members||{};
+  let h='';
+
+  // ── #1 출석 추세 ──
+  h+='<div class="card"><div class="sec-h">'+d.att+'</div><div class="sec-c">'+d.attc+'</div>';
+  const weeks=A.weeks||[];
+  if(weeks.length){
+    const last=weeks[weeks.length-1];
+    const rate=last.total?Math.round((last.대면+last.온라인)/last.total*100):0;
+    h+='<div class="kpis" style="margin-bottom:14px">'
+      +'<div class="kpi"><div class="n">'+last.대면+'</div><div class="l">'+d.inp+' ('+d.week+')</div></div>'
+      +'<div class="kpi"><div class="n">'+last.온라인+'</div><div class="l">'+d.onl+'</div></div>'
+      +'<div class="kpi"><div class="n">'+last.결석+'</div><div class="l">'+d.off+'</div></div>'
+      +'<div class="kpi"><div class="n">'+rate+'%</div><div class="l">'+d.rate+'</div></div></div>';
+    h+='<div class="legend"><span><span class="dot" style="background:var(--in)"></span>'+d.inp+'</span><span><span class="dot" style="background:var(--on)"></span>'+d.onl+'</span><span><span class="dot" style="background:var(--off)"></span>'+d.off+'</span></div>';
+    weeks.forEach(w=>{ h+='<div class="row"><div class="lab">'+w.date+'</div>'+bar([{cls:'in',val:w.대면},{cls:'on',val:w.온라인},{cls:'off',val:w.결석}])+'<div class="val">'+w.total+(lang==='ko'?'명':'')+'</div></div>'; });
+  } else { h+='<div class="empty">'+d.noAtt+'</div>'; }
+  h+='</div>';
+
+  // 부서별
+  const dept=A.byDept||{};
+  if(Object.keys(dept).length){
+    h+='<div class="card"><div class="sec-h">'+d.dept+'</div>';
+    h+='<div class="legend"><span><span class="dot" style="background:var(--in)"></span>'+d.inp+'</span><span><span class="dot" style="background:var(--on)"></span>'+d.onl+'</span><span><span class="dot" style="background:var(--off)"></span>'+d.off+'</span></div>';
+    Object.keys(dept).forEach(k=>{ const x=dept[k]; const tot=x.대면+x.온라인+x.결석; h+='<div class="row"><div class="lab">'+k+'</div>'+bar([{cls:'in',val:x.대면},{cls:'on',val:x.온라인},{cls:'off',val:x.결석}])+'<div class="val">'+tot+'</div></div>'; });
+    h+='</div>';
+  }
+
+  // ── #2 제자 성장 ──
+  h+='<div class="card"><div class="sec-h">'+d.growth+'</div>';
+  h+='<div class="kpis" style="margin-bottom:6px">'
+    +'<div class="kpi"><div class="n">'+(M.households||0)+'</div><div class="l">'+d.house+'</div></div>'
+    +'<div class="kpi"><div class="n">'+(M.등록||0)+'</div><div class="l">'+d.reg+'</div></div>'
+    +'<div class="kpi"><div class="n">'+(M.회원||0)+'</div><div class="l">'+d.mem+'</div></div>'
+    +'<div class="kpi"><div class="n">'+(M.children||0)+'</div><div class="l">'+d.child+'</div></div></div></div>';
+
+  const salOrder=['찾는 중','마음이 열림','믿음의 결단','침례로 고백'];
+  const minOrder=['은사 발견','처음 섬김','꾸준히 섬김','세움 (목자)'];
+  const hasG=(G.salvation&&Object.keys(G.salvation).length)||(G.ministry&&Object.keys(G.ministry).length)||(G.fruits&&Object.keys(G.fruits).length);
+  if(hasG){
+    h+='<div class="card"><div class="sec-h">'+d.sal+'</div>'+distRows(G.salvation||{},salOrder)+'</div>';
+    h+='<div class="card"><div class="sec-h">'+d.minr+'</div>'+distRows(G.ministry||{},minOrder)+'</div>';
+    if(G.fruits&&Object.keys(G.fruits).length){
+      const fr=Object.entries(G.fruits).sort((a,b)=>b[1]-a[1]);
+      const max=Math.max(1,...fr.map(x=>x[1]));
+      let fh=fr.map(([k,v])=>'<div class="row"><div class="lab">'+k+'</div>'+bar([{cls:'v',val:v}])+'<div class="val">'+v+'</div></div>').join('');
+      h+='<div class="card"><div class="sec-h">'+d.fruit+'</div>'+fh+'</div>';
+    }
+  } else {
+    h+='<div class="card"><div class="empty">'+d.noGrow+'</div></div>';
+  }
+
+  h+='<div class="note">'+d.need+'</div>';
+  $('content').innerHTML=h;
+}
+</script>
+</body>
+</html>
