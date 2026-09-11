@@ -45,9 +45,27 @@
   .links{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
   .links a{flex:1;min-width:180px;text-align:center;background:var(--white);border:1.5px solid var(--navy);color:var(--navy);border-radius:12px;padding:12px;font-size:14px;font-weight:700;text-decoration:none}
   .foot{color:var(--muted);font-size:12.5px;text-align:center;margin-top:22px;line-height:1.7}
+  #qgate{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#1F3A6E 0%,#2C4F8C 60%,#9A4A6A 130%);display:flex;align-items:center;justify-content:center;padding:20px}
+  body:not(.locked) #qgate{display:none}
+  body.locked header,body.locked .hero,body.locked main{display:none}
+  #qgate .box{background:#fff;border-radius:16px;padding:26px 24px;width:340px;max-width:92%;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.35)}
+  #qgate h2{margin:0 0 6px;font-size:18px;color:var(--navy);font-family:"Noto Serif KR",serif}
+  #qgate p{margin:0 0 16px;font-size:13px;color:var(--muted)}
+  #qgate input{width:100%;font-size:16px;border:1.5px solid #E0D6C5;border-radius:10px;padding:12px;text-align:center;margin-bottom:12px;font-family:inherit}
+  #qgate button{width:100%;background:var(--navy);color:#fff;border:0;border-radius:999px;padding:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
+  #qgate .err{color:var(--red);font-size:13px;font-weight:700;min-height:18px;margin-top:8px}
 </style>
 </head>
-<body>
+<body class="locked">
+<div id="qgate">
+  <div class="box">
+    <h2><span class="ko">목자 전용</span><span class="en">Shepherds only</span></h2>
+    <p><span class="ko">안수집사 추천 자격 — 목자용 코드를 입력하세요.</span><span class="en">Deacon qualifications — enter the shepherds' code.</span></p>
+    <input id="qcode" type="password" inputmode="text" autocomplete="off" placeholder="code">
+    <button id="qenter"><span class="ko">들어가기</span><span class="en">Enter</span></button>
+    <div class="err" id="qerr"></div>
+  </div>
+</div>
 <header>
   <div class="wrap">
     <div class="nm">시애틀지구촌교회<small>GMC of Greater Seattle</small></div>
@@ -147,6 +165,19 @@
     var en=document.body.classList.toggle('lang-en');
     this.textContent=en?'한국어':'EN';
   };
+  // 목자 전용 코드 게이트 (부드러운 잠금 — 정적 페이지라 절대 기밀은 아님)
+  (function(){
+    var CODE='1T38';
+    try{ if(sessionStorage.getItem('qualok')==='1') document.body.classList.remove('locked'); }catch(e){}
+    function tryEnter(){
+      var v=(document.getElementById('qcode').value||'').trim().toUpperCase();
+      if(v===CODE){ try{ sessionStorage.setItem('qualok','1'); }catch(e){} document.body.classList.remove('locked'); }
+      else { document.getElementById('qerr').textContent = document.body.classList.contains('lang-en')?'Wrong code':'코드가 맞지 않습니다'; }
+    }
+    var b=document.getElementById('qenter'), i=document.getElementById('qcode');
+    if(b) b.onclick=tryEnter;
+    if(i){ i.addEventListener('keydown',function(e){ if(e.key==='Enter') tryEnter(); }); i.focus(); }
+  })();
 </script>
 </body>
 </html>
