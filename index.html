@@ -78,7 +78,8 @@
   .brand .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(180deg,var(--navy-2),var(--navy));display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:900;flex-shrink:0}
   .brand small{display:block;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--ink-3)}
   .nav-actions{display:flex;align-items:center;gap:8px}
-  .lang{background:none;border:1.5px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:800;color:var(--ink-2);cursor:pointer}
+  .lang{display:inline-flex;align-items:center;gap:5px;background:none;border:1.5px solid var(--line);border-radius:999px;padding:6px 11px;font-size:12.5px;font-weight:800;color:var(--ink-2);cursor:pointer}
+  .lang .globe{width:14px;height:14px;flex:0 0 auto;opacity:.85}
   .nav-app{font-size:13px;font-weight:800;color:var(--navy);border:1.5px solid var(--navy);border-radius:999px;padding:6px 14px}
   .nav-links{display:flex;align-items:center;gap:2px}
   .nav-links a{padding:8px 11px;border-radius:9px;font-size:14px;font-weight:700;color:var(--ink-2);text-decoration:none;transition:background .15s,color .15s;white-space:nowrap}
@@ -271,7 +272,7 @@
     </nav>
     <div class="nav-actions">
       <a class="nav-app" href="/gmc/"><span class="ko">교인 앱</span><span class="en">Members app</span></a>
-      <button class="lang" onclick="toggleLang()"><span class="ko">EN</span><span class="en">한국어</span></button>
+      <button class="lang" onclick="toggleLang()" aria-label="Language / 언어"><svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg><span class="ko">EN</span><span class="en">한국어</span></button>
       <button class="hamburger" id="hamburger" aria-label="메뉴" aria-expanded="false" onclick="toggleMenu()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>

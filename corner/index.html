@@ -22,7 +22,8 @@
   .brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none}
   .brand img{width:30px;height:30px;object-fit:contain}
   .brand b{font-size:15px;font-weight:800}.brand small{display:block;font-size:10px;opacity:.8;letter-spacing:.5px}
-  .lang{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit}
+  .lang{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit}
+  .lang .globe{width:14px;height:14px;flex:0 0 auto;opacity:.9}
   .hero{background:linear-gradient(180deg,#fff,var(--cream));border-bottom:1px solid var(--line);padding:38px 0 28px;text-align:center}
   .hero .eye{font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold)}
   .hero h1{margin-top:10px;font-size:clamp(24px,5vw,36px);font-weight:900;letter-spacing:-1px;color:var(--navy)}
@@ -73,7 +74,7 @@
 <body>
 <header><div class="wrap">
   <a class="brand" href="https://www.ijiguchon.org"><img src="/images/logo.png" alt=""><span><b>시애틀지구촌교회</b><small>GMC OF GREATER SEATTLE</small></span></a>
-  <button class="lang" id="langBtn">EN</button>
+  <button class="lang" id="langBtn" aria-label="Language / 언어"><svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg><span id="langTxt">EN</span></button>
 </div></header>
 <div class="hero"><div class="wrap">
   <div class="eye"><span class="ko">목회자 코너</span><span class="en">Pastor&#39;s Corner</span></div>
@@ -100,7 +101,7 @@ document.getElementById('list').innerHTML=COLUMNS.map(function(c,i){ return (
     '<div class="body"><div class="auth">'+esc(c.author||'김성수목사')+'</div>'+
     c.paras.map(function(p){return '<p>'+esc(p)+'</p>';}).join('')+'</div>'+
   '</details>'); }).join('');
-document.getElementById('langBtn').onclick=function(){var en=document.body.classList.toggle('lang-en');this.textContent=en?'한국어':'EN';};
+document.getElementById('langBtn').onclick=function(){var en=document.body.classList.toggle('lang-en');document.getElementById('langTxt').textContent=en?'한국어':'EN';};
 </script>
 </body>
 </html>
