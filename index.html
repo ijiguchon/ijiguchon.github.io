@@ -97,10 +97,11 @@
 
   /* Hero */
   .hero{position:relative;overflow:hidden;color:#fff;text-align:center;padding:96px 0 104px}
-  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg{position:absolute;inset:0;z-index:0;background:#1a2540}
   .hero-bg svg{width:100%;height:100%}
+  .hero-photo{width:100%;height:100%;object-fit:cover;object-position:center 42%}
   .hero .wrap{position:relative;z-index:2}
-  .hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,28,50,.28),rgba(20,28,50,.52))}
+  .hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,28,50,.52) 0%,rgba(20,28,50,.62) 55%,rgba(20,28,50,.82) 100%)}
   .hero h1{font-size:clamp(30px,6vw,54px);font-weight:900;letter-spacing:-1.4px;line-height:1.18;text-shadow:0 3px 24px rgba(0,0,0,.35)}
   .hero .h-eye{color:#FBD9A6;text-shadow:0 1px 12px rgba(0,0,0,.4);margin-bottom:16px}
   .hero p{margin:18px auto 0;max-width:560px;font-size:clamp(15px,2.3vw,18px);font-weight:600;opacity:.96;text-shadow:0 2px 14px rgba(0,0,0,.4)}
@@ -131,9 +132,9 @@
   .door-card h2 b{color:#F2C078}
   .door-card p{margin:16px auto 0;max-width:560px;color:rgba(255,255,255,.86);font-size:16px}
   .door-card .mini{margin-top:22px;font-size:13.5px;font-weight:700;color:#FBD9A6}
-  .meal-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
-  .meal-strip img{width:100%;height:210px;object-fit:cover;border-radius:14px;box-shadow:0 5px 18px rgba(60,40,10,.12)}
-  @media(max-width:640px){ .meal-strip{grid-template-columns:1fr 1fr} .meal-strip img:last-child{grid-column:1 / -1} }
+  .meal-strip{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:26px}
+  .meal-strip img{width:100%;height:240px;object-fit:cover;border-radius:14px;box-shadow:0 5px 18px rgba(60,40,10,.12)}
+  @media(max-width:640px){ .meal-strip{grid-template-columns:1fr} .meal-strip img{height:200px} }
 
   /* Care */
   .care-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
@@ -275,25 +276,7 @@
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-bg">
-    <svg viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A5488"/><stop offset="55%" stop-color="#294066"/><stop offset="100%" stop-color="#1a2540"/></linearGradient>
-        <radialGradient id="glow" cx="76%" cy="18%" r="60%"><stop offset="0" stop-color="#F6D79E" stop-opacity=".55"/><stop offset="55%" stop-color="#E9B15E" stop-opacity=".14"/><stop offset="100%" stop-color="#E9B15E" stop-opacity="0"/></radialGradient>
-      </defs>
-      <rect width="1200" height="560" fill="url(#sky)"/>
-      <rect width="1200" height="560" fill="url(#glow)"/>
-      <g fill="#ffffff" opacity=".9">
-        <circle cx="980" cy="120" r="46" opacity=".08"/><circle cx="1080" cy="230" r="22" opacity=".1"/>
-        <circle cx="180" cy="150" r="16" opacity=".1"/><circle cx="300" cy="90" r="9" opacity=".14"/><circle cx="740" cy="150" r="7" opacity=".14"/>
-      </g>
-      <!-- three homes -> one, subtle -->
-      <g fill="none" stroke="#F2C078" stroke-width="2.4" opacity=".5" stroke-linejoin="round">
-        <path d="M120 470 l34 -26 l34 26 v40 h-68 z"/>
-        <path d="M600 440 l40 -30 l40 30 v46 h-80 z" stroke-width="3" opacity=".8"/>
-        <path d="M1010 470 l34 -26 l34 26 v40 h-68 z"/>
-        <path d="M188 494 H560 M720 494 H1010" opacity=".4"/>
-      </g>
-    </svg>
+    <img src="images/meal1.jpg" alt="" aria-hidden="true" class="hero-photo"/>
   </div>
   <div class="hero-scrim"></div>
   <div class="wrap">
@@ -336,6 +319,7 @@
         <p><span class="ko"><span class="verse-red">“너는 눈을 들어, 네가 서 있는 곳에서 동서남북을 바라보아라.”</span> (창세기 13:14, 새번역) — 시애틀에서 지구촌 땅 끝까지, 한 가정에서부터 하나님 나라가 동서남북으로 번져갑니다. <b>어디든 세 가정이 목장으로 모이면, 담임목사가 찾아가 함께 교회를 세워갑니다.</b> <span class="ko" style="color:var(--ink-3)">(행 1:8)</span></span><span class="en"><span class="verse-red">“Lift up your eyes, and look from the place where you are, northward and southward and eastward and westward.”</span> (Genesis 13:14) — From Seattle to the ends of the earth, God's kingdom spreads in every direction, one home at a time. <b>Wherever three families gather as a mokjang, our pastor will come to help plant a church.</b> (Acts 1:8)</span></p>
       </div>
     </div>
+    <img src="images/genesis1314.jpg" alt="Genesis 13:14 — Expanding the Kingdom of God, one home at a time" loading="lazy" style="display:block;width:100%;max-width:760px;margin:28px auto 0;border-radius:16px;box-shadow:0 6px 20px rgba(60,40,10,.1)">
   </div>
 </section>
 
@@ -398,7 +382,7 @@
     <div style="max-width:680px;margin:30px auto 0;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,4vw,34px);box-shadow:0 4px 18px rgba(60,40,10,.05)">
       <img src="images/staff/pastor-couple.jpg" alt="김성수 목사 부부 — 한 밥상에서" loading="lazy" style="width:100%;height:clamp(200px,32vw,300px);object-fit:cover;object-position:center 42%;border-radius:14px;margin-bottom:22px;box-shadow:0 5px 16px rgba(60,40,10,.14)">
       <p style="color:var(--ink-2);font-size:16px;line-height:1.9">
-        <span class="ko blk">반갑습니다. 시애틀지구촌교회 담임 김성수 목사입니다.<br><br>우리 교회는 2002년에 시작해, 이제는 큰 예배당 대신 <b>집과 집에서 모이는 신약교회의 원형</b>으로 새롭게 세워가고 있습니다. 화려한 프로그램보다, 한 밥상에 둘러앉아 서로의 삶을 나누고 예수님을 만나는 것 — 그것이 교회라 믿습니다.<br><br>믿음이 있든 없든, 어디에 계시든 <b>밥 한 끼</b>로 편하게 시작하세요. 시애틀에서 지구촌 땅 끝까지, 한 가정에서부터 하나님 나라가 번져갑니다. 당신을 위한 자리가 이미 마련되어 있습니다. 잘 오셨어요.</span>
+        <span class="ko blk">반갑습니다. 시애틀지구촌교회 담임 김성수 목사입니다.<br><br>우리 교회는 2002년에 시작해, 이제는 큰 예배당 대신 <b>집과 집에서 모이는 신약교회의 원형</b>으로 새롭게 세워가고 있습니다. 화려한 프로그램보다, 한 밥상에 둘러앉아 서로의 삶을 나누고 예수님을 만나는 것 — 그것이 교회라 믿습니다.<br><br>믿음이 있든 없든, 어디에 계시든 <b>밥 한 끼</b>로 편하게 시작하세요. 시애틀에서 지구촌 땅 끝까지, 한 가정에서부터 하나님 나라가 확장됩니다. 당신을 위한 자리가 이미 마련되어 있습니다. 잘 오셨어요.</span>
         <span class="en blk">Hello — I'm Pastor Sung Soo Kim of GMC of Greater Seattle.<br><br>Our church began in 2002, and now — instead of a large sanctuary — we're being rebuilt as the New Testament church that gathers home to home. More than polished programs, we believe the church is people around one table, sharing life and meeting Jesus.<br><br>Believer or not, wherever you are, start simply — with a shared meal. From Seattle to the ends of the earth, God's kingdom spreads from one home. A place is already set for you. So glad you're here.</span>
       </p>
       <div style="margin-top:22px;font-weight:900;color:var(--navy)"><span class="ko">— 담임목사 김성수</span><span class="en">— Pastor Sung Soo Kim</span></div>
@@ -415,7 +399,6 @@
       <div class="mini"><span class="ko">믿든 안 믿든, 어디서 왔든 — 누구라도 환영합니다.</span><span class="en">Believer or not, from anywhere — everyone is welcome.</span></div>
     </div>
     <div class="meal-strip">
-      <img src="images/meal1.jpg" alt="함께 둘러앉아 나누는 풍성한 밥상" loading="lazy">
       <img src="images/meal3.jpg" alt="여럿이 손을 모아 나누는 풍성한 식탁" loading="lazy">
       <img src="images/meal2.jpg" alt="가정에서 정성껏 차린 풍성한 상" loading="lazy">
     </div>
