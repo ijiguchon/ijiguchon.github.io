@@ -58,7 +58,7 @@
   .sec-h .t{font-size:14px;font-weight:900;color:var(--navy)}
   .sec-h .s{font-size:12px;color:var(--muted);font-weight:500}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px}
-  .card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:15px 15px 16px;display:flex;flex-direction:column;gap:7px;
+  .card{position:relative;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:15px 15px 16px;display:flex;flex-direction:column;gap:7px;
     box-shadow:0 4px 14px rgba(210,120,80,.06);transition:transform .14s,box-shadow .14s;cursor:pointer}
   .card:active{transform:scale(.98)}
   .card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(210,120,80,.16)}
@@ -68,6 +68,8 @@
   .card span.d{font-size:12px;color:var(--muted);line-height:1.45}
   .card.feature{position:relative;border:1.5px solid var(--gold);background:linear-gradient(180deg,#FFFDF8,#FFF3DE);box-shadow:0 8px 22px rgba(232,163,61,.24)}
   .card.feature:hover{box-shadow:0 12px 28px rgba(232,163,61,.30)}
+  .lockmark{position:absolute;top:11px;right:11px;width:17px;height:17px;opacity:.45;pointer-events:none}
+  .lockmark svg{width:100%;height:100%;fill:none;stroke:var(--navy);stroke-width:2;stroke-linecap:round}
   /* 아이콘 색 */
   .g-warm{background:linear-gradient(135deg,#F6A64D,#EE7C5E)}
   .g-rose{background:linear-gradient(135deg,#EE7C5E,#D2789A)}
@@ -111,7 +113,6 @@
       <button class="lang" id="langBtn">EN</button>
     </div>
     <h1><span class="ko">흩어져 모이고,<br>한 밥상에서 하나 됩니다</span><span class="en">We scatter to gather,<br>and become one at one table</span></h1>
-    <p><span class="ko">영혼 구원하여 그리스도의 제자 만드는 교회</span><span class="en">A church that wins souls and makes disciples</span></p>
     <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
       <div class="tag" id="seasonTag"></div>
       <div class="tag"><span class="ko">시애틀에서 지구촌 땅끝까지 · 행 1:8</span><span class="en">Seattle to the ends of the earth · Acts 1:8</span></div>
@@ -153,6 +154,7 @@
         <b><span class="ko">제자로 자라는 길</span><span class="en">Disciple's path</span></b><span class="d"><span class="ko">방문자에서 목자까지</span><span class="en">Visitor to shepherd</span></span>
       </a>
       <a class="card" href="../qual/">
+        <span class="lockmark" title="목자용 · 코드 필요" aria-label="코드 필요"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></span>
         <div class="ic g-navy"><svg viewBox="0 0 24 24"><path d="M12 2l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 21l-5.2 2.9 1-5.8L3.6 8.1l5.8-.8z"/></svg></div>
         <b><span class="ko">안수집사 추천 자격</span><span class="en">Deacon path</span></b><span class="d"><span class="ko">이름 아닌 자라온 열매</span><span class="en">Fruit, not a title</span></span>
       </a>
@@ -180,6 +182,7 @@
         <b><span class="ko">성장 기록</span><span class="en">Growth</span></b><span class="d"><span class="ko">분기 제자 성장·가정통신문</span><span class="en">Quarterly · home report</span></span>
       </a>
       <a class="card feature" href="../my/">
+        <span class="lockmark" title="목자용 · 코드 필요" aria-label="코드 필요"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></span>
         <div class="ic g-gold"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 21.5 7.1 18.2l.9-5.5-4-3.9 5.5-.8z"/></svg></div>
         <b><span class="ko">내 목양</span><span class="en">My flock</span></b><span class="d"><span class="ko">목자·리더 자기 목장만</span><span class="en">Your flock only</span></span>
       </a>

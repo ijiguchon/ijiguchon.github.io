@@ -38,9 +38,27 @@
   .toolbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
   .toolbtns a{flex:1;text-align:center;background:#fff;border:1.5px solid var(--navy-2);color:var(--navy);border-radius:var(--r-sm);padding:10px;font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap}
   .err{color:var(--off);font-size:13px;margin-top:10px}
+  #qgate{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#1a3560,#26407A 70%);display:flex;align-items:center;justify-content:center;padding:20px}
+  body:not(.locked) #qgate{display:none}
+  body.locked header,body.locked .gate,body.locked #app{display:none}
+  #qgate .box{background:#fff;border-radius:16px;padding:26px 24px;width:330px;max-width:92%;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.35)}
+  #qgate h2{margin:0 0 6px;font-size:18px;color:var(--navy)}
+  #qgate p{margin:0 0 16px;font-size:13px;color:var(--ink-3)}
+  #qgate input{width:100%;font-size:16px;border:1.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;margin-bottom:12px;font-family:inherit}
+  #qgate button{width:100%;background:var(--navy);color:#fff;border:0;border-radius:999px;padding:12px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit}
+  #qgate .qerr{color:var(--off);font-size:13px;font-weight:700;min-height:18px;margin-top:8px}
 </style>
 </head>
-<body>
+<body class="locked">
+<div id="qgate">
+  <div class="box">
+    <h2><span class="ko">목자 전용</span><span class="en">Shepherds only</span></h2>
+    <p><span class="ko">내 목양 — 목자용 코드를 입력하세요.</span><span class="en">My Flock — enter the shepherds' code.</span></p>
+    <input id="qcode" type="password" inputmode="text" autocomplete="off" placeholder="code">
+    <button id="qenter"><span class="ko">들어가기</span><span class="en">Enter</span></button>
+    <div class="qerr" id="qerr"></div>
+  </div>
+</div>
 <header>
   <div class="wrap">
     <div>
@@ -101,6 +119,19 @@ const SCRIPT_URL='https://script.google.com/macros/s/AKfycbzt_mgY8y0IzwKmFGm7Qyt
 const $=(id)=>document.getElementById(id);
 let lang='ko';
 $('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; };
+// 목자 공용 소프트 게이트 (J2116) — 통과 후 각자 리더 코드로 자기 목장 (정적 페이지라 절대 기밀은 아님)
+(function(){
+  var CODE='J2116';
+  try{ if(sessionStorage.getItem('myqok')==='1') document.body.classList.remove('locked'); }catch(e){}
+  function tryEnter(){
+    var v=(document.getElementById('qcode').value||'').trim().toUpperCase();
+    if(v===CODE){ try{ sessionStorage.setItem('myqok','1'); }catch(e){} document.body.classList.remove('locked'); var c=document.getElementById('code'); if(c) c.focus(); }
+    else { document.getElementById('qerr').textContent = document.body.classList.contains('lang-en')?'Wrong code':'코드가 맞지 않습니다'; }
+  }
+  var b=document.getElementById('qenter'), i=document.getElementById('qcode');
+  if(b) b.onclick=tryEnter;
+  if(i){ i.addEventListener('keydown',function(e){ if(e.key==='Enter') tryEnter(); }); if(document.body.classList.contains('locked')) i.focus(); }
+})();
 
 function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
 
