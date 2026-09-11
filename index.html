@@ -72,7 +72,7 @@
   .nav-actions{display:flex;align-items:center;gap:8px}
   .lang{background:none;border:1.5px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:800;color:var(--ink-2);cursor:pointer}
   .nav-app{font-size:13px;font-weight:800;color:var(--navy);border:1.5px solid var(--navy);border-radius:999px;padding:6px 14px}
-  @media(max-width:560px){ .nav-app{display:none} }
+  @media(max-width:560px){ .nav-app{display:none} .give-ways{grid-template-columns:1fr !important} }
 
   /* Hero */
   .hero{position:relative;overflow:hidden;color:#fff;text-align:center;padding:96px 0 104px}
@@ -159,6 +159,66 @@
   .reg-tier{max-width:580px;margin:14px auto 0;font-size:13px;color:var(--ink-2);text-align:center;line-height:1.65}
   .reg-tier b{color:var(--navy);font-weight:800}
 
+  /* Values & Vision */
+  .vv{background:var(--cream)}
+  .verse-red{color:#C00000;font-weight:800}
+  .vv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+  @media(max-width:680px){ .vv-grid{grid-template-columns:1fr} }
+  .vv-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px;box-shadow:0 2px 10px rgba(60,40,10,.05)}
+  .vv-card .vv-eye{font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold)}
+  .vv-card h3{margin-top:10px;font-size:clamp(20px,3vw,25px);font-weight:900;letter-spacing:-.5px;color:var(--navy)}
+  .vv-card h3 b{color:var(--gold-2)}
+  .vv-card p{margin-top:12px;color:var(--ink-2);font-size:15px}
+
+  /* Journey */
+  .journey{background:linear-gradient(180deg,#FCEEE2,#FBF7F0)}
+  .jflow{display:flex;align-items:stretch;justify-content:center;flex-wrap:wrap;gap:6px;margin-top:42px}
+  .jstep{flex:1 1 168px;max-width:210px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:22px 16px 18px;text-align:center;box-shadow:0 3px 14px rgba(60,40,10,.06);text-decoration:none;color:inherit;transition:transform .15s, box-shadow .15s}
+  a.jstep:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(60,40,10,.12)}
+  .jstep .jnum{font-size:10.5px;font-weight:800;letter-spacing:1.5px;color:var(--ink-3)}
+  .jstep .jico{width:50px;height:50px;margin:8px auto 12px;border-radius:15px;display:flex;align-items:center;justify-content:center;color:#fff}
+  .jstep .jico svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .js1 .jico{background:linear-gradient(180deg,#F0A088,#E4795B)} .js2 .jico{background:linear-gradient(180deg,#E4A85C,#C8843A)} .js3 .jico{background:linear-gradient(180deg,#5B87C9,#2C55A0)} .js4 .jico{background:linear-gradient(180deg,#4FB09A,#1F8A73)} .js5 .jico{background:linear-gradient(180deg,#31518A,#1a2540)}
+  .jstep h3{font-size:16px;font-weight:900;letter-spacing:-.3px}
+  .jstep p{margin-top:6px;color:var(--ink-2);font-size:13px;line-height:1.5}
+  .jarrow{display:flex;align-items:center;justify-content:center;color:var(--gold);flex:0 0 24px}
+  .jarrow svg{width:22px;height:22px}
+  @media(max-width:700px){ .jflow{flex-direction:column;align-items:center} .jstep{max-width:340px;width:100%} .jarrow svg{transform:rotate(90deg)} }
+  .jcycle{max-width:640px;margin:30px auto 0;background:linear-gradient(150deg,#2B3A5C,#1a2540);color:#fff;border-radius:18px;padding:22px 26px;display:flex;align-items:center;gap:16px;box-shadow:0 12px 34px rgba(26,37,64,.22)}
+  .jcycle .cico{flex:0 0 44px;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
+  .jcycle .cico svg{width:24px;height:24px;stroke:#F2C078;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .jcycle p{font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.9)}
+  .jcycle p b{color:#F2C078}
+  @media(max-width:520px){ .jcycle{flex-direction:column;text-align:center} }
+
+  /* Newcomer / relocation */
+  .newcomer{background:#fff;border-top:1px solid var(--line)}
+  .nc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+  @media(max-width:720px){ .nc-grid{grid-template-columns:1fr} }
+  .nc-card{background:var(--cream);border:1px solid var(--line);border-radius:var(--r);padding:28px 26px}
+  .nc-card .nc-ico{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;margin-bottom:14px}
+  .nc-card .nc-ico svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .nc-1 .nc-ico{background:linear-gradient(180deg,#E4A85C,#C8843A)} .nc-2 .nc-ico{background:linear-gradient(180deg,#5B87C9,#2C55A0)}
+  .nc-card h3{font-size:19px;font-weight:900;letter-spacing:-.4px;color:var(--navy)}
+  .nc-card p{margin-top:10px;color:var(--ink-2);font-size:14.5px;line-height:1.7}
+  .nc-card a.nc-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:14px;font-weight:800;color:var(--gold-2)}
+  .nc-card a.nc-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+  /* Giving */
+  .give{background:var(--peach);text-align:center}
+
+  /* Team */
+  .team{background:#fff;border-top:1px solid var(--line)}
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:38px}
+  @media(max-width:840px){ .team-grid{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:460px){ .team-grid{grid-template-columns:1fr} }
+  .member{background:var(--cream);border:1px solid var(--line);border-radius:var(--r);padding:24px 18px;text-align:center;box-shadow:0 2px 10px rgba(60,40,10,.04)}
+  .member .photo{width:116px;height:116px;border-radius:50%;object-fit:cover;object-position:top center;margin:0 auto 15px;box-shadow:0 5px 16px rgba(60,40,10,.14);background:#fff}
+  .member .mono{width:116px;height:116px;border-radius:50%;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,var(--navy-2),var(--navy));color:#fff;font-weight:900;font-size:34px;letter-spacing:1px;box-shadow:0 5px 16px rgba(26,53,96,.26)}
+  .member h4{font-size:17px;font-weight:900;letter-spacing:-.3px}
+  .member .role{margin-top:5px;font-size:12.5px;font-weight:800;color:var(--gold-2);line-height:1.4}
+  .member p{margin-top:11px;color:var(--ink-2);font-size:13px;line-height:1.6}
+
   /* Footer */
   footer{background:#12182a;color:rgba(255,255,255,.66);text-align:center;padding:40px 0;font-size:13.5px}
   footer .fb{font-weight:900;color:#fff;font-size:15px;letter-spacing:-.3px}
@@ -229,30 +289,73 @@
   </div>
 </section>
 
-<!-- THREE AXES -->
-<section class="sec">
+<!-- VALUES & VISION -->
+<section class="vv sec">
   <div class="wrap">
-    <div class="sec-eyebrow"><span class="ko">세 축으로 세워집니다</span><span class="en">Built on three axes</span></div>
-    <h2 class="sec-title"><span class="ko">목장 · 삶공부 · 연합예배</span><span class="en">Mokjang · Life Study · United Worship</span></h2>
-    <div class="axes">
-      <div class="axis a1">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M9.5 20v-5.4h5V20"/></svg></div>
-        <div class="num">01</div>
+    <div class="sec-eyebrow"><span class="ko">우리가 믿는 것</span><span class="en">What we hold to</span></div>
+    <h2 class="sec-title"><span class="ko">핵심가치와 비전</span><span class="en">Our core value & vision</span></h2>
+    <div class="vv-grid">
+      <div class="vv-card">
+        <div class="vv-eye"><span class="ko">핵심가치</span><span class="en">Core value</span></div>
+        <h3><span class="ko"><b>“성경대로”</b></span><span class="en"><b>“By the Bible”</b></span></h3>
+        <p><span class="ko">복잡하게 만들지 않습니다. <b>단순한 이해, 단순한 순종.</b> 성경이 말한 대로 믿고, 말한 대로 살아가려 합니다. 유행이나 프로그램이 아니라, 2,000년 전 초대교회가 걸었던 그 길 그대로예요.</span><span class="en">We keep it simple — <b>simple understanding, simple obedience.</b> We believe what the Bible says and try to live it out, walking the same path the first church walked 2,000 years ago.</span></p>
+      </div>
+      <div class="vv-card">
+        <div class="vv-eye"><span class="ko">비전 · 창세기 13:14</span><span class="en">Vision · Genesis 13:14</span></div>
+        <h3><span class="ko"><b>동서남북</b>을 바라보라</span><span class="en">Look <b>north, south, east and west</b></span></h3>
+        <p><span class="ko"><span class="verse-red">“너는 눈을 들어, 네가 서 있는 곳에서 동서남북을 바라보아라.”</span> (창세기 13:14, 새번역) — 시애틀에서 지구촌 땅 끝까지, 한 가정에서부터 하나님 나라가 동서남북으로 번져갑니다. <span class="ko" style="color:var(--ink-3)">(행 1:8)</span></span><span class="en"><span class="verse-red">“Lift up your eyes, and look from the place where you are, northward and southward and eastward and westward.”</span> (Genesis 13:14) — From Seattle to the ends of the earth, God's kingdom spreads in every direction, one home at a time. (Acts 1:8)</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ★ JOURNEY AT A GLANCE -->
+<section class="journey sec" id="journey">
+  <div class="wrap">
+    <div class="sec-eyebrow"><span class="ko">한 눈에 보는 여정</span><span class="en">The journey at a glance</span></div>
+    <h2 class="sec-title"><span class="ko">여기 오면, 이렇게 자랍니다</span><span class="en">Come, and this is how you grow</span></h2>
+    <p class="sec-lead"><span class="ko">한 사람이 밥상에 앉는 것에서 시작해, 그리스도의 제자로 자라고, 다시 또 한 사람을 품는 자리로 — 그 흐름을 그대로 보여드려요.</span><span class="en">It begins with one person at a table, grows into a disciple of Christ, and turns to welcome the next — here is that flow.</span></p>
+
+    <div class="jflow">
+      <a class="jstep js1" href="#newcomer">
+        <div class="jnum">STEP 01</div>
+        <div class="jico"><svg viewBox="0 0 24 24"><path d="M12 3c2.5 2 4 4.2 4 6.5A4 4 0 0 1 8 9.5C8 7.2 9.5 5 12 3z"/><path d="M4 21c1.2-2.4 3.8-4 8-4s6.8 1.6 8 4"/></svg></div>
+        <h3><span class="ko">환대</span><span class="en">Hospitality</span></h3>
+        <p><span class="ko">믿음과 상관없이 밥 한 끼로 편하게 — 누구라도 환영해요.</span><span class="en">A shared meal, no faith required — everyone welcome.</span></p>
+      </a>
+      <div class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <a class="jstep js2" href="/gmc/">
+        <div class="jnum">STEP 02</div>
+        <div class="jico"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M9.5 20v-5.4h5V20"/></svg></div>
         <h3><span class="ko">목장</span><span class="en">Mokjang</span></h3>
-        <p><span class="ko">각 가정에서 모이는 교회. 밥 먹고, 삶을 나누고, 함께 웃는 가족.</span><span class="en">A church in each home — sharing meals, life, and joy as family.</span></p>
-      </div>
-      <div class="axis a2">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2 2 0 0 1 6 4h5v15H6a2 2 0 0 0-2 1.5z"/><path d="M20 5.5A2 2 0 0 0 18 4h-5v15h5a2 2 0 0 1 2 1.5z"/></svg></div>
-        <div class="num">02</div>
-        <h3><span class="ko">삶공부</span><span class="en">Life Study</span></h3>
-        <p><span class="ko">아는 것을 늘리는 공부가 아니라, 배운 것을 삶으로 살아내는 제자 훈련.</span><span class="en">Not learning more — training to live out what you learn.</span></p>
-      </div>
-      <div class="axis a3">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 21V10M19 21V10M4 10h16M8 6.5l4-3 4 3"/></svg></div>
-        <div class="num">03</div>
-        <h3><span class="ko">연합예배</span><span class="en">United Worship</span></h3>
-        <p><span class="ko">흩어져 있는 가정들이 한 회중으로 모여 함께 드리는 예배.</span><span class="en">The scattered homes gather as one congregation to worship.</span></p>
-      </div>
+        <p><span class="ko">가정교회로 먼저 들어옵니다. 삶을 나누는 가족이 생겨요.</span><span class="en">You enter a house church first — a family who shares life.</span></p>
+      </a>
+      <div class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <a class="jstep js3" href="#worship">
+        <div class="jnum">STEP 03</div>
+        <div class="jico"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 21V10M19 21V10M4 10h16M8 6.5l4-3 4 3"/></svg></div>
+        <h3><span class="ko">예배</span><span class="en">Worship</span></h3>
+        <p><span class="ko">흩어진 가정들이 한 회중으로 모여 함께 예배합니다.</span><span class="en">Scattered homes gather as one to worship together.</span></p>
+      </a>
+      <div class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <a class="jstep js4" href="/study/">
+        <div class="jnum">STEP 04</div>
+        <div class="jico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2 2 0 0 1 6 4h5v15H6a2 2 0 0 0-2 1.5z"/><path d="M20 5.5A2 2 0 0 0 18 4h-5v15h5a2 2 0 0 1 2 1.5z"/></svg></div>
+        <h3><span class="ko">삶공부</span><span class="en">Life Bible Study</span></h3>
+        <p><span class="ko">아는 것을 늘리는 게 아니라, 배운 것을 삶으로 살아냅니다.</span><span class="en">Not learning more — living out what you learn.</span></p>
+      </a>
+      <div class="jarrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <a class="jstep js5" href="/path/">
+        <div class="jnum">STEP 05</div>
+        <div class="jico"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg></div>
+        <h3><span class="ko">그리스도의 제자</span><span class="en">A disciple of Christ</span></h3>
+        <p><span class="ko">예수를 만나고 자라 제자가 됩니다 — 우리의 한 사명.</span><span class="en">You meet Jesus, grow, and become a disciple — our one mission.</span></p>
+      </a>
+    </div>
+
+    <div class="jcycle">
+      <div class="cico"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></svg></div>
+      <p><span class="ko">그리고 제자가 자라 <b>다시 새 이웃을 환대합니다.</b> 한 사람이 또 한 사람을 품는 이 순환이 — 시애틀에서 지구촌 땅 끝까지 이어집니다.</span><span class="en">And a grown disciple <b>turns to welcome the next.</b> One person carrying another — this cycle runs from Seattle to the ends of the earth.</span></p>
     </div>
   </div>
 </section>
@@ -317,12 +420,12 @@
       <div class="w-item">
         <div class="k"><span class="ko">주일연합예배</span><span class="en">Sunday Worship</span></div>
         <div class="t"><span class="ko">주일 오전 11:00</span><span class="en">Sundays 11:00 AM</span></div>
-        <div class="d"><span class="ko">두 가정에서 번갈아 대면으로, 온라인으로도 <b>함께</b> 드립니다 — 지켜보는 방송이 아니라 함께 드리는 예배예요.</span><span class="en">In person at two homes, and <b>together</b> online — not a broadcast to watch, but worship we share.</span></div>
+        <div class="d"><span class="ko">주중 지역마다 흩어져 모이던 목장들이 주일에 다 함께 모여 <b>연합예배</b>로 드립니다. 온라인으로도 함께 — 지켜보는 방송이 아니라 함께 드리는 예배예요.<span style="display:block;margin-top:8px;color:#a5631f">지금은 담임목사 가정에서 모이며, 새 예배 처소를 기도하며 찾고 있습니다. 10월 중 새로운 곳에서 함께 드리기를 기대합니다.</span></span><span class="en">The house churches that scatter across the week gather as one for <b>united worship</b> on Sunday — together online, too. Not a broadcast to watch, but worship we share.<span style="display:block;margin-top:8px;color:#a5631f">For now we meet in our pastor's home while we prayerfully seek a new place — hoping to worship together in a new space this October.</span></span></div>
       </div>
       <div class="w-item">
         <div class="k"><span class="ko">청소년 · 주일학교</span><span class="en">Youth & Kids</span></div>
-        <div class="t"><span class="ko">청소년은 박성건 목자 집에서</span><span class="en">Youth at a host's home</span></div>
-        <div class="d"><span class="ko">청소년은 박성건 목자 집에서 따로 모여 예배하고 배웁니다. 어린이(주일학교)는 성인 예배 장소에서 함께 모입니다.</span><span class="en">Youth gather and learn at a host's home; children (Sunday school) meet at the adult worship location.</span></div>
+        <div class="t"><span class="ko">청소년은 따로, 어린이는 함께</span><span class="en">Youth apart · kids together</span></div>
+        <div class="d"><span class="ko">청소년은 별도 공간에서 따로 모여 예배하고 배웁니다. 어린이(주일학교)는 성인 예배와 같은 곳에서 함께 모입니다.</span><span class="en">Youth gather and learn in their own space; children (Sunday school) meet where the adults worship.</span></div>
       </div>
       <div class="w-item">
         <div class="k"><span class="ko">함께 식사</span><span class="en">A shared meal</span></div>
@@ -336,6 +439,29 @@
       </div>
     </div>
     <p class="w-note"><span class="ko">지구촌 어디서든 온라인으로 함께하실 수 있어요. 서두르지 않으셔도 됩니다 — 오늘은 그냥 <b>가족 곁에 앉는 것</b>으로 충분합니다. (정확한 장소는 연결 후 개별 안내)</span><span class="en">Join online from anywhere in the world. No need to hurry — today, simply <b>sitting with family</b> is enough. (Exact places shared personally.)</span></p>
+  </div>
+</section>
+
+<!-- NEWCOMER / RELOCATION -->
+<section class="newcomer sec" id="newcomer">
+  <div class="wrap">
+    <div class="sec-eyebrow"><span class="ko">처음 오신 분께</span><span class="en">If you're new</span></div>
+    <h2 class="sec-title"><span class="ko">낯선 첫걸음, 혼자 두지 않아요</span><span class="en">Your first step, never taken alone</span></h2>
+    <p class="sec-lead"><span class="ko">교회가 처음이든, 도시가 처음이든 — 편하게 손 내밀어 주세요.</span><span class="en">New to church, or new to the city — just reach out.</span></p>
+    <div class="nc-grid">
+      <div class="nc-card nc-1">
+        <div class="nc-ico"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M10 20v-4.5h4V20"/></svg></div>
+        <h3><span class="ko">처음 방문하시나요?</span><span class="en">Visiting for the first time?</span></h3>
+        <p><span class="ko">아무것도 준비하지 않으셔도 됩니다. 한마디 남겨 주시면, 가까운 가정(목장)과 연결해 드리고 첫 자리를 편안하게 안내해 드려요. 예배는 온라인으로도 함께 드릴 수 있어요.</span><span class="en">Nothing to prepare. Leave us a note and we'll connect you with a nearby home (mokjang) and make your first visit easy. You can also join worship online.</span></p>
+        <a class="nc-link" href="#connect"><span class="ko">인사하고 안내받기</span><span class="en">Say hi & get directions</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="nc-card nc-2">
+        <div class="nc-ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
+        <h3><span class="ko">시애틀로 이주하셨나요?</span><span class="en">Just moved to Seattle?</span></h3>
+        <p><span class="ko">낯선 도시의 첫날은 막막하죠. 협력 사역 <b>HebronGuide 시애틀</b>이 정착(주거·생활·행정 등)을 실질적으로 도와드립니다. 도시의 첫 얼굴이 되어 드릴게요 — 믿음과 상관없이 누구나요.</span><span class="en">The first days in a new city can feel overwhelming. Our partner ministry <b>HebronGuide Seattle</b> helps with real settling-in (housing, daily life, paperwork). We'll be the city's first friendly face — for anyone, believer or not.</span></p>
+        <a class="nc-link" href="https://hebronguide.com/seattle/" target="_blank" rel="noopener"><span class="ko">HebronGuide 시애틀 열기</span><span class="en">Open HebronGuide Seattle</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -382,7 +508,7 @@
     <div class="reg-benefits">
       <h3><span class="ko">등록교인이 누리는 것</span><span class="en">What registered members receive</span></h3>
       <div class="bi"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><div><span class="ko"><b>삶공부·제자 훈련</b> — 생명의 삶부터 함께 자랍니다</span><span class="en"><b>Life studies & discipleship</b> — grow from the very first course</span></div></div>
-      <div class="bi"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><div><span class="ko"><b>대표목사와 중보기도팀의 기도</b> — 기도제목을 올리면 함께 기도합니다</span><span class="en"><b>Prayer from the pastor & intercessors</b> — share a request, we pray with you</span></div></div>
+      <div class="bi"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><div><span class="ko"><b>담임목사와 중보기도팀의 기도</b> — 기도제목을 올리면 함께 기도합니다</span><span class="en"><b>Prayer from the pastor & intercessors</b> — share a request, we pray with you</span></div></div>
       <div class="bi"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><div><span class="ko"><b>목장 연결·심방·돌봄</b> — 혼자가 아니라 함께</span><span class="en"><b>A mokjang, visits & care</b> — never alone</span></div></div>
       <div class="bi"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><div><span class="ko"><b>주일연합예배에 온라인으로 함께</b> — 어디서든 예배자로</span><span class="en"><b>Join Sunday worship online</b> — as a worshipper, anywhere</span></div></div>
       <div class="bi"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><div><span class="ko"><b>당신의 가정을 교회(목장)로</b> 세워가도록 안내·코칭</span><span class="en"><b>Guidance to make your home a church</b> — a mokjang of your own</span></div></div>
@@ -413,6 +539,67 @@
       <div class="t"><span class="ko">등록해 주셔서 감사합니다!</span><span class="en">Thank you for registering!</span></div>
       <p><span class="ko">입력하신 이메일로 안내를 보내드렸어요. 곧 반갑게 연락드리겠습니다.</span><span class="en">We've sent a note to your email — we'll be in touch soon.</span></p>
     </div>
+  </div>
+</section>
+
+<!-- GIVING -->
+<section class="give sec" id="give">
+  <div class="wrap">
+    <div class="sec-eyebrow"><span class="ko">함께 나눔</span><span class="en">Give</span></div>
+    <h2 class="sec-title"><span class="ko">함께 드리는 헌금</span><span class="en">Giving together</span></h2>
+    <p class="sec-lead"><span class="ko">드리는 모든 것은 한 영혼을 살리고 제자를 세우는 이 사명에 쓰입니다. 두 가지 방법 중 편한 대로 하시면 돼요. <b>처음 오신 분은 부담 갖지 마시고, 편히 함께해 주세요.</b></span><span class="en">Every gift serves this one mission — winning souls and making disciples. Give whichever way is easy for you. <b>First-time guests, please feel no pressure — just enjoy being with us.</b></span></p>
+    <div class="give-ways" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px auto 0;max-width:720px;text-align:left">
+      <div style="background:#fff;border:1px solid #EFE7D8;border-radius:16px;padding:22px 20px">
+        <div style="width:44px;height:44px;border-radius:12px;background:#FBF1DD;display:flex;align-items:center;justify-content:center;margin-bottom:12px"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C8944A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 21V8M12 8S11 3 8 3a2 2 0 0 0 0 5zM12 8s1-5 4-5a2 2 0 0 1 0 5z"/></svg></div>
+        <h3 style="margin:0 0 6px;font-size:17px"><span class="ko">예배 때 드리기</span><span class="en">At worship</span></h3>
+        <p style="margin:0;font-size:14px;color:#48505e;line-height:1.7"><span class="ko">주일 연합예배 중 봉헌 시간에 헌금함으로 직접 드릴 수 있어요.</span><span class="en">During Sunday united worship, you can give in person at the offering time.</span></p>
+      </div>
+      <div style="background:#fff;border:1px solid #EFE7D8;border-radius:16px;padding:22px 20px">
+        <div style="width:44px;height:44px;border-radius:12px;background:#FBF1DD;display:flex;align-items:center;justify-content:center;margin-bottom:12px"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C8944A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></div>
+        <h3 style="margin:0 0 6px;font-size:17px"><span class="ko">온라인으로 드리기</span><span class="en">Online</span></h3>
+        <p style="margin:0 0 14px;font-size:14px;color:#48505e;line-height:1.7"><span class="ko">언제 어디서나 안전하게. 한 번 또는 <b>매주 자동(정기)</b> 헌금도 설정할 수 있어요.</span><span class="en">Securely, anytime, anywhere — give once or set up <b>recurring</b> giving.</span></p>
+        <a class="btn btn-gold" href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg>
+          <span class="ko">온라인 헌금하기</span><span class="en">Give online</span></a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:18px;font-size:13.5px;color:var(--ink-2)"><span class="ko">헌금 문의: <a href="mailto:info@ijiguchon.org" style="color:var(--gold-2);font-weight:700">info@ijiguchon.org</a> · 안전한 결제는 Tithe.ly로 처리됩니다.</span><span class="en">Questions: <a href="mailto:info@ijiguchon.org" style="color:var(--gold-2);font-weight:700">info@ijiguchon.org</a> · Secure payments by Tithe.ly.</span></p>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team sec" id="team">
+  <div class="wrap">
+    <div class="sec-eyebrow"><span class="ko">섬기는 사람들</span><span class="en">Our team</span></div>
+    <h2 class="sec-title"><span class="ko">함께 섬기는 교역자</span><span class="en">The pastors who serve with you</span></h2>
+    <p class="sec-lead"><span class="ko">직분은 자리가 아니라 자라온 열매입니다. 예수님처럼 섬기려 애쓰는 사람들이에요 <span style="color:var(--ink-3)">(막 10:45)</span>.</span><span class="en">Titles here are fruit that has grown, not rank — people learning to serve as Jesus did (Mark 10:45).</span></p>
+    <div class="team-grid">
+      <div class="member">
+        <div class="mono" aria-label="김성수 담임목사">김</div>
+        <h4>김성수</h4>
+        <div class="role"><span class="ko">담임목사 · Lead Pastor</span><span class="en">Lead Pastor</span></div>
+        <p><span class="ko">설교·교육·코칭. 시애틀지구촌교회를 개척해 성경대로의 가정교회를 세워갑니다.</span><span class="en">Preaching, teaching & coaching. Planted GMC and builds house churches "by the Bible."</span></p>
+      </div>
+      <div class="member">
+        <img class="photo" src="images/staff/joy-kim.png" alt="김지영 어린이 사역 디렉터" loading="lazy">
+        <h4>김지영 <span style="font-weight:700;color:var(--ink-3);font-size:14px">Joy Kim</span></h4>
+        <div class="role"><span class="ko">어린이 사역 디렉터 · Children's Ministry Director</span><span class="en">Children's Ministry Director</span></div>
+        <p><span class="ko">개척 때부터 24년, 아이들의 '성경 왕교사'. 미술과 신학을 엮어 다음 세대를 키웁니다.</span><span class="en">A beloved Bible teacher for kids for 24 years, weaving art and theology for the next generation.</span></p>
+      </div>
+      <div class="member">
+        <img class="photo" src="images/staff/garrett-woods.png" alt="Garrett Woods 청소년 목사" loading="lazy">
+        <h4>Garrett Woods</h4>
+        <div class="role"><span class="ko">청소년 · Youth Pastor</span><span class="en">Youth Pastor</span></div>
+        <p><span class="ko">필름메이커 목사. 미디어로 청소년의 눈높이에서 복음을 전합니다.</span><span class="en">A filmmaker-pastor sharing the gospel with youth through media, on their level.</span></p>
+      </div>
+      <div class="member">
+        <img class="photo" src="images/staff/steve-randle.png" alt="Steve Randle 영어부 협동목사" loading="lazy">
+        <h4>Steve Randle</h4>
+        <div class="role"><span class="ko">영어부 협동목사 · Associate Pastor</span><span class="en">Associate Pastor</span></div>
+        <p><span class="ko">소방서 채플린이자 시니어 성경교사. 이중문화 가정을 따뜻하게 상담·섬깁니다.</span><span class="en">A firehouse chaplain and senior Bible teacher who warmly serves bicultural families.</span></p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:24px;font-size:13.5px;color:var(--ink-2)"><span class="ko">교역자·사역 문의는 <a href="mailto:info@ijiguchon.org" style="color:var(--gold-2);font-weight:700">info@ijiguchon.org</a>로 편하게 연락 주세요.</span><span class="en">For ministry questions, reach us at <a href="mailto:info@ijiguchon.org" style="color:var(--gold-2);font-weight:700">info@ijiguchon.org</a>.</span></p>
   </div>
 </section>
 
