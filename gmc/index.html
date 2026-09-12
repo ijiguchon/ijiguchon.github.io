@@ -1754,6 +1754,18 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <svg class="mb-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
       </button>
 
+      <!-- 이번 주 주보 — 주간 일정·예배 순서·교회 소식이 한 곳에 (오는 주일 · 토요일 게시) -->
+      <button class="evt evt-link evt-hl" onclick="go(bulletinUrl())" style="width:100%;text-align:left;margin-bottom:12px">
+        <div class="evt-date">
+          <div class="evt-d">주보</div>
+        </div>
+        <div class="evt-body">
+          <div class="evt-title"><span class="ko">이번 주 주보</span><span class="en">This Week's Bulletin</span></div>
+          <div class="evt-meta"><span class="ko i"><span data-bulletin-when></span>주간 일정 · 예배 순서 · 교회 소식 · 헌금</span><span class="en i"><span data-bulletin-when-en></span>Week's schedule · order of worship · news · giving</span></div>
+        </div>
+        <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+
       <!-- Schedule (접이식) -->
       <details class="fold">
         <summary>
@@ -2574,17 +2586,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
       </button>
 
-      <!-- 이번 주 주보 (오는 주일 · 토요일 게시) — 예배 순서·소식은 여기 한 곳에 -->
-      <button class="evt evt-link evt-hl" onclick="go(bulletinUrl())" style="width:100%;text-align:left;margin-top:12px">
-        <div class="evt-date">
-          <div class="evt-d">주보</div>
-        </div>
-        <div class="evt-body">
-          <div class="evt-title"><span class="ko">이번 주 주보</span><span class="en">This Week's Bulletin</span></div>
-          <div class="evt-meta"><span class="ko i"><span data-bulletin-when></span>예배 순서 · 교회 소식 · 헌금 · 봉사</span><span class="en i"><span data-bulletin-when-en></span>Order of worship · news · giving · serving</span></div>
-        </div>
-        <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
-      </button>
 
       <!-- 주일 설교 오디오 — 드라이브 폴더에서 날짜순 자동 연결 -->
       <details class="fold" style="margin-top:14px" id="sermonAudioFold">
