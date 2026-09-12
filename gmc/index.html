@@ -398,6 +398,9 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
 .evt-hl .evt-title{font-size:15px;font-weight:800}
 .evt-hl .evt-date{background:var(--accent)!important}
 .evt-hl .evt-d{color:#fff!important;font-weight:800}
+.web-out{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:18px;padding:12px;background:none;border:1px solid var(--border);border-radius:var(--r-pill);color:var(--text-3);font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer}
+.web-out svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.web-out:active{transform:scale(.99)}
 .evt-meta{margin-top:3px;font-size:11.5px;color:var(--text-3);font-weight:500}
 
 /* ══════════════════════════════════════
@@ -1704,6 +1707,12 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <div id="upcomingEvents"></div>
         </div>
       </details>
+
+      <!-- 교회 웹사이트로 나가기 (브라우저 새 탭) -->
+      <button class="web-out" onclick="go(LINKS.site)">
+        <span class="ko i">교회 웹사이트</span><span class="en i">Church website</span>
+        <svg viewBox="0 0 24 24"><path d="M14 3h7v7"/><path d="M21 3l-9 9"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+      </button>
 
     </section>
 
