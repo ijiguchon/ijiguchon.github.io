@@ -3157,7 +3157,6 @@ async function driveLatestByDate(folderUrl, maxIso){
   let files;
   try{ const r=await fetch(url); if(!r.ok) return ''; const j=await r.json(); files=(j.files||[]).filter(f=>f.mimeType!=='application/vnd.google-apps.folder'); }
   catch(_){ return ''; }
-  const score = f => f.mimeType==='application/pdf'?3 : f.mimeType==='application/vnd.google-apps.document'?2 : 1;
   const isoOf = name => {
     const d = name||''; let m;
     if((m = d.match(/(\d{1,2})[.\-\/](\d{1,2})[.\-\/](20\d{2})/))) return m[3]+'-'+m[1].padStart(2,'0')+'-'+m[2].padStart(2,'0'); // MM.DD.YYYY
@@ -3165,22 +3164,24 @@ async function driveLatestByDate(folderUrl, maxIso){
     if((m = d.match(/(20\d{2})(\d{2})(\d{2})/)))                  return m[1]+'-'+m[2]+'-'+m[3];                              // YYYYMMDD
     return '';
   };
-  let best=null, bestIso='';
+  // 최신 날짜 우선, PDF가 있으면 PDF 최신본을 우선 선택
+  let bestPdf=null, bestPdfIso='', best=null, bestIso='';
   for(const f of files){
     const iso = isoOf(f.name); if(!iso) continue;
-    if(maxIso && iso > maxIso) continue;                       // 미래(다음다음주 등)는 제외
-    if(iso > bestIso || (iso === bestIso && score(f) > score(best))){ best=f; bestIso=iso; }
+    if(maxIso && iso > maxIso) continue;                       // (선택) 상한 지정 시 미래 제외
+    if(iso > bestIso){ best=f; bestIso=iso; }
+    if(f.mimeType==='application/pdf' && iso > bestPdfIso){ bestPdf=f; bestPdfIso=iso; }
   }
-  return best ? { url:(best.webViewLink || ('https://drive.google.com/file/d/'+best.id+'/view')), iso:bestIso } : '';
+  const pick = bestPdf || best; const pickIso = bestPdf ? bestPdfIso : bestIso;
+  return pick ? { url:(pick.webViewLink || ('https://drive.google.com/file/d/'+pick.id+'/view')), iso:pickIso } : '';
 }
 
 let __bulletinUrl = '', __bulletinIso = '';
 async function resolveBulletin(){
   __bulletinUrl = ''; __bulletinIso = '';
   const iso = (function(){ try{ return relevantSunday(); }catch(_){ return ''; } })();
-  try{ if(iso && BULLETIN_DOCS[iso]){ __bulletinUrl = BULLETIN_DOCS[iso]; __bulletinIso = iso; } }catch(_){}     // 1) 수동 지정
-  if(!__bulletinUrl && iso){ try{ const u = await driveFindByDate(BULLETIN_FOLDER, iso); if(u){ __bulletinUrl = u; __bulletinIso = iso; } }catch(_){} }  // 2) 오는 주일 정확 매칭
-  if(!__bulletinUrl){ try{ const r = await driveLatestByDate(BULLETIN_FOLDER, iso); if(r && r.url){ __bulletinUrl = r.url; __bulletinIso = r.iso; } }catch(_){} }  // 3) 최신 주보 폴백(그 파일의 실제 날짜)
+  try{ if(iso && BULLETIN_DOCS[iso]){ __bulletinUrl = BULLETIN_DOCS[iso]; __bulletinIso = iso; } }catch(_){}     // 1) 수동 지정(있으면 우선)
+  if(!__bulletinUrl){ try{ const r = await driveLatestByDate(BULLETIN_FOLDER); if(r && r.url){ __bulletinUrl = r.url; __bulletinIso = r.iso; } }catch(_){} }  // 2) 폴더에서 최신 날짜 PDF 주보(상한 없음)
   try{ renderBulletin(); }catch(_){}   // 실제 주보 날짜로 라벨 갱신
 }
 function bulletinUrl(){
