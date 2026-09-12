@@ -86,7 +86,7 @@
       <div class="h-title"><span class="ko">교회학교 출석부</span><span class="en">Church School Attendance</span></div>
       <div class="h-sub">시애틀지구촌교회 · GMC of Greater Seattle</div>
     </div>
-    <button class="lang" id="langBtn">EN</button>
+    <button class="lang" id="langBtn" style="display:inline-flex;align-items:center;gap:5px" aria-label="Language / 언어"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;opacity:.85"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg><span id="langTxt">EN</span></button>
   </div>
 </header>
 
@@ -225,7 +225,7 @@ $('langBtn').onclick = () => {
 /* 동적 텍스트를 현재 언어로 갱신 (입력 상태는 유지) */
 function applyLang(){
   const d = t();
-  $('langBtn').textContent = d.langBtn;
+  $('langTxt').textContent = d.langBtn;
   $('teacherInp').placeholder = d.teacherPh;
   $('homeInp').placeholder = d.homePh;
   $('addName').placeholder = d.addPh;

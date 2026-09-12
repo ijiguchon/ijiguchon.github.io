@@ -47,7 +47,7 @@
       <div class="h-title"><span class="ko">내 목양</span><span class="en">My Flock</span></div>
       <div class="h-sub" id="hsub">시애틀지구촌교회 · GMC of Greater Seattle</div>
     </div>
-    <button class="lang" id="langBtn">EN</button>
+    <button class="lang" id="langBtn" style="display:inline-flex;align-items:center;gap:5px" aria-label="Language / 언어"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;opacity:.85"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg><span id="langTxt">EN</span></button>
   </div>
 </header>
 
@@ -100,7 +100,7 @@
 const SCRIPT_URL='https://script.google.com/macros/s/AKfycbzt_mgY8y0IzwKmFGm7Qytg4ryF76cZD9NqnI3BNnyvNqgEVYI5fKsreqjh_1SyYwAR/exec';
 const $=(id)=>document.getElementById(id);
 let lang='ko';
-$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; };
+$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langTxt').textContent=lang==='ko'?'EN':'한국어'; };
 
 function esc(s){ return String(s==null?'':s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
 

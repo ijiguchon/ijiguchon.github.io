@@ -64,7 +64,7 @@
       <div class="h-sub">시애틀지구촌교회 · GMC of Greater Seattle</div>
     </div>
     <div class="top-btns">
-      <button class="tb" id="langBtn">EN</button>
+      <button class="tb" id="langBtn" style="display:inline-flex;align-items:center;gap:5px" aria-label="Language / 언어"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;opacity:.85"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg><span id="langTxt">EN</span></button>
       <button class="tb" id="reload"><span class="ko">새로고침</span><span class="en">Refresh</span></button>
     </div>
   </div>
@@ -95,7 +95,7 @@ const $=(id)=>document.getElementById(id);
 let lang='ko';
 
 // 언어
-$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; if(window.__stats){ render(window.__stats); renderQuarters(); } if(window.__codes) renderCodes(); if(window.__study) renderStudy(); renderLinks(); };
+$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langTxt').textContent=lang==='ko'?'EN':'한국어'; if(window.__stats){ render(window.__stats); renderQuarters(); } if(window.__codes) renderCodes(); if(window.__study) renderStudy(); renderLinks(); };
 
 // 암호 게이트
 function unlock(){ $('gate').hidden=true; $('app').hidden=false; load(); }

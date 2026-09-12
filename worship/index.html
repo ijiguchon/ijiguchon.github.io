@@ -57,7 +57,7 @@
       <div class="h-title"><span class="ko">성인 출석</span><span class="en">Adult Attendance</span></div>
       <div class="h-sub">시애틀지구촌교회 · GMC of Greater Seattle</div>
     </div>
-    <button class="lang" id="langBtn">EN</button>
+    <button class="lang" id="langBtn" style="display:inline-flex;align-items:center;gap:5px" aria-label="Language / 언어"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;opacity:.85"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg><span id="langTxt">EN</span></button>
   </div>
 </header>
 
@@ -135,7 +135,7 @@ const T={ ko:{vL:{'대면':'대면','온라인':'온라인','결석':'결석'}, 
     tNeed:'Mark at least one.',tDate:'Choose a date.',tSaved:(n)=>'Saved · '+n,tFail:'Failed — retry',tDemo:(n)=>'Demo · '+n+' (not saved)',tAdd:(n)=>n+' added',tDupe:(n)=>n+' already listed',demo:'Demo'} };
 function t(){return T[lang];}
 
-$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langBtn').textContent=lang==='ko'?'EN':'한국어'; applyLang(); render(); };
+$('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); $('langTxt').textContent=lang==='ko'?'EN':'한국어'; applyLang(); render(); };
 
 function nearestSunday(){ const d=new Date(); const g=d.getDay(); if(g!==0) d.setDate(d.getDate()-g); return d.toISOString().slice(0,10); }
 function nearestSaturday(){ const d=new Date(); const g=d.getDay(); d.setDate(d.getDate()-((g+1)%7)); return d.toISOString().slice(0,10); }
@@ -214,7 +214,7 @@ $('submitBtn').onclick=async()=>{
 };
 
 function applyLang(){
-  const d=t(); $('langBtn').textContent=lang==='ko'?'EN':'한국어';
+  const d=t(); $('langTxt').textContent=lang==='ko'?'EN':'한국어';
   const mo=$('modeAll').options; if(mo.length>=4){ mo[0].text=d.fill; mo[1].text=d.allIn; mo[2].text=d.allOn; mo[3].text=d.allOff; }
   $('addName').placeholder=d.addPh; const dt=$('demoTag'); if(dt) dt.textContent=d.demo;
 }

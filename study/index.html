@@ -127,7 +127,7 @@
         <img src="../images/logo.png" alt="시애틀지구촌교회 로고">
         <span>시애틀지구촌교회<small>GMC of Greater Seattle</small></span>
       </a>
-      <button class="lang" id="langBtn">EN</button>
+      <button class="lang" id="langBtn" style="display:inline-flex;align-items:center;gap:5px" aria-label="Language / 언어"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;opacity:.85"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg><span id="langTxt">EN</span></button>
     </div>
     <div class="eyebrow"><span class="ko">삶으로 배우는 신앙</span><span class="en">Faith learned through life</span></div>
     <h1><span class="ko">삶공부</span><span class="en">Life Study</span></h1>
@@ -388,7 +388,7 @@
   let lang='ko';
   const $=(id)=>document.getElementById(id);
   function fillCourses(){ const s=$('course'); s.innerHTML=''; COURSES.forEach(c=>{ const o=document.createElement('option'); o.value=c.ko; o.textContent=(lang==='ko'?c.ko:c.en); s.appendChild(o); }); }
-  $('langBtn').onclick=function(){ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); this.textContent=lang==='ko'?'EN':'한국어'; fillCourses(); };
+  $('langBtn').onclick=function(){ lang=(lang==='ko')?'en':'ko'; document.body.classList.toggle('lang-en',lang==='en'); document.getElementById('langTxt').textContent=lang==='ko'?'EN':'한국어'; fillCourses(); };
   function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2800); }
 
   $('applyBtn').onclick=async function(){
