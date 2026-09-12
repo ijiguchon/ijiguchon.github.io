@@ -473,7 +473,7 @@
         <div class="nc-ico"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M10 20v-4.5h4V20"/></svg></div>
         <h3><span class="ko">처음 방문하시나요?</span><span class="en">Visiting for the first time?</span></h3>
         <p><span class="ko">아무것도 준비하지 않으셔도 됩니다. 한마디 남겨 주시면, 가까운 가정(목장)과 연결해 드리고 첫 자리를 편안하게 안내해 드려요. 예배는 온라인으로도 함께 드릴 수 있어요.</span><span class="en">Nothing to prepare. Leave us a note and we'll connect you with a nearby home (mokjang) and make your first visit easy. You can also join worship online.</span></p>
-        <a class="nc-link" href="#connect"><span class="ko">인사하고 안내받기</span><span class="en">Say hi & get directions</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="nc-link" href="#mokjang-connect"><span class="ko">목장과 연결되기</span><span class="en">Connect with a house church</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="nc-card nc-2">
         <div class="nc-ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
@@ -482,6 +482,38 @@
         <a class="nc-link" href="https://hebronguide.com/seattle/" target="_blank" rel="noopener"><span class="ko">HebronGuide 시애틀 열기</span><span class="en">Open HebronGuide Seattle</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- 목장과 연결되기 -->
+<section class="reg sec" id="mokjang-connect">
+  <div class="wrap" style="max-width:640px">
+    <div class="sec-eyebrow"><span class="ko">목장과 연결되기</span><span class="en">Connect with a house church</span></div>
+    <h2 class="sec-title"><span class="ko">한 목장으로 초대합니다</span><span class="en">You're invited to a house church</span></h2>
+    <p class="sec-lead"><span class="ko">한 번 와서 밥만 드시고 가셔도 좋아요. 마음이 가는 목장을 고르고 연락처를 남겨 주시면, 그 목자가 반갑게 안내해 드립니다.</span><span class="en">Come once, just for dinner. Choose a house church, leave your contact, and the host will warmly reach out.</span></p>
+
+    <form class="reg-form" action="https://formsubmit.co/office@ijiguchon.org" method="POST">
+      <input type="hidden" name="_subject" value="[목장 연결 신청] 웹">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_cc" value="info@ijiguchon.org">
+      <input type="hidden" name="_autoresponse" value="목장과 연결되기를 신청해 주셔서 감사합니다. 마음이 가는 목장의 목자가 곧 반갑게 연락드릴 거예요. 한 번 오셔서 밥만 드시고 가셔도 좋습니다. 잘 오셨어요. — 시애틀지구촌교회">
+      <input type="hidden" name="_next" value="https://www.ijiguchon.org/?ok=mokjang#mokjang-connect">
+      <label><span class="ko">이름</span><span class="en">Name</span><input name="이름" required></label>
+      <label><span class="ko">이메일</span><span class="en">Email</span><input type="email" name="email" required></label>
+      <label><span class="ko">전화 (선택)</span><span class="en">Phone (optional)</span><input name="전화"></label>
+      <label><span class="ko">관심 목장</span><span class="en">Which house church</span>
+        <select name="관심 목장">
+          <option>어디든 추천해 주세요</option>
+          <option>이스라엘 목장 (김지영 목자)</option>
+          <option>멕시코 목장 (박성건 목자)</option>
+          <option>인도네시아 목장 (이인규 목자)</option>
+          <option>GMC Y — 청소년 (Garrett Woods 목자)</option>
+        </select></label>
+      <label><span class="ko">거주 지역 (선택)</span><span class="en">Neighborhood (optional)</span><input name="거주 지역" placeholder="예) Lynnwood, Bellevue"></label>
+      <label><span class="ko">한마디 (선택)</span><span class="en">A note (optional)</span><textarea name="한마디" rows="2"></textarea></label>
+      <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:4px"><span class="ko">목장과 연결되기</span><span class="en">Connect with a house church</span></button>
+    </form>
   </div>
 </section>
 
