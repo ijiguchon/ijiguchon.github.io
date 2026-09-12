@@ -1777,8 +1777,8 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </summary>
         <div class="fold-body">
       <!-- 이번 주 일정은 날짜에 맞춰 자동으로 채워집니다 (SPECIAL_EVENTS + 되풀이 일정) -->
+      <!-- 목장별 모임 요약은 목장 탭 '이번 주 목장 모임'으로 이동(중복 제거) -->
       <div id="weekEvents"></div>
-      <div class="mjs-card" data-mokjang-summary></div>
         </div>
       </details>
 
@@ -1793,7 +1793,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </summary>
         <div class="fold-body">
           <div id="upcomingEvents"></div>
-          <div class="mjs-card" data-mokjang-summary></div>
         </div>
       </details>
 
@@ -1818,23 +1817,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
             <span class="sv-v" data-serve="fellowship"></span>
           </div>
           <p class="serve-note"><span class="ko i">서로 알고 서로를 지원하기 위해 — 섬기는 분들을 위해 함께 기도해요.</span><span class="en i">So we know and support one another — let's pray for those serving.</span></p>
-        </div>
-
-        <div class="sec-head" style="margin-top:18px">
-          <h2 class="sec-title"><span class="ko">이번 주 목장 모임</span><span class="en">This Week's House Church</span></h2>
-          <span class="sec-note"><span class="ko i">목자가 올린 그대로</span><span class="en i">As posted by hosts</span></span>
-        </div>
-        <div class="card mokjang-week" id="mokjangWeek">
-          <div id="mokjangWeekRows"></div>
-          <p class="mw-foot"><span class="ko i">정확한 위치는 목장 목자에게 문의하세요.</span><span class="en i">Ask your host for the exact location.</span></p>
-          <!-- 목자용 — 폰에서 바로 열어 이번 주 모임을 올립니다 (매주 주일 전) -->
-          <button class="btn btn-ghost-line btn-full" style="margin-top:10px" onclick="go(LINKS.mokjangSheet)">
-            <span class="ko i">목자용 — 이번 주 모임 올리기</span><span class="en i">Hosts — post this week's meeting</span>
-          </button>
-          <p class="mw-foot" style="margin-top:8px">
-            <span class="ko i">목자님은 <b>주일 전까지</b> 요일·시간·동네를 올려주세요. 올리시는 즉시 목장식구 화면에 반영됩니다.</span>
-            <span class="en i">Hosts: please post the day, time and neighbourhood <b>before Sunday</b>. It appears here right away.</span>
-          </p>
         </div>
       </div>
 
@@ -1862,6 +1844,31 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <span class="en">Believing or not, from anywhere — a house church welcomes anyone.</span>
         </p>
       </div>
+
+      <!-- 이번 주 목장 모임 (홈에서 이동) — 목자가 올린 요일·시간·동네 -->
+      <details class="fold" style="margin-top:14px">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">이번 주 목장 모임</span><span class="en">This Week's House Church</span></div>
+            <div class="fold-sub"><span class="ko i">목자가 올린 그대로 · 요일·시간·동네</span><span class="en i">As posted by hosts · day·time·area</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+        <div class="card mokjang-week" id="mokjangWeek" style="margin-top:0">
+          <div id="mokjangWeekRows"></div>
+          <p class="mw-foot"><span class="ko i">정확한 위치는 목장 목자에게 문의하세요.</span><span class="en i">Ask your host for the exact location.</span></p>
+          <!-- 목자용 — 폰에서 바로 열어 이번 주 모임을 올립니다 (매주 주일 전) -->
+          <button class="btn btn-ghost-line btn-full" style="margin-top:10px" onclick="go(LINKS.mokjangSheet)">
+            <span class="ko i">목자용 — 이번 주 모임 올리기</span><span class="en i">Hosts — post this week's meeting</span>
+          </button>
+          <p class="mw-foot" style="margin-top:8px">
+            <span class="ko i">목자님은 <b>주일 전까지</b> 요일·시간·동네를 올려주세요. 올리시는 즉시 반영됩니다.</span>
+            <span class="en i">Hosts: please post the day, time and neighbourhood <b>before Sunday</b>. It appears here right away.</span>
+          </p>
+        </div>
+        </div>
+      </details>
 
       <details class="fold" style="margin-top:14px">
         <summary>
