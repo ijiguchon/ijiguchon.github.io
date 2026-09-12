@@ -11,7 +11,7 @@
    배포 후 내용을 바꾸면 CACHE_VERSION 을 올려주세요.
    ══════════════════════════════════════════════════════════ */
 
-const CACHE_VERSION = 'gmc-v127';
+const CACHE_VERSION = 'gmc-v128';
 const SHELL_CACHE = CACHE_VERSION + '-shell';
 const ASSET_CACHE = CACHE_VERSION + '-assets';
 const IMG_CACHE   = CACHE_VERSION + '-img';
@@ -62,7 +62,8 @@ self.addEventListener('message', (event) => {
 async function networkFirst(request, cacheName) {
   const cache = await caches.open(cacheName);
   try {
-    const fresh = await fetch(request);
+    // HTML 셸은 항상 최신을 받도록 HTTP 캐시를 우회(no-store) → 배포 즉시 반영
+    const fresh = await fetch(request, { cache: 'no-store' });
     if (fresh && fresh.ok) cache.put(request, fresh.clone());
     return fresh;
   } catch (_) {
