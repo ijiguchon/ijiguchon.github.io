@@ -1663,85 +1663,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </div>
 
-      <!-- 환영의 방 — 접이식(교인은 지나치고, 처음 오신 분은 펼쳐 봄). 히어로가 첫인상을 맡음 -->
-      <details class="fold fold-key" id="welcomeFold">
-        <summary>
-          <div class="fold-t">
-            <div class="fold-title"><span class="ko">처음 오셨나요?</span><span class="en">First time here?</span></div>
-            <div class="fold-sub"><span class="ko i">환영합니다 · 목사님의 인사</span><span class="en i">Welcome · a note from the pastor</span></div>
-          </div>
-          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </summary>
-        <div class="fold-body">
-      <div class="welcome-room" style="margin-top:0">
-        <p class="wr-hebron" id="wrHebron" hidden><span class="ko">헤브론가이드에서 오셨군요. 낯선 도시에서 마주친 분이라 더 반갑습니다.</span><span class="en">You came from HebronGuide — meeting you in a new city makes it all the sweeter.</span></p>
-        <p class="wr-greet"><span class="ko">처음 오셨나요? <b>진심으로 환영하고 축하합니다.</b></span><span class="en">Just arrived? <b>We warmly welcome and celebrate you.</b></span></p>
-        <p class="wr-msg"><span class="ko">편하게 둘러보시고, 머물고 싶은 만큼 머무세요. 잘 차려진 밥상처럼, 당신을 위한 자리를 이미 마련하고 기다리고 있었습니다. 잘 오셨어요~ 곧 만나요.</span><span class="en">Look around, and stay as long as you like. Like a table already set, we've been keeping a place ready for you. So glad you're here — see you soon.</span></p>
-        <div class="wr-sign"><span class="ko i">— 김성수 목사와 시애틀지구촌교회 가족 일동</span><span class="en i">— Pastor Sung Soo Kim and the GMC family</span></div>
-        <button class="wr-invite" onclick="openModal('mokjang')">
-          <span class="ko i">원하실 때, 밥 한 끼 함께해요 — 목장으로 초대합니다</span><span class="en i">When you're ready, share a meal — a house church welcomes you</span>
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </button>
-        <button class="wr-kakao" onclick="go(LINKS.kakaoChat)">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4C7 4 3 7.2 3 11.1c0 2.5 1.7 4.7 4.2 6-.2.7-.7 2.4-.8 2.8 0 .2.1.4.4.2.3-.2 2.6-1.8 3.6-2.5.5.1 1.1.1 1.6.1 5 0 9-3.2 9-7.1S17 4 12 4z" fill="currentColor" stroke="none"/></svg>
-          <span class="ko i">카카오톡으로 편하게 인사하기</span><span class="en i">Say hello on KakaoTalk</span>
-        </button>
-      </div>
-        </div>
-      </details>
-
-      <!-- 우리 행복할까요? — 이웃과 함께하는 배움 (VIP 문턱 낮추기, 접이식으로 세로 공간 절약)
-           ※ id="careFold" — 삶공부 탭에서 openCare()로 열고 스크롤합니다 -->
-      <details class="fold fold-key" id="careFold">
-        <summary>
-          <div class="fold-t">
-            <div class="fold-title"><span class="ko">우리 행복할까요?</span><span class="en">Shall we be happy?</span></div>
-            <div class="fold-sub"><span class="ko i">이웃과 함께하는 배움 · 누구나</span><span class="en i">Learning together with neighbours · open to anyone</span></div>
-          </div>
-          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </summary>
-        <div class="fold-body">
-      <p class="care-open">
-        <span class="ko"><b>누구나</b> 오실 수 있어요 — 시애틀에서든, 온라인으로든. 참가비는 없고, 믿음이 있든 없든 상관없습니다.</span>
-        <span class="en"><b>Anyone</b> is welcome — in Seattle or online. No fee, and it makes no difference whether you believe.</span>
-      </p>
-      <div class="care-list">
-        <button class="care-card" onclick="openModal('care')">
-          <div class="care-ico ci-talk"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-9a8.4 8.4 0 1 1 16.9-.5z"/></svg></div>
-          <div class="care-b"><div class="care-t"><span class="ko">영어 톡타임</span><span class="en">English Talk Time</span></div>
-            <div class="care-d"><span class="ko">영어가 필요한 이웃과 마주 앉아 편하게 이야기 나눠요.</span><span class="en">Sit and talk with neighbours who need English.</span></div></div>
-          <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-        <button class="care-card" onclick="openModal('care')">
-          <div class="care-ico ci-happy"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
-          <div class="care-b"><div class="care-t"><span class="ko">행복한 삶</span><span class="en">Happy Life</span></div>
-            <div class="care-d"><span class="ko">지친 마음, 다시 행복을 찾아가는 길을 함께 걸어요.</span><span class="en">Walk the road back to joy, together.</span></div></div>
-          <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-        <button class="care-card" onclick="openModal('care')">
-          <div class="care-ico ci-heal"><svg viewBox="0 0 24 24"><path d="M20.8 5.6a5.1 5.1 0 0 0-7.2 0L12 7.1l-1.6-1.5a5.1 5.1 0 0 0-7.2 7.2L12 21l8.8-8.2a5.1 5.1 0 0 0 0-7.2z"/></svg></div>
-          <div class="care-b"><div class="care-t"><span class="ko">회복의 삶</span><span class="en">Restored Life</span></div>
-            <div class="care-d"><span class="ko">상처와 아픔, 혼자 지지 마세요. 회복으로 함께 갑니다.</span><span class="en">Don't carry the hurt alone — heal, together.</span></div></div>
-          <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-        <!-- 부부의 삶 · 자녀교육의 삶은 여기가 아니라 삶공부 선택 과정으로 옮겼습니다 (목사님, 2026-08-09) -->
-        <button class="care-card" onclick="openModal('care')">
-          <div class="care-ico ci-talk2"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-9.6a4 4 0 0 1 7.5-2 4 4 0 0 1 7.5 2c0 5-7.5 9.6-7.5 9.6z"/></svg></div>
-          <div class="care-b"><div class="care-t"><span class="ko">가족치유 마음치유</span><span class="en">Family &amp; Inner Healing</span></div>
-            <div class="care-d"><span class="ko">팀 슬레지의 책 『가족치유 마음치유』로 진행하는 치유 사역 과정입니다. 지나온 자리의 아픔을 안전한 자리에서 함께 돌봅니다.</span><span class="en">A healing ministry course built on Tim Sledge's book — tending the hurt we carry from where we've been, in a safe place, together.</span></div></div>
-          <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-        <button class="care-card" onclick="openModal('care')">
-          <div class="care-ico ci-coach"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></div>
-          <div class="care-b"><div class="care-t"><span class="ko">라이프 코칭</span><span class="en">Life Coaching</span></div>
-            <div class="care-d"><span class="ko">진로·결정·삶의 방향 앞에서, 함께 생각을 정리해요.</span><span class="en">Sort out direction, choices, and next steps — together.</span></div></div>
-          <svg class="care-arr" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-      <p class="care-foot"><button onclick="openModal('care')" style="background:none;border:none;cursor:pointer;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px"><span class="ko">문의 신청 · 담당 박보라 행정간사</span><span class="en">Inquire · Bora Park (Church Office)</span></button></p>
-        </div>
-      </details>
-
       <!-- Mokjang banner -->
       <button class="mokjang-banner" onclick="openModal('mokjang')">
         <div class="mb-icon">
@@ -2192,10 +2113,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <p class="el-d"><span class="ko">목자·목녀로서 어떤 마음을 품고, 목장을 어떻게 섬겨야 하는지 함께 배우고 헌신합니다.</span><span class="en">The heart to carry as a host, and how to serve a house church well.</span></p>
         </div>
       </div>
-      <p class="place-note" style="margin-top:11px">
-        <span class="ko"><b>행복한 삶</b>은 처음 오신 이웃을 위한 자리이기도 합니다 — 이웃용 과정은 홈 <b>“우리 행복할까요?”</b>에 있어요.</span>
-        <span class="en"><b>Happy Life</b> is also a place for first-time neighbours — that version lives under <b>“Shall we be happy?”</b> on the home screen.</span>
-      </p>
 
       <div class="el-more-h"><span class="ko">그 외 과정 — 관심 있는 분 <b>3명</b>이 모이면 함께 엽니다</span><span class="en">More courses — we open one once <b>three</b> sign up</span></div>
       <div class="el-list">
@@ -4404,18 +4321,6 @@ function scrollToStages(){
   if(fold && !fold.open) fold.open = true;
   requestAnimationFrame(() => {
     area.scrollTo({top: target.offsetTop - 68, behavior:'smooth'});
-  });
-}
-
-/* 삶공부 탭 → 홈의 "우리 행복할까요?"(이웃과 함께하는 배움)를 펼쳐서 보여줍니다 */
-function openCare(){
-  switchTab('home');
-  const fold = document.getElementById('careFold');
-  const area = document.getElementById('contentArea');
-  if(!fold || !area) return;
-  fold.open = true;
-  requestAnimationFrame(() => {
-    area.scrollTo({top: fold.offsetTop - 68, behavior:'smooth'});
   });
 }
 
