@@ -1764,18 +1764,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <h1 class="panel-title"><span class="ko">목장이 모여<br>한 교회입니다</span><span class="en">Homes gather,<br>one church</span></h1>
       </div>
 
-      <div class="card door">
-        <div class="door-t"><span class="ko">교회로 들어오는 문은 여기입니다</span><span class="en">This is the door into the church</span></div>
-        <p class="door-d">
-          <span class="ko">주일 예배가 아니라 <b>목장이 문</b>입니다. 처음 오시는 분은 예배당을 찾지 않으셔도 됩니다. 한 목장의 밥상에 앉는 것으로 시작하고, 그 목자가 예배 자리로 안내할 것입니다.</span>
-          <span class="en">The door isn't the Sunday service — <b>it's a house church</b>. You don't have to find a sanctuary. You start by sitting at one family's table, and your host will guide you into worship.</span>
-        </p>
-        <p class="door-n">
-          <span class="ko">믿든 안 믿든, 어디서 왔든, 목장은 누구라도 환대합니다.</span>
-          <span class="en">Believing or not, from anywhere — a house church welcomes anyone.</span>
-        </p>
-      </div>
-
       <!-- 이번 주 목장 모임 (홈에서 이동) — 목자가 올린 요일·시간·동네 -->
       <details class="fold" style="margin-top:14px">
         <summary>
@@ -1790,7 +1778,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <div id="mokjangWeekRows"></div>
           <p class="mw-foot"><span class="ko i">정확한 위치는 목장 목자에게 문의하세요.</span><span class="en i">Ask your host for the exact location.</span></p>
           <!-- 목자용 — 폰에서 바로 열어 이번 주 모임을 올립니다 (매주 주일 전) -->
-          <button class="btn btn-ghost-line btn-full" style="margin-top:10px" onclick="go(LINKS.mokjangSheet)">
+          <button class="btn btn-ghost-line btn-full" style="margin-top:10px" onclick="openModal('mokjangpost')">
             <span class="ko i">목자용 — 이번 주 모임 올리기</span><span class="en i">Hosts — post this week's meeting</span>
           </button>
           <p class="mw-foot" style="margin-top:8px">
@@ -3955,6 +3943,27 @@ const MODALS = {
         {ko:'GMC Y — 청소년 (Garrett Woods 목자)', en:'GMC Y — Youth (Garrett Woods)'}
       ]},
       {n:'거주 지역', en:'Neighborhood', t:'text', req:false, ph:'예) Lynnwood, Bellevue (선택)', phEn:'e.g. Lynnwood, Bellevue (optional)'}
+    ]
+  },
+  mokjangpost:{
+    subject:'[GMC] 이번 주 목장 모임 등록(목자용)',
+    ko:{title:'이번 주 목장 모임 올리기', sub:'목자용 · 요일·시간·동네를 올리면 앱 "이번 주 목장 모임"에 바로 반영됩니다. (정확한 주소는 공개되지 않아요 — 동네만)',
+        btn:'올리기', okT:'올렸습니다!', okM:'잠시 후 앱에\n반영됩니다.'},
+    en:{title:"Post this week's meeting", sub:'For hosts · post the day, time and neighborhood — it appears in the app right away. (Exact address stays private — neighborhood only.)',
+        btn:'Post', okT:'Posted!', okM:'It will appear\nin the app shortly.'},
+    fields:[
+      {n:'목장', en:'House church', t:'select', req:true, opts:[
+        {ko:'이스라엘 목장', en:'Israel'},
+        {ko:'멕시코 목장', en:'Mexico'},
+        {ko:'인도네시아 목장', en:'Indonesia'},
+        {ko:'GMC Y (청소년)', en:'GMC Y (Youth)'}
+      ]},
+      {n:'요일', en:'Day', t:'select', req:true, opts:[
+        {ko:'주일', en:'Sun'},{ko:'월', en:'Mon'},{ko:'화', en:'Tue'},{ko:'수', en:'Wed'},
+        {ko:'목', en:'Thu'},{ko:'금', en:'Fri'},{ko:'토', en:'Sat'}
+      ]},
+      {n:'시간', en:'Time', t:'text', req:true, ph:'예) 오후 7:30', phEn:'e.g. 7:30 PM'},
+      {n:'동네', en:'Neighborhood', t:'text', req:true, ph:'예) Lynnwood (정확한 주소 아님)', phEn:'e.g. Lynnwood (not full address)'}
     ]
   },
   plant:{
