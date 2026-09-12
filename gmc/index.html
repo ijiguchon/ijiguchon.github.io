@@ -411,6 +411,10 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
 .pray-eyebrow{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#1A3CA0;margin-bottom:9px}
 .pray-eyebrow svg{width:15px;height:15px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .pray-line{margin:5px 0;font-size:13.5px;font-weight:600;line-height:1.5;color:var(--text-1)}
+.pl-row{display:flex;align-items:baseline;gap:12px;padding:9px 2px;border-bottom:1px solid var(--border)}
+.pl-row:last-child{border-bottom:none}
+.pl-when{flex:0 0 62px;font-size:12px;font-weight:800;color:var(--primary)}
+.pl-what{font-size:13.5px;font-weight:600;color:var(--text-1)}
 .evt-meta{margin-top:3px;font-size:11.5px;color:var(--text-3);font-weight:500}
 
 /* ══════════════════════════════════════
@@ -1734,6 +1738,20 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </summary>
         <div class="fold-body">
           <div id="upcomingEvents"></div>
+        </div>
+      </details>
+
+      <!-- 다가오는 주요 일정 (월별·분기) — 지난 건 자동으로 숨김. 내용은 UPCOMING_PLAN에서 관리 -->
+      <details class="fold" id="planFold" hidden>
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">다가오는 주요 일정</span><span class="en">What's ahead</span></div>
+            <div class="fold-sub"><span class="ko i">앞으로의 교회 일정</span><span class="en i">Upcoming church dates</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+          <div id="planList"></div>
         </div>
       </details>
 
@@ -3566,6 +3584,37 @@ const ISO = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') 
 const DOW_KO = ['주일','월','화','수','목','금','토'];
 const DOW_EN = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
 
+/* ══════════════════════════════════════
+   다가오는 주요 일정 (홈 '다가오는 주요 일정' 접이식)
+   ※ 새 일정을 넣거나 지난 것을 지우려면 아래 UPCOMING_PLAN에 한 줄만 손보면 됩니다.
+     지난 날짜는 앱이 자동으로 숨깁니다.
+   ══════════════════════════════════════ */
+const UPCOMING_PLAN = [
+  {d:'2026-09-13', ko:'삶공부 등록 마감일',        en:'Life Study registration closes'},
+  {d:'2026-11-01', ko:'Daylight Saving 종료 (겨울 시간)', en:'Daylight Saving ends (clocks back)'},
+  {d:'2026-11-22', ko:'추수감사주일',            en:'Thanksgiving Sunday'},
+  {d:'2026-12-20', ko:'성탄주일',               en:'Christmas Sunday'},
+  {d:'2026-12-31', ko:'송구영신예배',           en:"New Year's Eve Service"}
+];
+function renderPlan(){
+  const fold = document.getElementById('planFold');
+  const box  = document.getElementById('planList');
+  if(!fold || !box) return;
+  const today = ISO(new Date());
+  const items = UPCOMING_PLAN.filter(e => e.d >= today).sort((a,b)=> a.d < b.d ? -1 : 1);
+  if(!items.length){ fold.hidden = true; return; }
+  fold.hidden = false;
+  box.innerHTML = items.map(e => {
+    const dt = new Date(e.d + 'T00:00:00');
+    const md = (dt.getMonth()+1) + '월 ' + dt.getDate() + '일';
+    const mdE = (dt.getMonth()+1) + '/' + dt.getDate();
+    return '<div class="pl-row">'
+      + '<span class="pl-when"><span class="ko i">'+md+'</span><span class="en i">'+mdE+'</span></span>'
+      + '<span class="pl-what">'+bi(e.ko, e.en, true)+'</span>'
+      + '</div>';
+  }).join('');
+}
+
 function evtRow(date, tKo, tEn, mKo, mEn){
   return '<div class="evt">'
     + '<div class="evt-date"><div class="evt-d">'+date.getDate()+'</div>'
@@ -4429,10 +4478,12 @@ function applyLang(lang){
   renderSermonHero();
   renderSaturday();
   renderWelcome();
+  renderPlan();
   renderHostDir();
   renderColumn();
   renderWeekLabel();
   renderSchedule();
+  renderPlan();
   fetchShareSheet();
   fetchMokjangPublic();
   renderBulletin();
