@@ -2631,27 +2631,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </details>
 
-      <!-- 목회칼럼 — 압축(칼럼 카드 + 목사님께 한마디). 소개·지난칼럼은 더보기 메뉴로 -->
-      <div class="sec-head" style="margin-top:26px">
-        <h2 class="sec-title"><span class="ko">목회칼럼</span><span class="en">Pastor's Column</span></h2>
-        <span class="sec-note"><span class="ko i">매주 한 편</span><span class="en i">Weekly</span></span>
-      </div>
-      <!-- 내용은 COLUMN_PLAN에서 날짜에 맞춰 채워집니다 -->
-      <button class="col-hero" data-column></button>
-      <!-- 칼럼 슬라이드 — 같은 날짜 _슬라이드 파일이 있을 때만 자동 표시 -->
-      <button id="colSlides" class="evt evt-link" style="width:100%;text-align:left;margin-top:8px;display:none">
-        <div class="evt-date" style="background:var(--accent-pale)"><div class="evt-d" style="color:var(--accent)">PPT</div></div>
-        <div class="evt-body">
-          <div class="evt-title"><span class="ko">칼럼 슬라이드 보기</span><span class="en">Column slides</span></div>
-          <div class="evt-meta"><span class="ko i">같은 칼럼을 슬라이드로 · 나눔용</span><span class="en i">The same column, as slides</span></div>
-        </div>
-        <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
-      </button>
-      <button class="btn btn-primary btn-full" style="margin-top:9px" onclick="openModal('topastor')">
-        <span class="ko i">읽고 나서 — 목사님께 한마디</span><span class="en i">Write back to the pastor</span>
-      </button>
-
-
       <details class="fold">
         <summary>
           <div class="fold-t">
@@ -3293,7 +3272,7 @@ const LINKS = {
   live      : 'https://www.youtube.com/@ijiguchon2030/live',
   sermonPage: 'https://www.youtube.com/@ijiguchon2030/videos',
   // 주보·칼럼: 옛 교회사이트(chnet2) 폐쇄로 구글 드라이브 폴더로 연결(자동검색 실패 시 폴백)
-  column    : 'https://drive.google.com/drive/folders/1cI-EjCLWOhFFH1TfI6_m6mQX7TMCc659',
+  column    : 'https://www.ijiguchon.org/corner/',
   bulletin  : 'https://drive.google.com/drive/folders/19nPkxG9NX9pF1iAt3hQwgS3YXFKJ9lFA',
   mokjang   : 'https://www.ijiguchon.org',   // ⚠ 임시(chnet2 폐쇄) — 앱 목장 탭이 대신함
   /* 목자들이 이번 주 목장 모임(요일·시간·동네)을 올리는 구글 시트 — 편집 화면 */
@@ -4107,6 +4086,7 @@ function currentColumn(){
 
 /* 칼럼 카드 그리기 (공통) — c: {iso,koT,enT,sub,subEn,x,xEn,bodyUrl,slidesUrl} */
 function paintColumn(box, c){
+  if(!box) return;   // 홈 목회칼럼 섹션 제거됨(웹 코너로 이관) — 요소 없으면 무시
   const [y, m, d] = c.iso.split('-');
   box.innerHTML =
       '<span class="col-badge">'+bi('목회칼럼','COLUMN',true)+'</span>'
