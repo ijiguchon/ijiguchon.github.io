@@ -401,6 +401,10 @@ body.lang-en{font-family:'Inter','Noto Sans KR',-apple-system,sans-serif}
 .web-out{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:18px;padding:12px;background:none;border:1px solid var(--border);border-radius:var(--r-pill);color:var(--text-3);font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer}
 .web-out svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .web-out:active{transform:scale(.99)}
+.pray-card{margin-bottom:12px;padding:15px 16px;border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:var(--r-lg);background:var(--blue-pale,var(--surface-2))}
+.pray-eyebrow{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#1A3CA0;margin-bottom:9px}
+.pray-eyebrow svg{width:15px;height:15px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pray-line{margin:5px 0;font-size:13.5px;font-weight:600;line-height:1.5;color:var(--text-1)}
 .evt-meta{margin-top:3px;font-size:11.5px;color:var(--text-3);font-weight:500}
 
 /* ══════════════════════════════════════
@@ -1665,6 +1669,16 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </div>
 
+      <!-- 교회 공동기도 제목 (상위 노출) — 목사·교인이 함께 드리는 기도 -->
+      <div class="card pray-card">
+        <div class="pray-eyebrow">
+          <svg viewBox="0 0 24 24"><path d="M12 3c-1 2.5-2.5 3.5-2.5 6.5V14M12 3c1 2.5 2.5 3.5 2.5 6.5V14M9.5 14c-2 .3-3.5 1.6-3.5 3.5V21h12v-3.5c0-1.9-1.5-3.2-3.5-3.5M9.5 14h5"/></svg>
+          <span class="ko i">교회 공동기도 제목 · 2026 우리의 기도</span><span class="en i">Church Prayer · Our prayer for 2026</span>
+        </div>
+        <p class="pray-line"><span class="ko">한 가정씩 복음으로 <b>하나님 나라를 확장</b>케 하소서!</span><span class="en">May the gospel <b>expand God&#39;s kingdom</b>, one home at a time!</span></p>
+        <p class="pray-line"><span class="ko">가정이 <b>건강한 가정교회</b>로 세워지게 하소서!</span><span class="en">May each home be built into a <b>healthy house church</b>!</span></p>
+      </div>
+
       <!-- 이번 주 주보 — 주간 일정·예배 순서·교회 소식이 한 곳에 (오는 주일 · 토요일 게시) -->
       <button class="evt evt-link evt-hl" onclick="go(bulletinUrl())" style="width:100%;text-align:left;margin-bottom:12px">
         <div class="evt-date">
@@ -2516,10 +2530,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <div class="vs-desc">
             <span class="ko">한 가정이 건강해질 때, 그 가정이 또 한 가정을 품습니다.</span>
             <span class="en">As one home grows healthy, it embraces the next.</span>
-          </div>
-          <div class="vs-verse">
-            <span class="ko">&lt;2026 우리의 기도&gt; 한 가정씩 복음으로 하나님 나라를 확장케 하소서! 가정이 건강한 가정교회로 세워지게 하소서!</span>
-            <span class="en">Our prayer for 2026: that the Kingdom would expand one home at a time, and that each home would be built into a healthy house church.</span>
           </div>
         </div>
       </div>
