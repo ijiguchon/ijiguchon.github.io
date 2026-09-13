@@ -2125,6 +2125,44 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </details>
 
+      <!-- 헌신합니다 — 주일예배 후 응답. 이번 주 말씀 아래에 위치(접이식) -->
+      <details class="fold fold-key is-commit" style="margin-top:20px">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">헌신카드</span><span class="en">Commitment Card</span></div>
+            <div class="fold-sub"><span class="ko i">예배 끝, 마음이 움직이실 때</span><span class="en i">At the close of worship, when your heart moves</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+      <button class="commit-card is-commit" onclick="openModal('commit')" style="margin-top:0">
+        <div class="cc-head">
+          <span class="cc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6 2.5h9l5 5v14H6z"/><path d="M15 2.5v5h5"/><path d="M9.5 13.5l2 2 4-4.5"/></svg>
+          </span>
+          <span class="cc-t"><span class="ko">오늘, 마음을 올려드립니다</span><span class="en">Respond today</span></span>
+        </div>
+        <p class="cc-d">
+          <span class="ko">헌신은 <b>강단 앞으로 나와</b> 하는 것이 원칙입니다. 다만 나오시기 어려운 분은 <b>예배 전이나 중간에</b> 이 카드로 하셔도 됩니다.</span>
+          <span class="en">Coming to the front is how we normally respond. If that's hard for you, use this card <b>before or during</b> the service instead.</span>
+        </p>
+        <div class="cc-items">
+          <span class="cc-chip"><span class="ko i">교회 등록</span><span class="en i">Register</span></span>
+          <span class="cc-chip"><span class="ko i">예수 영접</span><span class="en i">Receive Christ</span></span>
+          <span class="cc-chip"><span class="ko i">침례</span><span class="en i">Baptism</span></span>
+          <span class="cc-chip"><span class="ko i">헌신</span><span class="en i">Commit</span></span>
+          <span class="cc-chip"><span class="ko i">기도 제목</span><span class="en i">Prayer</span></span>
+        </div>
+        <p class="cc-note">
+          <span class="ko">적어주신 기도 제목은 <b>담임목사님이 한 주간 기도</b>합니다.</span>
+          <span class="en"><b>Prayed over for a week</b> by our lead pastor.</span>
+        </p>
+        <span class="cc-cta"><span class="ko i">헌신카드 작성하기</span><span class="en i">Fill out the card</span>
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+        </div>
+      </details>
+
       <!-- 기도회 — 주일 말씀을 품고 주중(HebronAltar 경청) → 토요새벽(모임)으로 · 펼침 -->
       <div class="sec-head" style="margin-top:24px">
         <h2 class="sec-title key"><span class="ko">기도회</span><span class="en">Prayer</span></h2>
@@ -2166,44 +2204,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <div class="sat-time"><span class="ko i">토 오전<br>6:00</span><span class="en i">Sat<br>6 AM</span></div>
         </div>
       </div>
-
-      <!-- 헌신합니다 — 예배 끝 헌신 초청. 접이식(제목 클릭 시 펼침): 목사님 메시지 + 헌신카드 -->
-      <details class="fold fold-key is-commit" style="margin-top:24px">
-        <summary>
-          <div class="fold-t">
-            <div class="fold-title"><span class="ko">헌신카드</span><span class="en">Commitment Card</span></div>
-            <div class="fold-sub"><span class="ko i">예배 끝, 마음이 움직이실 때</span><span class="en i">At the close of worship, when your heart moves</span></div>
-          </div>
-          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </summary>
-        <div class="fold-body">
-      <button class="commit-card is-commit" onclick="openModal('commit')" style="margin-top:0">
-        <div class="cc-head">
-          <span class="cc-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M6 2.5h9l5 5v14H6z"/><path d="M15 2.5v5h5"/><path d="M9.5 13.5l2 2 4-4.5"/></svg>
-          </span>
-          <span class="cc-t"><span class="ko">오늘, 마음을 올려드립니다</span><span class="en">Respond today</span></span>
-        </div>
-        <p class="cc-d">
-          <span class="ko">헌신은 <b>강단 앞으로 나와</b> 하는 것이 원칙입니다. 다만 나오시기 어려운 분은 <b>예배 전이나 중간에</b> 이 카드로 하셔도 됩니다.</span>
-          <span class="en">Coming to the front is how we normally respond. If that's hard for you, use this card <b>before or during</b> the service instead.</span>
-        </p>
-        <div class="cc-items">
-          <span class="cc-chip"><span class="ko i">교회 등록</span><span class="en i">Register</span></span>
-          <span class="cc-chip"><span class="ko i">예수 영접</span><span class="en i">Receive Christ</span></span>
-          <span class="cc-chip"><span class="ko i">침례</span><span class="en i">Baptism</span></span>
-          <span class="cc-chip"><span class="ko i">헌신</span><span class="en i">Commit</span></span>
-          <span class="cc-chip"><span class="ko i">기도 제목</span><span class="en i">Prayer</span></span>
-        </div>
-        <p class="cc-note">
-          <span class="ko">적어주신 기도 제목은 <b>담임목사님이 한 주간 기도</b>합니다.</span>
-          <span class="en"><b>Prayed over for a week</b> by our lead pastor.</span>
-        </p>
-        <span class="cc-cta"><span class="ko i">헌신카드 작성하기</span><span class="en i">Fill out the card</span>
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </button>
-        </div>
-      </details>
 
       <details class="fold" style="margin-top:12px">
         <summary>
