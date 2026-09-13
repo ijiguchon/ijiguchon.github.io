@@ -2437,7 +2437,7 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </button>
         <button class="mm-item" onclick="go(LINKS.column)">
           <div class="mm-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div>
-          <span class="mm-label"><span class="ko i">목회 칼럼</span><span class="en i">Pastor's Column</span></span>
+          <span class="mm-label"><span class="ko i">목회자 코너</span><span class="en i">Pastor's Corner</span></span>
           <svg class="mm-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
         <button class="mm-item" onclick="go(LINKS.bulletin)">
@@ -3594,7 +3594,7 @@ function paintColumn(box, c){
   if(!box) return;   // 홈 목회칼럼 섹션 제거됨(웹 코너로 이관) — 요소 없으면 무시
   const [y, m, d] = c.iso.split('-');
   box.innerHTML =
-      '<span class="col-badge">'+bi('목회칼럼','COLUMN',true)+'</span>'
+      '<span class="col-badge">'+bi('목회자 코너','COLUMN',true)+'</span>'
     + '<div class="col-t">'+bi(c.koT, c.enT)+'</div>'
     + (c.sub ? '<div class="col-sub">'+bi(c.sub, c.subEn, true)+'</div>' : '')
     + (c.x   ? '<p class="col-d">'+bi(c.x, c.xEn)+'</p>' : '')
