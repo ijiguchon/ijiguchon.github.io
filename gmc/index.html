@@ -1759,6 +1759,10 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       <!-- 목회자 코너 — 주보의 목회칼럼을 따로 떼어 자동 표시(최신 칼럼) -->
       <div class="sec-head" style="margin:16px 2px 8px"><h2 class="sec-title"><span class="ko">목회자 코너</span><span class="en">Pastor's Corner</span></h2><span class="sec-note"><span class="ko i">이번 주 목회칼럼</span><span class="en i">This week's column</span></span></div>
       <button class="col-hero" data-column></button>
+      <a class="col-archive" href="https://www.ijiguchon.org/corner/" onclick="go(LINKS.column);return false;" style="display:flex;align-items:center;justify-content:flex-end;gap:5px;margin:8px 4px 0;color:#a5631f;font-size:12.5px;font-weight:700;text-decoration:none">
+        <span class="ko i">지난 칼럼 · 12주 여정 더 보기</span><span class="en i">Past columns · 12-week journey</span>
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
 
       <!-- Schedule (접이식) -->
       <details class="fold">
@@ -2436,20 +2440,10 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <span class="mm-label"><span class="ko i">온라인 헌금</span><span class="en i">Give Online</span></span>
           <svg class="mm-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
         </button>
-        <button class="mm-item" onclick="go(LINKS.column)">
-          <div class="mm-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div>
-          <span class="mm-label"><span class="ko i">목회자 코너</span><span class="en i">Pastor's Corner</span></span>
-          <svg class="mm-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
         <button class="mm-item" onclick="go(LINKS.bulletin)">
           <div class="mm-ico"><svg viewBox="0 0 24 24"><rect x="4" y="2.5" width="16" height="19" rx="2.2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
           <span class="mm-label"><span class="ko i">교회 소식 · 지난 주보</span><span class="en i">Church News &amp; Past Bulletins</span></span>
           <svg class="mm-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-        <button class="mm-item" onclick="toggleLang()">
-          <div class="mm-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div>
-          <span class="mm-label"><span class="ko i">설정 / 언어</span><span class="en i">Settings / Language</span></span>
-          <span class="badge badge-navy" id="langBadge">한국어</span>
         </button>
       </div>
 
