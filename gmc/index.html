@@ -1689,6 +1689,57 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <p class="pray-line"><span class="ko">가정이 <b>건강한 가정교회</b>로 세워지게 하소서!</span><span class="en">May each home be built into a <b>healthy house church</b>!</span></p>
       </div>
 
+      <!-- 다음 세대 · New Gen — 홈 상위 노출(더보기에서 승격). 부모·새가족이 바로 보게 · 생애 순서 헌아식→어린이→청소년 -->
+      <div class="sec-head" style="margin:6px 2px 10px"><h2 class="sec-title"><span class="ko">다음 세대</span><span class="en">New Gen</span></h2><span class="sec-note"><span class="ko i">성경과 아트로 · 아이가 사랑받는 자리</span><span class="en i">Scripture &amp; art</span></span></div>
+
+      <button class="connect-item" onclick="openModal('heonasik')">
+        <div class="ci-badge b-purple" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="7.2" r="3"/>
+            <path d="M12 10.8c-2.5 0-4.5 1.7-5.1 4.1l-.3 1.3h10.8l-.3-1.3c-.6-2.4-2.6-4.1-5.1-4.1z"/>
+            <path d="M3.6 16.6c-.5-.4-1.2-.3-1.6.2s-.3 1.2.2 1.6l4.8 3.5c.3.2.6.3.9.3h8.2c.3 0 .6-.1.9-.3l4.8-3.5c.5-.4.6-1.1.2-1.6s-1.1-.6-1.6-.2L16.4 19.7H7.6z"/>
+          </svg>
+        </div>
+        <div class="ci-body">
+          <div class="ci-title"><span class="ko">헌아식 신청</span><span class="en">Child Dedication</span></div>
+          <div class="ci-sub"><span class="ko">아이를 온 공동체가 함께 축복합니다</span><span class="en">The whole community blesses your child</span></div>
+        </div>
+        <div class="ci-tail"><svg class="ci-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
+      </button>
+
+      <button class="connect-item" onclick="openModal('children')">
+        <div class="ci-badge b-orange" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="7" cy="5.6" r="2.6"/><circle cx="17" cy="5.6" r="2.6"/>
+            <path d="M7 9c-2.1 0-3.7 1.5-4 3.5L2.4 16h2.3l.4 5.4h3.8L9.3 16h2.3l-.6-3.5C10.7 10.5 9.1 9 7 9z"/>
+            <path d="M17 9c-2.1 0-3.7 1.5-4 3.5L12.4 16h2.3l.4 5.4h3.8L19.3 16h2.3l-.6-3.5C20.7 10.5 19.1 9 17 9z"/>
+          </svg>
+        </div>
+        <div class="ci-body">
+          <div class="ci-title"><span class="ko">어린이 사역</span><span class="en">Children's Ministry</span></div>
+          <div class="ci-sub"><span class="ko i">성경과 아트로 키우는 다음 세대 · 담당 김지영</span><span class="en i">Raised in Scripture &amp; art · Joy Kim</span></div>
+        </div>
+        <div class="ci-tail"><svg class="ci-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
+      </button>
+
+      <button class="connect-item" onclick="openModal('youth')">
+        <div class="ci-badge b-teal" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="5.4" r="2.7"/>
+            <circle cx="4.6" cy="7.6" r="2.2"/><circle cx="19.4" cy="7.6" r="2.2"/>
+            <path d="M12 9c-2.4 0-4.3 1.7-4.7 4l-.5 3h10.4l-.5-3c-.4-2.3-2.3-4-4.7-4z"/>
+            <path d="M4.6 11.2c-1.8 0-3.2 1.3-3.5 3L.7 16.5h4.6l.6-3.4c.1-.7.4-1.3.8-1.8-.7-.1-1.4-.1-2.1-.1z"/>
+            <path d="M19.4 11.2c-.7 0-1.4 0-2.1.1.4.5.7 1.1.8 1.8l.6 3.4h4.6l-.4-2.3c-.3-1.7-1.7-3-3.5-3z"/>
+            <rect x="6.2" y="17.4" width="11.6" height="3.2" rx="1.6"/>
+          </svg>
+        </div>
+        <div class="ci-body">
+          <div class="ci-title"><span class="ko">청소년 · GMC Y</span><span class="en">Youth · GMC Y</span></div>
+          <div class="ci-sub"><span class="ko i">세대를 품는 목장 · Garrett Woods 목자</span><span class="en i">A home for the next generation</span></div>
+        </div>
+        <div class="ci-tail"><svg class="ci-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
+      </button>
+
       <!-- 이번 주 주보 — 주간 일정·예배 순서·교회 소식이 한 곳에 (오는 주일 · 토요일 게시) -->
       <button class="evt evt-link evt-hl" onclick="go(bulletinUrl())" style="width:100%;text-align:left;margin-bottom:12px">
         <div class="evt-date">
@@ -2302,69 +2353,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
         <div class="ci-tail"><svg class="ci-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
       </button>
-
-      <!-- 뉴 제네레이션 (접이식) -->
-      <details class="fold">
-        <summary>
-          <div class="fold-t">
-            <div class="fold-title"><span class="ko">새 세대</span><span class="en">New Gen</span></div>
-            <div class="fold-sub"><span class="ko i">헌아식 · 어린이 · 청소년</span><span class="en i">Dedication · Children · Youth</span></div>
-          </div>
-          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </summary>
-        <div class="fold-body">
-      <button class="connect-item" onclick="openModal('heonasik')">
-        <div class="ci-badge b-purple" aria-hidden="true">
-          <!-- 헌아식 — 두 손 위에 안긴 아기 -->
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="7.2" r="3"/>
-            <path d="M12 10.8c-2.5 0-4.5 1.7-5.1 4.1l-.3 1.3h10.8l-.3-1.3c-.6-2.4-2.6-4.1-5.1-4.1z"/>
-            <path d="M3.6 16.6c-.5-.4-1.2-.3-1.6.2s-.3 1.2.2 1.6l4.8 3.5c.3.2.6.3.9.3h8.2c.3 0 .6-.1.9-.3l4.8-3.5c.5-.4.6-1.1.2-1.6s-1.1-.6-1.6-.2L16.4 19.7H7.6z"/>
-          </svg>
-        </div>
-        <div class="ci-body">
-          <div class="ci-title"><span class="ko">헌아식 신청</span><span class="en">Child Dedication</span></div>
-          <div class="ci-sub"><span class="ko">아이를 온 공동체가 함께 축복합니다</span><span class="en">The whole community blesses your child</span></div>
-        </div>
-        <div class="ci-tail"><svg class="ci-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
-      </button>
-
-      <button class="connect-item" onclick="openModal('children')">
-        <div class="ci-badge b-orange" aria-hidden="true">
-          <!-- 어린이 — 손을 맞잡은 두 아이 -->
-          <svg viewBox="0 0 24 24">
-            <circle cx="7" cy="5.6" r="2.6"/><circle cx="17" cy="5.6" r="2.6"/>
-            <path d="M7 9c-2.1 0-3.7 1.5-4 3.5L2.4 16h2.3l.4 5.4h3.8L9.3 16h2.3l-.6-3.5C10.7 10.5 9.1 9 7 9z"/>
-            <path d="M17 9c-2.1 0-3.7 1.5-4 3.5L12.4 16h2.3l.4 5.4h3.8L19.3 16h2.3l-.6-3.5C20.7 10.5 19.1 9 17 9z"/>
-          </svg>
-        </div>
-        <div class="ci-body">
-          <div class="ci-title"><span class="ko">어린이 사역</span><span class="en">Children's Ministry</span></div>
-          <div class="ci-sub"><span class="ko i">주일학교 · 아이들의 신앙 첫걸음</span><span class="en i">Sunday school · first steps of faith</span></div>
-        </div>
-        <div class="ci-tail"><svg class="ci-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
-      </button>
-
-      <button class="connect-item" onclick="openModal('youth')">
-        <div class="ci-badge b-teal" aria-hidden="true">
-          <!-- 청소년 — 어깨 겯은 세 사람 -->
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="5.4" r="2.7"/>
-            <circle cx="4.6" cy="7.6" r="2.2"/><circle cx="19.4" cy="7.6" r="2.2"/>
-            <path d="M12 9c-2.4 0-4.3 1.7-4.7 4l-.5 3h10.4l-.5-3c-.4-2.3-2.3-4-4.7-4z"/>
-            <path d="M4.6 11.2c-1.8 0-3.2 1.3-3.5 3L.7 16.5h4.6l.6-3.4c.1-.7.4-1.3.8-1.8-.7-.1-1.4-.1-2.1-.1z"/>
-            <path d="M19.4 11.2c-.7 0-1.4 0-2.1.1.4.5.7 1.1.8 1.8l.6 3.4h4.6l-.4-2.3c-.3-1.7-1.7-3-3.5-3z"/>
-            <rect x="6.2" y="17.4" width="11.6" height="3.2" rx="1.6"/>
-          </svg>
-        </div>
-        <div class="ci-body">
-          <div class="ci-title"><span class="ko">청소년 사역</span><span class="en">Youth Ministry</span></div>
-          <div class="ci-sub"><span class="ko i">다음 세대와 함께 걷는 자리 · GMC Y</span><span class="en i">Walking with the next generation · GMC Y</span></div>
-        </div>
-        <div class="ci-tail"><svg class="ci-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
-      </button>
-        </div>
-      </details>
 
       <button class="connect-item" onclick="openModal('prayer')" style="margin-top:8px">
         <div class="ci-badge b-commit" aria-hidden="true">
