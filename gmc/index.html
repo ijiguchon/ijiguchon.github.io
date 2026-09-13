@@ -2099,12 +2099,12 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
       </button>
 
       <!-- 오늘 예배 PPT(찬양·설교 통합) — 어디서나 각자 폰으로 따라보기. 자료 있을 때만 표시 -->
-      <button id="pptSection" class="evt evt-link" onclick="go(pptUrl())" style="width:100%;text-align:left;margin-top:12px;display:none">
+      <button id="pptSection" class="evt evt-link" onclick="go(pptUrl())" style="width:100%;text-align:left;margin-top:12px">
         <div class="evt-date" style="background:var(--accent-pale)">
           <div class="evt-d" style="color:var(--accent)">PPT</div>
         </div>
         <div class="evt-body">
-          <div class="evt-title"><span class="ko">오늘 예배 PPT 보기</span><span class="en">Today's Service Slides</span></div>
+          <div class="evt-title"><span class="ko">주일예배 PPT 보기</span><span class="en">Sunday Worship Slides</span></div>
           <div class="evt-meta"><span class="ko i"><span data-ppt-when></span>찬양·설교 함께 · 어디서나 따라보기</span><span class="en i"><span data-ppt-when-en></span>Worship &amp; sermon · follow along anywhere</span></div>
         </div>
         <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
@@ -2125,29 +2125,35 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </details>
 
-      <!-- 이번 주 토요새벽 (날짜 자동) -->
-      <details class="fold fold-key" open style="margin-top:16px">
-        <summary>
-          <div class="fold-t">
-            <div class="fold-title"><span class="ko">기도회</span><span class="en">Prayer</span></div>
-            <div class="fold-sub"><span class="ko i">주중은 HebronAltar 개인 기도 · 토요새벽은 다함께 모여</span><span class="en i">Weekdays: personal prayer with HebronAltar · Saturday dawn: together</span></div>
-          </div>
-          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </summary>
-        <div class="fold-body">
-      <!-- 순서: 월~금 먼저, 토요 나중 (주중→주말, 단계적) -->
+      <!-- 기도회 — 주일 말씀을 품고 주중(HebronAltar 경청) → 토요새벽(모임)으로 · 펼침 -->
+      <div class="sec-head" style="margin-top:24px">
+        <h2 class="sec-title key"><span class="ko">기도회</span><span class="en">Prayer</span></h2>
+      </div>
+      <p class="panel-sub" style="margin:-6px 2px 12px"><span class="ko">주일에 받은 <b>말씀</b>이 한 주를 이끕니다 — 주중엔 조용히 경청하며 기도하고, 토요새벽엔 다함께 모입니다.</span><span class="en">Sunday's <b>word</b> leads the week — listening in prayer on weekdays, gathering together at Saturday dawn.</span></p>
+      <div style="display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin:0 2px 16px;font-size:12.5px;font-weight:700">
+        <span style="background:var(--accent-pale);color:var(--accent);border-radius:999px;padding:5px 12px"><span class="ko">주일 말씀</span><span class="en">Sunday Word</span></span>
+        <span style="color:var(--text-3)">&rarr;</span>
+        <span style="background:var(--accent-pale);color:var(--accent);border-radius:999px;padding:5px 12px"><span class="ko">HebronAltar · 경청</span><span class="en">HebronAltar · listen</span></span>
+        <span style="color:var(--text-3)">&rarr;</span>
+        <span style="background:var(--accent-pale);color:var(--accent);border-radius:999px;padding:5px 12px"><span class="ko">토요새벽 · 모임</span><span class="en">Sat dawn · gather</span></span>
+      </div>
+
+      <!-- 주중: HebronAltar 경청의 삶 -->
       <button class="card altar" onclick="go(LINKS.hebronAltar)">
         <div class="altar-icon">
           <svg viewBox="0 0 24 24"><path d="M12 3v4M12 7c-2 0-3.5 1.5-3.5 3.5h7C15.5 8.5 14 7 12 7z"/><path d="M4 14h16M6 14v6M18 14v6M9 20h6"/></svg>
         </div>
         <div class="altar-body">
-          <div class="altar-t"><span class="ko">주중(월~금) — 각자 집에서 개인 기도</span><span class="en">Weekdays (Mon–Fri) — personal prayer at home</span></div>
-          <div class="altar-d"><span class="ko">헤브론제단(HebronAltar) 앱으로 매일 새벽, 각자의 자리에서 개인 기도생활을 이어갑니다. 흩어진 자리에서, 같은 마음으로.</span><span class="en">Keep a daily dawn prayer life on your own with the HebronAltar app. Scattered, yet of one heart.</span></div>
+          <div class="altar-t"><span class="ko">주중(월~금) · HebronAltar — 경청의 삶</span><span class="en">Weekdays (Mon–Fri) · HebronAltar — a listening life</span></div>
+          <div class="altar-d"><span class="ko">헤브론제단(HebronAltar) 앱으로 매일 새벽, 각자의 자리에서 그 말씀을 붙들고 조용히 경청하며 기도합니다. 흩어진 자리에서, 같은 마음으로.</span><span class="en">Each dawn, on your own with the HebronAltar app, hold the word close and pray in quiet listening. Scattered, yet of one heart.</span></div>
         </div>
         <svg class="mj-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
       </button>
 
-      <div id="satSection" style="margin-top:10px">
+      <div style="text-align:center;color:var(--text-3);font-size:12px;font-weight:700;margin:8px 0"><span class="ko">↓ 토요일엔 함께 모여</span><span class="en">↓ then gather on Saturday</span></div>
+
+      <!-- 토요새벽: 다함께 모임 -->
+      <div id="satSection">
         <div class="card sat-card">
           <div class="sat-icon">
             <svg viewBox="0 0 24 24"><path d="M12 3v2M5.6 5.6l1.4 1.4M3 12h2M19 12h2M17 7l1.4-1.4M12 8a4 4 0 0 0-4 4h8a4 4 0 0 0-4-4z"/><path d="M3 16h18M5 20h14"/></svg>
@@ -2160,8 +2166,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <div class="sat-time"><span class="ko i">토 오전<br>6:00</span><span class="en i">Sat<br>6 AM</span></div>
         </div>
       </div>
-        </div>
-      </details>
 
       <!-- 헌신합니다 — 예배 끝 헌신 초청. 접이식(제목 클릭 시 펼침): 목사님 메시지 + 헌신카드 -->
       <details class="fold fold-key is-commit" style="margin-top:24px">
@@ -3079,14 +3083,19 @@ function renderBulletin(){
 const PPT_FOLDER = 'https://drive.google.com/drive/folders/1IU-vHeK5ZlUVSEPaOp0moJC9ZGJBQ4yC';   // 설교 자료 폴더(공개 필요)
 let __pptUrl = '';
 async function resolvePpt(){
-  __pptUrl = '';
-  try{ __pptUrl = await driveFindByDate(PPT_FOLDER, relevantSunday()); }catch(_){}
+  __pptUrl = ''; let iso = '';
+  // 1) 오는 주일 날짜와 정확히 맞는 PPT 우선
+  try{ const u = await driveFindByDate(PPT_FOLDER, relevantSunday()); if(u){ __pptUrl = u; iso = relevantSunday(); } }catch(_){}
+  // 2) 없으면 폴더에서 가장 최신 PPT
+  if(!__pptUrl){ try{ const r = await driveLatestByDate(PPT_FOLDER); if(r && r.url){ __pptUrl = r.url; iso = r.iso; } }catch(_){} }
+  // 항상 자리를 보여줍니다(파일 있으면 그 파일, 아직 없으면 폴더로 연결)
   const sec = document.getElementById('pptSection');
-  if(sec) sec.style.display = __pptUrl ? '' : 'none';   // 자료 없으면 숨김(죽은 버튼 방지)
+  if(sec) sec.style.display = '';
   try{
-    const md = relevantSunday().slice(5).replace('-','.');
-    document.querySelectorAll('[data-ppt-when]').forEach(el => { el.textContent = '오는 주일 ' + md + ' · '; });
-    document.querySelectorAll('[data-ppt-when-en]').forEach(el => { el.textContent = 'This Sun ' + md + ' · '; });
+    const isSun = iso && iso === relevantSunday();
+    const md = (iso || relevantSunday()).slice(5).replace('-','.');
+    document.querySelectorAll('[data-ppt-when]').forEach(el => { el.textContent = (isSun ? '오는 주일 ' : '') + md + ' · '; });
+    document.querySelectorAll('[data-ppt-when-en]').forEach(el => { el.textContent = (isSun ? 'This Sun ' : '') + md + ' · '; });
   }catch(_){}
 }
 function pptUrl(){ return __pptUrl || PPT_FOLDER; }
