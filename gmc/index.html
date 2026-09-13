@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="지구촌">
+<meta name="apple-mobile-web-app-title" content="시애틀지구촌">
 <meta name="theme-color" content="#1a3560">
 <meta name="robots" content="noindex, nofollow">
 
@@ -4372,6 +4372,7 @@ function switchTab(name){
   document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.tab === name));
   const area = document.getElementById('contentArea');
   area.scrollTo({top:0, behavior:'auto'});
+  try{ localStorage.setItem('gmc-tab', name); }catch(_){}   // 성경 등 외부 다녀와 앱이 새로고침돼도 보던 탭으로 복귀
 }
 
 /* 어디서든 바로 홈으로 — 열려 있는 모달·플레이어·안내를 모두 닫고 홈 탭 맨 위로 */
@@ -4638,7 +4639,7 @@ function installManifest(){
     const icon512 = makeIcon(512);
     const manifest = {
       name:'시애틀지구촌교회 · GMC of Greater Seattle',
-      short_name:'지구촌',
+      short_name:'시애틀지구촌',
       description:'한 가정씩, 하나님 나라를 확장하라',
       start_url: location.href,
       scope: location.href.replace(/[^/]*$/, ''),
@@ -4807,6 +4808,9 @@ function refreshDynamic(){
   ensureManifest();
   registerSW();
   initMember();
+
+  // 보던 탭 복원 (성경 본문 등 외부 링크 다녀온 뒤 앱이 새로고침되어도 이전 탭 유지)
+  try{ const t = localStorage.getItem('gmc-tab'); if(t && t!=='home' && document.getElementById('tab-'+t)) switchTab(t); }catch(_){}
 
   // 홈 화면 바로가기(?open=prayer 등)로 진입하면 해당 시트를 바로 엽니다
   try{
