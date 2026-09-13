@@ -288,6 +288,142 @@
   </div>
 </header>
 
+<!-- ══════════ COSMOS — 흩어져 모이는 별자리(첫 화면) ══════════ -->
+<style>
+  #cosmos{position:relative;height:100svh;min-height:560px;overflow:hidden;
+    background:radial-gradient(1200px 800px at 50% 44%, #101a33 0%, #0a0e1c 55%, #070a15 100%);
+    display:grid;place-items:center}
+  #cosmos .cn-stars{position:absolute;inset:0;z-index:0;display:block}
+  #cosmos .cn-glow{position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(680px 480px at 50% 44%, rgba(231,180,95,.10), transparent 60%)}
+  #cosmos .cn-stage{position:absolute;inset:0;z-index:1}
+  #cosmos svg.cn-links{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+  #cosmos svg.cn-links line{stroke:rgba(188,210,255,.26);stroke-width:1;opacity:0;transition:opacity .5s ease}
+  #cosmos.scattered svg.cn-links line{opacity:1}
+
+  #cosmos .cn-nucleus{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);z-index:3;
+    width:132px;height:132px;border-radius:50%;background:none;border:0;padding:0;cursor:pointer;display:grid;place-items:center}
+  #cosmos .cn-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(231,180,95,.4);
+    box-shadow:0 0 46px 8px rgba(120,150,230,.28), inset 0 0 26px rgba(120,150,230,.16)}
+  #cosmos .cn-ring2{position:absolute;inset:-16px;border-radius:50%;border:1px solid rgba(188,210,255,.12)}
+  #cosmos .cn-pulse{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(231,180,95,.45);animation:cnpulse 3.2s ease-out infinite}
+  @keyframes cnpulse{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.85);opacity:0}}
+  #cosmos .cn-core{position:relative;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;
+    background:radial-gradient(circle at 50% 44%, rgba(220,232,255,.95) 0%, rgba(150,180,240,.55) 42%, rgba(40,58,110,.25) 74%, transparent 100%);
+    box-shadow:0 0 54px 12px rgba(150,180,255,.4)}
+  #cosmos .cn-core img{width:66px;height:66px;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))}
+  #cosmos .cn-nucleus:active{transform:translate(-50%,-50%) scale(.94)}
+
+  #cosmos .cn-node{position:absolute;left:50%;top:44%;z-index:2;background:none;border:0;padding:0;color:#e7ecfb;
+    font-family:inherit;text-decoration:none;cursor:pointer;width:96px;
+    transform:translate(-50%,-50%) translate(var(--tx,0),var(--ty,0)) scale(1);opacity:1;
+    transition:transform .74s cubic-bezier(.18,.9,.24,1.12),opacity .5s ease;
+    display:flex;flex-direction:column;align-items:center;gap:8px}
+  #cosmos:not(.scattered) .cn-node{transform:translate(-50%,-50%) scale(.2);opacity:0;pointer-events:none}
+  #cosmos .cn-dot{position:relative;width:48px;height:48px;border-radius:50%;background:#131b31;border:1px solid rgba(188,210,255,.34);
+    display:grid;place-items:center;box-shadow:0 0 0 5px rgba(120,150,230,.06),0 6px 18px rgba(0,0,0,.5);transition:.2s}
+  #cosmos .cn-dot svg{width:22px;height:22px;fill:none;stroke:#e7b45f;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  #cosmos .cn-num{position:absolute;top:-7px;left:-7px;width:21px;height:21px;border-radius:50%;background:#e7b45f;color:#0a0e1c;
+    font-size:11px;font-weight:800;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.55);font-family:sans-serif}
+  #cosmos .cn-node .cn-lbl{font-size:13px;font-weight:700;letter-spacing:-.2px;text-shadow:0 1px 10px rgba(0,0,0,.75)}
+  #cosmos .cn-node:hover .cn-dot,#cosmos .cn-node:focus-visible .cn-dot{border-color:#e7b45f;box-shadow:0 0 0 6px rgba(231,180,95,.16),0 8px 22px rgba(0,0,0,.55);transform:translateY(-2px)}
+  #cosmos .cn-node:nth-of-type(1){transition-delay:.02s}#cosmos .cn-node:nth-of-type(2){transition-delay:.06s}
+  #cosmos .cn-node:nth-of-type(3){transition-delay:.10s}#cosmos .cn-node:nth-of-type(4){transition-delay:.14s}
+  #cosmos .cn-node:nth-of-type(5){transition-delay:.18s}#cosmos .cn-node:nth-of-type(6){transition-delay:.22s}
+  #cosmos .cn-node:nth-of-type(7){transition-delay:.26s}#cosmos .cn-node:nth-of-type(8){transition-delay:.30s}
+
+  #cosmos .cn-cap{position:absolute;left:0;right:0;bottom:74px;z-index:3;text-align:center;pointer-events:none;padding:0 20px;color:#e7ecfb}
+  #cosmos .cn-cap .big{font-size:15px;font-weight:800;letter-spacing:-.2px}
+  #cosmos .cn-cap .big .ac{color:#e7b45f}
+  #cosmos .cn-cap .sm{margin-top:6px;font-size:10.5px;letter-spacing:2.5px;color:#8590ad;text-transform:uppercase}
+  #cosmos .cn-scroll{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:3;color:#8590ad;
+    font-size:10.5px;letter-spacing:2px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:5px;
+    background:none;border:0;cursor:pointer;font-family:inherit}
+  #cosmos .cn-scroll svg{width:16px;height:16px;stroke:#8590ad;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;animation:cnbob 2s ease-in-out infinite}
+  @keyframes cnbob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+  .en #cosmos .ko{display:none}#cosmos .en{display:none}.en #cosmos .en{display:inline}
+  @media (prefers-reduced-motion: reduce){#cosmos .cn-pulse,#cosmos .cn-scroll svg{animation:none}#cosmos .cn-node,#cosmos .cn-dot{transition:opacity .2s}}
+</style>
+
+<section id="cosmos" class="scattered" aria-label="흩어져 모이는 별자리 · 시애틀지구촌교회">
+  <canvas class="cn-stars" id="cnStars"></canvas>
+  <div class="cn-glow"></div>
+  <div class="cn-stage">
+    <svg class="cn-links" id="cnLinks" aria-hidden="true"></svg>
+    <button class="cn-nucleus" id="cnNucleus" aria-label="가운데를 누르면 모이고, 다시 누르면 흩어집니다">
+      <span class="cn-pulse"></span><span class="cn-ring2"></span><span class="cn-ring"></span>
+      <span class="cn-core"><img src="images/logo.png" alt="시애틀지구촌교회 엠블럼"></span>
+    </button>
+    <!-- 별(섹션) 링크 -->
+    <a class="cn-node" href="#newcomer"><span class="cn-dot"><span class="cn-num">1</span><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z"/><path d="M4 20a8 8 0 0116 0"/></svg></span><span class="cn-lbl">처음 오신 분</span></a>
+    <a class="cn-node" href="#journey"><span class="cn-dot"><span class="cn-num">2</span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 5-5 2 2-5z"/></svg></span><span class="cn-lbl">여정</span></a>
+    <a class="cn-node" href="#mokjang-connect"><span class="cn-dot"><span class="cn-num">3</span><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M9.5 20v-5.4h5V20"/></svg></span><span class="cn-lbl">목장과 연결</span></a>
+    <a class="cn-node" href="#worship"><span class="cn-dot"><span class="cn-num">4</span><svg viewBox="0 0 24 24"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span><span class="cn-lbl">예배</span></a>
+    <a class="cn-node" href="#team"><span class="cn-dot"><span class="cn-num">5</span><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3 20a6 6 0 0112 0"/><path d="M14 20a6 6 0 0110-4"/></svg></span><span class="cn-lbl">교역자</span></a>
+    <a class="cn-node" href="/corner/"><span class="cn-dot"><span class="cn-num">6</span><svg viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></span><span class="cn-lbl">목회자 코너</span></a>
+    <a class="cn-node" href="#register"><span class="cn-dot"><span class="cn-num">7</span><svg viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 12l2 2 4-4"/></svg></span><span class="cn-lbl">교회 등록</span></a>
+    <a class="cn-node" href="#give"><span class="cn-dot"><span class="cn-num">8</span><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg></span><span class="cn-lbl">헌금</span></a>
+  </div>
+  <div class="cn-cap" id="cnCap" aria-live="polite">
+    <div class="big"><span class="ac">흩어져</span> — 세상으로</div><div class="sm">scatter to gather</div>
+  </div>
+  <button class="cn-scroll" id="cnScroll" aria-label="아래로 둘러보기"><span>둘러보기</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+</section>
+<script>
+(function(){
+  var cosmos=document.getElementById('cosmos');
+  var links=document.getElementById('cnLinks');
+  var nodes=[].slice.call(cosmos.querySelectorAll('.cn-node'));
+  function layout(){
+    var w=cosmos.clientWidth, h=cosmos.clientHeight, cx=w/2, cy=h*0.44;
+    var r=Math.max(120, Math.min(w,h)*0.34);
+    links.innerHTML='';
+    nodes.forEach(function(el,i){
+      var ang=(-90+i*(360/nodes.length))*Math.PI/180;
+      var x=Math.cos(ang)*r, y=Math.sin(ang)*r;
+      el.style.setProperty('--tx',x.toFixed(1)+'px');
+      el.style.setProperty('--ty',y.toFixed(1)+'px');
+      var ln=document.createElementNS('http://www.w3.org/2000/svg','line');
+      ln.setAttribute('x1',cx);ln.setAttribute('y1',cy);ln.setAttribute('x2',cx+x);ln.setAttribute('y2',cy+y);
+      links.appendChild(ln);
+    });
+  }
+  layout(); addEventListener('resize',layout);
+  var cap=document.getElementById('cnCap');
+  function setState(s){
+    cosmos.classList.toggle('scattered',s);
+    cap.innerHTML = s
+      ? '<div class="big"><span class="ac">흩어져</span> — 세상으로</div><div class="sm">scatter to gather</div>'
+      : '<div class="big"><span class="ac">모여</span> — 한 교회로</div><div class="sm">gather · one church</div>';
+  }
+  document.getElementById('cnNucleus').addEventListener('click',function(){ setState(!cosmos.classList.contains('scattered')); });
+  document.getElementById('cnScroll').addEventListener('click',function(){
+    var t=document.getElementById('top'); if(t) t.scrollIntoView({behavior:'smooth'});
+  });
+  // 별 클릭 → 해당 섹션으로 부드럽게 (외부 페이지는 그대로 이동)
+  nodes.forEach(function(el){
+    el.addEventListener('click',function(e){
+      var href=el.getAttribute('href');
+      if(href && href.charAt(0)==='#'){
+        var t=document.querySelector(href);
+        if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+      }
+    });
+  });
+  // 시작: 잠깐 모였다 확 흩어짐
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    cosmos.classList.remove('scattered');
+    setTimeout(function(){ setState(true); }, 640);
+  } else { setState(true); }
+  // 별빛
+  var cv=document.getElementById('cnStars'), ctx=cv.getContext('2d'), dpr=Math.min(devicePixelRatio||1,2), stars=[];
+  function rs(){ var w=cosmos.clientWidth,h=cosmos.clientHeight; cv.width=w*dpr;cv.height=h*dpr;cv.style.width=w+'px';cv.style.height=h+'px';
+    var n=Math.round(w*h/9000); stars=Array.from({length:n},function(){return{x:Math.random()*cv.width,y:Math.random()*cv.height,r:(Math.random()*1.3+.3)*dpr,a:Math.random()*.6+.2,tw:Math.random()*.02+.004,ph:Math.random()*6.28};}); }
+  rs(); addEventListener('resize',rs);
+  var t=0;(function draw(){ ctx.clearRect(0,0,cv.width,cv.height); t++; for(var i=0;i<stars.length;i++){var s=stars[i];var al=s.a*(0.6+0.4*Math.sin(t*s.tw+s.ph));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.283);ctx.fillStyle='rgba(210,224,255,'+al.toFixed(3)+')';ctx.fill();} requestAnimationFrame(draw); })();
+})();
+</script>
+
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-bg">
