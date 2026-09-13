@@ -2098,34 +2098,23 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
       </button>
 
-      <!-- 오늘 예배 PPT(찬양·설교 통합) — 어디서나 각자 폰으로 따라보기. 자료 있을 때만 표시 -->
-      <button id="pptSection" class="evt evt-link" onclick="go(pptUrl())" style="width:100%;text-align:left;margin-top:12px">
-        <div class="evt-date" style="background:var(--accent-pale)">
-          <div class="evt-d" style="color:var(--accent)">PPT</div>
+      <!-- 주일 본문 + 찬양 PPT — 본문은 성경(새번역/ESV) 자동 링크로 매주 자동 갱신 -->
+      <div class="card" id="scriptureCard" style="margin-top:12px;padding:14px 16px 13px">
+        <div style="font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--accent)"><span class="ko">주일 본문</span><span class="en">This Week's Text</span></div>
+        <div data-scripture-ref style="font-size:19px;font-weight:900;letter-spacing:-.4px;color:var(--text-1);margin:3px 0 11px">—</div>
+        <div id="bibleLinks" style="display:flex;gap:8px;flex-wrap:wrap">
+          <a data-bible-ko target="_blank" rel="noopener" style="flex:1;min-width:130px;text-align:center;background:var(--accent);color:#fff;border-radius:10px;padding:11px 8px;font-size:13.5px;font-weight:800;text-decoration:none">새번역 · 한국어</a>
+          <a data-bible-en target="_blank" rel="noopener" style="flex:1;min-width:130px;text-align:center;background:var(--primary);color:#fff;border-radius:10px;padding:11px 8px;font-size:13.5px;font-weight:800;text-decoration:none">ESV · English</a>
         </div>
-        <div class="evt-body">
-          <div class="evt-title"><span class="ko">주일예배 PPT 보기</span><span class="en">Sunday Worship Slides</span></div>
-          <div class="evt-meta"><span class="ko i"><span data-ppt-when></span>찬양·설교 함께 · 어디서나 따라보기</span><span class="en i"><span data-ppt-when-en></span>Worship &amp; sermon · follow along anywhere</span></div>
-        </div>
-        <svg class="mb-arrow" viewBox="0 0 24 24" style="align-self:center"><path d="M9 5l7 7-7 7"/></svg>
-      </button>
+        <div style="font-size:11px;color:var(--text-3);margin-top:7px"><span class="ko">Holy Bible(YouVersion)로 열립니다 — 그 주 설교 본문 그대로</span><span class="en">Opens the sermon passage in the Holy Bible (YouVersion) app</span></div>
+        <button id="pptSection" onclick="go(pptUrl())" style="width:100%;margin-top:12px;background:var(--accent-pale);color:#8a5f1e;border:0;border-radius:10px;padding:11px;font-size:13.5px;font-weight:800;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px">
+          <span class="ko">찬양 PPT 보기</span><span class="en">Worship Slides</span>
+          <span data-ppt-when style="font-weight:600;opacity:.7;font-size:12px"></span>
+        </button>
+      </div>
 
 
-      <!-- 주일 설교 오디오 — 드라이브 폴더에서 날짜순 자동 연결 -->
-      <details class="fold" style="margin-top:14px" id="sermonAudioFold">
-        <summary>
-          <div class="fold-t">
-            <div class="fold-title"><span class="ko">설교 다시 듣기</span><span class="en">Listen again</span></div>
-            <div class="fold-sub"><span class="ko i">주일 설교 오디오 · 최신순</span><span class="en i">Sunday sermon audio</span></div>
-          </div>
-          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </summary>
-        <div class="fold-body">
-          <div id="sermonAudioList"><p class="form-note"><span class="ko">불러오는 중…</span><span class="en">Loading…</span></p></div>
-        </div>
-      </details>
-
-      <!-- 헌신합니다 — 주일예배 후 응답. 이번 주 말씀 아래에 위치(접이식) -->
+      <!-- 헌신합니다 — 주일예배 후 응답. 설교 직후 헌신 시간에 작성(접이식) -->
       <details class="fold fold-key is-commit" style="margin-top:20px">
         <summary>
           <div class="fold-t">
@@ -2160,6 +2149,20 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         <span class="cc-cta"><span class="ko i">헌신카드 작성하기</span><span class="en i">Fill out the card</span>
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </button>
+        </div>
+      </details>
+
+      <!-- 주일 설교 오디오 — 드라이브 폴더에서 날짜순 자동 연결 -->
+      <details class="fold" style="margin-top:12px" id="sermonAudioFold">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">설교 다시 듣기</span><span class="en">Listen again</span></div>
+            <div class="fold-sub"><span class="ko i">주일 설교 오디오 · 최신순</span><span class="en i">Sunday sermon audio</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+          <div id="sermonAudioList"><p class="form-note"><span class="ko">불러오는 중…</span><span class="en">Loading…</span></p></div>
         </div>
       </details>
 
@@ -3094,8 +3097,8 @@ async function resolvePpt(){
   try{
     const isSun = iso && iso === relevantSunday();
     const md = (iso || relevantSunday()).slice(5).replace('-','.');
-    document.querySelectorAll('[data-ppt-when]').forEach(el => { el.textContent = (isSun ? '오는 주일 ' : '') + md + ' · '; });
-    document.querySelectorAll('[data-ppt-when-en]').forEach(el => { el.textContent = (isSun ? 'This Sun ' : '') + md + ' · '; });
+    document.querySelectorAll('[data-ppt-when]').forEach(el => { el.textContent = '· ' + (isSun ? '오는 주일 ' : '') + md; });
+    document.querySelectorAll('[data-ppt-when-en]').forEach(el => { el.textContent = '· ' + (isSun ? 'This Sun ' : '') + md; });
   }catch(_){}
 }
 function pptUrl(){ return __pptUrl || PPT_FOLDER; }
@@ -3383,7 +3386,52 @@ function renderSermonHero(){
     if(en) en.textContent = 'Pastor Sung Soo Kim · ' + refEn + ' · ' + enDate;
     meta.setAttribute('data-communion-date', iso);
   }
+  try{ renderScripture(pick.s.ref); }catch(_){}
   renderCommunion();
+}
+
+/* 주일 본문 → 성경(YouVersion "Holy Bible") 자동 링크. 새번역(142)·ESV(59). SERMON_PLAN의 본문만 바꾸면 매주 자동 갱신. */
+const BOOK_USFM = {
+  '창세기':'GEN','출애굽기':'EXO','레위기':'LEV','민수기':'NUM','신명기':'DEU',
+  '여호수아':'JOS','사사기':'JDG','룻기':'RUT','사무엘상':'1SA','사무엘하':'2SA',
+  '열왕기상':'1KI','열왕기하':'2KI','역대상':'1CH','역대하':'2CH','에스라':'EZR',
+  '느헤미야':'NEH','에스더':'EST','욥기':'JOB','시편':'PSA','잠언':'PRO',
+  '전도서':'ECC','아가':'SNG','이사야':'ISA','예레미야':'JER','예레미야애가':'LAM',
+  '에스겔':'EZK','다니엘':'DAN','호세아':'HOS','요엘':'JOL','아모스':'AMO',
+  '오바댜':'OBA','요나':'JON','미가':'MIC','나훔':'NAM','하박국':'HAB',
+  '스바냐':'ZEP','학개':'HAG','스가랴':'ZEC','말라기':'MAL',
+  '마태복음':'MAT','마가복음':'MRK','누가복음':'LUK','요한복음':'JHN','사도행전':'ACT',
+  '로마서':'ROM','고린도전서':'1CO','고린도후서':'2CO','갈라디아서':'GAL','에베소서':'EPH',
+  '빌립보서':'PHP','골로새서':'COL','데살로니가전서':'1TH','데살로니가후서':'2TH',
+  '디모데전서':'1TI','디모데후서':'2TI','디도서':'TIT','빌레몬서':'PHM','히브리서':'HEB',
+  '야고보서':'JAS','베드로전서':'1PE','베드로후서':'2PE','요한일서':'1JN','요한이서':'2JN',
+  '요한삼서':'3JN','유다서':'JUD','요한계시록':'REV'
+};
+function bibleUsfm(ref){
+  if(!ref) return '';
+  const first = String(ref).split('·')[0].trim();               // 여러 본문이면 첫 본문 기준
+  const s = first.replace(/[–—−~]/g,'-').replace(/\s+/g,' ').trim();
+  const m = s.match(/^(.+?)\s*(\d+)\s*:\s*(\d+)(?:\s*-\s*(?:(\d+)\s*:\s*)?(\d+))?/);
+  if(!m) return '';
+  const u = BOOK_USFM[m[1].replace(/\s/g,'')];
+  if(!u) return '';
+  const c1=m[2], v1=m[3], c2=m[4], v2=m[5];
+  if(v2 && c2) return u+'.'+c1+'.'+v1+'-'+u+'.'+c2+'.'+v2;       // 장을 넘는 범위
+  if(v2)       return u+'.'+c1+'.'+v1+'-'+v2;
+  return u+'.'+c1+'.'+v1;
+}
+function renderScripture(ref){
+  const refEl = document.querySelector('[data-scripture-ref]');
+  if(refEl) refEl.textContent = ref || '—';
+  const usfm = bibleUsfm(ref);
+  const ko = document.querySelector('[data-bible-ko]');
+  const en = document.querySelector('[data-bible-en]');
+  const box = document.getElementById('bibleLinks');
+  if(usfm){
+    if(ko) ko.href = 'https://www.bible.com/ko/bible/142/' + usfm + '.RNKSV';   // 새번역
+    if(en) en.href = 'https://www.bible.com/bible/59/'    + usfm + '.ESV';       // ESV
+    if(box) box.style.display = '';
+  }else if(box){ box.style.display = 'none'; }                                   // 성경 본문이 아니면 링크 숨김
 }
 
 function fmtDate(iso){
