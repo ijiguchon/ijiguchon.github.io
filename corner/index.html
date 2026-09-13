@@ -101,7 +101,7 @@ document.getElementById('list').innerHTML=COLUMNS.map(function(c,i){ return (
     '<div class="body"><div class="auth">'+esc(c.author||'김성수목사')+'</div>'+
     c.paras.map(function(p){return '<p>'+esc(p)+'</p>';}).join('')+'</div>'+
   '</details>'); }).join('');
-document.getElementById('langBtn').onclick=function(){var en=document.body.classList.toggle('lang-en');document.getElementById('langTxt').textContent=en?'한국어':'EN';};
+document.getElementById('langBtn').onclick=function(){var en=document.body.classList.toggle('lang-en');document.getElementById('langTxt').textContent=en?'KR':'EN';};
 </script>
 </body>
 </html>

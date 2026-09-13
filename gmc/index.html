@@ -4388,7 +4388,7 @@ function applyLang(lang){
   const en = lang === 'en';
   document.body.classList.toggle('lang-en', en);
   document.documentElement.lang = en ? 'en' : 'ko';
-  document.getElementById('langLabel').textContent = en ? '한국어' : 'EN';
+  document.getElementById('langLabel').textContent = en ? 'KR' : 'EN';
   const badge = document.getElementById('langBadge');
   if(badge) badge.textContent = en ? 'English' : '한국어';
   try{ localStorage.setItem('church-lang', lang); }catch(_){}
