@@ -311,7 +311,7 @@
   #cosmos .cn-core{position:relative;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;
     background:radial-gradient(circle at 50% 44%, rgba(220,232,255,.95) 0%, rgba(150,180,240,.55) 42%, rgba(40,58,110,.25) 74%, transparent 100%);
     box-shadow:0 0 54px 12px rgba(150,180,255,.4)}
-  #cosmos .cn-core img{width:66px;height:66px;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))}
+  #cosmos .cn-core .cn-cross{width:40px;height:40px}
   #cosmos .cn-nucleus:active{transform:translate(-50%,-50%) scale(.94)}
 
   #cosmos .cn-node{position:absolute;left:50%;top:44%;z-index:2;background:none;border:0;padding:0;color:#e7ecfb;
@@ -352,7 +352,7 @@
     <svg class="cn-links" id="cnLinks" aria-hidden="true"></svg>
     <button class="cn-nucleus" id="cnNucleus" aria-label="가운데를 누르면 모이고, 다시 누르면 흩어집니다">
       <span class="cn-pulse"></span><span class="cn-ring2"></span><span class="cn-ring"></span>
-      <span class="cn-core"><img src="images/logo.png" alt="시애틀지구촌교회 엠블럼"></span>
+      <span class="cn-core"><svg class="cn-cross" viewBox="0 0 24 24" fill="none" stroke="#0b1120" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="십자가"><path d="M12 3v18M8 8h8"/></svg></span>
     </button>
     <!-- 별(섹션) 링크 -->
     <a class="cn-node" href="#newcomer"><span class="cn-dot"><span class="cn-num">1</span><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z"/><path d="M4 20a8 8 0 0116 0"/></svg></span><span class="cn-lbl">처음 오신 분</span></a>
