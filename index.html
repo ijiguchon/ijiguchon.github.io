@@ -303,20 +303,17 @@
   #cosmos.scattered svg.cn-links line{opacity:1}
 
   #cosmos .cn-nucleus{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);z-index:3;
-    width:132px;height:132px;border-radius:50%;background:none;border:0;padding:0;cursor:pointer;display:grid;place-items:center}
-  #cosmos .cn-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(231,180,95,.4);
-    box-shadow:0 0 46px 8px rgba(120,150,230,.28), inset 0 0 26px rgba(120,150,230,.16)}
-  #cosmos .cn-ring2{position:absolute;inset:-16px;border-radius:50%;border:1px solid rgba(188,210,255,.12)}
-  #cosmos .cn-pulse{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(231,180,95,.45);animation:cnpulse 3.2s ease-out infinite}
-  @keyframes cnpulse{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.85);opacity:0}}
-  #cosmos .cn-core{position:relative;width:106px;height:106px;border-radius:50%;display:grid;place-items:center;overflow:hidden;
-    background:
-      radial-gradient(circle at 60% 64%, rgba(231,180,95,.36) 0%, rgba(231,140,60,.14) 20%, transparent 42%),
-      radial-gradient(circle at 36% 30%, #2f74bd 0%, #1a4f8c 26%, #103358 50%, #0a1f42 72%, #061530 100%);
-    box-shadow:inset 0 0 15px 2px rgba(150,195,255,.5), inset 0 0 3px 1px rgba(205,228,255,.65), 0 0 60px 14px rgba(90,150,255,.42);
-    border:1px solid rgba(165,205,255,.38)}
-  #cosmos .cn-core .cn-cross{width:44px;height:44px;position:relative;z-index:2;
-    filter:drop-shadow(0 0 8px rgba(231,180,95,.9)) drop-shadow(0 0 2px rgba(255,255,255,.8))}
+    width:112px;height:112px;border-radius:50%;background:none;border:0;padding:0;cursor:pointer;display:grid;place-items:center}
+  #cosmos .cn-ring{position:absolute;inset:15px;border-radius:50%;border:1px solid rgba(231,180,95,.30);
+    box-shadow:0 0 26px 3px rgba(120,150,230,.18), inset 0 0 14px rgba(120,150,230,.10)}
+  #cosmos .cn-ring2{position:absolute;inset:3px;border-radius:50%;border:1px solid rgba(188,210,255,.09)}
+  #cosmos .cn-pulse{position:absolute;inset:15px;border-radius:50%;border:1px solid rgba(231,180,95,.38);animation:cnpulse 3.4s ease-out infinite}
+  @keyframes cnpulse{0%{transform:scale(1);opacity:.5}100%{transform:scale(2.2);opacity:0}}
+  #cosmos .cn-core{position:relative;width:82px;height:82px;border-radius:50%;display:grid;place-items:center;overflow:hidden;
+    box-shadow:inset 0 0 9px 1px rgba(150,195,255,.32), 0 0 26px 5px rgba(90,150,255,.36), 0 0 0 1px rgba(165,205,255,.42)}
+  #cosmos .cn-earth{position:absolute;inset:0;width:100%;height:100%;border-radius:50%}
+  #cosmos .cn-core .cn-cross{width:32px;height:32px;position:relative;z-index:2;
+    filter:drop-shadow(0 0 7px rgba(231,180,95,.95)) drop-shadow(0 0 2px rgba(255,255,255,.9))}
   #cosmos .cn-nucleus:active{transform:translate(-50%,-50%) scale(.94)}
 
   #cosmos .cn-node{position:absolute;left:50%;top:44%;z-index:2;background:none;border:0;padding:0;color:#e7ecfb;
@@ -328,7 +325,8 @@
   #cosmos .cn-dot{position:relative;width:48px;height:48px;border-radius:50%;background:rgba(26,40,72,.42);backdrop-filter:blur(11px) saturate(1.25);-webkit-backdrop-filter:blur(11px) saturate(1.25);border:1px solid rgba(188,210,255,.36);
     display:grid;place-items:center;box-shadow:0 0 0 5px rgba(120,150,230,.06),0 6px 18px rgba(0,0,0,.5),inset 0 1px 1px rgba(255,255,255,.18);transition:.2s}
   #cosmos .cn-dot svg{width:22px;height:22px;fill:none;stroke:#e7b45f;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-  #cosmos .cn-node .cn-lbl{font-size:13px;font-weight:700;letter-spacing:-.2px;text-shadow:0 1px 10px rgba(0,0,0,.75)}
+  #cosmos .cn-node .cn-lbl{font-size:13px;font-weight:700;letter-spacing:-.2px;text-shadow:0 1px 8px rgba(0,0,0,.55);
+    padding:3px 11px;border-radius:999px;background:rgba(20,32,58,.34);backdrop-filter:blur(9px) saturate(1.25);-webkit-backdrop-filter:blur(9px) saturate(1.25);border:1px solid rgba(188,210,255,.20);box-shadow:inset 0 1px 1px rgba(255,255,255,.14)}
   #cosmos .cn-node:hover .cn-dot,#cosmos .cn-node:focus-visible .cn-dot{border-color:#e7b45f;box-shadow:0 0 0 6px rgba(231,180,95,.16),0 8px 22px rgba(0,0,0,.55);transform:translateY(-2px)}
   #cosmos .cn-node:nth-of-type(1){transition-delay:.02s}#cosmos .cn-node:nth-of-type(2){transition-delay:.06s}
   #cosmos .cn-node:nth-of-type(3){transition-delay:.10s}#cosmos .cn-node:nth-of-type(4){transition-delay:.14s}
@@ -355,7 +353,43 @@
     <svg class="cn-links" id="cnLinks" aria-hidden="true"></svg>
     <button class="cn-nucleus" id="cnNucleus" aria-label="가운데를 누르면 모이고, 다시 누르면 흩어집니다">
       <span class="cn-pulse"></span><span class="cn-ring2"></span><span class="cn-ring"></span>
-      <span class="cn-core"><svg class="cn-cross" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="십자가"><path d="M12 3v18M8 8h8"/></svg></span>
+      <span class="cn-core">
+        <svg class="cn-earth" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <radialGradient id="cnOce" cx="38%" cy="32%" r="78%">
+              <stop offset="0%" stop-color="#2f74bd"/><stop offset="42%" stop-color="#164a86"/>
+              <stop offset="76%" stop-color="#0b264d"/><stop offset="100%" stop-color="#061530"/>
+            </radialGradient>
+            <radialGradient id="cnTerm" cx="34%" cy="30%" r="84%">
+              <stop offset="52%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".58"/>
+            </radialGradient>
+            <clipPath id="cnClip"><circle cx="50" cy="50" r="50"/></clipPath>
+          </defs>
+          <g clip-path="url(#cnClip)">
+            <circle cx="50" cy="50" r="50" fill="url(#cnOce)"/>
+            <g fill="#123152">
+              <path d="M20 30 Q30 19 43 24 Q51 28 46 37 Q53 43 45 50 Q39 60 33 53 Q25 49 28 40 Q19 38 20 30Z"/>
+              <path d="M44 55 Q53 53 50 64 Q47 77 41 74 Q39 65 44 55Z"/>
+              <path d="M63 33 Q75 29 79 41 Q81 54 70 57 Q61 51 63 41Z"/>
+              <path d="M82 60 Q89 58 87 67 Q80 69 82 60Z"/>
+              <circle cx="50" cy="16" r="4"/>
+            </g>
+            <g fill="#ffce76">
+              <circle cx="40" cy="38" r="1.2"/><circle cx="43" cy="40" r="1.4"/><circle cx="45.5" cy="37" r="1"/>
+              <circle cx="38" cy="42" r="1"/><circle cx="42" cy="44" r=".9"/><circle cx="35" cy="40" r=".85"/>
+              <circle cx="41" cy="34" r=".8"/><circle cx="46.5" cy="42" r=".85"/><circle cx="33" cy="45" r=".75"/>
+              <circle cx="37" cy="47" r=".7"/><circle cx="44" cy="60" r=".85"/><circle cx="46" cy="65" r=".7"/>
+              <circle cx="68" cy="36" r=".95"/><circle cx="71" cy="39" r=".8"/><circle cx="66" cy="41" r=".7"/><circle cx="73" cy="44" r=".7"/>
+            </g>
+            <g fill="#ffffff" fill-opacity=".13">
+              <ellipse cx="29" cy="55" rx="13" ry="4.2"/><ellipse cx="60" cy="23" rx="11" ry="3.2"/><ellipse cx="71" cy="65" rx="9" ry="3"/>
+            </g>
+            <circle cx="50" cy="50" r="50" fill="url(#cnTerm)"/>
+            <circle cx="50" cy="50" r="49" fill="none" stroke="rgba(150,200,255,.5)" stroke-width="1.4"/>
+          </g>
+        </svg>
+        <svg class="cn-cross" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="십자가"><path d="M12 3v18M8 8h8"/></svg>
+      </span>
     </button>
     <!-- 별(섹션) 링크 -->
     <a class="cn-node" href="#newcomer"><span class="cn-dot"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z"/><path d="M4 20a8 8 0 0116 0"/></svg></span><span class="cn-lbl">처음 오신 분</span></a>
