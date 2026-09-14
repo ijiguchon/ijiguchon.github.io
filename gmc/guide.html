@@ -202,11 +202,12 @@
 
 <footer><div class="wrap">
   <span class="ko">시애틀지구촌교회 · 담임 김성수 목사</span><span class="en">GMC of Greater Seattle · Pastor Sung Soo Kim</span><br>
-  <a href="https://www.ijiguchon.org"><span class="ko">← 교회 홈으로</span><span class="en">← Church home</span></a>
+  <a href="https://www.ijiguchon.org" onclick="return goHome()"><span class="ko">← 교회 홈으로</span><span class="en">← Church home</span></a>
 </div></footer>
 
 <script>
   function go(url){ window.open(url,'_blank','noopener'); }
+  function goHome(){ if(history.length>1 && document.referrer.indexOf('ijiguchon.org')>-1){ history.back(); return false; } return true; }
   /* 언어 토글 */
   var langBtn=document.getElementById('langBtn');
   function applyLang(en){ document.body.classList.toggle('lang-en',en); document.getElementById('langTxt').textContent=en?'KR':'EN'; document.documentElement.lang=en?'en':'ko'; try{localStorage.setItem('gmc-guide-lang',en?'en':'ko');}catch(_){} }

@@ -4366,11 +4366,16 @@ async function submitForm(e,type){
 /* ══════════════════════════════════════
    TABS
    ══════════════════════════════════════ */
+var tabScroll = {};   // 탭별 스크롤 위치 기억 → 탭 돌아오면 보던 자리로
 function switchTab(name){
+  const area = document.getElementById('contentArea');
+  // 떠나기 전, 지금 탭의 스크롤 위치 저장
+  var cur=null; try{ cur = localStorage.getItem('gmc-tab'); }catch(_){}
+  if(area && cur){ tabScroll[cur] = area.scrollTop; }
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-'+name));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.tab === name));
-  const area = document.getElementById('contentArea');
-  area.scrollTo({top:0, behavior:'auto'});
+  // 대상 탭의 저장된 위치로 복원(없으면 맨 위)
+  if(area){ area.scrollTo({top: tabScroll[name] || 0, behavior:'auto'}); }
   try{ localStorage.setItem('gmc-tab', name); }catch(_){}   // 성경 등 외부 다녀와 앱이 새로고침돼도 보던 탭으로 복귀
 }
 
@@ -4380,6 +4385,7 @@ function goHome(){
   try{ closePlayer(); }catch(_){}
   try{ closeInstallHelp(); }catch(_){}
   document.body.style.overflow = '';
+  tabScroll['home'] = 0;   // 로고로 홈 = 항상 맨 위
   switchTab('home');
 }
 
