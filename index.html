@@ -336,8 +336,12 @@
     box-shadow:inset 0 0 12px 2px rgba(150,195,255,.32), 0 0 48px 10px rgba(96,160,255,.42), 0 0 0 1px rgba(170,210,255,.45)}
   #cosmos .cn-core::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:1;
     background:radial-gradient(circle at 100% 50%, rgba(185,220,255,.6) 0%, rgba(120,180,255,.28) 12%, transparent 32%)}
-  #cosmos .cn-core .cn-cross{width:38px;height:38px;position:relative;z-index:2;
-    filter:drop-shadow(0 0 7px rgba(231,180,95,.95)) drop-shadow(0 0 2px rgba(0,0,0,.55))}
+  /* 지구본 위 시애틀 마커 */
+  #cosmos .geo-marker{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:138px;height:138px;pointer-events:none;z-index:4}
+  #cosmos .geo-dot{position:absolute;left:31%;top:29%;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:#ffe1a0;box-shadow:0 0 8px 2px rgba(255,205,120,.95)}
+  #cosmos .geo-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid rgba(255,217,138,.9);animation:geopulse 2.4s ease-out infinite}
+  @keyframes geopulse{0%{transform:scale(.7);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+  #cosmos .geo-lbl{position:absolute;left:31%;top:29%;transform:translate(-118%,-140%);font-size:10.5px;font-weight:800;letter-spacing:.02em;color:#ffe6b0;background:rgba(5,17,42,.62);border:1px solid rgba(255,217,138,.35);border-radius:6px;padding:1px 6px;white-space:nowrap;text-shadow:0 1px 4px rgba(0,0,0,.8)}
   #cosmos .cn-nucleus:active{transform:translate(-50%,-50%) scale(.94)}
 
   #cosmos .cn-node{position:absolute;left:50%;top:44%;z-index:2;background:none;border:0;padding:0;color:#e7ecfb;
@@ -382,6 +386,7 @@
     <button class="cn-nucleus" id="cnNucleus" aria-label="가운데를 누르면 모이고, 다시 누르면 흩어집니다">
       <span class="cn-pulse"></span><span class="cn-ring2"></span><span class="cn-ring"></span>
       <span class="cn-core"></span>
+      <span class="geo-marker" aria-hidden="true"><span class="geo-lbl">Seattle</span><span class="geo-dot"></span></span>
     </button>
     <!-- 별(섹션) 링크 -->
     <a class="cn-node" href="#newcomer"><span class="cn-dot"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z"/><path d="M4 20a8 8 0 0116 0"/></svg></span><span class="cn-lbl">처음 오신 분</span></a>
@@ -446,7 +451,38 @@
   function rs(){ var w=cosmos.clientWidth,h=cosmos.clientHeight; cv.width=w*dpr;cv.height=h*dpr;cv.style.width=w+'px';cv.style.height=h+'px';
     var n=Math.round(w*h/9000); stars=Array.from({length:n},function(){return{x:Math.random()*cv.width,y:Math.random()*cv.height,r:(Math.random()*1.3+.3)*dpr,a:Math.random()*.6+.2,tw:Math.random()*.02+.004,ph:Math.random()*6.28};}); }
   rs(); addEventListener('resize',rs);
-  var t=0;(function draw(){ ctx.clearRect(0,0,cv.width,cv.height); t++; for(var i=0;i<stars.length;i++){var s=stars[i];var al=s.a*(0.6+0.4*Math.sin(t*s.tw+s.ph));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.283);ctx.fillStyle='rgba(210,224,255,'+al.toFixed(3)+')';ctx.fill();} requestAnimationFrame(draw); })();
+  // 별똥별(예수님의 별) — 오른쪽 위 → 지구본 쪽으로 금빛 꼬리 남기며 훅
+  var meteors=[];
+  function spawnMeteor(){
+    var W=cv.width, H=cv.height;
+    var sx=W*(0.72+Math.random()*0.26), sy=H*(Math.random()*0.20);
+    var tx=W*0.5, ty=H*0.44, dx=tx-sx, dy=ty-sy, d=Math.hypot(dx,dy)||1;
+    var speed=d/(58+Math.random()*18);
+    meteors.push({x:sx,y:sy,vx:dx/d*speed,vy:dy/d*speed,life:0,max:d/speed*0.9,len:(120+Math.random()*80)*dpr});
+  }
+  function drawMeteors(){
+    for(var m=meteors.length-1;m>=0;m--){
+      var mm=meteors[m]; mm.x+=mm.vx; mm.y+=mm.vy; mm.life++;
+      var p=mm.life/mm.max, fade=p<0.15?p/0.15:(p>0.72?Math.max(0,(1-p)/0.28):1);
+      var ang=Math.atan2(mm.vy,mm.vx), ex=mm.x-Math.cos(ang)*mm.len, ey=mm.y-Math.sin(ang)*mm.len;
+      var g=ctx.createLinearGradient(mm.x,mm.y,ex,ey);
+      g.addColorStop(0,'rgba(255,241,208,'+(0.95*fade).toFixed(3)+')');
+      g.addColorStop(0.4,'rgba(231,180,95,'+(0.5*fade).toFixed(3)+')');
+      g.addColorStop(1,'rgba(231,180,95,0)');
+      ctx.strokeStyle=g; ctx.lineWidth=2.2*dpr; ctx.lineCap='round';
+      ctx.beginPath(); ctx.moveTo(mm.x,mm.y); ctx.lineTo(ex,ey); ctx.stroke();
+      ctx.beginPath(); ctx.arc(mm.x,mm.y,2.8*dpr,0,6.283);
+      ctx.fillStyle='rgba(255,249,228,'+fade.toFixed(3)+')';
+      ctx.shadowColor='rgba(255,220,150,'+fade.toFixed(3)+')'; ctx.shadowBlur=14*dpr;
+      ctx.fill(); ctx.shadowBlur=0;
+      if(mm.life>=mm.max) meteors.splice(m,1);
+    }
+  }
+  var t=0;(function draw(){ ctx.clearRect(0,0,cv.width,cv.height); t++; for(var i=0;i<stars.length;i++){var s=stars[i];var al=s.a*(0.6+0.4*Math.sin(t*s.tw+s.ph));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.283);ctx.fillStyle='rgba(210,224,255,'+al.toFixed(3)+')';ctx.fill();} drawMeteors(); requestAnimationFrame(draw); })();
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    setTimeout(spawnMeteor, 900);
+    (function loop(){ setTimeout(function(){ spawnMeteor(); loop(); }, 7000+Math.random()*5000); })();
+  }
 })();
 </script>
 
