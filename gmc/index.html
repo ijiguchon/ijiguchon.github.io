@@ -2230,19 +2230,17 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </details>
 
-      <!-- 기도회 — 주일 말씀을 품고 주중(HebronAltar 경청) → 토요새벽(모임)으로 · 펼침 -->
-      <div class="sec-head" style="margin-top:24px">
-        <h2 class="sec-title key"><span class="ko">기도회</span><span class="en">Prayer</span></h2>
-      </div>
-      <p class="panel-sub" style="margin:-6px 2px 12px"><span class="ko">주일에 받은 <b>말씀</b>이 한 주를 이끕니다 — 주중엔 조용히 경청하며 기도하고, 토요새벽엔 다함께 모입니다.</span><span class="en">Sunday's <b>word</b> leads the week — listening in prayer on weekdays, gathering together at Saturday dawn.</span></p>
-      <div style="display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin:0 2px 16px;font-size:12.5px;font-weight:700">
-        <span style="background:var(--accent-pale);color:var(--accent);border-radius:999px;padding:5px 12px"><span class="ko">주일 말씀</span><span class="en">Sunday Word</span></span>
-        <span style="color:var(--text-3)">&rarr;</span>
-        <span style="background:var(--accent-pale);color:var(--accent);border-radius:999px;padding:5px 12px"><span class="ko">경청의 삶(HebronAltar)</span><span class="en">Listening life (HebronAltar)</span></span>
-        <span style="color:var(--text-3)">&rarr;</span>
-        <span style="background:var(--accent-pale);color:var(--accent);border-radius:999px;padding:5px 12px"><span class="ko">토요새벽기도</span><span class="en">Sat dawn prayer</span></span>
-      </div>
-
+      <!-- 기도회 — 접이식: 주일 말씀 → 경청(HebronAltar) → 토요새벽 -->
+      <details class="fold" style="margin-top:20px">
+        <summary>
+          <div class="fold-t">
+            <div class="fold-title"><span class="ko">기도회</span><span class="en">Prayer</span></div>
+            <div class="fold-sub"><span class="ko i">주일 말씀 → 경청의 삶 → 토요새벽</span><span class="en i">Sunday word → listening → Sat dawn</span></div>
+          </div>
+          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </summary>
+        <div class="fold-body">
+      <p class="panel-sub" style="margin:2px 2px 12px"><span class="ko">주일에 받은 <b>말씀</b>이 한 주를 이끕니다 — 주중엔 조용히 경청하며 기도하고, 토요새벽엔 다함께 모입니다.</span><span class="en">Sunday's <b>word</b> leads the week — listening in prayer on weekdays, gathering together at Saturday dawn.</span></p>
       <!-- 주중: HebronAltar 경청의 삶 -->
       <button class="card altar" onclick="go(LINKS.hebronAltar)">
         <div class="altar-icon">
@@ -2271,6 +2269,8 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
           <div class="sat-time"><span class="ko i">토 오전<br>6:00</span><span class="en i">Sat<br>6 AM</span></div>
         </div>
       </div>
+        </div>
+      </details>
 
       <details class="fold" style="margin-top:12px">
         <summary>
