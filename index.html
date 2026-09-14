@@ -340,16 +340,16 @@
   #cosmos .cn-nucleus:active{transform:translate(-50%,-50%) scale(.94)}
 
   #cosmos .cn-node{position:absolute;left:50%;top:44%;z-index:2;background:none;border:0;padding:0;color:#e7ecfb;
-    font-family:inherit;text-decoration:none;cursor:pointer;width:96px;
+    font-family:inherit;text-decoration:none;cursor:pointer;width:120px;
     transform:translate(-50%,-50%) translate(var(--tx,0),var(--ty,0)) scale(1);opacity:1;
     transition:transform .74s cubic-bezier(.18,.9,.24,1.12),opacity .5s ease;
     display:flex;flex-direction:column;align-items:center;gap:8px}
   #cosmos:not(.scattered) .cn-node{transform:translate(-50%,-50%) scale(.2);opacity:0;pointer-events:none}
-  #cosmos .cn-dot{position:relative;width:48px;height:48px;border-radius:50%;background:rgba(26,40,72,.42);backdrop-filter:blur(11px) saturate(1.25);-webkit-backdrop-filter:blur(11px) saturate(1.25);border:1px solid rgba(188,210,255,.36);
+  #cosmos .cn-dot{position:relative;width:64px;height:64px;border-radius:50%;background:rgba(26,40,72,.42);backdrop-filter:blur(11px) saturate(1.25);-webkit-backdrop-filter:blur(11px) saturate(1.25);border:1px solid rgba(188,210,255,.36);
     display:grid;place-items:center;box-shadow:0 0 0 5px rgba(120,150,230,.06),0 6px 18px rgba(0,0,0,.5),inset 0 1px 1px rgba(255,255,255,.18);transition:.2s}
-  #cosmos .cn-dot svg{width:22px;height:22px;fill:none;stroke:#e7b45f;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-  #cosmos .cn-node .cn-lbl{font-size:13px;font-weight:700;letter-spacing:-.2px;text-shadow:0 1px 8px rgba(0,0,0,.55);
-    padding:3px 11px;border-radius:999px;background:rgba(20,32,58,.34);backdrop-filter:blur(9px) saturate(1.25);-webkit-backdrop-filter:blur(9px) saturate(1.25);border:1px solid rgba(188,210,255,.20);box-shadow:inset 0 1px 1px rgba(255,255,255,.14)}
+  #cosmos .cn-dot svg{width:29px;height:29px;fill:none;stroke:#e7b45f;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  #cosmos .cn-node .cn-lbl{font-size:15.5px;font-weight:800;letter-spacing:-.2px;text-shadow:0 1px 8px rgba(0,0,0,.6);
+    padding:5px 13px;border-radius:999px;background:rgba(20,32,58,.34);backdrop-filter:blur(9px) saturate(1.25);-webkit-backdrop-filter:blur(9px) saturate(1.25);border:1px solid rgba(188,210,255,.20);box-shadow:inset 0 1px 1px rgba(255,255,255,.14)}
   #cosmos .cn-node:hover .cn-dot,#cosmos .cn-node:focus-visible .cn-dot{border-color:#e7b45f;box-shadow:0 0 0 6px rgba(231,180,95,.16),0 8px 22px rgba(0,0,0,.55);transform:translateY(-2px)}
   #cosmos .cn-node:nth-of-type(1){transition-delay:.02s}#cosmos .cn-node:nth-of-type(2){transition-delay:.06s}
   #cosmos .cn-node:nth-of-type(3){transition-delay:.10s}#cosmos .cn-node:nth-of-type(4){transition-delay:.14s}
