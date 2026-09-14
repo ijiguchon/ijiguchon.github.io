@@ -270,11 +270,13 @@
     </a>
     <nav class="nav-links" id="navLinks" aria-label="섹션 메뉴">
       <a href="#newcomer" onclick="closeMenu()"><span class="ko">처음 오신 분</span><span class="en">New here</span></a>
+      <a href="#mokjang-connect" onclick="closeMenu()"><span class="ko">함께 사는 공동체</span><span class="en">House church</span></a>
+      <a href="#worship" onclick="closeMenu()"><span class="ko">예배 · 말씀</span><span class="en">Worship</span></a>
+      <a href="#care" onclick="closeMenu()"><span class="ko">우리 행복할까요?</span><span class="en">Care</span></a>
+      <a href="#newgen" onclick="closeMenu()"><span class="ko">새 세대</span><span class="en">New Gen</span></a>
       <a href="#journey" onclick="closeMenu()"><span class="ko">여정</span><span class="en">Journey</span></a>
-      <a href="#mokjang-connect" onclick="closeMenu()"><span class="ko">목장과 연결</span><span class="en">House church</span></a>
-      <a href="#worship" onclick="closeMenu()"><span class="ko">예배</span><span class="en">Worship</span></a>
-      <a href="#team" onclick="closeMenu()"><span class="ko">교역자</span><span class="en">Team</span></a>
       <a href="/corner/" onclick="closeMenu()"><span class="ko">목회자 코너</span><span class="en">Pastor's Corner</span></a>
+      <a href="#team" onclick="closeMenu()"><span class="ko">교역자</span><span class="en">Team</span></a>
       <a href="#register" onclick="closeMenu()"><span class="ko">등록</span><span class="en">Register</span></a>
       <a href="#give" onclick="closeMenu()"><span class="ko">헌금</span><span class="en">Give</span></a>
     </nav>
@@ -335,11 +337,15 @@
   #cosmos .cn-node:nth-of-type(5){transition-delay:.18s}#cosmos .cn-node:nth-of-type(6){transition-delay:.22s}
   #cosmos .cn-node:nth-of-type(7){transition-delay:.26s}#cosmos .cn-node:nth-of-type(8){transition-delay:.30s}
 
-  #cosmos .cn-cap{position:absolute;left:0;right:0;bottom:74px;z-index:3;text-align:center;pointer-events:none;padding:0 20px;color:#e7ecfb}
+  #cosmos .cn-cap{position:absolute;left:0;right:0;bottom:106px;z-index:3;text-align:center;pointer-events:none;padding:0 20px;color:#e7ecfb}
   #cosmos .cn-cap .big{font-size:15px;font-weight:800;letter-spacing:-.2px}
   #cosmos .cn-cap .big .ac{color:#e7b45f}
   #cosmos .cn-cap .sm{margin-top:6px;font-size:10.5px;letter-spacing:2.5px;color:#8590ad;text-transform:uppercase}
-  #cosmos .cn-scroll{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:3;color:#8590ad;
+  #cosmos .cn-more{position:absolute;left:0;right:0;bottom:56px;z-index:3;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:7px 12px;padding:0 20px}
+  #cosmos .cn-more .cn-more-lbl{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:#6d7690}
+  #cosmos .cn-more a{font-size:12px;font-weight:600;color:#aeb8d4;text-decoration:none;padding:2px 4px;border-radius:999px}
+  #cosmos .cn-more a:hover,#cosmos .cn-more a:focus-visible{color:#e7b45f}
+  #cosmos .cn-scroll{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:3;color:#8590ad;
     font-size:10.5px;letter-spacing:2px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:5px;
     background:none;border:0;cursor:pointer;font-family:inherit}
   #cosmos .cn-scroll svg{width:16px;height:16px;stroke:#8590ad;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;animation:cnbob 2s ease-in-out infinite}
@@ -359,17 +365,22 @@
     </button>
     <!-- 별(섹션) 링크 -->
     <a class="cn-node" href="#newcomer"><span class="cn-dot"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z"/><path d="M4 20a8 8 0 0116 0"/></svg></span><span class="cn-lbl">처음 오신 분</span></a>
-    <a class="cn-node" href="#journey"><span class="cn-dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 5-5 2 2-5z"/></svg></span><span class="cn-lbl">여정</span></a>
-    <a class="cn-node" href="#mokjang-connect"><span class="cn-dot"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M9.5 20v-5.4h5V20"/></svg></span><span class="cn-lbl">목장과 연결</span></a>
-    <a class="cn-node" href="#worship"><span class="cn-dot"><svg viewBox="0 0 24 24"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span><span class="cn-lbl">예배</span></a>
-    <a class="cn-node" href="#team"><span class="cn-dot"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3 20a6 6 0 0112 0"/><path d="M14 20a6 6 0 0110-4"/></svg></span><span class="cn-lbl">교역자</span></a>
-    <a class="cn-node" href="/corner/"><span class="cn-dot"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></span><span class="cn-lbl">목회자 코너</span></a>
-    <a class="cn-node" href="#register"><span class="cn-dot"><svg viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 12l2 2 4-4"/></svg></span><span class="cn-lbl">교회 등록</span></a>
-    <a class="cn-node" href="#give"><span class="cn-dot"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg></span><span class="cn-lbl">헌금</span></a>
+    <a class="cn-node" href="#mokjang-connect"><span class="cn-dot"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M9.5 20v-5.4h5V20"/></svg></span><span class="cn-lbl">함께 사는 공동체</span></a>
+    <a class="cn-node" href="#worship"><span class="cn-dot"><svg viewBox="0 0 24 24"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span><span class="cn-lbl">예배 · 말씀</span></a>
+    <a class="cn-node" href="#care"><span class="cn-dot"><svg viewBox="0 0 24 24"><path d="M12 20s-6-4-6-9a3.5 3.5 0 016-2.4A3.5 3.5 0 0118 11c0 5-6 9-6 9z"/></svg></span><span class="cn-lbl">우리 행복할까요?</span></a>
+    <a class="cn-node" href="#newgen"><span class="cn-dot"><svg viewBox="0 0 24 24"><circle cx="8" cy="7" r="2.5"/><path d="M3.5 20v-1a4.5 4.5 0 019 0v1"/><circle cx="17" cy="9" r="2"/><path d="M14.5 20v-.4a3.4 3.4 0 015-3"/></svg></span><span class="cn-lbl">새 세대</span></a>
   </div>
   <div class="cn-cap" id="cnCap" aria-live="polite">
     <div class="big"><span class="ac">흩어져</span> — 세상으로</div><div class="sm">scatter to gather</div>
   </div>
+  <nav class="cn-more" aria-label="더 알아보기">
+    <span class="cn-more-lbl">더 알아보기</span>
+    <a href="#journey">여정</a>
+    <a href="/corner/">목회자 코너</a>
+    <a href="#team">교역자</a>
+    <a href="#register">교회 등록</a>
+    <a href="#give">헌금</a>
+  </nav>
   <button class="cn-scroll" id="cnScroll" aria-label="아래로 둘러보기"><span>둘러보기</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
 </section>
 <script>
@@ -548,7 +559,7 @@
 </section>
 
 <!-- CARE -->
-<section class="sec">
+<section class="sec" id="care">
   <div class="wrap">
     <div class="sec-eyebrow"><span class="ko">필요를 함께</span><span class="en">Help with real life</span></div>
     <h2 class="sec-title"><span class="ko">우리 행복할까요?</span><span class="en">Shall we be happy, together?</span></h2>
@@ -562,6 +573,21 @@
       <div class="care"><h4><span class="ko">뉴 제네레이션</span><span class="en">Next Generation</span></h4><p><span class="ko">어린이·청소년, 아이와 함께 오셔도 좋아요.</span><span class="en">Children & youth — bring your kids along.</span></p></div>
     </div>
     <p class="care-note"><span class="ko">믿음과 상관없이, 누구나 편하게 — 문의: info@ijiguchon.org</span><span class="en">Everyone welcome, believer or not — info@ijiguchon.org</span></p>
+  </div>
+</section>
+
+<!-- NEW GENERATION -->
+<section class="sec" id="newgen">
+  <div class="wrap">
+    <div class="sec-eyebrow"><span class="ko">다음 세대 · New Gen</span><span class="en">The next generation</span></div>
+    <h2 class="sec-title"><span class="ko">새 세대를 함께 키웁니다</span><span class="en">Raising the next generation, together</span></h2>
+    <p class="sec-lead"><span class="ko">아이와 함께 오셔도 좋아요. 믿음도 정체성도 — 다음 세대가 든든히 자라도록 온 교회가 함께합니다.</span><span class="en">Bring your children along. The whole church helps the next generation grow strong — in faith and identity.</span></p>
+    <div class="care-grid">
+      <div class="care"><h4><span class="ko">헌아식 · 아기 축복</span><span class="en">Baby Blessing</span></h4><p><span class="ko">새로 태어난 한 생명을 온 교회가 함께 축복하고 품습니다.</span><span class="en">The whole church blesses and embraces each new life.</span></p></div>
+      <div class="care"><h4><span class="ko">어린이 · 주일학교</span><span class="en">Children · Sunday School</span></h4><p><span class="ko">성경과 아트로 키우는 새 세대. 24년간 아이들을 사랑으로 가르쳐 온 김지영 디렉터와 함께.</span><span class="en">Growing a new generation through Bible and art, with Director Joy Kim — 24 years of loving, teaching children.</span></p></div>
+      <div class="care"><h4><span class="ko">청소년 · GMC Y</span><span class="en">Youth · GMC Y</span></h4><p><span class="ko">청소년의 눈높이에서, 미디어와 문화로 함께 걷는 Garrett Woods 목사와 함께.</span><span class="en">Meeting teens on their level — through media and culture — with Pastor Garrett Woods.</span></p></div>
+    </div>
+    <p class="care-note"><span class="ko">어린이는 주일 성인예배와 같은 곳에서, 청소년은 따로 모입니다 · 문의: info@ijiguchon.org</span><span class="en">Children meet where adults worship; youth gather separately · info@ijiguchon.org</span></p>
   </div>
 </section>
 
