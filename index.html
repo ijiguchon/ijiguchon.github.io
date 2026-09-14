@@ -325,13 +325,13 @@
   #cosmos.scattered svg.cn-links line{opacity:1}
 
   #cosmos .cn-nucleus{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);z-index:3;
-    width:132px;height:132px;border-radius:50%;background:none;border:0;padding:0;cursor:pointer;display:grid;place-items:center}
+    width:164px;height:164px;border-radius:50%;background:none;border:0;padding:0;cursor:pointer;display:grid;place-items:center}
   #cosmos .cn-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(231,180,95,.4);
     box-shadow:0 0 46px 8px rgba(120,150,230,.28), inset 0 0 26px rgba(120,150,230,.16)}
   #cosmos .cn-ring2{position:absolute;inset:-16px;border-radius:50%;border:1px solid rgba(188,210,255,.12)}
   #cosmos .cn-pulse{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(231,180,95,.45);animation:cnpulse 3.2s ease-out infinite}
   @keyframes cnpulse{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.85);opacity:0}}
-  #cosmos .cn-core{position:relative;width:106px;height:106px;border-radius:50%;display:grid;place-items:center;overflow:hidden;
+  #cosmos .cn-core{position:relative;width:138px;height:138px;border-radius:50%;display:grid;place-items:center;overflow:hidden;
     background:#05112a url('images/earth-globe.png') center/cover no-repeat;
     box-shadow:inset 0 0 12px 2px rgba(150,195,255,.32), 0 0 48px 10px rgba(96,160,255,.42), 0 0 0 1px rgba(170,210,255,.45)}
   #cosmos .cn-core::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:1;
@@ -381,7 +381,7 @@
     <svg class="cn-links" id="cnLinks" aria-hidden="true"></svg>
     <button class="cn-nucleus" id="cnNucleus" aria-label="가운데를 누르면 모이고, 다시 누르면 흩어집니다">
       <span class="cn-pulse"></span><span class="cn-ring2"></span><span class="cn-ring"></span>
-      <span class="cn-core"><svg class="cn-cross" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="십자가"><path d="M12 3v18M8 8h8"/></svg></span>
+      <span class="cn-core"></span>
     </button>
     <!-- 별(섹션) 링크 -->
     <a class="cn-node" href="#newcomer"><span class="cn-dot"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z"/><path d="M4 20a8 8 0 0116 0"/></svg></span><span class="cn-lbl">처음 오신 분</span></a>
