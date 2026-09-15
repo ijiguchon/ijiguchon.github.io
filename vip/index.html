@@ -419,8 +419,9 @@
   .link-card p{margin-top:4px;font-size:13.5px;color:var(--ink-2);line-height:1.6}
   .link-card .lc-go{flex:0 0 auto;color:var(--gold-2)}
   .link-card .lc-go svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-  .give-ways{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px auto 0;max-width:720px;text-align:left}
-  @media(max-width:560px){ .give-ways{grid-template-columns:1fr} }
+  .give-ways{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px auto 0;max-width:980px;text-align:left}
+  @media(max-width:860px){ .give-ways{grid-template-columns:1fr;max-width:520px} }
+  .give-box{display:flex;flex-direction:column} .give-box .btn-gold{align-self:flex-start;margin-top:auto}
   .give-box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 20px}
   .give-box .gi{width:44px;height:44px;border-radius:12px;background:#F1E6D3;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
   .give-box .gi svg{width:22px;height:22px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -693,8 +694,8 @@
       ko:'<b>생명의 삶</b>으로 시작해 확신의 삶·새로운 삶·경건의 삶으로 이어집니다. 봄·가을 학기에 열며, 생명의 삶은 여름에도 엽니다. <a href="#" onclick="goTab(\'study\');return false">삶공부 탭 보기</a>',
       en:'Start with <b>Living Life</b>, then Assured, New, and Growing Life. Spring & fall terms; Living Life also in summer. <a href="#" onclick="goTab(\'study\');return false">Open the Bible Study tab</a>' } },
     giving:{ l:{ko:'헌금 안내',en:'Giving'}, a:{
-      ko:'예배 때 봉헌함으로, 또는 <a href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener">온라인(Tithe.ly)</a>으로 드리실 수 있습니다. 처음 오신 분은 부담 갖지 않으셔도 됩니다. 501(c)(3) · EIN 27-0003955 · 세금공제 대상.',
-      en:'Give at worship or <a href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener">online (Tithe.ly)</a>. First-time guests, no pressure. 501(c)(3) · EIN 27-0003955 · tax-deductible.' } },
+      ko:'예배 때 봉헌함으로, 또는 <a href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener">온라인(Tithe.ly)</a>으로 드리실 수 있습니다. 처음 오신 분은 부담 갖지 않으셔도 됩니다. 501(c)(3) · EIN 27-0003955 · 세금공제 대상. 우편·Zelle·Venmo로도 드리실 수 있으며, <b>보내시기 전에 반드시 문자(<a href="sms:+14253500191">425-350-0191</a>)로 받는 곳을 확인해 주십시오.</b>',
+      en:'Give at worship or <a href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener">online (Tithe.ly)</a>. First-time guests, no pressure. 501(c)(3) · EIN 27-0003955 · tax-deductible. You may also give by mail, Zelle, or Venmo — <b>always confirm the address or account by text (<a href="sms:+14253500191">425-350-0191</a>) before sending.</b>' } },
     settle:{ l:{ko:'시애틀 정착 도움',en:'Settling in Seattle'}, a:{
       ko:'시애틀로 이주하셨나요? 글로벌 환대 플랫폼 <a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener"><b>HebronGuide 시애틀</b></a>과 협력하여 시애틀지구촌교회 <b>환대팀(Hospitality Team)</b>이 주거·생활·행정 정착을 실질적으로 돕습니다. 낯선 도시의 첫 얼굴이 되어 드리겠습니다.',
       en:'Just moved to Seattle? In partnership with the global hospitality platform <a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener"><b>HebronGuide Seattle</b></a>, the GMC <b>Hospitality Team</b> gives practical help with housing, daily life, and paperwork. We will be your first friendly face in a new city.' } },
