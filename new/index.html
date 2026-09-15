@@ -14,8 +14,9 @@
 <meta property="og:url" content="https://www.ijiguchon.org/"/>
 <meta property="og:image" content="https://www.ijiguchon.org/images/genesis1314.jpg"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="theme-color" content="#1a3560"/>
+<meta name="theme-color" content="#14213d"/>
 <link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192-em.png"/>
+<link rel="shortcut icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/images/apple-touch-icon-em.png"/>
 <meta name="apple-mobile-web-app-title" content="시애틀지구촌"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -23,11 +24,13 @@
 <meta name="mobile-web-app-capable" content="yes"/>
 <link rel="manifest" href="/manifest.json"/>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&display=swap">
 <style>
   :root{
-    --navy:#1a3560; --navy-2:#26407A; --gold:#C8944A; --gold-2:#E0812A;
-    --ink:#1d2430; --ink-2:#48505e; --ink-3:#79818f;
-    --cream:#FBF7F0; --peach:#FCEEE2; --line:#ECE6DC; --card:#ffffff;
+    --navy:#14213d; --navy-2:#1f2f55; --gold:#B8924A; --gold-2:#9A7130;
+    --ink:#1c1f26; --ink-2:#4a4f5a; --ink-3:#7c8290;
+    --cream:#F6F1E7; --peach:#F1E6D3; --line:#E3D9C6; --card:#ffffff;
     --r:18px; --r-sm:12px; --maxw:1040px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -46,8 +49,9 @@
   .topbar{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.92);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
   .topbar .row{display:flex;align-items:center;gap:14px;height:60px;max-width:var(--maxw);margin:0 auto;padding:0 18px}
   .brand{display:flex;align-items:center;gap:9px;cursor:pointer;flex:0 0 auto}
-  .brand .globe{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#3d6fb5,#1a3560 70%);box-shadow:inset -2px -2px 4px rgba(0,0,0,.3),0 2px 6px rgba(26,53,96,.3);position:relative}
+  .brand .globe{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#3d6fb5,#14213d 70%);box-shadow:inset -2px -2px 4px rgba(0,0,0,.3),0 2px 6px rgba(26,53,96,.3);position:relative}
   .brand .globe::after{content:"";position:absolute;left:34%;top:32%;width:5px;height:5px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px 1px rgba(224,129,42,.8)}
+  .brand .emblem{width:36px;height:36px;border-radius:50%;display:block;box-shadow:0 0 0 2px rgba(184,146,74,.4),0 2px 8px rgba(20,33,61,.25);background:#fff}
   .brand b{font-size:15.5px;font-weight:900;color:var(--navy);letter-spacing:-.4px;white-space:nowrap}
   .tabs{display:flex;gap:2px;flex:1 1 auto;overflow-x:auto;scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}
@@ -78,7 +82,7 @@
   .expect{max-width:660px;margin:30px auto 0;background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px 22px 12px;text-align:left;box-shadow:0 3px 14px rgba(60,40,10,.06)}
   .expect h3{font-size:16.5px;font-weight:900;color:var(--navy);text-align:center;margin-bottom:18px}
   .erow{display:flex;gap:13px;align-items:flex-start;margin-bottom:15px}
-  .erow .ei{flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:#FBF1DD;display:flex;align-items:center;justify-content:center}
+  .erow .ei{flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:#F1E6D3;display:flex;align-items:center;justify-content:center}
   .erow .ei svg{width:18px;height:18px}
   .erow .et{font-size:14px;color:var(--ink-2);line-height:1.6}
   .erow .et b{display:block;color:var(--navy);font-size:14.5px}
@@ -88,8 +92,8 @@
   .nc-card{background:var(--cream);border:1px solid var(--line);border-radius:var(--r);padding:26px 24px}
   .nc-card .nc-ico{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;margin-bottom:14px}
   .nc-card .nc-ico svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-  .nc-1 .nc-ico{background:linear-gradient(180deg,#E4A85C,#C8843A)}
-  .nc-2 .nc-ico{background:linear-gradient(180deg,#5B87C9,#2C55A0)}
+  .nc-1 .nc-ico{background:linear-gradient(180deg,#CDA65B,#A67A2E)}
+  .nc-2 .nc-ico{background:linear-gradient(180deg,#5b7fb5,#2c4d8a)}
   .nc-card h3{font-size:19px;font-weight:900;letter-spacing:-.4px;color:var(--navy)}
   .nc-card p{margin-top:10px;color:var(--ink-2);font-size:14.5px;line-height:1.7}
   .nc-card a.nc-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:14px;font-weight:800;color:var(--gold-2)}
@@ -118,20 +122,20 @@
 
   /* ── 히어로 (환영 탭 첫 화면 · 교회의 얼굴) ── */
   #p-newcomer{padding-top:0}
-  .hero{position:relative;overflow:hidden;color:#fff;background:radial-gradient(1200px 600px at 70% 40%,#2a4a86 0%,#1a3560 40%,#0f1f3d 100%);margin-bottom:54px}
+  .hero{position:relative;overflow:hidden;color:#fff;background:radial-gradient(1200px 600px at 70% 40%,#2b4a7a 0%,#14213d 40%,#0d1730 100%);margin-bottom:54px}
   .hero::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.9;background-image:radial-gradient(1.4px 1.4px at 12% 22%,rgba(255,255,255,.9) 50%,transparent 51%),radial-gradient(1.2px 1.2px at 28% 68%,rgba(255,255,255,.75) 50%,transparent 51%),radial-gradient(1.6px 1.6px at 44% 14%,rgba(255,255,255,.85) 50%,transparent 51%),radial-gradient(1px 1px at 58% 80%,rgba(255,255,255,.7) 50%,transparent 51%),radial-gradient(1.5px 1.5px at 76% 12%,rgba(255,255,255,.9) 50%,transparent 51%),radial-gradient(1.1px 1.1px at 88% 58%,rgba(255,255,255,.7) 50%,transparent 51%),radial-gradient(1.3px 1.3px at 20% 90%,rgba(255,255,255,.7) 50%,transparent 51%),radial-gradient(1px 1px at 66% 36%,rgba(255,255,255,.65) 50%,transparent 51%),radial-gradient(1.4px 1.4px at 93% 84%,rgba(255,255,255,.8) 50%,transparent 51%),radial-gradient(1px 1px at 6% 52%,rgba(255,255,255,.6) 50%,transparent 51%),radial-gradient(1.2px 1.2px at 50% 55%,rgba(255,255,255,.5) 50%,transparent 51%),radial-gradient(1.1px 1.1px at 36% 40%,rgba(255,255,255,.6) 50%,transparent 51%),radial-gradient(1.3px 1.3px at 82% 30%,rgba(255,255,255,.7) 50%,transparent 51%)}
   .hero .hwrap{position:relative;max-width:var(--maxw);margin:0 auto;padding:54px 22px 50px;display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:center}
   @media(max-width:760px){ .hero .hwrap{grid-template-columns:1fr;text-align:center;padding:40px 22px 44px} }
-  .hero .heye{font-size:12.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#F2C078}
+  .hero .heye{font-size:12.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#E9C77B}
   .hero h1{margin-top:12px;font-size:clamp(28px,4.6vw,46px);font-weight:900;letter-spacing:-1px;line-height:1.22}
-  .hero h1 b{color:#F2C078}
+  .hero h1 b{color:#E9C77B}
   .hero .hsub{margin-top:14px;font-size:clamp(15px,1.9vw,17.5px);line-height:1.65;color:rgba(255,255,255,.86);max-width:520px}
   @media(max-width:760px){ .hero .hsub{margin-left:auto;margin-right:auto} }
   .hero .hbtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
   @media(max-width:760px){ .hero .hbtns{justify-content:center} }
   .hero .hbtn{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:15px;border-radius:999px;padding:13px 22px;cursor:pointer;border:0;font-family:inherit;-webkit-tap-highlight-color:transparent;transition:transform .14s}
   .hero .hbtn:active{transform:scale(.97)}
-  .hero .hb-gold{background:linear-gradient(180deg,#E4A85C,#C8843A);color:#fff;box-shadow:0 6px 18px rgba(200,132,58,.4)}
+  .hero .hb-gold{background:linear-gradient(180deg,#CDA65B,#A67A2E);color:#fff;box-shadow:0 6px 18px rgba(200,132,58,.4)}
   .hero .hb-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.5)}
   .hero .hb-kakao{background:#FEE500;color:#3A1D1D;box-shadow:0 6px 18px rgba(0,0,0,.25)}
   .hero .hb-kakao svg{fill:#3A1D1D;stroke:none}
@@ -141,38 +145,38 @@
   .hero .hglobe img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;animation:hspin 90s linear infinite}
   @keyframes hspin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
   .hero .hglobe::after{content:"";position:absolute;inset:-6%;border-radius:50%;pointer-events:none;box-shadow:inset 0 0 40px rgba(120,170,255,.35),0 0 60px 4px rgba(120,170,255,.22)}
-  .hero .hpin{position:absolute;left:31%;top:29%;width:12px;height:12px;border-radius:50%;background:#F2C078;box-shadow:0 0 0 4px rgba(242,192,120,.35),0 0 18px 4px rgba(242,192,120,.9);animation:hpulse 2.2s ease-in-out infinite}
+  .hero .hpin{position:absolute;left:31%;top:29%;width:12px;height:12px;border-radius:50%;background:#E9C77B;box-shadow:0 0 0 4px rgba(242,192,120,.35),0 0 18px 4px rgba(242,192,120,.9);animation:hpulse 2.2s ease-in-out infinite}
   @keyframes hpulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.8}}
-  .hero .hlab{position:absolute;left:31%;top:29%;transform:translate(14px,-8px);font-size:11px;font-weight:800;letter-spacing:.8px;color:#F2C078;text-transform:uppercase;white-space:nowrap}
+  .hero .hlab{position:absolute;left:31%;top:29%;transform:translate(14px,-8px);font-size:11px;font-weight:800;letter-spacing:.8px;color:#E9C77B;text-transform:uppercase;white-space:nowrap}
   @media(max-width:760px){ .hero .hglobe{order:-1;width:min(220px,60vw)} }
 
   .member .photo{width:104px;height:104px;border-radius:50%;object-fit:cover;object-position:top center;margin:0 auto 15px;box-shadow:0 5px 16px rgba(60,40,10,.14);background:#fff}
   /* 우리 이야기 (사명·성경대로·비전) */
-  .mission-box{max-width:720px;margin:40px auto 0;background:linear-gradient(150deg,#2B3A5C,#1a2540);color:#fff;border-radius:18px;padding:30px 28px;text-align:center;box-shadow:0 12px 34px rgba(26,37,64,.22)}
-  .mission-box .mv{font-size:12px;font-weight:800;letter-spacing:1.4px;color:#F2C078;text-transform:uppercase}
+  .mission-box{max-width:720px;margin:40px auto 0;background:linear-gradient(150deg,#1f2f55,#14213d);color:#fff;border-radius:18px;padding:30px 28px;text-align:center;box-shadow:0 12px 34px rgba(26,37,64,.22)}
+  .mission-box .mv{font-size:12px;font-weight:800;letter-spacing:1.4px;color:#E9C77B;text-transform:uppercase}
   .mission-box h3{margin-top:10px;font-size:clamp(20px,3vw,26px);font-weight:900;letter-spacing:-.5px;line-height:1.35}
-  .mission-box h3 b{color:#F2C078}
+  .mission-box h3 b{color:#E9C77B}
   .mission-box p{margin-top:12px;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.88)}
   .mission-box .mrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px;text-align:left}
   @media(max-width:560px){ .mission-box .mrow{grid-template-columns:1fr} }
   .mission-box .mcell{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px 18px}
-  .mission-box .mcell .me{font-size:11px;font-weight:800;letter-spacing:1.2px;color:#F2C078;text-transform:uppercase}
+  .mission-box .mcell .me{font-size:11px;font-weight:800;letter-spacing:1.2px;color:#E9C77B;text-transform:uppercase}
   .mission-box .mcell h4{margin-top:5px;font-size:16px;font-weight:900}
   .mission-box .mcell p{margin-top:6px;font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.85)}
   /* 푸터 — 진한 남색 박스 · 3열 · 밝은 글씨 · 위쪽 그림자 */
-  body footer{padding:26px 0 30px;text-align:left;border-top:0;background:linear-gradient(180deg,#22395f 0%,#1a3560 45%,#122747 100%);color:#fff;box-shadow:inset 0 14px 28px -14px rgba(0,0,0,.45),0 -6px 24px rgba(26,53,96,.18);position:relative}
-  body footer::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,#F2C078 30%,#F2C078 70%,transparent)}
+  body footer{padding:26px 0 30px;text-align:left;border-top:0;background:linear-gradient(180deg,#1f2f55 0%,#14213d 45%,#0d1730 100%);color:#fff;box-shadow:inset 0 14px 28px -14px rgba(0,0,0,.45),0 -6px 24px rgba(26,53,96,.18);position:relative}
+  body footer::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,#E9C77B 30%,#E9C77B 70%,transparent)}
   footer .fg{display:grid;grid-template-columns:1.15fr 1.7fr 1fr;gap:18px 28px;align-items:start}
   @media(max-width:760px){ footer .fg{grid-template-columns:1fr 1fr} footer .fc:first-child{grid-column:span 2} }
   @media(max-width:460px){ footer .fg{grid-template-columns:1fr} footer .fc:first-child{grid-column:auto} }
   footer .fc{font-size:12px;color:rgba(255,255,255,.78);line-height:1.65}
   footer .fc a{color:#fff;font-weight:700;text-decoration:none;text-shadow:0 1px 2px rgba(0,0,0,.35);transition:color .15s}
-  footer .fc a:hover{color:#F2C078}
+  footer .fc a:hover{color:#E9C77B}
   footer .fc .nm{font-size:16px;font-weight:900;color:#fff;letter-spacing:-.3px;text-shadow:0 1px 3px rgba(0,0,0,.4)}
   footer .fc .sub{color:rgba(255,255,255,.85);font-weight:600;margin-bottom:2px}
   footer .fc .tiny{font-size:11px;color:rgba(255,255,255,.6);margin-top:5px}
   footer .fc .tiny a{color:inherit}
-  footer .fc h5{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#F2C078;margin:2px 0 6px}
+  footer .fc h5{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#E9C77B;margin:2px 0 6px}
   footer .fc ul{list-style:none;margin:0;padding:0;columns:2;column-gap:16px}
   footer .fc li{break-inside:avoid;line-height:1.6;color:#fff;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.35)}
   @media(max-width:460px){ footer .fc ul{columns:1} }
@@ -218,18 +222,18 @@
 
   /* ── 사진 슬라이드 (환영) ── */
   .ps{position:relative;max-width:var(--maxw);margin:-22px auto 46px;padding:0 22px}
-  .ps .psbox{position:relative;height:clamp(240px,42vw,460px);border-radius:22px;overflow:hidden;box-shadow:0 18px 44px rgba(26,37,64,.22);background:#0f1f3d}
+  .ps .psbox{position:relative;height:clamp(240px,42vw,460px);border-radius:22px;overflow:hidden;box-shadow:0 18px 44px rgba(26,37,64,.22);background:#0d1730}
   .ps .psl{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}
   .ps .psl.on{opacity:1}
   .ps .psl img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);animation:kb 9s ease-in-out both}
   @keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12)}}
   .ps .psl::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(10,20,40,.72) 100%)}
   .ps .pscap{position:absolute;left:0;right:0;bottom:0;padding:22px 26px;color:#fff;z-index:2}
-  .ps .pscap .pe{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#F2C078}
+  .ps .pscap .pe{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#E9C77B}
   .ps .pscap .pt{margin-top:4px;font-size:clamp(17px,2.6vw,24px);font-weight:900;letter-spacing:-.5px;text-shadow:0 2px 10px rgba(0,0,0,.4)}
   .ps .psdots{position:absolute;right:20px;bottom:20px;display:flex;gap:6px;z-index:3}
   .ps .psdots button{width:8px;height:8px;border-radius:50%;border:0;background:rgba(255,255,255,.45);cursor:pointer;padding:0;transition:all .25s}
-  .ps .psdots button.on{background:#F2C078;width:22px;border-radius:999px}
+  .ps .psdots button.on{background:#E9C77B;width:22px;border-radius:999px}
   .ps .psnav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
   .ps .psnav svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
   .ps .psnav.l{left:14px} .ps .psnav.r{right:14px}
@@ -237,27 +241,27 @@
 
   /* ── 연합예배 주간 허브 ── */
   .wk{max-width:760px;margin:30px auto 0;text-align:left}
-  .wk-hero{background:linear-gradient(150deg,#2B3A5C,#1a2540);color:#fff;border-radius:20px;padding:24px 24px 22px;box-shadow:0 14px 36px rgba(26,37,64,.26);position:relative;overflow:hidden}
+  .wk-hero{background:linear-gradient(150deg,#1f2f55,#14213d);color:#fff;border-radius:20px;padding:24px 24px 22px;box-shadow:0 14px 36px rgba(26,37,64,.26);position:relative;overflow:hidden}
   .wk-hero::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(242,192,120,.22),transparent 65%)}
-  .wk-hero .we{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#F2C078;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .wk-hero .we{font-size:11.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#E9C77B;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .wk-hero .we .wl{background:#dc2626;color:#fff;font-size:10px;padding:2px 7px;border-radius:999px;letter-spacing:.5px;display:none}
   .wk-hero .wt{margin-top:8px;font-size:clamp(21px,3.4vw,28px);font-weight:900;letter-spacing:-.6px;line-height:1.3}
   .wk-hero .wm{margin-top:6px;font-size:13.5px;color:rgba(255,255,255,.78);font-weight:600}
-  .wk-hero .wref{margin-top:14px;font-size:12px;font-weight:800;letter-spacing:1px;color:#F2C078;text-transform:uppercase}
+  .wk-hero .wref{margin-top:14px;font-size:12px;font-weight:800;letter-spacing:1px;color:#E9C77B;text-transform:uppercase}
   .wk-hero .wrefv{font-size:19px;font-weight:900;letter-spacing:-.3px;margin-top:2px}
   .wk-hero .wbtns{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
   .wk-hero .wb{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:12px;padding:10px 13px;font-size:13.5px;font-weight:800;cursor:pointer;font-family:inherit;text-decoration:none;transition:background .18s}
   .wk-hero .wb:hover{background:rgba(255,255,255,.18)}
   .wk-hero .wb svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
   .wk-hero .wb small{font-size:10.5px;font-weight:700;opacity:.7;margin-left:2px}
-  .wk-hero .wb.gold{background:linear-gradient(180deg,#E4A85C,#C8843A);border-color:transparent}
+  .wk-hero .wb.gold{background:linear-gradient(180deg,#CDA65B,#A67A2E);border-color:transparent}
   .wk-hero .wb.live{background:#dc2626;border-color:transparent;display:none}
   .wk2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
   @media(max-width:560px){ .wk2{grid-template-columns:1fr} }
   .wkc{display:flex;align-items:center;gap:13px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:0 2px 10px rgba(60,40,10,.05);text-decoration:none;color:inherit;cursor:pointer;transition:transform .14s,box-shadow .14s}
   .wkc:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(60,40,10,.1)}
-  .wkc .wi{flex:0 0 auto;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(180deg,#E4A85C,#C8843A)}
-  .wkc .wi.blue{background:linear-gradient(180deg,#5B87C9,#2C55A0)}
+  .wkc .wi{flex:0 0 auto;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(180deg,#CDA65B,#A67A2E)}
+  .wkc .wi.blue{background:linear-gradient(180deg,#5b7fb5,#2c4d8a)}
   .wkc .wi.teal{background:linear-gradient(180deg,#34c3b5,#12857c)}
   .wkc .wi svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
   .wkc .wb2{flex:1;min-width:0}
@@ -265,11 +269,11 @@
   .wkc p{margin-top:2px;font-size:12.5px;color:var(--ink-3);font-weight:600;line-height:1.5}
   .wkc .wgo{flex:0 0 auto;color:var(--gold-2)}
   .wkc .wgo svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-  .pray{margin-top:12px;background:#FBF1DD;border:1px solid rgba(200,148,74,.35);border-radius:16px;padding:18px 20px}
-  .pray .pe{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.6px;color:#a5631f;text-transform:uppercase}
+  .pray{margin-top:12px;background:#F1E6D3;border:1px solid rgba(200,148,74,.35);border-radius:16px;padding:18px 20px}
+  .pray .pe{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.6px;color:#8f6a2a;text-transform:uppercase}
   .pray .pe svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
   .pray p{margin-top:8px;font-size:15px;font-weight:700;color:var(--navy);line-height:1.6}
-  .pray p b{color:#a5631f}
+  .pray p b{color:#8f6a2a}
   .sl-h{margin:30px 0 10px;display:flex;align-items:baseline;justify-content:space-between;gap:10px}
   .sl-h h3{font-size:17px;font-weight:900;color:var(--navy)}
   .sl-h a{font-size:13px;font-weight:800;color:var(--gold-2)}
@@ -288,7 +292,7 @@
   /* ── 삶공부 ── */
   .st-wrap{max-width:720px;margin:0 auto;text-align:left}
   .st-term{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-top:12px}
-  .st-term.tint{background:#FBF1DD;border-color:rgba(200,148,74,.3)}
+  .st-term.tint{background:#F1E6D3;border-color:rgba(200,148,74,.3)}
   .st-term h3{font-size:15.5px;font-weight:900;color:var(--navy)}
   .st-term p{margin-top:6px;font-size:14px;line-height:1.7;color:var(--ink-2)}
   .st-term p b{color:var(--ink)}
@@ -297,18 +301,18 @@
   .st-h p{margin-top:4px;font-size:13.5px;color:var(--ink-3);font-weight:600}
   .st-map{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;margin:16px auto 0;max-width:720px}
   .st-map .m{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:14px;min-width:96px}
-  .st-map .m .mn{width:26px;height:26px;border-radius:8px;background:linear-gradient(180deg,#FFB830,#C47212);color:#fff;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center}
+  .st-map .m .mn{width:26px;height:26px;border-radius:8px;background:linear-gradient(180deg,#D9AE5A,#9A7130);color:#fff;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center}
   .st-map .m .mt{font-size:12.5px;font-weight:800;color:var(--navy);text-align:center;white-space:nowrap}
   .st-map .arrow{color:var(--gold);display:flex}
   .st-map .arrow svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
   @media(max-width:640px){ .st-map .arrow svg{transform:rotate(90deg)} .st-map{flex-direction:column} .st-map .m{width:100%;flex-direction:row;justify-content:flex-start;gap:12px} }
   .crs{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px 16px;margin-top:9px;cursor:pointer;font-family:inherit;transition:transform .14s,box-shadow .14s}
   .crs:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(60,40,10,.09)}
-  .crs .cn{flex:0 0 auto;width:32px;height:32px;border-radius:10px;background:linear-gradient(180deg,#FFB830,#C47212);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(196,114,18,.3)}
+  .crs .cn{flex:0 0 auto;width:32px;height:32px;border-radius:10px;background:linear-gradient(180deg,#D9AE5A,#9A7130);color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(196,114,18,.3)}
   .crs .cb{flex:1;min-width:0}
   .crs .ct{font-size:15px;font-weight:900;color:var(--navy);letter-spacing:-.3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
   .crs .tag{display:inline-block;padding:1.5px 7px;border-radius:999px;font-size:9.5px;font-weight:800;vertical-align:middle;white-space:nowrap}
-  .crs .tag.f{background:#FBF1DD;border:1px solid rgba(200,148,74,.4);color:#a5631f}
+  .crs .tag.f{background:#F1E6D3;border:1px solid rgba(200,148,74,.4);color:#8f6a2a}
   .crs .tag.o{background:rgba(44,119,176,.10);border:1px solid rgba(44,119,176,.3);color:#2C77B0}
   .crs .cd{margin-top:3px;font-size:12.5px;color:var(--ink-2);line-height:1.55}
   .crs .cd b{color:var(--ink)}
@@ -377,7 +381,7 @@
   .mjw-mail{flex-shrink:0;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--cream);border:1px solid var(--line);color:var(--navy)}
   .mjw-mail svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
   .mj-cta{max-width:620px;margin:22px auto 0;text-align:center}
-  .mj-cta .btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,#E4A85C,#C8843A);color:#fff;font-weight:800;font-size:15px;border-radius:999px;padding:13px 24px;box-shadow:0 6px 18px rgba(200,132,58,.34)}
+  .mj-cta .btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,#CDA65B,#A67A2E);color:#fff;font-weight:800;font-size:15px;border-radius:999px;padding:13px 24px;box-shadow:0 6px 18px rgba(200,132,58,.34)}
 
   /* 연합예배 */
   .w-badge{display:inline-block;background:var(--peach);color:var(--gold-2);font-weight:800;font-size:12.5px;padding:6px 14px;border-radius:999px;letter-spacing:.3px}
@@ -392,7 +396,7 @@
   .w-note{margin:22px auto 0;max-width:640px;text-align:center;color:var(--ink-2);font-size:14.5px;font-style:italic}
   /* 목회자 코너 카드 · 헌금 · 삶공부 리스트 (공용) */
   .link-card{max-width:720px;margin:26px auto 0;display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 2px 10px rgba(60,40,10,.05);text-align:left}
-  .link-card .lc-ico{flex:0 0 auto;width:46px;height:46px;border-radius:13px;background:linear-gradient(180deg,#E4A85C,#C8843A);display:flex;align-items:center;justify-content:center;color:#fff}
+  .link-card .lc-ico{flex:0 0 auto;width:46px;height:46px;border-radius:13px;background:linear-gradient(180deg,#CDA65B,#A67A2E);display:flex;align-items:center;justify-content:center;color:#fff}
   .link-card .lc-ico svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
   .link-card .lc-b{flex:1;min-width:0}
   .link-card h3{font-size:16.5px;font-weight:900;color:var(--navy)}
@@ -402,11 +406,11 @@
   .give-ways{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px auto 0;max-width:720px;text-align:left}
   @media(max-width:560px){ .give-ways{grid-template-columns:1fr} }
   .give-box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 20px}
-  .give-box .gi{width:44px;height:44px;border-radius:12px;background:#FBF1DD;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+  .give-box .gi{width:44px;height:44px;border-radius:12px;background:#F1E6D3;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
   .give-box .gi svg{width:22px;height:22px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
   .give-box h3{margin:0 0 6px;font-size:17px;color:var(--navy)}
   .give-box p{margin:0 0 14px;font-size:14px;color:var(--ink-2);line-height:1.7}
-  .btn-gold{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,#E4A85C,#C8843A);color:#fff;font-weight:800;font-size:15px;border-radius:999px;padding:12px 22px;box-shadow:0 6px 18px rgba(200,132,58,.34)}
+  .btn-gold{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,#CDA65B,#A67A2E);color:#fff;font-weight:800;font-size:15px;border-radius:999px;padding:12px 22px;box-shadow:0 6px 18px rgba(200,132,58,.34)}
   .btn-gold svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
   .course-list{max-width:640px;margin:26px auto 0;display:flex;flex-direction:column;gap:9px;text-align:left}
   .course-item{display:flex;align-items:center;gap:13px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 18px}
@@ -436,6 +440,47 @@
   footer p{font-size:13px;color:var(--ink-3);line-height:1.7}
   footer .fname{font-weight:900;color:var(--navy);font-size:14.5px}
   .note{max-width:660px;margin:0 auto 6px;background:#FFF8EC;border:1px solid #F0DEBB;border-radius:14px;padding:12px 16px;font-size:12.5px;color:#8a6a2f;text-align:center}
+
+  /* ── THEME · Heritage Modern ── */
+  :root{ --serif:'Noto Serif KR','Apple Myungjo','Nanum Myeongjo',Georgia,'Times New Roman',serif; }
+  body{position:relative}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.035;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")}
+  .panel,footer{position:relative;z-index:1}
+  .topbar{position:sticky}
+  .sec-title,.hero h1,.mission-box h3,.wk-hero .wt,.nc-card h3,.mjw-name,.member h4,.team-head,.st-h h3,.expect h3,.mj-intro h3,.link-card h3,.wkc h3,.give-box h3,.gf h3,.care h4,.crs .ct,.st-term h3,.pscap .pt,footer .fc .nm,.brand b{font-family:var(--serif);letter-spacing:-.2px}
+  .hero h1{font-weight:900;letter-spacing:-.6px;font-size:clamp(26px,4.1vw,42px);word-break:keep-all;overflow-wrap:anywhere}
+  .sec-title,.wk-hero .wt,.mission-box h3,.nc-card h3,.st-h h3,.pscap .pt,.hero .hsub,.sec-lead{word-break:keep-all}
+  .sec-title{font-weight:900}
+  .sec-title::after{content:"";display:block;width:34px;height:2px;margin:12px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .sec-eyebrow{letter-spacing:2.2px;color:var(--gold-2)}
+  .hero .heye,.wk-hero .we,.mission-box .mv{letter-spacing:2.4px}
+  .hero .hcap{font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:.6px;font-size:13px;color:rgba(233,199,123,.8)}
+  .hero{background:radial-gradient(1200px 600px at 70% 40%,#2b4a7a 0%,#14213d 42%,#0d1730 100%)}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(233,199,123,.7),transparent)}
+  .tab.active{background:var(--navy);box-shadow:inset 0 0 0 1px rgba(233,199,123,.35)}
+  .nc-card,.mjw-card,.member,.wkc,.st-term,.crs,.give-box,.link-card,.gf,.care,.mj-intro,.expect,details.stf{box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 18px rgba(40,30,10,.06)}
+  .expect,.mj-intro,.gf{border-color:#D9CBAE}
+  .expect h3::after,.mj-intro h3::after{content:none}
+  .pray{background:linear-gradient(180deg,#F5EBD6,#EFE2C6);border-color:rgba(184,146,74,.45)}
+  .w-badge{background:#F1E6D3;color:#8f6a2a}
+  .btn-gold,.hero .hb-gold,.mj-cta .btn{background:linear-gradient(180deg,#CDA65B,#A67A2E);box-shadow:0 6px 18px rgba(154,113,48,.35)}
+  .hero .hb-kakao{box-shadow:0 6px 18px rgba(0,0,0,.28)}
+  .ps .psbox{box-shadow:0 18px 44px rgba(20,33,61,.28),0 0 0 1px rgba(184,146,74,.25)}
+  .ps .psl img{filter:saturate(.92) contrast(1.03) sepia(.06)}
+  .gal img{filter:saturate(.92) sepia(.06)}
+  .member .photo{box-shadow:0 5px 16px rgba(40,30,10,.18),0 0 0 3px #fff,0 0 0 4px rgba(184,146,74,.45)}
+  .mission-box{box-shadow:0 12px 34px rgba(20,33,61,.28),inset 0 0 0 1px rgba(233,199,123,.18)}
+  .wk-hero{box-shadow:0 14px 36px rgba(20,33,61,.28),inset 0 0 0 1px rgba(233,199,123,.18)}
+  .gc-head{background:linear-gradient(135deg,#1f2f55,#14213d)}
+  .gc-fab{background:linear-gradient(135deg,#1f2f55,#14213d);box-shadow:0 8px 26px rgba(20,33,61,.45),0 0 0 2px rgba(233,199,123,.35)}
+
+  /* ── 섹션 컷: 한 면 = 한 메시지 ── */
+  .cut{max-width:760px;margin:58px auto 20px;display:flex;align-items:center;gap:14px;padding:0 4px}
+  .cut::before,.cut::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(184,146,74,.55))}
+  .cut::after{background:linear-gradient(90deg,rgba(184,146,74,.55),transparent)}
+  .cut span{font-family:var(--serif);font-size:12px;font-weight:700;letter-spacing:2.2px;color:var(--gold-2);white-space:nowrap}
+  .cut+.sec-title,.cut+.sec-eyebrow{margin-top:0}
+  .sec-eyebrow+.sec-title{margin-top:8px}
 </style>
 </head>
 <body>
@@ -444,7 +489,7 @@
 <div class="topbar">
   <div class="row">
     <div class="brand" onclick="goTab('newcomer')" title="홈으로">
-      <span class="globe"></span>
+      <img class="emblem" src="/images/icon-192-em.png" alt="시애틀지구촌교회 엠블럼" width="36" height="36">
       <b>시애틀지구촌교회</b>
     </div>
     <nav class="tabs" id="tabs">
@@ -471,7 +516,7 @@
       <div>
         <div class="heye">GMC of Greater Seattle · Lynnwood, WA</div>
         <h1><span class="ko">영혼 구원하여<br><b>그리스도의 제자</b> 만드는 교회</span><span class="en">A church that <b>wins souls</b><br>and makes disciples of Christ</span></h1>
-        <p class="hsub"><span class="ko">집에서 모이는 성경적 가정교회입니다. 믿음이 있든 없든, 밥 한 끼로 편하게 시작하세요 — 혼자 두지 않겠습니다.</span><span class="en">A biblical house church that meets in homes. Believer or not, start with a shared meal — you won't walk alone.</span></p>
+        <p class="hsub"><span class="ko">가정에서 모이는 신약교회의 원형, 성경적 가정교회입니다. 믿음의 유무와 상관없이 한 식탁에서 시작하십시오. 이곳에서는 누구도 혼자 걷지 않습니다.</span><span class="en">A biblical house church that meets in homes. Believer or not, start with a shared meal — you won't walk alone.</span></p>
         <div class="hbtns">
           <button class="hbtn hb-gold" onclick="document.querySelector('.expect').scrollIntoView({behavior:'smooth',block:'start'})"><svg viewBox="0 0 24 24"><path d="M12 3c2.5 2 4 4.2 4 6.5A4 4 0 0 1 8 9.5C8 7.2 9.5 5 12 3z"/><path d="M4 21c1.2-2.4 3.8-4 8-4s6.8 1.6 8 4"/></svg><span class="ko">처음 오셨나요?</span><span class="en">New here?</span></button>
           <a class="hbtn hb-kakao" href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.52 1.46 4.77 3.74 6.25-.13.97-.5 2.3-1.24 3.5 1.6-.27 3.18-.96 4.4-1.78.96.24 1.99.36 3.1.36 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg><span class="ko">카톡방 초대</span><span class="en">KakaoTalk room</span></a>
@@ -489,10 +534,10 @@
   <div class="ps" id="ps">
     <div class="psbox">
       <div class="psl on"><img src="/images/worship-current.jpg" alt=""><div class="pscap"><div class="pe"><span class="ko">주일 연합예배</span><span class="en">Sunday united worship</span></div><div class="pt"><span class="ko">흩어진 목장이 한자리에 모입니다</span><span class="en">Scattered homes gather as one</span></div></div></div>
-      <div class="psl"><img src="/images/meal1.jpg" alt=""><div class="pscap"><div class="pe"><span class="ko">예배 후 한 밥상</span><span class="en">One table after worship</span></div><div class="pt"><span class="ko">그 밥상이 우리 교회의 문입니다</span><span class="en">That table is our front door</span></div></div></div>
+      <div class="psl"><img src="/images/meal1.jpg" alt=""><div class="pscap"><div class="pe"><span class="ko">예배 후 한 밥상</span><span class="en">One table after worship</span></div><div class="pt"><span class="ko">그 식탁이 우리 교회의 첫 문입니다</span><span class="en">That table is our front door</span></div></div></div>
       <div class="psl"><img src="/images/table-fellowship.jpg" alt=""><div class="pscap"><div class="pe"><span class="ko">식탁 교제</span><span class="en">Table fellowship</span></div><div class="pt"><span class="ko">온 세대가 둘러앉아 삶을 나눕니다</span><span class="en">Every generation, sharing life</span></div></div></div>
-      <div class="psl"><img src="/images/life-meal.jpg" alt=""><div class="pscap"><div class="pe"><span class="ko">목장 · 가정교회</span><span class="en">Mokjang · house church</span></div><div class="pt"><span class="ko">집에서 모이는 작은 교회</span><span class="en">A little church that meets in a home</span></div></div></div>
-      <div class="psl"><img src="/images/meal2.jpg" alt=""><div class="pscap"><div class="pe"><span class="ko">환대</span><span class="en">Hospitality</span></div><div class="pt"><span class="ko">믿음이 있든 없든, 있는 그대로 오세요</span><span class="en">Believer or not, come as you are</span></div></div></div>
+      <div class="psl"><img src="/images/life-meal.jpg" alt=""><div class="pscap"><div class="pe"><span class="ko">목장 · 가정교회</span><span class="en">Mokjang · house church</span></div><div class="pt"><span class="ko">가정에서 모이는 작은 교회</span><span class="en">A little church that meets in a home</span></div></div></div>
+      <div class="psl"><img src="/images/meal2.jpg" alt=""><div class="pscap"><div class="pe"><span class="ko">환대</span><span class="en">Hospitality</span></div><div class="pt"><span class="ko">믿음이 있든 없든, 있는 그대로 오십시오</span><span class="en">Believer or not, come as you are</span></div></div></div>
       <button class="psnav l" onclick="psGo(-1)" aria-label="이전"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
       <button class="psnav r" onclick="psGo(1)" aria-label="다음"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
       <div class="psdots" id="psDots"></div>
@@ -504,45 +549,47 @@
     <p class="sec-lead"><span class="ko">혹시 교회나 이 도시가 처음이신가요? 편안한 마음으로 연락 주세요.</span><span class="en">New to church, or new to this city? Just reach out — we'd love to hear from you.</span></p>
 
     <div class="expect">
-      <h3><span class="ko">처음 오시면, 이렇게 맞아드려요</span><span class="en">What to expect on your first visit</span></h3>
+      <h3><span class="ko">첫 방문, 이렇게 맞이하겠습니다</span><span class="en">What to expect on your first visit</span></h3>
       <div class="erow">
-        <span class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="#a5631f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg></span>
-        <span class="et"><b>주일 오전 11시, 함께 예배</b><span class="ko">지금은 담임목사 가정에서 함께 드리며, 멀리 계시면 온라인으로도 참여하실 수 있어요. 정확한 장소는 <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a>로 안내해 드립니다.</span><span class="en">Sundays 11 AM — for now in our pastor's home, joinable online too. We'll share the exact place via <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a>.</span></span>
+        <span class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="#8f6a2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg></span>
+        <span class="et"><b>주일 오전 11시, 함께 예배</b><span class="ko">현재 담임목사 가정에서 함께 드리며, 멀리 계신 분은 온라인으로 함께하실 수 있습니다. 모임 장소는 <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a>로 안내해 드립니다.</span><span class="en">Sundays 11 AM — for now in our pastor's home, joinable online too. We'll share the exact place via <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a>.</span></span>
       </div>
       <div class="erow">
-        <span class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="#a5631f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v7a2.2 2.2 0 0 0 4.4 0V3M7.2 3v18M18 3c-1.7 0-2.7 2-2.7 4.5s1 3.5 2.7 3.5M18 3v18"/></svg></span>
-        <span class="et"><b>예배 후, 한 밥상에서 함께 식사</b><span class="ko">예배가 끝나면 온 세대가 한자리에 둘러앉아 밥을 나눕니다. 그 밥상이 우리 교회의 문이에요.</span><span class="en">After worship, all generations gather around one table. That table is our front door.</span></span>
+        <span class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="#8f6a2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v7a2.2 2.2 0 0 0 4.4 0V3M7.2 3v18M18 3c-1.7 0-2.7 2-2.7 4.5s1 3.5 2.7 3.5M18 3v18"/></svg></span>
+        <span class="et"><b>예배 후, 한 밥상에서 함께 식사</b><span class="ko">예배가 끝나면 온 세대가 한 식탁에 둘러앉습니다. 그 식탁이 우리 교회의 첫 문입니다.</span><span class="en">After worship, all generations gather around one table. That table is our front door.</span></span>
       </div>
       <div class="erow">
-        <span class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="#a5631f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span>
-        <span class="et"><b>준비물도, 부담도 없어요</b><span class="ko">아무것도 준비하지 않으셔도 됩니다. 믿음이 있든 없든, 있는 그대로 오세요.</span><span class="en">Nothing to prepare. Believer or not, come just as you are.</span></span>
+        <span class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="#8f6a2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span>
+        <span class="et"><b>준비할 것도, 부담도 없습니다</b><span class="ko">아무것도 준비하지 않으셔도 됩니다. 믿음의 유무와 상관없이, 있는 그대로 오시면 충분합니다.</span><span class="en">Nothing to prepare. Believer or not, come just as you are.</span></span>
       </div>
       <div class="erow">
-        <span class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="#a5631f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M14 20a6 6 0 0 1 10-4"/></svg></span>
-        <span class="et"><b>아이와 함께 오셔도 좋아요</b><span class="ko">어린이도 청소년도 환영합니다. <a href="#" onclick="goTab('newgen');return false">새 세대 살펴보기 →</a></span><span class="en">Children and youth are welcome. <a href="#" onclick="goTab('newgen');return false">See our New Generation →</a></span></span>
+        <span class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="#8f6a2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M14 20a6 6 0 0 1 10-4"/></svg></span>
+        <span class="et"><b>자녀와 함께 오셔도 좋습니다</b><span class="ko">어린이도 청소년도 환영합니다. <a href="#" onclick="goTab('newgen');return false">새 세대 살펴보기 →</a></span><span class="en">Children and youth are welcome. <a href="#" onclick="goTab('newgen');return false">See our New Generation →</a></span></span>
       </div>
     </div>
 
+<div class="cut"><span><span class="ko">두 가지 연결</span><span class="en">Two ways to connect</span></span></div>
     <div class="nc-grid">
       <div class="nc-card nc-1">
         <div class="nc-ico"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M10 20v-4.5h4V20"/></svg></div>
         <h3><span class="ko">처음 방문하시나요?</span><span class="en">Visiting for the first time?</span></h3>
-        <p><span class="ko">한마디 남겨 주시면, 가까운 가정(목장)과 연결해 드리고 첫 자리를 편안하게 안내해 드려요.</span><span class="en">Leave us a note and we'll connect you with a nearby home (mokjang) and make your first visit easy.</span></p>
+        <p><span class="ko">연락처를 남겨 주시면 가까운 가정(목장)과 연결해 드리고, 첫걸음을 정성껏 안내하겠습니다.</span><span class="en">Leave us a note and we'll connect you with a nearby home (mokjang) and make your first visit easy.</span></p>
         <a class="nc-link" href="#" onclick="goTab('mokjang');return false"><span class="ko">목장과 연결되기</span><span class="en">Connect with a house church</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="nc-card nc-2">
         <div class="nc-ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></div>
         <h3><span class="ko">시애틀로 이주하셨나요?</span><span class="en">Just moved to Seattle?</span></h3>
-        <p><span class="ko">낯선 도시의 첫날은 막막하죠. 우리와 협력하는 글로벌 환대 플랫폼 <b>HebronGuide 시애틀</b>이 정착에 실질적인 도움을 드립니다.</span><span class="en">The first days in a new city can feel overwhelming. <b>HebronGuide Seattle</b>, our partner hospitality platform, gives real help with settling in.</span></p>
+        <p><span class="ko">낯선 도시의 첫날은 누구에게나 막막합니다. 협력 환대 플랫폼 <b>HebronGuide 시애틀</b>이 주거·생활·행정 정착을 실질적으로 돕겠습니다.</span><span class="en">The first days in a new city can feel overwhelming. <b>HebronGuide Seattle</b>, our partner hospitality platform, gives real help with settling in.</span></p>
         <a class="nc-link" href="https://hebronguide.com/seattle/" target="_blank" rel="noopener"><span class="ko">HebronGuide 시애틀 열기</span><span class="en">Open HebronGuide Seattle</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
 
     <!-- 우리 이야기: 사명·핵심가치·비전 -->
+<div class="cut"><span><span class="ko">우리 이야기</span><span class="en">Our story</span></span></div>
     <div class="mission-box">
       <div class="mv"><span class="ko">우리 이야기 · 마태복음 28:19-20</span><span class="en">Our story · Matthew 28:19-20</span></div>
-      <h3><span class="ko">영혼 구원하여<br><b>그리스도의 제자</b> 만드는 교회</span><span class="en">A church that <b>wins souls</b><br>and makes disciples of Christ</span></h3>
-      <p><span class="ko">프로그램이 아니라, 한 사람이 예수를 만나고 제자로 자라 또 한 사람을 품는 것 — 그것이 교회입니다.</span><span class="en">Not programs — one person meeting Jesus, growing as a disciple, and carrying another. That is the church.</span></p>
+      <h3><span class="ko">한 사람이 예수를 만나고,<br>또 <b>한 사람을 품는</b> 교회</span><span class="en">One person meets Jesus,<br>and <b>carries another</b></span></h3>
+      <p><span class="ko">우리의 모든 것이 이 한 사명에서 나옵니다. 프로그램이 아니라, 한 사람이 예수를 만나고 제자로 자라 또 한 사람을 품는 것 — 그것이 교회입니다.</span><span class="en">Not programs — one person meeting Jesus, growing as a disciple, and carrying another. That is the church.</span></p>
       <div class="mrow">
         <div class="mcell">
           <div class="me"><span class="ko">핵심가치</span><span class="en">Core value</span></div>
@@ -558,6 +605,7 @@
     </div>
 
     <!-- 교역자 소개 -->
+<div class="cut"><span><span class="ko">섬기는 사람들</span><span class="en">Our team</span></span></div>
     <div class="team-wrap">
       <div class="team-head"><span class="ko">함께 섬기는 교역자</span><span class="en">The pastors who serve with you</span></div>
       <div class="team-sub"><span class="ko">직분은 자리가 아니라 자라온 열매입니다 <span style="color:var(--ink-3)">(막 10:45)</span></span><span class="en">Titles here are fruit that has grown, not rank (Mark 10:45)</span></div>
@@ -603,16 +651,17 @@
 <!-- ════ 목장 ════ -->
 <section class="panel sec" id="p-mokjang">
   <div class="wrap">
-    <div class="sec-eyebrow"><span class="ko">목장</span><span class="en">Mokjang · House Churches</span></div>
+    
     <h2 class="sec-title"><span class="ko">목장이 모여 한 교회입니다</span><span class="en">Homes gather, one church</span></h2>
-    <p class="sec-lead"><span class="ko">집에서 모이는 작은 교회 — 밥상에 둘러앉아 삶을 나누는 가족입니다.</span><span class="en">A little church that meets in a home — family sharing life around a table.</span></p>
+    <p class="sec-lead"><span class="ko">가정에서 모이는 작은 교회 — 한 식탁에 둘러앉아 삶을 나누는 믿음의 가족입니다.</span><span class="en">A little church that meets in a home — family sharing life around a table.</span></p>
 
     <div class="mj-intro">
       <h3><span class="ko">목장이 뭔가요?</span><span class="en">What is a mokjang?</span></h3>
-      <p><span class="ko"><b>집에서 모이는 작은 교회</b>예요. 예배당이 아니라 밥상에 둘러앉아 밥을 나누고, 삶을 나누고, 함께 기도하는 가족 — 우리 교회의 심장입니다. 지금 세 목장과 청소년 목장(GMC Y)이 주중에 각자 모입니다.</span><span class="en">A mokjang is <b>a little church that meets in a home</b> — not a sanctuary but a table, sharing meals, life, and prayer as family. Three mokjangs plus a youth home (GMC Y) meet midweek.</span></p>
-      <p class="free"><span class="ko">믿음이 있든 없든, 한 번 와서 밥만 드시고 가셔도 좋아요. 부담 없이 오세요.</span><span class="en">Believer or not, come once just for dinner — no pressure at all.</span></p>
+      <p><span class="ko">목장은 <b>가정에서 모이는 작은 교회</b>입니다. 예배당이 아닌 식탁에 둘러앉아 밥과 삶을 나누고 함께 기도하는 가족 — 우리 교회의 심장입니다. 현재 세 목장과 청소년 목장(GMC Y)이 주중에 각 가정에서 모입니다.</span><span class="en">A mokjang is <b>a little church that meets in a home</b> — not a sanctuary but a table, sharing meals, life, and prayer as family. Three mokjangs plus a youth home (GMC Y) meet midweek.</span></p>
+      <p class="free"><span class="ko">믿음이 있든 없든, 한 번 오셔서 식사만 하고 가셔도 좋습니다. 부담 없이 오십시오.</span><span class="en">Believer or not, come once just for dinner — no pressure at all.</span></p>
     </div>
 
+<div class="cut"><span><span class="ko">우리 목장</span><span class="en">Our house churches</span></span></div>
     <div class="mjw-list">
       <div class="mjw-card">
         <div class="mjw-flag"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAABQCAYAAADSm7GJAAAJ3UlEQVR42u2de3BU1R3HP79zd0MSCIFgAkQIjbzkqUR0pFYRpmAZZxyLoqi8avHRTjvQdjpSrGitOtTRUrHO2PoAfAM6RVpHIAOUl3WQTkMURQQEBCFAsiEvwu6959c/9i6EyKP9ozR3935nzmRn996dyfns75zf49xzhFZSVUdEPP91CXAnMAoYBBT7lwmh/h9S/+/XwDZgLfCGiOxrzY4zgUpdoKrdgUeBW4DOYb+2acWAd4A5InKwNWQ5A9wbgIVAN/8jz79OQsttU5acao7/3iFgmoisbAnZtIJ7D7DCh+u2+AITwm1TEp+J4zNyfWYrVPUen6UDIC3gjgFWtbBYE/ZjoGRbGORYESlXVUdUVYAioBIo9C8K4QYXsgBHgKHAYSMiCjzhQ/ZCuIGW8RkWAU+IiIqq9gA+BTqEIVBahVINwEADTALyWph3qOA7YNZnOsn4SYxQ6alRkkh4h8RIV1VVEQktOB3GaJ+lWq0SVdWwS9JXkTVbqkPLTWdL5rL3QgtOZws27SNhL6QzYGtDAybNMx+hQsChQsChQsChQsChQsChQsCh/rs42EgmZXZQhUz6nyO20c2cn3NUwAi2ycuYwqis2VKd9pkOzyqOEd7/8Chbd9bz4JRLiLsWJwMsOaOqSWNnbOGjj2s5uGI02VmZ4X5EvDRPVbqekhUxLHjvAOVrqkDg3rnbeGXOEOIJi+NIaMHBdaqSC5Rq6xIMumMjh6qaQaBd1LBpwQjK+ndEVdPa6UrrccpaxQjMW7yXQ1/U0704h6ED8jlRE+eXz+1A5NQKtRBwW7TOczTPS1rm5/saeWrRbnCE3/24HwsfGgxZhnUbD/P2miocI7ienvf7QsAXem6RczfHEURg5rztNB9pZsjwLkweV8ywfh2589YSbEOCh/78Ba6nRPxrz9UC62QFcuhVJVbn4jiCqn4jpPUsOAY2VMRYsa6KaH6UOXf3prY+gQIzJ5Twl/KDbP+klt++vIufTex18p7WC4xFkhZe0DGCCSDpwDlZ1ioKjJ9VwfpNR3Dyonj+XJvqf1WwCvWNLmoVJ2ooyIuQcBURMCLUNrpY1+J5Sqf8KIJgTIv7reI4Bq8+wchrCnln7uXJB7YC5pAFErAxwuZPjzFiygdYI8ms1HHvlMdkgHYOOAJxC64mzbrlL8AxYMDkOFhPIWEhrqceu8v2n8pstqx+6WpGDy84mTAJh+j/pdNgBM9TrhqYz9TxJSx4/Us6FGWzcO4wCjpGAaiqOcH0x7fReKSZn9zdm/HXd8XqKThJixfWV8R4ZP722uVGmPvAIC7rk4cq1DW53P+7bVTtamDapNIkXE+DGTNrAOVZVc+zevBos140ZrXKpcv1yde+PPn5jHmfqfR7V/vdsl4bmtxzfteV0/6h9FmmNz3wr5Pv/f6tPcqly7Xz6HLd+VWjWqvqWRvErtJAetHGj1+7dWnHb+7rixph9jPbOXCkmc3bjjF/0W40avj19N60z3GIJyye1dNaPGEBeHpmfyL5WSx/7wDLNxzmcCzOw8/tAE+ZeVcpvXvknrT4MJN1weNgxSoMnbSJz/5Zw0039yThWt5ftp+R44pZ/exwUM46tKZCpGmPfcKil3ZSdn1XLinO4e2lX9H3sk5sXjCCjrkOIhLYUCnQqcqU07NqczU3TP8w6VipEnUMH76STEWmnLKzhVsC7DpwnCsmbaKuzk06Zo0urzxdxuRxxcGde9MhVekYwbPK2Ku6MO22XhhPEVf54a09Kevf8WQ26+xDvWAt9OmRy+zpfRCrOKqM+1537hjbPfBw0yIXnRp/SotzUKuIQo/C7NOehP5PnpbuWeTf41ouLsomkiZVpkAP0dYqIsKOfY0MmbiRRCIZ73YpzOaTN6+ha0EWinA2I07N43VNHsOnfsCuXQ2QZTCesvbFq7luWOdAxr5pY8Hq56RnPLOdRE2cAX3zGDggn+rdDcx+/gtEBD1Hvdvz5+f5S/ayqyJGcUl7hvTLwza4zHlxJ57VwJebTNAdrPLN1axcWwVZwqI5g3n8vr4QFV5d9hXrK2I4zpmrRan7dx84zh9e/xIcYdbkUl57ZCimfYR166p4Y9VBHCeZWAkBX+B5V4B4wjJz3nZodLnr1l5cOSCfm0cW8d0x3XFr4jz8wk4UzlgtckzyvdnP7yC2p5HBV17Ej8b3ZGifPH4woQSaPR57eRe1DW6ybqwh4Auej37qzb18WhkjtyibGRNKiNUlqK1P8KsppeR2y+Hv66p4Ydl+ausTHD2W/Ky2PkG1//qvGw6z+G8HiHbOYubEXjQe96ipS3D/zT3p8q0O7NgaY/6Svcn0aECXNgWv2KDJTNaR2jiDbttI7Fgck+2QnxvB+mt0IhGhpt7FJiwYIa+9881qkV9twiomarioY5QTfnYrGhEajnvEmzzych22vHYNpcU5WA1eRitwgD3fc779wQrefmsvdM46S7UouQaabCdJ84RfVRJ/o6Hs81SbjECWgeo44yf2YukTl6MaPI86kGGS5ykbK2NYe/oKj9O841S16NnPaZfr8MdZg+jdIxcUauoSTH30YxqPNvP9G3vw0wklp1WbWsbXAogRvjO0UyCTHoFc0eE4wshhBee9btQVBSwuP8hnFTWs2lzNkpt6APDk63toOnScwp7t+dOsgRR2yoJw0V3bG6rP1VLVomd+PgCyHZa+u5/1FTG+PnqCB+dvRwVmTiqlsFPWGatNrVuYyWrDsfLEhypZ/OYehl9XRGn3HJYu3Uv/sgIqX/22H0IJ6bqRVFoDTqUyd+5vYvDtG4gnklkO8ZTFT5cxYXS3wKcizztEn289cJBbakVk3565/GLKJXDcw1jl2hGFTBjdDddLOmNp3QeZ8vBZU7PH5ZM/YOfuBiqXXMvg3h3IiIfPYvUJ0n1vXdcmH0CbeuPFbKiMUVqcQ/WxOI6RtH90RTqPWa2ZsDs2mlxPbS0Ykxy+M2H380isNk6oNAYsEcm8De8z6F+OqGbwqQaE2yiFCgGHCgGHCgGHCgGHCrcyDJXZWxlmoGT1R0dteKwO6XusTngwVpoP0a5rq8Kj7dL3aLtIJGK2AmNBLKfOgw8V7Jk3ydLIVgOsDTskbbU2PCA63Q+IFpH9wFIfrBf2T+Dl+SyXish+UVUheeZ7JVDo/wLCDFcwlTrF/QgwFDhskltVSBXJo97FB2zDvgok3NRyhkk+U2NExFNVR0TKgXt9T9oAbmaVxgM957o+Mwe4V0TKfaaetIidHB/2DcBCoFurMV1CB6xNQU21VGh7CJgmIitTLGk517aw5JVAGfAiEGth0SHctrUaOGWxMZ9VWWu4ZwyJWl6gqiXAncAoYBBQHIZSbSIE+hrY5ucw3hCRfa3ZpfRvec12His/BrEAAAAASUVORK5CYII=" alt="이스라엘 국기"></div>
@@ -645,9 +694,9 @@
 <!-- ════ 연합예배 ════ -->
 <section class="panel sec" id="p-worship">
   <div class="wrap" style="text-align:center">
-    <div class="sec-eyebrow"><span class="ko">연합예배</span><span class="en">United Worship</span></div>
+    
     <h2 class="sec-title"><span class="ko">흩어진 목장이 한자리에</span><span class="en">Scattered homes, gathered as one</span></h2>
-    <p class="sec-lead"><span class="ko">2,000년 전 초대교회 원형 그대로 — 흩어져 모이고, 한 밥상에서 하나가 됩니다.</span><span class="en">Just like the first church 2,000 years ago — we scatter to gather, and become one.</span></p>
+    <p class="sec-lead"><span class="ko">2,000년 전 초대교회의 원형 그대로 — 흩어져 모이고, 한 식탁에서 하나가 됩니다.</span><span class="en">Just like the first church 2,000 years ago — we scatter to gather, and become one.</span></p>
     <div class="wk">
       <!-- 오는 주일 예배 -->
       <div class="wk-hero" id="wkHero">
@@ -679,33 +728,35 @@
       <!-- 목장 나눔지 -->
       <a class="wkc" id="shareCard" style="margin-top:12px" href="https://drive.google.com/drive/folders/1KaYzo0lDmU6TJJBtnrTsbFnZIgn0n3zA" target="_blank" rel="noopener">
         <span class="wi teal"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M10 20v-4.5h4V20"/></svg></span>
-        <span class="wb2"><h3><span class="ko">목장 나눔지</span><span class="en">House church sharing guide</span></h3><p><span class="ko" data-share-sub>지난 주일 말씀으로 이번 주 목장에서 나눠요</span><span class="en">This week's homes share last Sunday's message</span></p></span>
+        <span class="wb2"><h3><span class="ko">목장 나눔지</span><span class="en">House church sharing guide</span></h3><p><span class="ko" data-share-sub>지난 주일 말씀으로 이번 주 목장에서 나눕니다</span><span class="en">This week's homes share last Sunday's message</span></p></span>
         <span class="wgo"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span>
       </a>
       <!-- 교회 공동기도 제목 -->
+<div class="cut"><span><span class="ko">함께 드리는 기도</span><span class="en">Praying together</span></span></div>
       <div class="pray">
         <div class="pe"><svg viewBox="0 0 24 24"><path d="M12 3c-1 2.5-2.5 3.5-2.5 6.5V14M12 3c1 2.5 2.5 3.5 2.5 6.5V14M9.5 14c-2 .3-3.5 1.6-3.5 3.5V21h12v-3.5c0-1.9-1.5-3.2-3.5-3.5M9.5 14h5"/></svg><span class="ko">교회 공동기도 제목 · 2026 우리의 기도</span><span class="en">Church prayer · our prayer for 2026</span></div>
         <p><span class="ko">한 가정씩 복음으로 <b>하나님 나라를 확장</b>케 하소서!</span><span class="en">May the gospel <b>expand God's kingdom</b>, one home at a time!</span></p>
         <p><span class="ko">가정이 <b>건강한 가정교회</b>로 세워지게 하소서!</span><span class="en">May each home be built into a <b>healthy house church</b>!</span></p>
       </div>
       <!-- 지난 말씀 -->
+<div class="cut"><span><span class="ko">지난 말씀</span><span class="en">Past messages</span></span></div>
       <div class="sl-h"><h3><span class="ko">지난 말씀 다시 보기</span><span class="en">Past messages</span></h3><a href="https://www.youtube.com/@ijiguchon2030/videos" target="_blank" rel="noopener"><span class="ko">전체 보기 →</span><span class="en">See all →</span></a></div>
       <div class="slist" id="sermonList"></div>
     </div>
 
-    <div class="sec-eyebrow" style="margin-top:44px"><span class="ko">예배와 모임</span><span class="en">Worship &amp; gatherings</span></div>
-    <div class="w-grid">
+    <div class="cut"><span><span class="ko">예배와 모임</span><span class="en">Worship &amp; gatherings</span></span></div>
+    <div class="w-grid" style="margin-top:0">
       <div class="w-item">
         <div class="w-ico"><svg viewBox="0 0 24 24"><path d="M12 2v4M10 4h4"/><path d="M4 21V10l8-5 8 5v11"/><path d="M9.5 21v-5h5v5"/></svg></div>
         <div class="k"><span class="ko">주일연합예배</span><span class="en">Sunday Worship</span></div>
         <div class="t"><span class="ko">주일 오전 11:00</span><span class="en">Sundays 11:00 AM</span></div>
-        <div class="d"><span class="ko">주중 흩어져 모이던 목장들이 주일에 다 함께 <b>연합예배</b>로 드립니다. 온라인으로도 함께 — 지켜보는 방송이 아니라 함께 드리는 예배예요.</span><span class="en">The house churches gather as one for <b>united worship</b> on Sunday — together online, too. Not a broadcast, but worship we share.</span></div>
+        <div class="d"><span class="ko">주중 흩어져 모이던 목장들이 주일에 다 함께 <b>연합예배</b>로 드립니다. 온라인으로도 함께합니다 — 지켜보는 방송이 아니라 함께 드리는 예배입니다.</span><span class="en">The house churches gather as one for <b>united worship</b> on Sunday — together online, too. Not a broadcast, but worship we share.</span></div>
       </div>
       <div class="w-item">
         <div class="w-ico"><svg viewBox="0 0 24 24"><path d="M17 18a5 5 0 0 0-10 0"/><path d="M12 2.5v3M4.6 11l1.3 1.3M19.4 11l-1.3 1.3M2 18h2M20 18h2"/><path d="M8.5 6L12 2.5 15.5 6"/><path d="M2.5 22h19"/></svg></div>
         <div class="k"><span class="ko">토요새벽기도회</span><span class="en">Saturday Dawn Prayer</span></div>
         <div class="t"><span class="ko">토요일 오전 6:00 – 7:30</span><span class="en">Saturdays 6:00 – 7:30 AM</span></div>
-        <div class="d"><span class="ko">한 주를 말씀과 기도로 엽니다. 지역 교회당을 빌려 함께 모여요.</span><span class="en">We open the week in the Word and prayer, at a local church building.</span></div>
+        <div class="d"><span class="ko">한 주를 말씀과 기도로 엽니다. 지역 교회당에서 함께 모입니다.</span><span class="en">We open the week in the Word and prayer, at a local church building.</span></div>
       </div>
       <div class="w-item">
         <div class="w-ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="2.6"/><circle cx="16.5" cy="8" r="2.1"/><path d="M4 19v-1a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v1"/><path d="M15 19v-.5a3.3 3.3 0 0 1 3.3-3.3h.4A3.3 3.3 0 0 1 22 18.5V19"/></svg></div>
@@ -717,46 +768,49 @@
         <div class="w-ico"><svg viewBox="0 0 24 24"><path d="M5 3v7a2.2 2.2 0 0 0 4.4 0V3M7.2 3v7M7.2 12v9"/><path d="M18 3c-1.7 0-2.7 2-2.7 4.5s1 3.5 2.7 3.5M18 3v18"/></svg></div>
         <div class="k"><span class="ko">함께 식사</span><span class="en">A shared meal</span></div>
         <div class="t"><span class="ko">예배 후 한 자리에</span><span class="en">Together after worship</span></div>
-        <div class="d"><span class="ko">식사 때는 모두가 한자리에 모여 온 세대가 함께 밥을 먹습니다.</span><span class="en">At mealtime everyone gathers — all generations at one table.</span></div>
+        <div class="d"><span class="ko">식사 시간에는 모두가 한자리에 모여 온 세대가 함께 식탁을 나눕니다.</span><span class="en">At mealtime everyone gathers — all generations at one table.</span></div>
       </div>
     </div>
-    <p class="w-note"><span class="ko">지구촌 어디서든 온라인으로 함께하실 수 있어요. 모임 장소 문의는 <a href="mailto:info@ijiguchon.org" style="color:var(--gold-2);font-weight:700">info@ijiguchon.org</a></span><span class="en">Join online from anywhere. For gathering locations, <a href="mailto:info@ijiguchon.org" style="color:var(--gold-2);font-weight:700">info@ijiguchon.org</a></span></p>
+    <p class="w-note"><span class="ko">지구촌 어디서든 온라인으로 함께하실 수 있습니다. 모임 장소 문의는 <a href="mailto:info@ijiguchon.org" style="color:var(--gold-2);font-weight:700">info@ijiguchon.org</a></span><span class="en">Join online from anywhere. For gathering locations, <a href="mailto:info@ijiguchon.org" style="color:var(--gold-2);font-weight:700">info@ijiguchon.org</a></span></p>
 
+<div class="cut"><span><span class="ko">새벽을 여는 기도</span><span class="en">Dawn prayer</span></span></div>
     <!-- 이번 주 토요새벽기도회 -->
-    <div class="wkc" id="satCard" style="max-width:720px;margin:26px auto 0;cursor:default">
+    <div class="wkc" id="satCard" style="max-width:720px;margin:0 auto;cursor:default">
       <span class="wi blue"><svg viewBox="0 0 24 24"><path d="M17 18a5 5 0 0 0-10 0"/><path d="M12 2.5v3M4.6 11l1.3 1.3M19.4 11l-1.3 1.3M2 18h2M20 18h2"/><path d="M2.5 22h19"/></svg></span>
       <span class="wb2"><h3><span class="ko"><span data-sat-when>이번 주</span> 토요새벽기도회</span><span class="en"><span data-sat-when-en>This</span> Saturday dawn prayer</span></h3><p><span data-sat-title>—</span> <span data-sat-ref style="color:var(--gold-2)"></span> · <span class="ko">오전 6:00–7:30</span><span class="en">6:00–7:30 AM</span></p></span>
     </div>
 
     <!-- 주중 새벽 · HebronAltar (우리가 만든 앱 재활용) -->
     <a class="link-card" href="https://hebron-ijiguchon.web.app" target="_blank" rel="noopener">
-      <span class="lc-ico" style="background:linear-gradient(180deg,#5B87C9,#2C55A0)"><svg viewBox="0 0 24 24"><path d="M12 3v3M5.6 6.6l2.1 2.1M18.4 6.6l-2.1 2.1M3 14h3M18 14h3"/><path d="M7 18a5 5 0 0 1 10 0"/><path d="M4 21h16"/></svg></span>
+      <span class="lc-ico" style="background:linear-gradient(180deg,#5b7fb5,#2c4d8a)"><svg viewBox="0 0 24 24"><path d="M12 3v3M5.6 6.6l2.1 2.1M18.4 6.6l-2.1 2.1M3 14h3M18 14h3"/><path d="M7 18a5 5 0 0 1 10 0"/><path d="M4 21h16"/></svg></span>
       <span class="lc-b"><h3><span class="ko">주중 새벽 · HebronAltar 경청의 삶</span><span class="en">Weekday dawn · HebronAltar</span></h3><p><span class="ko">월~금 매일 새벽, 각자의 자리에서 말씀을 붙들고 조용히 경청하며 기도합니다. 흩어진 자리에서, 같은 마음으로.</span><span class="en">Each weekday dawn, on your own — hold the Word and pray in quiet listening. Scattered, yet of one heart.</span></p></span>
       <span class="lc-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span>
     </a>
 
+<div class="cut"><span><span class="ko">목회자 코너</span><span class="en">Pastor's corner</span></span></div>
     <!-- 목회자 코너 -->
-    <a class="link-card" href="/corner/">
+    <a class="link-card" href="/corner/" style="margin-top:0">
       <span class="lc-ico"><svg viewBox="0 0 24 24"><path d="M4 4h11l5 5v11H4z"/><path d="M15 4v5h5"/><path d="M8 13h8M8 17h5"/></svg></span>
       <span class="lc-b"><h3><span class="ko">목회자 코너</span><span class="en">Pastor's Corner</span></h3><p><span class="ko">이번 주 목회칼럼과 12주 여정 — 담임목사의 글로 한 주를 엽니다.</span><span class="en">This week's column and the 12-week journey.</span></p></span>
       <span class="lc-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span>
     </a>
 
     <!-- 헌금 -->
-    <div style="margin-top:44px">
-      <div class="sec-eyebrow"><span class="ko">함께 나눔</span><span class="en">Give</span></div>
+    <div class="cut"><span><span class="ko">헌금</span><span class="en">Giving</span></span></div>
+    <div>
+      
       <h2 class="sec-title" style="font-size:clamp(20px,3vw,26px)"><span class="ko">함께 드리는 헌금</span><span class="en">Giving together</span></h2>
-      <p class="sec-lead" style="font-size:15px"><span class="ko">드리는 모든 것은 한 영혼을 살리고 제자를 세우는 사명에 쓰입니다. <b>처음 오신 분은 부담 갖지 마세요.</b></span><span class="en">Every gift serves this mission. <b>First-time guests, feel no pressure.</b></span></p>
+      <p class="sec-lead" style="font-size:15px"><span class="ko">드리는 모든 것은 한 영혼을 살리고 제자를 세우는 사명에 쓰입니다. <b>처음 오신 분은 부담 갖지 않으셔도 됩니다.</b></span><span class="en">Every gift serves this mission. <b>First-time guests, feel no pressure.</b></span></p>
       <div class="give-ways">
         <div class="give-box">
           <div class="gi"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 21V8M12 8S11 3 8 3a2 2 0 0 0 0 5zM12 8s1-5 4-5a2 2 0 0 1 0 5z"/></svg></div>
           <h3><span class="ko">예배 때 드리기</span><span class="en">At worship</span></h3>
-          <p style="margin-bottom:0"><span class="ko">주일 연합예배 봉헌 시간에 헌금함으로 직접 드릴 수 있어요.</span><span class="en">Give in person during Sunday worship offering.</span></p>
+          <p style="margin-bottom:0"><span class="ko">주일 연합예배 봉헌 시간에 헌금함으로 직접 드리실 수 있습니다.</span><span class="en">Give in person during Sunday worship offering.</span></p>
         </div>
         <div class="give-box">
           <div class="gi"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></div>
           <h3><span class="ko">온라인으로 드리기</span><span class="en">Online</span></h3>
-          <p><span class="ko">언제 어디서나 안전하게. 한 번 또는 <b>매주 자동(정기)</b> 헌금도 가능.</span><span class="en">Securely, anytime — once or <b>recurring</b>.</span></p>
+          <p><span class="ko">언제 어디서나 안전하게 드리실 수 있으며, <b>매주 자동(정기)</b> 헌금도 설정하실 수 있습니다.</span><span class="en">Securely, anytime — once or <b>recurring</b>.</span></p>
           <a class="btn-gold" href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg><span class="ko">온라인 헌금하기</span><span class="en">Give online</span></a>
         </div>
       </div>
@@ -768,22 +822,23 @@
 <!-- ════ 삶공부 ════ -->
 <section class="panel sec" id="p-study">
   <div class="wrap" style="text-align:center">
-    <div class="sec-eyebrow"><span class="ko">삶공부</span><span class="en">Life Bible Study</span></div>
+    
     <h2 class="sec-title"><span class="ko">그리스도의 제자로 자라는 길</span><span class="en">Growing as a disciple of Christ</span></h2>
-    <p class="sec-lead"><span class="ko">아는 것을 늘리는 공부가 아닙니다. 배운 것을 <b>삶으로 살아내는</b> 자리예요. 여기서 한 사람이 천천히, 단계적으로 <b>그리스도의 제자</b>로 세워집니다.</span><span class="en">Not a course to know more — a place to <b>live out</b> what you learn, where one person is built up step by step <b>as a disciple of Christ</b>.</span></p>
+    <p class="sec-lead"><span class="ko">아는 것을 늘리는 공부가 아닙니다. 배운 것을 <b>삶으로 살아내는</b> 자리입니다. 여기서 한 사람이 천천히, 단계적으로 <b>그리스도의 제자</b>로 세워집니다.</span><span class="en">Not a course to know more — a place to <b>live out</b> what you learn, where one person is built up step by step <b>as a disciple of Christ</b>.</span></p>
 
     <div class="st-wrap">
       <div class="st-term tint">
         <h3><span class="ko">삶공부가 뭔가요?</span><span class="en">What is a Life Study?</span></h3>
-        <p><span class="ko">몇 사람이 둘러앉아 한 과목을 함께 읽고, <b>자기 이야기를 나누는 시간</b>입니다. 잘 아는 사람이 가르치는 자리가 아니라 같이 배우고 같이 살아보는 자리예요. 믿음이 있든 없든 편하게 들어오셔도 됩니다.</span><span class="en">A few people sit together, read through one course, and <b>share their own stories</b>. Not a class where the expert teaches — a place where we learn and live it together. Come whether you believe or not.</span></p>
+        <p><span class="ko">몇 사람이 둘러앉아 한 과목을 함께 읽고, <b>자기 이야기를 나누는 시간</b>입니다. 잘 아는 사람이 가르치는 자리가 아니라, 함께 배우고 함께 살아내는 자리입니다. 믿음이 있든 없든 편하게 참여하실 수 있습니다.</span><span class="en">A few people sit together, read through one course, and <b>share their own stories</b>. Not a class where the expert teaches — a place where we learn and live it together. Come whether you believe or not.</span></p>
       </div>
       <div class="st-term">
         <h3><span class="ko">언제 열리나요?</span><span class="en">When do they run?</span></h3>
-        <p><span class="ko"><b>봄 학기(2–5월)</b>와 <b>가을 학기(9–12월)</b>에 과정 전체를 엽니다. <b>여름(6월)</b>에는 <b>생명의 삶</b>만 따로 열어요 — 첫걸음을 오래 기다리지 않도록 한 해 세 번 여는 과정입니다.</span><span class="en">The full set opens in the <b>spring term (Feb–May)</b> and the <b>fall term (Sep–Dec)</b>. In <b>summer (June)</b> only <b>Living Life</b> runs, so no one waits long for that first step.</span></p>
-        <p><span class="ko">여럿이 모이는 과정은 <b>3명 이상</b>이면 엽니다. <b>1:1 과정</b>은 학기와 상관없이 <b>수시로</b> 시작할 수 있어요.</span><span class="en">Group courses open once <b>three or more</b> sign up. <b>1:1 courses</b> can start <b>any time</b>.</span></p>
+        <p><span class="ko"><b>봄 학기(2–5월)</b>와 <b>가을 학기(9–12월)</b>에 과정 전체를 엽니다. <b>여름(6월)</b>에는 <b>생명의 삶</b>만 따로 엽니다 — 첫걸음을 오래 기다리지 않도록 한 해 세 번 여는 과정입니다.</span><span class="en">The full set opens in the <b>spring term (Feb–May)</b> and the <b>fall term (Sep–Dec)</b>. In <b>summer (June)</b> only <b>Living Life</b> runs, so no one waits long for that first step.</span></p>
+        <p><span class="ko">여럿이 모이는 과정은 <b>3명 이상</b>이면 엽니다. <b>1:1 과정</b>은 학기와 상관없이 <b>수시로</b> 시작하실 수 있습니다.</span><span class="en">Group courses open once <b>three or more</b> sign up. <b>1:1 courses</b> can start <b>any time</b>.</span></p>
       </div>
 
-      <div class="st-h"><h3><span class="ko">전체 그림 — 기본 과정 다섯 걸음</span><span class="en">The big picture — five core steps</span></h3><p><span class="ko">순서대로 걷습니다 · 과정을 누르면 바로 등록할 수 있어요</span><span class="en">Walked in order · tap a course to register</span></p></div>
+<div class="cut"><span><span class="ko">전체 그림</span><span class="en">The big picture</span></span></div>
+      <div class="st-h" style="margin-top:0"><h3><span class="ko">기본 과정 다섯 걸음</span><span class="en">The big picture — five core steps</span></h3><p><span class="ko">순서대로 걷습니다 · 과정을 누르면 바로 등록하실 수 있습니다</span><span class="en">Walked in order · tap a course to register</span></p></div>
       <div class="st-map">
         <div class="m"><span class="mn">1</span><span class="mt"><span class="ko">생명의 삶</span><span class="en">Living Life</span></span></div><span class="arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         <div class="m"><span class="mn">2</span><span class="mt"><span class="ko">확신의 삶</span><span class="en">Assured Life</span></span></div><span class="arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -801,7 +856,8 @@
         <p style="margin-top:10px;font-size:12.5px;color:var(--ink-3);line-height:1.6"><span class="ko"><b>1:1 과정</b>은 따로 있는 분류가 아니라, 여러 사람이 모이는 대신 <b>한 사람과 마주 앉아</b> 하는 진행 형식입니다.</span><span class="en"><b>1:1</b> isn't a separate track — it's simply walked <b>with one person</b> rather than in a group.</span></p>
       </div>
 
-      <details class="stf">
+<div class="cut"><span><span class="ko">선택 과정</span><span class="en">Electives</span></span></div>
+      <details class="stf" style="margin-top:0">
         <summary><span><span class="ft"><span class="ko">선택 과정</span><span class="en">Electives</span></span><span class="fs" style="display:block"><span class="ko">생명의 삶 다음 · 필요에 따라 자유롭게</span><span class="en">After Living Life · choose as you need</span></span></span><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></summary>
         <div class="fb">
           <div class="elc"><div class="en2"><span class="ko">말씀의 삶</span><span class="en">Word Life</span></div><p><span class="ko">성경을 창세기부터 요한계시록까지 통독하며, 그 속에서 하나님의 사랑과 은혜를 만납니다.</span><span class="en">Reading Scripture through, Genesis to Revelation.</span></p></div>
@@ -818,10 +874,11 @@
       </details>
 
       <!-- 등록 창구 -->
-      <form class="gf" id="studyForm" onsubmit="submitStudy(event)">
+<div class="cut"><span><span class="ko">등록</span><span class="en">Register</span></span></div>
+      <form class="gf" id="studyForm" onsubmit="submitStudy(event)" style="margin-top:0">
         <div class="gbody">
           <h3><span class="ko">삶공부 등록</span><span class="en">Register for a course</span></h3>
-          <div class="gsub"><span class="ko">어느 과정부터 시작할지 모르셔도 괜찮습니다. 문의만 주시면 함께 정해요.</span><span class="en">Not sure where to start? Just ask — we'll figure it out together.</span></div>
+          <div class="gsub"><span class="ko">어느 과정부터 시작할지 모르셔도 괜찮습니다. 문의해 주시면 함께 정하겠습니다.</span><span class="en">Not sure where to start? Just ask — we'll figure it out together.</span></div>
           <div class="row">
             <div><label><span class="ko">이름</span><span class="en">Name</span></label><input name="이름" required placeholder="홍길동"></div>
             <div><label><span class="ko">전화번호</span><span class="en">Phone</span></label><input name="전화번호" type="tel" required placeholder="425-000-0000"></div>
@@ -841,10 +898,10 @@
           <button type="submit" class="gbtn"><span class="ko">등록하기</span><span class="en">Register</span></button>
           <div class="gnote"><span class="ko">등록 내용은 교회 사무(office@ijiguchon.org)로 전달되고, 개강 안내를 보내드립니다.</span><span class="en">Sent to the church office; we'll follow up with start details.</span></div>
         </div>
-        <div class="gok"><div class="ok1"><span class="ko">등록되었습니다</span><span class="en">You're registered</span></div><div class="ok2"><span class="ko">개강 안내를 곧 보내드릴게요. 감사합니다.</span><span class="en">We'll send you the start details. Thank you.</span></div></div>
+        <div class="gok"><div class="ok1"><span class="ko">등록되었습니다</span><span class="en">You're registered</span></div><div class="ok2"><span class="ko">개강 안내를 곧 보내드리겠습니다. 감사합니다.</span><span class="en">We'll send you the start details. Thank you.</span></div></div>
       </form>
 
-      <div class="tab-cta" style="margin-top:18px"><a href="/path/"><span class="ko">그리스도의 제자로 자라는 길 · 전체 여정 보기</span><span class="en">See the whole disciple's path</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <div class="tab-cta" style="margin-top:18px"><a href="/path/"><span class="ko">제자의 길 전체 여정 보기</span><span class="en">See the whole disciple's path</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
   </div>
 </section>
@@ -852,15 +909,15 @@
 <!-- ════ 새 세대 ════ -->
 <section class="panel sec" id="p-newgen">
   <div class="wrap" style="text-align:center">
-    <div class="sec-eyebrow"><span class="ko">새 세대 · New Generation</span><span class="en">New Generation</span></div>
+    
     <h2 class="sec-title"><span class="ko">새 세대를 함께 키웁니다</span><span class="en">Raising a new generation, together</span></h2>
-    <p class="sec-lead"><span class="ko">아이와 함께 오셔도 좋아요. 우리 아이들은 '다음'이 아니라 <b>지금 우리 곁에서 자라는 소중한 한 영혼</b>입니다. 믿음도 정체성도, 온 교회가 함께 키웁니다.</span><span class="en">Our children aren't "next" — they are <b>precious souls growing right now.</b> The whole church raises them together.</span></p>
+    <p class="sec-lead"><span class="ko">자녀와 함께 오셔도 좋습니다. 우리 아이들은 '다음 세대'가 아니라 <b>지금 우리 곁에서 자라는 소중한 한 영혼</b>입니다. 믿음도 정체성도, 온 교회가 함께 세워 갑니다.</span><span class="en">Our children aren't "next" — they are <b>precious souls growing right now.</b> The whole church raises them together.</span></p>
     <div class="care-grid">
       <div class="care"><h4><span class="ko">헌아식 · 아기 축복</span><span class="en">Baby Blessing</span></h4><p><span class="ko">새로 태어난 한 생명을 온 교회가 함께 축복하고 품습니다.</span><span class="en">The whole church blesses and embraces each new life.</span></p></div>
       <div class="care"><h4><span class="ko">어린이 · 주일학교</span><span class="en">Children · Sunday School</span></h4><p><span class="ko">미술과 성경으로 키우는 새 세대. 24년간 아이들을 사랑으로 가르쳐 온 김지영 디렉터와 함께.</span><span class="en">Growing through Bible and art, with Director Joy Kim — 24 years teaching children.</span></p></div>
       <div class="care"><h4><span class="ko">청소년 · GMC Y</span><span class="en">Youth · GMC Y</span></h4><p><span class="ko">청소년의 눈높이에서, 미디어와 문화로 함께 걷는 Garrett Woods 목사와 함께.</span><span class="en">Meeting teens on their level, with Pastor Garrett Woods.</span></p></div>
     </div>
-    <p class="care-note"><span class="ko">어린이는 성인예배와 같은 곳에서, 청소년은 따로 또 같이 · 문의: info@ijiguchon.org</span><span class="en">Children meet where adults worship; youth gather separately · info@ijiguchon.org</span></p>
+    <p class="care-note"><span class="ko">어린이는 성인 예배와 같은 곳에서, 청소년은 별도로 모입니다 · 문의: info@ijiguchon.org</span><span class="en">Children meet where adults worship; youth gather separately · info@ijiguchon.org</span></p>
     <div class="tab-cta"><a href="/newgen/"><span class="ko">우리 아이를 위한 준비 · 자세히 보기</span><span class="en">See what's prepared for your child</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
@@ -868,7 +925,7 @@
 <!-- ════ 지구촌 마당 ════ -->
 <section class="panel sec" id="p-square">
   <div class="wrap" style="text-align:center">
-    <div class="sec-eyebrow"><span class="ko">지구촌 마당</span><span class="en">Global Village Square</span></div>
+    
     <h2 class="sec-title"><span class="ko">함께 나누고, 이웃을 품는 마당</span><span class="en">Where we share and welcome neighbors</span></h2>
     <p class="sec-lead"><span class="ko">교회 소식과 이야기, 그리고 지역 이웃을 향한 사랑이 흐르는 열린 마당입니다.</span><span class="en">Church news and stories, and love flowing out to our neighbors.</span></p>
 
@@ -880,7 +937,8 @@
     </a>
 
     <!-- 갤러리 -->
-    <div class="gal">
+<div class="cut"><span><span class="ko">우리 교회 풍경</span><span class="en">Life at GMC</span></span></div>
+    <div class="gal" style="margin-top:0">
       <a href="/images/worship-current.jpg" target="_blank" rel="noopener"><img src="/images/worship-current.jpg" alt="주일 연합예배" loading="lazy"><span><span class="ko">주일 연합예배</span><span class="en">Sunday worship</span></span></a>
       <a href="/images/meal1.jpg" target="_blank" rel="noopener"><img src="/images/meal1.jpg" alt="예배 후 식사" loading="lazy"><span><span class="ko">한 밥상</span><span class="en">One table</span></span></a>
       <a href="/images/table-fellowship.jpg" target="_blank" rel="noopener"><img src="/images/table-fellowship.jpg" alt="식탁 교제" loading="lazy"><span><span class="ko">식탁 교제</span><span class="en">Fellowship</span></span></a>
@@ -889,19 +947,19 @@
     </div>
 
     <!-- 이웃 사랑 -->
-    <div style="margin-top:44px">
-      <div class="sec-eyebrow"><span class="ko">이웃 사랑</span><span class="en">Love Your Neighbor</span></div>
+    <div class="cut"><span><span class="ko">이웃 사랑</span><span class="en">Love your neighbor</span></span></div>
+    <div>
       <h2 class="sec-title" style="font-size:clamp(20px,3vw,26px)"><span class="ko">우리, 행복할까요?</span><span class="en">Shall we be happy, together?</span></h2>
-      <p class="sec-lead" style="font-size:15px"><span class="ko">치유와 상담, 배움의 자리를 이웃으로 함께 나눕니다. 믿음과 상관없이 누구나 편하게.</span><span class="en">Healing, counseling and learning, shared as neighbours — everyone welcome.</span></p>
+      <p class="sec-lead" style="font-size:15px"><span class="ko">치유와 상담, 배움의 자리를 이웃과 함께 엽니다. 믿음과 상관없이 누구나 참여하실 수 있습니다.</span><span class="en">Healing, counseling and learning, shared as neighbours — everyone welcome.</span></p>
       <div class="care-grid">
-        <div class="care"><h4><span class="ko">영어 톡타임</span><span class="en">English Talk Time</span></h4><p><span class="ko">영어가 필요한 이웃과 마주 앉아 편하게 이야기.</span><span class="en">Conversation with neighbours who need English.</span></p></div>
-        <div class="care"><h4><span class="ko">가정행복학교</span><span class="en">Family Happiness</span></h4><p><span class="ko">부부가 다시 웃고 가정이 회복되도록 함께.</span><span class="en">So marriages smile and homes heal.</span></p></div>
-        <div class="care"><h4><span class="ko">행복한 삶 · 회복의 삶</span><span class="en">Happy · Restored Life</span></h4><p><span class="ko">지친 마음, 상처와 아픔에서 함께 회복으로.</span><span class="en">From weariness and wounds toward healing.</span></p></div>
-        <div class="care"><h4><span class="ko">부부의 삶 · 자녀교육</span><span class="en">Marriage · Parenting</span></h4><p><span class="ko">서로를 다시 이해하고, 자녀를 지혜롭게.</span><span class="en">Understand each other; raise kids wisely.</span></p></div>
-        <div class="care"><h4><span class="ko">라이프 코칭</span><span class="en">Life Coaching</span></h4><p><span class="ko">진로·결정·삶의 방향, 함께 정리해요.</span><span class="en">Sort out direction and next steps, together.</span></p></div>
-        <div class="care"><h4><span class="ko">함께 걷기</span><span class="en">Walking Together</span></h4><p><span class="ko">낯선 도시, 낯선 하루도 곁에서 함께 걸어요.</span><span class="en">In a new city, we walk beside you.</span></p></div>
+        <div class="care"><h4><span class="ko">영어 톡타임</span><span class="en">English Talk Time</span></h4><p><span class="ko">영어가 필요한 이웃과 마주 앉아 나누는 대화 시간입니다.</span><span class="en">Conversation with neighbours who need English.</span></p></div>
+        <div class="care"><h4><span class="ko">가정행복학교</span><span class="en">Family Happiness</span></h4><p><span class="ko">부부가 다시 웃고 가정이 회복되도록 함께 걷습니다.</span><span class="en">So marriages smile and homes heal.</span></p></div>
+        <div class="care"><h4><span class="ko">행복한 삶 · 회복의 삶</span><span class="en">Happy · Restored Life</span></h4><p><span class="ko">지친 마음과 상처에서 회복으로 나아가는 길을 함께합니다.</span><span class="en">From weariness and wounds toward healing.</span></p></div>
+        <div class="care"><h4><span class="ko">부부의 삶 · 자녀교육</span><span class="en">Marriage · Parenting</span></h4><p><span class="ko">서로를 다시 이해하고, 자녀를 지혜롭게 양육합니다.</span><span class="en">Understand each other; raise kids wisely.</span></p></div>
+        <div class="care"><h4><span class="ko">라이프 코칭</span><span class="en">Life Coaching</span></h4><p><span class="ko">진로와 결정, 삶의 방향을 함께 정리합니다.</span><span class="en">Sort out direction and next steps, together.</span></p></div>
+        <div class="care"><h4><span class="ko">함께 걷기</span><span class="en">Walking Together</span></h4><p><span class="ko">낯선 도시의 낯선 하루도 곁에서 함께 걷습니다.</span><span class="en">In a new city, we walk beside you.</span></p></div>
       </div>
-      <p class="care-note"><span class="ko">믿음과 상관없이, 누구나 편하게 — 문의: info@ijiguchon.org</span><span class="en">Everyone welcome, believer or not — info@ijiguchon.org</span></p>
+      <p class="care-note"><span class="ko">믿음과 상관없이 누구나 — 문의: info@ijiguchon.org</span><span class="en">Everyone welcome, believer or not — info@ijiguchon.org</span></p>
     </div>
   </div>
 </section>
@@ -927,7 +985,7 @@
           <li><a href="https://psba.net" target="_blank" rel="noopener">Puget Sound Baptist Assoc.</a></li>
           <li><a href="https://www.nwbaptist.life" target="_blank" rel="noopener">Northwest Baptist Convention</a></li>
           <li><a href="http://www.cksbca.net" target="_blank" rel="noopener"><span class="ko">미주남침례회 한인교회총회</span><span class="en">Council of Korean Southern Baptist Churches in America</span></a></li>
-          <li><a href="https://sites.google.com/site/nwkoreanbaptist/" target="_blank" rel="noopener"><span class="ko">서북미한인침례교회협의회</span><span class="en">Northwest Korean Baptist Churches Council</span></a></li>
+          <li><a href="https://cafe.daum.net/nwkbca" target="_blank" rel="noopener"><span class="ko">서북미한인침례교회협의회</span><span class="en">Northwest Korean Baptist Churches Council</span></a></li>
         </ul>
       </div>
       <div class="fc">
@@ -962,7 +1020,7 @@
   }
 </script>
 <!-- ── 안내 도우미 (플로팅 챗봇 · 룰베이스, 에덴교회 패턴 이식) ── -->
-<button class="gc-fab" id="gcFab" aria-label="안내 도우미 열기" title="끌어서 옮길 수 있어요">
+<button class="gc-fab" id="gcFab" aria-label="안내 도우미 열기" title="끌어서 옮길 수 있습니다">
   <span class="f-lbl"><span class="ko">궁금한 점 물어보기</span><span class="en">Ask a question</span></span>
   <svg class="f-chat" viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.52 1.46 4.77 3.74 6.25-.13.97-.5 2.3-1.24 3.5 1.6-.27 3.18-.96 4.4-1.78.96.24 1.99.36 3.1.36 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg>
   <svg class="f-close" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -970,7 +1028,7 @@
 <div class="gc-panel" id="gcPanel" role="dialog" aria-label="안내 도우미">
   <div class="gc-head">
     <div class="gc-logo"><img src="/images/icon-192-em.png" alt=""></div>
-    <div><div class="gc-t"><span class="ko">시애틀지구촌 안내 도우미</span><span class="en">GMC Guide</span></div><div class="gc-s"><span class="ko">바로 답해 드려요 · 한국어 / English</span><span class="en">Instant answers · Korean / English</span></div></div>
+    <div><div class="gc-t"><span class="ko">시애틀지구촌 안내 도우미</span><span class="en">GMC Guide</span></div><div class="gc-s"><span class="ko">바로 답해 드립니다 · 한국어 / English</span><span class="en">Instant answers · Korean / English</span></div></div>
     <button class="gc-x" onclick="gcToggle()" aria-label="닫기">&times;</button>
   </div>
   <div class="gc-body" id="gcBody"></div>
@@ -983,34 +1041,34 @@
 <script>
   var GC_T = {
     worship:{ l:{ko:'예배 시간',en:'Worship times'}, a:{
-      ko:'<b>주일 연합예배</b>는 매주 <b>오전 11시</b>, <b>토요 새벽기도회</b>는 <b>오전 6:00–7:30</b>입니다. 온라인으로도 함께하실 수 있어요. <a href="#" onclick="goTab(\'worship\');return false">연합예배 탭 보기</a>',
+      ko:'<b>주일 연합예배</b>는 매주 <b>오전 11시</b>, <b>토요 새벽기도회</b>는 <b>오전 6:00–7:30</b>입니다. 온라인으로도 함께하실 수 있습니다. <a href="#" onclick="goTab(\'worship\');return false">연합예배 탭 보기</a>',
       en:'<b>Sunday united worship</b> is every <b>11:00 AM</b>; <b>Saturday dawn prayer</b> is <b>6:00–7:30 AM</b>. You can join online too. <a href="#" onclick="goTab(\'worship\');return false">Open the Worship tab</a>' } },
     place:{ l:{ko:'모임 장소',en:'Where we meet'}, a:{
-      ko:'지금은 <b>담임목사 가정</b>에서 함께 예배드리고 있어요(10월 중 새 예배 처소를 기대하고 있습니다). 정확한 장소는 <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a> 또는 <a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener">카톡방</a>으로 안내해 드립니다.',
+      ko:'현재 <b>담임목사 가정</b>에서 함께 예배드리고 있습니다(10월 중 새 예배 처소를 기대하고 있습니다). 정확한 장소는 <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a> 또는 <a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener">카톡방</a>으로 안내해 드립니다.',
       en:'For now we worship in our <b>pastor\'s home</b> (hoping for a new space this October). We share the exact place via <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a> or <a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener">KakaoTalk</a>.' } },
     first:{ l:{ko:'처음 오시는 분',en:'First visit'}, a:{
-      ko:'아무것도 준비하지 않으셔도 됩니다. 믿음이 있든 없든 있는 그대로 오세요. 예배 후엔 온 세대가 <b>한 밥상</b>에서 식사해요. 아이와 함께 오셔도 좋습니다. <a href="#" onclick="goTab(\'newcomer\');return false">환영 탭 보기</a>',
+      ko:'아무것도 준비하지 않으셔도 됩니다. 믿음이 있든 없든 있는 그대로 오세요. 예배 후에는 온 세대가 <b>한 식탁</b>에서 식사합니다. 자녀와 함께 오셔도 좋습니다. <a href="#" onclick="goTab(\'newcomer\');return false">환영 탭 보기</a>',
       en:'Nothing to prepare — come as you are, believer or not. After worship all generations share <b>one table</b>. Kids welcome. <a href="#" onclick="goTab(\'newcomer\');return false">Open the Welcome tab</a>' } },
     mokjang:{ l:{ko:'목장이 뭔가요',en:'What is a mokjang'}, a:{
-      ko:'목장은 <b>집에서 모이는 작은 교회</b>예요. 밥을 나누고 삶을 나누고 함께 기도하는 가족입니다. 지금 <b>이스라엘·멕시코·인도네시아</b> 세 목장과 청소년 <b>GMC Y</b>가 주중에 모여요. 밥만 드시고 가셔도 좋습니다. <a href="#" onclick="goTab(\'mokjang\');return false">목장 탭 보기</a>',
+      ko:'목장은 <b>가정에서 모이는 작은 교회</b>입니다. 밥과 삶을 나누고 함께 기도하는 가족입니다. 지금 <b>이스라엘·멕시코·인도네시아</b> 세 목장과 청소년 <b>GMC Y</b>가 주중에 모입니다. 식사만 하고 가셔도 좋습니다. <a href="#" onclick="goTab(\'mokjang\');return false">목장 탭 보기</a>',
       en:'A mokjang is <b>a little church that meets in a home</b> — sharing meals, life, and prayer. Three mokjangs (<b>Israel, Mexico, Indonesia</b>) plus youth <b>GMC Y</b> meet midweek. Come just for dinner. <a href="#" onclick="goTab(\'mokjang\');return false">Open the Mokjang tab</a>' } },
     pastor:{ l:{ko:'목사님 소개',en:'Our pastor'}, a:{
-      ko:'담임 <b>김성수 목사(Paul Kim)</b>가 2002년 시애틀지구촌교회를 개척해 섬기고 있습니다. The Southern Baptist Theological Seminary M.Div. 교역자 전체 소개는 <a href="#" onclick="goTab(\'newcomer\');return false">환영 탭</a> 아래에 있어요.',
+      ko:'담임 <b>김성수 목사(Paul Kim)</b>가 2002년 시애틀지구촌교회를 개척해 섬기고 있습니다. The Southern Baptist Theological Seminary M.Div. 교역자 전체 소개는 <a href="#" onclick="goTab(\'newcomer\');return false">환영 탭</a> 아래에 있습니다.',
       en:'Lead Pastor <b>Paul Kim (Sung Soo Kim)</b> planted GMC in 2002. M.Div, The Southern Baptist Theological Seminary. Meet the whole team in the <a href="#" onclick="goTab(\'newcomer\');return false">Welcome tab</a>.' } },
     kids:{ l:{ko:'우리 아이는',en:'Kids & youth'}, a:{
-      ko:'어린이는 <b>김지영 디렉터</b>(미술·성경, 24년)와, 청소년 <b>GMC Y</b>는 <b>Garrett Woods 목사</b>와 함께해요. 어린이는 성인예배와 같은 곳에서, 청소년은 따로 또 같이 모입니다. <a href="#" onclick="goTab(\'newgen\');return false">새 세대 탭 보기</a>',
+      ko:'어린이는 <b>김지영 디렉터</b>(미술·성경, 24년)와, 청소년 <b>GMC Y</b>는 <b>Garrett Woods 목사</b>와 함께합니다. 어린이는 성인예배와 같은 곳에서, 청소년은 따로 또 같이 모입니다. <a href="#" onclick="goTab(\'newgen\');return false">새 세대 탭 보기</a>',
       en:'Children are with <b>Director Joy Kim</b> (art & Bible, 24 yrs); youth <b>GMC Y</b> with <b>Pastor Garrett Woods</b>. <a href="#" onclick="goTab(\'newgen\');return false">Open the New Generation tab</a>' } },
     study:{ l:{ko:'삶공부',en:'Bible study'}, a:{
-      ko:'<b>생명의 삶</b>으로 시작해 확신의 삶·새로운 삶·경건의 삶으로 이어집니다. 봄·가을 학기에 열고, 생명의 삶은 여름에도 열어요. <a href="#" onclick="goTab(\'study\');return false">삶공부 탭 보기</a>',
+      ko:'<b>생명의 삶</b>으로 시작해 확신의 삶·새로운 삶·경건의 삶으로 이어집니다. 봄·가을 학기에 열며, 생명의 삶은 여름에도 엽니다. <a href="#" onclick="goTab(\'study\');return false">삶공부 탭 보기</a>',
       en:'Start with <b>Living Life</b>, then Assured, New, and Growing Life. Spring & fall terms; Living Life also in summer. <a href="#" onclick="goTab(\'study\');return false">Open the Bible Study tab</a>' } },
     giving:{ l:{ko:'헌금 안내',en:'Giving'}, a:{
-      ko:'예배 때 봉헌함으로, 또는 <a href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener">온라인(Tithe.ly)</a>으로 드릴 수 있어요. 처음 오신 분은 부담 갖지 마세요. 501(c)(3) · EIN 27-0003955 · 세금공제 대상.',
+      ko:'예배 때 봉헌함으로, 또는 <a href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener">온라인(Tithe.ly)</a>으로 드리실 수 있습니다. 처음 오신 분은 부담 갖지 않으셔도 됩니다. 501(c)(3) · EIN 27-0003955 · 세금공제 대상.',
       en:'Give at worship or <a href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener">online (Tithe.ly)</a>. First-time guests, no pressure. 501(c)(3) · EIN 27-0003955 · tax-deductible.' } },
     settle:{ l:{ko:'시애틀 정착 도움',en:'Settling in Seattle'}, a:{
-      ko:'시애틀로 이주하셨나요? 우리와 협력하는 환대 플랫폼 <a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener"><b>HebronGuide 시애틀</b></a>이 주거·생활·행정 정착을 실질적으로 돕습니다. 도시의 첫 얼굴이 되어 드릴게요.',
+      ko:'시애틀로 이주하셨나요? 우리와 협력하는 환대 플랫폼 <a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener"><b>HebronGuide 시애틀</b></a>이 주거·생활·행정 정착을 실질적으로 돕습니다. 도시의 첫 얼굴이 되어 드리겠습니다.',
       en:'Just moved to Seattle? Our partner platform <a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener"><b>HebronGuide Seattle</b></a> gives real help with housing, daily life, and paperwork.' } },
     contact:{ l:{ko:'연락처 · 카톡',en:'Contact'}, a:{
-      ko:'<a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener"><b>카톡방에서 인사하기</b></a> · 이메일 <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a> · 전화 <a href="tel:+14253500191">425-350-0191</a>. 언제든 편하게 연락 주세요.',
+      ko:'<a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener"><b>카톡방에서 인사하기</b></a> · 이메일 <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a> · 전화 <a href="tel:+14253500191">425-350-0191</a>. 언제든 편하게 연락 주십시오.',
       en:'<a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener"><b>Say hi on KakaoTalk</b></a> · <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a> · <a href="tel:+14253500191">425-350-0191</a>. Reach out anytime.' } }
   };
   var GC_K = {
@@ -1026,7 +1084,7 @@
     contact:['연락','전화','이메일','메일','카톡','카카오','contact','phone','email','kakao','call']
   };
   var GC_G = { ko:'안녕하세요. 시애틀지구촌교회 안내 도우미입니다.<br>아래에서 고르시거나, 궁금한 점을 적어 주세요.', en:'Hello. I am the GMC guide.<br>Pick a topic below, or type your question.' };
-  var GC_F = { ko:'그 질문은 제가 바로 답하기 어렵네요. 아래 버튼을 눌러 보시거나 <a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener">카톡방</a> · <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a>로 물어봐 주세요.', en:'I can\'t answer that directly. Try the buttons below, or ask on <a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener">KakaoTalk</a> · <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a>.' };
+  var GC_F = { ko:'그 질문은 제가 바로 답해 드리기 어렵습니다. 아래 버튼을 눌러 보시거나 <a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener">카톡방</a> · <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a>로 물어봐 주세요.', en:'I can\'t answer that directly. Try the buttons below, or ask on <a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener">KakaoTalk</a> · <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a>.' };
   var gcStarted=false;
   function gcLang(){ return document.body.classList.contains('lang-en')?'en':'ko'; }
   function gcAdd(html,who){ var b=document.getElementById('gcBody'); var m=document.createElement('div'); m.className='gc-msg '+who; m.innerHTML=html; b.appendChild(m); b.scrollTop=b.scrollHeight; }
@@ -1097,7 +1155,7 @@ var SERMON_PLAN = {
   '2026-11-15': {ref:'사도행전 21:1–16', title:'각오가 된 사람은 무섭다'},
   '2026-11-22': {ref:'사도행전 21:17–40', title:'오해받아도 포기하지 않는다'},
   '2026-11-29': {ref:'사도행전 22:1–21', title:'당신만의 3분 스토리'},
-  '2026-12-06': {ref:'사도행전 23:1–11', title:'무서울 게 뭐 있어요?'},
+  '2026-12-06': {ref:'사도행전 23:1–11', title:'무서울 게 뭐 있습니다?'},
   '2026-12-13': {ref:'사도행전 24:1–27', title:'권력 앞에서도 흔들리지 않는다'},
   '2026-12-20': {ref:'누가복음 2:1–20 · 요한복음 1:14', title:'하나님이 이사 오신 날'},
   '2026-12-27': {ref:'사도행전 25:1–27', title:'황제 앞에 서겠습니다'},
