@@ -56,6 +56,14 @@
   .tab.active{background:var(--navy);color:#fff}
   .lang{flex:0 0 auto;border:1.4px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-family:inherit;font-size:13px;font-weight:800;color:var(--navy);cursor:pointer;display:flex;align-items:center;gap:6px}
   .lang svg{width:15px;height:15px}
+  /* 폰: 브랜드+언어 1줄, 탭 6개는 2번째 줄로 줄바꿈 — 스크롤 없이 전부 보이게 */
+  @media(max-width:600px){
+    .topbar .row{flex-wrap:wrap;height:auto;padding:8px 12px 7px;gap:6px 10px}
+    .brand{order:0} .brand b{font-size:15px}
+    .lang{order:1;margin-left:auto}
+    .tabs{order:2;flex:1 0 100%;flex-wrap:wrap;justify-content:center;gap:4px;overflow:visible;margin-top:2px}
+    .tab{font-size:13.5px;padding:7px 11px}
+  }
 
   /* ── 패널 (탭 하나 = 한 화면) ── */
   .panel{display:none;animation:fade .32s ease}
