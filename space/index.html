@@ -17,7 +17,6 @@
 <link rel="apple-touch-icon" href="/images/apple-touch-icon-em.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap">
 <style>
   :root{
     --ground:#0b1830; --card-top:#1a2c49; --card-bot:#0e1d36;
@@ -33,7 +32,7 @@
       radial-gradient(90% 60% at 50% 4%, #5a3a3a 0%, rgba(90,58,58,0) 42%),
       var(--ground);
     color:var(--ink);
-    font-family:"Noto Sans KR",system-ui,sans-serif;
+    font-family:var(--font-sans);
     min-height:100vh;
     display:flex; align-items:center; justify-content:center;
     padding:26px 16px;
@@ -61,27 +60,27 @@
   .langbtn{
     position:absolute; top:16px; right:16px; z-index:3;
     display:inline-flex; align-items:center; gap:5px;
-    padding:6px 11px; border-radius:999px;
+    padding:6px 11px; border-radius:var(--radius-pill);
     background:rgba(231,179,104,.12); border:1px solid var(--faint);
-    color:var(--gold); font-family:"Noto Sans KR",sans-serif; font-size:11.5px; font-weight:700; letter-spacing:.04em;
+    color:var(--gold); font-family:var(--font-sans); font-size:12px; font-weight:700; letter-spacing:.04em;
     cursor:pointer;
   }
   .langbtn:hover{background:rgba(231,179,104,.2)}
   .langbtn:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
   .eyebrow{
     position:relative; display:flex; align-items:center; gap:9px;
-    font-size:11px; font-weight:700; letter-spacing:.14em;
+    font-size:12px; font-weight:700; letter-spacing:.14em;
     color:var(--gold); margin-bottom:22px; padding-right:54px;
   }
   .eyebrow .rule{height:1px; flex:1; background:linear-gradient(90deg,var(--faint),transparent)}
-  .gen{font-family:"Cormorant Garamond",serif; font-style:italic; font-size:14px; letter-spacing:.02em; color:var(--muted)}
+  .gen{font-family:var(--font-sans); font-style:italic; font-size:14px; letter-spacing:.02em; color:var(--muted)}
   .kicker{font-size:13px; font-weight:500; color:var(--terra); letter-spacing:.02em; margin:0 0 8px}
   h1{
-    font-family:"Gowun Batang",serif; font-weight:700;
+    font-family:var(--font-sans); font-weight:700;
     font-size:34px; line-height:1.22; letter-spacing:-.01em;
     margin:0 0 4px; text-wrap:balance; color:var(--ink);
   }
-  body.lang-en h1{font-family:"Cormorant Garamond","Gowun Batang",serif; font-size:37px; line-height:1.14}
+  body.lang-en h1{font-family:var(--font-sans); font-size:37px; line-height:1.14}
   h1 .accent{color:var(--gold)}
   .lead{ font-size:15px; line-height:1.55; color:#DBD3C4; font-weight:500; margin:14px 0 0; max-width:36ch; }
   .lead b{color:#EAD9BE}
@@ -94,7 +93,7 @@
     margin-top:24px; padding:16px 20px; width:100%;
     background:linear-gradient(180deg,var(--gold) 0%, var(--gold-deep) 100%);
     color:#2a1c0c; font-weight:700; font-size:15.5px; letter-spacing:.01em;
-    border:none; border-radius:14px; cursor:pointer; text-decoration:none;
+    border:none; border-radius:var(--radius-lg); cursor:pointer; text-decoration:none;
     box-shadow:0 10px 26px -10px rgba(231,179,104,.5);
     transition:transform .14s ease, box-shadow .14s ease;
   }
@@ -104,21 +103,81 @@
   .cta.ghost{background:transparent; border:1px solid var(--gold); color:var(--gold); box-shadow:none; margin-top:11px; font-size:14.5px}
   .cta.ghost:hover{background:rgba(231,179,104,.10); box-shadow:none; transform:translateY(-1px)}
   .cta.ghost svg{stroke:var(--gold)}
-  .url{text-align:center; font-family:"Cormorant Garamond",serif; font-size:15px; color:var(--gold); margin:11px 0 0; letter-spacing:.03em}
+  .url{text-align:center; font-family:var(--font-sans); font-size:15px; color:var(--gold); margin:11px 0 0; letter-spacing:.03em}
   .how{ margin-top:22px; padding-top:18px; border-top:1px solid rgba(255,255,255,.08); display:grid; gap:12px; }
   .how-row{display:flex; gap:12px; align-items:flex-start}
   .how-ic{ flex:none; width:30px; height:30px; border-radius:9px; background:rgba(231,179,104,.12); border:1px solid var(--faint); display:flex; align-items:center; justify-content:center; }
   .how-ic svg{width:15px; height:15px; stroke:var(--gold); fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round}
   .how-t{font-size:12.5px; line-height:1.5; color:var(--muted)}
   .how-t b{color:var(--ink); font-weight:700; display:block; font-size:13px; margin-bottom:1px}
-  .foot{ margin-top:24px; text-align:center; font-size:13px; line-height:1.6; color:var(--gold); font-family:"Gowun Batang",serif; }
-  body.lang-en .foot{font-family:"Cormorant Garamond",serif; font-style:italic; font-size:14px}
-  .foot .en2{display:block; font-family:"Cormorant Garamond",serif; font-style:italic; font-size:12.5px; color:var(--muted); margin-top:3px; letter-spacing:.02em}
+  .foot{ margin-top:24px; text-align:center; font-size:13px; line-height:1.6; color:var(--gold); font-family:var(--font-sans); }
+  body.lang-en .foot{font-family:var(--font-sans); font-style:italic; font-size:14px}
+  .foot .en2{display:block; font-family:var(--font-sans); font-style:italic; font-size:12.5px; color:var(--muted); margin-top:3px; letter-spacing:.02em}
   @media (prefers-reduced-motion:no-preference){
     .twinkle{animation:tw 4.2s ease-in-out infinite}
     .twinkle.b{animation-delay:1.1s} .twinkle.c{animation-delay:2.3s} .twinkle.d{animation-delay:1.7s}
     @keyframes tw{0%,100%{opacity:.9}50%{opacity:.35}}
   }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..600&display=swap">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
+<style id="hebron-ds">
+/* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
+:root{
+  /* Typography */
+  --font-korean:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-english:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  --text-display:clamp(40px,6vw,64px); --text-h1:clamp(32px,4.4vw,48px); --text-h2:clamp(26px,3.4vw,36px);
+  --text-h3:clamp(22px,2.6vw,28px); --text-h4:clamp(18px,2vw,22px);
+  --text-body-lg:18px; --text-body:16px; --text-body-sm:14px; --text-caption:12.5px;
+  --weight-regular:400; --weight-medium:500; --weight-semibold:600; --weight-bold:700; --weight-extrabold:800;
+  --leading-heading:1.25; --leading-body:1.7; --leading-ui:1.5; --leading-caption:1.5;
+  --tracking-display:-0.02em; --tracking-heading:-0.015em; --tracking-body:-0.005em; --tracking-ui:0;
+  /* Color — semantic (Church theme: heritage navy · warm gold · cream) */
+  --color-background:#F6F1E7; --color-background-secondary:#F1E6D3;
+  --color-surface:#ffffff; --color-surface-muted:#FBF8F2;
+  --color-text-primary:#1c1f26; --color-text-secondary:#4a4f5a; --color-text-muted:#7c8290;
+  --color-text-disabled:#a9aeb8; --color-text-inverse:#ffffff;
+  --color-border:#E3D9C6; --color-border-subtle:#EAE3D5; --color-border-strong:#D9C7A0;
+  --color-primary:#14213d; --color-primary-hover:#1f2f55; --color-primary-active:#0d1730; --color-primary-foreground:#ffffff;
+  --color-accent:#B8924A; --color-accent-hover:#8f6a2a; --color-accent-strong:#9A7130;
+  --color-accent-bright:#CDA65B; --color-accent-deep:#A67A2E; --color-accent-on-dark:#E9C77B;
+  --color-success:#12857c; --color-success-soft:#34c3b5; --color-warning:#B7791F;
+  --color-error:#b4532a; --color-info:#2c4d8a; --color-info-soft:#5b7fb5;
+  --color-focus:#2c77b0;
+  --color-scripture:var(--color-primary);
+  --color-brand-kakao:#FEE500; --color-brand-kakao-foreground:#3A1D1D;
+  /* Spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px;
+  --space-10:40px; --space-12:48px; --space-16:64px; --space-20:80px; --space-24:96px; --space-32:128px;
+  --space-xs:var(--space-1); --space-sm:var(--space-2); --space-md:var(--space-4); --space-lg:var(--space-6);
+  --space-xl:var(--space-8); --space-2xl:var(--space-12); --space-3xl:var(--space-16);
+  /* Radius */
+  --radius-sm:6px; --radius-md:10px; --radius-lg:14px; --radius-xl:20px; --radius-pill:9999px;
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(20,33,61,.06); --shadow-md:0 6px 18px rgba(40,30,10,.06); --shadow-lg:0 18px 40px rgba(20,33,61,.12);
+  /* Layout (breakpoints: sm 560 · md 760 · lg 900 — CSS 변수는 media query에 못 쓰므로 값으로 사용) */
+  --container-max:1200px; --container-reading:760px; --touch-target:44px;
+  /* Motion · Layers */
+  --transition-fast:.15s ease; --transition-base:.2s ease;
+  --z-header:50; --z-dropdown:60; --z-floating:1100; --z-modal:1200;
+}
+html,body{font-family:var(--font-sans)}
+body{font-weight:var(--weight-regular)}
+button,input,select,textarea,optgroup{font-family:inherit}
+code,pre,kbd,samp{font-family:var(--font-mono)}
+:focus-visible{outline:3px solid var(--color-focus)!important;outline-offset:2px!important}
+.host-acts a,.member .mct a,.bd-chip,.loc-go,.cb-acts button,.cb-more,.gm-x,.tm-i,.pgnav button,.d-settle,.ms-kakao,.dp-others a,.dp-hosp button{min-height:var(--touch-target)}
+.gm-x{min-width:var(--touch-target)}
+.lang,.psnav,.gc-send,.gc-x,.d-more{min-height:var(--touch-target)}
+.psnav,.gc-send,.gc-x{min-width:var(--touch-target)}
+.d-greet{display:inline-flex;align-items:center;min-height:var(--touch-target)}
+.tabs .tab{min-height:40px} /* 예외: 모바일 헤더 높이 — 문서화됨 */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
 </style>
 </head>
 <body>

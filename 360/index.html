@@ -11,32 +11,31 @@
 <link rel="apple-touch-icon" href="/images/apple-touch-icon-em.png"/>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap">
 <style>
-  :root{--navy:#14213d;--navy-2:#1f2f55;--gold:#B8924A;--gold-2:#9A7130;--gold-l:#E9C77B;--ink:#1c1f26;--ink-2:#4a4f5a;--ink-3:#7c8290;--cream:#F6F1E7;--line:#E3D9C6;--serif:'Noto Serif KR','Apple Myungjo',Georgia,serif}
+  :root{--navy:var(--color-primary);--navy-2:var(--color-primary-hover);--gold:var(--color-accent);--gold-2:var(--color-accent-strong);--gold-l:var(--color-accent-on-dark);--ink:var(--color-text-primary);--ink-2:var(--color-text-secondary);--ink-3:var(--color-text-muted);--cream:var(--color-background);--line:var(--color-border);--serif:var(--font-sans)}
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+  body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
   a{color:inherit;text-decoration:none}
   .en{display:none} body.lang-en .ko{display:none} body.lang-en .en{display:inline}
   .top{position:sticky;top:0;z-index:10;background:rgba(246,241,231,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .top .row{max-width:1040px;margin:0 auto;padding:0 18px;height:58px;display:flex;align-items:center;gap:10px}
   .top img{width:34px;height:34px;border-radius:50%;box-shadow:0 0 0 2px rgba(184,146,74,.4)}
-  .top b{font-family:var(--serif);font-size:15px;color:var(--navy);white-space:nowrap}
+  .top b{font-family:var(--font-sans);font-size:15px;color:var(--navy);white-space:nowrap}
   .top .r{margin-left:auto;display:flex;gap:8px;align-items:center}
-  .top .r a,.top .r button{font-family:inherit;font-size:12.5px;font-weight:800;color:var(--navy);background:#fff;border:1.4px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+  .top .r a,.top .r button{font-family:inherit;font-size:12.5px;font-weight:800;color:var(--navy);background:var(--color-surface);border:1.4px solid var(--line);border-radius:var(--radius-pill);padding:6px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
   .top .r button svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
   .wrap{max-width:1040px;margin:0 auto;padding:34px 18px 70px}
-  .eye{font-size:11.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold-2);text-align:center}
-  h1{font-family:var(--serif);font-size:clamp(24px,3.6vw,34px);font-weight:900;color:var(--navy);text-align:center;letter-spacing:-.5px;margin-top:8px;word-break:keep-all}
+  .eye{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold-2);text-align:center}
+  h1{font-family:var(--font-sans);font-size:clamp(24px,3.6vw,34px);font-weight:800;color:var(--navy);text-align:center;letter-spacing:-.5px;margin-top:8px;word-break:keep-all}
   h1::after{content:"";display:block;width:34px;height:2px;margin:12px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
   .lead{max-width:640px;margin:12px auto 0;text-align:center;color:var(--ink-2);font-size:15px;word-break:keep-all}
-  .gate{max-width:420px;margin:30px auto 0;background:linear-gradient(150deg,#1f2f55,#14213d);color:#fff;border-radius:20px;padding:28px 26px;box-shadow:0 14px 36px rgba(20,33,61,.28);text-align:center}
-  .gate .ge{font-size:11px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold-l)}
-  .gate h2{font-family:var(--serif);font-size:20px;margin-top:8px;word-break:keep-all}
+  .gate{max-width:420px;margin:30px auto 0;background:linear-gradient(150deg,var(--color-primary-hover),var(--color-primary));color:var(--color-text-inverse);border-radius:var(--radius-xl);padding:28px 26px;box-shadow:0 14px 36px rgba(20,33,61,.28);text-align:center}
+  .gate .ge{font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold-l)}
+  .gate h2{font-family:var(--font-sans);font-size:20px;margin-top:8px;word-break:keep-all}
   .gate p{margin-top:8px;font-size:13.5px;color:rgba(255,255,255,.8)}
-  .gate input{width:100%;margin-top:16px;padding:13px 14px;border-radius:12px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:16px;font-family:inherit;text-align:center;letter-spacing:4px;outline:none}
+  .gate input{width:100%;margin-top:16px;padding:13px 14px;border-radius:12px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:var(--color-text-inverse);font-size:16px;font-family:inherit;text-align:center;letter-spacing:4px;outline:none}
   .gate input:focus{border-color:var(--gold-l)}
-  .gate button{width:100%;margin-top:12px;padding:13px;border:0;border-radius:999px;background:linear-gradient(180deg,#CDA65B,#A67A2E);color:#fff;font-weight:900;font-size:15px;font-family:inherit;cursor:pointer;box-shadow:0 6px 18px rgba(154,113,48,.35)}
+  .gate button{width:100%;margin-top:12px;padding:13px;border:0;border-radius:var(--radius-pill);background:linear-gradient(180deg,var(--color-accent-bright),var(--color-accent-deep));color:var(--color-text-inverse);font-weight:800;font-size:15px;font-family:inherit;cursor:pointer;box-shadow:0 6px 18px rgba(154,113,48,.35)}
   .gate .err{margin-top:10px;font-size:12.5px;color:#F2B8B8;min-height:16px}
   .gate .help{margin-top:14px;font-size:12px;color:rgba(255,255,255,.6)}
   .gate .help a{color:var(--gold-l);font-weight:700}
@@ -44,30 +43,89 @@
   .cut{max-width:760px;margin:44px auto 16px;display:flex;align-items:center;gap:14px}
   .cut::before,.cut::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(184,146,74,.55))}
   .cut::after{background:linear-gradient(90deg,rgba(184,146,74,.55),transparent)}
-  .cut span{font-family:var(--serif);font-size:12px;font-weight:700;letter-spacing:2.2px;color:var(--gold-2);white-space:nowrap}
+  .cut span{font-family:var(--font-sans);font-size:12px;font-weight:700;letter-spacing:2.2px;color:var(--gold-2);white-space:nowrap}
   .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
   @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:440px){.grid{grid-template-columns:1fr}}
-  .tile{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 18px rgba(40,30,10,.06);transition:transform .14s,box-shadow .14s}
+  .tile{display:flex;align-items:center;gap:12px;background:var(--color-surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 18px rgba(40,30,10,.06);transition:transform .14s,box-shadow .14s}
   .tile:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(40,30,10,.1)}
-  .tile .ic{flex:0 0 auto;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(180deg,#1f2f55,#14213d)}
-  .tile .ic.g{background:linear-gradient(180deg,#CDA65B,#A67A2E)} .tile .ic.t{background:linear-gradient(180deg,#34c3b5,#12857c)} .tile .ic.b{background:linear-gradient(180deg,#5b7fb5,#2c4d8a)}
+  .tile .ic{flex:0 0 auto;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--color-text-inverse);background:linear-gradient(180deg,var(--color-primary-hover),var(--color-primary))}
+  .tile .ic.g{background:linear-gradient(180deg,var(--color-accent-bright),var(--color-accent-deep))} .tile .ic.t{background:linear-gradient(180deg,var(--color-success-soft),var(--color-success))} .tile .ic.b{background:linear-gradient(180deg,var(--color-info-soft),var(--color-info))}
   .tile .ic svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
   .tile .tb{flex:1;min-width:0}
-  .tile h3{font-family:var(--serif);font-size:15px;font-weight:900;color:var(--navy)}
+  .tile h3{font-family:var(--font-sans);font-size:15px;font-weight:800;color:var(--navy)}
   .tile p{margin-top:2px;font-size:12px;color:var(--ink-3);font-weight:600;line-height:1.45}
-  .tile.sys{background:linear-gradient(150deg,#1f2f55,#14213d);border-color:transparent;color:#fff;box-shadow:0 14px 36px rgba(20,33,61,.28)}
-  .tile.sys h3{color:#fff} .tile.sys p{color:rgba(255,255,255,.75)}
-  .tile.sys .out{width:20px;height:20px;flex:0 0 auto;fill:none;stroke:#E9C77B;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-  .note{max-width:760px;margin:28px auto 0;background:#F1E6D3;border:1px solid rgba(184,146,74,.35);border-radius:14px;padding:14px 18px;font-size:13px;color:#6b4f1d;line-height:1.7;word-break:keep-all}
+  .tile.sys{background:linear-gradient(150deg,var(--color-primary-hover),var(--color-primary));border-color:transparent;color:var(--color-text-inverse);box-shadow:0 14px 36px rgba(20,33,61,.28)}
+  .tile.sys h3{color:var(--color-text-inverse)} .tile.sys p{color:rgba(255,255,255,.75)}
+  .tile.sys .out{width:20px;height:20px;flex:0 0 auto;fill:none;stroke:var(--color-accent-on-dark);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  .note{max-width:760px;margin:28px auto 0;background:var(--color-background-secondary);border:1px solid rgba(184,146,74,.35);border-radius:var(--radius-lg);padding:14px 18px;font-size:13px;color:#6b4f1d;line-height:1.7;word-break:keep-all}
   .note b{color:#4d3812}
   footer{max-width:1040px;margin:0 auto;padding:0 18px 30px;font-size:12px;color:var(--ink-3);text-align:center}
   footer a{color:var(--navy);font-weight:700}
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..600&display=swap">
+<style id="hebron-ds">
+/* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
+:root{
+  /* Typography */
+  --font-korean:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-english:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  --text-display:clamp(40px,6vw,64px); --text-h1:clamp(32px,4.4vw,48px); --text-h2:clamp(26px,3.4vw,36px);
+  --text-h3:clamp(22px,2.6vw,28px); --text-h4:clamp(18px,2vw,22px);
+  --text-body-lg:18px; --text-body:16px; --text-body-sm:14px; --text-caption:12.5px;
+  --weight-regular:400; --weight-medium:500; --weight-semibold:600; --weight-bold:700; --weight-extrabold:800;
+  --leading-heading:1.25; --leading-body:1.7; --leading-ui:1.5; --leading-caption:1.5;
+  --tracking-display:-0.02em; --tracking-heading:-0.015em; --tracking-body:-0.005em; --tracking-ui:0;
+  /* Color — semantic (Church theme: heritage navy · warm gold · cream) */
+  --color-background:#F6F1E7; --color-background-secondary:#F1E6D3;
+  --color-surface:#ffffff; --color-surface-muted:#FBF8F2;
+  --color-text-primary:#1c1f26; --color-text-secondary:#4a4f5a; --color-text-muted:#7c8290;
+  --color-text-disabled:#a9aeb8; --color-text-inverse:#ffffff;
+  --color-border:#E3D9C6; --color-border-subtle:#EAE3D5; --color-border-strong:#D9C7A0;
+  --color-primary:#14213d; --color-primary-hover:#1f2f55; --color-primary-active:#0d1730; --color-primary-foreground:#ffffff;
+  --color-accent:#B8924A; --color-accent-hover:#8f6a2a; --color-accent-strong:#9A7130;
+  --color-accent-bright:#CDA65B; --color-accent-deep:#A67A2E; --color-accent-on-dark:#E9C77B;
+  --color-success:#12857c; --color-success-soft:#34c3b5; --color-warning:#B7791F;
+  --color-error:#b4532a; --color-info:#2c4d8a; --color-info-soft:#5b7fb5;
+  --color-focus:#2c77b0;
+  --color-scripture:var(--color-primary);
+  --color-brand-kakao:#FEE500; --color-brand-kakao-foreground:#3A1D1D;
+  /* Spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px;
+  --space-10:40px; --space-12:48px; --space-16:64px; --space-20:80px; --space-24:96px; --space-32:128px;
+  --space-xs:var(--space-1); --space-sm:var(--space-2); --space-md:var(--space-4); --space-lg:var(--space-6);
+  --space-xl:var(--space-8); --space-2xl:var(--space-12); --space-3xl:var(--space-16);
+  /* Radius */
+  --radius-sm:6px; --radius-md:10px; --radius-lg:14px; --radius-xl:20px; --radius-pill:9999px;
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(20,33,61,.06); --shadow-md:0 6px 18px rgba(40,30,10,.06); --shadow-lg:0 18px 40px rgba(20,33,61,.12);
+  /* Layout (breakpoints: sm 560 · md 760 · lg 900 — CSS 변수는 media query에 못 쓰므로 값으로 사용) */
+  --container-max:1200px; --container-reading:760px; --touch-target:44px;
+  /* Motion · Layers */
+  --transition-fast:.15s ease; --transition-base:.2s ease;
+  --z-header:50; --z-dropdown:60; --z-floating:1100; --z-modal:1200;
+}
+html,body{font-family:var(--font-sans)}
+body{font-weight:var(--weight-regular)}
+button,input,select,textarea,optgroup{font-family:inherit}
+code,pre,kbd,samp{font-family:var(--font-mono)}
+:focus-visible{outline:3px solid var(--color-focus)!important;outline-offset:2px!important}
+.host-acts a,.member .mct a,.bd-chip,.loc-go,.cb-acts button,.cb-more,.gm-x,.tm-i,.pgnav button,.d-settle,.ms-kakao,.dp-others a,.dp-hosp button{min-height:var(--touch-target)}
+.gm-x{min-width:var(--touch-target)}
+.lang,.psnav,.gc-send,.gc-x,.d-more{min-height:var(--touch-target)}
+.psnav,.gc-send,.gc-x{min-width:var(--touch-target)}
+.d-greet{display:inline-flex;align-items:center;min-height:var(--touch-target)}
+.tabs .tab{min-height:40px} /* 예외: 모바일 헤더 높이 — 문서화됨 */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
 </head>
 <body>
 <div class="top"><div class="row">
-  <a href="/" style="display:flex;align-items:center;gap:9px"><img src="/images/logo-mark.png" alt="" style="width:40px;height:40px;border-radius:0;box-shadow:none;filter:drop-shadow(0 1px 2px rgba(20,33,61,.18))"><span style="display:flex;flex-direction:column;line-height:1.05"><b><span class="ko">시애틀지구촌교회</span><span class="en">GMC of Greater Seattle</span></b><small style="font-size:9.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-2);margin-top:3px;white-space:nowrap"><span class="ko">가정교회 360</span><span class="en">House Church 360</span></small></span></a>
+  <a href="/" style="display:flex;align-items:center;gap:9px"><img src="/images/logo-mark.png" alt="" style="width:40px;height:40px;border-radius:0;box-shadow:none;filter:drop-shadow(0 1px 2px rgba(20,33,61,.18))"><span style="display:flex;flex-direction:column;line-height:1.05"><b><span class="ko">시애틀지구촌교회</span><span class="en">GMC of Greater Seattle</span></b><small style="font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-2);margin-top:3px;white-space:nowrap"><span class="ko">가정교회 360</span><span class="en">House Church 360</span></small></span></a>
   <div class="r">
     <button onclick="toggleLang()" aria-label="Language"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg><span id="langTxt">EN</span></button>
     <a href="/"><span class="ko">홈</span><span class="en">Home</span></a>
@@ -95,7 +153,7 @@
   <div class="portal" id="portal">
     <div class="cut"><span><span class="ko">가정교회 360 시스템</span><span class="en">House Church 360 system</span></span></div>
     <a class="tile sys" href="https://sbch.hcrm360.net/360sbch.asp" target="_blank" rel="noopener">
-      <span class="ic" style="background:linear-gradient(180deg,#CDA65B,#A67A2E)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+      <span class="ic" style="background:linear-gradient(180deg,var(--color-accent-bright),var(--color-accent-deep))"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
       <span class="tb"><h3><span class="ko">가정교회 360 시스템 로그인</span><span class="en">House Church 360 system sign-in</span></h3><p><span class="ko">목장 보고 · 교인 돌봄 — 시애틀지구촌교회 가정교회 360 시스템으로 이동합니다 (별도 ID · 비밀번호)</span><span class="en">House-church reports and member care — opens GMC's House Church 360 system (separate ID and password)</span></p></span>
       <svg class="out" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg>
     </a>

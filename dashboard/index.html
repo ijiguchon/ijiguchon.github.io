@@ -10,27 +10,27 @@
     --in:#1f9d63;--on:#2b6cb0;--off:#b23b3b;--r:16px}
   *{margin:0;padding:0;box-sizing:border-box}
   [hidden]{display:none!important}
-  body{font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 50px}
+  body{font-family:var(--font-sans);color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 50px}
   .en{display:none} body.lang-en .ko{display:none} body.lang-en .en{display:inline}
   .wrap{max-width:720px;margin:0 auto;padding:0 16px}
-  header{background:linear-gradient(180deg,var(--navy-2),var(--navy));color:#fff;padding:18px 16px 20px}
+  header{background:linear-gradient(180deg,var(--navy-2),var(--navy));color:var(--color-text-inverse);padding:18px 16px 20px}
   header .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px}
-  .h-title{font-weight:900;font-size:18px}
+  .h-title{font-weight:800;font-size:18px}
   .h-sub{font-size:12px;opacity:.85;font-weight:600;margin-top:2px}
   .top-btns{display:flex;gap:8px}
-  .tb{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800;cursor:pointer}
+  .tb{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:var(--color-text-inverse);border-radius:var(--radius-pill);padding:5px 11px;font-size:12px;font-weight:800;cursor:pointer}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px;box-shadow:0 2px 10px rgba(26,53,96,.05)}
-  .sec-h{font-size:15px;font-weight:900;color:var(--navy);margin-bottom:2px}
+  .sec-h{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:2px}
   .sec-c{font-size:12.5px;color:var(--ink-3);margin-bottom:12px}
   .kpis{display:flex;gap:10px;flex-wrap:wrap}
   .kpi{flex:1;min-width:120px;background:#FBF7F0;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
-  .kpi .n{font-size:26px;font-weight:900;color:var(--navy)}
+  .kpi .n{font-size:26px;font-weight:800;color:var(--navy)}
   .kpi .l{font-size:12.5px;color:var(--ink-2);font-weight:700}
   .legend{display:flex;gap:14px;font-size:12px;font-weight:700;color:var(--ink-2);margin:2px 0 12px}
   .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
   .row{display:flex;align-items:center;gap:10px;margin:7px 0}
   .row .lab{width:110px;font-size:12.5px;font-weight:700;color:var(--ink-2);text-align:right;flex-shrink:0}
-  .bar{flex:1;height:22px;background:#F1EDE5;border-radius:6px;overflow:hidden;display:flex}
+  .bar{flex:1;height:22px;background:#F1EDE5;border-radius:var(--radius-sm);overflow:hidden;display:flex}
   .seg{height:100%}
   .seg.in{background:var(--in)}.seg.on{background:var(--on)}.seg.off{background:var(--off)}
   .seg.v{background:var(--navy-2)}
@@ -39,11 +39,72 @@
   .note{font-size:12px;color:var(--ink-3);margin-top:10px;line-height:1.5}
   /* 암호 게이트 */
   #gate{position:fixed;inset:0;background:var(--cream);display:flex;align-items:center;justify-content:center;z-index:50}
-  .gatebox{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;width:320px;max-width:90%;text-align:center;box-shadow:0 8px 30px rgba(26,53,96,.12)}
+  .gatebox{background:var(--color-surface);border:1px solid var(--line);border-radius:var(--r);padding:26px;width:320px;max-width:90%;text-align:center;box-shadow:0 8px 30px rgba(26,53,96,.12)}
   .gatebox h1{font-size:17px;color:var(--navy);margin-bottom:6px}
   .gatebox p{font-size:12.5px;color:var(--ink-3);margin-bottom:16px}
-  .gatebox input{width:100%;font-size:16px;border:1.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;margin-bottom:12px}
-  .gatebox button{width:100%;background:var(--navy);color:#fff;border:0;border-radius:999px;padding:13px;font-size:15px;font-weight:800;cursor:pointer}
+  .gatebox input{width:100%;font-size:16px;border:1.5px solid var(--line);border-radius:var(--radius-md);padding:12px;text-align:center;margin-bottom:12px}
+  .gatebox button{width:100%;background:var(--navy);color:var(--color-text-inverse);border:0;border-radius:var(--radius-pill);padding:13px;font-size:15px;font-weight:800;cursor:pointer}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..600&display=swap">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
+<style id="hebron-ds">
+/* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
+:root{
+  /* Typography */
+  --font-korean:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-english:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  --text-display:clamp(40px,6vw,64px); --text-h1:clamp(32px,4.4vw,48px); --text-h2:clamp(26px,3.4vw,36px);
+  --text-h3:clamp(22px,2.6vw,28px); --text-h4:clamp(18px,2vw,22px);
+  --text-body-lg:18px; --text-body:16px; --text-body-sm:14px; --text-caption:12.5px;
+  --weight-regular:400; --weight-medium:500; --weight-semibold:600; --weight-bold:700; --weight-extrabold:800;
+  --leading-heading:1.25; --leading-body:1.7; --leading-ui:1.5; --leading-caption:1.5;
+  --tracking-display:-0.02em; --tracking-heading:-0.015em; --tracking-body:-0.005em; --tracking-ui:0;
+  /* Color — semantic (Church theme: heritage navy · warm gold · cream) */
+  --color-background:#F6F1E7; --color-background-secondary:#F1E6D3;
+  --color-surface:#ffffff; --color-surface-muted:#FBF8F2;
+  --color-text-primary:#1c1f26; --color-text-secondary:#4a4f5a; --color-text-muted:#7c8290;
+  --color-text-disabled:#a9aeb8; --color-text-inverse:#ffffff;
+  --color-border:#E3D9C6; --color-border-subtle:#EAE3D5; --color-border-strong:#D9C7A0;
+  --color-primary:#14213d; --color-primary-hover:#1f2f55; --color-primary-active:#0d1730; --color-primary-foreground:#ffffff;
+  --color-accent:#B8924A; --color-accent-hover:#8f6a2a; --color-accent-strong:#9A7130;
+  --color-accent-bright:#CDA65B; --color-accent-deep:#A67A2E; --color-accent-on-dark:#E9C77B;
+  --color-success:#12857c; --color-success-soft:#34c3b5; --color-warning:#B7791F;
+  --color-error:#b4532a; --color-info:#2c4d8a; --color-info-soft:#5b7fb5;
+  --color-focus:#2c77b0;
+  --color-scripture:var(--color-primary);
+  --color-brand-kakao:#FEE500; --color-brand-kakao-foreground:#3A1D1D;
+  /* Spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px;
+  --space-10:40px; --space-12:48px; --space-16:64px; --space-20:80px; --space-24:96px; --space-32:128px;
+  --space-xs:var(--space-1); --space-sm:var(--space-2); --space-md:var(--space-4); --space-lg:var(--space-6);
+  --space-xl:var(--space-8); --space-2xl:var(--space-12); --space-3xl:var(--space-16);
+  /* Radius */
+  --radius-sm:6px; --radius-md:10px; --radius-lg:14px; --radius-xl:20px; --radius-pill:9999px;
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(20,33,61,.06); --shadow-md:0 6px 18px rgba(40,30,10,.06); --shadow-lg:0 18px 40px rgba(20,33,61,.12);
+  /* Layout (breakpoints: sm 560 · md 760 · lg 900 — CSS 변수는 media query에 못 쓰므로 값으로 사용) */
+  --container-max:1200px; --container-reading:760px; --touch-target:44px;
+  /* Motion · Layers */
+  --transition-fast:.15s ease; --transition-base:.2s ease;
+  --z-header:50; --z-dropdown:60; --z-floating:1100; --z-modal:1200;
+}
+html,body{font-family:var(--font-sans)}
+body{font-weight:var(--weight-regular)}
+button,input,select,textarea,optgroup{font-family:inherit}
+code,pre,kbd,samp{font-family:var(--font-mono)}
+:focus-visible{outline:3px solid var(--color-focus)!important;outline-offset:2px!important}
+.host-acts a,.member .mct a,.bd-chip,.loc-go,.cb-acts button,.cb-more,.gm-x,.tm-i,.pgnav button,.d-settle,.ms-kakao,.dp-others a,.dp-hosp button{min-height:var(--touch-target)}
+.gm-x{min-width:var(--touch-target)}
+.lang,.psnav,.gc-send,.gc-x,.d-more{min-height:var(--touch-target)}
+.psnav,.gc-send,.gc-x{min-width:var(--touch-target)}
+.d-greet{display:inline-flex;align-items:center;min-height:var(--touch-target)}
+.tabs .tab{min-height:40px} /* 예외: 모바일 헤더 높이 — 문서화됨 */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
 </style>
 </head>
 <body>
@@ -75,11 +136,11 @@
 </div>
 <div class="wrap" id="quartersWrap"></div>
 <div class="wrap"><div class="card">
-  <div class="sec" style="font-size:13px;font-weight:900;color:#1a3560"><span class="ko">개인 신상기록 조회</span><span class="en">Individual record lookup</span></div>
+  <div class="sec" style="font-size:13px;font-weight:800;color:#1a3560"><span class="ko">개인 신상기록 조회</span><span class="en">Individual record lookup</span></div>
   <div style="font-size:12px;color:#8a93a2;margin:4px 0 10px"><span class="ko">이름으로 한 사람의 신상·출석·성장을 한눈에 (담임 전용).</span><span class="en">One person's profile, attendance, growth (pastor only).</span></div>
   <div style="display:flex;gap:8px">
     <input id="pInput" placeholder="이름 / Name" style="flex:1;font-size:16px;border:1.5px solid #ECE6DC;border-radius:11px;padding:11px"/>
-    <button id="pBtn" style="background:#1a3560;color:#fff;border:0;border-radius:999px;padding:0 20px;font-weight:800;cursor:pointer"><span class="ko">조회</span><span class="en">Find</span></button>
+    <button id="pBtn" style="background:#1a3560;color:var(--color-text-inverse);border:0;border-radius:var(--radius-pill);padding:0 20px;font-weight:800;cursor:pointer"><span class="ko">조회</span><span class="en">Find</span></button>
   </div>
   <div id="personResult" style="margin-top:12px"></div>
 </div></div>
@@ -134,10 +195,10 @@ var GMC_LINKS=[
 ];
 function renderLinks(){
   var w=$('linksWrap'); if(!w) return;
-  var h='<div class="card"><div class="sec" style="font-size:13px;font-weight:900;color:#1a3560">'+(lang==='ko'?'바로가기 모음 (모든 주소)':'All links')+'</div>';
+  var h='<div class="card"><div class="sec" style="font-size:13px;font-weight:800;color:#1a3560">'+(lang==='ko'?'바로가기 모음 (모든 주소)':'All links')+'</div>';
   h+='<div style="font-size:12px;color:#8a93a2;margin:4px 0 10px">'+(lang==='ko'?'주소를 외우지 않아도 여기서 바로 여세요.':'Open anything here — no need to memorize URLs.')+'</div>';
   h+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">';
-  GMC_LINKS.forEach(function(l){ h+='<a href="'+l[1]+'" target="_blank" rel="noopener" style="display:block;background:#EAF1FB;color:#1a3560;border-radius:10px;padding:9px 12px;font-size:13px;font-weight:700;text-decoration:none">'+(lang==='ko'?l[0]:l[2])+'</a>'; });
+  GMC_LINKS.forEach(function(l){ h+='<a href="'+l[1]+'" target="_blank" rel="noopener" style="display:block;background:#EAF1FB;color:#1a3560;border-radius:var(--radius-md);padding:9px 12px;font-size:13px;font-weight:700;text-decoration:none">'+(lang==='ko'?l[0]:l[2])+'</a>'; });
   h+='</div>';
   h+='<div style="font-size:12px;color:#8a93a2;margin-top:10px;line-height:1.6">'+(lang==='ko'?'※ 데이터베이스(GMC 출석부 시트)·백엔드 스크립트는 구글 드라이브 04.행정운영 / script.google.com 에서.':'DB sheet & backend in Google Drive / script.google.com')+'</div>';
   w.innerHTML=h+'</div>';
@@ -150,12 +211,12 @@ async function loadCodes(){
 function renderCodes(){
   const j=window.__codes, w=$('codesWrap'); if(!w) return;
   if(!j||!j.ok||!j.list||!j.list.length){ w.innerHTML=''; return; }
-  let h='<div class="card"><div class="sec" style="font-size:13px;font-weight:900;color:#1a3560">'+(lang==='ko'?'리더 코드 (내 목양 접속용)':'Leader codes (for My Flock)')+'</div>';
+  let h='<div class="card"><div class="sec" style="font-size:13px;font-weight:800;color:#1a3560">'+(lang==='ko'?'리더 코드 (내 목양 접속용)':'Leader codes (for My Flock)')+'</div>';
   h+='<div style="font-size:12px;color:#8a93a2;margin:4px 0 10px">'+(lang==='ko'?'각 리더에게 /my 링크와 아래 코드를 알려주세요. 잊으면 여기서 확인.':'Give each leader the /my link and their code. Look them up here.')+'</div>';
   j.list.forEach(function(c){
     h+='<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px solid #ECE6DC">'
       +'<div><b>'+c.name+'</b> <span style="color:#8a93a2;font-size:12.5px">'+(c.범위||'')+'</span></div>'
-      +'<div style="font-family:monospace;font-weight:800;color:#26407A;background:#EAF1FB;border-radius:8px;padding:3px 10px">'+c.code+'</div></div>';
+      +'<div style="font-family:var(--font-mono);font-weight:800;color:#26407A;background:#EAF1FB;border-radius:8px;padding:3px 10px">'+c.code+'</div></div>';
   });
   h+='<div style="font-size:12px;color:#8a93a2;margin-top:8px">'+(lang==='ko'?'링크: www.ijiguchon.org/my':'Link: www.ijiguchon.org/my')+'</div></div>';
   w.innerHTML=h;
@@ -170,7 +231,7 @@ function renderStudy(){
   const j=window.__study, w=$('studyWrap'); if(!w) return;
   if(!j||!j.ok){ w.innerHTML=''; return; }
   const list=j.list||[];
-  let h='<div class="card"><div class="sec" style="font-size:13px;font-weight:900;color:#1a3560">'+(lang==='ko'?'삶공부 신청 현황':'Life Study applications')+' <span style="color:#8a93a2;font-weight:700">('+list.length+')</span></div>';
+  let h='<div class="card"><div class="sec" style="font-size:13px;font-weight:800;color:#1a3560">'+(lang==='ko'?'삶공부 신청 현황':'Life Study applications')+' <span style="color:#8a93a2;font-weight:700">('+list.length+')</span></div>';
   if(!list.length){ h+='<div style="font-size:12.5px;color:#8a93a2;margin-top:6px">'+(lang==='ko'?'아직 신청이 없습니다. (신청은 www.ijiguchon.org/study 에서 접수됩니다)':'No applications yet. (Received at www.ijiguchon.org/study)')+'</div></div>'; w.innerHTML=h; return; }
   h+='<div style="font-size:12px;color:#8a93a2;margin:4px 0 10px">'+(lang==='ko'?'최근 신청이 위에 있습니다. 상세 내용은 시트 [삶공부신청] 탭에서 볼 수 있습니다.':'Newest first. Full details in the [삶공부신청] sheet tab.')+'</div>';
   list.forEach(function(s){
@@ -192,11 +253,11 @@ function renderQuarters(){
   if(!j||!j.ok){ w.innerHTML=''; return; }
   const qa=(j.attendance&&j.attendance.quarters)||[], qg=(j.growth&&j.growth.quarters)||[];
   if(!qa.length && !qg.length){ w.innerHTML=''; return; }
-  let h='<div class="card"><div class="sec" style="font-size:13px;font-weight:900;color:#1a3560">'+(lang==='ko'?'분기별 전체 통계':'By quarter')+'</div>';
+  let h='<div class="card"><div class="sec" style="font-size:13px;font-weight:800;color:#1a3560">'+(lang==='ko'?'분기별 전체 통계':'By quarter')+'</div>';
   if(qa.length){ const max=Math.max.apply(null,qa.map(function(x){return x.total;}).concat([1]));
     h+='<div style="font-size:12px;color:#8a93a2;margin:6px 0 8px">'+(lang==='ko'?'출석 (성인+교회학교)':'Attendance')+'</div>';
     qa.forEach(function(q){ const pct=Math.round(q.total/max*100);
-      h+='<div style="display:flex;align-items:center;gap:8px;padding:4px 0"><div style="width:96px;font-size:12.5px;color:#48505e">'+q.분기+'</div><div style="flex:1;background:#eef1f5;border-radius:6px;overflow:hidden;height:16px"><div style="width:'+pct+'%;height:100%;background:#1f9d63"></div></div><div style="width:40px;text-align:right;font-size:12.5px;font-weight:700">'+q.total+'</div></div>'; });
+      h+='<div style="display:flex;align-items:center;gap:8px;padding:4px 0"><div style="width:96px;font-size:12.5px;color:#48505e">'+q.분기+'</div><div style="flex:1;background:#eef1f5;border-radius:var(--radius-sm);overflow:hidden;height:16px"><div style="width:'+pct+'%;height:100%;background:#1f9d63"></div></div><div style="width:40px;text-align:right;font-size:12.5px;font-weight:700">'+q.total+'</div></div>'; });
   }
   if(qg.length){ h+='<div style="font-size:12px;color:#8a93a2;margin:10px 0 4px">'+(lang==='ko'?'분기 성장평가 건수':'Growth records')+'</div>';
     qg.forEach(function(q){ h+='<div style="display:flex;justify-content:space-between;padding:3px 0;font-size:13px"><span>'+q.분기+'</span><b>'+q.count+'</b></div>'; });
@@ -216,12 +277,12 @@ function renderPerson(j,name){
   if(!j||!j.ok){ el.innerHTML='<div style="color:#b23b3b;padding:8px">'+(lang==='ko'?'권한이 없거나 조회 실패':'Not allowed / failed')+'</div>'; return; }
   const p=j.profile;
   let h='<div style="background:#f7f9fc;border:1px solid #ECE6DC;border-radius:12px;padding:12px">';
-  h+='<div style="font-weight:900;font-size:16px;color:#1a3560">'+name+'</div>';
+  h+='<div style="font-weight:800;font-size:16px;color:#1a3560">'+name+'</div>';
   if(p){ const f=[['목장',p['목장']],['구분',p['구분']],['휴대폰',p['휴대폰']],['이메일',p['이메일']],['생년',p['생년']],['주소',p['주소']],['침례',p['침례']],['방문유형',p['방문유형']]].filter(function(x){return x[1];});
     h+='<div style="font-size:13px;color:#48505e;margin-top:6px">'+f.map(function(x){return x[0]+': '+x[1];}).join(' · ')+'</div>';
   } else { h+='<div style="font-size:13px;color:#8a93a2;margin-top:6px">'+(lang==='ko'?'신상 기록 없음 (출석/성장만)':'No profile record')+'</div>'; }
   h+='<div style="margin-top:8px;font-size:14px"><b>'+(lang==='ko'?'출석률':'Rate')+': '+j.rate+'%</b> <span style="color:#8a93a2">('+j.present+'/'+j.total+')</span></div></div>';
-  if(j.growth&&j.growth.length){ h+='<div class="card" style="margin-top:10px"><div class="sec" style="font-weight:900;color:#1a3560">'+(lang==='ko'?'성장 여정':'Growth journey')+'</div>';
+  if(j.growth&&j.growth.length){ h+='<div class="card" style="margin-top:10px"><div class="sec" style="font-weight:800;color:#1a3560">'+(lang==='ko'?'성장 여정':'Growth journey')+'</div>';
     j.growth.slice().reverse().forEach(function(x){ h+='<div style="border-bottom:1px solid #ECE6DC;padding:8px 0;font-size:13px">';
       if(x.종류==='분기평가'){ h+='<b>'+(x.분기||'')+'</b> · '+(lang==='ko'?'구원':'Salv')+':'+(x.구원||'-')+' · '+(lang==='ko'?'사역':'Min')+':'+(x.사역||'-')+(x.빛난열매?(' · '+(lang==='ko'?'열매':'Fruit')+':'+x.빛난열매):''); if(x.축복)h+='<div style="color:#48505e;margin-top:2px">'+x.축복+'</div>'; }
       else { h+='<span style="color:#8a93a2">'+(x.날짜||'')+'</span> '+(x.나눔||''); }
@@ -229,7 +290,7 @@ function renderPerson(j,name){
       h+='</div>'; });
     h+='</div>';
   }
-  if(j.attendance&&j.attendance.length){ h+='<div class="card" style="margin-top:10px"><div class="sec" style="font-weight:900;color:#1a3560">'+(lang==='ko'?'출석 이력':'Attendance')+'</div>';
+  if(j.attendance&&j.attendance.length){ h+='<div class="card" style="margin-top:10px"><div class="sec" style="font-weight:800;color:#1a3560">'+(lang==='ko'?'출석 이력':'Attendance')+'</div>';
     j.attendance.slice(0,20).forEach(function(x){ h+='<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #ECE6DC;font-size:13px"><span>'+(x.날짜||'')+' · '+(x.구분||'')+'</span><b>'+(x.상태||'')+'</b></div>'; });
     h+='</div>';
   }
@@ -318,9 +379,9 @@ function render(j){
 }
 </script>
 <!-- 돌아가는 길: 가정교회 360 · 홈 (막힌 곳 없게) -->
-<div id="gmcBack" style="position:fixed;left:12px;bottom:12px;z-index:9000;display:flex;gap:6px;font-family:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif">
-  <a href="/360/" style="background:#14213d;color:#fff;font-size:12px;font-weight:800;padding:7px 12px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(20,33,61,.3)">&larr; 가정교회 360</a>
-  <a href="/" style="background:#fff;color:#14213d;font-size:12px;font-weight:800;padding:7px 12px;border-radius:999px;text-decoration:none;border:1px solid #E3D9C6;box-shadow:0 4px 14px rgba(20,33,61,.12)">홈</a>
+<div id="gmcBack" style="position:fixed;left:12px;bottom:12px;z-index:9000;display:flex;gap:6px;font-family:var(--font-sans)">
+  <a href="/360/" style="background:var(--color-primary);color:var(--color-text-inverse);font-size:12px;font-weight:800;padding:7px 12px;border-radius:var(--radius-pill);text-decoration:none;box-shadow:0 4px 14px rgba(20,33,61,.3)">&larr; 가정교회 360</a>
+  <a href="/" style="background:var(--color-surface);color:var(--color-primary);font-size:12px;font-weight:800;padding:7px 12px;border-radius:var(--radius-pill);text-decoration:none;border:1px solid var(--color-border);box-shadow:0 4px 14px rgba(20,33,61,.12)">홈</a>
 </div>
 </body>
 </html>

@@ -33,7 +33,7 @@
 }
 
 body {
-  font-family: -apple-system, 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
+  font-family:var(--font-sans);
   background-color: var(--bg);
   background-image: radial-gradient(rgba(100,116,139,0.18) 1.5px, transparent 1.5px);
   background-size: 22px 22px;
@@ -45,26 +45,26 @@ body {
 /* ── Header ── */
 .site-header {
   background: linear-gradient(90deg, #080f1f 0%, #0f2447 40%, #1a3a5c 100%);
-  color: #fff;
+  color: var(--color-text-inverse);
   padding: 13px 18px;
   display: flex; align-items: center; justify-content: space-between;
   box-shadow: 0 2px 14px rgba(0,0,0,0.22);
 }
 .header-logo-wrap {
   width: 36px; height: 36px; border-radius: 50%;
-  background: #fff;
+  background: var(--color-surface);
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.28);
   flex-shrink: 0; overflow: hidden;
 }
 .header-logo { width: 30px; height: 30px; object-fit: contain; }
 .header-church { font-size: 14px; font-weight: 800; letter-spacing: -0.01em; }
-.header-en { font-size: 10px; opacity: 0.52; margin-top: 1px; letter-spacing: 0.05em; }
+.header-en { font-size:12px; opacity: 0.52; margin-top: 1px; letter-spacing: 0.05em; }
 .lang-btn {
   background: rgba(255,255,255,0.10);
   border: 1px solid rgba(255,255,255,0.26);
-  color: #fff; padding: 6px 14px;
-  border-radius: 20px; font-size: 12px; font-weight: 700;
+  color: var(--color-text-inverse); padding: 6px 14px;
+  border-radius:var(--radius-xl); font-size: 12px; font-weight: 700;
   cursor: pointer; white-space: nowrap; transition: all 0.18s;
   backdrop-filter: blur(4px); letter-spacing: 0.02em;
 }
@@ -73,7 +73,7 @@ body {
 /* ── Hero ── */
 .hero {
   background: linear-gradient(145deg, #070e1c 0%, #0f2447 28%, #1a3a5c 58%, #1e4db7 82%, #2563eb 100%);
-  color: #fff; text-align: center; padding: 36px 24px 32px;
+  color: var(--color-text-inverse); text-align: center; padding: 36px 24px 32px;
   position: relative; overflow: hidden;
 }
 .hero::before {
@@ -90,13 +90,13 @@ body {
 }
 .hero-badge {
   display:inline-flex; align-items:center; gap:6px;
-  font-size:10px; font-weight:800; letter-spacing:0.18em; text-transform:uppercase;
+  font-size:12px; font-weight:800; letter-spacing:0.18em; text-transform:uppercase;
   background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.20);
-  border-radius:20px; padding:6px 18px; margin-bottom:18px;
+  border-radius:var(--radius-xl); padding:6px 18px; margin-bottom:18px;
   position:relative; z-index:1; backdrop-filter:blur(6px);
 }
 .hero h1 {
-  font-size:30px; font-weight:900; letter-spacing:-0.04em; margin-bottom:13px;
+  font-size:30px; font-weight:800; letter-spacing:-0.04em; margin-bottom:13px;
   position:relative; z-index:1; line-height:1.15;
   text-shadow: 0 2px 20px rgba(0,0,0,0.28);
 }
@@ -105,7 +105,7 @@ body {
   line-height:1.85; position:relative; z-index:1; font-weight:400;
 }
 .hero-verse {
-  margin-top:20px; font-size:11.5px; opacity:0.42; font-style:italic;
+  margin-top:20px; font-size:12px; opacity:0.42; font-style:italic;
   position:relative; z-index:1; line-height:1.7;
 }
 
@@ -124,12 +124,12 @@ body {
 .proc-num {
   width: 30px; height: 30px; border-radius: 50%;
   background: linear-gradient(135deg, var(--navy) 0%, var(--sky) 100%);
-  color: #fff; font-size: 12px; font-weight: 800;
+  color: var(--color-text-inverse); font-size: 12px; font-weight: 800;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 5px;
   box-shadow: 0 3px 10px rgba(37,99,235,0.32);
 }
-.proc-label { font-size: 10px; font-weight: 700; color: var(--sub); white-space: nowrap; letter-spacing:0.03em; }
+.proc-label { font-size:12px; font-weight: 700; color: var(--sub); white-space: nowrap; letter-spacing:0.03em; }
 .proc-arrow {
   flex:1; max-width:36px; min-width:18px; height: 2px;
   background: linear-gradient(90deg, #2563eb, #93c5fd);
@@ -143,8 +143,8 @@ body {
 }
 .mission-banner {
   background: linear-gradient(135deg, #1a3a5c 0%, #2563eb 60%, #3b82f6 100%);
-  color: #fff;
-  border-radius: 14px;
+  color: var(--color-text-inverse);
+  border-radius:var(--radius-lg);
   padding: 14px 18px;
   margin-top: 20px; margin-bottom: 4px;
   font-size: 13px; line-height: 1.7;
@@ -161,7 +161,7 @@ body {
 .type-card {
   background: var(--white);
   border: 2px solid var(--border);
-  border-radius: 14px;
+  border-radius:var(--radius-lg);
   padding: 18px 8px 14px;
   text-align: center; cursor: pointer;
   transition: all 0.20s cubic-bezier(.25,.8,.25,1);
@@ -174,7 +174,7 @@ body {
 }
 .type-card .tc-icon svg { width:100%; height:100%; display:block; }
 .type-card .tc-title { font-size: 12px; font-weight: 800; color: var(--text); line-height:1.3; }
-.type-card .tc-desc { font-size: 10px; color: var(--sub); margin-top: 3px; line-height: 1.3; }
+.type-card .tc-desc { font-size:12px; color: var(--sub); margin-top: 3px; line-height: 1.3; }
 
 /* Per-type selected colors */
 #tcSelf:hover, #tcSelf.selected { border-color: var(--sky2); background: var(--blue-light); }
@@ -199,7 +199,7 @@ body {
   border-left: 4px solid var(--sky2);
 }
 .card-title {
-  font-size: 11px; font-weight: 800; color: var(--navy);
+  font-size:12px; font-weight: 800; color: var(--navy);
   text-transform: uppercase; letter-spacing: 0.10em;
   margin-bottom: 16px; padding-bottom: 9px;
   border-bottom: 1px solid var(--border);
@@ -222,7 +222,7 @@ label {
   margin-bottom: 5px; margin-top: 16px;
 }
 label:first-of-type { margin-top: 0; }
-.opt { font-size: 11px; font-weight: 400; color: var(--sub); margin-left: 4px; }
+.opt { font-size:12px; font-weight: 400; color: var(--sub); margin-left: 4px; }
 .req { color: #e53e3e; }
 
 input[type="text"], textarea {
@@ -234,7 +234,7 @@ input[type="text"], textarea {
 }
 input:focus, textarea:focus {
   outline: none; border-color: var(--sky);
-  box-shadow: 0 0 0 3px rgba(49,130,206,0.12); background: #fff;
+  box-shadow: 0 0 0 3px rgba(49,130,206,0.12); background: var(--color-surface);
 }
 textarea { min-height: 96px; resize: vertical; }
 
@@ -247,8 +247,8 @@ textarea { min-height: 96px; resize: vertical; }
   display: flex; flex-direction: column; align-items: center; gap: 4px;
   padding: 9px 3px 8px;
   border: 1.5px solid var(--border); border-radius: 9px;
-  font-size: 10px; font-weight: 600; text-align: center;
-  cursor: pointer; background: #fff; color: var(--sub);
+  font-size:12px; font-weight: 600; text-align: center;
+  cursor: pointer; background: var(--color-surface); color: var(--sub);
   transition: all 0.15s; line-height: 1.3;
 }
 .chip svg { width: 15px; height: 15px; flex-shrink: 0; }
@@ -265,7 +265,7 @@ textarea { min-height: 96px; resize: vertical; }
 .chip:nth-child(9) { --cc:#5b21b6; --cb:#ede9fe; }  /* 예배참석 */
 .chip.chip-other   { --cc:#4a5568; --cb:#edf2f7;    /* 기타 */
   grid-column: 1 / -1; flex-direction: row; gap: 6px;
-  padding: 8px 12px; justify-content: center; font-size: 11px;
+  padding: 8px 12px; justify-content: center; font-size:12px;
 }
 
 .chip:hover  { border-color: var(--cc); color: var(--cc); background: var(--cb); }
@@ -285,7 +285,7 @@ textarea { min-height: 96px; resize: vertical; }
   flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
   padding: 10px; border: 1.5px solid var(--border); border-radius: 8px;
   font-size: 13px; font-weight: 600; cursor: pointer;
-  background: #fff; color: var(--sub); transition: all 0.15s;
+  background: var(--color-surface); color: var(--sub); transition: all 0.15s;
 }
 .urgency-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
 .urgency-btn.selected { border-color: var(--sky); background: var(--blue-light); color: #2b6cb0; box-shadow: 0 0 0 2px rgba(49,130,206,0.12); }
@@ -308,14 +308,14 @@ textarea { min-height: 96px; resize: vertical; }
 
 /* VIP invite — highlighted */
 .vip-invite {
-  background: #fff; border: 2px solid #68d391; border-radius: 10px;
+  background: var(--color-surface); border: 2px solid #68d391; border-radius:var(--radius-md);
   padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px;
   margin-bottom: 12px; cursor: pointer; transition: background 0.15s;
 }
 .vip-invite:hover { background: #f0fff4; }
 .vip-invite input[type="checkbox"] { width:17px; height:17px; margin-top:2px; flex-shrink:0; cursor:pointer; accent-color:#38a169; }
 .vip-invite strong { display:block; font-size:13px; font-weight:700; color:#276749; margin-bottom:2px; }
-.vip-invite span { font-size:11px; color:var(--sub); line-height:1.4; }
+.vip-invite span { font-size:12px; color:var(--sub); line-height:1.4; }
 
 .check-row {
   display: flex; align-items: flex-start; gap: 10px;
@@ -324,13 +324,13 @@ textarea { min-height: 96px; resize: vertical; }
 .check-row:last-child { border-bottom: none; padding-bottom: 0; }
 .check-row input[type="checkbox"] { width:17px; height:17px; margin-top:2px; flex-shrink:0; cursor:pointer; accent-color:#38a169; }
 .check-label strong { display:block; font-size:13px; font-weight:600; color:var(--green); margin-bottom:1px; }
-.check-label span { font-size:11px; color:var(--sub); line-height:1.4; }
+.check-label span { font-size:12px; color:var(--sub); line-height:1.4; }
 
 /* ── Submit ── */
 .submit-btn {
   width: 100%; padding: 17px;
   background: linear-gradient(135deg, var(--navy) 0%, var(--sky) 60%, var(--sky2) 100%);
-  color: #fff; border: none; border-radius: 14px;
+  color: var(--color-text-inverse); border: none; border-radius:var(--radius-lg);
   font-size: 16px; font-weight: 800;
   cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 9px;
   transition: transform 0.15s, box-shadow 0.15s; margin-top: 6px;
@@ -376,16 +376,16 @@ textarea { min-height: 96px; resize: vertical; }
 .sp-num {
   width:28px; height:28px; border-radius:50%;
   background: linear-gradient(135deg, var(--navy) 0%, var(--sky) 100%);
-  color:#fff; font-size:11px; font-weight:800;
+  color:var(--color-text-inverse); font-size:12px; font-weight:800;
   display:flex; align-items:center; justify-content:center; margin-bottom:5px;
   box-shadow: 0 3px 10px rgba(37,99,235,0.30);
 }
-.sp-lbl { font-size:10px; color:var(--sub); font-weight:700; }
+.sp-lbl { font-size:12px; color:var(--sub); font-weight:700; }
 .sp-arr { width:28px; height:2px; background: linear-gradient(90deg, #2563eb, #93c5fd); margin-bottom:16px; flex-shrink:0; }
 .new-btn {
   padding:13px 32px;
   background: linear-gradient(135deg, var(--navy) 0%, var(--sky) 100%);
-  color:#fff; border:none; border-radius:10px;
+  color:var(--color-text-inverse); border:none; border-radius:var(--radius-md);
   font-size:14px; font-weight:700; cursor:pointer;
   box-shadow:0 4px 14px rgba(37,99,235,0.30);
   transition: transform 0.15s, box-shadow 0.15s;
@@ -408,7 +408,7 @@ textarea { min-height: 96px; resize: vertical; }
 .pastor-avatar {
   width: 44px; height: 44px; border-radius: 50%;
   background: linear-gradient(135deg, #92400e 0%, #d69e2e 50%, #f6ad55 100%);
-  color: #fff; font-size: 16px; font-weight: 900;
+  color: var(--color-text-inverse); font-size: 16px; font-weight:800;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   box-shadow: 0 3px 10px rgba(214,158,46,0.35);
@@ -416,9 +416,9 @@ textarea { min-height: 96px; resize: vertical; }
 .pastor-meta {}
 .pastor-name { font-size: 14px; font-weight: 800; color: #5f4200; }
 .pastor-tag {
-  font-size: 10px; font-weight: 700; color: #92400e;
+  font-size:12px; font-weight: 700; color: #92400e;
   background: linear-gradient(90deg, #fef3c7, #fde68a);
-  padding: 2px 9px; border-radius: 10px;
+  padding: 2px 9px; border-radius:var(--radius-md);
   display: inline-block; margin-top: 3px;
 }
 .pastor-items { list-style: none; padding: 0; margin: 0; }
@@ -450,7 +450,7 @@ textarea { min-height: 96px; resize: vertical; }
 .share-card {
   background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
   border: 1.5px solid #bae6fd;
-  border-radius: 14px;
+  border-radius:var(--radius-lg);
   padding: 16px 18px 18px;
   margin: 0 0 18px;
   text-align: center;
@@ -459,36 +459,36 @@ textarea { min-height: 96px; resize: vertical; }
   font-size: 12px; font-weight: 700; color: #0369a1; margin-bottom: 3px;
 }
 .share-card-sub {
-  font-size: 11px; color: #64748b; margin-bottom: 13px; line-height: 1.5;
+  font-size:12px; color: #64748b; margin-bottom: 13px; line-height: 1.5;
 }
 .share-btns { display: flex; gap: 9px; justify-content: center; }
 .share-btn {
   flex: 1; max-width: 150px;
   display: flex; align-items: center; justify-content: center; gap: 7px;
-  padding: 10px 14px; border: none; border-radius: 10px;
+  padding: 10px 14px; border: none; border-radius:var(--radius-md);
   font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.15s;
 }
 .share-btn-copy {
-  background: #fff; color: #0369a1;
+  background: var(--color-surface); color: #0369a1;
   border: 1.5px solid #bae6fd;
   box-shadow: 0 2px 8px rgba(3,105,161,0.10);
 }
 .share-btn-copy:hover { background: #e0f2fe; }
 .share-btn-kakao {
-  background: #FAE300; color: #3A1D1D;
+  background: #FAE300; color: var(--color-brand-kakao-foreground);
   box-shadow: 0 2px 10px rgba(250,227,0,0.40);
 }
 .share-btn-kakao:hover { background: #F5D800; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(250,227,0,0.50); }
 .share-btn svg { width:15px; height:15px; flex-shrink:0; }
 .share-copy-toast {
-  font-size:11px; color:#0369a1; margin-top:8px;
+  font-size:12px; color:#0369a1; margin-top:8px;
   opacity:0; transition:opacity 0.3s; height:16px;
 }
 .share-copy-toast.show { opacity:1; }
 
 /* ── Footer ── */
 .footer-note {
-  text-align:center; font-size:11px; color:var(--sub);
+  text-align:center; font-size:12px; color:var(--sub);
   padding:14px 20px 48px; line-height:1.8;
 }
 
@@ -512,13 +512,13 @@ textarea { min-height: 96px; resize: vertical; }
 }
 .tab-btn:hover { color: rgba(255,255,255,0.80); background: rgba(255,255,255,0.06); }
 .tab-btn.active {
-  color: #fff; border-bottom-color: #3b82f6;
+  color: var(--color-text-inverse); border-bottom-color: #3b82f6;
   background: rgba(255,255,255,0.10);
 }
 .tab-btn svg { width:15px; height:15px; flex-shrink:0; }
 .tab-badge {
-  font-size:10px; font-weight:800; background:#3b82f6; color:#fff;
-  padding:1px 6px; border-radius:10px; min-width:18px; text-align:center;
+  font-size:12px; font-weight:800; background:#3b82f6; color:var(--color-text-inverse);
+  padding:1px 6px; border-radius:var(--radius-md); min-width:18px; text-align:center;
 }
 .tab-badge.red { background:#be123c; }
 
@@ -539,8 +539,8 @@ textarea { min-height: 96px; resize: vertical; }
 }
 .stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
 .stat-card.active-filter { border-color: var(--sky2); }
-.stat-num { font-size: 22px; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 4px; }
-.stat-lbl { font-size: 10px; font-weight: 600; color: var(--sub); }
+.stat-num { font-size: 22px; font-weight:800; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+.stat-lbl { font-size:12px; font-weight: 600; color: var(--sub); }
 .stat-card.s-urgent .stat-num { color: var(--rose); }
 .stat-card.s-done   .stat-num { color: var(--green); }
 .stat-card.s-active .stat-num { color: var(--sky); }
@@ -551,16 +551,16 @@ textarea { min-height: 96px; resize: vertical; }
 }
 .list-search input {
   flex: 1; padding: 10px 13px; border: 1.5px solid var(--border);
-  border-radius: 10px; font-size: 13px; font-family: inherit;
-  background: #fff; color: var(--text);
+  border-radius:var(--radius-md); font-size: 13px; font-family: inherit;
+  background: var(--color-surface); color: var(--text);
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 .list-search input:focus {
   outline:none; border-color: var(--sky2); box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
 }
 .list-clear-btn {
-  padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 10px;
-  background: #fff; font-size: 12px; font-weight: 600; color: var(--sub); cursor: pointer;
+  padding: 10px 14px; border: 1.5px solid var(--border); border-radius:var(--radius-md);
+  background: var(--color-surface); font-size: 12px; font-weight: 600; color: var(--sub); cursor: pointer;
   white-space: nowrap; transition: all 0.15s;
 }
 .list-clear-btn:hover { background: #fff1f2; border-color: var(--rose); color: var(--rose); }
@@ -583,18 +583,18 @@ textarea { min-height: 96px; resize: vertical; }
 .pc-meta { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; flex: 1; }
 .pc-name { font-size: 14px; font-weight: 800; color: var(--navy); }
 .pc-type {
-  font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+  font-size:12px; font-weight: 700; padding: 2px 8px; border-radius:var(--radius-md);
   background: var(--blue-light); color: var(--sky);
 }
 .pc-cat {
-  font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px;
+  font-size:12px; font-weight: 600; padding: 2px 8px; border-radius:var(--radius-md);
   background: #f1f5f9; color: var(--sub);
 }
 .pc-urgent-badge {
-  font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px;
+  font-size:12px; font-weight: 800; padding: 2px 8px; border-radius:var(--radius-md);
   background: var(--rose-light); color: var(--rose);
 }
-.pc-date { font-size: 10px; color: #94a3b8; white-space: nowrap; }
+.pc-date { font-size:12px; color: #94a3b8; white-space: nowrap; }
 
 .pc-body { padding: 10px 16px 14px; }
 .pc-vip { font-size: 12px; color: var(--sub); margin-bottom: 5px; font-style: italic; }
@@ -605,17 +605,17 @@ textarea { min-height: 96px; resize: vertical; }
 }
 .pc-text.expanded { display: block; -webkit-line-clamp: unset; }
 .pc-expand {
-  font-size: 11px; color: var(--sky2); cursor: pointer; margin-top: 4px;
+  font-size:12px; color: var(--sky2); cursor: pointer; margin-top: 4px;
   font-weight: 600; display: none;
 }
 
 .pc-connect { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; }
 .pc-tag {
-  font-size: 10px; padding: 2px 8px; border-radius: 8px;
+  font-size:12px; padding: 2px 8px; border-radius: 8px;
   background: var(--green-light); color: var(--green); font-weight: 600;
 }
 .pc-contact {
-  font-size: 11px; color: var(--sub); margin-top: 6px;
+  font-size:12px; color: var(--sub); margin-top: 6px;
 }
 
 .pc-foot {
@@ -625,7 +625,7 @@ textarea { min-height: 96px; resize: vertical; }
 }
 .pc-status {
   font-size: 12px; font-weight: 600; border: 1.5px solid var(--border);
-  border-radius: 8px; padding: 5px 10px; background: #fff;
+  border-radius: 8px; padding: 5px 10px; background: var(--color-surface);
   cursor: pointer; color: var(--text); font-family: inherit;
   transition: all 0.15s;
 }
@@ -637,8 +637,8 @@ textarea { min-height: 96px; resize: vertical; }
 .pc-status[data-s="closed"]   { color:#64748b; border-color:#e2e8f0; background:#f8fafc; }
 .pc-del-btn {
   display: flex; align-items: center; gap: 4px;
-  font-size: 11px; color: #94a3b8; background: none; border: none;
-  cursor: pointer; padding: 4px 6px; border-radius: 6px; transition: all 0.15s;
+  font-size:12px; color: #94a3b8; background: none; border: none;
+  cursor: pointer; padding: 4px 6px; border-radius:var(--radius-sm); transition: all 0.15s;
 }
 .pc-del-btn:hover { color: var(--rose); background: var(--rose-light); }
 .pc-del-btn svg { width:13px; height:13px; }
@@ -661,6 +661,67 @@ textarea { min-height: 96px; resize: vertical; }
   .card { padding: 18px 16px; }
   .stat-bar { grid-template-columns: repeat(2, 1fr); }
   .tab-btn { padding: 11px 14px 9px; font-size:12px; }
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..600&display=swap">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
+<style id="hebron-ds">
+/* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
+:root{
+  /* Typography */
+  --font-korean:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-english:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  --text-display:clamp(40px,6vw,64px); --text-h1:clamp(32px,4.4vw,48px); --text-h2:clamp(26px,3.4vw,36px);
+  --text-h3:clamp(22px,2.6vw,28px); --text-h4:clamp(18px,2vw,22px);
+  --text-body-lg:18px; --text-body:16px; --text-body-sm:14px; --text-caption:12.5px;
+  --weight-regular:400; --weight-medium:500; --weight-semibold:600; --weight-bold:700; --weight-extrabold:800;
+  --leading-heading:1.25; --leading-body:1.7; --leading-ui:1.5; --leading-caption:1.5;
+  --tracking-display:-0.02em; --tracking-heading:-0.015em; --tracking-body:-0.005em; --tracking-ui:0;
+  /* Color — semantic (Church theme: heritage navy · warm gold · cream) */
+  --color-background:#F6F1E7; --color-background-secondary:#F1E6D3;
+  --color-surface:#ffffff; --color-surface-muted:#FBF8F2;
+  --color-text-primary:#1c1f26; --color-text-secondary:#4a4f5a; --color-text-muted:#7c8290;
+  --color-text-disabled:#a9aeb8; --color-text-inverse:#ffffff;
+  --color-border:#E3D9C6; --color-border-subtle:#EAE3D5; --color-border-strong:#D9C7A0;
+  --color-primary:#14213d; --color-primary-hover:#1f2f55; --color-primary-active:#0d1730; --color-primary-foreground:#ffffff;
+  --color-accent:#B8924A; --color-accent-hover:#8f6a2a; --color-accent-strong:#9A7130;
+  --color-accent-bright:#CDA65B; --color-accent-deep:#A67A2E; --color-accent-on-dark:#E9C77B;
+  --color-success:#12857c; --color-success-soft:#34c3b5; --color-warning:#B7791F;
+  --color-error:#b4532a; --color-info:#2c4d8a; --color-info-soft:#5b7fb5;
+  --color-focus:#2c77b0;
+  --color-scripture:var(--color-primary);
+  --color-brand-kakao:#FEE500; --color-brand-kakao-foreground:#3A1D1D;
+  /* Spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px;
+  --space-10:40px; --space-12:48px; --space-16:64px; --space-20:80px; --space-24:96px; --space-32:128px;
+  --space-xs:var(--space-1); --space-sm:var(--space-2); --space-md:var(--space-4); --space-lg:var(--space-6);
+  --space-xl:var(--space-8); --space-2xl:var(--space-12); --space-3xl:var(--space-16);
+  /* Radius */
+  --radius-sm:6px; --radius-md:10px; --radius-lg:14px; --radius-xl:20px; --radius-pill:9999px;
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(20,33,61,.06); --shadow-md:0 6px 18px rgba(40,30,10,.06); --shadow-lg:0 18px 40px rgba(20,33,61,.12);
+  /* Layout (breakpoints: sm 560 · md 760 · lg 900 — CSS 변수는 media query에 못 쓰므로 값으로 사용) */
+  --container-max:1200px; --container-reading:760px; --touch-target:44px;
+  /* Motion · Layers */
+  --transition-fast:.15s ease; --transition-base:.2s ease;
+  --z-header:50; --z-dropdown:60; --z-floating:1100; --z-modal:1200;
+}
+html,body{font-family:var(--font-sans)}
+body{font-weight:var(--weight-regular)}
+button,input,select,textarea,optgroup{font-family:inherit}
+code,pre,kbd,samp{font-family:var(--font-mono)}
+:focus-visible{outline:3px solid var(--color-focus)!important;outline-offset:2px!important}
+.host-acts a,.member .mct a,.bd-chip,.loc-go,.cb-acts button,.cb-more,.gm-x,.tm-i,.pgnav button,.d-settle,.ms-kakao,.dp-others a,.dp-hosp button{min-height:var(--touch-target)}
+.gm-x{min-width:var(--touch-target)}
+.lang,.psnav,.gc-send,.gc-x,.d-more{min-height:var(--touch-target)}
+.psnav,.gc-send,.gc-x{min-width:var(--touch-target)}
+.d-greet{display:inline-flex;align-items:center;min-height:var(--touch-target)}
+.tabs .tab{min-height:40px} /* 예외: 모바일 헤더 높이 — 문서화됨 */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
 </style>
 </head>
@@ -860,7 +921,7 @@ textarea { min-height: 96px; resize: vertical; }
 
     <!-- 연결 — VIP 선교 경로 -->
     <div class="connect-card">
-      <div class="card-title" id="t_sec2">연결 <span style="font-size:10px;font-weight:400;color:#48bb78;margin-left:4px;" id="t_opt2">(선택 사항)</span></div>
+      <div class="card-title" id="t_sec2">연결 <span style="font-size:12px;font-weight:400;color:#48bb78;margin-left:4px;" id="t_opt2">(선택 사항)</span></div>
       <div class="connect-note" id="t_connectNote">
         기도를 통해 공동체와 연결될 수 있습니다. 해당되는 항목을 체크해 주세요.
       </div>

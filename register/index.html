@@ -9,7 +9,7 @@
   :root{--navy:#1a3560;--navy-2:#26407A;--gold:#C8944A;--ink:#1d2430;--ink-2:#48505e;--ink-3:#8a93a2;--cream:#FBF7F0;--line:#ECE6DC;--card:#fff;--r:16px;--r-sm:11px}
   *{margin:0;padding:0;box-sizing:border-box}
   [hidden]{display:none!important}
-  body{font-family:'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 60px}
+  body{font-family:var(--font-sans);color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 60px}
   .en{display:none} body.lang-en .ko{display:none} body.lang-en .en{display:inline} body.lang-en .en.blk{display:block}
   /* 단계별 필드 노출 */
   .f-reg,.f-member{display:none}
@@ -18,44 +18,105 @@
   .f-visitreg{display:none}
   body.st-visitor .f-visitreg,body.st-reg .f-visitreg{display:block}
   .wrap{max-width:620px;margin:0 auto;padding:0 16px}
-  header{background:linear-gradient(180deg,var(--navy-2),var(--navy));color:#fff;padding:18px 16px 22px}
+  header{background:linear-gradient(180deg,var(--navy-2),var(--navy));color:var(--color-text-inverse);padding:18px 16px 22px}
   header .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px}
-  .h-title{font-weight:900;font-size:18px}
+  .h-title{font-weight:800;font-size:18px}
   .h-sub{font-size:12px;opacity:.85;font-weight:600;margin-top:2px}
-  .lang{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800;cursor:pointer}
-  .intro{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px;color:var(--ink-2);font-size:14px}
+  .lang{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:var(--color-text-inverse);border-radius:var(--radius-pill);padding:5px 11px;font-size:12px;font-weight:800;cursor:pointer}
+  .intro{background:var(--color-surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px;color:var(--ink-2);font-size:14px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px;box-shadow:0 2px 10px rgba(26,53,96,.05)}
-  .sec{font-size:13px;font-weight:900;color:var(--navy);margin-bottom:4px}
+  .sec{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:4px}
   .sec-cap{font-size:12.5px;color:var(--ink-3);margin-bottom:10px}
   label.lbl{display:block;font-weight:800;font-size:13.5px;margin:11px 0 6px}
   label.lbl .req{color:#b23b3b}
-  input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{width:100%;font-size:16px;font-family:inherit;color:var(--ink);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:11px 12px;background:#fff}
+  input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{width:100%;font-size:16px;font-family:inherit;color:var(--ink);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:11px 12px;background:var(--color-surface)}
   textarea{min-height:60px;resize:vertical;line-height:1.5}
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--navy-2)}
   .row2{display:flex;gap:10px}.row2>*{flex:1}
   .row3{display:flex;gap:8px}.row3>*{flex:1}
   .seg{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap}
-  .seg button{flex:1 1 90px;border:1.5px solid var(--line);background:#fff;color:var(--ink-2);border-radius:var(--r-sm);padding:12px 8px;font-size:14px;font-weight:800;cursor:pointer}
-  .seg button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  .seg button{flex:1 1 90px;border:1.5px solid var(--line);background:var(--color-surface);color:var(--ink-2);border-radius:var(--r-sm);padding:12px 8px;font-size:14px;font-weight:800;cursor:pointer}
+  .seg button.on{background:var(--navy);border-color:var(--navy);color:var(--color-text-inverse)}
   .hint{font-size:12px;color:var(--ink-3);margin-top:6px;line-height:1.5}
-  .found{background:#EAF5EE;border:1px solid #bfe3cd;color:#2f7d54;border-radius:10px;padding:9px 12px;font-size:13px;font-weight:700;margin-top:8px}
+  .found{background:#EAF5EE;border:1px solid #bfe3cd;color:#2f7d54;border-radius:var(--radius-md);padding:9px 12px;font-size:13px;font-weight:700;margin-top:8px}
   .chks{display:flex;flex-direction:column;gap:8px;margin-top:4px}
   .chks label{display:flex;gap:9px;align-items:flex-start;font-size:14px;color:var(--ink-2)}
   .chks input{margin-top:3px;width:18px;height:18px;flex-shrink:0}
   .child{border:1px solid var(--line);border-radius:var(--r-sm);padding:12px;margin-top:10px;position:relative}
   .child .rm{position:absolute;top:8px;right:10px;border:0;background:none;color:#b23b3b;font-size:12.5px;font-weight:800;cursor:pointer}
-  .dept-tag{display:inline-block;background:#EAF1FB;color:#26407A;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:800;margin-top:6px}
-  .addbtn{margin-top:10px;background:#fff;border:1.5px dashed var(--navy-2);color:var(--navy);border-radius:var(--r-sm);padding:11px;font-size:13.5px;font-weight:800;cursor:pointer;width:100%}
+  .dept-tag{display:inline-block;background:#EAF1FB;color:#26407A;border-radius:var(--radius-pill);padding:2px 9px;font-size:12px;font-weight:800;margin-top:6px}
+  .addbtn{margin-top:10px;background:var(--color-surface);border:1.5px dashed var(--navy-2);color:var(--navy);border-radius:var(--r-sm);padding:11px;font-size:13.5px;font-weight:800;cursor:pointer;width:100%}
   .chk{display:flex;gap:9px;align-items:flex-start;margin-top:10px;font-size:13.5px;color:var(--ink-2);line-height:1.5}
   .chk input{margin-top:3px;width:18px;height:18px;flex-shrink:0}
-  .submit{width:100%;margin-top:18px;background:linear-gradient(180deg,#E4A85C,#C8843A);color:#fff;border:0;border-radius:999px;padding:15px;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 6px 16px rgba(200,132,58,.34)}
+  .submit{width:100%;margin-top:18px;background:linear-gradient(180deg,#E4A85C,#C8843A);color:var(--color-text-inverse);border:0;border-radius:var(--radius-pill);padding:15px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 6px 16px rgba(200,132,58,.34)}
   .submit:disabled{opacity:.5;box-shadow:none}
-  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 18px;border-radius:12px;font-weight:800;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transition:.25s;pointer-events:none;max-width:90%}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--navy);color:var(--color-text-inverse);padding:12px 18px;border-radius:12px;font-weight:800;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transition:.25s;pointer-events:none;max-width:90%}
   .toast.show{opacity:1}
-  .demo{display:inline-block;background:#FDECEC;color:#b23b3b;border-radius:999px;padding:2px 9px;font-size:11px;font-weight:800;margin-left:6px}
+  .demo{display:inline-block;background:#FDECEC;color:#b23b3b;border-radius:var(--radius-pill);padding:2px 9px;font-size:12px;font-weight:800;margin-left:6px}
   .done{display:none;text-align:center;padding:44px 16px}
   .done h2{color:var(--navy);font-size:22px;margin-bottom:10px}
   .done p{color:var(--ink-2);font-size:15px}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..600&display=swap">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
+<style id="hebron-ds">
+/* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
+:root{
+  /* Typography */
+  --font-korean:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-english:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  --text-display:clamp(40px,6vw,64px); --text-h1:clamp(32px,4.4vw,48px); --text-h2:clamp(26px,3.4vw,36px);
+  --text-h3:clamp(22px,2.6vw,28px); --text-h4:clamp(18px,2vw,22px);
+  --text-body-lg:18px; --text-body:16px; --text-body-sm:14px; --text-caption:12.5px;
+  --weight-regular:400; --weight-medium:500; --weight-semibold:600; --weight-bold:700; --weight-extrabold:800;
+  --leading-heading:1.25; --leading-body:1.7; --leading-ui:1.5; --leading-caption:1.5;
+  --tracking-display:-0.02em; --tracking-heading:-0.015em; --tracking-body:-0.005em; --tracking-ui:0;
+  /* Color — semantic (Church theme: heritage navy · warm gold · cream) */
+  --color-background:#F6F1E7; --color-background-secondary:#F1E6D3;
+  --color-surface:#ffffff; --color-surface-muted:#FBF8F2;
+  --color-text-primary:#1c1f26; --color-text-secondary:#4a4f5a; --color-text-muted:#7c8290;
+  --color-text-disabled:#a9aeb8; --color-text-inverse:#ffffff;
+  --color-border:#E3D9C6; --color-border-subtle:#EAE3D5; --color-border-strong:#D9C7A0;
+  --color-primary:#14213d; --color-primary-hover:#1f2f55; --color-primary-active:#0d1730; --color-primary-foreground:#ffffff;
+  --color-accent:#B8924A; --color-accent-hover:#8f6a2a; --color-accent-strong:#9A7130;
+  --color-accent-bright:#CDA65B; --color-accent-deep:#A67A2E; --color-accent-on-dark:#E9C77B;
+  --color-success:#12857c; --color-success-soft:#34c3b5; --color-warning:#B7791F;
+  --color-error:#b4532a; --color-info:#2c4d8a; --color-info-soft:#5b7fb5;
+  --color-focus:#2c77b0;
+  --color-scripture:var(--color-primary);
+  --color-brand-kakao:#FEE500; --color-brand-kakao-foreground:#3A1D1D;
+  /* Spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px;
+  --space-10:40px; --space-12:48px; --space-16:64px; --space-20:80px; --space-24:96px; --space-32:128px;
+  --space-xs:var(--space-1); --space-sm:var(--space-2); --space-md:var(--space-4); --space-lg:var(--space-6);
+  --space-xl:var(--space-8); --space-2xl:var(--space-12); --space-3xl:var(--space-16);
+  /* Radius */
+  --radius-sm:6px; --radius-md:10px; --radius-lg:14px; --radius-xl:20px; --radius-pill:9999px;
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(20,33,61,.06); --shadow-md:0 6px 18px rgba(40,30,10,.06); --shadow-lg:0 18px 40px rgba(20,33,61,.12);
+  /* Layout (breakpoints: sm 560 · md 760 · lg 900 — CSS 변수는 media query에 못 쓰므로 값으로 사용) */
+  --container-max:1200px; --container-reading:760px; --touch-target:44px;
+  /* Motion · Layers */
+  --transition-fast:.15s ease; --transition-base:.2s ease;
+  --z-header:50; --z-dropdown:60; --z-floating:1100; --z-modal:1200;
+}
+html,body{font-family:var(--font-sans)}
+body{font-weight:var(--weight-regular)}
+button,input,select,textarea,optgroup{font-family:inherit}
+code,pre,kbd,samp{font-family:var(--font-mono)}
+:focus-visible{outline:3px solid var(--color-focus)!important;outline-offset:2px!important}
+.host-acts a,.member .mct a,.bd-chip,.loc-go,.cb-acts button,.cb-more,.gm-x,.tm-i,.pgnav button,.d-settle,.ms-kakao,.dp-others a,.dp-hosp button{min-height:var(--touch-target)}
+.gm-x{min-width:var(--touch-target)}
+.lang,.psnav,.gc-send,.gc-x,.d-more{min-height:var(--touch-target)}
+.psnav,.gc-send,.gc-x{min-width:var(--touch-target)}
+.d-greet{display:inline-flex;align-items:center;min-height:var(--touch-target)}
+.tabs .tab{min-height:40px} /* 예외: 모바일 헤더 높이 — 문서화됨 */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
 </style>
 </head>
 <body class="st-visitor">
@@ -273,9 +334,9 @@ $('submitBtn').onclick=async()=>{
 (function init(){ if(!SCRIPT_URL) $('demoTag').hidden=false; addChildRow(); })();
 </script>
 <!-- 돌아가는 길: 가정교회 360 · 홈 (막힌 곳 없게) -->
-<div id="gmcBack" style="position:fixed;left:12px;bottom:12px;z-index:9000;display:flex;gap:6px;font-family:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif">
-  <a href="/360/" style="background:#14213d;color:#fff;font-size:12px;font-weight:800;padding:7px 12px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(20,33,61,.3)">&larr; 가정교회 360</a>
-  <a href="/" style="background:#fff;color:#14213d;font-size:12px;font-weight:800;padding:7px 12px;border-radius:999px;text-decoration:none;border:1px solid #E3D9C6;box-shadow:0 4px 14px rgba(20,33,61,.12)">홈</a>
+<div id="gmcBack" style="position:fixed;left:12px;bottom:12px;z-index:9000;display:flex;gap:6px;font-family:var(--font-sans)">
+  <a href="/360/" style="background:var(--color-primary);color:var(--color-text-inverse);font-size:12px;font-weight:800;padding:7px 12px;border-radius:var(--radius-pill);text-decoration:none;box-shadow:0 4px 14px rgba(20,33,61,.3)">&larr; 가정교회 360</a>
+  <a href="/" style="background:var(--color-surface);color:var(--color-primary);font-size:12px;font-weight:800;padding:7px 12px;border-radius:var(--radius-pill);text-decoration:none;border:1px solid var(--color-border);box-shadow:0 4px 14px rgba(20,33,61,.12)">홈</a>
 </div>
 </body>
 </html>
