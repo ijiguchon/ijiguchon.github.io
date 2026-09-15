@@ -176,7 +176,9 @@
   @media(max-width:460px){ footer .fc ul{columns:1} }
 
   /* ── 안내 도우미 (플로팅 챗봇 · 룰베이스) ── */
-  .gc-fab{position:fixed;bottom:22px;right:22px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--navy-2),var(--navy));border:0;cursor:pointer;z-index:1100;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 26px rgba(26,53,96,.42);transition:transform .25s,box-shadow .25s,bottom .2s;-webkit-tap-highlight-color:transparent}
+  .gc-fab{position:fixed;bottom:22px;right:22px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--navy-2),var(--navy));border:0;cursor:pointer;z-index:1100;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 26px rgba(26,53,96,.42);transition:transform .25s,box-shadow .25s;-webkit-tap-highlight-color:transparent;touch-action:none;cursor:grab;user-select:none}
+  .gc-fab:active{cursor:grabbing}
+  .gc-fab.onleft .f-lbl{right:auto;left:70px}
   .gc-fab:hover{transform:translateY(-3px) scale(1.04)}
   .gc-fab svg{width:27px;height:27px}
   .gc-fab .f-close{display:none}
@@ -957,7 +959,7 @@
   }
 </script>
 <!-- ── 안내 도우미 (플로팅 챗봇 · 룰베이스, 에덴교회 패턴 이식) ── -->
-<button class="gc-fab" id="gcFab" onclick="gcToggle()" aria-label="안내 도우미 열기">
+<button class="gc-fab" id="gcFab" aria-label="안내 도우미 열기" title="끌어서 옮길 수 있어요">
   <span class="f-lbl"><span class="ko">궁금한 점 물어보기</span><span class="en">Ask a question</span></span>
   <svg class="f-chat" viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.52 1.46 4.77 3.74 6.25-.13.97-.5 2.3-1.24 3.5 1.6-.27 3.18-.96 4.4-1.78.96.24 1.99.36 3.1.36 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg>
   <svg class="f-close" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -1030,8 +1032,17 @@
   function gcSubmit(e){ e.preventDefault(); var i=document.getElementById('gcInput'), t=i.value.trim(); if(!t) return; gcAdd(t,'user'); i.value=''; var low=t.toLowerCase(), m=null; for(var k in GC_K){ if(GC_K[k].some(function(w){ return low.indexOf(w)>-1; })){ m=k; break; } } var L=gcLang(); setTimeout(function(){ gcAdd(m?GC_T[m].a[L]:GC_F[L],'bot'); },330); }
   function gcToggle(){ var p=document.getElementById('gcPanel'), f=document.getElementById('gcFab'); var open=p.classList.toggle('open'); f.classList.toggle('open',open); if(open){ gcChips(); if(!gcStarted){ gcStarted=true; setTimeout(function(){ gcAdd(GC_G[gcLang()],'bot'); },180); } } }
   window.gmcChatRefresh=function(){ if(document.getElementById('gcPanel').classList.contains('open')) gcChips(); };
-  /* 푸터가 보이면 버튼·패널을 푸터 위로 올려 목록을 가리지 않게 */
-  function gcAvoidFooter(){ var f=document.querySelector('footer'), fab=document.getElementById('gcFab'), p=document.getElementById('gcPanel'); if(!f||!fab) return; var r=f.getBoundingClientRect(); var lift=Math.max(0, Math.min(r.height, window.innerHeight - r.top)); if(lift>0) lift+=10; fab.style.bottom=(22+lift)+'px'; if(p) p.style.bottom=(94+lift)+'px'; }
+  /* 위치: 손으로 끌어 옮김(기억) + 푸터가 보이면 스스로 위로 피함 */
+  var gcBase={b:22,r:22}, gcLift=0;
+  try{ var _s=JSON.parse(localStorage.getItem('gmc-fab-pos')||'null'); if(_s&&_s.b>=0&&_s.r>=0) gcBase=_s; }catch(_){}
+  function gcApply(){ var fab=document.getElementById('gcFab'), p=document.getElementById('gcPanel'); if(!fab) return; var b=gcBase.b+gcLift, r=gcBase.r; fab.style.bottom=b+'px'; fab.style.right=r+'px'; fab.classList.toggle('onleft', r>window.innerWidth/2); if(p){ var pw=Math.min(372, window.innerWidth-24); p.style.right=Math.max(12, Math.min(r, window.innerWidth-pw-12))+'px'; p.style.bottom=(b+72)+'px'; } }
+  function gcAvoidFooter(){ var f=document.querySelector('footer'); if(!f) return; var rc=f.getBoundingClientRect(); var lift=Math.max(0, Math.min(rc.height, window.innerHeight-rc.top)); gcLift = lift>0 ? lift+10 : 0; gcApply(); }
+  (function(){ var fab=document.getElementById('gcFab'); if(!fab) return; var sx,sy,sb,sr,moved=false,down=false;
+    fab.addEventListener('pointerdown',function(e){ down=true; moved=false; sx=e.clientX; sy=e.clientY; sb=gcBase.b; sr=gcBase.r; try{ fab.setPointerCapture(e.pointerId); }catch(_){} });
+    fab.addEventListener('pointermove',function(e){ if(!down) return; var dx=e.clientX-sx, dy=e.clientY-sy; if(!moved && Math.abs(dx)+Math.abs(dy)<6) return; moved=true; gcBase.b=Math.max(8, Math.min(window.innerHeight-68, sb-dy)); gcBase.r=Math.max(8, Math.min(window.innerWidth-68, sr-dx)); gcApply(); });
+    function up(){ if(!down) return; down=false; if(moved){ try{ localStorage.setItem('gmc-fab-pos', JSON.stringify(gcBase)); }catch(_){} } else { gcToggle(); } }
+    fab.addEventListener('pointerup',up); fab.addEventListener('pointercancel',function(){ down=false; });
+  })();
   window.addEventListener('scroll', gcAvoidFooter, {passive:true}); window.addEventListener('resize', gcAvoidFooter); document.addEventListener('DOMContentLoaded', gcAvoidFooter); setTimeout(gcAvoidFooter, 600);
 </script>
 <script>
