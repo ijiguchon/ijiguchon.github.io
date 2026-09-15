@@ -2216,20 +2216,6 @@ img.person-photo{object-fit:cover;object-position:center 22%;background:var(--su
         </div>
       </details>
 
-      <!-- 주일 설교 오디오 — 드라이브 폴더에서 날짜순 자동 연결 -->
-      <details class="fold" style="margin-top:12px" id="sermonAudioFold">
-        <summary>
-          <div class="fold-t">
-            <div class="fold-title"><span class="ko">설교 다시 듣기</span><span class="en">Listen again</span></div>
-            <div class="fold-sub"><span class="ko i">주일 설교 오디오 · 최신순</span><span class="en i">Sunday sermon audio</span></div>
-          </div>
-          <svg class="fold-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
-        </summary>
-        <div class="fold-body">
-          <div id="sermonAudioList"><p class="form-note"><span class="ko">불러오는 중…</span><span class="en">Loading…</span></p></div>
-        </div>
-      </details>
-
       <!-- 기도회 — 접이식: 주일 말씀 → 경청(HebronAltar) → 토요새벽 -->
       <details class="fold" style="margin-top:20px">
         <summary>
@@ -4424,7 +4410,6 @@ function applyLang(lang){
   resolvePpt();
   renderLive();
   markHebronArrival();
-  loadSermonAudio();
 }
 
 /* ── 연락처 디렉터리 (목자·사역자 공용) ──
