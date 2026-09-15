@@ -769,6 +769,26 @@
       <div class="mwk"><div id="staffDir"></div></div>
       <div class="mem-row"><button class="mbtn" type="button" onclick="openModal('contact')"><span class="mi "><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="mb"><span class="mt"><span class="ko">교회에 문의하기</span><span class="en">Contact the church</span></span><span class="ms"><span class="ko">무엇이든 편하게 · 행정간사가 먼저 받습니다</span><span class="en">Ask anything · the church office replies</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></button></div>
     </div>
+<div class="cut"><span><span class="ko">오시는 길</span><span class="en">Visit us</span></span></div>
+    <style>
+      #location{scroll-margin-top:96px}
+      .locs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:900px;margin:0 auto;text-align:left}
+      @media(max-width:760px){ .locs{grid-template-columns:1fr} }
+      .loc{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(40,30,10,.06);display:flex;flex-direction:column}
+      .loc-map{display:block;width:100%;height:190px;border:0;background:#EFE7D8}
+      .loc-b{padding:16px 18px 18px}
+      .loc-k{font-family:var(--serif);font-size:17px;font-weight:900;color:var(--navy)}
+      .loc-t{margin-top:3px;font-size:13px;font-weight:800;color:var(--gold-2)}
+      .loc-a{margin-top:8px;font-size:14.5px;font-weight:700;color:var(--ink)}
+      .loc-n{margin-top:6px;font-size:12.5px;color:var(--ink-3);line-height:1.6}
+      .loc-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+      .loc-go{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;background:linear-gradient(180deg,#CDA65B,#A67A2E);color:#fff;font-size:13px;font-weight:800;text-decoration:none}
+      .loc-go.ghost{background:var(--cream);color:var(--navy);border:1px solid var(--line)}
+      button.loc-go{border:0;cursor:pointer;font-family:inherit}
+      .loc-ask{padding:22px 20px;border-top:3px solid var(--gold)}
+      .locs{align-items:start}
+    </style>
+    <div class="locs" id="location"><div class="loc"><div class="loc-b loc-ask"><div class="loc-k"><span class="ko">주일 연합예배</span><span class="en">Sunday United Worship</span></div><div class="loc-t"><span class="ko">주일 오전 11:00</span><span class="en">Sundays 11:00 AM</span></div><p class="loc-a"><span class="ko">가정에서 드리는 예배입니다. 예배 장소를 문의해 주시면 주소를 보내 드리겠습니다.</span><span class="en">We worship in a home. Ask us and we will send you the address.</span></p><div class="loc-btns"><button class="loc-go" type="button" onclick="openModal('contact')"><span class="ko">예배 장소 문의하기</span><span class="en">Ask for the location</span></button><a class="loc-go ghost" href="sms:+14253500191"><span class="ko">문자 425-350-0191</span><span class="en">Text 425-350-0191</span></a></div></div></div><div class="loc"><iframe class="loc-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="4900 168th St. SW., Lynnwood, WA 98037" src="https://www.google.com/maps?q=4900+168th+St.+SW.,+Lynnwood,+WA+98037&amp;output=embed"></iframe><div class="loc-b"><div class="loc-k"><span class="ko">토요새벽기도회</span><span class="en">Saturday Dawn Prayer</span></div><div class="loc-t"><span class="ko">토요일 오전 6:00 – 7:30</span><span class="en">Saturdays 6:00 – 7:30 AM</span></div><div class="loc-a">4900 168th St. SW., Lynnwood, WA 98037</div><div class="loc-btns"><a class="loc-go" href="https://www.google.com/maps/dir/?api=1&amp;destination=4900+168th+St.+SW.,+Lynnwood,+WA+98037" target="_blank" rel="noopener"><span class="ko">구글 지도 길찾기</span><span class="en">Directions</span></a><a class="loc-go ghost" href="https://www.google.com/maps/search/?api=1&amp;query=4900+168th+St.+SW.,+Lynnwood,+WA+98037" target="_blank" rel="noopener"><span class="ko">지도 크게 보기</span><span class="en">Open map</span></a></div></div></div></div>
     <div class="tab-cta" style="margin-top:34px"><a href="/"><span class="ko">시애틀지구촌교회 홈으로</span><span class="en">Back to GMC home</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
