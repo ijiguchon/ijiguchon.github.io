@@ -159,11 +159,21 @@
   .mission-box .mcell .me{font-size:11px;font-weight:800;letter-spacing:1.2px;color:#F2C078;text-transform:uppercase}
   .mission-box .mcell h4{margin-top:5px;font-size:16px;font-weight:900}
   .mission-box .mcell p{margin-top:6px;font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.85)}
-  /* 푸터 협력 */
-  footer .fpart{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3);line-height:1.8}
-  footer .fpart b{color:var(--ink-2);font-weight:800}
-  footer .fcredit{margin-top:14px;font-size:11.5px;color:var(--ink-3);opacity:.75}
-  footer .fcredit a{color:inherit;text-decoration:none}
+  /* 푸터 — 3열 그리드, 낮게 */
+  footer{padding:22px 0 26px;text-align:left}
+  footer .fg{display:grid;grid-template-columns:1.15fr 1.7fr 1fr;gap:18px 28px;align-items:start}
+  @media(max-width:760px){ footer .fg{grid-template-columns:1fr 1fr} footer .fc:first-child{grid-column:span 2} }
+  @media(max-width:460px){ footer .fg{grid-template-columns:1fr} footer .fc:first-child{grid-column:auto} }
+  footer .fc{font-size:12px;color:var(--ink-3);line-height:1.65}
+  footer .fc a{color:var(--navy);font-weight:700;text-decoration:none}
+  footer .fc .nm{font-size:15px;font-weight:900;color:var(--navy);letter-spacing:-.3px}
+  footer .fc .sub{color:var(--ink-2);font-weight:600;margin-bottom:2px}
+  footer .fc .tiny{font-size:11px;opacity:.72;margin-top:4px}
+  footer .fc .tiny a{color:inherit}
+  footer .fc h5{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin:2px 0 5px}
+  footer .fc ul{list-style:none;margin:0;padding:0;columns:2;column-gap:16px}
+  footer .fc li{break-inside:avoid;line-height:1.6}
+  @media(max-width:460px){ footer .fc ul{columns:1} }
 
   /* ── 안내 도우미 (플로팅 챗봇 · 룰베이스) ── */
   .gc-fab{position:fixed;bottom:22px;right:22px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--navy-2),var(--navy));border:0;cursor:pointer;z-index:1100;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 26px rgba(26,53,96,.42);transition:transform .25s,box-shadow .25s;-webkit-tap-highlight-color:transparent}
@@ -896,17 +906,32 @@
 
 <footer>
   <div class="fw">
-    <p class="fname">시애틀지구촌교회 <span style="opacity:.6;font-weight:700">· GMC of Greater Seattle</span></p>
-    <p style="margin-top:4px;font-style:italic">Genesis 13:14 — Expanding the Kingdom of God, one home at a time</p>
-    <p style="margin-top:8px"><span class="ko">성경적 가정교회 · 시애틀에서, 온라인으로 지구촌 어디서나</span><span class="en">A biblical house church · rooted in Seattle, joined online from anywhere</span></p>
-    <p style="margin-top:6px"><a href="mailto:info@ijiguchon.org" style="color:var(--navy);font-weight:700">info@ijiguchon.org</a> · <a href="tel:+14253500191" style="color:var(--navy);font-weight:700">425-350-0191</a> · Lynnwood, WA</p>
-    <p style="margin-top:6px;font-size:12px"><span class="ko">501(c)(3) 비영리 · EIN 27-0003955 · 헌금은 세금공제 대상입니다</span><span class="en">501(c)(3) nonprofit · EIN 27-0003955 · Gifts are tax-deductible</span></p>
-    <div class="fpart">
-      <div><b><span class="ko">협력교회</span><span class="en">Partner churches</span></b> · <span class="ko">워싱턴 지구촌교회 · 한국 지구촌교회</span><span class="en">Global Mission Church of Washington · Global Mission Church (Korea)</span></div>
-      <div><b><span class="ko">협력기관</span><span class="en">Affiliations</span></b> · Global Ministry Network · <span class="ko">국제 가정교회 사역원</span><span class="en">International House Church Ministries</span> · Puget Sound Baptist Association · Northwest Baptist Convention · <span class="ko">서북미한인침례교회</span><span class="en">NW Korean Baptist Churches</span></div>
+    <div class="fg">
+      <div class="fc">
+        <div class="nm">시애틀지구촌교회</div>
+        <div class="sub">GMC of Greater Seattle · Lynnwood, WA</div>
+        <div><a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a> · <a href="tel:+14253500191">425-350-0191</a></div>
+        <div class="tiny">501(c)(3) · EIN 27-0003955 · <span class="ko">헌금 세금공제</span><span class="en">gifts tax-deductible</span></div>
+      </div>
+      <div class="fc">
+        <h5><span class="ko">협력 교회 · 기관</span><span class="en">Partners &amp; affiliations</span></h5>
+        <ul>
+          <li><a href="https://gmcusa.org" target="_blank" rel="noopener"><span class="ko">워싱턴지구촌교회</span><span class="en">GMC of Greater Washington</span></a></li>
+          <li><a href="https://www.jiguchon.or.kr" target="_blank" rel="noopener"><span class="ko">지구촌교회 (한국)</span><span class="en">Global Mission Church, Korea</span></a></li>
+          <li><a href="https://housechurchministries.org" target="_blank" rel="noopener"><span class="ko">국제가정교회사역원</span><span class="en">House Church Ministries</span></a></li>
+          <li>Global Ministry Network</li>
+          <li><a href="https://psba.net" target="_blank" rel="noopener">Puget Sound Baptist Assoc.</a></li>
+          <li><a href="https://www.nwbaptist.life" target="_blank" rel="noopener">Northwest Baptist Convention</a></li>
+          <li><span class="ko">서북미한인침례교회</span><span class="en">NW Korean Baptist Churches</span></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5><span class="ko">함께</span><span class="en">With</span></h5>
+        <div><a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener">HebronGuide</a> <span class="ko">시애틀 협력교회</span><span class="en">Seattle partner church</span></div>
+        <div><a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener"><span class="ko">카톡방</span><span class="en">KakaoTalk room</span></a> · <a href="https://www.youtube.com/@ijiguchon2030" target="_blank" rel="noopener">YouTube</a></div>
+        <div class="tiny"><a href="https://www.nanuriweb.com" target="_blank" rel="noopener">NanuriWeb</a> <span class="ko">제작</span><span class="en">design</span></div>
+      </div>
     </div>
-    <div class="fcredit"><a href="https://www.nanuriweb.com" target="_blank" rel="noopener"><span class="ko">웹사이트 제작 · NanuriWeb — 교회·사업체 홈페이지</span><span class="en">Website by NanuriWeb — sites for churches &amp; small businesses</span></a></div>
-    <div class="fcredit" style="margin-top:6px"><a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener"><span class="ko">HebronGuide 시애틀 협력교회 — 낯선 도시의 첫날을 함께합니다.</span><span class="en">A partner church of HebronGuide Seattle.</span></a></div>
   </div>
 </footer>
 
