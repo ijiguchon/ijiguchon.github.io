@@ -725,6 +725,18 @@
   .dp-others .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:10px}
   .dp-others a{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:700;color:var(--navy);text-decoration:none}
   .dp-others a:hover{border-color:var(--gold)}
+  .mstrip{background:linear-gradient(150deg,#1f2f55 0%,#14213d 60%,#0d1730 100%);color:#fff;padding:24px 22px 26px;margin:0 0 44px}
+  .mstrip .ms-w{max-width:1000px;margin:0 auto}
+  .mstrip .ms-h{display:flex;align-items:center;gap:12px}
+  .mstrip .ms-globe{flex:0 0 auto;width:42px;height:42px;border-radius:50%;object-fit:cover;box-shadow:0 0 18px rgba(120,170,255,.35)}
+  .mstrip .ms-hx{flex:1;min-width:0}
+  .mstrip .ms-e{font-size:11.5px;font-weight:800;letter-spacing:2px;color:#E9C77B}
+  .mstrip .ms-t{margin-top:2px;font-family:var(--serif);font-size:16px;font-weight:700;word-break:keep-all}
+  .mstrip .ms-kakao{flex:0 0 auto;background:#FEE500;color:#3A1D1D;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:800;text-decoration:none}
+  .mstrip .ms-g{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+  @media(max-width:760px){ .mstrip .ms-g{grid-template-columns:1fr 1fr} .mstrip .ms-t{font-size:14px} }
+  .doors .d-greet{display:inline-block;margin-top:22px;font-size:14px;font-weight:800;color:var(--gold-2);text-decoration:none}
+  .doors .d-greet + br + .d-settle{margin-top:12px}
 </style>
 <style id="gmc-fonts">:root{--serif:'Gowun Batang','Noto Serif KR','Apple Myungjo',Georgia,'Times New Roman',serif;--display:'Cormorant Garamond','Gowun Batang','Noto Serif KR',Georgia,serif}.hero h1,.doors .d-h,.sec-title,.gp h2,.cb-h,.wb .wbq,.team-head,.dp-intro,.hc-a h4{font-family:var(--display)}</style>
 </head>
@@ -744,7 +756,6 @@
       <button class="tab" data-tab="study"><span class="ko">삶공부</span><span class="en">Bible Study</span></button>
       <button class="tab" data-tab="newgen"><span class="ko">새 세대</span><span class="en">New Gen</span></button>
       <button class="tab" data-tab="square"><span class="ko">지구촌 마당</span><span class="en">Square</span></button>
-      <button class="tab" data-tab="give"><span class="ko">온라인 헌금</span><span class="en">Give</span></button>
     </nav>
     <button class="lang" onclick="toggleLang()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>
@@ -764,42 +775,17 @@
     <p class="d-verse"><span class="ko">&ldquo;... 내가 주는 물을 마시는 사람은, 영원히 목마르지 아니할 것이다.&rdquo;<small>요한복음 4:14 (새번역)</small></span><span class="en">&ldquo;... whoever drinks of the water that I will give him will never be thirsty again.&rdquo;<small>John 4:14 (ESV)</small></span></p>
     <p class="d-ask"><span class="ko">지금 마음에 가장 가까운 문을 눌러 보십시오.</span><span class="en">Choose the door closest to your heart today.</span></p>
     <div class="d-grid"><a class="d-card" href="/door/seek/"><span class="d-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.5v.4"/><path d="M12 17h.01"/></svg></span><span class="d-tx"><span class="d-t"><span class="ko">하나님이 궁금합니다</span><span class="en">I want to know God</span></span><span class="d-s"><span class="ko">조용히 물어봐도 괜찮습니다</span><span class="en">Quiet questions are welcome</span></span></span><span class="d-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a><a class="d-card" href="/door/belong/"><span class="d-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span><span class="d-tx"><span class="d-t"><span class="ko">누군가 내 이름을 불러 주면 좋겠습니다</span><span class="en">I wish someone knew my name</span></span><span class="d-s"><span class="ko">한 식탁에 당신의 자리가 있습니다</span><span class="en">There is a seat for you at the table</span></span></span><span class="d-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a><a class="d-card" href="/door/thirst/"><span class="d-ic"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span><span class="d-tx"><span class="d-t"><span class="ko">아무리 채워도 목마릅니다</span><span class="en">No matter what I fill it with, I am still thirsty</span></span><span class="d-s"><span class="ko">마르지 않는 샘이 있습니다</span><span class="en">There is a spring that never runs dry</span></span></span><span class="d-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a><a class="d-card" href="/door/restart/"><span class="d-ic"><svg viewBox="0 0 24 24"><path d="M5 19c0-8 6-14 15-14 0 9-6 15-14 15"/><path d="M5 19l7-7"/></svg></span><span class="d-tx"><span class="d-t"><span class="ko">정죄 말고, 다시 시작하고 싶습니다</span><span class="en">Not condemnation — I want to begin again</span></span><span class="d-s"><span class="ko">과거보다 오늘이 먼저입니다</span><span class="en">Today matters more than yesterday</span></span></span><span class="d-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a><a class="d-card" href="/door/worship/"><span class="d-ic"><svg viewBox="0 0 24 24"><path d="M12 2v4M10 4h4"/><path d="M4 21V10l8-5 8 5v11"/><path d="M9.5 21v-5h5v5"/></svg></span><span class="d-tx"><span class="d-t"><span class="ko">와서 보십시오</span><span class="en">Come and see</span></span><span class="d-s"><span class="ko">함께 드리는 주일 예배로 초대합니다</span><span class="en">You are invited to Sunday worship</span></span></span><span class="d-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a><a class="d-card" href="/door/family/"><span class="d-ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M14 20a6 6 0 0 1 10-4"/></svg></span><span class="d-tx"><span class="d-t"><span class="ko">우리 아이를 믿음으로 키우고 싶습니다</span><span class="en">I want to raise my child in faith</span></span><span class="d-s"><span class="ko">온 교회가 함께 키웁니다</span><span class="en">The whole church raises them together</span></span></span><span class="d-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a></div>
+    <a class="d-greet" href="/greeting/"><span class="ko">김성수 담임목사의 환영 인사 읽기</span><span class="en">A welcome from Pastor Paul Kim</span> &rarr;</a><br>
     <button type="button" class="d-settle" onclick="openModal('newcomer')"><span class="ko">시애틀에 막 오셨나요? <b>정착을 도와드립니다</b></span><span class="en">New to Seattle? <b>We can help you settle in</b></span></button>
     <a class="d-more" href="#explore"><span class="ko">교회 둘러보기</span><span class="en">Explore our church</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
   </div>
   <div class="d-waves" aria-hidden="true"><svg class="w3" viewBox="0 0 2880 150" preserveAspectRatio="none"><path d="M0 80 C360 40 720 120 1080 80 S1800 40 2160 80 S2520 120 2880 80 V150 H0Z" fill="rgba(184,146,74,.07)"/></svg><svg class="w2" viewBox="0 0 2880 150" preserveAspectRatio="none"><path d="M0 70 C240 30 480 30 720 70 S1200 110 1440 70 S1920 30 2160 70 S2640 110 2880 70 V150 H0Z" fill="rgba(90,150,210,.08)"/></svg><svg class="w1" viewBox="0 0 2880 150" preserveAspectRatio="none"><path d="M0 95 C360 70 720 120 1080 95 S1800 70 2160 95 S2520 120 2880 95 V150 H0Z" fill="rgba(90,150,210,.10)"/></svg></div>
 </section>
 <div id="explore"></div>
-  <div class="hero">
-    <div class="hwrap">
-      <div>
-        <div class="heye">GMC of Greater Seattle</div>
-        <h1><span class="ko">영혼 구원하여<br><b>그리스도의 제자</b> 만드는 교회</span><span class="en">A church that <b>wins souls</b><br>and makes disciples of Christ</span></h1>
-        <p class="hsub"><span class="ko">가정에서 모이는 신약교회의 원형, 성경적 가정교회입니다. 믿음의 유무와 상관없이 한 식탁에서 시작하십시오. 이곳에서는 누구도 혼자 걷지 않습니다.</span><span class="en">A biblical house church that meets in homes. Believer or not, start with a shared meal — you won't walk alone.</span></p>
-        <div class="hbtns">
-          <a class="hbtn hb-gold" href="/welcome/"><svg viewBox="0 0 24 24"><path d="M12 3c2.5 2 4 4.2 4 6.5A4 4 0 0 1 8 9.5C8 7.2 9.5 5 12 3z"/><path d="M4 21c1.2-2.4 3.8-4 8-4s6.8 1.6 8 4"/></svg><span class="ko">처음 오셨나요?</span><span class="en">New here?</span></a>
-          <a class="hbtn hb-kakao" href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.52 1.46 4.77 3.74 6.25-.13.97-.5 2.3-1.24 3.5 1.6-.27 3.18-.96 4.4-1.78.96.24 1.99.36 3.1.36 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg><span class="ko">카톡방 초대</span><span class="en">KakaoTalk room</span></a>
-        </div>
-        <div class="hcap">Genesis 13:14 · Expanding the Kingdom, One Home at a time</div>
-      </div>
-      <div class="hright">
-      <div class="hglobe" aria-hidden="true">
-        <img src="/images/earth-globe.png" alt="">
-        <!-- 시애틀에서 세계로 — 빛이 뻗어 나가는 사선 + 파문 -->
-        <span class="hrays" aria-hidden="true">
-          <!-- 12줄기(열두 제자) · 동서남북 · 각 줄기 길이 = 시애틀(31%,29%)에서 지구 테두리까지의 거리(지구본 폭 대비 %) -->
-          <i style="--a:0deg;--l:64.4%;--d:0s"></i><i style="--a:30deg;--l:76.2%;--d:.4s"></i><i style="--a:60deg;--l:77.3%;--d:.8s"></i>
-          <i style="--a:90deg;--l:67.2%;--d:1.2s"></i><i style="--a:120deg;--l:50.8%;--d:1.6s"></i><i style="--a:150deg;--l:35.7%;--d:2s"></i>
-          <i style="--a:180deg;--l:26.4%;--d:2.4s"></i><i style="--a:210deg;--l:22.3%;--d:2.8s"></i><i style="--a:240deg;--l:22%;--d:3.2s"></i>
-          <i style="--a:270deg;--l:25.2%;--d:3.6s"></i><i style="--a:300deg;--l:33.4%;--d:4s"></i><i style="--a:330deg;--l:47.6%;--d:4.4s"></i>
-          <b></b><b style="animation-delay:1.6s"></b>
-          <u></u>
-        </span>
-      </div>
-        <div class="hq"><div class="hq-h"><span class="ko">바로가기</span><span class="en">Quick links</span></div><div class="hq-g"><button class="hqb" type="button" onclick="colOpen()"><span class="qi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M8 7h8M8 10.5h8M8 14h5"/></svg></span><span class="qb"><span class="qt"><span class="ko">목회자 코너</span><span class="en">Pastor's corner</span></span><span class="qs" id="hqCol"><span class="ko">이번 주 목회칼럼</span><span class="en">This week's column</span></span></span></button><button class="hqb" type="button" onclick="goTab('mokjang')"><span class="qi"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M10 20v-4.5h4V20"/></svg></span><span class="qb"><span class="qt"><span class="ko">목장 안내</span><span class="en">House churches</span></span><span class="qs"><span class="ko">이번 주 목장 모임 · 연결</span><span class="en">This week's gatherings</span></span></span></button><button class="hqb" type="button" onclick="goTab('worship')"><span class="qi"><svg viewBox="0 0 24 24"><path d="M12 2v4M10 4h4"/><path d="M4 21V10l8-5 8 5v11"/><path d="M9.5 21v-5h5v5"/></svg></span><span class="qb"><span class="qt"><span class="ko">이번 주 예배</span><span class="en">This Sunday</span></span><span class="qs" id="hqWk"><span class="ko">주일 오전 11:00 · 주보 · 라이브</span><span class="en">Sun 11 AM · bulletin · live</span></span></span></button><button class="hqb" type="button" onclick="openModal('prayer')"><span class="qi"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span><span class="qb"><span class="qt"><span class="ko">기도 요청</span><span class="en">Prayer request</span></span><span class="qs"><span class="ko">담임목사님께 바로</span><span class="en">Straight to the pastor</span></span></span></button></div></div>
-      </div>
-    </div>
-  </div>
+  <section class="mstrip"><div class="ms-w">
+    <div class="ms-h"><img class="ms-globe" src="/images/earth-globe.png" alt=""><div class="ms-hx"><div class="ms-e"><span class="ko">성도님 바로가기</span><span class="en">For members</span></div><div class="ms-t"><span class="ko">영혼 구원하여 그리스도의 제자 만드는 교회</span><span class="en">A church that wins souls and makes disciples of Christ</span></div></div><a class="ms-kakao" href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener"><span class="ko">카톡방</span><span class="en">KakaoTalk</span></a></div>
+    <div class="ms-g"><button class="hqb" type="button" onclick="goTab('worship')"><span class="qi"><svg viewBox="0 0 24 24"><path d="M12 2v4M10 4h4"/><path d="M4 21V10l8-5 8 5v11"/><path d="M9.5 21v-5h5v5"/></svg></span><span class="qb"><span class="qt"><span class="ko">이번 주 예배</span><span class="en">This Sunday</span></span><span class="qs" id="hqWk"><span class="ko">주일 오전 11:00 · 주보 · 라이브</span><span class="en">Sun 11 AM · bulletin · live</span></span></span></button><button class="hqb" type="button" onclick="colOpen()"><span class="qi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M8 7h8M8 10.5h8M8 14h5"/></svg></span><span class="qb"><span class="qt"><span class="ko">목회자 코너</span><span class="en">Pastor's corner</span></span><span class="qs" id="hqCol"><span class="ko">이번 주 목회칼럼</span><span class="en">This week's column</span></span></span></button><button class="hqb" type="button" onclick="location.href='/house-church/this-week/'"><span class="qi"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M10 20v-4.5h4V20"/></svg></span><span class="qb"><span class="qt"><span class="ko">이번 주 목장 모임</span><span class="en">This week's gatherings</span></span><span class="qs"><span class="ko">요일 · 시간 · 동네</span><span class="en">Day · time · area</span></span></span></button><button class="hqb" type="button" onclick="location.href='/square/news/'"><span class="qi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M8 7h8M8 10.5h6"/></svg></span><span class="qb"><span class="qt"><span class="ko">교회 소식 · 주보</span><span class="en">News · bulletin</span></span><span class="qs"><span class="ko">이번 주 주보 보기</span><span class="en">This week's bulletin</span></span></span></button></div>
+  </div></section>
   <div class="ps" id="ps">
     <div class="psbox">
       <div class="psl on"><img src="/images/worship-current.jpg" alt=""><div class="pscap"><div class="pe"><span class="ko">주일 연합예배</span><span class="en">Sunday united worship</span></div><div class="pt"><span class="ko">흩어진 목장이 한자리에 모입니다</span><span class="en">Scattered homes gather as one</span></div></div></div>
@@ -810,33 +796,6 @@
       <button class="psnav l" onclick="psGo(-1)" aria-label="이전"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
       <button class="psnav r" onclick="psGo(1)" aria-label="다음"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
       <div class="psdots" id="psDots"></div>
-    </div>
-  </div>
-  <div class="wb">
-    <div class="wbw">
-      <div class="wbq"><span class="ko">처음 오신 분께 드리는 <b>안내</b></span><span class="en">For <b>first-time guests</b></span></div>
-      <div class="cards">
-        <a class="wc" href="/greeting/">
-          <img src="/images/staff/pastor-couple.jpg" alt="김성수 담임목사 부부" style="object-position:center 35%">
-          <h4><span class="ko">담임목사 환영 인사</span><span class="en">A word from our pastor</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></h4>
-          <p><span class="ko">김성수 목사가 드리는 인사 — 시애틀지구촌교회가 어떤 교회인지 먼저 들려 드립니다.</span><span class="en">A welcome from Pastor Paul Kim — who we are, in his words.</span></p>
-        </a>
-        <a class="wc" href="/welcome/">
-          <img src="/images/meal1.jpg" alt="">
-          <h4><span class="ko">환영합니다</span><span class="en">Welcome</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></h4>
-          <p><span class="ko">시애틀지구촌교회에 처음 오셨습니까? 첫걸음을 내딛는 분을 위해 첫 방문을 안내합니다.</span><span class="en">New to GMC? Here is what your first visit looks like.</span></p>
-        </a>
-        <a class="wc" href="/vip/">
-          <img src="/images/table-fellowship.jpg" alt="">
-          <h4><span class="ko">VIP 등록 안내</span><span class="en">VIP welcome</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></h4>
-          <p><span class="ko">처음 오신 당신은 우리의 VIP입니다. 연락처를 남겨 주시면 첫 자리를 정성껏 안내하겠습니다.</span><span class="en">As a first-time guest you are our VIP. Leave your contact and we will guide your first visit.</span></p>
-        </a>
-        <a class="wc" href="/faq/">
-          <img src="/images/life-meal.jpg" alt="">
-          <h4><span class="ko">자주 묻는 질문</span><span class="en">FAQ</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></h4>
-          <p><span class="ko">장소·준비물·자녀·헌금·언어 — 처음 오시는 분들이 자주 묻는 질문을 모았습니다.</span><span class="en">Place, what to bring, kids, giving, language — answers for first-time guests.</span></p>
-        </a>
-      </div>
     </div>
   </div>
   <div style="height:26px"></div>
@@ -995,6 +954,35 @@
     <div class="mem-row" style="max-width:720px;margin-left:auto;margin-right:auto"><a class="mbtn" href="/corner/"><span class="mi "><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M8 7h8M8 10.5h8M8 14h5"/></svg></span><span class="mb"><span class="mt"><span class="ko">지난 칼럼 · 12주 여정</span><span class="en">Past columns · 12-week journey</span></span><span class="ms"><span class="ko">목회자 코너 전체 보기</span><span class="en">Open the pastor's corner</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a><button class="mbtn" type="button" onclick="openModal('topastor')"><span class="mi g"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="mb"><span class="mt"><span class="ko">목사님께 한마디</span><span class="en">A word to the pastor</span></span><span class="ms"><span class="ko">칼럼을 읽고 떠오른 마음 · 목사님께만</span><span class="en">What the column stirred · pastor only</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></button></div>
 
   </div>
+<div id="give" style="scroll-margin-top:90px;margin-top:10px">
+  <div class="wrap" style="text-align:center">
+      
+      <h2 class="sec-title"><span class="ko">함께 드리는 헌금</span><span class="en">Giving together</span></h2>
+      <p class="sec-lead"><span class="ko">드리는 모든 것은 한 영혼을 살리고 제자를 세우는 사명에 쓰입니다. <b>처음 오신 분은 부담 갖지 않으셔도 됩니다.</b></span><span class="en">Every gift serves this mission. <b>First-time guests, feel no pressure.</b></span></p>
+      <div class="give-ways">
+        <div class="give-box">
+          <div class="gi"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 21V8M12 8S11 3 8 3a2 2 0 0 0 0 5zM12 8s1-5 4-5a2 2 0 0 1 0 5z"/></svg></div>
+          <h3><span class="ko">예배 때 드리기</span><span class="en">At worship</span></h3>
+          <p style="margin-bottom:0"><span class="ko">주일 연합예배 봉헌 시간에 헌금함으로 직접 드리실 수 있습니다.</span><span class="en">Give in person during Sunday worship offering.</span></p>
+        </div>
+        <div class="give-box">
+          <div class="gi"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></div>
+          <h3><span class="ko">온라인으로 드리기</span><span class="en">Online</span></h3>
+          <p><span class="ko">언제 어디서나 안전하게 드리실 수 있으며, <b>매주 자동(정기)</b> 헌금도 설정하실 수 있습니다.</span><span class="en">Securely, anytime — once or <b>recurring</b>.</span></p>
+          <a class="btn-gold" href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg><span class="ko">온라인 헌금하기</span><span class="en">Give online</span></a>
+        </div>
+        <div class="give-box">
+          <div class="gi"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+          <h3><span class="ko">우편 · Zelle · Venmo</span><span class="en">Mail · Zelle · Venmo</span></h3>
+          <p><span class="ko">우편, Zelle, Venmo로도 드리실 수 있습니다. <b>보내시기 전에 반드시 문자로 받는 곳(주소·계정)을 확인해 주십시오.</b></span><span class="en">You may also give by mail, Zelle, or Venmo. <b>Before sending, please always confirm the address or account by text message.</b></span></p>
+          <a class="btn-gold" href="sms:+14253500191"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="ko">문자로 확인하기</span><span class="en">Confirm by text</span></a>
+          <p style="margin:10px 0 0;font-size:12.5px;color:var(--ink-3)"><span class="ko">문자: 425-350-0191</span><span class="en">Text: 425-350-0191</span></p>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:18px;font-size:13px;color:var(--ink-2)"><span class="ko">안전한 결제는 Tithe.ly로 처리됩니다 · EIN 27-0003955 (세금공제)</span><span class="en">Secure payments by Tithe.ly · EIN 27-0003955 (tax-deductible)</span></p>
+    <div class="tab-cta" style="margin-top:26px"><a href="#" onclick="goTab('worship');return false"><span class="ko">예배 및 모임 안내 보기</span><span class="en">See worship &amp; gatherings</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</div>
 </section>
 
 <!-- ════ 삶공부 ════ -->
@@ -1151,35 +1139,7 @@
 </section>
 
 <!-- ════ 온라인 헌금 ════ -->
-<section class="panel sec" id="p-give">
-  <div class="wrap" style="text-align:center">
-      
-      <h2 class="sec-title"><span class="ko">함께 드리는 헌금</span><span class="en">Giving together</span></h2>
-      <p class="sec-lead"><span class="ko">드리는 모든 것은 한 영혼을 살리고 제자를 세우는 사명에 쓰입니다. <b>처음 오신 분은 부담 갖지 않으셔도 됩니다.</b></span><span class="en">Every gift serves this mission. <b>First-time guests, feel no pressure.</b></span></p>
-      <div class="give-ways">
-        <div class="give-box">
-          <div class="gi"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 21V8M12 8S11 3 8 3a2 2 0 0 0 0 5zM12 8s1-5 4-5a2 2 0 0 1 0 5z"/></svg></div>
-          <h3><span class="ko">예배 때 드리기</span><span class="en">At worship</span></h3>
-          <p style="margin-bottom:0"><span class="ko">주일 연합예배 봉헌 시간에 헌금함으로 직접 드리실 수 있습니다.</span><span class="en">Give in person during Sunday worship offering.</span></p>
-        </div>
-        <div class="give-box">
-          <div class="gi"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></div>
-          <h3><span class="ko">온라인으로 드리기</span><span class="en">Online</span></h3>
-          <p><span class="ko">언제 어디서나 안전하게 드리실 수 있으며, <b>매주 자동(정기)</b> 헌금도 설정하실 수 있습니다.</span><span class="en">Securely, anytime — once or <b>recurring</b>.</span></p>
-          <a class="btn-gold" href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg><span class="ko">온라인 헌금하기</span><span class="en">Give online</span></a>
-        </div>
-        <div class="give-box">
-          <div class="gi"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
-          <h3><span class="ko">우편 · Zelle · Venmo</span><span class="en">Mail · Zelle · Venmo</span></h3>
-          <p><span class="ko">우편, Zelle, Venmo로도 드리실 수 있습니다. <b>보내시기 전에 반드시 문자로 받는 곳(주소·계정)을 확인해 주십시오.</b></span><span class="en">You may also give by mail, Zelle, or Venmo. <b>Before sending, please always confirm the address or account by text message.</b></span></p>
-          <a class="btn-gold" href="sms:+14253500191"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="ko">문자로 확인하기</span><span class="en">Confirm by text</span></a>
-          <p style="margin:10px 0 0;font-size:12.5px;color:var(--ink-3)"><span class="ko">문자: 425-350-0191</span><span class="en">Text: 425-350-0191</span></p>
-        </div>
-      </div>
-      <p style="text-align:center;margin-top:18px;font-size:13px;color:var(--ink-2)"><span class="ko">안전한 결제는 Tithe.ly로 처리됩니다 · EIN 27-0003955 (세금공제)</span><span class="en">Secure payments by Tithe.ly · EIN 27-0003955 (tax-deductible)</span></p>
-    <div class="tab-cta" style="margin-top:26px"><a href="#" onclick="goTab('worship');return false"><span class="ko">예배 및 모임 안내 보기</span><span class="en">See worship &amp; gatherings</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-  </div>
-</section>
+
 
 </main>
 
@@ -1212,7 +1172,7 @@
       </div>
       <div class="fc">
         <div><a href="/360/"><span class="ko">가정교회 360</span><span class="en">House Church 360</span></a> <span style="opacity:.7"><span class="ko">· 목자·스탭</span><span class="en">· hosts &amp; staff</span></span></div>
-        <div>501(c)(3) · EIN 27-0003955</div>
+        <div><a href="/?tab=give"><span class="ko">온라인 헌금</span><span class="en">Give online</span></a> · 501(c)(3) · EIN 27-0003955</div>
       </div>
     </div>
     <div class="fcopy">Copyright © <span class="yr">2026</span> <span class="ko">시애틀지구촌교회</span><span class="en">GMC of Greater Seattle</span>. All rights reserved. Powered by <a href="https://www.nanuriweb.com" target="_blank" rel="noopener">NanuriWeb</a></div>
@@ -1221,7 +1181,7 @@
 </footer>
 
 <script>
-  function goTab(id){
+  function goTab(id){ if(id==='give'){ goTab('worship'); var _gf=function(){ var g=document.getElementById('give'); if(g){ window.scrollTo({top:g.getBoundingClientRect().top+window.pageYOffset-80}); } }; setTimeout(_gf,160); if(document.readyState!=='complete'){ window.addEventListener('load',function(){ setTimeout(_gf,150); setTimeout(_gf,900); }); } return; }
     document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
     var panel=document.getElementById('p-'+id);
@@ -1233,7 +1193,7 @@
   document.querySelectorAll('.tab').forEach(function(t){
     t.addEventListener('click',function(){ goTab(t.dataset.tab); });
   });
-  (function(){ var t=new URLSearchParams(location.search).get('tab'); goTab(t&&document.getElementById('p-'+t)?t:'newcomer'); })(); // ?tab=worship 처럼 특정 탭으로 바로 열기
+  (function(){ var t=new URLSearchParams(location.search).get('tab'); goTab(t==='give'?'give':(t&&document.getElementById('p-'+t)?t:'newcomer')); })(); // ?tab=worship 처럼 특정 탭으로 바로 열기
   function toggleLang(){
     document.body.classList.toggle('lang-en');
     document.getElementById('langTxt').textContent =
@@ -1771,7 +1731,7 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
   var M={
     newcomer:[{ko:'마음의 문',en:'Where to begin',sel:'#doors'},{ko:'담임목사 환영 인사',en:'A word from our pastor',href:'/greeting/'},{ko:'교역자 및 행정 사역자',en:'Pastors & Ministry Staff',href:'/welcome/#team'},{ko:'환영합니다 · 첫 방문 안내',en:'Welcome · your first visit',href:'/welcome/'},{ko:'VIP 등록 안내',en:'VIP welcome',href:'/vip/'},{ko:'자주 묻는 질문',en:'FAQ',href:'/faq/'},{ko:'오시는 길',en:'Visit us',href:'/welcome/#location'}],
     mokjang:[{ko:'목장이 뭔가요?',en:'What is a mokjang?',sel:'#p-mokjang .mj-intro'},{cut:'우리 목장',en:'Our house churches'},{ko:'목장과 연결되기',en:'Connect with a house church',open:'mokjang'},{ko:'가정교회 세 축과 네 기둥',en:'Three axes & four pillars',href:'/house-church/pillars/'},{ko:'이번 주 목장 모임',en:"This week's gatherings",href:'/house-church/this-week/'},{ko:'개척 목장 함께 시작하기',en:'Start a house church',open:'plant'}],
-    worship:[{ko:'오는 주일 예배',en:'This Sunday',sel:'#wkHero'},{cut:'함께 드리는 기도',en:'Praying together'},{cut:'지난 말씀',en:'Past messages'},{cut:'예배와 모임',en:'Worship & gatherings'},{cut:'새벽을 여는 기도',en:'Dawn prayer'},{cut:'목회자 코너',en:"Pastor's corner"}],
+    worship:[{ko:'오는 주일 예배',en:'This Sunday',sel:'#wkHero'},{cut:'함께 드리는 기도',en:'Praying together'},{cut:'지난 말씀',en:'Past messages'},{cut:'예배와 모임',en:'Worship & gatherings'},{cut:'새벽을 여는 기도',en:'Dawn prayer'},{cut:'목회자 코너',en:"Pastor's corner"},{ko:'온라인 헌금',en:'Give online',sel:'#give'}],
     study:[{ko:'삶공부가 뭔가요?',en:'What is a Life Study?',sel:'#p-study .st-wrap'},{cut:'전체 그림',en:'The big picture'},{cut:'선택 과정',en:'Electives'},{cut:'등록',en:'Register'},{cut:'첫걸음',en:'First steps'}],
     newgen:[{ko:'새 세대 소개',en:'About New Gen',sel:'#p-newgen .care-grid'},{ko:'헌아식 신청',en:'Child dedication',open:'heonasik'},{ko:'어린이 사역 문의',en:"Children's ministry",open:'children'},{ko:'청소년(GMC Y) 문의',en:'Youth (GMC Y)',open:'youth'}],
     square:[{ko:'교회 소식 · 주보',en:'Church news · bulletin',href:'/square/news/'},{ko:'나눔터',en:'Sharing board',href:'/square/board/'},{cut:'교회 일정',en:'Church calendar'},{cut:'우리 교회 풍경',en:'Life at GMC'},{cut:'이웃 사랑',en:'Love your neighbor'}]
