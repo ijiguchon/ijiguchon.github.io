@@ -1145,7 +1145,27 @@ function gmBuild(){
     if(old) old.replaceWith(tmp.firstChild); else root.appendChild(tmp.firstChild);
   });
 }
-function openModal(id){ var el=document.getElementById('gm-'+id); if(!el) return; document.getElementById('gm-'+id+'-body').style.display=''; document.getElementById('gm-'+id+'-ok').classList.remove('show'); el.classList.add('open'); document.body.style.overflow='hidden'; }
+/* 목자용 '이번 주 모임 올리기'는 교인 확인 코드(가정교회 360과 같은 J1224) 뒤에 (목사님 2026-09-15). 한 번 맞히면 이 기기에서 기억 */
+function gmHostOk(){ try{ return localStorage.getItem('gmc-360-ok')==='1'; }catch(e){ return false; } }
+function gmAskCode(done){
+  var en=gmEn(), old=document.getElementById('gm-gate'); if(old) old.remove();
+  var ov=document.createElement('div'); ov.className='gm-ov open'; ov.id='gm-gate'; ov.setAttribute('role','dialog'); ov.setAttribute('aria-modal','true');
+  ov.innerHTML='<div class="gm-sheet" style="max-width:420px"><div class="gm-head"><div class="gm-title">'+(en?'For house church hosts':'목자용 확인')+'</div>'
+    +'<div class="gm-sub">'+(en?'Enter the member code to post this week\'s gathering.':'이번 주 목장 모임을 올리려면 교인 확인 코드를 넣어 주십시오.')+'</div>'
+    +'<button class="gm-x" type="button" aria-label="닫기">&times;</button></div>'
+    +'<div class="gm-body"><form><div class="gm-f"><label class="lb">'+(en?'Member code':'확인 코드')+'</label><input type="password" autocomplete="off" required></div>'
+    +'<p class="gm-note gm-gate-err" style="color:#b4532a" hidden>'+(en?'The code does not match.':'코드가 맞지 않습니다. 목자님께 확인해 주십시오.')+'</p>'
+    +'<button type="submit" class="gm-send">'+(en?'Continue':'확인')+'</button></form></div></div>';
+  document.body.appendChild(ov); document.body.style.overflow='hidden';
+  function shut(){ ov.remove(); document.body.style.overflow=''; }
+  ov.addEventListener('click',function(e){ if(e.target===ov) shut(); });
+  ov.querySelector('.gm-x').onclick=shut;
+  var inp=ov.querySelector('input'); setTimeout(function(){ inp.focus(); },50);
+  ov.querySelector('form').onsubmit=function(e){ e.preventDefault();
+    if(inp.value.trim().toUpperCase()==='J1224'){ try{ localStorage.setItem('gmc-360-ok','1'); }catch(_){} shut(); done(); }
+    else { ov.querySelector('.gm-gate-err').hidden=false; inp.select(); } };
+}
+function openModal(id){ if(id==='mokjangpost'&&!gmHostOk()){ gmAskCode(function(){ openModal(id); }); return; } var el=document.getElementById('gm-'+id); if(!el) return; document.getElementById('gm-'+id+'-body').style.display=''; document.getElementById('gm-'+id+'-ok').classList.remove('show'); el.classList.add('open'); document.body.style.overflow='hidden'; }
 function closeModal(id){ var el=document.getElementById('gm-'+id); if(!el) return; el.classList.remove('open'); document.body.style.overflow=''; var f=el.querySelector('form'); if(f){ f.reset(); var b=f.querySelector('.gm-send'); if(b){ b.disabled=false; b.textContent=(gmEn()?GM[id].en:GM[id].ko)[2]; } } }
 function openMokjang(name){ openModal('mokjang'); if(!name) return; var s=document.querySelector('#gm-mokjang select'); if(!s) return; for(var i=0;i<s.options.length;i++){ if(s.options[i].value.indexOf(name)===0){ s.selectedIndex=i; break; } } }
 function submitForm(e,id){
