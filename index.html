@@ -25,7 +25,7 @@
 <link rel="manifest" href="/manifest.json"/>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Gowun+Batang:wght@400;700&display=swap">
 <style>
   :root{
     --navy:#14213d; --navy-2:#1f2f55; --gold:#B8924A; --gold-2:#9A7130;
@@ -661,7 +661,72 @@
     .hero .hright .hglobe{width:min(220px,60vw)}
     .hq{margin:18px auto 0}
   }
+
+  /* ── 첫 화면: 마음의 문 ── */
+  #p-newcomer.sec{padding-top:0}
+  .doors{position:relative;overflow:hidden;background:#fff;margin:0;padding:58px 22px 170px;text-align:center}
+  .doors .dw{position:relative;z-index:1;max-width:1000px;margin:0 auto}
+  .doors .d-eye{font-size:12px;font-weight:800;letter-spacing:2.4px;color:var(--gold-2)}
+  .doors .d-h{margin-top:12px;font-family:var(--serif);font-size:clamp(30px,5.2vw,52px);font-weight:900;color:var(--navy);line-height:1.25;letter-spacing:-.6px;word-break:keep-all}
+  .doors .d-verse{margin:18px auto 0;max-width:640px;font-family:var(--serif);font-size:clamp(15px,2vw,18px);font-weight:700;color:#C00000;line-height:1.75;word-break:keep-all}
+  .doors .d-verse small{display:block;margin-top:4px;font-size:12.5px;font-weight:700;color:#C00000;letter-spacing:.3px}
+  .doors .d-ask{margin-top:22px;font-size:15.5px;color:var(--ink-2)}
+  .d-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px auto 0;text-align:left}
+  @media(max-width:860px){ .d-grid{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:560px){ .d-grid{grid-template-columns:1fr;gap:10px} }
+  .d-card{position:relative;display:flex;flex-direction:column;gap:12px;background:#fff;border:1px solid #EAE3D5;border-radius:20px;padding:22px 22px 20px;text-decoration:none;color:inherit;box-shadow:0 10px 30px rgba(20,33,61,.06);transition:transform .2s,box-shadow .2s,border-color .2s}
+  .d-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(20,33,61,.12);border-color:#D9C7A0}
+  .d-ic{flex:0 0 auto;width:48px;height:48px;border-radius:15px;background:linear-gradient(180deg,#F7EFDF,#EFE2C6);color:#8f6a2a;display:flex;align-items:center;justify-content:center}
+  .d-ic svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .d-tx{flex:1;min-width:0}
+  .d-t{display:block;font-family:var(--serif);font-size:19px;font-weight:900;color:var(--navy);line-height:1.4;word-break:keep-all}
+  .d-s{display:block;margin-top:4px;font-size:13.5px;color:var(--ink-3);font-weight:600;line-height:1.55;word-break:keep-all}
+  .d-go{position:absolute;right:18px;top:24px;color:#C9B27E}
+  .d-go svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  @media(max-width:560px){ .d-card{flex-direction:row;align-items:center;padding:15px 16px;gap:14px;border-radius:16px} .d-ic{width:42px;height:42px} .d-t{font-size:16px} .d-s{font-size:12.5px} .d-go{position:static} }
+  .d-settle{display:inline-flex;align-items:center;gap:6px;margin-top:24px;font-family:inherit;font-size:13.5px;color:var(--ink-2);background:#FBF8F2;border:1px solid #EFE7D6;border-radius:999px;padding:9px 16px;cursor:pointer}
+  .d-settle b{color:var(--gold-2)}
+  .d-more{display:block;width:fit-content;margin:18px auto 0;font-size:13px;font-weight:800;color:var(--ink-3);text-decoration:none;letter-spacing:.4px}
+  .d-more svg{display:block;margin:4px auto 0;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;animation:dbob 2.4s ease-in-out infinite}
+  @keyframes dbob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+  .d-waves{position:absolute;left:0;right:0;bottom:0;height:150px;overflow:hidden;pointer-events:none;z-index:0}
+  .d-waves svg{position:absolute;bottom:0;left:0;width:200%;height:100%;animation:dwave 26s linear infinite}
+  .d-waves svg.w2{animation-duration:38s;height:85%}
+  .d-waves svg.w3{animation-duration:52s;height:70%}
+  @keyframes dwave{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){ .d-waves svg,.d-more svg{animation:none} }
+  /* ── 문 페이지(다리) ── */
+  .dp{max-width:780px;margin:0 auto;text-align:left}
+  .dp-fig{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:16px;padding:18px 20px;box-shadow:0 6px 18px rgba(40,30,10,.05)}
+  .dp-fig .k{font-size:12px;font-weight:800;letter-spacing:.6px;color:var(--gold-2)}
+  .dp-fig p{margin-top:8px;font-size:15.5px;line-height:1.85;color:var(--ink-2);word-break:keep-all}
+  .dp-verse{margin:16px auto 0;max-width:640px;text-align:center;font-family:var(--serif);font-weight:700;color:#C00000;font-size:16.5px;line-height:1.85;word-break:keep-all}
+  .dp-verse small{display:block;margin-top:4px;font-size:12.5px;color:#C00000}
+  .dp-lab{margin-top:30px;font-size:12.5px;font-weight:800;letter-spacing:1.2px;color:var(--gold-2)}
+  .dp-lab + .mem-row{margin-top:10px}
+  .dp-intro{margin-top:44px;text-align:center;font-family:var(--serif);font-size:19px;font-weight:900;color:var(--navy);line-height:1.6;word-break:keep-all}
+  .dp-intro small{display:block;margin-top:4px;font-family:inherit;font-size:13.5px;font-weight:600;color:var(--ink-3)}
+  .dp-path{list-style:none;margin:20px 0 0;padding:0;position:relative}
+  .dp-path:before{content:"";position:absolute;left:21px;top:12px;bottom:28px;width:2px;background:linear-gradient(var(--gold),rgba(184,146,74,.15))}
+  .dp-st{position:relative;display:flex;gap:16px;padding:0 0 18px}
+  .dp-st .n{flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#E9C77B;font-family:var(--serif);font-weight:900;display:flex;align-items:center;justify-content:center;font-size:15px;z-index:1;box-shadow:0 0 0 5px var(--cream)}
+  .dp-st .b{flex:1;min-width:0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+  .dp-st h3{font-family:var(--serif);font-size:17.5px;font-weight:900;color:var(--navy)}
+  .dp-st h3 small{margin-left:8px;font-family:inherit;font-size:12.5px;color:var(--gold-2);font-weight:800}
+  .dp-st p{margin-top:6px;font-size:14.5px;line-height:1.75;color:var(--ink-2);word-break:keep-all}
+  .dp-st .mem-row{margin-top:12px}
+  @media(max-width:560px){ .dp-path:before{left:17px} .dp-st{gap:10px} .dp-st .n{width:36px;height:36px;font-size:13px} .dp-st .b{padding:14px} }
+  .dp-hosp{margin-top:8px;background:linear-gradient(150deg,#1f2f55,#14213d);color:#fff;border-radius:18px;padding:20px 22px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+  .dp-hosp b{display:block;font-family:var(--serif);font-size:17px;color:#E9C77B}
+  .dp-hosp span.p{display:block;margin-top:4px;font-size:13.5px;color:rgba(255,255,255,.85);line-height:1.6}
+  .dp-hosp button{border:0;border-radius:999px;padding:11px 18px;font-family:inherit;font-size:14px;font-weight:800;background:linear-gradient(180deg,#CDA65B,#A67A2E);color:#fff;cursor:pointer}
+  .dp-others{margin-top:30px;text-align:center}
+  .dp-others .lab{font-size:12.5px;font-weight:800;letter-spacing:1px;color:var(--ink-3)}
+  .dp-others .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:10px}
+  .dp-others a{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:700;color:var(--navy);text-decoration:none}
+  .dp-others a:hover{border-color:var(--gold)}
 </style>
+<style id="gmc-fonts">:root{--serif:'Gowun Batang','Noto Serif KR','Apple Myungjo',Georgia,'Times New Roman',serif;--display:'Cormorant Garamond','Gowun Batang','Noto Serif KR',Georgia,serif}.hero h1,.doors .d-h,.sec-title,.gp h2,.cb-h,.wb .wbq,.team-head,.dp-intro,.hc-a h4{font-family:var(--display)}</style>
 </head>
 <body>
 
@@ -692,6 +757,19 @@
 
 <!-- ════ 처음 오신 분 ════ -->
 <section class="panel show sec" id="p-newcomer">
+<section class="doors" id="doors">
+  <div class="dw">
+    <div class="d-eye"><span class="ko">시애틀지구촌교회</span><span class="en">GMC OF GREATER SEATTLE</span></div>
+    <h1 class="d-h"><span class="ko">당신의 목마름을<br>아시는 분이 계십니다</span><span class="en">Someone knows<br>your thirst</span></h1>
+    <p class="d-verse"><span class="ko">&ldquo;... 내가 주는 물을 마시는 사람은, 영원히 목마르지 아니할 것이다.&rdquo;<small>요한복음 4:14 (새번역)</small></span><span class="en">&ldquo;... whoever drinks of the water that I will give him will never be thirsty again.&rdquo;<small>John 4:14 (ESV)</small></span></p>
+    <p class="d-ask"><span class="ko">지금 마음에 가장 가까운 문을 눌러 보십시오.</span><span class="en">Choose the door closest to your heart today.</span></p>
+    <div class="d-grid"><a class="d-card" href="/door/seek/"><span class="d-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.5v.4"/><path d="M12 17h.01"/></svg></span><span class="d-tx"><span class="d-t"><span class="ko">하나님이 궁금합니다</span><span class="en">I want to know God</span></span><span class="d-s"><span class="ko">조용히 물어봐도 괜찮습니다</span><span class="en">Quiet questions are welcome</span></span></span><span class="d-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a><a class="d-card" href="/door/belong/"><span class="d-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span><span class="d-tx"><span class="d-t"><span class="ko">누군가 내 이름을 불러 주면 좋겠습니다</span><span class="en">I wish someone knew my name</span></span><span class="d-s"><span class="ko">한 식탁에 당신의 자리가 있습니다</span><span class="en">There is a seat for you at the table</span></span></span><span class="d-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a><a class="d-card" href="/door/thirst/"><span class="d-ic"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span><span class="d-tx"><span class="d-t"><span class="ko">아무리 채워도 목마릅니다</span><span class="en">No matter what I fill it with, I am still thirsty</span></span><span class="d-s"><span class="ko">마르지 않는 샘이 있습니다</span><span class="en">There is a spring that never runs dry</span></span></span><span class="d-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a><a class="d-card" href="/door/restart/"><span class="d-ic"><svg viewBox="0 0 24 24"><path d="M5 19c0-8 6-14 15-14 0 9-6 15-14 15"/><path d="M5 19l7-7"/></svg></span><span class="d-tx"><span class="d-t"><span class="ko">정죄 말고, 다시 시작하고 싶습니다</span><span class="en">Not condemnation — I want to begin again</span></span><span class="d-s"><span class="ko">과거보다 오늘이 먼저입니다</span><span class="en">Today matters more than yesterday</span></span></span><span class="d-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a><a class="d-card" href="/door/worship/"><span class="d-ic"><svg viewBox="0 0 24 24"><path d="M12 2v4M10 4h4"/><path d="M4 21V10l8-5 8 5v11"/><path d="M9.5 21v-5h5v5"/></svg></span><span class="d-tx"><span class="d-t"><span class="ko">와서 보십시오</span><span class="en">Come and see</span></span><span class="d-s"><span class="ko">함께 드리는 주일 예배로 초대합니다</span><span class="en">You are invited to Sunday worship</span></span></span><span class="d-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a><a class="d-card" href="/door/family/"><span class="d-ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M14 20a6 6 0 0 1 10-4"/></svg></span><span class="d-tx"><span class="d-t"><span class="ko">우리 아이를 믿음으로 키우고 싶습니다</span><span class="en">I want to raise my child in faith</span></span><span class="d-s"><span class="ko">온 교회가 함께 키웁니다</span><span class="en">The whole church raises them together</span></span></span><span class="d-go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a></div>
+    <button type="button" class="d-settle" onclick="openModal('newcomer')"><span class="ko">시애틀에 막 오셨나요? <b>정착을 도와드립니다</b></span><span class="en">New to Seattle? <b>We can help you settle in</b></span></button>
+    <a class="d-more" href="#explore"><span class="ko">교회 둘러보기</span><span class="en">Explore our church</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
+  </div>
+  <div class="d-waves" aria-hidden="true"><svg class="w3" viewBox="0 0 2880 150" preserveAspectRatio="none"><path d="M0 80 C360 40 720 120 1080 80 S1800 40 2160 80 S2520 120 2880 80 V150 H0Z" fill="rgba(184,146,74,.07)"/></svg><svg class="w2" viewBox="0 0 2880 150" preserveAspectRatio="none"><path d="M0 70 C240 30 480 30 720 70 S1200 110 1440 70 S1920 30 2160 70 S2640 110 2880 70 V150 H0Z" fill="rgba(90,150,210,.08)"/></svg><svg class="w1" viewBox="0 0 2880 150" preserveAspectRatio="none"><path d="M0 95 C360 70 720 120 1080 95 S1800 70 2160 95 S2520 120 2880 95 V150 H0Z" fill="rgba(90,150,210,.10)"/></svg></div>
+</section>
+<div id="explore"></div>
   <div class="hero">
     <div class="hwrap">
       <div>
@@ -1691,7 +1769,7 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
 <script>
 (function(){
   var M={
-    newcomer:[{ko:'담임목사 환영 인사',en:'A word from our pastor',href:'/greeting/'},{ko:'교역자 및 행정 사역자',en:'Pastors & Ministry Staff',href:'/welcome/#team'},{ko:'환영합니다 · 첫 방문 안내',en:'Welcome · your first visit',href:'/welcome/'},{ko:'VIP 등록 안내',en:'VIP welcome',href:'/vip/'},{ko:'자주 묻는 질문',en:'FAQ',href:'/faq/'},{ko:'오시는 길',en:'Visit us',href:'/welcome/#location'}],
+    newcomer:[{ko:'마음의 문',en:'Where to begin',sel:'#doors'},{ko:'담임목사 환영 인사',en:'A word from our pastor',href:'/greeting/'},{ko:'교역자 및 행정 사역자',en:'Pastors & Ministry Staff',href:'/welcome/#team'},{ko:'환영합니다 · 첫 방문 안내',en:'Welcome · your first visit',href:'/welcome/'},{ko:'VIP 등록 안내',en:'VIP welcome',href:'/vip/'},{ko:'자주 묻는 질문',en:'FAQ',href:'/faq/'},{ko:'오시는 길',en:'Visit us',href:'/welcome/#location'}],
     mokjang:[{ko:'목장이 뭔가요?',en:'What is a mokjang?',sel:'#p-mokjang .mj-intro'},{cut:'우리 목장',en:'Our house churches'},{ko:'목장과 연결되기',en:'Connect with a house church',open:'mokjang'},{ko:'가정교회 세 축과 네 기둥',en:'Three axes & four pillars',href:'/house-church/pillars/'},{ko:'이번 주 목장 모임',en:"This week's gatherings",href:'/house-church/this-week/'},{ko:'개척 목장 함께 시작하기',en:'Start a house church',open:'plant'}],
     worship:[{ko:'오는 주일 예배',en:'This Sunday',sel:'#wkHero'},{cut:'함께 드리는 기도',en:'Praying together'},{cut:'지난 말씀',en:'Past messages'},{cut:'예배와 모임',en:'Worship & gatherings'},{cut:'새벽을 여는 기도',en:'Dawn prayer'},{cut:'목회자 코너',en:"Pastor's corner"}],
     study:[{ko:'삶공부가 뭔가요?',en:'What is a Life Study?',sel:'#p-study .st-wrap'},{cut:'전체 그림',en:'The big picture'},{cut:'선택 과정',en:'Electives'},{cut:'등록',en:'Register'},{cut:'첫걸음',en:'First steps'}],
