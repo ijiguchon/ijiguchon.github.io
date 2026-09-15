@@ -765,7 +765,7 @@
     </div>
     
 <div class="cut"><span><span class="ko">연락 · 문의</span><span class="en">Contact us</span></span></div>
-    <div class="mem">
+    <div class="mem" id="contact" style="scroll-margin-top:96px">
       <div class="mwk"><div id="staffDir"></div></div>
       <div class="mem-row"><button class="mbtn" type="button" onclick="openModal('contact')"><span class="mi "><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="mb"><span class="mt"><span class="ko">교회에 문의하기</span><span class="en">Contact the church</span></span><span class="ms"><span class="ko">무엇이든 편하게 · 행정간사가 먼저 받습니다</span><span class="en">Ask anything · the church office replies</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></button></div>
     </div>
@@ -1170,6 +1170,79 @@ document.addEventListener('DOMContentLoaded', function(){
   try{ psInit(); }catch(_){}
   resolvePpt(); resolveBulletin(); resolveShare();
 });
+</script>
+<style>
+  .tmenu{position:absolute;z-index:60;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 40px rgba(20,33,61,.18);padding:8px;animation:tmIn .16s ease}
+  @keyframes tmIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .tmenu .tm-h{padding:6px 10px 8px;font-size:11.5px;font-weight:800;letter-spacing:1.2px;color:var(--gold-2);border-bottom:1px solid var(--line);margin-bottom:4px}
+  .tmenu .tm-i{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;border:0;background:none;text-align:left;padding:10px;border-radius:10px;font-family:inherit;font-size:14px;font-weight:700;color:var(--navy);cursor:pointer}
+  .tmenu .tm-i:hover{background:var(--cream)}
+  .tmenu .tm-i svg{width:15px;height:15px;fill:none;stroke:var(--gold-2);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+</style>
+<script>
+(function(){
+  var M={
+    newcomer:[{ko:'담임목사 환영 인사',en:'A word from our pastor',href:'/greeting/'},{ko:'환영합니다 · 첫 방문 안내',en:'Welcome · your first visit',href:'/welcome/'},{ko:'VIP 등록 안내',en:'VIP welcome',href:'/vip/'},{ko:'자주 묻는 질문',en:'FAQ',href:'/faq/'},{ko:'교회 스탭 · 연락',en:'Staff · contact',href:'/welcome/#contact'},{ko:'오시는 길',en:'Visit us',href:'/welcome/#location'}],
+    mokjang:[{ko:'목장이 뭔가요?',en:'What is a mokjang?',sel:'#p-mokjang .mj-intro'},{cut:'가정교회 세 축과 네 기둥',en:'Three axes & four pillars'},{cut:'우리 목장',en:'Our house churches'},{cut:'이번 주 목장 모임',en:"This week's gatherings"},{ko:'목장과 연결되기',en:'Connect with a house church',open:'mokjang'}],
+    worship:[{ko:'오는 주일 예배',en:'This Sunday',sel:'#wkHero'},{cut:'함께 드리는 기도',en:'Praying together'},{cut:'지난 말씀',en:'Past messages'},{cut:'예배와 모임',en:'Worship & gatherings'},{cut:'새벽을 여는 기도',en:'Dawn prayer'},{cut:'목회자 코너',en:"Pastor's corner"}],
+    study:[{ko:'삶공부가 뭔가요?',en:'What is a Life Study?',sel:'#p-study .st-wrap'},{cut:'전체 그림',en:'The big picture'},{cut:'선택 과정',en:'Electives'},{cut:'등록',en:'Register'},{cut:'첫걸음',en:'First steps'}],
+    newgen:[{ko:'새 세대 소개',en:'About New Gen',sel:'#p-newgen .care-grid'},{ko:'헌아식 신청',en:'Child dedication',open:'heonasik'},{ko:'어린이 사역 문의',en:"Children's ministry",open:'children'},{ko:'청소년(GMC Y) 문의',en:'Youth (GMC Y)',open:'youth'}],
+    square:[{cut:'교회 일정',en:'Church calendar'},{cut:'우리 교회 풍경',en:'Life at GMC'},{cut:'이웃 사랑',en:'Love your neighbor'}]
+  };
+  var bar=document.querySelector('.topbar'); if(!bar) return;
+  var home=!!document.getElementById('p-newcomer');
+  var hov=window.matchMedia&&window.matchMedia('(hover:hover)').matches;
+  var panel=document.createElement('div'); panel.className='tmenu'; panel.hidden=true; bar.appendChild(panel);
+  var cur=null, hideT=null;
+  function off(){ return (bar.offsetHeight||60)+14; }
+  function findCut(label){ var cs=document.querySelectorAll('.cut'); for(var i=0;i<cs.length;i++){ var k=cs[i].querySelector('.ko'); if(k&&k.textContent.trim()===label) return cs[i]; } return null; }
+  function target(it){ return it.sel?document.querySelector(it.sel):(it.cut?findCut(it.cut):null); }
+  function scrollTo(el,smooth){ var y=el.getBoundingClientRect().top+window.pageYOffset-off(); window.scrollTo({top:y,behavior:smooth?'smooth':'auto'}); }
+  function close(){ panel.hidden=true; cur=null; }
+  function goItem(tab,i){ var it=M[tab][i]; close();
+    if(it.href){ location.href=it.href; return; }
+    if(!home){ location.href='/?tab='+tab+(it.open?'&open='+it.open:'&go='+i); return; }
+    goTab(tab);
+    setTimeout(function(){ if(it.open){ openModal(it.open); return; } var el=target(it); if(el) scrollTo(el,true); },80);
+  }
+  function render(tab,btn){
+    clearTimeout(hideT);
+    panel.innerHTML='<div class="tm-h">'+btn.innerHTML+'</div>'+M[tab].map(function(it,i){ return '<button type="button" class="tm-i" data-i="'+i+'"><span><span class="ko">'+(it.ko||it.cut)+'</span><span class="en">'+it.en+'</span></span><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>'; }).join('');
+    panel.querySelectorAll('.tm-i').forEach(function(b){ b.addEventListener('click',function(e){ e.stopPropagation(); goItem(tab,+b.getAttribute('data-i')); }); });
+    var br=bar.getBoundingClientRect(), r=btn.getBoundingClientRect(), w=Math.min(290, window.innerWidth-24);
+    var left=Math.max(12, Math.min(r.left, window.innerWidth-w-12));
+    panel.style.width=w+'px'; panel.style.left=(left-br.left)+'px'; panel.style.top=(r.bottom-br.top+6)+'px';
+    panel.hidden=false; cur=tab;
+  }
+  document.querySelectorAll('.tabs .tab').forEach(function(btn){
+    var tab=btn.getAttribute('data-tab');
+    if(!tab){ var h=btn.getAttribute('href')||''; var m=h.match(/tab=([a-z]+)/); tab=m?m[1]:(h==='/'?'newcomer':null); }
+    if(!home){
+      // 별도 페이지: 옛 goTab(t.dataset.tab) 리스너가 '/?tab=undefined'로 보내는 문제 차단(캡처 단계에서 먼저 받음).
+      // 첫 클릭=목록 열기, 두 번째 클릭(또는 목록 없는 탭)=링크대로 그 탭으로 이동
+      btn.addEventListener('click',function(e){
+        e.stopImmediatePropagation();
+        if(tab&&M[tab]&&cur!==tab){ e.preventDefault(); render(tab,btn); }
+      },true);
+    }
+    if(!tab||!M[tab]) return;
+    if(home) btn.addEventListener('click',function(e){ e.stopPropagation(); render(tab,btn); });
+    if(hov){
+      btn.addEventListener('mouseenter',function(){ render(tab,btn); });
+      btn.addEventListener('mouseleave',function(){ hideT=setTimeout(close,280); });
+    }
+  });
+  panel.addEventListener('mouseenter',function(){ clearTimeout(hideT); });
+  if(hov) panel.addEventListener('mouseleave',function(){ hideT=setTimeout(close,280); });
+  document.addEventListener('click',function(e){ if(!panel.hidden&&!panel.contains(e.target)) close(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+  window.addEventListener('resize',close);
+  if(!hov) window.addEventListener('scroll',function(){ if(!panel.hidden) close(); },{passive:true});
+  if(home) document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){
+    var q=new URLSearchParams(location.search), g=q.get('go'), t=q.get('tab');
+    if(g!==null&&t&&M[t]&&M[t][+g]){ var el=target(M[t][+g]); if(el) scrollTo(el,false); }
+  },300); });
+})();
 </script>
 <div id="gmModalRoot"></div>
 <style>.mj-cta .btn svg{width:18px;height:18px;flex:0 0 auto}</style>
