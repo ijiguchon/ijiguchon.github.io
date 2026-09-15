@@ -399,7 +399,7 @@
     <a class="cn-node" href="#care"><span class="cn-dot"><svg viewBox="0 0 24 24"><path d="M12 20s-6-4-6-9a3.5 3.5 0 016-2.4A3.5 3.5 0 0118 11c0 5-6 9-6 9z"/></svg></span><span class="cn-lbl">이웃 사랑</span></a>
   </div>
   <div class="cn-cap" id="cnCap" aria-live="polite">
-    <div class="big"><span class="ac">흩어져</span> — 세상 끝까지</div><div class="sm">scatter · to the world</div>
+    <div class="big"><span class="ac">Genesis 1314</span></div><div class="sm">Expanding the Kingdom, One Home at a time</div>
   </div>
   <div class="cn-hint" id="cnHint">지구본을 눌러보세요 · Tap the globe</div>
   <button class="cn-scroll" id="cnScroll" aria-label="아래로 둘러보기"><span>둘러보기</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
@@ -427,9 +427,6 @@
   var cap=document.getElementById('cnCap');
   function setState(s){
     cosmos.classList.toggle('scattered',s);
-    cap.innerHTML = s
-      ? '<div class="big"><span class="ac">흩어져</span> — 세상 끝까지</div><div class="sm">scatter · to the world</div>'
-      : '<div class="big"><span class="ac">모여</span> — 한 교회로</div><div class="sm">gather · one church</div>';
   }
   document.getElementById('cnNucleus').addEventListener('click',function(){
     var hint=document.getElementById('cnHint'); if(hint) hint.classList.add('gone');
