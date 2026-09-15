@@ -637,6 +637,23 @@
   .hc-p b{display:block;font-size:14.5px;color:var(--navy)}
   .hc-p span.d{display:block;margin-top:3px;font-size:13px;color:var(--ink-2);line-height:1.6}
   .hc-p small{display:block;margin-top:4px;font-size:11.5px;color:var(--gold-2);font-weight:700}
+  .hero .hright{display:flex;flex-direction:column;align-items:center;gap:20px}
+  .hero .hright .hglobe{width:min(230px,50vw)}
+  .hq{width:100%;max-width:410px}
+  .hq-h{font-size:11.5px;font-weight:800;letter-spacing:2px;color:#E9C77B;margin-bottom:8px;text-align:left}
+  .hq-g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .hqb{display:flex;align-items:center;gap:10px;min-width:0;text-align:left;padding:12px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(233,199,123,.3);color:#fff;font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s,transform .15s}
+  .hqb:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+  .hqb .qi{flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:rgba(233,199,123,.16);color:#E9C77B;display:flex;align-items:center;justify-content:center}
+  .hqb .qi svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .hqb .qb{min-width:0;flex:1}
+  .hqb .qt{display:block;font-size:14px;font-weight:800;line-height:1.25}
+  .hqb .qs{display:block;margin-top:2px;font-size:11.5px;color:rgba(255,255,255,.72);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  @media(max-width:760px){
+    .hero .hright{display:contents}
+    .hero .hright .hglobe{width:min(220px,60vw)}
+    .hq{margin:18px auto 0}
+  }
 </style>
 </head>
 <body>
@@ -677,10 +694,10 @@
         <div class="hbtns">
           <a class="hbtn hb-gold" href="/welcome/"><svg viewBox="0 0 24 24"><path d="M12 3c2.5 2 4 4.2 4 6.5A4 4 0 0 1 8 9.5C8 7.2 9.5 5 12 3z"/><path d="M4 21c1.2-2.4 3.8-4 8-4s6.8 1.6 8 4"/></svg><span class="ko">처음 오셨나요?</span><span class="en">New here?</span></a>
           <a class="hbtn hb-kakao" href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.52 1.46 4.77 3.74 6.25-.13.97-.5 2.3-1.24 3.5 1.6-.27 3.18-.96 4.4-1.78.96.24 1.99.36 3.1.36 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg><span class="ko">카톡방 초대</span><span class="en">KakaoTalk room</span></a>
-          <button class="hbtn hb-ghost" onclick="goTab('mokjang')"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M10 20v-4.5h4V20"/></svg><span class="ko">가정교회 연결</span><span class="en">Find a house church</span></button>
         </div>
         <div class="hcap">Genesis 13:14 · Expanding the Kingdom, One Home at a time</div>
       </div>
+      <div class="hright">
       <div class="hglobe" aria-hidden="true">
         <img src="/images/earth-globe.png" alt="">
         <!-- 시애틀에서 세계로 — 빛이 뻗어 나가는 사선 + 파문 -->
@@ -693,6 +710,8 @@
           <b></b><b style="animation-delay:1.6s"></b>
           <u></u>
         </span>
+      </div>
+        <div class="hq"><div class="hq-h"><span class="ko">바로가기</span><span class="en">Quick links</span></div><div class="hq-g"><button class="hqb" type="button" onclick="colOpen()"><span class="qi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M8 7h8M8 10.5h8M8 14h5"/></svg></span><span class="qb"><span class="qt"><span class="ko">목회자 코너</span><span class="en">Pastor's corner</span></span><span class="qs" id="hqCol"><span class="ko">이번 주 목회칼럼</span><span class="en">This week's column</span></span></span></button><button class="hqb" type="button" onclick="goTab('mokjang')"><span class="qi"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/><path d="M10 20v-4.5h4V20"/></svg></span><span class="qb"><span class="qt"><span class="ko">목장 안내</span><span class="en">House churches</span></span><span class="qs"><span class="ko">이번 주 목장 모임 · 연결</span><span class="en">This week's gatherings</span></span></span></button><button class="hqb" type="button" onclick="goTab('worship')"><span class="qi"><svg viewBox="0 0 24 24"><path d="M12 2v4M10 4h4"/><path d="M4 21V10l8-5 8 5v11"/><path d="M9.5 21v-5h5v5"/></svg></span><span class="qb"><span class="qt"><span class="ko">이번 주 예배</span><span class="en">This Sunday</span></span><span class="qs" id="hqWk"><span class="ko">주일 오전 11:00 · 주보 · 라이브</span><span class="en">Sun 11 AM · bulletin · live</span></span></span></button><button class="hqb" type="button" onclick="openModal('prayer')"><span class="qi"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span><span class="qb"><span class="qt"><span class="ko">기도 요청</span><span class="en">Prayer request</span></span><span class="qs"><span class="ko">담임목사님께 바로</span><span class="en">Straight to the pastor</span></span></span></button></div></div>
       </div>
     </div>
   </div>
@@ -1457,6 +1476,20 @@ document.addEventListener('DOMContentLoaded', function(){
   try{ psInit(); }catch(_){}
   resolvePpt(); resolveBulletin(); resolveShare();
 });
+</script>
+<script>
+(function(){
+  function hqFill(){
+    var t=document.querySelector('#colLive .cb-t'), hc=document.getElementById('hqCol');
+    if(t&&hc){ var s=t.textContent.trim(); if(s&&s!=='…') hc.innerHTML=t.innerHTML; }
+    var w=document.querySelector('[data-wk-title]'), hw=document.getElementById('hqWk');
+    if(w&&hw){ var x=w.textContent.trim(); if(x&&x!=='—') hw.textContent=x; }
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    hqFill(); [800,2000,4500].forEach(function(ms){ setTimeout(hqFill,ms); });
+    var c=document.getElementById('colLive'); if(c&&window.MutationObserver) new MutationObserver(hqFill).observe(c,{childList:true,subtree:true});
+  });
+})();
 </script>
 <style>.mj-cta .btn svg{width:18px;height:18px;flex:0 0 auto}</style>
 <script>
