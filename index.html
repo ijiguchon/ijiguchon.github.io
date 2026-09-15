@@ -1014,11 +1014,7 @@
       </div>
       <div class="mwk" id="planBox" style="margin-top:12px" hidden><div class="mwh"><b><span class="ko">다가올 주요 일정</span><span class="en">What's ahead</span></b></div><div id="planList"></div></div>
     </div>
-<div class="cut"><span><span class="ko">교회 스탭 · 연락</span><span class="en">Staff · contact</span></span></div>
-    <div class="mem">
-      <div class="mwk"><div id="staffDir"></div></div>
-      <div class="mem-row"><button class="mbtn" type="button" onclick="openModal('contact')"><span class="mi "><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="mb"><span class="mt"><span class="ko">교회에 문의하기</span><span class="en">Contact the church</span></span><span class="ms"><span class="ko">무엇이든 편하게 · 행정간사가 먼저 받습니다</span><span class="en">Ask anything · the church office replies</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></button><button class="mbtn" type="button" onclick="shareChurch()"><span class="mi g"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span><span class="mb"><span class="mt"><span class="ko">교회 주소 공유하기</span><span class="en">Share our church</span></span><span class="ms"><span class="ko">카톡 · 문자 · SNS로 초대</span><span class="en">Invite by KakaoTalk, text or social</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></button></div>
-    </div>
+    <div class="mem"><div class="mem-row"><button class="mbtn" type="button" onclick="shareChurch()"><span class="mi g"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span><span class="mb"><span class="mt"><span class="ko">교회 주소 공유하기</span><span class="en">Share our church</span></span><span class="ms"><span class="ko">카톡 · 문자 · SNS로 초대</span><span class="en">Invite by KakaoTalk, text or social</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></button></div></div>
 
     <!-- 갤러리 -->
 <div class="cut"><span><span class="ko">우리 교회 풍경</span><span class="en">Life at GMC</span></span></div>
@@ -1452,7 +1448,7 @@ document.addEventListener('DOMContentLoaded', function(){
 document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){ try{
   var o=new URLSearchParams(location.search).get('open'); if(!o||!GM[o]) return;
   var MAP={prayer:'worship',commit:'worship',topastor:'worship',mokjang:'mokjang',mokjangpost:'mokjang',plant:'mokjang',accept:'study',baptism:'study',heonasik:'newgen',children:'newgen',youth:'newgen',contact:'square',newcomer:'newcomer'};
-  if(MAP[o]&&typeof goTab==='function') goTab(MAP[o]);
+  if(MAP[o]&&document.getElementById('p-'+MAP[o])) goTab(MAP[o]);
   setTimeout(function(){ openModal(o); },250);
 }catch(e){} },0); });
 /* ══ 교인 기능 — 교인 앱(GMC_PWA)에서 이전. 신청서는 앱과 같은 백엔드(SCRIPT_URL)·같은 type 으로 보냄 ══ */
@@ -1620,7 +1616,7 @@ async function renderColumn(){
 
 /* ── 시작 · 언어 바뀌면 다시 그리기 ── */
 (function(){ var prev=window.gmcChatRefresh; window.gmcChatRefresh=function(){ if(prev) prev(); gmBuild(); }; })();
-document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(e){} try{ renderSchedule(); }catch(e){} try{ renderStaff(); }catch(e){} try{ renderMokjangWeek(); fetchMokjangWeek(); }catch(e){} try{ renderColumn(); }catch(e){} });
+document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(e){} try{ renderSchedule(); }catch(e){} try{ renderStaff(); }catch(e){} try{ if(document.getElementById('mokjangWeekRows')){ renderMokjangWeek(); fetchMokjangWeek(); } }catch(e){} try{ if(document.getElementById('colLive')) renderColumn(); }catch(e){} });
 </script>
 </body>
 </html>
