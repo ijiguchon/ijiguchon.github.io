@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>가정교회 360 · 시애틀지구촌교회</title>
+<meta name="robots" content="noindex,nofollow"/>
+<meta name="theme-color" content="#14213d"/>
+<link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192-em.png"/>
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/images/apple-touch-icon-em.png"/>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&display=swap">
+<style>
+  :root{--navy:#14213d;--navy-2:#1f2f55;--gold:#B8924A;--gold-2:#9A7130;--gold-l:#E9C77B;--ink:#1c1f26;--ink-2:#4a4f5a;--ink-3:#7c8290;--cream:#F6F1E7;--line:#E3D9C6;--serif:'Noto Serif KR','Apple Myungjo',Georgia,serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+  a{color:inherit;text-decoration:none}
+  .top{position:sticky;top:0;z-index:10;background:rgba(246,241,231,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .top .row{max-width:1040px;margin:0 auto;padding:0 18px;height:58px;display:flex;align-items:center;gap:10px}
+  .top img{width:34px;height:34px;border-radius:50%;box-shadow:0 0 0 2px rgba(184,146,74,.4)}
+  .top b{font-family:var(--serif);font-size:15px;color:var(--navy)}
+  .top .r{margin-left:auto;display:flex;gap:8px}
+  .top .r a,.top .r button{font-family:inherit;font-size:12.5px;font-weight:800;color:var(--navy);background:#fff;border:1.4px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+  .wrap{max-width:1040px;margin:0 auto;padding:34px 18px 70px}
+  .eye{font-size:11.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold-2);text-align:center}
+  h1{font-family:var(--serif);font-size:clamp(24px,3.6vw,34px);font-weight:900;color:var(--navy);text-align:center;letter-spacing:-.5px;margin-top:8px;word-break:keep-all}
+  h1::after{content:"";display:block;width:34px;height:2px;margin:12px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .lead{max-width:640px;margin:12px auto 0;text-align:center;color:var(--ink-2);font-size:15px;word-break:keep-all}
+  /* 게이트 */
+  .gate{max-width:420px;margin:30px auto 0;background:linear-gradient(150deg,#1f2f55,#14213d);color:#fff;border-radius:20px;padding:28px 26px;box-shadow:0 14px 36px rgba(20,33,61,.28);text-align:center}
+  .gate .ge{font-size:11px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold-l)}
+  .gate h2{font-family:var(--serif);font-size:20px;margin-top:8px}
+  .gate p{margin-top:8px;font-size:13.5px;color:rgba(255,255,255,.8)}
+  .gate input{width:100%;margin-top:16px;padding:13px 14px;border-radius:12px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:16px;font-family:inherit;text-align:center;letter-spacing:4px;outline:none}
+  .gate input:focus{border-color:var(--gold-l)}
+  .gate button{width:100%;margin-top:12px;padding:13px;border:0;border-radius:999px;background:linear-gradient(180deg,#CDA65B,#A67A2E);color:#fff;font-weight:900;font-size:15px;font-family:inherit;cursor:pointer;box-shadow:0 6px 18px rgba(154,113,48,.35)}
+  .gate .err{margin-top:10px;font-size:12.5px;color:#F2B8B8;min-height:16px}
+  .gate .help{margin-top:14px;font-size:12px;color:rgba(255,255,255,.6)}
+  .gate .help a{color:var(--gold-l);font-weight:700}
+  /* 포털 */
+  .portal{display:none}
+  .portal.on{display:block}
+  .cut{max-width:760px;margin:44px auto 16px;display:flex;align-items:center;gap:14px}
+  .cut::before,.cut::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(184,146,74,.55))}
+  .cut::after{background:linear-gradient(90deg,rgba(184,146,74,.55),transparent)}
+  .cut span{font-family:var(--serif);font-size:12px;font-weight:700;letter-spacing:2.2px;color:var(--gold-2);white-space:nowrap}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:440px){.grid{grid-template-columns:1fr}}
+  .tile{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 18px rgba(40,30,10,.06);transition:transform .14s,box-shadow .14s}
+  .tile:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(40,30,10,.1)}
+  .tile .ic{flex:0 0 auto;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(180deg,#1f2f55,#14213d)}
+  .tile .ic.g{background:linear-gradient(180deg,#CDA65B,#A67A2E)} .tile .ic.t{background:linear-gradient(180deg,#34c3b5,#12857c)} .tile .ic.b{background:linear-gradient(180deg,#5b7fb5,#2c4d8a)}
+  .tile .ic svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .tile .tb{flex:1;min-width:0}
+  .tile h3{font-family:var(--serif);font-size:15px;font-weight:900;color:var(--navy)}
+  .tile p{margin-top:2px;font-size:12px;color:var(--ink-3);font-weight:600;line-height:1.45}
+  .note{max-width:760px;margin:28px auto 0;background:#F1E6D3;border:1px solid rgba(184,146,74,.35);border-radius:14px;padding:14px 18px;font-size:13px;color:#6b4f1d;line-height:1.7;word-break:keep-all}
+  .note b{color:#4d3812}
+  footer{max-width:1040px;margin:0 auto;padding:0 18px 30px;font-size:12px;color:var(--ink-3);text-align:center}
+  footer a{color:var(--navy);font-weight:700}
+</style>
+</head>
+<body>
+<div class="top"><div class="row">
+  <a href="/new/"><img src="/images/icon-192-em.png" alt=""></a>
+  <b>시애틀지구촌교회 · 가정교회 360</b>
+  <div class="r"><a href="/new/">홈</a><button id="outBtn" style="display:none" onclick="lock()">잠금</button></div>
+</div></div>
+
+<main class="wrap">
+  <div class="eye">House Church 360 · 목자 · 목녀 · 스탭</div>
+  <h1>가정교회 360</h1>
+  <p class="lead">목장을 돌보고 교회를 세우는 도구를 한곳에 모았습니다. 교인 확인 코드를 입력하시면 열립니다.</p>
+
+  <div class="gate" id="gate">
+    <div class="ge">교인 확인</div>
+    <h2>확인 코드를 입력해 주십시오</h2>
+    <p>목자·목녀와 스탭에게 안내된 코드입니다.</p>
+    <form onsubmit="unlock(event)">
+      <input id="code" type="password" inputmode="text" autocomplete="off" placeholder="••••" aria-label="확인 코드">
+      <button type="submit">열기</button>
+    </form>
+    <div class="err" id="err"></div>
+    <div class="help">코드를 모르시면 <a href="mailto:office@ijiguchon.org">office@ijiguchon.org</a> 또는 <a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener">카톡방</a>으로 문의해 주십시오.</div>
+  </div>
+
+  <div class="portal" id="portal">
+    <div class="cut"><span>목양</span></div>
+    <div class="grid">
+      <a class="tile" href="/dashboard/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-8M22 19H2"/></svg></span><span class="tb"><h3>목양 대시보드</h3><p>목장·교회 현황 한눈에</p></span></a>
+      <a class="tile" href="/my/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z"/><path d="M4 20a8 8 0 0116 0"/></svg></span><span class="tb"><h3>내 목양</h3><p>우리 목장 식구 돌봄 기록</p></span></a>
+      <a class="tile" href="/worship/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 21V10l8-5 8 5v11"/><path d="M9.5 21v-5h5v5"/></svg></span><span class="tb"><h3>성인 출석</h3><p>주일 연합예배 출석</p></span></a>
+      <a class="tile" href="/checkin/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span><span class="tb"><h3>출석 체크</h3><p>모임 현장 빠른 체크인</p></span></a>
+    </div>
+
+    <div class="cut"><span>새 세대</span></div>
+    <div class="grid">
+      <a class="tile" href="/attend/"><span class="ic t"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3 20a6 6 0 0112 0"/><path d="M14 20a6 6 0 0110-4"/></svg></span><span class="tb"><h3>교회학교 출석부</h3><p>어린이·청소년 출석과 부모 협력</p></span></a>
+      <a class="tile" href="/growth/"><span class="ic t"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span><span class="tb"><h3>분기 성장 기록</h3><p>한 아이의 자람을 분기마다</p></span></a>
+    </div>
+
+    <div class="cut"><span>제자의 길 · 행정</span></div>
+    <div class="grid">
+      <a class="tile" href="/register/"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M8 7h8M8 10.5h8M8 14h5"/></svg></span><span class="tb"><h3>교인 등록</h3><p>새 교우 등록 접수</p></span></a>
+      <a class="tile" href="/study/"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v16H5.5A2.5 2.5 0 003 21.5z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v16h6.5a2.5 2.5 0 012.5 2.5z"/></svg></span><span class="tb"><h3>삶공부</h3><p>과정 안내 · 개강 · 신청</p></span></a>
+      <a class="tile" href="/path/"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M6 3v13M6 21a2 2 0 100-4 2 2 0 000 4zM18 8a2 2 0 100-4 2 2 0 000 4zM18 8c0 6-12 3-12 9"/></svg></span><span class="tb"><h3>제자로 자라는 길</h3><p>안수집사로 자라는 길 매뉴얼</p></span></a>
+      <a class="tile" href="/qual/"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.4 6.7 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg></span><span class="tb"><h3>안수집사 추천 자격</h3><p>딤전 3장 기준 안내</p></span></a>
+    </div>
+
+    <div class="cut"><span>자료</span></div>
+    <div class="grid">
+      <a class="tile" href="https://drive.google.com/drive/folders/1KaYzo0lDmU6TJJBtnrTsbFnZIgn0n3zA" target="_blank" rel="noopener"><span class="ic b"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/></svg></span><span class="tb"><h3>목장 나눔지</h3><p>주일 설교 나눔지 폴더</p></span></a>
+      <a class="tile" href="https://drive.google.com/drive/folders/15_4TMBpg7E7w_5YAjd3GJ-hohnLw_FuB" target="_blank" rel="noopener"><span class="ic b"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 5.5V19"/></svg></span><span class="tb"><h3>주보</h3><p>주간 주보 폴더</p></span></a>
+      <a class="tile" href="/corner/"><span class="ic b"><svg viewBox="0 0 24 24"><path d="M4 4h11l5 5v11H4z"/><path d="M15 4v5h5"/><path d="M8 13h8M8 17h5"/></svg></span><span class="tb"><h3>목회자 코너</h3><p>목회칼럼 · 12주 여정</p></span></a>
+      <a class="tile" href="/gmc/"><span class="ic b"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span><span class="tb"><h3>교인 앱</h3><p>홈 · 목장 · 삶공부 · 연합예배</p></span></a>
+    </div>
+
+    <div class="note"><b>가정교회 360이란?</b> 휴스턴서울교회가 세운 가정교회 운영 체계(HCRM 360)의 정신을 따라, 우리 교회가 직접 만든 도구들을 한곳에 모은 목자·스탭용 포털입니다. 사역은 목자·목녀가, 행정·운영 지원은 교회 중앙이 맡습니다(엡 4장 · 행 6장). 목장별 명단·개인 나눔·재정은 여기서도 공개하지 않습니다.</div>
+  </div>
+</main>
+
+<footer>시애틀지구촌교회 · <a href="mailto:office@ijiguchon.org">office@ijiguchon.org</a> · <a href="/new/">홈으로</a></footer>
+
+<script>
+  /* 교인 확인 코드 — 브라우저 확인용(진짜 보안 아님). 코드는 아래 한 줄에서 바꿉니다. */
+  var GATE_CODE = 'J1224';
+  var KEY = 'gmc-360-ok';
+  function show(on){ document.getElementById('gate').style.display = on ? 'none' : ''; document.getElementById('portal').classList.toggle('on', on); document.getElementById('outBtn').style.display = on ? '' : 'none'; }
+  function unlock(e){ e.preventDefault(); var v = (document.getElementById('code').value || '').trim().toUpperCase(); if(v === GATE_CODE){ try{ localStorage.setItem(KEY, '1'); }catch(_){} show(true); window.scrollTo({top:0}); } else { document.getElementById('err').textContent = '코드가 맞지 않습니다. 다시 확인해 주십시오.'; document.getElementById('code').value=''; document.getElementById('code').focus(); } }
+  function lock(){ try{ localStorage.removeItem(KEY); }catch(_){} show(false); }
+  (function(){ var ok=false; try{ ok = localStorage.getItem(KEY)==='1'; }catch(_){} show(ok); if(!ok) setTimeout(function(){ document.getElementById('code').focus(); }, 200); })();
+</script>
+</body>
+</html>
