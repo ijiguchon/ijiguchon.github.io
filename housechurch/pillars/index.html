@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VIP 등록 안내 · 시애틀지구촌교회</title>
+<title>가정교회 세 축과 네 기둥 · 시애틀지구촌교회</title>
 <meta name="description" content="시애틀지구촌교회는 가정에서 모이는 성경적 가정교회입니다. 영혼 구원하여 그리스도의 제자 만드는 교회 — 환영·목장·연합예배·삶공부·새 세대·지구촌 마당."/>
-<link rel="canonical" href="https://www.ijiguchon.org/vip/"/>
+<link rel="canonical" href="https://www.ijiguchon.org/housechurch/pillars/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="시애틀지구촌교회"/>
 <meta property="og:title" content="시애틀지구촌교회 — 성경적 가정교회"/>
@@ -539,6 +539,128 @@
   .faq .a{padding:0 18px 16px 56px;font-size:14px;line-height:1.75;color:var(--ink-2);word-break:keep-all}
   .faq .a a{color:var(--gold-2);font-weight:700}
   .faq .a b{color:var(--ink)}
+  .wb .greet-link{max-width:560px;margin:22px auto 0;display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.07);border:1px solid rgba(233,199,123,.38);border-radius:16px;padding:12px 16px;color:#fff;text-decoration:none;text-align:left;transition:background .15s,transform .15s}
+  .wb .greet-link:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}
+  .wb .greet-link img{flex:0 0 auto;width:64px;height:64px;object-fit:cover;object-position:center 35%;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+  .wb .greet-link .gl-b{flex:1;min-width:0}
+  .wb .greet-link .ge{display:block;font-size:11px;font-weight:800;letter-spacing:1.8px;color:#E9C77B}
+  .wb .greet-link .gl-t{display:block;margin-top:3px;font-family:var(--serif);font-size:15.5px;font-weight:900;word-break:keep-all}
+  .wb .greet-link svg{flex:0 0 auto;width:20px;height:20px;fill:none;stroke:#E9C77B;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+  /* ── 교인 기능(앱에서 이전) ── */
+  .mem{max-width:760px;margin:0 auto;text-align:left}
+  .mem-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+  @media(max-width:560px){ .mem-row{grid-template-columns:1fr} }
+  .mbtn{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 16px;cursor:pointer;font-family:inherit;color:inherit;text-decoration:none;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 18px rgba(40,30,10,.06);transition:transform .14s,box-shadow .14s}
+  .mbtn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(40,30,10,.1)}
+  .mbtn .mi{flex:0 0 auto;width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(180deg,#1f2f55,#14213d)}
+  .mbtn .mi.g{background:linear-gradient(180deg,#CDA65B,#A67A2E)} .mbtn .mi.t{background:linear-gradient(180deg,#34c3b5,#12857c)} .mbtn .mi.r{background:linear-gradient(180deg,#c77b8f,#9a4a62)}
+  .mbtn .mi svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .mbtn .mb{flex:1;min-width:0}
+  .mbtn .mt,.mbtn .ms{display:block}
+  .mbtn .mt{font-family:var(--serif);font-size:14.5px;font-weight:900;color:var(--navy);letter-spacing:-.2px}
+  .mbtn .ms{margin-top:2px;font-size:12px;color:var(--ink-3);font-weight:600;line-height:1.45}
+  .mbtn .mg{flex:0 0 auto;color:var(--gold-2)} .mbtn .mg svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  .mwk{background:#fff;border:1px solid var(--line);border-radius:16px;padding:6px 18px 14px;box-shadow:0 6px 18px rgba(40,30,10,.06)}
+  .mwk .mwh{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:12px 0 6px;border-bottom:1px solid var(--line)}
+  .mwk .mwh b{font-family:var(--serif);font-size:15px;color:var(--navy)}
+  .mwk .mwh span{font-size:11.5px;color:var(--ink-3);font-weight:600}
+  .mw-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+  .mw-row:last-child{border-bottom:0}
+  .mw-name{font-size:14px;font-weight:800;color:var(--navy)}
+  .mw-detail{font-size:13px;font-weight:700;color:var(--gold-2);text-align:right}
+  .mw-tba{font-size:12px;color:var(--ink-3);font-weight:600}
+  .mw-foot{margin-top:8px;font-size:12px;color:var(--ink-3);line-height:1.6}
+  .evt{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px dashed var(--line)}
+  .evt:last-child{border-bottom:0}
+  .evt-date{flex:0 0 auto;width:46px;height:50px;border-radius:12px;background:#F1E6D3;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .evt-d{font-family:var(--serif);font-size:18px;font-weight:900;color:var(--navy);line-height:1}
+  .evt-m{margin-top:3px;font-size:10px;font-weight:800;color:#8f6a2a;letter-spacing:.5px}
+  .evt-title{font-size:14px;font-weight:800;color:var(--navy)}
+  .evt-meta{margin-top:2px;font-size:12.5px;color:var(--ink-3);font-weight:600}
+  .pl-row{display:flex;gap:14px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+  .pl-row:last-child{border-bottom:0}
+  .pl-when{flex:0 0 74px;font-weight:800;color:var(--gold-2)}
+  .pl-what{color:var(--ink);font-weight:700}
+  .sched{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(max-width:640px){ .sched{grid-template-columns:1fr} }
+  .host-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line)}
+  .host-row:last-child{border-bottom:0}
+  .host-badge{flex:0 0 auto;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:900;color:#fff;text-align:center;line-height:1.05;background:linear-gradient(180deg,#1f2f55,#14213d)}
+  .host-badge.gold{background:linear-gradient(180deg,#CDA65B,#A67A2E)} .host-badge.teal{background:linear-gradient(180deg,#34c3b5,#12857c)}
+  .host-main{flex:1;min-width:0}
+  .host-mj{font-size:14px;font-weight:800;color:var(--navy)}
+  .host-nm{margin-top:1px;font-size:12px;color:var(--ink-3);font-weight:600}
+  .host-acts{display:flex;gap:6px;flex:0 0 auto}
+  .host-acts a{display:inline-flex;align-items:center;height:32px;padding:0 11px;border-radius:9px;background:var(--cream);border:1px solid var(--line);color:var(--navy);font-size:12px;font-weight:800;text-decoration:none}
+  .col-live{cursor:pointer}
+  .col-live .cb-t{font-family:var(--serif);font-size:16.5px;font-weight:900;color:var(--navy)}
+  .col-live .cb-s{margin-top:3px;font-size:12.5px;color:var(--gold-2);font-weight:700}
+  .col-live .cb-x{margin-top:6px;font-size:13px;color:var(--ink-2);line-height:1.65}
+  .col-live .cb-by{margin-top:6px;font-size:11.5px;color:var(--ink-3);font-weight:600}
+  /* 신청서(모달) */
+  .gm-ov{position:fixed;inset:0;z-index:1200;background:rgba(13,23,48,.55);backdrop-filter:blur(3px);display:none;align-items:flex-end;justify-content:center;padding:0}
+  @media(min-width:640px){ .gm-ov{align-items:center;padding:24px} }
+  .gm-ov.open{display:flex}
+  .gm-sheet{position:relative;width:100%;max-width:520px;max-height:92vh;overflow:auto;background:#F6F1E7;border-radius:22px 22px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.25);animation:gmUp .25s ease}
+  @media(min-width:640px){ .gm-sheet{border-radius:22px} }
+  @keyframes gmUp{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+  .gm-head{position:sticky;top:0;z-index:2;background:linear-gradient(150deg,#1f2f55,#14213d);color:#fff;padding:18px 54px 16px 22px}
+  .gm-title{font-family:var(--serif);font-size:19px;font-weight:900}
+  .gm-sub{margin-top:5px;font-size:13px;line-height:1.6;color:rgba(255,255,255,.82)}
+  .gm-x{position:absolute;right:14px;top:14px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.15);color:#fff;cursor:pointer;font-size:20px;line-height:1;font-family:inherit}
+  .gm-body{padding:16px 20px 20px}
+  .gm-f{margin-top:12px}
+  .gm-f label.lb{display:block;font-size:12.5px;font-weight:800;color:var(--ink-2);margin-bottom:5px}
+  .gm-f .req{color:#b4532a;margin-left:2px}
+  .gm-f input:not([type=checkbox]),.gm-f select,.gm-f textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;font-size:15px;font-family:inherit;background:#fff;color:var(--ink);outline:none}
+  .gm-f textarea{min-height:84px;resize:vertical}
+  .gm-f input:focus,.gm-f select:focus,.gm-f textarea:focus{border-color:var(--navy-2)}
+  .gm-chk{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;cursor:pointer}
+  .gm-chk input{margin-top:3px;width:18px;height:18px;flex:0 0 auto;accent-color:#14213d}
+  .gm-chk b{display:block;font-size:14px;color:var(--navy)}
+  .gm-chk small{display:block;margin-top:2px;font-size:12px;color:var(--ink-3)}
+  .gm-send{width:100%;margin-top:16px;border:0;border-radius:999px;padding:14px;font-family:inherit;font-size:15.5px;font-weight:900;color:#fff;background:linear-gradient(180deg,#CDA65B,#A67A2E);box-shadow:0 6px 18px rgba(154,113,48,.35);cursor:pointer}
+  .gm-send:disabled{opacity:.7;cursor:default}
+  .gm-note{margin-top:10px;font-size:12px;color:var(--ink-3);text-align:center;line-height:1.6}
+  .gm-aside{display:block;margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 15px;text-decoration:none;color:inherit}
+  .gm-aside b{display:block;font-size:14px;color:var(--navy)} .gm-aside span.d{display:block;margin-top:3px;font-size:12.5px;color:var(--ink-2);line-height:1.55} .gm-aside span.c{display:block;margin-top:6px;font-size:12.5px;font-weight:800;color:var(--gold-2)}
+  .gm-ok{display:none;padding:34px 24px 40px;text-align:center}
+  .gm-ok.show{display:block}
+  .gm-ok .ck{width:58px;height:58px;margin:0 auto;border-radius:50%;background:linear-gradient(180deg,#34c3b5,#12857c);display:flex;align-items:center;justify-content:center}
+  .gm-ok .ck svg{width:28px;height:28px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+  .gm-ok .o1{margin-top:14px;font-family:var(--serif);font-size:19px;font-weight:900;color:var(--navy)}
+  .gm-ok .o2{margin-top:6px;font-size:14px;color:var(--ink-2);line-height:1.7}
+  .hc-lead{max-width:720px;margin:0 auto 16px;text-align:center;font-size:14.5px;color:var(--ink-2);line-height:1.75}
+  .hc3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:900px;margin:0 auto}
+  .hc4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:900px;margin:14px auto 0}
+  @media(max-width:760px){ .hc3,.hc4{grid-template-columns:1fr} }
+  .hc-a{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;text-align:left;box-shadow:0 6px 18px rgba(40,30,10,.06);border-top:3px solid var(--gold)}
+  .hc-a .k{font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--gold-2)}
+  .hc-a h4{margin-top:4px;font-family:var(--serif);font-size:17px;font-weight:900;color:var(--navy)}
+  .hc-a p{margin-top:6px;font-size:13.5px;color:var(--ink-2);line-height:1.65}
+  .hc-p{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;text-align:left}
+  .hc-p .n{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#E9C77B;font-family:var(--serif);font-weight:900;display:flex;align-items:center;justify-content:center;font-size:14px}
+  .hc-p b{display:block;font-size:14.5px;color:var(--navy)}
+  .hc-p span.d{display:block;margin-top:3px;font-size:13px;color:var(--ink-2);line-height:1.6}
+  .hc-p small{display:block;margin-top:4px;font-size:11.5px;color:var(--gold-2);font-weight:700}
+  .hero .hright{display:flex;flex-direction:column;align-items:center;gap:20px}
+  .hero .hright .hglobe{width:min(230px,50vw)}
+  .hq{width:100%;max-width:410px}
+  .hq-h{font-size:11.5px;font-weight:800;letter-spacing:2px;color:#E9C77B;margin-bottom:8px;text-align:left}
+  .hq-g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .hqb{display:flex;align-items:center;gap:10px;min-width:0;text-align:left;padding:12px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(233,199,123,.3);color:#fff;font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s,transform .15s}
+  .hqb:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+  .hqb .qi{flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:rgba(233,199,123,.16);color:#E9C77B;display:flex;align-items:center;justify-content:center}
+  .hqb .qi svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .hqb .qb{min-width:0;flex:1}
+  .hqb .qt{display:block;font-size:14px;font-weight:800;line-height:1.25}
+  .hqb .qs{display:block;margin-top:2px;font-size:11.5px;color:rgba(255,255,255,.72);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  @media(max-width:760px){
+    .hero .hright{display:contents}
+    .hero .hright .hglobe{width:min(220px,60vw)}
+    .hq{margin:18px auto 0}
+  }
 </style>
 </head>
 <body>
@@ -549,8 +671,8 @@
       <span class="wm"><b>시애틀지구촌교회</b><small>GMC of Greater Seattle</small></span>
     </a>
     <nav class="tabs" id="tabs">
-      <a class="tab active" href="/"><span class="ko">환영</span><span class="en">Welcome</span></a>
-      <a class="tab" href="/?tab=mokjang"><span class="ko">가정교회</span><span class="en">House Church</span></a>
+      <a class="tab" href="/"><span class="ko">환영</span><span class="en">Welcome</span></a>
+      <a class="tab active" href="/?tab=mokjang"><span class="ko">가정교회</span><span class="en">House Church</span></a>
       <a class="tab" href="/?tab=worship"><span class="ko">연합예배</span><span class="en">Worship</span></a>
       <a class="tab" href="/?tab=study"><span class="ko">삶공부</span><span class="en">Bible Study</span></a>
       <a class="tab" href="/?tab=newgen"><span class="ko">새 세대</span><span class="en">New Gen</span></a>
@@ -567,24 +689,13 @@
 <main>
 <section class="panel show sec" style="padding-top:34px">
   <div class="wrap">
-<div class="cut"><span><span class="ko">VIP 등록</span><span class="en">VIP welcome card</span></span></div>
-    <form class="gf vip" id="vipForm" onsubmit="submitVip(event)" style="margin-top:0;max-width:640px;margin-left:auto;margin-right:auto">
-      <div class="gbody">
-        <h3><span class="ko">처음 오신 분 — VIP 카드</span><span class="en">First-time guest card</span></h3>
-        <div class="gsub"><span class="ko">연락처만 남겨 주시면 첫 자리를 정성껏 안내하겠습니다. 어떤 것도 요구하지 않습니다.</span><span class="en">Just your contact — we will guide your first visit. Nothing is asked of you.</span></div>
-        <div class="row">
-          <div><label><span class="ko">이름</span><span class="en">Name</span></label><input name="이름" required placeholder="홍길동"></div>
-          <div><label><span class="ko">전화번호</span><span class="en">Phone</span></label><input name="전화번호" type="tel" required placeholder="425-000-0000"></div>
-        </div>
-        <div class="full"><label><span class="ko">이메일 (선택)</span><span class="en">Email (optional)</span></label><input name="이메일" type="email" placeholder="you@example.com"></div>
-        <div class="full"><label><span class="ko">남기실 말씀 (선택)</span><span class="en">Message (optional)</span></label><textarea name="메모" placeholder="편한 요일·시간, 궁금한 점, 자녀 동반 여부 등"></textarea></div>
-        <button type="submit" class="gbtn"><span class="ko">첫 자리 안내 받기</span><span class="en">Guide my first visit</span></button>
-        <div class="gnote"><span class="ko">교회 사무(office@ijiguchon.org)로 전달되며, 개인 정보는 안내 외에 사용하지 않습니다.</span><span class="en">Sent to the church office; used only to welcome you.</span></div>
-      </div>
-      <div class="gok"><div class="ok1"><span class="ko">감사합니다. 곧 연락드리겠습니다.</span><span class="en">Thank you — we will be in touch soon.</span></div><div class="ok2"><span class="ko">첫 자리를 정성껏 준비하겠습니다.</span><span class="en">We will have a place ready for you.</span></div></div>
-    </form>
-    
-    <div class="tab-cta" style="margin-top:34px"><a href="/"><span class="ko">시애틀지구촌교회 홈으로</span><span class="en">Back to GMC home</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    <div class="sec-eyebrow"><span class="ko">가정교회</span><span class="en">House Church</span></div>
+    <h2 class="sec-title"><span class="ko">가정교회 세 축과 네 기둥</span><span class="en">Three axes &amp; four pillars</span></h2>
+    <p class="hc-lead"><span class="ko">세 축과 네 기둥이라 불리는 가정교회의 정신은 초대교회의 모습에서 배운 것입니다. 세 축은 가정교회가 운영되는 <b>하드웨어</b>이고, 네 기둥은 그 안에 흐르는 <b>소프트웨어</b>입니다.</span><span class="en">The house church spirit — the three axes and four pillars — is learned from the first church. The three axes are the <b>hardware</b> of the house church; the four pillars are the <b>software</b> that runs within.</span></p>
+    <div class="hc3"><div class="hc-a"><div class="k"><span class="ko">정(情)</span><span class="en">Heart</span></div><h4><span class="ko">목장 모임</span><span class="en">House church (mokjang)</span></h4><p><span class="ko">목장에서 사랑을 맛보고 마음을 열며, 삶을 나누는 가운데 치유를 경험합니다.</span><span class="en">In the mokjang we taste love, open our hearts and find healing as we share life.</span></p></div><div class="hc-a"><div class="k"><span class="ko">지(知)</span><span class="en">Mind</span></div><h4><span class="ko">삶공부</span><span class="en">Life Studies</span></h4><p><span class="ko">삶공부를 통해 하나님에 대한 오해를 풀고 복음을 제대로 알아 갑니다.</span><span class="en">Through Life Studies we clear up misunderstandings about God and come to know the gospel rightly.</span></p></div><div class="hc-a"><div class="k"><span class="ko">의(意)</span><span class="en">Will</span></div><h4><span class="ko">주일 연합예배</span><span class="en">Sunday united worship</span></h4><p><span class="ko">하나님의 임재를 맛보고, 설교를 통해 가치관과 우선순위를 재정립하며 결단합니다.</span><span class="en">We taste God's presence and, through the sermon, reset our values and priorities and decide.</span></p></div></div>
+    <div class="hc4"><div class="hc-p"><span class="n">1</span><span><b><span class="ko">교회의 존재 목적</span><span class="en">The purpose of the church</span></b><span class="d"><span class="ko">한 영혼을 구원하여 제자 만드는 것이 교회의 존재 목적입니다.</span><span class="en">The church exists to save souls and make disciples.</span></span><small><span class="ko">마태복음 28:19–20</span><span class="en">Matthew 28:19–20</span></small></span></div><div class="hc-p"><span class="n">2</span><span><b><span class="ko">제자 양육 방법</span><span class="en">The way disciples are made</span></b><span class="d"><span class="ko">교실에서 지식을 배우는 것이 아니라, 보고 배우고 실천하며 삶으로 이루어집니다.</span><span class="en">Not classroom knowledge — disciples are made by seeing, learning and doing.</span></span><small><span class="ko">마가복음 3:14–15</span><span class="en">Mark 3:14–15</span></small></span></div><div class="hc-p"><span class="n">3</span><span><b><span class="ko">사역 분담의 원칙</span><span class="en">The principle of shared ministry</span></b><span class="d"><span class="ko">목회자는 성도를 훈련하여 준비시키고, 성도는 목양하며 교회를 세웁니다.</span><span class="en">Pastors train and equip the members; members shepherd and build up the church.</span></span><small><span class="ko">에베소서 4:11–12</span><span class="en">Ephesians 4:11–12</span></small></span></div><div class="hc-p"><span class="n">4</span><span><b><span class="ko">섬기는 리더십</span><span class="en">Servant leadership</span></b><span class="d"><span class="ko">예수님이 가르쳐 주신 리더십은 하나님의 필요를 내 필요보다 앞세우고 남을 세워 주는 종의 리더십입니다.</span><span class="en">The leadership Jesus taught puts God's needs before our own and lifts others up — the leadership of a servant.</span></span><small><span class="ko">마태복음 20:27–28</span><span class="en">Matthew 20:27–28</span></small></span></div></div>
+
+    <div class="tab-cta" style="margin-top:34px"><a href="/?tab=mokjang"><span class="ko">가정교회 탭으로</span><span class="en">Back to House Church</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 </main>
@@ -965,6 +1076,184 @@ document.addEventListener('DOMContentLoaded', function(){
   try{ psInit(); }catch(_){}
   resolvePpt(); resolveBulletin(); resolveShare();
 });
+</script>
+<div id="gmModalRoot"></div>
+<style>.mj-cta .btn svg{width:18px;height:18px;flex:0 0 auto}</style>
+<script>
+/* ?open=prayer 등 — 옛 교인 앱 바로가기·링크를 해당 탭+신청서로 */
+/* 'load'는 유튜브 썸네일·폰트를 다 기다려 늦게 옴 → DOMContentLoaded 뒤(모달 생성 후) 바로 실행 */
+document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){ try{
+  var o=new URLSearchParams(location.search).get('open'); if(!o||!GM[o]) return;
+  var MAP={prayer:'worship',commit:'worship',topastor:'worship',mokjang:'mokjang',mokjangpost:'mokjang',plant:'mokjang',accept:'study',baptism:'study',heonasik:'newgen',children:'newgen',youth:'newgen',contact:'square',newcomer:'newcomer'};
+  if(MAP[o]&&document.getElementById('p-'+MAP[o])) goTab(MAP[o]);
+  setTimeout(function(){ openModal(o); },250);
+}catch(e){} },0); });
+/* ══ 교인 기능 — 교인 앱(GMC_PWA)에서 이전. 신청서는 앱과 같은 백엔드(SCRIPT_URL)·같은 type 으로 보냄 ══ */
+function gmEn(){ return document.body.classList.contains('lang-en'); }
+function gmBi(ko,en){ return '<span class="ko">'+esc(ko)+'</span><span class="en">'+esc(en)+'</span>'; }
+var GM_MJ_OPTS = [{ko:'어디든 추천해 주세요',en:'Please recommend one'},{ko:'이스라엘 목장 (김지영 목자)',en:'Israel House Church (Joy Kim)'},{ko:'멕시코 목장 (박성건 목자)',en:'Mexico House Church (Sung Gun Park)'},{ko:'인도네시아 목장 (이인규 목자)',en:'Indonesia House Church (In Kyu Lee)'},{ko:'GMC Y — 청소년 (Garrett Woods 목자)',en:'GMC Y — Youth (Garrett Woods)'}];
+var F_NAME={n:'이름',en:'Name',t:'text',req:true,ph:'홍길동',phEn:'Your name'}, F_MAIL={n:'이메일',en:'Email',t:'email',req:true,ph:'you@example.com',phEn:'you@example.com'}, F_TEL={n:'전화번호',en:'Phone',t:'tel',req:true,ph:'425-000-0000',phEn:'425-000-0000'};
+var GM = {
+  newcomer:{s:'[GMC] 새가족 만남 신청', ko:['새가족 만남','커피 한 잔 하며 편하게 인사 나눕니다. 부담 없이 오십시오.','만남 신청하기','반갑습니다','담당자가 곧 연락드리겠습니다.'], en:['Newcomer coffee','Just coffee and a friendly hello. No pressure.','Request a meetup','So glad you reached out',"We'll be in touch soon."], f:[F_NAME,F_MAIL,F_TEL,{n:'한마디',en:'Anything to share',t:'textarea',ph:'궁금한 점이나 하고 싶은 말 (선택)',phEn:'Questions or anything else (optional)'}],
+    aside:{ko:['시애틀에 막 오셨나요?','공항·은행·면허·SSN·병원 — 정착에 필요한 것부터 돕겠습니다.','HebronGuide 시애틀 정착 가이드'],en:['Just arrived in Seattle?','Airport, bank, license, SSN, doctor — settling in comes first.','Open the HebronGuide Seattle guide'],url:'https://hebronguide.com/seattle/'}},
+  accept:{s:'[GMC] 예수 영접 모임 신청', ko:['예수 영접 모임','처음부터 천천히, 부담 없이 함께 살펴봅니다.','모임 신청하기','신청되었습니다','담당자가 곧 연락드리겠습니다.'], en:['Starting Point','Explore faith from the beginning — slowly, no pressure.','Sign me up',"You're signed up","We'll reach out shortly."], f:[F_NAME,F_MAIL,F_TEL]},
+  baptism:{s:'[GMC] 침례식 신청', ko:['침례식 신청','새로운 시작을 공동체가 함께 축하합니다.','침례 신청하기','신청되었습니다','담당자가 일정을 안내드리겠습니다.'], en:['Baptism','A new beginning — celebrated with your community.','Request baptism','Request received',"We'll follow up with the schedule."], f:[F_NAME,F_MAIL,F_TEL,{n:'희망 시기',en:'Preferred timing',t:'select',opts:[{ko:'가장 빠른 일정',en:'Earliest available'},{ko:'다음 침례식',en:'Next scheduled baptism'},{ko:'상담 후 결정',en:"Let's talk first"}]}]},
+  heonasik:{s:'[GMC] 헌아식 신청', ko:['헌아식 신청','아이를 온 공동체가 함께 축복합니다.','헌아식 신청하기','신청되었습니다','담당자가 일정을 안내드리겠습니다.'], en:['Child dedication','The whole community blesses your child.','Request dedication','Request received',"We'll follow up with the schedule."], f:[{n:'부모 이름',en:'Parent name',t:'text',req:true,ph:'홍길동',phEn:'Parent name'},{n:'아이 이름',en:"Child's name",t:'text',req:true,ph:'아이 이름',phEn:"Child's name"},F_MAIL,F_TEL,{n:'생년월일',en:'Date of birth',t:'date'}]},
+  mokjang:{s:'[GMC] 목장 연결 신청', ko:['목장과 연결되기','가까운 목장 한 곳으로 초대합니다. 한 번 오셔서 식사만 하고 가셔도 좋습니다.','연결 요청하기','연결해 드리겠습니다','목자님이 곧 연락드리겠습니다.'], en:['Connect with a house church',"We'll introduce you to a house church near you. Come once, just for dinner.",'Request an introduction',"We'll connect you",'A host will reach out soon.'], f:[F_NAME,F_MAIL,F_TEL,{n:'관심 목장',en:'Which house church',t:'select',opts:GM_MJ_OPTS},{n:'거주 지역',en:'Neighborhood',t:'text',ph:'예) Bellevue, Shoreline (선택)',phEn:'e.g. Bellevue, Shoreline (optional)'}]},
+  mokjangpost:{s:'[GMC] 이번 주 목장 모임 등록(목자용)', ko:['이번 주 목장 모임 올리기','목자용 · 요일·시간·동네를 올리면 "이번 주 목장 모임"에 반영됩니다. 정확한 주소는 공개되지 않습니다 — 동네만.','올리기','올렸습니다','잠시 후 반영됩니다.'], en:["Post this week's meeting",'For hosts · day, time and neighborhood appear right away. Exact address stays private.','Post','Posted','It will appear shortly.'], f:[{n:'목장',en:'House church',t:'select',req:true,opts:[{ko:'이스라엘 목장',en:'Israel'},{ko:'멕시코 목장',en:'Mexico'},{ko:'인도네시아 목장',en:'Indonesia'},{ko:'GMC Y (청소년)',en:'GMC Y (Youth)'}]},{n:'요일',en:'Day',t:'select',req:true,opts:[{ko:'주일',en:'Sun'},{ko:'월',en:'Mon'},{ko:'화',en:'Tue'},{ko:'수',en:'Wed'},{ko:'목',en:'Thu'},{ko:'금',en:'Fri'},{ko:'토',en:'Sat'}]},{n:'시간',en:'Time',t:'text',req:true,ph:'예) 오후 7:30',phEn:'e.g. 7:30 PM'},{n:'동네',en:'Neighborhood',t:'text',req:true,ph:'예) Bellevue (정확한 주소 아님)',phEn:'e.g. Bellevue (not full address)'}]},
+  plant:{s:'[GMC] 개척 목장(House Church) 신청', ko:['개척 목장, 함께 시작하기','집에서 예배를 시작하려는 마음을 환영합니다. 신청하시면 48시간 안에 연락드립니다.','신청하기','신청되었습니다','48시간 안에 연락드리겠습니다.'], en:['Start a house church',"Want to begin worship at home? Welcome — we'll reach out within 48 hours.",'Apply','Received',"We'll reach out within 48 hours."], f:[F_NAME,F_MAIL,F_TEL,{n:'지역 / 도시',en:'Area / City',t:'text',req:true,ph:'예) Seattle, WA / Dallas, TX',phEn:'e.g. Seattle, WA'},{n:'함께할 가정 (예상)',en:'Homes joining (est.)',t:'text',ph:'예) 우리 가정 + 1~2가정 (선택)',phEn:'e.g. mine + 1–2 homes (optional)'},{n:'나누고 싶은 말',en:'Anything to share',t:'textarea',ph:'마음, 상황, 궁금한 점 (선택)',phEn:'Your heart, situation, questions (optional)'}]},
+  children:{s:'[GMC] 어린이 사역 문의', ko:['어린이 사역','담당 김지영 디렉터 · 아이들이 사랑받는 자리입니다.','문의하기','전달되었습니다','담당 사역자가 곧 연락드리겠습니다.'], en:["Children's ministry",'Led by Director Joy Kim — a place where kids are loved.','Send inquiry','Message sent',"Our children's team will reply soon."], f:[{n:'부모 이름',en:'Parent name',t:'text',req:true,ph:'홍길동',phEn:'Parent name'},{n:'자녀 이름 / 나이',en:"Child's name / age",t:'text',req:true,ph:'예) 홍민준 / 7세',phEn:'e.g. Emma / age 7'},F_MAIL,F_TEL,{n:'문의 내용',en:'Your question',t:'textarea',ph:'궁금한 점 (선택)',phEn:'Anything to ask (optional)'}]},
+  youth:{s:'[GMC] 청소년 사역 문의', ko:['청소년 사역 (GMC Y)','담당 Garrett Woods 전도사 · 있는 그대로 환영받는 자리입니다.','문의하기','전달되었습니다','담당 사역자가 곧 연락드리겠습니다.'], en:['Youth ministry (GMC Y)','Led by Youth Minister Garrett Woods — come as you are.','Send inquiry','Message sent','Our youth team will reply soon.'], f:[{n:'부모 이름',en:'Parent name',t:'text',req:true,ph:'홍길동',phEn:'Parent name'},{n:'청소년 이름 / 학년',en:"Student's name / grade",t:'text',req:true,ph:'예) 홍서연 / 9학년',phEn:'e.g. Noah / 9th grade'},F_MAIL,F_TEL,{n:'문의 내용',en:'Your question',t:'textarea',ph:'궁금한 점 (선택)',phEn:'Anything to ask (optional)'}]},
+  commit:{s:'[GMC] 헌신카드', ko:['헌신카드','헌신은 강단 앞으로 나와 하는 것이 원칙이나, 어려우신 분은 예배 전이나 중간에 이 카드로 하셔도 됩니다. 기도 제목은 담임목사님이 한 주간 기도합니다.','헌신카드 보내기','잘 받았습니다','한 주간 기도하겠습니다. 담당자가 곧 연락드리겠습니다.'], en:['Commitment card','Coming forward is how we normally respond; if that is hard, use this card before or during the service. Your prayer request is prayed over for a week.','Send my card','Received with thanks','We will pray through the week. Our staff will follow up.'], f:[F_NAME,{n:'영문 이름',en:'Name in English',t:'text',ph:'등록하시는 분만 (선택)',phEn:'Only if registering (optional)'},F_MAIL,F_TEL,{n:'목장',en:'House church',t:'select',opts:[{ko:'아직 목장이 없어요',en:'Not in a house church yet'},{ko:'이스라엘 목장',en:'Israel'},{ko:'멕시코 목장',en:'Mexico'},{ko:'인도네시아 목장',en:'Indonesia'}]},
+    {n:'교회 등록',t:'checkbox',ko:'교회에 등록하기를 원합니다',koS:'등록 담당자가 연락드립니다.',en:'I would like to register',enS:'Our staff will reach out.'},
+    {n:'영접 모임',t:'checkbox',ko:'예수 영접 모임에 참석하기 원합니다',koS:'처음이신 분도, 확인하고 싶은 분도 좋습니다.',en:'I want to join Starting Point',enS:'For first steps, or to make sure.'},
+    {n:'침례',t:'checkbox',ko:'침례 받기를 원합니다',koS:'일정을 안내해 드립니다.',en:'I would like to be baptized',enS:"We'll share the schedule."},
+    {n:'헌신',t:'checkbox',ko:'하나님께 (재)헌신합니다',koS:'아래에서 섬기고 싶은 자리를 골라 주십시오.',en:'I (re)commit myself to God',enS:'Pick where below.'},
+    {n:'헌신할 자리',en:'Where',t:'select',opts:[{ko:'(해당 없음)',en:'(not applicable)'},{ko:'목장 사역',en:'House church'},{ko:'삶공부',en:'Life Studies'},{ko:'교회 사역',en:'Church ministry'},{ko:'특별 헌금',en:'Special offering'},{ko:'교사',en:'Teaching'},{ko:'선교',en:'Missions'},{ko:'기타 (아래에 적어주세요)',en:'Other (write below)'}]},
+    {n:'기도 받기',t:'checkbox',ko:'기도 받기를 원합니다',koS:'담임목사님께서 한 주간 기도해 주십니다.',en:'I would like prayer',enS:'Our lead pastor prays through the week.'},
+    {n:'기도 제목 · 남기실 말씀',en:'Prayer request or note',t:'textarea',ph:'기도 제목이나 헌신할 내용 (선택)',phEn:'Prayer request or commitment note (optional)'},
+    {n:'중보기도팀 공유',t:'checkbox',ko:'중보기도팀과 함께 기도해 주세요',koS:'그냥 두시면 담임목사님만 보십니다.',en:'Have the prayer team pray too',enS:'Left unchecked, only the lead pastor sees it.'}]},
+  topastor:{s:'[GMC] 목사님께 한마디', ko:['목사님께 한마디','칼럼을 읽고 떠오른 생각을 편하게 적어 주십시오. 담임목사님께만 갑니다.','한마디 보내기','잘 읽겠습니다','보내주신 마음 감사합니다. 목사님이 직접 읽으십니다.'], en:['A word to the pastor','Whatever the column stirred in you. It goes to our lead pastor alone.','Send','Thank you','Your note goes straight to the pastor.'], f:[F_NAME,F_MAIL,F_TEL,{n:'한마디',en:'Your note',t:'textarea',req:true,ph:'공감한 대목, 묻고 싶은 것, 내 이야기',phEn:'What resonated, a question, your story'}]},
+  prayer:{s:'[GMC] 기도 요청', ko:['기도 요청','담임목사님께 바로 전달됩니다. 짧아도 괜찮습니다.','기도 요청 보내기','함께 기도하겠습니다','보내주신 마음, 조용히 그러나 진심으로 기도하겠습니다.'], en:['Prayer request','Goes straight to our lead pastor. A sentence is enough.','Send request',"We're praying with you",'We will pray — quietly and sincerely.'], f:[F_NAME,{n:'기도 제목',en:'Prayer request',t:'textarea',req:true,ph:'어떤 기도가 필요하신가요?',phEn:'What would you like prayer for?'},F_MAIL,F_TEL,{n:'비공개 요청',t:'checkbox',ko:'담임목사님만 보게 해주세요',koS:'그냥 두시면 김지영 사모님과 함께 기도합니다.',en:'For the lead pastor only',enS:'Left unchecked, Joy Kim prays with him.'}]},
+  contact:{s:'[GMC] 교회 문의', ko:['교회에 연락하기','무엇이든 편하게 물어보십시오.','문의 보내기','전달되었습니다','확인 후 빠르게 답변드리겠습니다.'], en:['Contact the church','Ask us anything.','Send message','Message sent',"We'll get back to you shortly."], f:[F_NAME,F_MAIL,F_TEL,{n:'문의 내용',en:'Message',t:'textarea',req:true,ph:'어떤 것이든 편하게',phEn:'Tell us what you need'}]}
+};
+function gmField(f){
+  var en=gmEn(), nm=esc(f.n);
+  if(f.t==='checkbox') return '<div class="gm-f"><label class="gm-chk"><input type="checkbox" name="'+nm+'" value="예"><span><b>'+esc(en?f.en:f.ko)+'</b><small>'+esc(en?f.enS:f.koS)+'</small></span></label></div>';
+  var lab='<label class="lb">'+esc(en?f.en:f.n)+(f.req?'<span class="req">*</span>':'')+'</label>', c;
+  if(f.t==='select') c='<select name="'+nm+'"'+(f.req?' required':'')+'>'+f.opts.map(function(o){ return '<option value="'+esc(o.ko)+'">'+esc(en?o.en:o.ko)+'</option>'; }).join('')+'</select>';
+  else if(f.t==='textarea') c='<textarea name="'+nm+'" placeholder="'+esc(en?(f.phEn||''):(f.ph||''))+'"'+(f.req?' required':'')+'></textarea>';
+  else c='<input type="'+(['email','tel','date'].indexOf(f.t)>-1?f.t:'text')+'" name="'+nm+'" placeholder="'+esc(en?(f.phEn||''):(f.ph||''))+'"'+(f.req?' required':'')+'>';
+  return '<div class="gm-f">'+lab+c+'</div>';
+}
+function gmRender(id){
+  var m=GM[id], L=gmEn()?m.en:m.ko;
+  return '<div class="gm-ov" id="gm-'+id+'" onclick="if(event.target===this)closeModal(\''+id+'\')" role="dialog" aria-modal="true">'
+    +'<div class="gm-sheet"><div class="gm-head"><div class="gm-title">'+esc(L[0])+'</div><div class="gm-sub">'+esc(L[1])+'</div><button class="gm-x" type="button" onclick="closeModal(\''+id+'\')" aria-label="닫기">&times;</button></div>'
+    +'<div class="gm-body" id="gm-'+id+'-body"><form onsubmit="submitForm(event,\''+id+'\')">'+m.f.map(gmField).join('')
+    +'<button type="submit" class="gm-send">'+esc(L[2])+'</button>'
+    +'<p class="gm-note">'+(gmEn()?'Your details go only to the responsible staff member.':'보내주신 정보는 담당 사역자에게만 전달되며, 다른 목적으로 쓰이지 않습니다.')+'</p></form>'
+    +(m.aside?('<a class="gm-aside" href="'+m.aside.url+'" target="_blank" rel="noopener"><b>'+esc((gmEn()?m.aside.en:m.aside.ko)[0])+'</b><span class="d">'+esc((gmEn()?m.aside.en:m.aside.ko)[1])+'</span><span class="c">'+esc((gmEn()?m.aside.en:m.aside.ko)[2])+' →</span></a>'):'')
+    +'</div><div class="gm-ok" id="gm-'+id+'-ok"><div class="ck"><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></svg></div><div class="o1">'+esc(L[3])+'</div><div class="o2">'+esc(L[4])+'</div></div></div></div>';
+}
+function gmBuild(){
+  var root=document.getElementById('gmModalRoot'); if(!root) return;
+  var openId=null; var o=root.querySelector('.gm-ov.open'); if(o) openId=o.id.replace('gm-','');
+  Object.keys(GM).forEach(function(id){
+    if(id===openId) return;
+    var old=document.getElementById('gm-'+id); var tmp=document.createElement('div'); tmp.innerHTML=gmRender(id);
+    if(old) old.replaceWith(tmp.firstChild); else root.appendChild(tmp.firstChild);
+  });
+}
+function openModal(id){ var el=document.getElementById('gm-'+id); if(!el) return; document.getElementById('gm-'+id+'-body').style.display=''; document.getElementById('gm-'+id+'-ok').classList.remove('show'); el.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(id){ var el=document.getElementById('gm-'+id); if(!el) return; el.classList.remove('open'); document.body.style.overflow=''; var f=el.querySelector('form'); if(f){ f.reset(); var b=f.querySelector('.gm-send'); if(b){ b.disabled=false; b.textContent=(gmEn()?GM[id].en:GM[id].ko)[2]; } } }
+function openMokjang(name){ openModal('mokjang'); if(!name) return; var s=document.querySelector('#gm-mokjang select'); if(!s) return; for(var i=0;i<s.options.length;i++){ if(s.options[i].value.indexOf(name)===0){ s.selectedIndex=i; break; } } }
+function submitForm(e,id){
+  e.preventDefault(); var form=e.target, btn=form.querySelector('.gm-send'); btn.disabled=true; btn.textContent=gmEn()?'Sending…':'보내는 중…';
+  var fd=new FormData(form), fields={}; fd.forEach(function(v,k){ fields[k]=v; }); fields['접수경로']='홈페이지';
+  var mail=String(fields['이메일']||'').trim();
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({type:id,subject:GM[id].s,fields:fields,replyTo:/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)?mail:''})}).catch(function(){});
+  setTimeout(function(){ document.getElementById('gm-'+id+'-body').style.display='none'; document.getElementById('gm-'+id+'-ok').classList.add('show'); setTimeout(function(){ closeModal(id); },2800); },400);
+}
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ var o=document.querySelector('.gm-ov.open'); if(o) closeModal(o.id.replace('gm-','')); } });
+
+/* ── 이번 주 목장 모임 (목자들이 올리는 구글 시트) ── */
+var SHEET_MOKJANG_CSV='https://docs.google.com/spreadsheets/d/1uaQudM68JnwR9u7T5-5wifpCJnRb6_oeQZuSV5DmWmA/gviz/tq?tqx=out:csv&gid=0';
+function gmCSV(line){ var out=[],cur='',q=false; for(var i=0;i<line.length;i++){ var c=line[i]; if(q){ if(c==='"'){ if(line[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=c; } else { if(c==='"') q=true; else if(c===','){ out.push(cur); cur=''; } else cur+=c; } } out.push(cur); return out; }
+var gmMjData={};
+async function fetchMokjangWeek(){
+  try{ var r=await fetch(SHEET_MOKJANG_CSV,{cache:'no-store'}); var txt=await r.text();
+    txt.split('\n').map(function(l){return l.replace(/\r$/,'');}).filter(Boolean).slice(1).forEach(function(line){ var f=gmCSV(line); var name=(f[0]||'').replace(/목장/g,'').trim(); if(name) gmMjData[name]={day:(f[1]||'').trim(),time:(f[2]||'').trim(),place:(f[3]||'').trim()}; });
+  }catch(_){}
+  renderMokjangWeek();
+}
+function renderMokjangWeek(){
+  var rows=document.getElementById('mokjangWeekRows'); if(!rows) return;
+  var MJ=[{k:'이스라엘',ko:'이스라엘 목장',en:'Israel'},{k:'멕시코',ko:'멕시코 목장',en:'Mexico'},{k:'인도네시아',ko:'인도네시아 목장',en:'Indonesia'},{k:'GMC Y',ko:'GMC Y (청소년)',en:'GMC Y (Youth)'}];
+  rows.innerHTML=MJ.map(function(m){ var d=gmMjData[m.k]||{}; var parts=[d.day,d.time,d.place].filter(Boolean);
+    return '<div class="mw-row"><span class="mw-name">'+gmBi(m.ko,m.en)+'</span>'+(parts.length?'<span class="mw-detail">'+esc(parts.join(' · '))+'</span>':'<span class="mw-tba">'+gmBi('안내 예정','to be posted')+'</span>')+'</div>'; }).join('');
+}
+
+/* ── 교회 일정 (되풀이 일정은 규칙으로, 한 번뿐인 일은 SPECIAL_EVENTS 에) ── */
+var SPECIAL_EVENTS = [];   // {d:'YYYY-MM-DD', t:'제목', tEn:'Title', m:'시간·장소', mEn:'Time · place'}
+var UPCOMING_PLAN = [
+  {d:'2026-11-01', ko:'Daylight Saving 종료 (겨울 시간)', en:'Daylight Saving ends (clocks back)'},
+  {d:'2026-11-22', ko:'추수감사주일', en:'Thanksgiving Sunday'},
+  {d:'2026-12-20', ko:'성탄주일', en:'Christmas Sunday'},
+  {d:'2026-12-31', ko:'송구영신예배', en:"New Year's Eve Service"}
+];
+var DOW_KO=['주일','월','화','수','목','금','토'], DOW_EN=['SUN','MON','TUE','WED','THU','FRI','SAT'], ORD_KO=['첫째','둘째','셋째','넷째','다섯째'];
+function gmWeekLabel(sun){ var sat=new Date(sun.getFullYear(),sun.getMonth(),sun.getDate()+6); var same=sun.getMonth()===sat.getMonth();
+  return gmBi((sun.getMonth()+1)+'월 '+sun.getDate()+'일 ~ '+(same?'':(sat.getMonth()+1)+'월 ')+sat.getDate()+'일', MON_EN[sun.getMonth()]+' '+sun.getDate()+'–'+(same?'':MON_EN[sat.getMonth()]+' ')+sat.getDate()); }
+function gmEvt(date,tKo,tEn,mKo,mEn){ return '<div class="evt"><div class="evt-date"><div class="evt-d">'+date.getDate()+'</div><div class="evt-m">'+gmBi(DOW_KO[date.getDay()],DOW_EN[date.getDay()])+'</div></div><div><div class="evt-title">'+gmBi(tKo,tEn)+'</div><div class="evt-meta">'+gmBi(mKo,mEn)+'</div></div></div>'; }
+function gmWeekRows(sun){
+  var sat=new Date(sun.getFullYear(),sun.getMonth(),sun.getDate()+6), rows=[], comm=sun.getDate()<=7;
+  rows.push({w:sun,h:gmEvt(sun,'주일연합예배'+(comm?' · 주의 만찬':''),'Sunday United Worship'+(comm?" · The Lord's Supper":''),'오전 11:00','11:00 AM')});
+  SPECIAL_EVENTS.filter(function(e){ return e.d>=isoOf(sun)&&e.d<=isoOf(sat); }).forEach(function(e){ var d=new Date(e.d+'T12:00:00'); rows.push({w:d,h:gmEvt(d,e.t,e.tEn,e.m,e.mEn)}); });
+  rows.push({w:sat,h:gmEvt(sat,'토요새벽기도회','Saturday Dawn Prayer','오전 6:00–7:30','6:00–7:30 AM')});
+  rows.sort(function(a,b){ return a.w-b.w; }); return rows.map(function(r){ return r.h; }).join('');
+}
+function renderSchedule(){
+  var now=new Date(), sun=new Date(now.getFullYear(),now.getMonth(),now.getDate()-now.getDay()), next=new Date(sun.getFullYear(),sun.getMonth(),sun.getDate()+7);
+  var a=document.getElementById('weekEvents'); if(a) a.innerHTML=gmWeekRows(sun);
+  var b=document.getElementById('nextEvents'); if(b) b.innerHTML=gmWeekRows(next);
+  document.querySelectorAll('[data-wk-week]').forEach(function(el){ el.innerHTML=gmWeekLabel(sun); });
+  document.querySelectorAll('[data-wk-next]').forEach(function(el){ el.innerHTML=gmWeekLabel(next); });
+  var box=document.getElementById('planBox'), list=document.getElementById('planList'), today=isoOf(now);
+  var items=UPCOMING_PLAN.filter(function(e){ return e.d>=today; }).sort(function(x,y){ return x.d<y.d?-1:1; });
+  if(box&&list){ box.hidden=!items.length; list.innerHTML=items.map(function(e){ var d=new Date(e.d+'T00:00:00'); return '<div class="pl-row"><span class="pl-when">'+gmBi((d.getMonth()+1)+'월 '+d.getDate()+'일',MON_EN[d.getMonth()]+' '+d.getDate())+'</span><span class="pl-what">'+gmBi(e.ko,e.en)+'</span></div>'; }).join(''); }
+}
+
+/* ── 교회 스탭 연락처 ── */
+var STAFF=[
+  {mj:'담임목사',mjEn:'Lead Pastor',nm:'김성수',nmEn:'Paul Kim',badge:'담임',cls:'',tel:'',email:'pastor@ijiguchon.org'},
+  {mj:'행정간사',mjEn:'Church Office',nm:'박보라',nmEn:'Bora Park',badge:'행정',cls:'',tel:'425-248-8081',email:'office@ijiguchon.org'},
+  {mj:'어린이 사역',mjEn:"Children's Ministry",nm:'김지영 디렉터',nmEn:'Director Joy Kim',badge:'어린이',cls:'gold',tel:'206-303-8616',email:'children@ijiguchon.org'},
+  {mj:'청소년 사역 (GMC Y)',mjEn:'Youth Ministry (GMC Y)',nm:'Garrett Woods 전도사',nmEn:'Youth Minister Garrett Woods',badge:'청소년',cls:'teal',tel:'425-328-9771',email:'youth@ijiguchon.org'},
+  {mj:'주보 담당',mjEn:'Weekly Bulletin',nm:'이윤아',nmEn:'Yoon A Lee',badge:'주보',cls:'gold',tel:'',email:'bulletin@ijiguchon.org'}
+];
+function renderStaff(){ var box=document.getElementById('staffDir'); if(!box) return;
+  box.innerHTML=STAFF.map(function(h){ var a=''; if(h.tel) a+='<a href="tel:'+h.tel.replace(/[^0-9+]/g,'')+'">'+gmBi('전화','Call')+'</a>'; if(h.email) a+='<a href="mailto:'+h.email+'">'+gmBi('이메일','Email')+'</a>';
+    return '<div class="host-row"><div class="host-badge '+h.cls+'">'+esc(h.badge)+'</div><div class="host-main"><div class="host-mj">'+gmBi(h.mj,h.mjEn)+'</div><div class="host-nm">'+gmBi(h.nm,h.nmEn)+'</div></div><div class="host-acts">'+a+'</div></div>'; }).join(''); }
+
+/* ── 교회 주소 공유 ── */
+async function shareChurch(){ var url='https://www.ijiguchon.org', data={title:'시애틀지구촌교회',text:gmEn()?'GMC of Greater Seattle — you are warmly welcome.':'시애틀지구촌교회 — 언제든 환영합니다. 함께 만나요.',url:url};
+  if(navigator.share){ try{ await navigator.share(data); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
+  try{ await navigator.clipboard.writeText(url); alert(gmEn()?'Link copied — paste it to share.':'교회 주소를 복사했습니다. 붙여넣기로 전해 주십시오.'); }catch(e){ window.prompt(gmEn()?'Copy this link':'아래 주소를 복사해 전해 주십시오',url); } }
+
+/* ── 목회자 코너: 최신 칼럼 자동 (칼럼 폴더 → 없으면 계획표) ── */
+var COLUMN_FOLDER='https://drive.google.com/drive/folders/1gc6QSSoAxbvy_F7rHn1PmENkobJaxXOL';
+var COLUMN_PLAN=[
+  {d:'2026-07-28',t:'목장, 왜 하는가?',tEn:'Why do we do house church?',sub:'목장 사역의 본질을 찾아서 ①',subEn:'The heart of the house church · 1'},
+  {d:'2026-08-02',t:'내 삶이 하나님의 증거',tEn:"My life, God's evidence",sub:'목장 사역의 본질을 찾아서 ②',subEn:'The heart of the house church · 2'},
+  {d:'2026-08-09',t:'VIP가 변화되려면',tEn:'What actually changes a person',sub:'목장 사역의 본질을 찾아서 ③ · 사랑이 먼저입니다',subEn:'The heart of the house church · 3'},
+  {d:'2026-08-16',t:'우리 목장은 어떤 공동체인가?',tEn:'What kind of community is our house church?',sub:'목장 사역의 본질을 찾아서 ④',subEn:'The heart of the house church · 4',url:'https://drive.google.com/file/d/1koyqSO7zIu1p9rWxw8vL0bYiFot3TGG-/view'},
+  {d:'2026-08-23',t:'삶을 나누는 이유',tEn:'Healing Through Vulnerability'}
+];
+var gmColUrl='/corner/';
+function gmColPaint(c){ var box=document.getElementById('colLive'); if(!box) return; var dt=c.iso.replace(/-/g,'.');
+  box.innerHTML='<span class="cb-s">'+gmBi('이번 주 목회칼럼',"This week's column")+'</span><span class="cb-t" style="display:block">'+gmBi(c.ko,c.en)+'</span>'+(c.sub?'<span class="cb-x" style="display:block">'+gmBi(c.sub,c.subEn||c.sub)+'</span>':'')+'<span class="cb-by" style="display:block">'+gmBi('김성수 목사 · '+dt,'Pastor Paul Kim · '+dt)+'</span>';
+  gmColUrl=c.url||'/corner/'; }
+function colOpen(){ if(/^https?:/.test(gmColUrl)) window.open(gmColUrl,'_blank','noopener'); else location.href=gmColUrl; }
+async function renderColumn(){
+  var today=isoOf(new Date()), plan=COLUMN_PLAN.filter(function(x){ return x.d<=today; }).sort(function(a,b){ return a.d<b.d?-1:1; }); var p=plan[plan.length-1]||COLUMN_PLAN[COLUMN_PLAN.length-1];
+  gmColPaint({iso:p.d,ko:p.t,en:p.tEn,sub:p.sub,subEn:p.subEn,url:p.url});
+  try{
+    var fid=(COLUMN_FOLDER.match(/folders\/([-\w]+)/)||[])[1];
+    var r=await fetch('https://www.googleapis.com/drive/v3/files?q='+encodeURIComponent("'"+fid+"' in parents and trashed=false")+'&key='+GDRIVE_API_KEY+'&fields='+encodeURIComponent('files(id,name,mimeType,webViewLink)')+'&includeItemsFromAllDrives=true&supportsAllDrives=true&pageSize=300');
+    if(!r.ok) return; var j=await r.json(); var files=(j.files||[]).filter(function(f){ return f.mimeType!=='application/vnd.google-apps.folder'; });
+    var by={}; files.forEach(function(f){ var m=(f.name||'').match(/^\s*(\d{2})(\d{2})(\d{2})/); if(!m) return; var iso='20'+m[3]+'-'+m[1]+'-'+m[2]; if(/(슬라이드|slides?|ppt)/i.test(f.name)) return; (by[iso]=by[iso]||[]).push(f); });
+    var dates=Object.keys(by).filter(function(d){ return d<=today; }).sort(); var iso=dates[dates.length-1]; if(!iso) return;
+    var body=by[iso].sort(function(a,b){ return (/[가-힣]/.test(b.name)?1:0)-(/[가-힣]/.test(a.name)?1:0); })[0];
+    var s=(body.name||'').replace(/\.[a-z0-9]+$/i,'').replace(/^\s*\d{6}[_\s.\-]*/,''), en=null, pm=s.match(/\(([^)]+)\)/); if(pm){ en=pm[1].replace(/_+/g,' ').trim(); s=s.replace(/\s*\([^)]*\)\s*/,' ').trim(); }
+    var ko=s.replace(/_+/g,' ').trim(), pl=COLUMN_PLAN.filter(function(x){ return x.d===iso; })[0]||{};
+    gmColPaint({iso:iso,ko:pl.t||ko,en:pl.tEn||en||ko,sub:pl.sub,subEn:pl.subEn,url:pl.url||body.webViewLink||('https://drive.google.com/file/d/'+body.id+'/view')});
+  }catch(_){}
+}
+
+/* ── 시작 · 언어 바뀌면 다시 그리기 ── */
+(function(){ var prev=window.gmcChatRefresh; window.gmcChatRefresh=function(){ if(prev) prev(); gmBuild(); }; })();
+document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(e){} try{ renderSchedule(); }catch(e){} try{ renderStaff(); }catch(e){} try{ if(document.getElementById('mokjangWeekRows')){ renderMokjangWeek(); fetchMokjangWeek(); } }catch(e){} try{ if(document.getElementById('colLive')) renderColumn(); }catch(e){} });
 </script>
 <style>
   .tmenu{position:absolute;z-index:60;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 40px rgba(20,33,61,.18);padding:8px;animation:tmIn .16s ease}
