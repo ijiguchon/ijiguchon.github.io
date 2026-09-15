@@ -51,7 +51,10 @@
   .brand{display:flex;align-items:center;gap:9px;cursor:pointer;flex:0 0 auto}
   .brand .globe{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#3d6fb5,#14213d 70%);box-shadow:inset -2px -2px 4px rgba(0,0,0,.3),0 2px 6px rgba(26,53,96,.3);position:relative}
   .brand .globe::after{content:"";position:absolute;left:34%;top:32%;width:5px;height:5px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px 1px rgba(224,129,42,.8)}
-  .brand .emblem{width:36px;height:36px;border-radius:50%;display:block;box-shadow:0 0 0 2px rgba(184,146,74,.4),0 2px 8px rgba(20,33,61,.25);background:#fff}
+  .brand .mark{width:42px;height:42px;display:block;flex:0 0 auto;filter:drop-shadow(0 1px 2px rgba(20,33,61,.18))}
+  .brand .wm{display:flex;flex-direction:column;line-height:1.05}
+  .brand .wm small{font-size:9.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-2);margin-top:3px;white-space:nowrap}
+  @media(max-width:600px){ .brand .mark{width:36px;height:36px} .brand .wm small{font-size:8.5px;letter-spacing:1.1px} }
   .brand b{font-size:15.5px;font-weight:900;color:var(--navy);letter-spacing:-.4px;white-space:nowrap}
   .tabs{display:flex;gap:2px;flex:1 1 auto;overflow-x:auto;scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}
@@ -527,8 +530,8 @@
 <div class="topbar">
   <div class="row">
     <div class="brand" onclick="goTab('newcomer')" title="홈으로">
-      <img class="emblem" src="/images/icon-192-em.png" alt="시애틀지구촌교회 엠블럼" width="36" height="36">
-      <b>시애틀지구촌교회</b>
+      <img class="mark" src="/images/logo-mark.png" alt="시애틀지구촌교회" width="42" height="42">
+      <span class="wm"><b>시애틀지구촌교회</b><small>GMC of Greater Seattle</small></span>
     </div>
     <nav class="tabs" id="tabs">
       <button class="tab" data-tab="newcomer"><span class="ko">환영</span><span class="en">Welcome</span></button>
