@@ -148,8 +148,17 @@
   .hero .hbtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
   .hero .hcap{margin-top:20px;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:700}
   .hero .hglobe{position:relative;width:min(300px,68vw);aspect-ratio:1;margin:0 auto;border-radius:50%;filter:drop-shadow(0 18px 40px rgba(0,0,0,.45))}
-  .hero .hglobe img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;animation:hspin 90s linear infinite}
-  @keyframes hspin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  .hero .hglobe img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;animation:hbreathe 12s ease-in-out infinite}
+  @keyframes hbreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+  /* 시애틀(왼쪽 위 31%/29%)에서 세계로 뻗는 빛 */
+  .hero .hrays{position:absolute;left:31%;top:29%;width:0;height:0;pointer-events:none}
+  .hero .hrays i{position:absolute;left:0;top:0;height:2px;width:var(--l);transform-origin:0 50%;transform:rotate(var(--a)) scaleX(0);border-radius:2px;background:linear-gradient(90deg,rgba(242,192,120,.95),rgba(242,192,120,.55) 45%,transparent);box-shadow:0 0 8px rgba(242,192,120,.55);animation:hray 6s ease-in-out infinite;animation-delay:var(--d)}
+  @keyframes hray{0%{transform:rotate(var(--a)) scaleX(0);opacity:0}18%{opacity:1}55%{transform:rotate(var(--a)) scaleX(1);opacity:.9}100%{transform:rotate(var(--a)) scaleX(1);opacity:0}}
+  .hero .hrays b{position:absolute;left:0;top:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;border:1.5px solid rgba(242,192,120,.85);animation:hripple 3.2s ease-out infinite}
+  @keyframes hripple{0%{transform:scale(.4);opacity:.9}100%{transform:scale(6);opacity:0}}
+  .hero .hrays u{position:absolute;left:0;top:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#E9C77B;box-shadow:0 0 0 3px rgba(242,192,120,.35),0 0 16px 4px rgba(242,192,120,.9)}
+  .hero .hglobe{width:min(300px,68vw)}
+  @media(max-width:760px){ .hero .hrays i{width:calc(var(--l) * .9)} }
   .hero .hglobe::after{content:"";position:absolute;inset:-6%;border-radius:50%;pointer-events:none;box-shadow:inset 0 0 40px rgba(120,170,255,.35),0 0 60px 4px rgba(120,170,255,.22)}
   .hero .hpin{position:absolute;left:31%;top:29%;width:12px;height:12px;border-radius:50%;background:#E9C77B;box-shadow:0 0 0 4px rgba(242,192,120,.35),0 0 18px 4px rgba(242,192,120,.9);animation:hpulse 2.2s ease-in-out infinite}
   @keyframes hpulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.8}}
@@ -568,8 +577,16 @@
       </div>
       <div class="hglobe" aria-hidden="true">
         <img src="/images/earth-globe.png" alt="">
-        <span class="hpin"></span>
-        <span class="hlab">Seattle</span>
+        <!-- 시애틀에서 세계로 — 빛이 뻗어 나가는 사선 + 파문 -->
+        <span class="hrays" aria-hidden="true">
+          <!-- 동서남북(0/90/180/270) 길게, 그 사이 짧게 — 12방향 -->
+          <i style="--a:0deg;--l:84%;--d:0s"></i><i style="--a:30deg;--l:58%;--d:.4s"></i><i style="--a:60deg;--l:62%;--d:.8s"></i>
+          <i style="--a:90deg;--l:80%;--d:1.2s"></i><i style="--a:120deg;--l:56%;--d:1.6s"></i><i style="--a:150deg;--l:52%;--d:2s"></i>
+          <i style="--a:180deg;--l:74%;--d:2.4s"></i><i style="--a:210deg;--l:50%;--d:2.8s"></i><i style="--a:240deg;--l:54%;--d:3.2s"></i>
+          <i style="--a:270deg;--l:72%;--d:3.6s"></i><i style="--a:300deg;--l:52%;--d:4s"></i><i style="--a:330deg;--l:58%;--d:4.4s"></i>
+          <b></b><b style="animation-delay:1.6s"></b>
+          <u></u>
+        </span>
       </div>
     </div>
   </div>
