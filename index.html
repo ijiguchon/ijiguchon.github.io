@@ -1448,12 +1448,13 @@ document.addEventListener('DOMContentLoaded', function(){
 <style>.mj-cta .btn svg{width:18px;height:18px;flex:0 0 auto}</style>
 <script>
 /* ?open=prayer 등 — 옛 교인 앱 바로가기·링크를 해당 탭+신청서로 */
-window.addEventListener('load',function(){ try{
+/* 'load'는 유튜브 썸네일·폰트를 다 기다려 늦게 옴 → DOMContentLoaded 뒤(모달 생성 후) 바로 실행 */
+document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){ try{
   var o=new URLSearchParams(location.search).get('open'); if(!o||!GM[o]) return;
   var MAP={prayer:'worship',commit:'worship',topastor:'worship',mokjang:'mokjang',mokjangpost:'mokjang',plant:'mokjang',accept:'study',baptism:'study',heonasik:'newgen',children:'newgen',youth:'newgen',contact:'square',newcomer:'newcomer'};
   if(MAP[o]&&typeof goTab==='function') goTab(MAP[o]);
   setTimeout(function(){ openModal(o); },250);
-}catch(e){} });
+}catch(e){} },0); });
 /* ══ 교인 기능 — 교인 앱(GMC_PWA)에서 이전. 신청서는 앱과 같은 백엔드(SCRIPT_URL)·같은 type 으로 보냄 ══ */
 function gmEn(){ return document.body.classList.contains('lang-en'); }
 function gmBi(ko,en){ return '<span class="ko">'+esc(ko)+'</span><span class="en">'+esc(en)+'</span>'; }
