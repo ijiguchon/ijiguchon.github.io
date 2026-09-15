@@ -365,6 +365,9 @@
   #cosmos .cn-cap .big{font-size:15px;font-weight:800;letter-spacing:-.2px}
   #cosmos .cn-cap .big .ac{color:#e7b45f}
   #cosmos .cn-cap .sm{margin-top:6px;font-size:10.5px;letter-spacing:2.5px;color:#8590ad;text-transform:uppercase}
+  #cosmos .cn-hint{position:absolute;left:0;right:0;bottom:80px;z-index:3;text-align:center;pointer-events:none;color:rgba(231,180,95,.85);font-size:12px;font-weight:700;letter-spacing:.02em;animation:hintpulse 2.6s ease-in-out infinite;transition:opacity .4s}
+  #cosmos .cn-hint.gone{opacity:0;animation:none}
+  @keyframes hintpulse{0%,100%{opacity:.85}50%{opacity:.38}}
   #cosmos .cn-more{position:absolute;left:0;right:0;bottom:56px;z-index:3;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:7px 12px;padding:0 20px}
   #cosmos .cn-more .cn-more-lbl{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:#6d7690}
   #cosmos .cn-more a{font-size:12px;font-weight:600;color:#aeb8d4;text-decoration:none;padding:2px 4px;border-radius:999px}
@@ -383,7 +386,7 @@
   <div class="cn-glow"></div>
   <div class="cn-stage">
     <svg class="cn-links" id="cnLinks" aria-hidden="true"></svg>
-    <button class="cn-nucleus" id="cnNucleus" aria-label="가운데를 누르면 모이고, 다시 누르면 흩어집니다">
+    <button class="cn-nucleus" id="cnNucleus" aria-label="지구본을 누르면 한 교회로 모였다가, 새로고침되며 세상 끝까지 흩어집니다">
       <span class="cn-pulse"></span><span class="cn-ring2"></span><span class="cn-ring"></span>
       <span class="cn-core"></span>
       <span class="geo-marker" aria-hidden="true"><span class="geo-dot"></span></span>
@@ -396,8 +399,9 @@
     <a class="cn-node" href="#care"><span class="cn-dot"><svg viewBox="0 0 24 24"><path d="M12 20s-6-4-6-9a3.5 3.5 0 016-2.4A3.5 3.5 0 0118 11c0 5-6 9-6 9z"/></svg></span><span class="cn-lbl">이웃 사랑</span></a>
   </div>
   <div class="cn-cap" id="cnCap" aria-live="polite">
-    <div class="big"><span class="ac">흩어져</span> — 세상으로</div><div class="sm">scatter to gather</div>
+    <div class="big"><span class="ac">흩어져</span> — 세상 끝까지</div><div class="sm">scatter · to the world</div>
   </div>
+  <div class="cn-hint" id="cnHint">지구본을 눌러보세요 · Tap the globe</div>
   <button class="cn-scroll" id="cnScroll" aria-label="아래로 둘러보기"><span>둘러보기</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
 </section>
 <script>
@@ -424,10 +428,14 @@
   function setState(s){
     cosmos.classList.toggle('scattered',s);
     cap.innerHTML = s
-      ? '<div class="big"><span class="ac">흩어져</span> — 세상으로</div><div class="sm">scatter to gather</div>'
+      ? '<div class="big"><span class="ac">흩어져</span> — 세상 끝까지</div><div class="sm">scatter · to the world</div>'
       : '<div class="big"><span class="ac">모여</span> — 한 교회로</div><div class="sm">gather · one church</div>';
   }
-  document.getElementById('cnNucleus').addEventListener('click',function(){ setState(!cosmos.classList.contains('scattered')); });
+  document.getElementById('cnNucleus').addEventListener('click',function(){
+    var hint=document.getElementById('cnHint'); if(hint) hint.classList.add('gone');
+    setState(false);                                    // 먼저 모여 — 한 교회로
+    setTimeout(function(){ location.reload(); }, 760);  // 새로고침 → 다시 흩어져 세상으로 (내용 갱신)
+  });
   document.getElementById('cnScroll').addEventListener('click',function(){
     var t=document.getElementById('top'); if(t) t.scrollIntoView({behavior:'smooth'});
   });
