@@ -1253,7 +1253,7 @@ var COLUMN_PLAN=[
 var gmColUrl='/corner/';
 function gmColPaint(c){ var box=document.getElementById('colLive'); if(!box) return; var dt=c.iso.replace(/-/g,'.');
   box.innerHTML='<span class="cb-s">'+gmBi('이번 주 목회칼럼',"This week's column")+'</span><span class="cb-t" style="display:block">'+gmBi(c.ko,c.en)+'</span>'+(c.sub?'<span class="cb-x" style="display:block">'+gmBi(c.sub,c.subEn||c.sub)+'</span>':'')+'<span class="cb-by" style="display:block">'+gmBi('김성수 목사 · '+dt,'Pastor Paul Kim · '+dt)+'</span>';
-  gmColUrl=c.url||'/corner/'; }
+  gmColUrl='/corner/?c='+c.iso; }
 function colOpen(){ if(/^https?:/.test(gmColUrl)) window.open(gmColUrl,'_blank','noopener'); else location.href=gmColUrl; }
 async function renderColumn(){
   var today=isoOf(new Date()), plan=COLUMN_PLAN.filter(function(x){ return x.d<=today; }).sort(function(a,b){ return a.d<b.d?-1:1; }); var p=plan[plan.length-1]||COLUMN_PLAN[COLUMN_PLAN.length-1];
