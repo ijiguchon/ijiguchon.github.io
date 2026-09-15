@@ -152,15 +152,13 @@
   @keyframes hbreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
   /* 시애틀(왼쪽 위 31%/29%)에서 세계로 뻗는 빛 */
   /* 컨테이너 = 지구본 전체(폭 기준이 0이 되지 않도록). 원점만 31%/29%에 둔다 */
-  .hero .hrays{position:absolute;inset:0;pointer-events:none}
-  .hero .hrays i{position:absolute;left:31%;top:29%;height:2.5px;margin-top:-1.25px;width:calc(var(--l) * .8);transform-origin:0 50%;transform:rotate(var(--a)) scaleX(0);border-radius:2px;background:linear-gradient(90deg,rgba(255,226,160,1),rgba(242,192,120,.75) 40%,transparent);box-shadow:0 0 10px rgba(242,192,120,.7);animation:hray 6s ease-in-out infinite;animation-delay:var(--d)}
+  .hero .hrays{position:absolute;inset:0;pointer-events:none;border-radius:50%;clip-path:circle(50% at 50% 50%)}
+  .hero .hrays i{position:absolute;left:31%;top:29%;height:2.5px;margin-top:-1.25px;width:calc(var(--l) * .97);transform-origin:0 50%;transform:rotate(var(--a)) scaleX(0);border-radius:2px;background:linear-gradient(90deg,rgba(255,226,160,1),rgba(242,192,120,.75) 40%,transparent);box-shadow:0 0 10px rgba(242,192,120,.7);animation:hray 6s ease-in-out infinite;animation-delay:var(--d)}
   @keyframes hray{0%{transform:rotate(var(--a)) scaleX(0);opacity:0}18%{opacity:1}55%{transform:rotate(var(--a)) scaleX(1);opacity:.9}100%{transform:rotate(var(--a)) scaleX(1);opacity:0}}
   .hero .hrays b{position:absolute;left:31%;top:29%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;border:1.5px solid rgba(242,192,120,.85);animation:hripple 3.2s ease-out infinite}
   @keyframes hripple{0%{transform:scale(.4);opacity:.9}100%{transform:scale(6);opacity:0}}
   .hero .hrays u{position:absolute;left:31%;top:29%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#E9C77B;box-shadow:0 0 0 3px rgba(242,192,120,.35),0 0 16px 4px rgba(242,192,120,.9)}
-  .hero .hglobe{width:min(300px,68vw)}
-  @media(max-width:760px){ .hero .hrays i{width:calc(var(--l) * .7)} }
-  .hero .hglobe::after{content:"";position:absolute;inset:-6%;border-radius:50%;pointer-events:none;box-shadow:inset 0 0 40px rgba(120,170,255,.35),0 0 60px 4px rgba(120,170,255,.22)}
+  .hero .hglobe{width:min(300px,68vw)}  .hero .hglobe::after{content:"";position:absolute;inset:-6%;border-radius:50%;pointer-events:none;box-shadow:inset 0 0 40px rgba(120,170,255,.35),0 0 60px 4px rgba(120,170,255,.22)}
   .hero .hpin{position:absolute;left:31%;top:29%;width:12px;height:12px;border-radius:50%;background:#E9C77B;box-shadow:0 0 0 4px rgba(242,192,120,.35),0 0 18px 4px rgba(242,192,120,.9);animation:hpulse 2.2s ease-in-out infinite}
   @keyframes hpulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.8}}
   .hero .hlab{position:absolute;left:31%;top:29%;transform:translate(14px,-8px);font-size:11px;font-weight:800;letter-spacing:.8px;color:#E9C77B;text-transform:uppercase;white-space:nowrap}
