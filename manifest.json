@@ -1,16 +1,26 @@
 {
+  "id": "/",
   "name": "시애틀지구촌교회",
   "short_name": "시애틀지구촌",
   "description": "영혼 구원하여 그리스도의 제자 만드는 교회 · GMC of Greater Seattle",
   "lang": "ko",
+  "dir": "ltr",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#1a3560",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#F6F1E7",
+  "theme_color": "#14213d",
+  "categories": ["lifestyle", "education"],
   "icons": [
-    { "src": "images/icon-192-em.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "images/icon-512-em.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "images/icon-maskable-512-em.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "/images/icon-192-em.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/images/icon-512-em.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/images/icon-maskable-512-em.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "연합예배", "short_name": "예배", "url": "/?tab=worship", "icons": [{ "src": "/images/icon-192-em.png", "sizes": "192x192" }] },
+    { "name": "가정교회", "short_name": "목장", "url": "/?tab=mokjang", "icons": [{ "src": "/images/icon-192-em.png", "sizes": "192x192" }] },
+    { "name": "삶공부", "short_name": "삶공부", "url": "/?tab=study", "icons": [{ "src": "/images/icon-192-em.png", "sizes": "192x192" }] },
+    { "name": "온라인 헌금", "short_name": "헌금", "url": "/?tab=give", "icons": [{ "src": "/images/icon-192-em.png", "sizes": "192x192" }] }
   ]
 }

@@ -1108,6 +1108,8 @@
   function gcSubmit(e){ e.preventDefault(); var i=document.getElementById('gcInput'), t=i.value.trim(); if(!t) return; gcAdd(t,'user'); i.value=''; var low=t.toLowerCase(), m=null; for(var k in GC_K){ if(GC_K[k].some(function(w){ return low.indexOf(w)>-1; })){ m=k; break; } } var L=gcLang(); setTimeout(function(){ gcAdd(m?GC_T[m].a[L]:GC_F[L],'bot'); },330); }
   function gcToggle(){ var p=document.getElementById('gcPanel'), f=document.getElementById('gcFab'); var open=p.classList.toggle('open'); f.classList.toggle('open',open); if(open){ gcChips(); if(!gcStarted){ gcStarted=true; setTimeout(function(){ gcAdd(GC_G[gcLang()],'bot'); },180); } } }
   window.gmcChatRefresh=function(){ if(document.getElementById('gcPanel').classList.contains('open')) gcChips(); };
+  /* 폰 앱(PWA): 홈 서비스워커 등록 — 오프라인·빠른 열기 */
+  if('serviceWorker' in navigator){ window.addEventListener('load', function(){ navigator.serviceWorker.register('/sw.js').catch(function(){}); }); }
   /* 위치: 손으로 끌어 옮김(기억) + 푸터가 보이면 스스로 위로 피함 */
   var gcBase={b:22,r:22}, gcLift=0;
   try{ var _s=JSON.parse(localStorage.getItem('gmc-fab-pos')||'null'); if(_s&&_s.b>=0&&_s.r>=0) gcBase=_s; }catch(_){}
