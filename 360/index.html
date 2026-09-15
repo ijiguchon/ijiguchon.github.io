@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>가정교회 360 · 시애틀지구촌교회</title>
+<title>가정교회 360 · 시애틀지구촌교회 | House Church 360</title>
 <meta name="robots" content="noindex,nofollow"/>
 <meta name="theme-color" content="#14213d"/>
 <link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192-em.png"/>
@@ -17,21 +17,22 @@
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
   a{color:inherit;text-decoration:none}
+  .en{display:none} body.lang-en .ko{display:none} body.lang-en .en{display:inline}
   .top{position:sticky;top:0;z-index:10;background:rgba(246,241,231,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .top .row{max-width:1040px;margin:0 auto;padding:0 18px;height:58px;display:flex;align-items:center;gap:10px}
   .top img{width:34px;height:34px;border-radius:50%;box-shadow:0 0 0 2px rgba(184,146,74,.4)}
-  .top b{font-family:var(--serif);font-size:15px;color:var(--navy)}
-  .top .r{margin-left:auto;display:flex;gap:8px}
-  .top .r a,.top .r button{font-family:inherit;font-size:12.5px;font-weight:800;color:var(--navy);background:#fff;border:1.4px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+  .top b{font-family:var(--serif);font-size:15px;color:var(--navy);white-space:nowrap}
+  .top .r{margin-left:auto;display:flex;gap:8px;align-items:center}
+  .top .r a,.top .r button{font-family:inherit;font-size:12.5px;font-weight:800;color:var(--navy);background:#fff;border:1.4px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+  .top .r button svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
   .wrap{max-width:1040px;margin:0 auto;padding:34px 18px 70px}
   .eye{font-size:11.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold-2);text-align:center}
   h1{font-family:var(--serif);font-size:clamp(24px,3.6vw,34px);font-weight:900;color:var(--navy);text-align:center;letter-spacing:-.5px;margin-top:8px;word-break:keep-all}
   h1::after{content:"";display:block;width:34px;height:2px;margin:12px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
   .lead{max-width:640px;margin:12px auto 0;text-align:center;color:var(--ink-2);font-size:15px;word-break:keep-all}
-  /* 게이트 */
   .gate{max-width:420px;margin:30px auto 0;background:linear-gradient(150deg,#1f2f55,#14213d);color:#fff;border-radius:20px;padding:28px 26px;box-shadow:0 14px 36px rgba(20,33,61,.28);text-align:center}
   .gate .ge{font-size:11px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold-l)}
-  .gate h2{font-family:var(--serif);font-size:20px;margin-top:8px}
+  .gate h2{font-family:var(--serif);font-size:20px;margin-top:8px;word-break:keep-all}
   .gate p{margin-top:8px;font-size:13.5px;color:rgba(255,255,255,.8)}
   .gate input{width:100%;margin-top:16px;padding:13px 14px;border-radius:12px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:16px;font-family:inherit;text-align:center;letter-spacing:4px;outline:none}
   .gate input:focus{border-color:var(--gold-l)}
@@ -39,9 +40,7 @@
   .gate .err{margin-top:10px;font-size:12.5px;color:#F2B8B8;min-height:16px}
   .gate .help{margin-top:14px;font-size:12px;color:rgba(255,255,255,.6)}
   .gate .help a{color:var(--gold-l);font-weight:700}
-  /* 포털 */
-  .portal{display:none}
-  .portal.on{display:block}
+  .portal{display:none} .portal.on{display:block}
   .cut{max-width:760px;margin:44px auto 16px;display:flex;align-items:center;gap:14px}
   .cut::before,.cut::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(184,146,74,.55))}
   .cut::after{background:linear-gradient(90deg,rgba(184,146,74,.55),transparent)}
@@ -57,6 +56,9 @@
   .tile .tb{flex:1;min-width:0}
   .tile h3{font-family:var(--serif);font-size:15px;font-weight:900;color:var(--navy)}
   .tile p{margin-top:2px;font-size:12px;color:var(--ink-3);font-weight:600;line-height:1.45}
+  .tile.sys{background:linear-gradient(150deg,#1f2f55,#14213d);border-color:transparent;color:#fff;box-shadow:0 14px 36px rgba(20,33,61,.28)}
+  .tile.sys h3{color:#fff} .tile.sys p{color:rgba(255,255,255,.75)}
+  .tile.sys .out{width:20px;height:20px;flex:0 0 auto;fill:none;stroke:#E9C77B;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
   .note{max-width:760px;margin:28px auto 0;background:#F1E6D3;border:1px solid rgba(184,146,74,.35);border-radius:14px;padding:14px 18px;font-size:13px;color:#6b4f1d;line-height:1.7;word-break:keep-all}
   .note b{color:#4d3812}
   footer{max-width:1040px;margin:0 auto;padding:0 18px 30px;font-size:12px;color:var(--ink-3);text-align:center}
@@ -66,77 +68,85 @@
 <body>
 <div class="top"><div class="row">
   <a href="/new/"><img src="/images/icon-192-em.png" alt=""></a>
-  <b>시애틀지구촌교회 · 가정교회 360</b>
-  <div class="r"><a href="/new/">홈</a><button id="outBtn" style="display:none" onclick="lock()">잠금</button></div>
+  <b><span class="ko">시애틀지구촌교회 · 가정교회 360</span><span class="en">GMC of Greater Seattle · House Church 360</span></b>
+  <div class="r">
+    <button onclick="toggleLang()" aria-label="Language"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg><span id="langTxt">EN</span></button>
+    <a href="/new/"><span class="ko">홈</span><span class="en">Home</span></a>
+    <button id="outBtn" style="display:none" onclick="lock()"><span class="ko">잠금</span><span class="en">Lock</span></button>
+  </div>
 </div></div>
 
 <main class="wrap">
-  <div class="eye">House Church 360 · 목자 · 목녀 · 스탭</div>
-  <h1>가정교회 360</h1>
-  <p class="lead">목장을 돌보고 교회를 세우는 도구를 한곳에 모았습니다. 교인 확인 코드를 입력하시면 열립니다.</p>
+  <div class="eye"><span class="ko">House Church 360 · 목자 · 목녀 · 스탭</span><span class="en">House Church 360 · hosts · staff</span></div>
+  <h1><span class="ko">가정교회 360</span><span class="en">House Church 360</span></h1>
+  <p class="lead"><span class="ko">목장을 돌보고 교회를 세우는 도구를 한곳에 모았습니다. 교인 확인 코드를 입력하시면 열립니다.</span><span class="en">Every tool for shepherding a house church and building the church, in one place. Enter the member code to open.</span></p>
 
   <div class="gate" id="gate">
-    <div class="ge">교인 확인</div>
-    <h2>확인 코드를 입력해 주십시오</h2>
-    <p>목자·목녀와 스탭에게 안내된 코드입니다.</p>
+    <div class="ge"><span class="ko">교인 확인</span><span class="en">Member check</span></div>
+    <h2><span class="ko">확인 코드를 입력해 주십시오</span><span class="en">Please enter the member code</span></h2>
+    <p><span class="ko">목자·목녀와 스탭에게 안내된 코드입니다.</span><span class="en">The code shared with hosts and staff.</span></p>
     <form onsubmit="unlock(event)">
-      <input id="code" type="password" inputmode="text" autocomplete="off" placeholder="••••" aria-label="확인 코드">
-      <button type="submit">열기</button>
+      <input id="code" type="password" inputmode="text" autocomplete="off" placeholder="••••" aria-label="Member code">
+      <button type="submit"><span class="ko">열기</span><span class="en">Open</span></button>
     </form>
     <div class="err" id="err"></div>
-    <div class="help">코드를 모르시면 <a href="mailto:office@ijiguchon.org">office@ijiguchon.org</a> 또는 <a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener">카톡방</a>으로 문의해 주십시오.</div>
+    <div class="help"><span class="ko">코드를 모르시면 <a href="mailto:office@ijiguchon.org">office@ijiguchon.org</a> 또는 <a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener">카톡방</a>으로 문의해 주십시오.</span><span class="en">Don't have the code? Ask at <a href="mailto:office@ijiguchon.org">office@ijiguchon.org</a> or on <a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener">KakaoTalk</a>.</span></div>
   </div>
 
   <div class="portal" id="portal">
-    <div class="cut"><span>가정교회 360 시스템</span></div>
-    <a class="tile" href="https://sbch.hcrm360.net/360sbch.asp" target="_blank" rel="noopener" style="background:linear-gradient(150deg,#1f2f55,#14213d);border-color:transparent;color:#fff;box-shadow:0 14px 36px rgba(20,33,61,.28)">
+    <div class="cut"><span><span class="ko">가정교회 360 시스템</span><span class="en">House Church 360 system</span></span></div>
+    <a class="tile sys" href="https://sbch.hcrm360.net/360sbch.asp" target="_blank" rel="noopener">
       <span class="ic" style="background:linear-gradient(180deg,#CDA65B,#A67A2E)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-      <span class="tb"><h3 style="color:#fff">가정교회 360 (HCRM360) 로그인</h3><p style="color:rgba(255,255,255,.75)">목장 보고 · 교인 관리 — 우리 교회가 사용하는 가정교회 360 시스템으로 이동합니다 (별도 ID · 비밀번호)</p></span>
-      <svg viewBox="0 0 24 24" style="width:20px;height:20px;flex:0 0 auto;fill:none;stroke:#E9C77B;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+      <span class="tb"><h3><span class="ko">가정교회 360 (HCRM360) 로그인</span><span class="en">House Church 360 (HCRM360) sign-in</span></h3><p><span class="ko">목장 보고 · 교인 관리 — 우리 교회가 사용하는 가정교회 360 시스템으로 이동합니다 (별도 ID · 비밀번호)</span><span class="en">House church reports and member care — opens the HCRM360 system our church uses (separate ID and password)</span></p></span>
+      <svg class="out" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg>
     </a>
 
-    <div class="cut"><span>목양</span></div>
+    <div class="cut"><span><span class="ko">목양</span><span class="en">Shepherding</span></span></div>
     <div class="grid">
-      <a class="tile" href="/dashboard/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-8M22 19H2"/></svg></span><span class="tb"><h3>목양 대시보드</h3><p>목장·교회 현황 한눈에</p></span></a>
-      <a class="tile" href="/my/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z"/><path d="M4 20a8 8 0 0116 0"/></svg></span><span class="tb"><h3>내 목양</h3><p>우리 목장 식구 돌봄 기록</p></span></a>
-      <a class="tile" href="/worship/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 21V10l8-5 8 5v11"/><path d="M9.5 21v-5h5v5"/></svg></span><span class="tb"><h3>성인 출석</h3><p>주일 연합예배 출석</p></span></a>
-      <a class="tile" href="/checkin/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span><span class="tb"><h3>출석 체크</h3><p>모임 현장 빠른 체크인</p></span></a>
+      <a class="tile" href="/dashboard/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-8M22 19H2"/></svg></span><span class="tb"><h3><span class="ko">목양 대시보드</span><span class="en">Shepherding dashboard</span></h3><p><span class="ko">목장·교회 현황 한눈에</span><span class="en">House churches and church at a glance</span></p></span></a>
+      <a class="tile" href="/my/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z"/><path d="M4 20a8 8 0 0116 0"/></svg></span><span class="tb"><h3><span class="ko">내 목양</span><span class="en">My flock</span></h3><p><span class="ko">우리 목장 식구 돌봄 기록</span><span class="en">Care notes for my house church</span></p></span></a>
+      <a class="tile" href="/worship/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 21V10l8-5 8 5v11"/><path d="M9.5 21v-5h5v5"/></svg></span><span class="tb"><h3><span class="ko">성인 출석</span><span class="en">Adult attendance</span></h3><p><span class="ko">주일 연합예배 출석</span><span class="en">Sunday united worship</span></p></span></a>
+      <a class="tile" href="/checkin/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span><span class="tb"><h3><span class="ko">출석 체크</span><span class="en">Check-in</span></h3><p><span class="ko">모임 현장 빠른 체크인</span><span class="en">Quick check-in at gatherings</span></p></span></a>
     </div>
 
-    <div class="cut"><span>새 세대</span></div>
+    <div class="cut"><span><span class="ko">새 세대</span><span class="en">New Generation</span></span></div>
     <div class="grid">
-      <a class="tile" href="/attend/"><span class="ic t"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3 20a6 6 0 0112 0"/><path d="M14 20a6 6 0 0110-4"/></svg></span><span class="tb"><h3>교회학교 출석부</h3><p>어린이·청소년 출석과 부모 협력</p></span></a>
-      <a class="tile" href="/growth/"><span class="ic t"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span><span class="tb"><h3>분기 성장 기록</h3><p>한 아이의 자람을 분기마다</p></span></a>
+      <a class="tile" href="/attend/"><span class="ic t"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3 20a6 6 0 0112 0"/><path d="M14 20a6 6 0 0110-4"/></svg></span><span class="tb"><h3><span class="ko">교회학교 출석부</span><span class="en">Church school attendance</span></h3><p><span class="ko">어린이·청소년 출석과 부모 협력</span><span class="en">Kids and youth attendance, parent partnership</span></p></span></a>
+      <a class="tile" href="/growth/"><span class="ic t"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span><span class="tb"><h3><span class="ko">분기 성장 기록</span><span class="en">Quarterly growth record</span></h3><p><span class="ko">한 아이의 자람을 분기마다</span><span class="en">One child's growth, every quarter</span></p></span></a>
     </div>
 
-    <div class="cut"><span>제자의 길 · 행정</span></div>
+    <div class="cut"><span><span class="ko">제자의 길 · 행정</span><span class="en">Discipleship · administration</span></span></div>
     <div class="grid">
-      <a class="tile" href="/register/"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M8 7h8M8 10.5h8M8 14h5"/></svg></span><span class="tb"><h3>교인 등록</h3><p>새 교우 등록 접수</p></span></a>
-      <a class="tile" href="/study/"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v16H5.5A2.5 2.5 0 003 21.5z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v16h6.5a2.5 2.5 0 012.5 2.5z"/></svg></span><span class="tb"><h3>삶공부</h3><p>과정 안내 · 개강 · 신청</p></span></a>
-      <a class="tile" href="/path/"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M6 3v13M6 21a2 2 0 100-4 2 2 0 000 4zM18 8a2 2 0 100-4 2 2 0 000 4zM18 8c0 6-12 3-12 9"/></svg></span><span class="tb"><h3>제자로 자라는 길</h3><p>안수집사로 자라는 길 매뉴얼</p></span></a>
-      <a class="tile" href="/qual/"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.4 6.7 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg></span><span class="tb"><h3>안수집사 추천 자격</h3><p>딤전 3장 기준 안내</p></span></a>
+      <a class="tile" href="/register/"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M8 7h8M8 10.5h8M8 14h5"/></svg></span><span class="tb"><h3><span class="ko">교인 등록</span><span class="en">Membership registration</span></h3><p><span class="ko">새 교우 등록 접수</span><span class="en">Register a new member</span></p></span></a>
+      <a class="tile" href="/study/"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v16H5.5A2.5 2.5 0 003 21.5z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v16h6.5a2.5 2.5 0 012.5 2.5z"/></svg></span><span class="tb"><h3><span class="ko">삶공부</span><span class="en">Life Bible Study</span></h3><p><span class="ko">과정 안내 · 개강 · 신청</span><span class="en">Courses, terms, sign-up</span></p></span></a>
+      <a class="tile" href="/path/"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M6 3v13M6 21a2 2 0 100-4 2 2 0 000 4zM18 8a2 2 0 100-4 2 2 0 000 4zM18 8c0 6-12 3-12 9"/></svg></span><span class="tb"><h3><span class="ko">제자로 자라는 길</span><span class="en">The disciple's path</span></h3><p><span class="ko">안수집사로 자라는 길 매뉴얼</span><span class="en">Growing toward deacon — manual</span></p></span></a>
+      <a class="tile" href="/qual/"><span class="ic g"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.4 6.7 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg></span><span class="tb"><h3><span class="ko">안수집사 추천 자격</span><span class="en">Deacon qualifications</span></h3><p><span class="ko">딤전 3장 기준 안내</span><span class="en">Based on 1 Timothy 3</span></p></span></a>
     </div>
 
-    <div class="cut"><span>자료</span></div>
+    <div class="cut"><span><span class="ko">자료</span><span class="en">Resources</span></span></div>
     <div class="grid">
-      <a class="tile" href="https://drive.google.com/drive/folders/1KaYzo0lDmU6TJJBtnrTsbFnZIgn0n3zA" target="_blank" rel="noopener"><span class="ic b"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/></svg></span><span class="tb"><h3>목장 나눔지</h3><p>주일 설교 나눔지 폴더</p></span></a>
-      <a class="tile" href="https://drive.google.com/drive/folders/15_4TMBpg7E7w_5YAjd3GJ-hohnLw_FuB" target="_blank" rel="noopener"><span class="ic b"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 5.5V19"/></svg></span><span class="tb"><h3>주보</h3><p>주간 주보 폴더</p></span></a>
-      <a class="tile" href="/corner/"><span class="ic b"><svg viewBox="0 0 24 24"><path d="M4 4h11l5 5v11H4z"/><path d="M15 4v5h5"/><path d="M8 13h8M8 17h5"/></svg></span><span class="tb"><h3>목회자 코너</h3><p>목회칼럼 · 12주 여정</p></span></a>
-      <a class="tile" href="/gmc/"><span class="ic b"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span><span class="tb"><h3>교인 앱</h3><p>홈 · 목장 · 삶공부 · 연합예배</p></span></a>
+      <a class="tile" href="https://drive.google.com/drive/folders/1KaYzo0lDmU6TJJBtnrTsbFnZIgn0n3zA" target="_blank" rel="noopener"><span class="ic b"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.2 9.3V20h13.6V9.3"/></svg></span><span class="tb"><h3><span class="ko">목장 나눔지</span><span class="en">Sharing guides</span></h3><p><span class="ko">주일 설교 나눔지 폴더</span><span class="en">Sunday sermon sharing-guide folder</span></p></span></a>
+      <a class="tile" href="https://drive.google.com/drive/folders/15_4TMBpg7E7w_5YAjd3GJ-hohnLw_FuB" target="_blank" rel="noopener"><span class="ic b"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 5.5V19"/></svg></span><span class="tb"><h3><span class="ko">주보</span><span class="en">Weekly bulletin</span></h3><p><span class="ko">주간 주보 폴더</span><span class="en">Bulletin folder</span></p></span></a>
+      <a class="tile" href="/corner/"><span class="ic b"><svg viewBox="0 0 24 24"><path d="M4 4h11l5 5v11H4z"/><path d="M15 4v5h5"/><path d="M8 13h8M8 17h5"/></svg></span><span class="tb"><h3><span class="ko">목회자 코너</span><span class="en">Pastor's corner</span></h3><p><span class="ko">목회칼럼 · 12주 여정</span><span class="en">Columns · 12-week journey</span></p></span></a>
+      <a class="tile" href="/gmc/"><span class="ic b"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span><span class="tb"><h3><span class="ko">교인 앱</span><span class="en">Member app</span></h3><p><span class="ko">홈 · 목장 · 삶공부 · 연합예배</span><span class="en">Home · house church · study · worship</span></p></span></a>
     </div>
 
-    <div class="note"><b>가정교회 360이란?</b> 휴스턴서울교회가 세운 가정교회 운영 시스템(HCRM 360)입니다. 우리 교회는 이 시스템을 사용하며(맨 위 로그인), 그 아래에는 우리 교회가 직접 만든 도구들을 함께 모았습니다. 사역은 목자·목녀가, 행정·운영 지원은 교회 중앙이 맡습니다(엡 4장 · 행 6장). 목장별 명단·개인 나눔·재정은 여기서도 공개하지 않습니다.</div>
+    <div class="note"><span class="ko"><b>가정교회 360이란?</b> 휴스턴서울교회가 세운 가정교회 운영 시스템(HCRM 360)입니다. 우리 교회는 이 시스템을 사용하며(맨 위 로그인), 그 아래에는 우리 교회가 직접 만든 도구들을 함께 모았습니다. 사역은 목자·목녀가, 행정·운영 지원은 교회 중앙이 맡습니다(엡 4장 · 행 6장). 목장별 명단·개인 나눔·재정은 여기서도 공개하지 않습니다.</span><span class="en"><b>What is House Church 360?</b> The house-church management system (HCRM 360) built by Seoul Baptist Church of Houston. Our church uses it (sign-in above); below it we gathered the tools our own church built. Hosts shepherd; the church office supports administration (Eph. 4, Acts 6). Rosters, personal sharing, and finances are never published here.</span></div>
   </div>
 </main>
 
-<footer>시애틀지구촌교회 · <a href="mailto:office@ijiguchon.org">office@ijiguchon.org</a> · <a href="/new/">홈으로</a></footer>
+<footer><span class="ko">시애틀지구촌교회 · <a href="mailto:office@ijiguchon.org">office@ijiguchon.org</a> · <a href="/new/">홈으로</a></span><span class="en">GMC of Greater Seattle · <a href="mailto:office@ijiguchon.org">office@ijiguchon.org</a> · <a href="/new/">Home</a></span></footer>
 
 <script>
+  /* 언어 토글 — 선택 기억 */
+  function applyLang(en){ document.body.classList.toggle('lang-en', en); document.getElementById('langTxt').textContent = en ? '한글' : 'EN'; document.documentElement.lang = en ? 'en' : 'ko'; }
+  function toggleLang(){ var en = !document.body.classList.contains('lang-en'); try{ localStorage.setItem('gmc-360-lang', en ? 'en' : 'ko'); }catch(_){} applyLang(en); }
+  (function(){ var l=''; try{ l = localStorage.getItem('gmc-360-lang') || ''; }catch(_){} if(!l && /^en/i.test(navigator.language||'')) l='en'; applyLang(l==='en'); })();
   /* 교인 확인 코드 — 브라우저 확인용(진짜 보안 아님). 코드는 아래 한 줄에서 바꿉니다. */
   var GATE_CODE = 'J1224';
   var KEY = 'gmc-360-ok';
   function show(on){ document.getElementById('gate').style.display = on ? 'none' : ''; document.getElementById('portal').classList.toggle('on', on); document.getElementById('outBtn').style.display = on ? '' : 'none'; }
-  function unlock(e){ e.preventDefault(); var v = (document.getElementById('code').value || '').trim().toUpperCase(); if(v === GATE_CODE){ try{ localStorage.setItem(KEY, '1'); }catch(_){} show(true); window.scrollTo({top:0}); } else { document.getElementById('err').textContent = '코드가 맞지 않습니다. 다시 확인해 주십시오.'; document.getElementById('code').value=''; document.getElementById('code').focus(); } }
+  function unlock(e){ e.preventDefault(); var v = (document.getElementById('code').value || '').trim().toUpperCase(); if(v === GATE_CODE){ try{ localStorage.setItem(KEY, '1'); }catch(_){} show(true); window.scrollTo({top:0}); } else { var en=document.body.classList.contains('lang-en'); document.getElementById('err').textContent = en ? 'That code is not correct. Please try again.' : '코드가 맞지 않습니다. 다시 확인해 주십시오.'; document.getElementById('code').value=''; document.getElementById('code').focus(); } }
   function lock(){ try{ localStorage.removeItem(KEY); }catch(_){} show(false); }
   (function(){ var ok=false; try{ ok = localStorage.getItem(KEY)==='1'; }catch(_){} show(ok); if(!ok) setTimeout(function(){ document.getElementById('code').focus(); }, 200); })();
 </script>
