@@ -196,6 +196,9 @@
   footer .fc details.fpd summary svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.6;transition:transform .2s}
   footer .fc details.fpd[open] summary svg{transform:rotate(180deg)}
   footer .fc details.fpd ul{margin-top:8px;columns:1}
+  footer .fcopy{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.12);font-size:11.5px;color:rgba(255,255,255,.6);text-align:center;line-height:1.6}
+  footer .fcopy a{color:#fff;font-weight:800;text-decoration:none}
+  footer .fcopy a:hover{color:#E9C77B}
   footer .fc ul{list-style:none;margin:0;padding:0;columns:2;column-gap:16px}
   footer .fc li{break-inside:avoid;line-height:1.6;color:#fff;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.35)}
   @media(max-width:460px){ footer .fc ul{columns:1} }
@@ -627,9 +630,10 @@
       <div class="fc">
         <div><a href="/360/"><span class="ko">가정교회 360</span><span class="en">House Church 360</span></a> <span style="opacity:.7"><span class="ko">· 목자·스탭</span><span class="en">· hosts &amp; staff</span></span></div>
         <div>501(c)(3) · EIN 27-0003955</div>
-        <div><a href="https://www.nanuriweb.com" target="_blank" rel="noopener">NanuriWeb</a> <span class="ko">제작</span><span class="en">design</span></div>
       </div>
     </div>
+    <div class="fcopy">Copyright © <span class="yr">2026</span> <span class="ko">시애틀지구촌교회</span><span class="en">GMC of Greater Seattle</span>. All rights reserved. Powered by <a href="https://www.nanuriweb.com" target="_blank" rel="noopener">NanuriWeb</a></div>
+    <script>document.querySelectorAll('footer .yr').forEach(function(e){ e.textContent=new Date().getFullYear(); });</script>
   </div>
 </footer>
 <script>
