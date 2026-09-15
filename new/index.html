@@ -119,6 +119,9 @@
   .member details.mbio .cv li{font-size:12px;color:var(--ink-2);line-height:1.45;padding-left:12px;position:relative}
   .member details.mbio .cv li::before{content:"";position:absolute;left:2px;top:7px;width:4px;height:4px;border-radius:50%;background:var(--gold-2)}
   .member details.mbio .cv li b{color:var(--ink);font-weight:800}
+  .member details.mbio .cv li.cvh{padding-left:0;margin-top:6px;font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold-2)}
+  .member details.mbio .cv li.cvh::before{display:none}
+  .member details.mbio .cv li.cvh:first-child{margin-top:0}
 
   /* ── 히어로 (환영 탭 첫 화면 · 교회의 얼굴) ── */
   #p-newcomer{padding-top:0}
@@ -615,12 +618,15 @@
           <h4>김성수 <span>Paul Kim</span></h4>
           <div class="role"><span class="ko">담임목사 · Lead Pastor</span><span class="en">Lead Pastor</span></div>
           <details class="mbio"><summary><span class="ko">이력 보기</span><span class="en">About</span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary><ul class="cv">
-            <li><span class="ko"><b>한국성서대학교</b> · 성서학 (B.A)</span><span class="en"><b>Korea Bible University</b> · Biblical Studies (BA)</span></li>
-            <li><span class="ko"><b>Averett University</b> · 음악 (B.A)</span><span class="en"><b>Averett University</b> · Music (BA)</span></li>
-            <li><span class="ko"><b>The Southern Baptist Theological Seminary</b>(남침례신학교) · 목회학석사 (M.Div)</span><span class="en"><b>The Southern Baptist Theological Seminary</b> · M.Div</span></li>
+            <li class="cvh"><span class="ko">학력</span><span class="en">Education</span></li>
             <li><span class="ko"><b>Midwestern Baptist Theological Seminary</b>(미드웨스턴) · 성경사역학 (Ph.D 과정)</span><span class="en"><b>Midwestern Baptist Theological Seminary</b> · Ph.D (in progress)</span></li>
+            <li><span class="ko"><b>The Southern Baptist Theological Seminary</b>(남침례신학교) · 목회학석사 (M.Div)</span><span class="en"><b>The Southern Baptist Theological Seminary</b> · M.Div</span></li>
+            <li><span class="ko"><b>Averett University</b> · 음악 (B.A)</span><span class="en"><b>Averett University</b> · Music (BA)</span></li>
+            <li><span class="ko"><b>한국성서대학교</b> · 성서학 (B.A)</span><span class="en"><b>Korea Bible University</b> · Biblical Studies (BA)</span></li>
+            <li class="cvh"><span class="ko">경력</span><span class="en">Ministry &amp; career</span></li>
+            <li><span class="ko">시애틀지구촌교회 개척 · 담임목사 (2002–현재)</span><span class="en">Planted GMC of Greater Seattle · Lead Pastor (2002–present)</span></li>
+            <li><span class="ko">SBC(미국 남침례교) 목사 안수 · NAMB 개척선교사</span><span class="en">Ordained (SBC) · NAMB church-planting missionary</span></li>
             <li><span class="ko">기독교 방송 PD 겸 아나운서 역임</span><span class="en">Former Christian-broadcast producer &amp; announcer</span></li>
-            <li><span class="ko">SBC 목사 안수 · 2002년 시애틀지구촌교회 개척</span><span class="en">Ordained (SBC) · Planted GMC (2002)</span></li>
           </ul></details>
         </div>
         <div class="member">
@@ -628,9 +634,13 @@
           <h4>김지영 <span>Joy Kim</span></h4>
           <div class="role"><span class="ko">담임목사 사모 · 어린이 사역 디렉터</span><span class="en">Pastor's wife · Children's Director</span></div>
           <details class="mbio"><summary><span class="ko">이력 보기</span><span class="en">About</span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary><ul class="cv">
+            <li class="cvh"><span class="ko">학력</span><span class="en">Education</span></li>
+            <li><span class="ko"><b>The Southern Baptist Theological Seminary</b>(남침례신학교) · 신학 수학</span><span class="en"><b>The Southern Baptist Theological Seminary</b> · theology studies</span></li>
             <li><span class="ko"><b>Virginia Commonwealth University</b> · 회화·판화 (B.F.A)</span><span class="en"><b>Virginia Commonwealth University</b> · Painting &amp; Printmaking (BFA)</span></li>
-            <li><span class="ko"><b>The Southern Baptist Theological Seminary</b>(남침례신학교) · 신학 수학 (자녀로 중단)</span><span class="en"><b>The Southern Baptist Theological Seminary</b> · theology studies</span></li>
-            <li><span class="ko">아동 미술교육 20년 · 동화책 삽화가 · 개척부터 24년</span><span class="en">20 yrs children's art · book illustrator · 24 yrs at GMC</span></li>
+            <li class="cvh"><span class="ko">경력</span><span class="en">Ministry &amp; career</span></li>
+            <li><span class="ko">시애틀지구촌교회 어린이 사역 디렉터 · 개척부터 24년</span><span class="en">Children's Ministry Director, GMC · 24 yrs since planting</span></li>
+            <li><span class="ko">동화책 삽화가 (2024, 아마존 출간 2권)</span><span class="en">Children's book illustrator (2024, two titles on Amazon)</span></li>
+            <li><span class="ko">아동(K–11) 미술교육 20년</span><span class="en">20 yrs teaching children's art (K–11)</span></li>
           </ul></details>
         </div>
         <div class="member">
@@ -638,9 +648,13 @@
           <h4>Garrett Woods</h4>
           <div class="role"><span class="ko">청소년 · Youth Pastor</span><span class="en">Youth Pastor</span></div>
           <details class="mbio"><summary><span class="ko">이력 보기</span><span class="en">About</span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary><ul class="cv">
-            <li><span class="ko"><b>Regent University</b> · 성경학 (B.A)</span><span class="en"><b>Regent University</b> · Biblical Studies (BA)</span></li>
+            <li class="cvh"><span class="ko">학력</span><span class="en">Education</span></li>
             <li><span class="ko"><b>Regent University</b> · 기독교신학 (M.T.S)</span><span class="en"><b>Regent University</b> · Christian Theology (MTS)</span></li>
+            <li><span class="ko"><b>Regent University</b> · 성경학 (B.A)</span><span class="en"><b>Regent University</b> · Biblical Studies (BA)</span></li>
+            <li class="cvh"><span class="ko">경력</span><span class="en">Ministry &amp; career</span></li>
+            <li><span class="ko">시애틀지구촌교회 청소년(GMC Y) 목사</span><span class="en">Youth Pastor (GMC Y), GMC of Greater Seattle</span></li>
             <li><span class="ko">영상제작사 대표 · 필름메이커</span><span class="en">Founder &amp; CEO, video production · filmmaker</span></li>
+            <li><span class="ko">전 Northshore Christian Academy 교사</span><span class="en">Former teacher, Northshore Christian Academy</span></li>
           </ul></details>
         </div>
       </div>
