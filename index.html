@@ -1028,7 +1028,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
           <div class="gsub"><span class="ko">어느 과정부터 시작할지 모르셔도 괜찮습니다. 문의해 주시면 함께 정하겠습니다.</span><span class="en">Not sure where to start? Just ask — we'll figure it out together.</span></div>
           <div class="row">
             <div><label><span class="ko">이름</span><span class="en">Name</span></label><input name="이름" required placeholder="홍길동"></div>
-            <div><label><span class="ko">전화번호</span><span class="en">Phone</span></label><input name="전화번호" type="tel" required placeholder="425-000-0000"></div>
+            <div><label><span class="ko">전화번호</span><span class="en">Phone</span></label><input name="전화번호" type="tel" required></div>
           </div>
           <div class="full"><label><span class="ko">이메일</span><span class="en">Email</span></label><input name="이메일" type="email" required placeholder="you@example.com"></div>
           <div class="full"><label><span class="ko">과정 선택</span><span class="en">Course</span></label>
@@ -1516,7 +1516,7 @@ document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){ 
 function gmEn(){ return document.body.classList.contains('lang-en'); }
 function gmBi(ko,en){ return '<span class="ko">'+esc(ko)+'</span><span class="en">'+esc(en)+'</span>'; }
 var GM_MJ_OPTS = [{ko:'어디든 추천해 주세요',en:'Please recommend one'},{ko:'이스라엘 목장 (김지영 목자)',en:'Israel House Church (Joy Kim)'},{ko:'멕시코 목장 (박성건 목자)',en:'Mexico House Church (Sung Gun Park)'},{ko:'인도네시아 목장 (이인규 목자)',en:'Indonesia House Church (In Kyu Lee)'},{ko:'GMC Y — 청소년 (Garrett Woods 목자)',en:'GMC Y — Youth (Garrett Woods)'}];
-var F_NAME={n:'이름',en:'Name',t:'text',req:true,ph:'홍길동',phEn:'Your name'}, F_MAIL={n:'이메일',en:'Email',t:'email',req:true,ph:'you@example.com',phEn:'you@example.com'}, F_TEL={n:'전화번호',en:'Phone',t:'tel',req:true,ph:'425-000-0000',phEn:'425-000-0000'};
+var F_NAME={n:'이름',en:'Name',t:'text',req:true,ph:'홍길동',phEn:'Your name'}, F_MAIL={n:'이메일',en:'Email',t:'email',req:true,ph:'you@example.com',phEn:'you@example.com'}, F_TEL={n:'전화번호',en:'Phone',t:'tel',req:true,ph:'',phEn:''};
 var GM = {
   newcomer:{s:'[GMC] 새가족 만남 신청', ko:['새가족 만남','커피 한 잔 하며 편하게 인사 나눕니다. 부담 없이 오십시오.','만남 신청하기','반갑습니다','담당자가 곧 연락드리겠습니다.'], en:['Newcomer coffee','Just coffee and a friendly hello. No pressure.','Request a meetup','So glad you reached out',"We'll be in touch soon."], f:[F_NAME,F_MAIL,F_TEL,{n:'한마디',en:'Anything to share',t:'textarea',ph:'궁금한 점이나 하고 싶은 말 (선택)',phEn:'Questions or anything else (optional)'}],
     aside:{ko:['시애틀에 막 오셨나요?','공항·은행·면허·SSN·병원 — 정착에 필요한 것부터 돕겠습니다.','HebronGuide 시애틀 정착 가이드'],en:['Just arrived in Seattle?','Airport, bank, license, SSN, doctor — settling in comes first.','Open the HebronGuide Seattle guide'],url:'https://hebronguide.com/seattle/'}},
