@@ -761,6 +761,15 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
       <p class="mw-foot"><span class="ko">매주 주보에 예배 순서와 교회 소식이 담깁니다. 제목을 누르면 주보가 열립니다.</span><span class="en">Each week's bulletin carries the order of worship and church news. Tap a date to open it.</span></p>
     </div>
 
+    <div class="cut"><span><span class="ko">교회 일정</span><span class="en">Church calendar</span></span></div>
+    <div class="mem">
+      <div class="sched">
+        <div class="mwk"><div class="mwh"><b><span class="ko">이번 주</span><span class="en">This week</span></b><span data-wk-week></span></div><div id="weekEvents"></div></div>
+        <div class="mwk"><div class="mwh"><b><span class="ko">다음 주</span><span class="en">Next week</span></b><span data-wk-next></span></div><div id="nextEvents"></div></div>
+      </div>
+      <div class="mwk" id="planBox" style="margin-top:12px" hidden><div class="mwh"><b><span class="ko">다가올 주요 일정</span><span class="en">What's ahead</span></b></div><div id="planList"></div></div>
+    </div>
+    <div class="mem"><div class="mem-row"><button class="mbtn" type="button" onclick="shareChurch()"><span class="mi g"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span><span class="mb"><span class="mt"><span class="ko">교회 주소 공유하기</span><span class="en">Share our church</span></span><span class="ms"><span class="ko">카톡 · 문자 · SNS로 초대</span><span class="en">Invite by KakaoTalk, text or social</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></button></div></div>
     <div class="tab-cta" style="margin-top:34px"><a href="/?tab=square"><span class="ko">지구촌 마당으로</span><span class="en">Back to Square</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
@@ -1429,7 +1438,7 @@ GM.board = { s:'[GMC] 나눔터 새 글',
     worship:[{ko:'주일 연합예배',en:'Sunday united worship',sel:'#wkHero'},{cut:'기도 벨트',en:'Prayer belt'},{cut:'지난 말씀',en:'Past messages'},{ko:'온라인 헌금',en:'Give online',href:'/give/'}],
     study:[{ko:'삶공부가 뭔가요?',en:'What is a Life Study?',sel:'#p-study .st-wrap'},{ko:'삶공부 과정 안내',en:'Life Study courses',href:'/life-study/'},{cut:'등록',en:'Register'},{cut:'첫걸음',en:'First steps'}],
     newgen:[{ko:'새 세대 소개',en:'About New Gen',sel:'#p-newgen .care-grid'},{ko:'헌아식 신청',en:'Child dedication',open:'heonasik'},{ko:'어린이 사역 문의',en:"Children's ministry",open:'children'},{ko:'청소년(GMC Y) 문의',en:'Youth (GMC Y)',open:'youth'}],
-    square:[{ko:'교회 소식 · 주보',en:'Church news · bulletin',href:'/square/news/'},{ko:'목회칼럼',en:"Pastor's column",href:'/corner/'},{ko:'나눔터',en:'Sharing board',href:'/square/board/'},{cut:'1대1 사역',en:'One-to-one ministry'},{cut:'교회 일정',en:'Church calendar'},{cut:'우리 교회 풍경',en:'Life at GMC'},{cut:'이웃 섬김',en:'Serving our neighbors'}]
+    square:[{ko:'교회 소식 · 주보',en:'Church news · bulletin',href:'/square/news/'},{ko:'목회칼럼',en:"Pastor's column",href:'/corner/'},{ko:'나눔터',en:'Sharing board',href:'/square/board/'},{cut:'1대1 사역',en:'One-to-one ministry'},{cut:'우리 교회 풍경',en:'Life at GMC'},{cut:'이웃 섬김',en:'Serving our neighbors'}]
   };
   var bar=document.querySelector('.topbar'); if(!bar) return;
   var home=!!document.getElementById('p-newcomer');
