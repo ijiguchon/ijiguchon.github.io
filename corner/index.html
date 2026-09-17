@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>목회자 코너 · 시애틀지구촌교회</title>
+<title>목회칼럼 · 시애틀지구촌교회</title>
 <meta name="description" content="시애틀지구촌교회는 가정에서 모이는 성경적 가정교회입니다. 영혼 구원하여 그리스도의 제자 만드는 교회 — 환영·목장·연합예배·삶공부·새 세대·지구촌 마당."/>
 <link rel="canonical" href="https://www.ijiguchon.org/corner/"/>
 <meta property="og:type" content="website"/>
@@ -752,8 +752,9 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 <section class="panel show sec" style="padding-top:34px">
   <div class="wrap">
     <div class="sec-eyebrow"><span class="ko">연합예배</span><span class="en">Worship</span></div>
-    <h2 class="sec-title"><span class="ko">목회자 코너</span><span class="en">Pastor's corner</span></h2>
+    <h2 class="sec-title"><span class="ko">목회칼럼</span><span class="en">Pastor's column</span></h2>
     <p class="sec-lead"><span class="ko">담임목사가 매주 전하는 목회칼럼을 모았습니다.</span><span class="en">Weekly columns from our lead pastor.</span></p>
+    <div style="text-align:center;margin:14px 0 4px"><button class="btn" type="button" onclick="openModal('topastor')" style="min-height:44px"><span class="ko">목사님께 한마디</span><span class="en">A word to the pastor</span></button></div>
     <div class="mem" id="cornerApp" style="max-width:820px">
       <div class="cb-tools" id="cbTools">
         <input id="cbSearch" type="search" placeholder="제목으로 찾기" aria-label="칼럼 검색">
@@ -796,7 +797,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
       <div class="fc">
         <div><a href="https://open.kakao.com/o/gJPNOAMi" target="_blank" rel="noopener"><span class="ko">지구촌 단톡방</span><span class="en">KakaoTalk room</span></a></div>
         <div><a href="/360/"><span class="ko">가정교회 360</span><span class="en">House Church 360</span></a></div>
-        <div><a href="/?tab=give"><span class="ko">온라인 헌금</span><span class="en">Give online</span></a> · 501(c)(3) · EIN 27-0003955</div>
+        <div><a href="/give/"><span class="ko">온라인 헌금</span><span class="en">Give online</span></a> · 501(c)(3) · EIN 27-0003955</div>
       </div>
     </div>
     <div class="fcopy">Copyright © <span class="yr">2026</span> <span class="ko">시애틀지구촌교회</span><span class="en">GMC of Greater Seattle</span>. All rights reserved. Powered by <a href="https://www.nanuriweb.com" target="_blank" rel="noopener">NanuriWeb</a></div>
@@ -1471,7 +1472,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
   }
   function showList(push){
     setMode(false); drawList();
-    document.title='목회자 코너 · 시애틀지구촌교회';
+    document.title='목회칼럼 · 시애틀지구촌교회';
     if(push) history.pushState({},'','/corner/');
   }
   function openItem(key,push){
@@ -1502,7 +1503,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
       if(navigator.share){ try{ await navigator.share(data); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
       try{ await navigator.clipboard.writeText(url); alert(gmEn()?'Link copied.':'칼럼 주소를 복사했습니다. 붙여넣기로 전해 주십시오.'); }catch(e){ window.prompt(gmEn()?'Copy this link':'아래 주소를 복사해 전해 주십시오', url); }
     };
-    document.title=t+' · 목회자 코너';
+    document.title=t+' · 목회칼럼';
     if(push) history.pushState({c:x.key},'','/corner/?c='+x.key);
     window.scrollTo({top:0});
   }
@@ -1538,7 +1539,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
   var M={
     newcomer:[{ko:'마음의 문',en:'Where to begin',sel:'#doors'},{ko:'환영 인사',en:'Welcome',href:'/greeting/'},{ko:'교회 소개',en:'About us',href:'/welcome/#about'},{ko:'사역자 소개',en:'Our pastors & staff',href:'/welcome/#team'},{ko:'자주 묻는 질문',en:'FAQ',href:'/faq/'},{ko:'첫 방문 · 오시는 길',en:'Your first visit · directions',href:'/welcome/#visit'}],
     mokjang:[{ko:'목장이란?',en:'What is a mokjang?',sel:'#p-mokjang .mj-intro'},{cut:'목장 소개',en:'Our house churches'},{ko:'목장 나눔지',en:'Sharing guide',sel:'#shareCard'},{ko:'세 축, 네 기둥',en:'Three axes & four pillars',href:'/house-church/pillars/'},{ko:'목장 개척',en:'Start a house church',open:'plant'}],
-    worship:[{ko:'주일 연합예배',en:'Sunday united worship',sel:'#wkHero'},{cut:'중보기도 벨트',en:'Prayer belt'},{cut:'지난 말씀',en:'Past messages'},{ko:'예배와 모임 · 새벽기도',en:'Worship & prayer times',href:'/gatherings/'},{ko:'목회자 코너',en:"Pastor's corner",href:'/corner/'},{ko:'온라인 헌금',en:'Give online',sel:'#give'}],
+    worship:[{ko:'주일 연합예배',en:'Sunday united worship',sel:'#wkHero'},{cut:'중보기도 벨트',en:'Prayer belt'},{cut:'지난 말씀',en:'Past messages'},{ko:'목회칼럼',en:"Pastor's column",href:'/corner/'},{ko:'온라인 헌금',en:'Give online',href:'/give/'}],
     study:[{ko:'삶공부가 뭔가요?',en:'What is a Life Study?',sel:'#p-study .st-wrap'},{ko:'삶공부 과정 안내',en:'Life Study courses',href:'/life-study/'},{cut:'등록',en:'Register'},{cut:'첫걸음',en:'First steps'}],
     newgen:[{ko:'새 세대 소개',en:'About New Gen',sel:'#p-newgen .care-grid'},{ko:'헌아식 신청',en:'Child dedication',open:'heonasik'},{ko:'어린이 사역 문의',en:"Children's ministry",open:'children'},{ko:'청소년(GMC Y) 문의',en:'Youth (GMC Y)',open:'youth'}],
     square:[{ko:'교회 소식 · 주보',en:'Church news · bulletin',href:'/square/news/'},{ko:'나눔터',en:'Sharing board',href:'/square/board/'},{cut:'함께할 봉사자를 찾습니다',en:'Volunteers welcome'},{cut:'교회 일정',en:'Church calendar'},{cut:'우리 교회 풍경',en:'Life at GMC'},{cut:'이웃 사랑',en:'Love your neighbor'}]
