@@ -179,8 +179,8 @@
   /* 푸터 — 진한 남색 박스 · 3열 · 밝은 글씨 · 위쪽 그림자 */
   body footer{padding:26px 0 30px;text-align:left;border-top:0;background:linear-gradient(180deg,var(--color-primary-hover) 0%,var(--color-primary) 45%,var(--color-primary-active) 100%);color:var(--color-text-inverse);box-shadow:inset 0 14px 28px -14px rgba(0,0,0,.45),0 -6px 24px rgba(26,53,96,.18);position:relative}
   body footer::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--color-accent-on-dark) 30%,var(--color-accent-on-dark) 70%,transparent)}
-  footer .fc-min{border-left:1px solid rgba(255,255,255,.14);padding-left:18px}footer .fc-min .fm-h{font-size:12px;font-weight:700;letter-spacing:.06em;opacity:.65;margin-bottom:4px}footer .fg{display:grid;grid-template-columns:1.05fr 1.2fr .95fr;gap:18px 26px;align-items:start}
-  @media(max-width:860px){ footer .fg{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 18px;font-size:13px} }
+  footer .fmin{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.12);text-align:center;font-size:12px;line-height:1.8}footer .fmin a{color:rgba(255,255,255,.72);font-weight:700;text-decoration:none;margin:0 10px;letter-spacing:.02em}footer .fmin a:hover{color:var(--color-accent-on-dark)}footer .fg{display:grid;grid-template-columns:1fr 1fr;gap:18px 26px;align-items:start}
+  @media(max-width:860px){ footer .fg{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;font-size:13px} }
   @media(max-width:460px){ footer .fg{grid-template-columns:1fr} }
   footer .fc{font-size:12px;color:rgba(255,255,255,.78);line-height:1.65}
   footer .fc a{color:var(--color-text-inverse);font-weight:700;text-decoration:none;text-shadow:0 1px 2px rgba(0,0,0,.35);transition:color .15s}
@@ -602,7 +602,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 }
 </style>
 <link id="gmc-name-font-link" rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Serif+KR:wght@700&text=%EC%8B%9C%EC%95%A0%ED%8B%80%EC%A7%80%EA%B5%AC%EC%B4%8C%EA%B5%90%ED%9A%8C">
-<style id="gmc-name-font">.brand b,.brand .wm b,footer .fc .nm{font-family:'Noto Serif KR','Gowun Batang',serif!important;font-weight:700!important;letter-spacing:-.3px}.tabs .tab{min-height:32px!important;padding-top:5px!important;padding-bottom:5px!important}.topbar .row{height:52px}@media(max-width:860px){.topbar .row{height:auto;padding-top:5px!important;padding-bottom:4px!important;row-gap:2px!important}.topbar .tabs{margin-top:0!important}}body:not(:has(#p-newcomer)) footer .fg{display:none}body:not(:has(#p-newcomer)) footer{padding:14px 0 16px}body:not(:has(#p-newcomer)) footer .fcopy{margin-top:0;padding-top:0;border-top:0}</style>
+<style id="gmc-name-font">.brand b,.brand .wm b,footer .fc .nm{font-family:'Noto Serif KR','Gowun Batang',serif!important;font-weight:700!important;letter-spacing:-.3px}.tabs .tab{min-height:32px!important;padding-top:5px!important;padding-bottom:5px!important}.topbar .row{height:52px}@media(max-width:860px){.topbar .row{height:auto;padding-top:5px!important;padding-bottom:4px!important;row-gap:2px!important}.topbar .tabs{margin-top:0!important}}body:not(:has(#p-newcomer)) footer .fg,body:not(:has(#p-newcomer)) footer .fmin{display:none}body:not(:has(#p-newcomer)) footer{padding:14px 0 16px}body:not(:has(#p-newcomer)) footer .fcopy{margin-top:0;padding-top:0;border-top:0}</style>
 </head>
 <body>
 <div class="topbar">
@@ -675,12 +675,8 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
         <div><a href="/360/"><span class="ko">가정교회 360</span><span class="en">House Church 360</span></a></div>
         <div><a href="/?tab=give"><span class="ko">온라인 헌금</span><span class="en">Give online</span></a> · 501(c)(3) · EIN 27-0003955</div>
       </div>
-      <div class="fc fc-min">
-        <div><a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener">HebronGuide</a></div>
-        <div><a href="https://hebronaltar.com" target="_blank" rel="noopener">HebronAltar</a></div>
-        <div><a href="https://kchurch911.com" target="_blank" rel="noopener">Kchurch911</a></div>
-      </div>
     </div>
+    <div class="fmin"><a href="https://hebronguide.com/seattle/" target="_blank" rel="noopener">HebronGuide</a><a href="https://hebronaltar.com" target="_blank" rel="noopener">HebronAltar</a><a href="https://kchurch911.com" target="_blank" rel="noopener">Kchurch911</a></div>
     <div class="fcopy">Copyright © <span class="yr">2026</span> <span class="ko">시애틀지구촌교회</span><span class="en">GMC of Greater Seattle</span>. All rights reserved. Powered by <a href="https://www.nanuriweb.com" target="_blank" rel="noopener">NanuriWeb</a></div>
     <script>document.querySelectorAll('footer .yr').forEach(function(e){ e.textContent=new Date().getFullYear(); });</script>
   </div>
