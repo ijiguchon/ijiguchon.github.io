@@ -875,7 +875,7 @@ var cv=document.querySelector('.hm-cv'); if(!cv||!cv.getContext) return;
 var N=innerWidth<600?560:760; cv.width=cv.height=N;
 var ctx=cv.getContext('2d'), fly=document.querySelector('.hm-fly');
 var LAT0=30.0*Math.PI/180, LON0=-100.0, SPIN=3000, CYCLE=36000;
-var img=new Image(); img.src='/images/earth-tex.jpg';
+var img=new Image(); img.onerror=function(){ if(/webp$/.test(img.src)) img.src='/images/earth-tex.jpg'; }; img.src='/images/earth-tex.webp';
 img.onload=function(){
   var tw=img.width, th=img.height/2, tc=document.createElement('canvas'); tc.width=tw; tc.height=th*2;
   var tx=tc.getContext('2d'); tx.drawImage(img,0,0); var T=tx.getImageData(0,0,tw,th*2).data;
@@ -933,9 +933,9 @@ img.onload=function(){
   </div></section>
 <style id="hq-more">@media(min-width:761px){.mstrip .ms-g{grid-template-columns:repeat(3,1fr)}}</style>  <div class="ps" id="ps">
     <div class="psbox">
-      <div class="psl on"><img src="/images/worship-current.jpg" alt=""><div class="pscap"><div class="pe"><span class="ko">주일연합예배</span><span class="en">Sunday united worship</span></div><div class="pt"><span class="ko">흩어진 목장이 한자리에 모입니다</span><span class="en">Scattered homes gather as one</span></div></div></div>
-      <div class="psl"><img src="/images/table-fellowship.jpg" alt=""><div class="pscap"><div class="pe"><span class="ko">식탁 교제</span><span class="en">Table fellowship</span></div><div class="pt"><span class="ko">온 세대가 둘러앉아 삶을 나눕니다</span><span class="en">Every generation, sharing life</span></div></div></div>
-      <div class="psl"><img src="/images/life-meal.jpg" alt=""><div class="pscap"><div class="pe"><span class="ko">목장 · 가정교회</span><span class="en">Mokjang · house church</span></div><div class="pt"><span class="ko">이스라엘 · 멕시코 · 인도네시아를 품은 목장</span><span class="en">House churches embracing Israel, Mexico &amp; Indonesia</span></div></div></div>
+      <div class="psl on"><img src="/images/worship-current.jpg" alt="" loading="lazy" decoding="async"><div class="pscap"><div class="pe"><span class="ko">주일연합예배</span><span class="en">Sunday united worship</span></div><div class="pt"><span class="ko">흩어진 목장이 한자리에 모입니다</span><span class="en">Scattered homes gather as one</span></div></div></div>
+      <div class="psl"><img src="/images/table-fellowship.jpg" alt="" loading="lazy" decoding="async"><div class="pscap"><div class="pe"><span class="ko">식탁 교제</span><span class="en">Table fellowship</span></div><div class="pt"><span class="ko">온 세대가 둘러앉아 삶을 나눕니다</span><span class="en">Every generation, sharing life</span></div></div></div>
+      <div class="psl"><img src="/images/life-meal.jpg" alt="" loading="lazy" decoding="async"><div class="pscap"><div class="pe"><span class="ko">목장 · 가정교회</span><span class="en">Mokjang · house church</span></div><div class="pt"><span class="ko">이스라엘 · 멕시코 · 인도네시아를 품은 목장</span><span class="en">House churches embracing Israel, Mexico &amp; Indonesia</span></div></div></div>
       <button class="psnav l" onclick="psGo(-1)" aria-label="이전"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
       <button class="psnav r" onclick="psGo(1)" aria-label="다음"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
       <div class="psdots" id="psDots"></div>
