@@ -1353,15 +1353,15 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
 </style>
 <script>
 GM.board = { s:'[GMC] 나눔터 새 글',
-  note:{ko:'보여질 이름 · 분류 · 제목 · 내용은 홈페이지 나눔터에 바로 공개됩니다. 이메일과 전화는 공개되지 않고, 연락이 필요할 때만 담당자가 봅니다.',en:'Your display name, category, title and message appear on the public sharing board right away. Email and phone are never shown and are seen only by our staff if we need to reach you.'},
+  note:{ko:'보여질 이름 · 분류 · 제목 · 내용은 홈페이지 나눔터에 바로 공개됩니다. 이메일은 공개되지 않고, 연락이 필요할 때만 담당자가 봅니다.',en:'Your display name, category, title and message appear on the public sharing board right away. Your email is never shown and is seen only by our staff if we need to reach you.'},
   ko:['나눔터에 글쓰기','간증 · 감사 · 칭찬 · 축하를 함께 나눠 주십시오. 고르신 목록에 바로 올라갑니다.','글 보내기','잘 받았습니다','나눔터에 올라갔습니다. 감사합니다.'],
   en:['Write a post','Share testimonies, thanks and celebrations. Your post appears in the list you choose right away.','Send','Received with thanks','It is now on the sharing board. Thank you.'],
   f:[{n:'보여질 이름',en:'Display name',t:'text',req:true,ph:'예) 홍길동 · 홍OO · 이스라엘 목장',phEn:'e.g. Grace K. · Israel house church'},
+     {n:'목장',en:'House church',t:'select',req:true,opts:[{ko:'이스라엘 목장',en:'Israel'},{ko:'멕시코 목장',en:'Mexico'},{ko:'인도네시아 목장',en:'Indonesia'},{ko:'GMC Y (청소년)',en:'GMC Y (Youth)'},{ko:'아직 목장이 없습니다',en:'Not in a house church yet'}]},
      {n:'분류',en:'Category',t:'select',req:true,opts:[{ko:'간증',en:'Testimony'},{ko:'감사',en:'Thanks'},{ko:'칭찬 · 축하',en:'Praise · celebration'},{ko:'나눔 · 소식',en:'Sharing · news'}]},
      {n:'제목',en:'Title',t:'text',req:true,ph:'한 줄 제목',phEn:'One-line title'},
      {n:'내용',en:'Content',t:'textarea',req:true,ph:'나누고 싶은 이야기 (개인적인 기도 제목은 기도 요청으로)',phEn:'Your story (personal prayer needs: use Prayer request)'},
-     {n:'이메일',en:'Email',t:'email',ph:'확인 연락용 · 공개되지 않습니다 (선택)',phEn:'For follow-up only · never shown (optional)'},
-     {n:'전화',en:'Phone',t:'tel',ph:'공개되지 않습니다 (선택)',phEn:'Never shown (optional)'}] };
+     {n:'이메일',en:'Email',t:'email',ph:'확인 연락용 · 공개되지 않습니다 (선택)',phEn:'For follow-up only · never shown (optional)'}] };
 (function(){
   var CH='<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>';
   var posts=[], cat='';
@@ -1380,7 +1380,7 @@ GM.board = { s:'[GMC] 나눔터 새 글',
   function card(p){
     var d=(p.date||'').split('-'), dd=d.length===3?(+d[1])+'/'+(+d[2]):'';
     return '<details class="bd-item"><summary><span class="bd-t">'+esc(p.title||'')+'</span>'
-      +'<span class="bd-m">'+esc(p.name||'')+(dd?' · '+dd:'')+'</span></summary>'
+      +'<span class="bd-m">'+esc(p.name||'')+(p.mj?' · '+esc(p.mj):'')+(dd?' · '+dd:'')+'</span></summary>'
       +'<div class="bd-b">'+esc(p.body||'').replace(/\n/g,'<br>')+'</div></details>';
   }
   function draw(){

@@ -1539,7 +1539,7 @@ function boardCard(p){
       +'<button class="mg-btn ghost" type="button" data-cancel="1">취소</button></div></div></div>';
   }
   return '<div class="mg-card'+(p.show?'':' off')+'"><div class="mg-top"><span class="mg-badge">'+esc(p.cat||'분류 없음')+'</span>'
-    +'<b style="color:var(--navy)">'+esc(p.name||'이름 없음')+'</b><span>'+esc(p.at)+'</span>'
+    +'<b style="color:var(--navy)">'+esc(p.name||'이름 없음')+'</b>'+(p.mj?'<span>'+esc(p.mj)+'</span>':'')+'<span>'+esc(p.at)+'</span>'
     +(p.show?'':'<span style="color:#9b2c2c;font-weight:800">내려둠</span>')+'</div>'
     +'<h4>'+esc(p.title)+'</h4><p>'+esc(p.body)+'</p>'
     +'<div class="mg-acts"><button class="mg-btn ghost" type="button" data-edit="b'+p.row+'">고치기</button>'
