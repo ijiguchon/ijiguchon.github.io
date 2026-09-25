@@ -731,7 +731,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 
 
 <style id="gmc-polish">:root{--font-display:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif!important;--font-scripture:'Gowun Batang','Noto Serif KR',serif}.doors .d-h,.sec-title,.gm-title,.st-h h3,.st-term h3,.dp-st h3,.hc-a h4,.care h4,.crs .ct,.gf h3,.mission-box h3,.wb .wc h4,.faq summary,.mbtn .mt,.hqb .qt,.wkc h3,.mstrip .ms-t,.stf summary .ft,.col-live .cb-t,.wk-hero .wt,.nc-card h3,.pscap .pt{font-family:var(--font-display)!important;letter-spacing:-.025em!important}.doors .d-h,.sec-title,.gm-title{font-weight:800!important;letter-spacing:-.04em!important;line-height:1.2!important;word-break:keep-all}.st-h h3,.st-term h3,.dp-st h3,.hc-a h4,.care h4,.gf h3,.mission-box h3,.wb .wc h4,.wkc h3,.stf summary .ft{font-weight:800!important}.doors .d-verse,.dp-verse,.wb .wbq,.give-word p,.d-knock,.wb .greet .gs{font-family:var(--font-scripture)!important;letter-spacing:0!important}.sec-lead{letter-spacing:-.01em;word-break:keep-all}.sec-eyebrow,.cut span{font-family:'Geist','Pretendard Variable',sans-serif!important;font-weight:600!important;font-size:12px!important;letter-spacing:.16em!important}.dp-st .n,.hc-p .n,.evt-d{font-family:'Geist','Pretendard Variable',sans-serif!important;letter-spacing:-.02em}@media(max-width:760px){.hqb .qs{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;line-height:1.35;word-break:keep-all}.hqb{align-items:flex-start}}@media(max-width:560px){.topbar .tabs{flex-wrap:nowrap!important;justify-content:space-between;gap:0;overflow-x:auto;padding:0 2px}.topbar .tabs .tab{font-size:12.5px;padding:7px 6px;letter-spacing:-.02em;white-space:nowrap}}.skip-link{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;border-radius:10px;background:var(--navy,#14213d);color:#fff;font-weight:700;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}.skip-link:focus{top:12px;outline:3px solid var(--gold,#B8924A);outline-offset:2px}.fcopy .flegal{display:inline-block;margin-left:10px}.fcopy .flegal a{color:inherit;text-decoration:underline;text-underline-offset:2px;margin-left:8px}</style>
-</head>
+<style id="nw-years">.nw-y{margin-top:10px;border:1px solid var(--line);border-radius:14px;background:var(--color-surface);overflow:hidden}.nw-y summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;min-height:48px;padding:0 16px}.nw-y summary::-webkit-details-marker{display:none}.nw-yt{font-size:14.5px;font-weight:800;letter-spacing:-.02em;color:var(--navy)}.nw-yc{flex:1;font-size:12.5px;color:var(--ink-3)}.nw-ya{width:16px;height:16px;flex:0 0 auto;fill:none;stroke:var(--gold-2);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}.nw-y[open] .nw-ya{transform:rotate(90deg)}.nw-yb{padding:2px 16px 8px;border-top:1px solid var(--line)}.nw-yb .nw-row:last-child{border-bottom:0}</style></head>
 <body><a class="skip-link" href="#main"><span class="ko">본문 바로가기</span><span class="en">Skip to content</span></a>
 <div class="topbar">
   <div class="row">
@@ -1402,15 +1402,28 @@ GM.board = { s:'[GMC] 나눔터 새 글',
         var pdf=/pdf/i.test(f.mimeType||'')||/\.pdf$/i.test(n), cur=by[iso];
         if(!cur || (pdf && !cur.pdf)) by[iso]={f:f,pdf:pdf};
       });
-      var dates=Object.keys(by).sort().reverse().slice(0,24);
+      var dates=Object.keys(by).sort().reverse();
       if(!dates.length){ box.innerHTML='<div class="mw-row"><span class="mw-tba">'+gmBi('곧 올라옵니다','Coming soon')+'</span></div>'; return; }
-      box.innerHTML=dates.map(function(iso,i){
+      function nwRow(iso,latest){
         var f=by[iso].f, d=new Date(iso+'T12:00:00');
         var title=(f.name||'').replace(/\.[a-z0-9]+$/i,'').replace(/\d{1,2}[.\-_]\d{1,2}[.\-_]\d{4}\s*/,'').replace(/^\s*\d{6}[_\s.\-]*/,'').trim()||'주보';
         return '<a class="nw-row" href="'+(f.webViewLink||('https://drive.google.com/file/d/'+f.id+'/view'))+'" target="_blank" rel="noopener">'
           +'<span class="nw-d">'+gmBi((d.getMonth()+1)+'월 '+d.getDate()+'일',MON_EN[d.getMonth()]+' '+d.getDate())+'</span>'
-          +'<span class="nw-t">'+esc(title)+(i===0?' <span class="bd-cat">'+gmBi('이번 주','Latest')+'</span>':'')+'</span><span class="nw-go">'+CH+'</span></a>';
-      }).join('');
+          +'<span class="nw-t">'+esc(title)+(latest?' <span class="bd-cat">'+gmBi('이번 주','Latest')+'</span>':'')+'</span><span class="nw-go">'+CH+'</span></a>';
+      }
+      var mon=dates[0].slice(0,7), recent=[], years={};
+      dates.forEach(function(iso){
+        if(iso.slice(0,7)===mon){ recent.push(iso); return; }
+        var y=iso.slice(0,4); (years[y]=years[y]||[]).push(iso);
+      });
+      var html=recent.map(function(iso,i){ return nwRow(iso,i===0); }).join('');
+      Object.keys(years).sort().reverse().forEach(function(y){
+        html+='<details class="nw-y"><summary><span class="nw-yt">'+gmBi(y+'년',y)+'</span>'
+          +'<span class="nw-yc">'+gmBi(years[y].length+'편',years[y].length+' bulletins')+'</span>'
+          +'<svg class="nw-ya" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary>'
+          +'<div class="nw-yb">'+years[y].map(function(iso){ return nwRow(iso,false); }).join('')+'</div></details>';
+      });
+      box.innerHTML=html;
     }catch(e){ box.innerHTML='<div class="mw-row"><span class="mw-tba">'+gmBi('잠시 후 다시 확인해 주십시오','Please check back shortly')+'</span></div>'; }
   }
   document.addEventListener('DOMContentLoaded',function(){
