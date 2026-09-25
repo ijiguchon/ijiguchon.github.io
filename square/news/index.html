@@ -1395,6 +1395,9 @@ GM.board = { s:'[GMC] 나눔터 새 글',
     return '나눔';
   }
   var MINE='gmcMyPosts', MYC='gmcMyComments';
+  (function(){ try{ var m=(location.search.match(/[?&]k=(\d+)-([A-Za-z0-9]+)/)||[]);
+    if(m[1]){ var o=JSON.parse(localStorage.getItem('gmcMyPosts')||'{}'); o[m[1]]=m[2];
+      localStorage.setItem('gmcMyPosts',JSON.stringify(o)); history.replaceState(null,'',location.pathname); } }catch(e){} })();
   function keys(k){ try{ return JSON.parse(localStorage.getItem(k)||'{}'); }catch(e){ return {}; } }
   function keep(k,row,key){ try{ var o=keys(k); o[row]=key; localStorage.setItem(k,JSON.stringify(o)); }catch(e){} }
   function drop(k,row){ try{ var o=keys(k); delete o[row]; localStorage.setItem(k,JSON.stringify(o)); }catch(e){} }
