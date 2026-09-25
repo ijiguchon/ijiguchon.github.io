@@ -1532,7 +1532,7 @@ function boardCard(p){
   if(st.edit==='b'+p.row){
     return '<div class="mg-card"><div class="mg-f">'
       +'<div class="mg-row2"><input id="eName" value="'+esc(p.name)+'" placeholder="보여질 이름">'
-      +'<select id="eCat">'+['간증','감사','칭찬 · 축하','나눔 · 소식'].map(function(c){return '<option'+(c===p.cat?' selected':'')+'>'+c+'</option>';}).join('')+'</select></div>'
+      +'<select id="eCat">'+['나눔 · 소식','감사 · 칭찬 · 축하','간증'].map(function(c){return '<option'+(c===p.cat?' selected':'')+'>'+c+'</option>';}).join('')+'</select></div>'
       +'<input id="eTitle" value="'+esc(p.title)+'" placeholder="제목">'
       +'<textarea id="eBody" placeholder="내용">'+esc(p.body)+'</textarea>'
       +'<div class="mg-acts"><button class="mg-btn" type="button" data-save="'+p.row+'">저장</button>'

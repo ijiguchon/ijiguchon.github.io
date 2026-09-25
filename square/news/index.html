@@ -1375,7 +1375,7 @@ GM.board = { s:'[GMC] 나눔터 새 글',
   en:['Write a post','Share testimonies, thanks and celebrations. Your post appears in the list you choose right away.','Send','Received with thanks','It is now on the sharing board. Thank you.'],
   f:[{n:'보여질 이름',en:'Display name',t:'text',req:true,ph:'예) 홍길동 · 홍OO · 이스라엘 목장',phEn:'e.g. Grace K. · Israel house church'},
      {n:'목장',en:'House church',t:'select',req:true,opts:[{ko:'이스라엘 목장',en:'Israel'},{ko:'멕시코 목장',en:'Mexico'},{ko:'인도네시아 목장',en:'Indonesia'},{ko:'GMC Y (청소년)',en:'GMC Y (Youth)'},{ko:'아직 목장이 없습니다',en:'Not in a house church yet'}]},
-     {n:'분류',en:'Category',t:'select',req:true,opts:[{ko:'간증',en:'Testimony'},{ko:'감사',en:'Thanks'},{ko:'칭찬 · 축하',en:'Praise · celebration'},{ko:'나눔 · 소식',en:'Sharing · news'}]},
+     {n:'분류',en:'Category',t:'select',req:true,opts:[{ko:'나눔 · 소식',en:'Sharing · news'},{ko:'감사 · 칭찬 · 축하',en:'Thanks · praise'},{ko:'간증',en:'Testimony'}]},
      {n:'제목',en:'Title',t:'text',req:true,ph:'한 줄 제목',phEn:'One-line title'},
      {n:'내용',en:'Content',t:'textarea',req:true,ph:'나누고 싶은 이야기 (개인적인 기도 제목은 기도 요청으로)',phEn:'Your story (personal prayer needs: use Prayer request)'},
      {n:'이메일',en:'Email',t:'email',ph:'확인 연락용 · 공개되지 않습니다 (선택)',phEn:'For follow-up only · never shown (optional)'}] };
@@ -1383,15 +1383,13 @@ GM.board = { s:'[GMC] 나눔터 새 글',
   var CH='<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>';
   var posts=[], comments=[], cat='';
   var CATS=[{k:'',ko:'전체',en:'All'}].concat(GM.board.f[1].opts.map(function(o){ return {k:o.ko,ko:o.ko,en:o.en}; }));
-  var SECS=[{k:'간증',ko:'간증',en:'Testimony',d:'하나님이 하신 일을 이야기합니다',dEn:'Stories of what God has done'},
-              {k:'감사',ko:'감사',en:'Thanks',d:'받은 은혜에 감사를 올립니다',dEn:'Thanks for grace received'},
-              {k:'칭찬',ko:'칭찬 · 축하',en:'Praise · celebration',d:'서로를 칭찬하고 함께 축하합니다',dEn:'Praise one another and celebrate together'},
-              {k:'나눔',ko:'나눔 · 소식',en:'Sharing · news',d:'함께 나눌 소식입니다',dEn:'News to share'}];
+  var SECS=[{k:'나눔',ko:'나눔 · 소식',en:'Sharing · news',d:'함께 나눌 소식입니다',dEn:'News to share'},
+              {k:'감사',ko:'감사 · 칭찬 · 축하',en:'Thanks · praise',d:'받은 은혜에 감사하고, 서로를 칭찬하며 축하합니다',dEn:'Thanks for grace received, praise and celebration'},
+              {k:'간증',ko:'간증',en:'Testimony',d:'하나님이 하신 일을 이야기합니다',dEn:'Stories of what God has done'}];
   function secOf(c){
     c=String(c||'');
-    if(c.indexOf('칭찬')>-1||c.indexOf('축하')>-1) return '칭찬';
     if(c.indexOf('간증')>-1) return '간증';
-    if(c.indexOf('감사')>-1) return '감사';
+    if(c.indexOf('감사')>-1||c.indexOf('칭찬')>-1||c.indexOf('축하')>-1) return '감사';
     return '나눔';
   }
   var MINE='gmcMyPosts', MYC='gmcMyComments';
@@ -1403,7 +1401,7 @@ GM.board = { s:'[GMC] 나눔터 새 글',
   function drop(k,row){ try{ var o=keys(k); delete o[row]; localStorage.setItem(k,JSON.stringify(o)); }catch(e){} }
   function send(body,done){ fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(body)}).then(function(r){return r.json();}).then(done).catch(function(){done({ok:false});}); }
   var editing=0;
-  function dotOf(k){ return k==='간증'?'t':k==='칭찬'?'c':k==='나눔'?'s':''; }
+  function dotOf(k){ return k==='간증'?'t':k==='감사'?'c':k==='나눔'?'s':''; }
   function card(p){
     var d=(p.date||'').split('-'), dd=d.length===3?(+d[1])+'/'+(+d[2]):'';
     var mine=keys(MINE)[p.row], myc=keys(MYC);
@@ -1423,7 +1421,7 @@ GM.board = { s:'[GMC] 나눔터 새 글',
     if(editing===p.row && mine){
       return '<details class="bd-item" open><summary>'+head+'<span class="bd-t">'+esc(p.title||'')+'</span></summary>'
         +'<div class="bd-ed"><input data-en="'+p.row+'" value="'+esc(p.name||'')+'" placeholder="보여질 이름">'
-        +'<select data-ec="'+p.row+'">'+['간증','감사','칭찬 · 축하','나눔 · 소식'].map(function(c){return '<option'+(c===p.cat?' selected':'')+'>'+c+'</option>';}).join('')+'</select>'
+        +'<select data-ec="'+p.row+'">'+['나눔 · 소식','감사 · 칭찬 · 축하','간증'].map(function(c){return '<option'+(c===p.cat?' selected':'')+'>'+c+'</option>';}).join('')+'</select>'
         +'<input data-et="'+p.row+'" value="'+esc(p.title||'')+'" placeholder="제목">'
         +'<textarea data-eb="'+p.row+'">'+esc(p.body||'')+'</textarea>'
         +'<div class="bd-own"><button type="button" data-esave="'+p.row+'">저장</button>'
