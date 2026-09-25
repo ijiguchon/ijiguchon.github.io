@@ -1539,11 +1539,11 @@ function boardCard(p){
       +'<button class="mg-btn ghost" type="button" data-cancel="1">취소</button></div></div></div>';
   }
   return '<div class="mg-card'+(p.show?'':' off')+'"><div class="mg-top"><span class="mg-badge">'+esc(p.cat||'분류 없음')+'</span>'
-    +'<b style="color:var(--navy)">'+esc(p.name||'이름 없음')+'</b>'+(p.mj?'<span>'+esc(p.mj)+'</span>':'')+'<span>'+esc(p.at)+'</span>'
-    +(p.show?'':'<span style="color:#9b2c2c;font-weight:800">내려둠</span>')+'</div>'
+    +'<b style="color:var(--navy)">'+esc(p.name||'이름 없음')+'</b><span>'+esc(p.at)+'</span>'
+    +(p.show?'':'<span style="color:#9b2c2c;font-weight:800">가려짐</span>')+'</div>'
     +'<h4>'+esc(p.title)+'</h4><p>'+esc(p.body)+'</p>'
     +'<div class="mg-acts"><button class="mg-btn ghost" type="button" data-edit="b'+p.row+'">고치기</button>'
-    +'<button class="mg-btn ghost" type="button" data-toggle="'+p.row+'" data-show="'+(p.show?'0':'1')+'">'+(p.show?'내리기':'다시 올리기')+'</button>'
+    +'<button class="mg-btn ghost" type="button" data-toggle="'+p.row+'" data-show="'+(p.show?'0':'1')+'">'+(p.show?'가리기':'다시 보이기')+'</button>'
     +'<button class="mg-btn warn" type="button" data-del="board:'+p.row+'">지우기</button></div></div>';
 }
 function calCard(c){
@@ -1566,9 +1566,9 @@ function calCard(c){
 function prayCard(p){
   return '<div class="mg-card'+(p.state==='보관'?' off':'')+'"><div class="mg-top"><span class="mg-badge">'+esc(p.kind)+'</span>'
     +'<b style="color:var(--navy)">'+esc(p.mj)+'</b><span>'+esc(p.name||'익명')+' · '+esc(p.at)+'</span>'
-    +(p.state==='보관'?'<span style="color:#9b2c2c;font-weight:800">내려둠</span>':'')+'</div>'
+    +(p.state==='보관'?'<span style="color:#9b2c2c;font-weight:800">가려짐</span>':'')+'</div>'
     +'<p>'+esc(p.text)+'</p>'
-    +(p.state==='보관'?'':'<div class="mg-acts"><button class="mg-btn ghost" type="button" data-prayhide="'+p.row+'">내리기</button>'
+    +(p.state==='보관'?'':'<div class="mg-acts"><button class="mg-btn ghost" type="button" data-prayhide="'+p.row+'">가리기</button>'
     +'<button class="mg-btn warn" type="button" data-del="pray:'+p.row+'">지우기</button></div>')+'</div>';
 }
 function render(){
@@ -1598,9 +1598,9 @@ function render(){
     act({what:'board',act:'save',row:b.getAttribute('data-save'),name:document.getElementById('eName').value,
          cat:document.getElementById('eCat').value,title:document.getElementById('eTitle').value,body:document.getElementById('eBody').value},'고쳤습니다.'); }; });
   app.querySelectorAll('[data-toggle]').forEach(function(b){ b.onclick=function(){
-    act({what:'board',act:b.getAttribute('data-show')==='1'?'show':'hide',row:b.getAttribute('data-toggle')},b.getAttribute('data-show')==='1'?'다시 올렸습니다.':'내렸습니다.'); }; });
+    act({what:'board',act:b.getAttribute('data-show')==='1'?'show':'hide',row:b.getAttribute('data-toggle')},b.getAttribute('data-show')==='1'?'다시 보이게 했습니다.':'가렸습니다.'); }; });
   app.querySelectorAll('[data-prayhide]').forEach(function(b){ b.onclick=function(){
-    act({what:'pray',act:'hide',row:b.getAttribute('data-prayhide')},'내렸습니다.'); }; });
+    act({what:'pray',act:'hide',row:b.getAttribute('data-prayhide')},'가렸습니다.'); }; });
   app.querySelectorAll('[data-del]').forEach(function(b){ b.onclick=function(){
     var v=b.getAttribute('data-del').split(':');
     if(!confirm('이 글을 완전히 지울까요? 되돌릴 수 없습니다.')) return;
