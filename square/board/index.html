@@ -1187,7 +1187,7 @@ function gmRender(id){
     +'<div class="gm-sheet"><div class="gm-head"><div class="gm-title">'+esc(L[0])+'</div><div class="gm-sub">'+esc(L[1])+'</div><button class="gm-x" type="button" onclick="closeModal(\''+id+'\')" aria-label="닫기">&times;</button></div>'
     +'<div class="gm-body" id="gm-'+id+'-body"><form onsubmit="submitForm(event,\''+id+'\')">'+m.f.map(gmField).join('')
     +'<button type="submit" class="gm-send">'+esc(L[2])+'</button>'
-    +'<p class="gm-note">'+(gmEn()?'Your details go only to the responsible staff member.':'보내주신 정보는 담당 사역자에게만 전달되며, 다른 목적으로 쓰이지 않습니다.')+'</p></form>'
+    +'<p class="gm-note">'+(m.note?(gmEn()?m.note.en:m.note.ko):(gmEn()?'Your details go only to the responsible staff member.':'보내주신 정보는 담당 사역자에게만 전달되며, 다른 목적으로 쓰이지 않습니다.'))+'</p></form>'
     +(m.aside?('<a class="gm-aside" href="'+m.aside.url+'" target="_blank" rel="noopener"><b>'+esc((gmEn()?m.aside.en:m.aside.ko)[0])+'</b><span class="d">'+esc((gmEn()?m.aside.en:m.aside.ko)[1])+'</span><span class="c">'+esc((gmEn()?m.aside.en:m.aside.ko)[2])+' →</span></a>'):'')
     +'</div><div class="gm-ok" id="gm-'+id+'-ok"><div class="ck"><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></svg></div><div class="o1">'+esc(L[3])+'</div><div class="o2">'+esc(L[4])+'</div></div></div></div>';
 }
@@ -1353,6 +1353,7 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
 </style>
 <script>
 GM.board = { s:'[GMC] 나눔터 새 글',
+  note:{ko:'보여질 이름 · 분류 · 제목 · 내용은 홈페이지 나눔터에 바로 공개됩니다. 이메일과 전화는 공개되지 않고, 연락이 필요할 때만 담당자가 봅니다.',en:'Your display name, category, title and message appear on the public sharing board right away. Email and phone are never shown and are seen only by our staff if we need to reach you.'},
   ko:['나눔터에 글쓰기','간증 · 감사 · 칭찬 · 축하를 함께 나눠 주십시오. 고르신 목록에 바로 올라갑니다.','글 보내기','잘 받았습니다','나눔터에 올라갔습니다. 감사합니다.'],
   en:['Write a post','Share testimonies, thanks and celebrations. Your post appears in the list you choose right away.','Send','Received with thanks','It is now on the sharing board. Thank you.'],
   f:[{n:'보여질 이름',en:'Display name',t:'text',req:true,ph:'예) 홍길동 · 홍OO · 이스라엘 목장',phEn:'e.g. Grace K. · Israel house church'},

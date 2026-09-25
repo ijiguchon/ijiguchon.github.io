@@ -1284,7 +1284,7 @@ function gmRender(id){
     +'<div class="gm-sheet"><div class="gm-head"><div class="gm-title">'+esc(L[0])+'</div><div class="gm-sub">'+esc(L[1])+'</div><button class="gm-x" type="button" onclick="closeModal(\''+id+'\')" aria-label="닫기">&times;</button></div>'
     +'<div class="gm-body" id="gm-'+id+'-body"><form onsubmit="submitForm(event,\''+id+'\')">'+m.f.map(gmField).join('')
     +'<button type="submit" class="gm-send">'+esc(L[2])+'</button>'
-    +'<p class="gm-note">'+(gmEn()?'Your details go only to the responsible staff member.':'보내주신 정보는 담당 사역자에게만 전달되며, 다른 목적으로 쓰이지 않습니다.')+'</p></form>'
+    +'<p class="gm-note">'+(m.note?(gmEn()?m.note.en:m.note.ko):(gmEn()?'Your details go only to the responsible staff member.':'보내주신 정보는 담당 사역자에게만 전달되며, 다른 목적으로 쓰이지 않습니다.'))+'</p></form>'
     +(m.aside?('<a class="gm-aside" href="'+m.aside.url+'" target="_blank" rel="noopener"><b>'+esc((gmEn()?m.aside.en:m.aside.ko)[0])+'</b><span class="d">'+esc((gmEn()?m.aside.en:m.aside.ko)[1])+'</span><span class="c">'+esc((gmEn()?m.aside.en:m.aside.ko)[2])+' →</span></a>'):'')
     +'</div><div class="gm-ok" id="gm-'+id+'-ok"><div class="ck"><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></svg></div><div class="o1">'+esc(L[3])+'</div><div class="o2">'+esc(L[4])+'</div></div></div></div>';
 }
