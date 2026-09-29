@@ -1220,7 +1220,7 @@ img.onload=function(){
     GM.lifecoach = { s:"[GMC] 라이프 코칭 신청",
       ko:["라이프 코칭","김성수 목사와 30분, 인생을 나누는 시간입니다.","신청하기","신청되었습니다","담임목사님이 곧 연락드리겠습니다."],
       en:["Life coaching","A 30-minute conversation with Pastor Sung Soo Kim about your life.","Request","Received","Pastor Kim will reach out soon."],
-      f:[F_NAME, F_MAIL,
+      f:[F_NAME, F_MAIL, {n:"전화번호",en:"Phone",t:"tel",ph:"(선택)",phEn:"(optional)"},
          {n:"나누고 싶은 주제",en:"What you want to talk about",t:"textarea",
           ph:"진로, 인생의 방향, 고민 — 무엇이든 편하게 (선택)",phEn:"Career, direction, or anything on your mind (optional)"}] };
     if(typeof gmBuild === "function") gmBuild();
@@ -1235,7 +1235,7 @@ img.onload=function(){
     GM.engtalk = { s:"[GMC] 영어 톡타임 참여 신청",
       ko:["영어 톡타임 참여 신청","주일 예배 후 1시간 30분, Garrett Woods와 함께합니다.","신청하기","신청되었습니다","곧 안내해 드리겠습니다."],
       en:["English Talk Time sign-up","90 minutes with Garrett Woods, right after Sunday worship.","Sign up","Received","We will follow up soon."],
-      f:[F_NAME, F_MAIL,
+      f:[F_NAME, F_MAIL, {n:"전화번호",en:"Phone",t:"tel",ph:"(선택)",phEn:"(optional)"},
          {n:"나누고 싶은 주제",en:"Topic you would like to talk about",t:"textarea",
           ph:"궁금한 주제나 나누고 싶은 이야기 (선택)",phEn:"Anything you would like to talk about (optional)"}] };
     if(typeof gmBuild === "function") gmBuild();
