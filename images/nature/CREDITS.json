@@ -124,5 +124,10 @@
   "source": "Unsplash",
   "page": "https://unsplash.com/photos/HQorO9JqAEE",
   "license": "Unsplash License (free for commercial use)"
+ },
+ "study-group": {
+  "photographer": "시애틀지구촌교회",
+  "source": "church own photo (2026-07-18 NW Shepherds Retreat, small-group sharing)",
+  "license": "church-owned; participants' consent to be confirmed by pastor"
  }
 }
