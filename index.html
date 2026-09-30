@@ -903,10 +903,10 @@ var cv=document.querySelector('.hm-cv'); if(!cv||!cv.getContext) return;
 var N=innerWidth<600?560:760; cv.width=cv.height=N;
 var ctx=cv.getContext('2d'), fly=document.querySelector('.hm-fly');
 var LAT0=30.0*Math.PI/180, LON0=-100.0, SPIN=3000, CYCLE=36000;
-var img=new Image(); img.onerror=function(){ if(/webp$/.test(img.src)) img.src='/images/earth-tex.jpg'; }; img.src='/images/earth-tex.webp';
+var img=new Image(); img.onerror=function(){ if(/webp$/.test(img.src)) img.src='/images/earth-tex.jpg'; }; (window.requestIdleCallback||function(f){setTimeout(f,300)})(function(){ img.src='/images/earth-tex.webp'; },{timeout:900});
 img.onload=function(){
-  var tw=img.width, th=img.height/2, tc=document.createElement('canvas'); tc.width=tw; tc.height=th*2;
-  var tx=tc.getContext('2d'); tx.drawImage(img,0,0); var T=tx.getImageData(0,0,tw,th*2).data;
+  var S=Math.min(img.width,innerWidth<600?1024:1536), tw=S, th=S/2, tc=document.createElement('canvas'); tc.width=tw; tc.height=th*2;
+  var tx=tc.getContext('2d'); tx.drawImage(img,0,0,S,S); var T=tx.getImageData(0,0,tw,th*2).data;
   var out=ctx.createImageData(N,N), O=out.data, R=N/2*0.9959, c0=N/2, cl=Math.cos(LAT0), sl=Math.sin(LAT0);
   var cap=Math.ceil(N*N*0.8), cnt=0, pix=new Int32Array(cap), row=new Int32Array(cap), lonU=new Float32Array(cap), wd=new Float32Array(cap), sh=new Float32Array(cap), at=new Float32Array(cap);
   var Lx=-0.72,Ly=0.32,Lz=0.62, ln=Math.sqrt(Lx*Lx+Ly*Ly+Lz*Lz); Lx/=ln; Ly/=ln; Lz/=ln;
