@@ -1028,7 +1028,7 @@ document.addEventListener('DOMContentLoaded', function(){
 <script>
 (function(){
   var M={
-    newcomer:[{ko:'마음의 문',en:'Where to begin',sel:'#doors'},{ko:'환영 인사',en:'Welcome',href:'/greeting/'},{ko:'교회 소개',en:'About us',href:'/welcome/#about'},{ko:'사역자 소개',en:'Our pastors & staff',href:'/welcome/#team'},{ko:'자주 묻는 질문',en:'FAQ',href:'/faq/'},{ko:'첫 방문 · 오시는 길',en:'Your first visit · directions',href:'/welcome/#visit'}],
+    newcomer:[{ko:'마음의 문',en:'Where to begin',sel:'#doors'},{ko:'환영 인사',en:'Welcome',href:'/greeting/'},{ko:'교회 소개',en:'About us',href:'/welcome/#about'},{ko:'사역자',en:'Pastors & staff',href:'/welcome/#team'},{ko:'자주 묻는 질문',en:'FAQ',href:'/faq/'},{ko:'첫 방문 · 오시는 길',en:'Your first visit · directions',href:'/welcome/#visit'}],
     mokjang:[{ko:'목장이란?',en:'What is a mokjang?',sel:'#p-mokjang .mj-intro'},{cut:'목장 소개',en:'Our house churches'},{ko:'목장 나눔지',en:'Sharing guide',sel:'#shareCard'},{ko:'세 축, 네 기둥',en:'Three axes & four pillars',href:'/house-church/pillars/'},{ko:'우리 목장 기도 · 축하',en:'Prayer & celebration',href:'/house-church/prayer/'},{ko:'목장 개척',en:'Start a house church',open:'plant'}],
     worship:[{ko:'주일연합예배',en:'Sunday united worship',sel:'#wkHero'},{cut:'공동기도',en:'Church prayer'},{cut:'지난 말씀',en:'Past messages'},{ko:'온라인 헌금',en:'Give online',href:'/give/'}],
     study:[{ko:'삶공부가 뭔가요?',en:'What is a Life Study?',sel:'#p-study .st-wrap'},{cut:'기본 과정',en:'Core courses'},{cut:'선택 과정',en:'Electives'},{cut:'등록',en:'Register'},{cut:'첫걸음',en:'First steps'}],
@@ -1039,7 +1039,7 @@ document.addEventListener('DOMContentLoaded', function(){
   var home=!!document.getElementById('p-newcomer');
   var hov=window.matchMedia&&window.matchMedia('(hover:hover)').matches;
   var panel=document.createElement('div'); panel.className='tmenu'; panel.hidden=true; bar.appendChild(panel);
-  var cur=null, hideT=null;
+  var cur=null, hideT=null, openedAt=0;
   function off(){ return (bar.offsetHeight||60)+14; }
   function findCut(label){ var cs=document.querySelectorAll('.cut'); for(var i=0;i<cs.length;i++){ var k=cs[i].querySelector('.ko'); if(k&&k.textContent.trim()===label) return cs[i]; } return null; }
   function target(it){ return it.sel?document.querySelector(it.sel):(it.cut?findCut(it.cut):null); }
@@ -1058,7 +1058,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var br=bar.getBoundingClientRect(), r=btn.getBoundingClientRect(), w=Math.min(290, window.innerWidth-24);
     var left=Math.max(12, Math.min(r.left, window.innerWidth-w-12));
     panel.style.width=w+'px'; panel.style.left=(left-br.left)+'px'; panel.style.top=(r.bottom-br.top+6)+'px';
-    panel.hidden=false; cur=tab;
+    panel.hidden=false; cur=tab; openedAt=Date.now();
   }
   document.querySelectorAll('.tabs .tab').forEach(function(btn){
     var tab=btn.getAttribute('data-tab');
@@ -1083,7 +1083,7 @@ document.addEventListener('DOMContentLoaded', function(){
   document.addEventListener('click',function(e){ if(!panel.hidden&&!panel.contains(e.target)) close(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
   window.addEventListener('resize',close);
-  if(!hov) window.addEventListener('scroll',function(){ if(!panel.hidden) close(); },{passive:true});
+  if(!hov) window.addEventListener('scroll',function(){ if(!panel.hidden&&Date.now()-openedAt>800) close(); },{passive:true});
   if(home) document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){
     var q=new URLSearchParams(location.search), g=q.get('go'), t=q.get('tab');
     if(g!==null&&t&&M[t]&&M[t][+g]){ var el=target(M[t][+g]); if(el) scrollTo(el,false); }
