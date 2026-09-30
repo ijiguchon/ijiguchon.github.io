@@ -836,6 +836,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 <style id="a11y-tap-css">.mjw-meta a[href^="mailto:"],.sl-h a,.tab-cta a{display:inline-flex;align-items:center;min-height:44px}.mjw-meta a[href^="mailto:"]{padding:0 2px}</style>
 <style id="a11y-tap2-css">.topbar .tabs .tab,.topbar .lang{position:relative}.topbar .tabs .tab::after{content:"";position:absolute;left:-3px;right:-3px;top:-7px;bottom:-7px}.topbar .lang::after{content:"";position:absolute;left:-4px;right:-4px;top:-7px;bottom:-7px}.pgnav button{min-height:44px}</style>
 <style id="foot-tap-css">footer a{position:relative}footer a::after{content:"";position:absolute;left:-4px;right:-4px;top:-15px;bottom:-15px}footer .fc>div,footer .fmin{margin-top:4px}</style>
+<style id="tm-open-css">body.hm-home.hm-intro .topbar.tm-open{transform:none!important;opacity:1!important;pointer-events:auto!important}</style>
 </head>
 <body><a class="skip-link" href="#main"><span class="ko">본문 바로가기</span><span class="en">Skip to content</span></a>
 <div class="topbar">
@@ -1465,7 +1466,7 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
   function findCut(label){ var cs=document.querySelectorAll('.cut'); for(var i=0;i<cs.length;i++){ var k=cs[i].querySelector('.ko'); if(k&&k.textContent.trim()===label) return cs[i]; } return null; }
   function target(it){ return it.sel?document.querySelector(it.sel):(it.cut?findCut(it.cut):null); }
   function scrollTo(el,smooth){ var y=el.getBoundingClientRect().top+window.pageYOffset-off(); window.scrollTo({top:y,behavior:smooth?'smooth':'auto'}); }
-  function close(){ panel.hidden=true; cur=null; }
+  function close(){ panel.hidden=true; cur=null; bar.classList.remove('tm-open'); }
   function goItem(tab,i){ var it=M[tab][i]; close();
     if(it.href){ location.href=it.href; return; }
     if(!home){ location.href='/?tab='+tab+(it.open?'&open='+it.open:'&go='+i); return; }
@@ -1479,7 +1480,7 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
     var br=bar.getBoundingClientRect(), r=btn.getBoundingClientRect(), w=Math.min(290, window.innerWidth-24);
     var left=Math.max(12, Math.min(r.left, window.innerWidth-w-12));
     panel.style.width=w+'px'; panel.style.left=(left-br.left)+'px'; panel.style.top=(r.bottom-br.top+6)+'px';
-    panel.hidden=false; cur=tab; openedAt=Date.now();
+    panel.hidden=false; cur=tab; openedAt=Date.now(); bar.classList.add('tm-open');
   }
   document.querySelectorAll('.tabs .tab').forEach(function(btn){
     var tab=btn.getAttribute('data-tab');
@@ -1493,7 +1494,8 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
       },true);
     }
     if(!tab||!M[tab]) return;
-    if(home) btn.addEventListener('click',function(e){ e.stopPropagation(); render(tab,btn); });
+    if(home&&tab==='newcomer') btn.addEventListener('click',function(e){ e.preventDefault(); e.stopImmediatePropagation(); if(cur===tab&&!panel.hidden){ close(); return; } render(tab,btn); },true);
+    else if(home) btn.addEventListener('click',function(e){ e.stopPropagation(); render(tab,btn); });
     if(hov){
       btn.addEventListener('mouseenter',function(){ render(tab,btn); });
       btn.addEventListener('mouseleave',function(){ hideT=setTimeout(close,280); });

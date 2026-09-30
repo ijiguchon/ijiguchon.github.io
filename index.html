@@ -869,6 +869,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 <style id="plant-hl-css">.mbtn.plant{position:relative;margin-top:16px;background:linear-gradient(135deg,var(--color-primary,#14213d) 0%,#24406f 100%);border:1.5px solid var(--color-accent,#B8924A);color:#fff;box-shadow:0 10px 26px rgba(20,33,61,.28)}.mbtn.plant .mt{color:#fff;font-size:17px}.mbtn.plant .ms{color:#F3E6C8}.mbtn.plant .mg svg{stroke:#E8C77E}.mbtn.plant:hover{box-shadow:0 14px 32px rgba(20,33,61,.34)}.mbtn.plant::before{content:"교회를 세우는 교회";position:absolute;top:-12px;left:16px;padding:3px 12px;border-radius:999px;background:var(--color-accent,#B8924A);color:#14213d;font-size:12.5px;font-weight:800;letter-spacing:.02em}body.lang-en .mbtn.plant::before{content:"A church that plants churches"}.mbtn.plant:focus-visible{outline:3px solid #E8C77E;outline-offset:2px}</style>
 <style id="care-note-mail-css">.care-note a[href^="mailto:"]{color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px}</style>
 <style id="give-way-hl-css">.sq-ways .pw-ways{background:linear-gradient(135deg,var(--color-primary,#14213d) 0%,#24406f 100%);border:1.5px solid var(--color-accent,#B8924A);box-shadow:0 10px 26px rgba(20,33,61,.26);padding:20px 20px 18px;border-radius:16px}.sq-ways .pw-lead{color:#F3E6C8;font-size:15px;font-weight:600}.sq-ways .pw-row{margin-top:14px}.sq-ways .pw-btn.gold{min-height:48px;padding:0 20px;font-size:15.5px;color:#14213d;background:linear-gradient(180deg,#F3DA9B 0%,#E2BB63 55%,#C99A45 100%);box-shadow:0 8px 20px rgba(0,0,0,.28)}.sq-ways .pw-btn.gold svg{stroke:#14213d}.sq-ways .pw-btn.gold:focus-visible{outline:3px solid #F3DA9B;outline-offset:3px}</style>
+<style id="tm-open-css">body.hm-home.hm-intro .topbar.tm-open{transform:none!important;opacity:1!important;pointer-events:auto!important}</style>
 </head>
 <body><script id="hm-early-js">(function(){try{var t=new URLSearchParams(location.search).get("tab");if(!t||t==="newcomer"){document.body.classList.add("hm-home","hm-intro");}}catch(e){}})();</script><a class="skip-link" href="#main"><span class="ko">본문 바로가기</span><span class="en">Skip to content</span></a>
 
@@ -1894,7 +1895,7 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
   function findCut(label){ var cs=document.querySelectorAll('.cut'); for(var i=0;i<cs.length;i++){ var k=cs[i].querySelector('.ko'); if(k&&k.textContent.trim()===label) return cs[i]; } var ds=document.querySelectorAll('details.sqf'); for(var j=0;j<ds.length;j++){ var t=ds[j].querySelector('.sqf-t .ko'); if(t&&t.textContent.trim()===label){ ds[j].open=true; return ds[j]; } } return null; }
   function target(it){ return it.sel?document.querySelector(it.sel):(it.cut?findCut(it.cut):null); }
   function scrollTo(el,smooth){ var y=el.getBoundingClientRect().top+window.pageYOffset-off(); window.scrollTo({top:y,behavior:smooth?'smooth':'auto'}); }
-  function close(){ panel.hidden=true; cur=null; }
+  function close(){ panel.hidden=true; cur=null; bar.classList.remove('tm-open'); }
   function goItem(tab,i){ var it=M[tab][i]; close();
     if(it.href){ location.href=it.href; return; }
     if(!home){ location.href='/?tab='+tab+(it.open?'&open='+it.open:'&go='+i); return; }
@@ -1908,7 +1909,7 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
     var br=bar.getBoundingClientRect(), r=btn.getBoundingClientRect(), w=Math.min(290, window.innerWidth-24);
     var left=Math.max(12, Math.min(r.left, window.innerWidth-w-12));
     panel.style.width=w+'px'; panel.style.left=(left-br.left)+'px'; panel.style.top=(r.bottom-br.top+6)+'px';
-    panel.hidden=false; cur=tab; openedAt=Date.now();
+    panel.hidden=false; cur=tab; openedAt=Date.now(); bar.classList.add('tm-open');
   }
   document.querySelectorAll('.tabs .tab').forEach(function(btn){
     var tab=btn.getAttribute('data-tab');
@@ -1922,7 +1923,8 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
       },true);
     }
     if(!tab||!M[tab]) return;
-    if(home) btn.addEventListener('click',function(e){ e.stopPropagation(); render(tab,btn); });
+    if(home&&tab==='newcomer') btn.addEventListener('click',function(e){ e.preventDefault(); e.stopImmediatePropagation(); if(cur===tab&&!panel.hidden){ close(); return; } render(tab,btn); },true);
+    else if(home) btn.addEventListener('click',function(e){ e.stopPropagation(); render(tab,btn); });
     if(hov){
       btn.addEventListener('mouseenter',function(){ render(tab,btn); });
       btn.addEventListener('mouseleave',function(){ hideT=setTimeout(close,280); });
