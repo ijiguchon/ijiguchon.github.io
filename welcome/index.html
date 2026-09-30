@@ -702,6 +702,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 <style id="venue-until-css">.loc-until{display:inline-block;margin-top:4px;font-size:13px;font-weight:600;color:var(--color-text-secondary,#4a4f5a)}</style>
 <style id="a11y-tap-css">.mjw-meta a[href^="mailto:"],.sl-h a,.tab-cta a{display:inline-flex;align-items:center;min-height:44px}.mjw-meta a[href^="mailto:"]{padding:0 2px}</style>
 <style id="a11y-tap2-css">.topbar .tabs .tab,.topbar .lang{position:relative}.topbar .tabs .tab::after{content:"";position:absolute;left:-3px;right:-3px;top:-7px;bottom:-7px}.topbar .lang::after{content:"";position:absolute;left:-4px;right:-4px;top:-7px;bottom:-7px}.pgnav button{min-height:44px}</style>
+<style id="foot-tap-css">footer a{position:relative}footer a::after{content:"";position:absolute;left:-4px;right:-4px;top:-15px;bottom:-15px}footer .fc>div,footer .fmin{margin-top:4px}</style>
 </head>
 <body><a class="skip-link" href="#main"><span class="ko">본문 바로가기</span><span class="en">Skip to content</span></a>
 <div class="topbar">
@@ -1571,6 +1572,18 @@ function show(from,body){
  d.addEventListener('keydown',function(k){if(k.key==='Escape')x.onclick();});
  c.focus();
 }
+})();</script>
+<script id="a11y-labels-js">(function(){
+var n=0,q='input:not([type=hidden]):not([type=submit]):not([type=button]):not([type=image]),textarea,select',t=0;
+function fix(){[].forEach.call(document.querySelectorAll(q),function(c){
+ if(c.getAttribute('aria-label')||c.getAttribute('aria-labelledby')||(c.labels&&c.labels.length))return;
+ var s=c.previousElementSibling,p=c.parentElement,l=null;
+ if(s&&s.tagName==='LABEL')l=s;else if(p){for(var i=0;i<p.children.length;i++){if(p.children[i].tagName==='LABEL'){l=p.children[i];break;}}}
+ if(l&&!l.htmlFor&&!l.contains(c)){if(!c.id)c.id='lbl-'+(++n)+'-'+Math.random().toString(36).slice(2,6);l.htmlFor=c.id;return;}
+ var x=c.getAttribute('placeholder')||c.getAttribute('title')||c.getAttribute('name');if(x)c.setAttribute('aria-label',x);});}
+function later(){clearTimeout(t);t=setTimeout(fix,120);}
+fix();
+if(window.MutationObserver)new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});
 })();</script>
 </body>
 </html>

@@ -1660,5 +1660,17 @@ window.addEventListener('pageshow',function(e){ if(e.persisted)check(); });
 window.addEventListener('online',check);
 setInterval(check,EVERY);
 })();</script>
+<script id="a11y-labels-js">(function(){
+var n=0,q='input:not([type=hidden]):not([type=submit]):not([type=button]):not([type=image]),textarea,select',t=0;
+function fix(){[].forEach.call(document.querySelectorAll(q),function(c){
+ if(c.getAttribute('aria-label')||c.getAttribute('aria-labelledby')||(c.labels&&c.labels.length))return;
+ var s=c.previousElementSibling,p=c.parentElement,l=null;
+ if(s&&s.tagName==='LABEL')l=s;else if(p){for(var i=0;i<p.children.length;i++){if(p.children[i].tagName==='LABEL'){l=p.children[i];break;}}}
+ if(l&&!l.htmlFor&&!l.contains(c)){if(!c.id)c.id='lbl-'+(++n)+'-'+Math.random().toString(36).slice(2,6);l.htmlFor=c.id;return;}
+ var x=c.getAttribute('placeholder')||c.getAttribute('title')||c.getAttribute('name');if(x)c.setAttribute('aria-label',x);});}
+function later(){clearTimeout(t);t=setTimeout(fix,120);}
+fix();
+if(window.MutationObserver)new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});
+})();</script>
 </body>
 </html>
