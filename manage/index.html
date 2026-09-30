@@ -1673,5 +1673,34 @@ window.addEventListener('pageshow',function(e){ if(e.persisted)check(); });
 window.addEventListener('online',check);
 setInterval(check,EVERY);
 })();</script>
+<script id="sms-helper-js">(function(){
+var links=document.querySelectorAll('a[href^="sms:"]'); if(!links.length)return;
+var ua=navigator.userAgent||'',ios=/iPhone|iPad|iPod/i.test(ua)||(/Mac/.test(navigator.platform||'')&&navigator.maxTouchPoints>1),mobile=ios||/Android|Mobile/i.test(ua);
+var NUM='425-350-0191',TEL='+14253500191',en=function(){return document.documentElement.lang==='en'||document.body.classList.contains('lang-en');};
+[].forEach.call(links,function(a){
+ var body=a.getAttribute('data-sms-body');
+ if(mobile&&body)a.setAttribute('href','sms:'+TEL+(ios?'&':'?')+'body='+encodeURIComponent(body));
+ if(!mobile)a.addEventListener('click',function(e){e.preventDefault();show(a,body);});
+});
+function show(from,body){
+ var old=document.getElementById('sms-pop'); if(old)old.remove();
+ var e=en(),d=document.createElement('div'); d.id='sms-pop'; d.setAttribute('role','dialog'); d.setAttribute('aria-label',e?'Text message':'문자 보내기');
+ d.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:2147483000;width:min(420px,92vw);background:#fff;color:#14213d;border:1px solid #E3D9C6;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.28);padding:18px 18px 16px;font:500 15px/1.6 Pretendard Variable,Geist,sans-serif';
+ var msg=e?'Texts are sent from your phone. Please text this number:':'문자는 휴대폰에서 보낼 수 있습니다. 아래 번호로 문자를 보내 주십시오.';
+ d.innerHTML='<div style="font-weight:700;margin-bottom:6px">'+(e?'Text us':'문자로 문의')+'</div><div style="color:#4a4f5a;margin-bottom:10px">'+msg+'</div>'
+  +'<div style="font:800 26px/1.2 Geist,Pretendard Variable,sans-serif;letter-spacing:.02em;margin:4px 0 8px">'+NUM+'</div>'
+  +(body?'<div style="font-size:13.5px;color:#4a4f5a;background:#FBF8F2;border-radius:10px;padding:8px 10px;margin-bottom:10px">'+(e?'Suggested message: ':'보낼 말 예시: ')+body.replace(/</g,'&lt;')+'</div>':'')
+  +'<div style="display:flex;flex-wrap:wrap;gap:8px"><button type="button" id="sms-copy" style="min-height:44px;padding:0 16px;border-radius:999px;border:0;background:#14213d;color:#fff;font:700 14px inherit;cursor:pointer">'+(e?'Copy number':'번호 복사')+'</button>'
+  +'<a href="mailto:info@ijiguchon.org" style="display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid #D9C7A0;color:#14213d;font-weight:700;font-size:14px;text-decoration:none">'+(e?'Email instead':'이메일로 문의')+'</a>'
+  +'<button type="button" id="sms-x" style="min-height:44px;padding:0 14px;border-radius:999px;border:0;background:transparent;color:#4a4f5a;font:600 14px inherit;cursor:pointer">'+(e?'Close':'닫기')+'</button></div>';
+ document.body.appendChild(d);
+ var x=d.querySelector('#sms-x'),c=d.querySelector('#sms-copy');
+ x.onclick=function(){d.remove();from.focus&&from.focus();};
+ c.onclick=function(){var done=function(){c.textContent=e?'Copied':'복사했습니다';};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(NUM).then(done,done); else{var t=document.createElement('textarea');t.value=NUM;document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(_){}t.remove();done();}};
+ d.addEventListener('keydown',function(k){if(k.key==='Escape')x.onclick();});
+ c.focus();
+}
+})();</script>
 </body>
 </html>
