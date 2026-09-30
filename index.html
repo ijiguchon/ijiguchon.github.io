@@ -901,12 +901,12 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
     <div class="d-top">
     <div class="hm-sky dawn" aria-hidden="true"></div><div class="hm-sky teal" aria-hidden="true"></div><div class="hm-sky night" aria-hidden="true"></div><div class="hm-sky bright" aria-hidden="true"></div><div class="hm"><div class="hm-stage"><div class="hm-fly"><div class="hm-all"><canvas class="hm-cv" aria-hidden="true"></canvas><svg class="hm-svg" viewBox="-300 0 1564 964" aria-hidden="true" focusable="false"><defs><clipPath id="hmClip"><circle cx="482" cy="482" r="480"/></clipPath><linearGradient id="hmSheenG" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#cfefff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><radialGradient id="hmGlow"><stop offset="86%" stop-color="#8fdcf0" stop-opacity="0"/><stop offset="92%" stop-color="#8fdcf0" stop-opacity=".28"/><stop offset="100%" stop-color="#8fdcf0" stop-opacity="0"/></radialGradient></defs><circle cx="482" cy="482" r="542" fill="url(#hmGlow)"/><g clip-path="url(#hmClip)"><rect class="hm-sheen" x="-964" y="0" width="964" height="964" fill="url(#hmSheenG)"/></g><circle class="hm-rim" cx="482" cy="482" r="480"/><g class="hm-arcs"><path class="hm-arc land a0" pathLength="100" d="M359 325 Q381 422 489 570"/><path class="hm-arc rim a1" pathLength="100" d="M359 325 Q587 161 780 105"/><path class="hm-arc rim a2" pathLength="100" d="M359 325 Q205 233 103 187"/></g><g class="hm-dots"><circle class="hm-dot land d0" cx="489" cy="570" r="7"/><circle class="hm-dot rim d1" cx="780" cy="105" r="10"/><circle class="hm-dot rim d2" cx="103" cy="187" r="10"/></g><g class="hm-labels"><g class="hm-lb l0"><path class="hm-lead" d="M489 570 L-18 688"/><text x="-30" y="700" text-anchor="end"><tspan class="ko">멕시코</tspan><tspan class="en">Mexico</tspan></text></g><g class="hm-lb l1"><path class="hm-lead" d="M780 105 L828 83"/><text x="840" y="95" text-anchor="start"><tspan class="ko">이스라엘</tspan><tspan class="en">Israel</tspan></text></g><g class="hm-lb l2"><path class="hm-lead" d="M103 187 L55 165"/><text x="43" y="177" text-anchor="end"><tspan class="ko">인도네시아</tspan><tspan class="en">Indonesia</tspan></text></g></g><g class="hm-src"><circle class="hm-ring r0" cx="359" cy="325" r="6"/><circle class="hm-ring r1" cx="359" cy="325" r="6"/><circle class="hm-ring r2" cx="359" cy="325" r="6"/><circle class="hm-core" cx="359" cy="325" r="6"/></g></svg><div class="hm-lbm-wrap" aria-hidden="true"><span class="hm-lbm below" style="left:50.45%;top:59.13%;animation-delay:0s"><span class="ko">멕시코</span><span class="en">Mexico</span></span><span class="hm-lbm above" style="left:69.05%;top:10.89%;animation-delay:.3s"><span class="ko">이스라엘</span><span class="en">Israel</span></span><span class="hm-lbm above" style="left:25.77%;top:19.40%;animation-delay:.7s"><span class="ko">인도네시아</span><span class="en">Indonesia</span></span></div></div></div></div></div><div class="hm-swell" aria-hidden="true"><svg viewBox="0 0 1600 400" preserveAspectRatio="none" focusable="false"><defs><linearGradient id="hmSwG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bff3f0" stop-opacity=".5"/><stop offset=".45" stop-color="#3fb6c4" stop-opacity=".3"/><stop offset="1" stop-color="#0b3b62" stop-opacity=".55"/></linearGradient></defs><path d="M0 230 C160 120 330 90 520 170 S860 330 1060 220 S1380 70 1600 160 V400 H0Z" fill="url(#hmSwG)"/><path d="M0 230 C160 120 330 90 520 170 S860 330 1060 220 S1380 70 1600 160" fill="none" stroke="#ffffff" stroke-width="4" stroke-opacity=".75"/><path d="M0 300 C220 230 420 240 660 290 S1120 360 1340 280 S1540 250 1600 270 V400 H0Z" fill="#0e5f80" fill-opacity=".38"/></svg></div><div class="hm-sea" aria-hidden="true"><i></i><i></i><i></i><i></i></div><b class="hm-walk" aria-hidden="true"><span class="ref"></span><span class="rip"></span><span class="rip r2"></span><span class="glow"></span></b><script>(function(){
 var cv=document.querySelector('.hm-cv'); if(!cv||!cv.getContext) return;
-var N=innerWidth<600?560:760; cv.width=cv.height=N;
+var _mob=matchMedia('(max-width:599px)').matches; var N=_mob?560:760; cv.width=cv.height=N;
 var ctx=cv.getContext('2d'), fly=document.querySelector('.hm-fly');
 var LAT0=30.0*Math.PI/180, LON0=-100.0, SPIN=3000, CYCLE=36000;
-var img=new Image(); img.onerror=function(){ if(/webp$/.test(img.src)) img.src='/images/earth-tex.jpg'; }; (window.requestIdleCallback||function(f){setTimeout(f,300)})(function(){ img.src='/images/earth-tex.webp'; },{timeout:900});
+var img=new Image(); img.onerror=function(){ if(/webp$/.test(img.src)) img.src='/images/earth-tex.jpg'; }; (window.requestIdleCallback||function(f){setTimeout(f,300)})(function(){ img.src=_mob?'/images/earth-tex-1k.webp':'/images/earth-tex.webp'; },{timeout:900});
 img.onload=function(){
-  var S=Math.min(img.width,innerWidth<600?1024:1536), tw=S, th=S/2, tc=document.createElement('canvas'); tc.width=tw; tc.height=th*2;
+  var S=Math.min(img.width,_mob?1024:1536), tw=S, th=S/2, tc=document.createElement('canvas'); tc.width=tw; tc.height=th*2;
   var tx=tc.getContext('2d'); tx.drawImage(img,0,0,S,S); var T=tx.getImageData(0,0,tw,th*2).data;
   var out=ctx.createImageData(N,N), O=out.data, R=N/2*0.9959, c0=N/2, cl=Math.cos(LAT0), sl=Math.sin(LAT0);
   var cap=Math.ceil(N*N*0.8), cnt=0, pix=new Int32Array(cap), row=new Int32Array(cap), lonU=new Float32Array(cap), wd=new Float32Array(cap), sh=new Float32Array(cap), at=new Float32Array(cap);
@@ -993,7 +993,7 @@ img.onload=function(){
 
     <div class="mj-intro">
       <h3><span class="ko">목장이란?</span><span class="en">What is a mokjang?</span></h3>
-      <p><span class="ko"><b>가정에서 모이는 작은 교회</b>입니다. 그 안에서 <b>예배·교육·교제·전도·선교</b>가 이루어지며, 서로의 삶을 나누고 보고 배워 나가는 가족 공동체 — 우리 교회의 심장입니다. 목장을 인도하는 <b>목자·목녀</b>는 평신도 목회자로서 목장 식구를 섬기고, 가정교회가 건강하게 자라도록 기도하며 돌봅니다. 현재 세 목장과 청소년 목장(GMC Y)이 주중에 각 가정에서 모입니다.</span><span class="en">A mokjang is <b>a little church that meets in a home</b>, where <b>worship, teaching, fellowship, evangelism and missions</b> all happen — a family that shares life and learns by example. Its <b>mokja and mokyeo (shepherds)</b> are lay pastors who serve the members and pray the community into health. Three mokjangs plus a youth home (GMC Y) meet midweek.</span></p>
+      <p><span class="ko"><b>가정에서 모이는 작은 교회</b>입니다. 그 안에서 <b>예배·교육·교제·전도·선교</b>가 이루어지며, 서로의 삶을 나누고 보고 배워 나가는 가족 공동체 — 우리 교회의 심장입니다. 목장을 인도하는 <b>목자·목녀</b>는 평신도 목회자로서 목장 식구를 사랑으로 섬기고, 가정교회가 영적으로 건강하게 자라도록 기도하며 돌봅니다. 현재 세 목장과 청소년 목장(GMC Y)이 주중에 각 가정에서 모입니다.</span><span class="en">A mokjang is <b>a little church that meets in a home</b>, where <b>worship, teaching, fellowship, evangelism and missions</b> all happen — a family that shares life and learns by example. Its <b>mokja and mokyeo (shepherds)</b> are lay pastors who serve the members and pray the community into health. Three mokjangs plus a youth home (GMC Y) meet midweek.</span></p>
       <p class="free"><span class="ko">믿음이 있든 없든, 한 번 오셔서 식사만 하고 가셔도 좋습니다. 부담 없이 오십시오.</span><span class="en">Believer or not, come once just for dinner — no pressure at all.</span></p>
     </div>
 
@@ -1319,19 +1319,19 @@ img.onload=function(){
 </footer>
 
 <script>
-  function goTab(id){ if(id==='give'){ location.href='/give/'; return; goTab('worship'); var _gf=function(){ var g=document.getElementById('give'); if(g){ window.scrollTo({top:g.getBoundingClientRect().top+window.pageYOffset-80}); } }; setTimeout(_gf,160); if(document.readyState!=='complete'){ window.addEventListener('load',function(){ setTimeout(_gf,150); setTimeout(_gf,900); }); } return; }
+  function goTab(id,_noScroll){ if(id==='give'){ location.href='/give/'; return; goTab('worship'); var _gf=function(){ var g=document.getElementById('give'); if(g){ window.scrollTo({top:g.getBoundingClientRect().top+window.pageYOffset-80}); } }; setTimeout(_gf,160); if(document.readyState!=='complete'){ window.addEventListener('load',function(){ setTimeout(_gf,150); setTimeout(_gf,900); }); } return; }
     document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
     var panel=document.getElementById('p-'+id);
     if(panel) panel.classList.add('show');
     var tab=document.querySelector('.tab[data-tab="'+id+'"]');
     if(tab) tab.classList.add('active');
-    window.scrollTo({top:0,behavior:'instant'});
+    if(!_noScroll) window.scrollTo({top:0,behavior:'instant'});
   }
   document.querySelectorAll('.tab').forEach(function(t){
     t.addEventListener('click',function(){ goTab(t.dataset.tab); });
   });
-  (function(){ var t=new URLSearchParams(location.search).get('tab'); goTab(t==='give'?'give':(t&&document.getElementById('p-'+t)?t:'newcomer')); })(); // ?tab=worship 처럼 특정 탭으로 바로 열기
+  (function(){ var t=new URLSearchParams(location.search).get('tab'); goTab(t==='give'?'give':(t&&document.getElementById('p-'+t)?t:'newcomer'),true); })(); // ?tab=worship 처럼 특정 탭으로 바로 열기
   function toggleLang(){
     document.body.classList.toggle('lang-en');
     document.getElementById('langTxt').textContent =
