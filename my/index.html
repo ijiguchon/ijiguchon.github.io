@@ -222,5 +222,58 @@ $('lockBtn').onclick=()=>{ try{ sessionStorage.removeItem('gmcMy'); }catch(e){} 
   <a href="/360/" style="background:var(--color-primary);color:var(--color-text-inverse);font-size:12px;font-weight:800;padding:7px 12px;border-radius:var(--radius-pill);text-decoration:none;box-shadow:0 4px 14px rgba(20,33,61,.3)">&larr; 가정교회 360</a>
   <a href="/" style="background:var(--color-surface);color:var(--color-primary);font-size:12px;font-weight:800;padding:7px 12px;border-radius:var(--radius-pill);text-decoration:none;border:1px solid var(--color-border);box-shadow:0 4px 14px rgba(20,33,61,.12)">홈</a>
 </div>
+<script id="auto-upd-js">(function(){
+if(!window.fetch||/^\/manage(\/|$)/.test(location.pathname))return;
+var EVERY=+(sessionStorage.getItem('gmcUpdMs')||300000),BUSY=false,BASE=null,KEY='gmcUpdT';
+function hash(s){var h=5381,i=s.length;while(i)h=(h*33)^s.charCodeAt(--i);return (h>>>0)+':'+s.length;}
+function url(){return location.pathname+location.search;}
+function idle(){
+ try{
+  var a=document.activeElement; if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='search')return false;
+  var ins=document.querySelectorAll('input:not([type=hidden]):not([type=checkbox]):not([type=radio]):not([type=search]):not([type=button]):not([type=submit]),textarea');
+  for(var i=0;i<ins.length;i++){ if(ins[i].value&&ins[i].getClientRects().length)return false; }
+  if(document.querySelector('#gmModalRoot [class*="open"],.gm-modal.open,dialog[open]'))return false;
+  var m=document.querySelectorAll('audio,video'); for(var j=0;j<m.length;j++){ if(!m[j].paused&&!m[j].ended)return false; }
+ }catch(e){}
+ return true;
+}
+function purge(){
+ if(!window.caches)return Promise.resolve();
+ return caches.keys().then(function(ks){return Promise.all(ks.filter(function(k){return k.indexOf('home-')===0;}).map(function(k){return caches.delete(k);}));}).catch(function(){});
+}
+function toast(){
+ try{var d=document.createElement('div');d.setAttribute('role','status');d.textContent=(document.documentElement.lang==='en'||document.body.classList.contains('lang-en'))?'Updating to the latest version…':'새 소식이 있어 화면을 새로 고칩니다';
+  d.style.cssText='position:fixed;left:50%;bottom:76px;transform:translateX(-50%);z-index:2147483000;background:rgba(20,33,61,.94);color:#fff;font:600 14px/1.4 Pretendard Variable,Geist,sans-serif;padding:10px 16px;border-radius:999px;box-shadow:0 6px 24px rgba(0,0,0,.25);max-width:88vw;text-align:center';
+  document.body.appendChild(d);}catch(e){}
+}
+function go(){
+ if(BUSY)return; BUSY=true;
+ var last=+(sessionStorage.getItem(KEY)||0);
+ if(Date.now()-last<90000){BUSY=false;return;}
+ (function wait(){
+  if(!idle()){setTimeout(wait,30000);return;}
+  toast(); sessionStorage.setItem(KEY,String(Date.now()));
+  purge().then(function(){ return fetch(url(),{cache:'reload'}).catch(function(){}); }).then(function(){ setTimeout(function(){ location.reload(); },900); });
+ })();
+}
+function check(){
+ if(document.hidden||BUSY)return;
+ fetch(url(),{cache:'no-store',credentials:'same-origin'}).then(function(r){return r.ok?r.text():null;}).then(function(t){
+  if(!t)return; var h=hash(t);
+  if(BASE===null){BASE=h;return;}
+  if(h!==BASE)go();
+ }).catch(function(){});
+ if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration){ navigator.serviceWorker.getRegistration().then(function(r){ if(r&&r.update)r.update().catch(function(){}); }).catch(function(){}); }
+}
+if(navigator.serviceWorker){
+ var had=!!navigator.serviceWorker.controller;
+ navigator.serviceWorker.addEventListener('controllerchange',function(){ if(had)go(); had=true; });
+}
+window.addEventListener('load',function(){ setTimeout(check,1500); });
+document.addEventListener('visibilitychange',function(){ if(!document.hidden)check(); });
+window.addEventListener('pageshow',function(e){ if(e.persisted)check(); });
+window.addEventListener('online',check);
+setInterval(check,EVERY);
+})();</script>
 </body>
 </html>
