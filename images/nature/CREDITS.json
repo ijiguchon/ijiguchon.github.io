@@ -140,5 +140,10 @@
   "source": "Unsplash",
   "page": "https://unsplash.com/photos/NmleJ9Rp8Zs",
   "license": "Unsplash License (free for commercial use)"
+ },
+ "column-pastor": {
+  "photographer": "시애틀지구촌교회",
+  "source": "pastor's own photo (OneDrive 사진/. 김성수(가족,친구)/SSKim.jpg)",
+  "license": "church/pastor-owned"
  }
 }
