@@ -865,6 +865,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 <style id="foot-tap-css">footer a{position:relative}footer a::after{content:"";position:absolute;left:-4px;right:-4px;top:-15px;bottom:-15px}footer .fc>div,footer .fmin{margin-top:4px}</style>
 <style id="lh-fix-css">:root{--color-accent-strong:#8A6529}.doors .d-more{color:#565b66}.ps .psdots{gap:16px}.ps .psdots button{position:relative}.ps .psdots button::after{content:"";position:absolute;left:-8px;right:-8px;top:-8px;bottom:-8px}</style>
 <style id="share-hl-css">#shareCard{position:relative;background:linear-gradient(135deg,#FFF3D6 0%,#FFFFFF 78%);border:2px solid var(--color-accent,#B8924A);box-shadow:0 8px 24px rgba(184,146,74,.26);margin-top:26px}#shareCard::before{content:"이번 주 나눔지";position:absolute;top:-13px;left:18px;padding:3px 12px;border-radius:999px;background:var(--color-accent-strong,#8A6529);color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.02em}html[lang="en"] #shareCard::before,body.lang-en #shareCard::before{content:"This week's sharing guide"}</style>
+<script id="after-load-js">window.__afterLoad=function(ms){return new Promise(function(r){function g(){setTimeout(r,ms||1200);}if(document.readyState==="complete")g();else addEventListener("load",g);});};</script>
 </head>
 <body><a class="skip-link" href="#main"><span class="ko">본문 바로가기</span><span class="en">Skip to content</span></a>
 
@@ -1642,7 +1643,7 @@ document.addEventListener('DOMContentLoaded', function(){
   try{ renderSaturday(); }catch(_){}
   try{ renderSermonList(); }catch(_){}
   try{ psInit(); }catch(_){}
-  resolvePpt(); resolveBulletin(); resolveShare();
+  window.__afterLoad().then(function(){ resolvePpt(); resolveBulletin(); resolveShare(); });
 });
 </script>
 <script>
@@ -1933,7 +1934,7 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
   },300); });
 })();
 </script>
-<script id="gmc-cal-sheet">(function(){var ID="1ZhTnlt_pjGUcSk8mpP2aXpMdw3_jurNNbZVAyVkWm28";if(!ID||typeof renderSchedule!=="function")return;function csv(t){var r=[],row=[],f="",q=false;for(var i=0;i<t.length;i++){var c=t[i];if(q){if(c=='"'){if(t[i+1]=='"'){f+=c;i++;}else q=false;}else f+=c;}else if(c=='"')q=true;else if(c==","){row.push(f);f="";}else if(c=="\n"){row.push(f);r.push(row);row=[];f="";}else if(c!="\r")f+=c;}if(f||row.length){row.push(f);r.push(row);}return r;}fetch("https://docs.google.com/spreadsheets/d/"+ID+"/gviz/tq?tqx=out:csv").then(function(x){return x.ok?x.text():"";}).then(function(t){if(!t)return;function nd(v){v=(v||"").trim();var m=v.match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);if(!m){m=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);if(m)m=[0,m[3],m[1],m[2]];}if(!m)return "";return m[1]+"-"+("0"+m[2]).slice(-2)+"-"+("0"+m[3]).slice(-2);}var rows=csv(t).slice(1),sp=[],pl=[];rows.forEach(function(c){var d=nd(c[0]);if(!d||!(c[1]||"").trim())return;if((c[5]||"").indexOf("예고")>-1)pl.push({d:d,ko:c[1],en:c[2]||c[1]});else sp.push({d:d,t:c[1],tEn:c[2]||c[1],m:c[3]||"",mEn:c[4]||c[3]||""});});if(sp.length)SPECIAL_EVENTS=sp;if(pl.length)UPCOMING_PLAN=pl;renderSchedule();}).catch(function(){});})();</script><script id="hero-burst-js" data-v="v8">(function(){
+<script id="gmc-cal-sheet">(function(){var ID="1ZhTnlt_pjGUcSk8mpP2aXpMdw3_jurNNbZVAyVkWm28";if(!ID||typeof renderSchedule!=="function")return;function csv(t){var r=[],row=[],f="",q=false;for(var i=0;i<t.length;i++){var c=t[i];if(q){if(c=='"'){if(t[i+1]=='"'){f+=c;i++;}else q=false;}else f+=c;}else if(c=='"')q=true;else if(c==","){row.push(f);f="";}else if(c=="\n"){row.push(f);r.push(row);row=[];f="";}else if(c!="\r")f+=c;}if(f||row.length){row.push(f);r.push(row);}return r;}window.__afterLoad().then(function(){return fetch("https://docs.google.com/spreadsheets/d/"+ID+"/gviz/tq?tqx=out:csv");}).then(function(x){return x.ok?x.text():"";}).then(function(t){if(!t)return;function nd(v){v=(v||"").trim();var m=v.match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);if(!m){m=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);if(m)m=[0,m[3],m[1],m[2]];}if(!m)return "";return m[1]+"-"+("0"+m[2]).slice(-2)+"-"+("0"+m[3]).slice(-2);}var rows=csv(t).slice(1),sp=[],pl=[];rows.forEach(function(c){var d=nd(c[0]);if(!d||!(c[1]||"").trim())return;if((c[5]||"").indexOf("예고")>-1)pl.push({d:d,ko:c[1],en:c[2]||c[1]});else sp.push({d:d,t:c[1],tEn:c[2]||c[1],m:c[3]||"",mEn:c[4]||c[3]||""});});if(sp.length)SPECIAL_EVENTS=sp;if(pl.length)UPCOMING_PLAN=pl;renderSchedule();}).catch(function(){});})();</script><script id="hero-burst-js" data-v="v8">(function(){
 var top=document.querySelector('.doors .d-top'),h=document.querySelector('.doors .d-h'),verse=document.querySelector('.doors .d-verse'),when=document.querySelector('.doors .d-when'),fly=document.querySelector('.doors .hm-fly');
 if(!top||!h||!h.animate||!fly||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;
 var CYC=36000,T_OUT=.26,T_FOCUS=.64,T_IN=.92;
@@ -2075,7 +2076,7 @@ if(navigator.serviceWorker){
  var had=!!navigator.serviceWorker.controller;
  navigator.serviceWorker.addEventListener('controllerchange',function(){ if(had)go(); had=true; });
 }
-window.addEventListener('load',function(){ setTimeout(check,1500); });
+window.addEventListener('load',function(){ setTimeout(check,8000); });
 document.addEventListener('visibilitychange',function(){ if(!document.hidden)check(); });
 window.addEventListener('pageshow',function(e){ if(e.persisted)check(); });
 window.addEventListener('online',check);
