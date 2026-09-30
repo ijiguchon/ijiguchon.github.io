@@ -118,5 +118,11 @@
   "page": "https://unsplash.com/photos/A2OcTLXN3y8",
   "license": "Unsplash License (free for commercial use)",
   "note": "cropped to remove the trail sign"
+ },
+ "study-bible": {
+  "photographer": "Jonny Gios",
+  "source": "Unsplash",
+  "page": "https://unsplash.com/photos/HQorO9JqAEE",
+  "license": "Unsplash License (free for commercial use)"
  }
 }
