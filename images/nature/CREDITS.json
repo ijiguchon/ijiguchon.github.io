@@ -82,5 +82,34 @@
   "source": "Unsplash",
   "page": "https://unsplash.com/photos/nOrD2yQyGP8",
   "license": "Unsplash License (free for commercial use)"
+ },
+ "community-volunteers": {
+  "photographer": "Pexels (Pexels 6646974)",
+  "source": "Pexels",
+  "page": "https://www.pexels.com/photo/a-group-of-volunteers-boxing-relief-good-6646974/",
+  "license": "Pexels License (free for commercial use)"
+ },
+ "community-counsel": {
+  "photographer": "Priscilla Du Preez",
+  "source": "Unsplash",
+  "page": "https://unsplash.com/photos/K8XYGbw4Ahg",
+  "license": "Unsplash License (free for commercial use)"
+ },
+ "community-coach": {
+  "photographer": "Jonathan J. Castellon",
+  "source": "Unsplash",
+  "page": "https://unsplash.com/photos/81GHVY7Lpt4",
+  "license": "Unsplash License (free for commercial use)"
+ },
+ "community-walk": {
+  "photographer": "Vitaly Gariev",
+  "source": "Unsplash",
+  "page": "https://unsplash.com/photos/KAz0B4tky5o",
+  "license": "Unsplash License (free for commercial use)"
+ },
+ "community-talk": {
+  "photographer": "시애틀지구촌교회",
+  "source": "own photo (2026-08-30 English Talk Time)",
+  "license": "church-owned; participants' consent to be confirmed by pastor"
  }
 }
