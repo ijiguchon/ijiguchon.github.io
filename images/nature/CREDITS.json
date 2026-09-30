@@ -53,12 +53,6 @@
   "page": "https://unsplash.com/photos/mU85sCiU_08",
   "license": "Unsplash License (free for commercial use)"
  },
- "study-hands": {
-  "photographer": "Sandie Clarke",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/q13Zq1Jufks",
-  "license": "Unsplash License (free for commercial use)"
- },
  "square-road": {
   "photographer": "Renata Kurtveliieva-Berezhna",
   "source": "Unsplash",
@@ -81,6 +75,12 @@
   "photographer": "Samuell Morgenstern",
   "source": "Unsplash",
   "page": "https://unsplash.com/photos/Fkn725spNnE",
+  "license": "Unsplash License (free for commercial use)"
+ },
+ "study-cup": {
+  "photographer": "Karori Production",
+  "source": "Unsplash",
+  "page": "https://unsplash.com/photos/nOrD2yQyGP8",
   "license": "Unsplash License (free for commercial use)"
  }
 }
