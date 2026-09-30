@@ -910,14 +910,17 @@ img.onload=function(){
   var out=ctx.createImageData(N,N), O=out.data, R=N/2*0.9959, c0=N/2, cl=Math.cos(LAT0), sl=Math.sin(LAT0);
   var cap=Math.ceil(N*N*0.8), cnt=0, pix=new Int32Array(cap), row=new Int32Array(cap), lonU=new Float32Array(cap), wd=new Float32Array(cap), sh=new Float32Array(cap), at=new Float32Array(cap);
   var Lx=-0.72,Ly=0.32,Lz=0.62, ln=Math.sqrt(Lx*Lx+Ly*Ly+Lz*Lz); Lx/=ln; Ly/=ln; Lz/=ln;
-  for(var y=0;y<N;y++){ for(var x=0;x<N;x++){
+  var y=0; function build(){ var t0=performance.now(); for(;y<N;y++){ for(var x=0;x<N;x++){
     var nx=(x+.5-c0)/R, ny=(c0-(y+.5))/R, r2=nx*nx+ny*ny; if(r2>1) continue;
     var nz=Math.sqrt(1-r2), lat=Math.asin(ny*cl+nz*sl), lon=Math.atan2(nx, nz*cl-ny*sl);
     var v=Math.min(th-1, Math.max(0, ((Math.PI/2-lat)/Math.PI*th)|0));
     var d=nx*Lx+ny*Ly+nz*Lz, w=Math.min(1,Math.max(0,(d+0.08)/0.34)); w=w*w*(3-2*w);
     pix[cnt]=(y*N+x)*4; row[cnt]=v*tw; lonU[cnt]=lon/(2*Math.PI)*tw; wd[cnt]=w;
     sh[cnt]=0.5+0.42*Math.max(0,d); at[cnt]=Math.pow(1-nz,2.4); cnt++;
-  }}
+  } if(performance.now()-t0>12){ y++; setTimeout(build,0); return; } }
+  fin(); }
+  build();
+  function fin(){
   var last=null;
   function draw(lon0){
     if(lon0===last) return; last=lon0;
@@ -929,17 +932,18 @@ img.onload=function(){
     }
     ctx.putImageData(out,0,0);
   }
-  draw(LON0); var lastL=LON0;
+  draw(LON0); var lastL=LON0, _anC=null;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var off=false, top=document.querySelector('.doors .d-top');
   if(top&&'IntersectionObserver' in window){ new IntersectionObserver(function(es){ var was=off; off=!es[0].isIntersecting; top.classList.toggle('hm-off',off); if(was&&!off) requestAnimationFrame(tick); }).observe(top); }
   function tick(){
     if(off) return;
-    var an=fly.getAnimations?fly.getAnimations()[0]:null, t=(an&&an.currentTime!=null)?an.currentTime%CYCLE:SPIN;
+    var an=_anC||(_anC=fly.getAnimations?fly.getAnimations()[0]:null), t=(an&&an.currentTime!=null)?an.currentTime%CYCLE:SPIN;
     var L=(t<SPIN)?LON0+900*(1-t/SPIN)*(1-t/SPIN)*(1-t/SPIN):LON0; if(L!==lastL){ lastL=L; draw(L); }
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
+  }
 };
 })();</script><button type="button" class="hm-down" aria-label="아래로 보기" onclick="scrollTo({top:document.querySelector('.doors .d-top').offsetHeight-8,behavior:'smooth'})"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><script>(function(){var b=document.body,tb=document.querySelector(".topbar"),top=document.querySelector(".doors .d-top"),pn=document.getElementById("p-newcomer");if(!tb||!top||!pn)return;function upd(){var h=pn.classList.contains("show");b.classList.toggle("hm-home",h);b.classList.toggle("hm-intro",h&&scrollY<top.offsetHeight-90);}addEventListener("scroll",upd,{passive:true});addEventListener("resize",upd);new MutationObserver(upd).observe(pn,{attributes:true,attributeFilter:["class"]});upd();})();</script><script>(function(){function init(){var top=document.querySelector(".doors .d-top"),w=top&&top.querySelector(".hm-walk"),h=top&&top.querySelector(".d-h");if(!w||!h)return;function place(){var en=document.body.classList.contains("lang-en"),sp=h.querySelector(en?".en":".ko"),keys=en?["thirst","need"]:["목마름","필요"];if(!sp)return;var tw=document.createTreeWalker(sp,NodeFilter.SHOW_TEXT),n,i=-1;while((n=tw.nextNode())){for(var k=0;k<keys.length;k++){i=n.data.indexOf(keys[k]);if(i>=0)break;}if(i>=0)break;}if(!n||i<0)return;var r=document.createRange();r.setStart(n,i);r.setEnd(n,i+1);var b=r.getBoundingClientRect(),t=top.getBoundingClientRect();if(!b.width)return;var x=b.left-t.left-Math.max(14,b.height*.35),y=b.top-t.top+b.height/2;w.style.setProperty("--wx",x+"px");w.style.setProperty("--wy",(y-70)+"px");w.style.setProperty("--sy",(t.height*.42-70)+"px");var c=top.querySelector(".d-card.t-worship");if(c){var cb=c.getBoundingClientRect();w.style.setProperty("--cx",(cb.left-t.left+cb.width/2)+"px");w.style.setProperty("--cy",Math.min(cb.bottom-t.top+6,t.height-130)+"px");}}place();addEventListener("resize",place);addEventListener("load",place);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(place);new MutationObserver(place).observe(document.body,{attributes:true,attributeFilter:["class"]});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();})();</script><!--hm:end-->
     <h1 class="d-h"><span class="ko">당신의 목마름을<br>아시는 분이 계십니다</span><span class="en">Someone knows<br>your thirst</span></h1>
@@ -1422,7 +1426,7 @@ img.onload=function(){
     function up(){ if(!down) return; down=false; if(moved){ try{ localStorage.setItem('gmc-fab-pos', JSON.stringify(gcBase)); }catch(_){} } else { gcToggle(); } }
     fab.addEventListener('pointerup',up); fab.addEventListener('pointercancel',function(){ down=false; });
   })();
-  window.addEventListener('scroll', gcAvoidFooter, {passive:true}); window.addEventListener('resize', gcAvoidFooter); document.addEventListener('DOMContentLoaded', gcAvoidFooter); setTimeout(gcAvoidFooter, 600);
+  window.addEventListener('scroll', gcAvoidFooter, {passive:true}); window.addEventListener('resize', gcAvoidFooter); window.addEventListener('load', function(){ setTimeout(gcAvoidFooter, 1200); });
 </script>
 <script>
 /* ══ 주간 엔진 — 교인 앱(GMC_PWA)에서 이식. 설교계획표·드라이브 자동검색·성경링크·나눔지·주보·PPT ══ */
@@ -1991,11 +1995,13 @@ function verseRelease(instant){
  verse.animate([{transform:'scale(1.1)'},{transform:'scale(1)'}],{duration:1500,easing:'cubic-bezier(.45,0,.2,1)'});
  a.cancel();
 }
-function fa(){var a=fly.getAnimations?fly.getAnimations():[];for(var i=0;i<a.length;i++){if(a[i].animationName==='hmFly')return a[i];}return null;}
+var _faC=null;function fa(){if(_faC&&_faC.effect)return _faC;var a=fly.getAnimations?fly.getAnimations():[];for(var i=0;i<a.length;i++){if(a[i].animationName==='hmFly'){_faC=a[i];return _faC;}}return null;}
 window.__hb={out:fadeOut,inn:fadeIn,focus:function(){verseFocus(false);},release:function(){verseRelease(false);}};
 /* 상태: hidden(제목 숨김) 은 26%~92%, focused(성구 주목) 는 64%~92% */
 var hidden=false,focused=false,prev=-1;
+var _lastT=0;
 function tick(){
+ var _nw=performance.now(); if(_nw-_lastT<50){requestAnimationFrame(tick);return;} _lastT=_nw;
  var a=fa();
  if(a&&a.currentTime!=null){
   var p=(a.currentTime%CYC)/CYC,wantHid=(p>=T_OUT&&p<T_IN),wantFoc=(p>=T_FOCUS&&p<T_IN);
