@@ -76,5 +76,11 @@
   "source": "Unsplash",
   "page": "https://unsplash.com/photos/ogSlX2-5XIY",
   "license": "Unsplash License (free for commercial use)"
+ },
+ "welcome-walk": {
+  "photographer": "Samuell Morgenstern",
+  "source": "Unsplash",
+  "page": "https://unsplash.com/photos/Fkn725spNnE",
+  "license": "Unsplash License (free for commercial use)"
  }
 }
