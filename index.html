@@ -1175,7 +1175,7 @@ img.onload=function(){
     
     <h2 class="sec-title"><span class="ko">함께 나누고, 이웃을 품는 마당</span><span class="en">Where we share and welcome neighbors</span></h2>
     <p class="sec-lead"><span class="ko">교회 소식과 이야기, 그리고 지역 이웃을 향한 사랑이 흐르는 열린 마당입니다.</span><span class="en">Church news and stories, and love flowing out to our neighbors.</span></p>
- <figure class="phw" data-th="p-square"><img src="/images/nature/square-garden.webp" width="1800" height="1199" loading="lazy" decoding="async" alt=""Community Garden" 표지판이 있는 텃밭"></figure>
+ <figure class="phw" data-th="p-square"><img src="/images/nature/square-garden.webp" width="1800" height="1199" loading="lazy" decoding="async" alt="“Community Garden” 표지판이 있는 텃밭"></figure>
 
 <div class="cut"><span><span class="ko">소식과 나눔</span><span class="en">News &amp; sharing</span></span></div>
     <div class="mem"><div class="mem-row sq3"><a class="mbtn" href="/square/news/"><span class="mi "><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M8 7h8M8 10.5h8M8 14h5"/></svg></span><span class="mb"><span class="mt"><span class="ko">교회 소식</span><span class="en">Church news</span></span><span class="ms"><span class="ko">주보 · 교회 일정</span><span class="en">Bulletin · calendar</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a><a class="mbtn" href="/corner/"><span class="mi g"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></span><span class="mb"><span class="mt"><span class="ko">목회칼럼</span><span class="en">Pastor's column</span></span><span class="ms"><span class="ko">매주 담임목사 칼럼</span><span class="en">Weekly from our pastor</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a><a class="mbtn" href="/square/board/"><span class="mi b"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="mb"><span class="mt"><span class="ko">나눔터</span><span class="en">Sharing board</span></span><span class="ms"><span class="ko">감사 · 간증 · 축하 · 나눔</span><span class="en">Thanks, stories, celebrations</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a></div></div>
@@ -1998,6 +1998,12 @@ function tick(){
  requestAnimationFrame(tick);
 }
 requestAnimationFrame(tick);
+})();</script>
+<script id="img-eager-js">(function(){
+function warm(){ document.querySelectorAll('.panel.show img[loading="lazy"]').forEach(function(i){ i.loading='eager'; }); }
+var g=window.goTab;
+if(typeof g==='function'){ window.goTab=function(){ var r=g.apply(this,arguments); setTimeout(warm,60); return r; }; }
+warm(); window.addEventListener('load',warm);
 })();</script>
 </body>
 </html>
