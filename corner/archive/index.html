@@ -736,6 +736,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 <style id="a11y-tap2-css">.topbar .tabs .tab,.topbar .lang{position:relative}.topbar .tabs .tab::after{content:"";position:absolute;left:-3px;right:-3px;top:-7px;bottom:-7px}.topbar .lang::after{content:"";position:absolute;left:-4px;right:-4px;top:-7px;bottom:-7px}.pgnav button{min-height:44px}</style>
 <style id="foot-tap-css">footer a{position:relative}footer a::after{content:"";position:absolute;left:-4px;right:-4px;top:-15px;bottom:-15px}footer .fc>div,footer .fmin{margin-top:4px}</style>
 <style id="tm-open-css">body.hm-home.hm-intro .topbar.tm-open{transform:none!important;opacity:1!important;pointer-events:auto!important}</style>
+<style id="ca-src-css">.ca-badge{display:inline-flex;align-items:center;margin-left:6px;padding:1px 8px;border-radius:999px;background:var(--color-background-secondary,#F1E6D3);color:var(--color-accent-strong,#8A6529);font-size:12px;font-weight:700;vertical-align:middle}.ca-src{color:var(--color-accent-strong,#8A6529);font-weight:700}.ca-orig{margin:6px 0 14px}.ca-orig a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--color-primary,#14213d);text-decoration:underline;text-underline-offset:3px}</style>
 </head>
 <body><a class="skip-link" href="#main"><span class="ko">본문 바로가기</span><span class="en">Skip to content</span></a>
 <div class="topbar">
@@ -765,7 +766,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 <figure class="phw" data-th="hdr"><img src="/images/nature/column-pastor.webp" width="1280" height="560" decoding="async" style="object-position:50% 40%" alt="책장 앞에서 고개를 숙이고 글을 읽는 김성수 목사"></figure>
     <div class="sec-eyebrow"><span class="ko">지구촌 마당 · 목회칼럼</span><span class="en">Square · Pastor's column</span></div>
     <h2 class="sec-title"><span class="ko">지난 칼럼 모음</span><span class="en">Column archive</span></h2>
-    <p class="sec-lead"><span class="ko">2005년부터 2025년까지 담임목사가 쓴 목회칼럼 898편을 모았습니다. 제목과 본문으로 찾아보실 수 있습니다.</span><span class="en">898 columns from 2005 to 2025. Search by title or text.</span></p>
+    <p class="sec-lead"><span class="ko">2003년부터 2025년까지 담임목사가 쓴 목회칼럼 913편을 모았습니다. 신문에 실린 글에는 실린 곳을 표시했습니다. 제목과 본문으로 찾아보실 수 있습니다.</span><span class="en">898 columns from 2005 to 2025. Search by title or text.</span></p>
     <style>
       .ca{max-width:820px;margin:18px auto 0;text-align:left}
       .ca-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -810,7 +811,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
   function snip(c,q){ if(!q) return ''; var t=c.paras.join(' '), i=t.toLowerCase().indexOf(q); if(i<0) return ''; var a=Math.max(0,i-30); return (a?'…':'')+esc(t.slice(a,i))+'<b>'+esc(t.substr(i,q.length))+'</b>'+esc(t.slice(i+q.length,i+q.length+50))+'…'; }
   function apply(){
     var q=(g('caQ').value||'').trim().toLowerCase(), y=g('caY').value;
-    L=ALL.filter(function(c){ return (!y||c.date.slice(0,4)===y) && (!q||c.title.toLowerCase().indexOf(q)>-1||c.paras.join(' ').toLowerCase().indexOf(q)>-1); });
+    L=ALL.filter(function(c){ return (!y||c.date.slice(0,4)===y) && (!q||c.title.toLowerCase().indexOf(q)>-1||(c.src||'').toLowerCase().indexOf(q)>-1||c.paras.join(' ').toLowerCase().indexOf(q)>-1); });
     shown=0; g('caRows').innerHTML=''; more();
     g('caCount').textContent=L.length+'편';
   }
@@ -819,7 +820,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
     var part=L.slice(shown, shown+STEP); shown+=part.length;
     g('caRows').insertAdjacentHTML('beforeend', part.map(function(c){
       var i=ALL.indexOf(c);
-      return '<a class="ca-row" href="?n='+i+'" data-i="'+i+'"><span class="ca-d">'+fmt(c.date)+'</span><span><span class="ca-t">'+esc(c.title)+'</span>'+(snip(c,q)?'<span class="ca-x">'+snip(c,q)+'</span>':'')+'</span></a>';
+      return '<a class="ca-row" href="?n='+i+'" data-i="'+i+'"><span class="ca-d">'+fmt(c.date)+'</span><span><span class="ca-t">'+esc(c.title)+(c.src?' <span class="ca-badge">'+esc(c.src.replace(/ 칼럼$/,''))+'</span>':'')+'</span>'+(snip(c,q)?'<span class="ca-x">'+snip(c,q)+'</span>':'')+'</span></a>';
     }).join(''));
     g('caMore').style.display = shown<L.length ? 'block' : 'none';
   }
@@ -827,7 +828,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
     var c=ALL[i]; if(!c){ list(false); return; }
     var older=ALL[i+1], newer=ALL[i-1];
     g('caRead').innerHTML='<button type="button" class="ca-back" id="caBack">← 목록으로</button>'
-      +'<h2>'+esc(c.title)+'</h2><div class="by">'+esc(String(c.author).replace('목사',' 목사'))+' · '+fmt(c.date)+'</div>'
+      +'<h2>'+esc(c.title)+'</h2><div class="by">'+esc(String(c.author).replace('목사',' 목사'))+' · '+fmt(c.date)+(c.src?' · <span class="ca-src">'+esc(c.src)+(/칼럼$/.test(c.src)?'':' 칼럼')+' 게재</span>':'')+'</div>'+(c.url?'<p class="ca-orig"><a href="'+esc(c.url)+'" target="_blank" rel="noopener">기독일보에서 원문 보기 →</a></p>':'')
       +c.paras.map(function(p){ return '<p>'+esc(p)+'</p>'; }).join('')
       +'<div class="ca-nav">'+(newer?'<a class="ca-back" style="display:inline-flex;align-items:center;text-decoration:none;color:inherit" href="?n='+(i-1)+'" data-i="'+(i-1)+'">← 다음 글</a>':'<span></span>')
       +(older?'<a class="ca-back" style="display:inline-flex;align-items:center;text-decoration:none;color:inherit" href="?n='+(i+1)+'" data-i="'+(i+1)+'">이전 글 →</a>':'')+'</div>';
@@ -853,6 +854,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
     ALL=d;
     var ys={}; d.forEach(function(c){ ys[c.date.slice(0,4)]=1; });
     Object.keys(ys).sort().reverse().forEach(function(y){ var o=document.createElement('option'); o.value=y; o.textContent=y+'년'; g('caY').appendChild(o); });
+    var qq=new URLSearchParams(location.search).get('q'); if(qq) g('caQ').value=qq;
     apply();
     var m=location.search.match(/n=(\d+)/); if(m) read(+m[1],false);
   }).catch(function(){ g('caCount').textContent='칼럼을 불러오지 못했습니다. 잠시 뒤 다시 열어 주십시오.'; });
