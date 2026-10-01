@@ -157,5 +157,17 @@
     "page": "https://unsplash.com/photos/qbazkeo-R1o",
     "license": "Unsplash License (free for commercial use)",
     "crop": "위 300px부터 16:7 → 1800x788"
+  },
+  "study-bible-table-p": {
+    "photographer": "Nicolas Lobos",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/qbazkeo-R1o",
+    "license": "Unsplash License (free for commercial use)",
+    "crop": "(560,0)-(3540,2384) → 1000x800"
+  },
+  "worship-sunday-p": {
+    "source": "시애틀지구촌교회 주일 연합예배 (목사님 제공, 2026-10-01)",
+    "consent": "성도 뒷모습 위주 · 우리 교회 성도",
+    "crop": "(1225,320)-(1887,850) → 1000x800"
   }
 }
