@@ -155,7 +155,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 
 <script>
 const SCRIPT_URL='https://script.google.com/macros/s/AKfycbzt_mgY8y0IzwKmFGm7Qytg4ryF76cZD9NqnI3BNnyvNqgEVYI5fKsreqjh_1SyYwAR/exec';
-const DASH_CODE='gmc0818';   // 목회자·디렉터 암호 (바꾸려면 이 값 수정)
+let DASH_CODE='';   // 암호는 페이지에 두지 않습니다. 입력한 값을 구글 Apps Script(스크립트 속성 ADMIN_CODE)에서 확인합니다.
 const $=(id)=>document.getElementById(id);
 let lang='ko';
 
@@ -164,9 +164,15 @@ $('langBtn').onclick=()=>{ lang=(lang==='ko')?'en':'ko'; document.body.classList
 
 // 암호 게이트
 function unlock(){ $('gate').hidden=true; $('app').hidden=false; load(); }
-$('enter').onclick=()=>{ if($('code').value.trim()===DASH_CODE){ try{sessionStorage.setItem('gmcDash','1');}catch(e){} unlock(); } else { $('code').value=''; $('code').placeholder=(lang==='ko'?'암호가 맞지 않아요':'Wrong passcode'); } };
+async function tryCode(v,silent){ v=String(v||'').trim(); var net=false;
+  if(v){ try{ const r=await fetch(SCRIPT_URL+'?codes='+encodeURIComponent(v)); const j=await r.json();
+    if(j&&j.ok){ DASH_CODE=v; window.__codes=j; try{sessionStorage.setItem('gmcDashK',v);}catch(e){} unlock(); return true; } }catch(e){ net=true; } }
+  try{sessionStorage.removeItem('gmcDashK');}catch(e){}
+  if(!silent){ $('code').value=''; $('code').placeholder=net?(lang==='ko'?'연결을 확인해 주세요':'Check your connection'):(lang==='ko'?'암호가 맞지 않아요':'Wrong passcode'); }
+  return false; }
+$('enter').onclick=()=>{ tryCode($('code').value,false); };
 $('code').addEventListener('keydown',e=>{ if(e.key==='Enter') $('enter').click(); });
-try{ if(sessionStorage.getItem('gmcDash')==='1') unlock(); }catch(e){}
+try{ sessionStorage.removeItem('gmcDash'); const k=sessionStorage.getItem('gmcDashK'); if(k) tryCode(k,true); }catch(e){}
 
 const T={
   ko:{att:'출석 추세',attc:'주일 교회학교 출석(최근)',week:'이번 주',rate:'참석률',inp:'대면',onl:'온라인',off:'결석',
