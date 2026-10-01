@@ -115,7 +115,64 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 </style>
 <style id="gmc-tool-polish">:root{--navy:var(--color-primary)!important;--navy-2:var(--color-primary-hover)!important;--navy2:var(--color-primary-hover)!important;--gold:var(--color-accent)!important;--gold-2:var(--color-accent-strong)!important;--gold2:var(--color-accent-strong)!important;--cream:var(--color-background)!important}body>header.hero{background:linear-gradient(150deg,var(--color-primary-hover),var(--color-primary))!important}.lead-q{background:#FBF8F2!important;border-color:rgba(184,146,74,.35)!important;color:var(--color-text-secondary)!important}h1,h2,h3{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;font-weight:800;letter-spacing:-.03em;word-break:keep-all}h1{letter-spacing:-.04em}.skip-link{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;border-radius:10px;background:#14213d;color:#fff;font-weight:700;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}.skip-link:focus{top:12px;outline:3px solid #B8924A;outline-offset:2px}</style><style id="a11y-tap-css">.mjw-meta a[href^="mailto:"],.sl-h a,.tab-cta a{display:inline-flex;align-items:center;min-height:44px}.mjw-meta a[href^="mailto:"]{padding:0 2px}</style>
 </head>
-<body><a class="skip-link" href="#tool-main">본문 바로가기</a>
+<body>
+<style id="lc-css">
+#lc-gate{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(15,25,45,.55)}
+#lc-gate[hidden]{display:none!important}
+#lc-gate .lc-c{width:100%;max-width:400px;background:#fff;border-radius:16px;padding:22px 20px;box-shadow:0 20px 50px rgba(0,0,0,.25);font-family:var(--font-sans,"Pretendard Variable",sans-serif);color:#1d2430}
+#lc-gate h2{font-size:18px;font-weight:800;color:#14213d;margin:0}
+#lc-gate p{margin:8px 0 0;font-size:14px;line-height:1.6;color:#48505e;word-break:keep-all}
+#lc-gate label.lc-l{display:block;margin-top:14px;font-size:13.5px;font-weight:800}
+#lc-gate input[type=password]{width:100%;min-height:48px;margin-top:6px;padding:0 14px;border:1.5px solid #d9d2c4;border-radius:12px;font:inherit;font-size:17px;letter-spacing:.06em}
+#lc-gate input[type=password]:focus{outline:3px solid #B8924A;outline-offset:2px}
+#lc-gate .lc-r{display:flex;align-items:center;gap:8px;min-height:44px;margin-top:6px;font-size:13.5px;color:#48505e}
+#lc-gate .lc-r input{width:20px;height:20px}
+#lc-gate button{width:100%;min-height:48px;margin-top:8px;border:0;border-radius:12px;background:#14213d;color:#fff;font:inherit;font-size:16px;font-weight:800;cursor:pointer}
+#lc-gate .lc-e{min-height:20px;margin-top:8px;font-size:13.5px;font-weight:700;color:#b3261e}
+</style>
+<div id="lc-gate" hidden role="dialog" aria-modal="true" aria-labelledby="lc-t"><form class="lc-c" id="lc-f">
+<h2 id="lc-t">개인 코드를 넣어 주십시오</h2>
+<p>출석 명단에는 성도와 아이들의 이름이 있어, 코드를 받은 분만 볼 수 있습니다. ‘내 목양’에서 쓰시는 개인 코드를 넣어 주십시오.</p>
+<label class="lc-l" for="lc-in">개인 코드</label>
+<input id="lc-in" type="password" autocomplete="off" autocapitalize="characters" spellcheck="false">
+<label class="lc-r" for="lc-keep"><input type="checkbox" id="lc-keep">이 기기에서 기억하기 (교회 출석용 기기에서만)</label>
+<div class="lc-e" id="lc-err" aria-live="polite"></div>
+<button type="submit">열기</button>
+<p style="font-size:12.5px">코드를 모르시면 담임목사님이나 사무실(office@ijiguchon.org)에 문의해 주십시오.</p>
+</form></div>
+<script id="lc-js">
+(function(){
+  var KS='gmcMy', KL='gmcLeaderCode', waiting=null;
+  function stored(){ var c=''; try{ c=sessionStorage.getItem(KS)||localStorage.getItem(KL)||''; }catch(e){} return c; }
+  window.gmcForgetCode=function(){ try{ sessionStorage.removeItem(KS); localStorage.removeItem(KL); }catch(e){} };
+  window.gmcLeaderCode=function(force,msg){
+    var c=stored(); if(c && !force) return Promise.resolve(c);
+    var g=document.getElementById('lc-gate'), inp=document.getElementById('lc-in');
+    document.getElementById('lc-err').textContent=msg||'';
+    g.hidden=false; setTimeout(function(){ inp.focus(); },50);
+    if(waiting) return waiting;
+    waiting=new Promise(function(res){
+      document.getElementById('lc-f').onsubmit=function(ev){ ev.preventDefault();
+        var v=(inp.value||'').trim(); if(!v){ document.getElementById('lc-err').textContent='코드를 넣어 주십시오.'; return; }
+        try{ sessionStorage.setItem(KS,v); if(document.getElementById('lc-keep').checked) localStorage.setItem(KL,v); }catch(e){}
+        g.hidden=true; inp.value=''; waiting=null; res(v); };
+    });
+    return waiting;
+  };
+  window.gmcListFetch=async function(kind){
+    var msg='';
+    for(var i=0;i<4;i++){
+      var code=await window.gmcLeaderCode(i>0,msg);
+      var r=await fetch(SCRIPT_URL+'?list='+kind+'&code='+encodeURIComponent(code));
+      var j=null; try{ j=await r.clone().json(); }catch(e){}
+      if(j && j.ok===false && j.need==='code'){ window.gmcForgetCode(); msg='코드가 맞지 않습니다. 다시 확인해 주십시오.'; continue; }
+      return r;
+    }
+    return new Response('{"ok":false}',{headers:{'Content-Type':'application/json'}});
+  };
+})();
+</script>
+<a class="skip-link" href="#tool-main">본문 바로가기</a>
 <header>
   <div class="wrap" id="tool-main">
     <div onclick="location.href=\'/\'" style="cursor:pointer" title="홈으로 / Home" role="link" tabindex="0">
@@ -286,7 +343,7 @@ function applyLang(){
 
 async function loadAdults(){
   if(!SCRIPT_URL){ $('demoTag').hidden=false; ADULTS={'이스라엘':['(예시) 김성수'],'미배정':[]}; return; }
-  try{ const r=await fetch(SCRIPT_URL+'?list=adults'); const j=await r.json(); if(j&&j.ok&&j.mokjangs) ADULTS=j.mokjangs; }catch(e){}
+  try{ const r=await gmcListFetch('adults'); const j=await r.json(); if(j&&j.ok&&j.mokjangs) ADULTS=j.mokjangs; }catch(e){}
 }
 
 (async function init(){
