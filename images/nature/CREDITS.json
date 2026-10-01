@@ -199,5 +199,10 @@
     "source": "church own photo (교회 수양회, E:/My Pictures/사진/수양회 사진/성민/사진2 029.JPG)",
     "consent": "뒷모습 · 얼굴 안 보임",
     "crop": "(0,1400)-(2736,2597) → 1800x788"
+  },
+  "mokjang-table": {
+    "source": "church own photo (2021-10 목장탐방 · 그리스 목장순방/IMG_7695.jpg)",
+    "consent": "사람 없음 · 식탁만",
+    "crop": "(0,650)-(3400,2138) → 1800x788"
   }
 }
