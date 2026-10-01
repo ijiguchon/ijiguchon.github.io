@@ -1,149 +1,154 @@
 {
- "home-lake": {
-  "photographer": "Emma Harper",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/j3CjZYckM88",
-  "license": "Unsplash License (free for commercial use)"
- },
- "space-aerial": {
-  "photographer": "Thaddious Thomas",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/_NQNLtU2Jo8",
-  "license": "Unsplash License (free for commercial use)"
- },
- "city-valley": {
-  "photographer": "Alexander",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/6sZPkiKlfcU",
-  "license": "Unsplash License (free for commercial use)"
- },
- "table-warm": {
-  "photographer": "Brina Blum",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/ZpB2T8Pi5II",
-  "license": "Unsplash License (free for commercial use)"
- },
- "hush-mist": {
-  "photographer": "Amandine BATAILLE",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/5i8JoOz91-Y",
-  "license": "Unsplash License (free for commercial use)"
- },
- "walk-path": {
-  "photographer": "Michiko Usui",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/YsuT_GD9mPU",
-  "license": "Unsplash License (free for commercial use)"
- },
- "newgen-field": {
-  "photographer": "Yanapi Senaud",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/87n4IpQl6c4",
-  "license": "Unsplash License (free for commercial use)"
- },
- "square-garden": {
-  "photographer": "David Clode",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/eL4ADAsiOR8",
-  "license": "Unsplash License (free for commercial use)"
- },
- "worship-indoor": {
-  "photographer": "Keagan Henman",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/mU85sCiU_08",
-  "license": "Unsplash License (free for commercial use)"
- },
- "square-road": {
-  "photographer": "Renata Kurtveliieva-Berezhna",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/8ipYff0V3ZY",
-  "license": "Unsplash License (free for commercial use)"
- },
- "disciple-path": {
-  "photographer": "Thilina Alagiyawanna",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/SqDcNTOO7XY",
-  "license": "Unsplash License (free for commercial use)"
- },
- "sharing-table": {
-  "photographer": "Bruno Ngarukiye",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/ogSlX2-5XIY",
-  "license": "Unsplash License (free for commercial use)"
- },
- "welcome-walk": {
-  "photographer": "Samuell Morgenstern",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/Fkn725spNnE",
-  "license": "Unsplash License (free for commercial use)"
- },
- "study-cup": {
-  "photographer": "Karori Production",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/nOrD2yQyGP8",
-  "license": "Unsplash License (free for commercial use)"
- },
- "community-volunteers": {
-  "photographer": "Pexels (Pexels 6646974)",
-  "source": "Pexels",
-  "page": "https://www.pexels.com/photo/a-group-of-volunteers-boxing-relief-good-6646974/",
-  "license": "Pexels License (free for commercial use)"
- },
- "community-counsel": {
-  "photographer": "Priscilla Du Preez",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/K8XYGbw4Ahg",
-  "license": "Unsplash License (free for commercial use)"
- },
- "community-coach": {
-  "photographer": "Jonathan J. Castellon",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/81GHVY7Lpt4",
-  "license": "Unsplash License (free for commercial use)"
- },
- "community-walk": {
-  "photographer": "Vitaly Gariev",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/Uwb_q2fDlyY",
-  "license": "Unsplash License (free for commercial use)"
- },
- "community-talk": {
-  "photographer": "시애틀지구촌교회",
-  "source": "own photo (2026-08-30 English Talk Time)",
-  "license": "church-owned photo; participants' consent to appear on the website confirmed by pastor (2026-09-29)"
- },
- "faq-path": {
-  "photographer": "Artem Shuba",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/A2OcTLXN3y8",
-  "license": "Unsplash License (free for commercial use)",
-  "note": "cropped to remove the trail sign"
- },
- "study-bible": {
-  "photographer": "Jonny Gios",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/HQorO9JqAEE",
-  "license": "Unsplash License (free for commercial use)"
- },
- "study-group": {
-  "photographer": "시애틀지구촌교회",
-  "source": "church own photo (2026-07-18 NW Shepherds Retreat, small-group sharing)",
-  "license": "church-owned; participants' consent to be confirmed by pastor"
- },
- "worship-retreat": {
-  "photographer": "시애틀지구촌교회",
-  "source": "church own photo (2026-07-18 NW Shepherds Retreat, worship)",
-  "license": "church-owned; participants' consent to be confirmed by pastor"
- },
- "faq-question": {
-  "photographer": "Jac Alexandru",
-  "source": "Unsplash",
-  "page": "https://unsplash.com/photos/NmleJ9Rp8Zs",
-  "license": "Unsplash License (free for commercial use)"
- },
- "column-pastor": {
-  "photographer": "시애틀지구촌교회",
-  "source": "pastor's own photo (OneDrive 사진/. 김성수(가족,친구)/SSKim.jpg)",
-  "license": "church/pastor-owned"
- }
+  "home-lake": {
+    "photographer": "Emma Harper",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/j3CjZYckM88",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "space-aerial": {
+    "photographer": "Thaddious Thomas",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/_NQNLtU2Jo8",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "city-valley": {
+    "photographer": "Alexander",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/6sZPkiKlfcU",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "table-warm": {
+    "photographer": "Brina Blum",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/ZpB2T8Pi5II",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "hush-mist": {
+    "photographer": "Amandine BATAILLE",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/5i8JoOz91-Y",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "walk-path": {
+    "photographer": "Michiko Usui",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/YsuT_GD9mPU",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "newgen-field": {
+    "photographer": "Yanapi Senaud",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/87n4IpQl6c4",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "square-garden": {
+    "photographer": "David Clode",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/eL4ADAsiOR8",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "worship-indoor": {
+    "photographer": "Keagan Henman",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/mU85sCiU_08",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "square-road": {
+    "photographer": "Renata Kurtveliieva-Berezhna",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/8ipYff0V3ZY",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "disciple-path": {
+    "photographer": "Thilina Alagiyawanna",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/SqDcNTOO7XY",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "sharing-table": {
+    "photographer": "Bruno Ngarukiye",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/ogSlX2-5XIY",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "welcome-walk": {
+    "photographer": "Samuell Morgenstern",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/Fkn725spNnE",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "study-cup": {
+    "photographer": "Karori Production",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/nOrD2yQyGP8",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "community-volunteers": {
+    "photographer": "Pexels (Pexels 6646974)",
+    "source": "Pexels",
+    "page": "https://www.pexels.com/photo/a-group-of-volunteers-boxing-relief-good-6646974/",
+    "license": "Pexels License (free for commercial use)"
+  },
+  "community-counsel": {
+    "photographer": "Priscilla Du Preez",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/K8XYGbw4Ahg",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "community-coach": {
+    "photographer": "Jonathan J. Castellon",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/81GHVY7Lpt4",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "community-walk": {
+    "photographer": "Vitaly Gariev",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/Uwb_q2fDlyY",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "community-talk": {
+    "photographer": "시애틀지구촌교회",
+    "source": "own photo (2026-08-30 English Talk Time)",
+    "license": "church-owned photo; participants' consent to appear on the website confirmed by pastor (2026-09-29)"
+  },
+  "faq-path": {
+    "photographer": "Artem Shuba",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/A2OcTLXN3y8",
+    "license": "Unsplash License (free for commercial use)",
+    "note": "cropped to remove the trail sign"
+  },
+  "study-bible": {
+    "photographer": "Jonny Gios",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/HQorO9JqAEE",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "study-group": {
+    "photographer": "시애틀지구촌교회",
+    "source": "church own photo (2026-07-18 NW Shepherds Retreat, small-group sharing)",
+    "license": "church-owned; participants' consent to be confirmed by pastor"
+  },
+  "worship-retreat": {
+    "photographer": "시애틀지구촌교회",
+    "source": "church own photo (2026-07-18 NW Shepherds Retreat, worship)",
+    "license": "church-owned; participants' consent to be confirmed by pastor"
+  },
+  "faq-question": {
+    "photographer": "Jac Alexandru",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/NmleJ9Rp8Zs",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "column-pastor": {
+    "photographer": "시애틀지구촌교회",
+    "source": "pastor's own photo (OneDrive 사진/. 김성수(가족,친구)/SSKim.jpg)",
+    "license": "church/pastor-owned"
+  },
+  "worship-sunday.webp": {
+    "source": "시애틀지구촌교회 주일 연합예배 (목사님 제공, 2026-10-01)",
+    "consent": "성도 뒷모습 위주 · 우리 교회 성도",
+    "crop": "왼쪽 맞춤 (0,330)-(1620,1039)"
+  }
 }
