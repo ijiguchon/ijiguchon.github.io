@@ -7,7 +7,7 @@
    페이지는 network-first라 내용 수정 때 버전을 올릴 필요 없음.
    캐시 구조를 바꿀 때만 VERSION을 올리세요. (캐시 이름은 'home-' 으로 시작)
    ══════════════════════════════════════════════════════════ */
-const VERSION = 'home-v20261001-135349';
+const VERSION = 'home-v20261001-135504';
 const PAGE_CACHE = VERSION + '-pages';
 const ASSET_CACHE = VERSION + '-assets';
 const PRECACHE = ['/', '/manifest.json', '/favicon.ico', '/images/logo-mark.png', '/images/icon-192-em.png'];
