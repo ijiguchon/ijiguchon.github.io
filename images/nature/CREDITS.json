@@ -187,5 +187,12 @@
   "net-music": {
     "source": "church own photo (00. 교회_ New 시애틀지구촌교회_010724/찬양팀/IMG_5147.JPG)",
     "consent": "뒷모습 위주"
+  },
+  "globe-seattle": {
+    "photographer": "Thom Milkovic",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/skUTVJi8-jc",
+    "license": "Unsplash License (free for commercial use)",
+    "crop": "(0,330)-(4219,1648) → 1800x563"
   }
 }
