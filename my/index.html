@@ -106,6 +106,37 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 <link id="gmc-name-font-link" rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Serif+KR:wght@700&text=%EC%8B%9C%EC%95%A0%ED%8B%80%EC%A7%80%EA%B5%AC%EC%B4%8C%EA%B5%90%ED%9A%8C">
 <style id="gmc-name-font">.brand b,.brand .wm b,footer .fc .nm{font-family:'Noto Serif KR','Gowun Batang',serif!important;font-weight:700!important;letter-spacing:-.3px}.tabs .tab{min-height:32px!important;padding-top:5px!important;padding-bottom:5px!important}.topbar .row{height:52px}@media(max-width:860px){.topbar .row{height:auto;padding-top:5px!important;padding-bottom:4px!important;row-gap:2px!important}.topbar .tabs{margin-top:0!important}}body:not(:has(#p-newcomer)) footer .fg,body:not(:has(#p-newcomer)) footer .fmin{display:none}body:not(:has(#p-newcomer)) footer{padding:14px 0 16px}body:not(:has(#p-newcomer)) footer .fcopy{margin-top:0;padding-top:0;border-top:0}</style>
 <style id="gmc-tool-polish">:root{--navy:var(--color-primary)!important;--navy-2:var(--color-primary-hover)!important;--navy2:var(--color-primary-hover)!important;--gold:var(--color-accent)!important;--gold-2:var(--color-accent-strong)!important;--gold2:var(--color-accent-strong)!important;--cream:var(--color-background)!important}body>header.hero{background:linear-gradient(150deg,var(--color-primary-hover),var(--color-primary))!important}.lead-q{background:#FBF8F2!important;border-color:rgba(184,146,74,.35)!important;color:var(--color-text-secondary)!important}h1,h2,h3{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;font-weight:800;letter-spacing:-.03em;word-break:keep-all}h1{letter-spacing:-.04em}.skip-link{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;border-radius:10px;background:#14213d;color:#fff;font-weight:700;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}.skip-link:focus{top:12px;outline:3px solid #B8924A;outline-offset:2px}</style><style id="a11y-tap-css">.mjw-meta a[href^="mailto:"],.sl-h a,.tab-cta a{display:inline-flex;align-items:center;min-height:44px}.mjw-meta a[href^="mailto:"]{padding:0 2px}</style>
+<style id="js-steps-css">
+.js-step{display:inline-flex;align-items:center;margin-left:6px;padding:2px 9px;border-radius:999px;background:#EEF2F8;color:#1a3560;font-size:12px;font-weight:800;vertical-align:middle;white-space:nowrap}
+.js-strip{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin:4px 0 12px}
+@media(max-width:560px){.js-strip{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.js-cell{padding:8px 6px;border-radius:10px;background:#FBF7F0;border:1px solid #ECE6DC;text-align:center}
+.js-cell b{display:block;font-size:20px;color:#1a3560;line-height:1.2}
+.js-cell span{display:block;font-size:12px;line-height:1.35;color:#48505e;word-break:keep-all}
+.js-cell.na b{color:#a9b0bb}
+.js-note{font-size:12.5px;color:#8a93a2;margin:-4px 0 10px}
+.js-bar{display:grid;grid-template-columns:minmax(0,11em) 1fr 2.5em;gap:8px;align-items:center;margin:6px 0;font-size:13px}
+.js-bar i{display:block;height:10px;border-radius:6px;background:#1a3560}
+.js-bar em{font-style:normal;font-weight:800;text-align:right;color:#1a3560}
+</style>
+<script id="js-steps">
+var JSTEP=['환대','목장 소속','연합예배 · 교인 등록','새가족 만남','예수 영접 ↔ 생명의 삶','침례 → 회원교인','제자로 자라는 길'];
+function jsEsc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function jsCounts(list){ var o=[0,0,0,0,0,0,0]; (list||[]).forEach(function(a){ var n=+a.걸음; if(n>=1&&n<=7) o[n-1]++; }); return o; }
+function jsStrip(list){
+  if(!(list||[]).some(function(a){ return a.걸음; })) return '';
+  var c=jsCounts(list);
+  return '<div class="js-strip" aria-label="한 사람이 제자로 서기까지 — 걸음별 인원">'+JSTEP.map(function(t,i){ var na=(i===3);
+    return '<div class="js-cell'+(na?' na':'')+'"><b>'+(na?'—':c[i])+'</b><span>'+(i+1)+' '+t+'</span></div>'; }).join('')+'</div>'
+    +'<p class="js-note">새가족 만남은 아직 따로 기록하지 않아 3에 함께 셉니다.</p>';
+}
+function jsStepCard(steps){
+  var c=[1,2,3,4,5,6,7].map(function(k){ return +(steps[k]||steps[String(k)]||0); }), max=Math.max(1,Math.max.apply(null,c));
+  return '<div class="card"><div class="sec-h">한 사람이 제자로 서기까지 · 교회 전체</div>'
+    +JSTEP.map(function(t,i){ return '<div class="js-bar"><span>'+(i+1)+' '+t+'</span><i style="width:'+(i===3?0:Math.round(c[i]/max*100))+'%"></i><em>'+(i===3?'—':c[i])+'</em></div>'; }).join('')
+    +'<p class="js-note" style="margin-top:6px">본인 · 배우자 기준. 새가족 만남은 아직 따로 기록하지 않아 3에 함께 셉니다.</p></div>';
+}
+</script>
 </head>
 <body><a class="skip-link" href="#tool-main">본문 바로가기</a>
 <header>
@@ -141,7 +172,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 
   <div class="card">
     <div class="sec"><span class="ko">우리 목장 식구 (성인)</span><span class="en">Our members (adults)</span></div>
-    <div id="adults"></div>
+    <div id="jsStrip"></div><div id="adults"></div>
   </div>
 
   <div class="card" id="childCard">
@@ -189,9 +220,10 @@ function render(j){
     : [].concat(j.목장||[],j.부서||[]).filter(function(x,i,a){return a.indexOf(x)===i;}).join(' · ');
   $('myScope').textContent=(lang==='ko'?'범위: ':'Scope: ')+scope;
   // 성인
+  const js=$('jsStrip'); if(js) js.innerHTML=jsStrip(j.adults);
   const ad=$('adults');
   ad.innerHTML=(j.adults&&j.adults.length)? j.adults.map(function(a){
-    return '<div class="item"><div><span class="nm">'+esc(a.이름)+'</span>'+(a.관계==='배우자'?'<span class="tag">배우자</span>':'')+'</div><div class="meta">'+esc(a.목장||'')+(a.휴대폰?(' · '+esc(a.휴대폰)):'')+'</div></div>';
+    return '<div class="item"><div><span class="nm">'+esc(a.이름)+'</span>'+(a.관계==='배우자'?'<span class="tag">배우자</span>':'')+(a.걸음?'<span class="js-step">'+a.걸음+' · '+jsEsc(JSTEP[a.걸음-1])+'</span>':'')+'</div><div class="meta">'+esc(a.목장||'')+(a.휴대폰?(' · '+esc(a.휴대폰)):'')+(a.삶공부?(' · 삶공부: '+esc(a.삶공부)):'')+'</div></div>';
   }).join('') : '<div class="empty">아직 없음</div>';
   // 아이
   const cc=$('childCard'), ch=$('children');
