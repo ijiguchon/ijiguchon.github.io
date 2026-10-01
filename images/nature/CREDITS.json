@@ -169,5 +169,23 @@
     "source": "시애틀지구촌교회 주일 연합예배 (목사님 제공, 2026-10-01)",
     "consent": "성도 뒷모습 위주 · 우리 교회 성도",
     "crop": "(1225,320)-(1887,850) → 1000x800"
+  },
+  "net-settle": {
+    "photographer": "Jakub Żerdzicki",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/bqUZEAeWuok",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "net-table": {
+    "source": "church own photo (사진/01_시애틀지구촌교회_총사진 모음/00. 교회_ New 시애틀지구촌교회_010724/부엌 섬김/IMG_5301.JPG)",
+    "consent": "얼굴 없이 손과 그릇만 보이게 자름"
+  },
+  "net-newgen": {
+    "source": "church own photo (02-2 연중 행사자료/교회_행사(2022-24)/Ember Bazaar_/KakaoTalk_20220423_170120755.jpg, 2022-04-23)",
+    "consent": "마스크 · 고개 숙인 모습 위주. 사진 속 분들 확인 필요 시 교체"
+  },
+  "net-music": {
+    "source": "church own photo (00. 교회_ New 시애틀지구촌교회_010724/찬양팀/IMG_5147.JPG)",
+    "consent": "뒷모습 위주"
   }
 }
