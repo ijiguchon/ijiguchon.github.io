@@ -238,5 +238,11 @@
     "source": "church own photo (신년말씀잔치(2024)_사진/IMG_5329.JPG)",
     "consent": "사람 없음",
     "crop": "(0,300)-(6000,2925) → 1800x788"
+  },
+  "sq-new-welcome": {
+    "photographer": "DJ Paine",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/nOVt9Yeo9Xc",
+    "license": "Unsplash License (free for commercial use)"
   }
 }
