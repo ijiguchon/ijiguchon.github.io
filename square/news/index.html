@@ -1658,5 +1658,49 @@ function later(){clearTimeout(t);t=setTimeout(fix,120);}
 fix();
 if(window.MutationObserver)new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});
 })();</script>
+<!-- 안내 도우미 1단계 --><style id="gcv-css">.gc-in .gc-mic{width:42px;height:42px;min-height:var(--touch-target,44px);min-width:var(--touch-target,44px);border-radius:50%;border:1.5px solid var(--line);background:var(--color-surface);color:var(--navy);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}.gc-in .gc-mic svg,.gc-head .gc-say svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.gc-in .gc-mic.on{background:var(--color-accent,#B8924A);border-color:transparent;color:#fff;animation:gcv-p 1.2s ease-in-out infinite}@keyframes gcv-p{0%,100%{box-shadow:0 0 0 0 rgba(184,146,74,.45)}50%{box-shadow:0 0 0 8px rgba(184,146,74,0)}}.gc-in .gc-mic:focus-visible,.gc-head .gc-say:focus-visible{outline:3px solid var(--color-focus,#2c77b0);outline-offset:2px}.gc-head .gc-say{margin-left:auto;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}.gc-head .gc-say[aria-pressed="false"] .w{opacity:.25}.gc-head .gc-say[aria-pressed="true"]{background:rgba(255,255,255,.28)}.gc-head .gc-say + .gc-x{margin-left:4px}.gc-res b{display:block;margin:2px 0 4px;font-size:12px;letter-spacing:.04em;color:var(--gold-2)}.gc-res a{display:flex;align-items:center;min-height:44px;padding:6px 10px;margin:4px 0;border-radius:10px;border:1px solid var(--line);background:var(--color-surface);color:var(--navy);font-weight:700;font-size:13.5px;line-height:1.4;text-decoration:none}.gc-res a small{margin-left:6px;font-weight:600;color:var(--ink-3)}.gc-hint{font-size:12px;color:var(--ink-3)}@media(max-width:420px){.gc-head .gc-logo{display:none}}@media (prefers-reduced-motion:reduce){.gc-in .gc-mic.on{animation:none}}</style><script id="gcv-js">(function(){
+var form=document.querySelector('.gc-in'),inp=document.getElementById('gcInput'),head=document.querySelector('.gc-head');
+if(!form||!inp||!head) return;
+var SR=window.SpeechRecognition||window.webkitSpeechRecognition,syn=window.speechSynthesis;
+function L(){return document.body.classList.contains('lang-en')?'en':'ko';}
+function T(ko,en){return L()==='en'?en:ko;}
+var say=false,viaVoice=false,vt=null;try{say=localStorage.getItem('gc-say')==='1';}catch(_){}
+function speak(h){if(!syn)return;var d=document.createElement('div');d.innerHTML=h;var t=d.textContent.replace(/\s+/g,' ').trim();if(!t)return;
+ syn.cancel();var u=new SpeechSynthesisUtterance(t);u.lang=L()==='en'?'en-US':'ko-KR';u.rate=1;syn.speak(u);}
+if(syn){var sp=document.createElement('button');sp.type='button';sp.className='gc-say';sp.setAttribute('aria-pressed',say?'true':'false');
+ sp.setAttribute('aria-label','답을 소리로 듣기');sp.title='답을 소리로 듣기';sp.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="w" d="M15.5 9a4 4 0 0 1 0 6"/><path class="w" d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>';
+ sp.onclick=function(){say=!say;sp.setAttribute('aria-pressed',say?'true':'false');try{localStorage.setItem('gc-say',say?'1':'0');}catch(_){}if(!say)syn.cancel();};
+ head.insertBefore(sp,head.querySelector('.gc-x'));}
+var _add=window.gcAdd;
+if(_add) window.gcAdd=function(h,w){_add(h,w);if(w==='bot'&&(say||viaVoice))speak(h);};
+function submit(){if(form.requestSubmit)form.requestSubmit();else{var e=new Event('submit',{cancelable:true});form.dispatchEvent(e);}}
+if(SR){var mic=document.createElement('button');mic.type='button';mic.className='gc-mic';mic.setAttribute('aria-label','말로 묻기');mic.title='말로 묻기';mic.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>';
+ form.insertBefore(mic,form.querySelector('.gc-send'));var rec=null,on=false;
+ function state(v){on=v;mic.classList.toggle('on',v);mic.setAttribute('aria-label',v?'듣고 있습니다 · 누르면 멈춤':'말로 묻기');
+  inp.placeholder=v?T('듣고 있습니다… 말씀해 주십시오','Listening… go ahead'):T('궁금한 점을 입력하세요','Type your question');}
+ mic.onclick=function(){if(on){try{rec.stop();}catch(_){}return;}if(syn)syn.cancel();
+  rec=new SR();rec.lang=L()==='en'?'en-US':'ko-KR';rec.interimResults=true;rec.maxAlternatives=1;var done=false;
+  rec.onresult=function(e){var t='';for(var i=0;i<e.results.length;i++)t+=e.results[i][0].transcript;inp.value=t;
+   if(e.results[e.results.length-1].isFinal&&!done){done=true;try{rec.stop();}catch(_){}viaVoice=true;clearTimeout(vt);vt=setTimeout(function(){viaVoice=false;},4000);submit();}};
+  rec.onerror=function(e){state(false);if(e.error==='not-allowed'||e.error==='service-not-allowed'){_add&&_add('<span class="gc-hint">'+T('마이크 사용을 허용해 주시면 말로 물으실 수 있습니다. 브라우저 설정에서 이 사이트의 마이크를 허용해 주십시오.','Please allow microphone access for this site in your browser settings.')+'</span>','bot');}};
+  rec.onend=function(){state(false);};state(true);try{rec.start();}catch(_){state(false);}};}
+var IDX=null;function load(){return IDX?Promise.resolve(IDX):fetch('/search-index.json').then(function(r){return r.json();}).then(function(j){IDX=j;return j;});}
+var STOP=['교회','시애틀','지구촌','칼럼','목회칼럼','글','있나요','있어요','있습니까','하나요','해요','합니까','어디','언제','어떻게','무엇','뭐','알려','주세요','싶어요','싶습니다','the','and','for'];
+function toks(q){return q.toLowerCase().replace(/[?!.,·~"'()]/g,' ').split(/\s+/).map(function(w){
+ return w.replace(/(에서는|에서|으로|에게|까지|부터|이랑|하고|이요|인가요|나요|입니까|인가|은|는|이|가|을|를|에|로|와|과|도|만|요|까)$/,'');}).filter(function(w){return w.length>=2&&STOP.indexOf(w)<0;});}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function find(ix,q){var ws=toks(q);if(!ws.length)return '';
+ function sc(o,f){var s=0;ws.forEach(function(w){for(var k in f){var v=(o[k]||'').toLowerCase();if(v.indexOf(w)>-1)s+=f[k];}});return s;}
+ var P=ix.p.map(function(o){return{o:o,s:sc(o,{t:6,h:3,d:2,x:1})};}).filter(function(a){return a.s>=3;}).sort(function(a,b){return b.s-a.s;}).slice(0,3);
+ var C=ix.c.map(function(o){return{o:o,s:sc(o,{t:4,x:1})};}).filter(function(a){return a.s>=4;}).sort(function(a,b){return b.s-a.s;}).slice(0,3);
+ if(!P.length&&!C.length)return '';
+ var h='<div class="gc-res">';
+ if(P.length)h+='<b>'+T('홈페이지에서 찾은 곳','Found on our site')+'</b>'+P.map(function(a){return '<a href="'+esc(a.o.u)+'">'+esc(a.o.t)+'</a>';}).join('');
+ if(C.length)h+='<b>'+T('목회칼럼에서','From the pastor\'s columns')+'</b>'+C.map(function(a){return '<a href="/corner/archive/?n='+a.o.n+'">'+esc(a.o.t)+'<small>'+esc(a.o.d)+'</small></a>';}).join('');
+ return h+'</div>';}
+var _sub=window.gcSubmit;
+if(_sub) window.gcSubmit=function(e){var q=inp.value.trim();_sub(e);if(q.length<2)return;
+ load().then(function(ix){var r=find(ix,q);if(r)setTimeout(function(){_add?_add(r,'bot'):0;},650);}).catch(function(){});};
+})();</script><!-- /안내 도우미 1단계 -->
 </body>
 </html>
