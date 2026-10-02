@@ -1029,7 +1029,7 @@ img.onload=function(){
       </div>
       <div class="mjw-card">
         <div class="mjw-flag mjw-y" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="5.4" r="2.7"/><circle cx="4.6" cy="7.6" r="2.2"/><circle cx="19.4" cy="7.6" r="2.2"/><path d="M12 9c-2.4 0-4.3 1.7-4.7 4l-.5 3h10.4l-.5-3c-.4-2.3-2.3-4-4.7-4z"/><path d="M4.6 11.2c-1.8 0-3.2 1.3-3.5 3L.7 16.5h4.6l.6-3.4c.1-.7.4-1.3.8-1.8-.7-.1-1.4-.1-2.1-.1z"/><path d="M19.4 11.2c-.7 0-1.4 0-2.1.1.4.5.7 1.1.8 1.8l.6 3.4h4.6l-.4-2.3c-.3-1.7-1.7-3-3.5-3z"/><rect x="6.2" y="17.4" width="11.6" height="3.2" rx="1.6"/></svg></div>
-        <div class="mjw-b"><div class="mjw-field">New Generation</div><div class="mjw-name">GMC Y</div><div class="mjw-host"><span class="ko">Garrett Woods 목자 · 청소년</span><span class="en">Host: Garrett Woods · Youth</span></div><div class="mjw-meta"><a href="mailto:garrett.woods@ijiguchon.org">garrett.woods@ijiguchon.org</a></div></div><div class="mjw-when"><span class="ko"><i class="mjw-w" style="font-style:normal">매주 </i>주일</span><span class="en">Sundays</span></div>
+        <div class="mjw-b"><div class="mjw-field">New Generation</div><div class="mjw-name">GMC Y</div><div class="mjw-host"><span class="ko">Garrett Woods · 청소년</span><span class="en">Garrett Woods · Youth</span></div><div class="mjw-meta"><a href="mailto:garrett.woods@ijiguchon.org">garrett.woods@ijiguchon.org</a></div></div><div class="mjw-when"><span class="ko"><i class="mjw-w" style="font-style:normal">매주 </i>주일</span><span class="en">Sundays</span></div>
         
       </div>
     </div>
@@ -1653,7 +1653,7 @@ document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){ 
 /* ══ 교인 기능 — 교인 앱(GMC_PWA)에서 이전. 신청서는 앱과 같은 백엔드(SCRIPT_URL)·같은 type 으로 보냄 ══ */
 function gmEn(){ return document.body.classList.contains('lang-en'); }
 function gmBi(ko,en){ return '<span class="ko">'+esc(ko)+'</span><span class="en">'+esc(en)+'</span>'; }
-var GM_MJ_OPTS = [{ko:'어디든 추천해 주세요',en:'Please recommend one'},{ko:'이스라엘 목장 (김지영 목자)',en:'Israel House Church (Joy Kim)'},{ko:'멕시코 목장 (박성건 목자)',en:'Mexico House Church (Sung Gun Park)'},{ko:'인도네시아 목장 (이인규 목자)',en:'Indonesia House Church (In Kyu Lee)'},{ko:'GMC Y — 청소년 (Garrett Woods 목자)',en:'GMC Y — Youth (Garrett Woods)'}];
+var GM_MJ_OPTS = [{ko:'어디든 추천해 주세요',en:'Please recommend one'},{ko:'이스라엘 목장 (김지영 목자)',en:'Israel House Church (Joy Kim)'},{ko:'멕시코 목장 (박성건 목자)',en:'Mexico House Church (Sung Gun Park)'},{ko:'인도네시아 목장 (이인규 목자)',en:'Indonesia House Church (In Kyu Lee)'},{ko:'GMC Y — 청소년 (Garrett Woods)',en:'GMC Y — Youth (Garrett Woods)'}];
 var F_NAME={n:'이름',en:'Name',t:'text',req:true,ph:'홍길동',phEn:'Your name'}, F_MAIL={n:'이메일',en:'Email',t:'email',req:true,ph:'you@example.com',phEn:'you@example.com'}, F_TEL={n:'전화번호',en:'Phone',t:'tel',ph:'(선택)',phEn:'(optional)'};
 var GM = {
   newcomer:{s:'[GMC] 새가족 만남 신청', ko:['새가족 만남','커피 한 잔 하며 편하게 인사 나눕니다. 부담 없이 오십시오.','만남 신청하기','반갑습니다','담당자가 곧 연락드리겠습니다.'], en:['Newcomer coffee','Just coffee and a friendly hello. No pressure.','Request a meetup','So glad you reached out',"We'll be in touch soon."], f:[F_NAME,F_MAIL,F_TEL,{n:'한마디',en:'Anything to share',t:'textarea',ph:'궁금한 점이나 하고 싶은 말 (선택)',phEn:'Questions or anything else (optional)'}],
