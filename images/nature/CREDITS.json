@@ -209,5 +209,24 @@
     "source": "church own photo (교회 수양회, E:/My Pictures/사진/수양회 사진/성민/사진2 028.JPG)",
     "consent": "목사님이 사진 속 분들 확인 후 선택 (2026-10-01)",
     "crop": "(0,380)-(3648,1976) → 1800x788"
+  },
+  "ng-baby": {
+    "photographer": "Hu Chen",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/tCbTGNwrFNM",
+    "license": "Unsplash License (free for commercial use)"
+  },
+  "ng-kids": {
+    "source": "church own photo (00. 교회_ New…/주일학교/홈페이지용/[크기변환]주일학교 1.JPG, 2024)",
+    "consent": "목사님이 직접 고름(2026-10-01) · 홈페이지용 폴더"
+  },
+  "ng-youth": {
+    "source": "church own photo (00. 교회_ New…/Youth, Talktime/IMG_5262.JPG, 2024)",
+    "consent": "목사님 확인 필요"
+  },
+  "net-kids": {
+    "source": "church own photo (00. 교회_ New…/주일학교/IMG_5257.JPG, 2024)",
+    "consent": "목사님 확인 필요",
+    "replaces": "net-newgen (2022 Ember 바자회 — 쓰지 않기로 함)"
   }
 }
