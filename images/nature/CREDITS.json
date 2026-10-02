@@ -258,5 +258,12 @@
     "page": "https://unsplash.com/photos/H6xKnDKrKDk",
     "license": "Unsplash License (free for commercial use)",
     "crop": "(0,594)-(5184,2862) → 1800x788"
+  },
+  "pray-together": {
+    "photographer": "Tony Lomas",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/iIzZ0Fw8wSQ",
+    "license": "Unsplash License (free for commercial use)",
+    "crop": "(0,650)-(3768,2298) → 1800x788"
   }
 }
