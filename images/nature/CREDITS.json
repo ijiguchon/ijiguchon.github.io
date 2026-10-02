@@ -251,5 +251,12 @@
     "page": "https://unsplash.com/photos/MdcJY5doCTo",
     "license": "Unsplash License (free for commercial use)",
     "crop": "(0,400)-(5531,2820) → 1800x788"
+  },
+  "news-handoff": {
+    "photographer": "Erika Giraud",
+    "source": "Unsplash",
+    "page": "https://unsplash.com/photos/H6xKnDKrKDk",
+    "license": "Unsplash License (free for commercial use)",
+    "crop": "(0,594)-(5184,2862) → 1800x788"
   }
 }
