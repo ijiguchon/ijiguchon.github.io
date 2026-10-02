@@ -998,7 +998,7 @@ document.addEventListener('DOMContentLoaded', function(){
   };
   var bar=document.querySelector('.topbar'); if(!bar) return;
   var home=!!document.getElementById('p-newcomer');
-  var hov=window.matchMedia&&window.matchMedia('(hover:hover)').matches;
+  var hov=false; /* 2026-10-02 목사님: 컴퓨터도 같은 탭을 한 번 누르면 열리고 한 번 더 누르면 접힘 (마우스 올림으로 열지 않음) */
   var panel=document.createElement('div'); panel.className='tmenu'; panel.hidden=true; bar.appendChild(panel);
   var cur=null, hideT=null, openedAt=0;
   function off(){ return (bar.offsetHeight||60)+14; }
@@ -1014,7 +1014,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   function render(tab,btn){
     clearTimeout(hideT);
-    panel.innerHTML='<div class="tm-h">'+btn.innerHTML+'</div>'+M[tab].map(function(it,i){ return '<button type="button" class="tm-i" data-i="'+i+'"><span><span class="ko">'+(it.ko||it.cut)+'</span><span class="en">'+it.en+'</span></span><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>'; }).join('');
+    panel.innerHTML='<div class="tm-h">'+btn.innerHTML+'</div>'+(home?'':'<a class="tm-i" style="text-decoration:none" href="'+(btn.getAttribute('href')||'/')+'"><span><span class="ko">이 탭 첫 화면으로</span><span class="en">Open this tab</span></span><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>')+M[tab].map(function(it,i){ return '<button type="button" class="tm-i" data-i="'+i+'"><span><span class="ko">'+(it.ko||it.cut)+'</span><span class="en">'+it.en+'</span></span><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>'; }).join('');
     panel.querySelectorAll('.tm-i').forEach(function(b){ b.addEventListener('click',function(e){ e.stopPropagation(); goItem(tab,+b.getAttribute('data-i')); }); });
     var br=bar.getBoundingClientRect(), r=btn.getBoundingClientRect(), w=Math.min(290, window.innerWidth-24);
     var left=Math.max(12, Math.min(r.left, window.innerWidth-w-12));
@@ -1029,12 +1029,12 @@ document.addEventListener('DOMContentLoaded', function(){
       // 첫 클릭=목록 열기, 두 번째 클릭(또는 목록 없는 탭)=링크대로 그 탭으로 이동
       btn.addEventListener('click',function(e){
         e.stopImmediatePropagation();
-        if(tab&&M[tab]&&cur!==tab){ e.preventDefault(); render(tab,btn); }
+        if(tab&&M[tab]){ if(hov){ if(cur!==tab){ e.preventDefault(); render(tab,btn); } return; } e.preventDefault(); if(cur===tab&&!panel.hidden){ close(); return; } render(tab,btn); }
       },true);
     }
     if(!tab||!M[tab]) return;
     if(home&&tab==='newcomer') btn.addEventListener('click',function(e){ e.preventDefault(); e.stopImmediatePropagation(); if(cur===tab&&!panel.hidden){ close(); return; } render(tab,btn); },true);
-    else if(home) btn.addEventListener('click',function(e){ e.stopPropagation(); render(tab,btn); });
+    else if(home) btn.addEventListener('click',function(e){ e.stopPropagation(); if(!hov&&cur===tab&&!panel.hidden){ close(); return; } render(tab,btn); });
     if(hov){
       btn.addEventListener('mouseenter',function(){ render(tab,btn); });
       btn.addEventListener('mouseleave',function(){ hideT=setTimeout(close,280); });
