@@ -265,5 +265,10 @@
     "page": "https://unsplash.com/photos/iIzZ0Fw8wSQ",
     "license": "Unsplash License (free for commercial use)",
     "crop": "(0,650)-(3768,2298) → 1800x788"
+  },
+  "door-worship": {
+    "source": "church own photo (00. 교회_ New 시애틀지구촌교회_010724/IMG_5164.JPG, 2024 주일예배)",
+    "consent": "성도 뒷모습 · 찬양팀",
+    "crop": "가운데 16:7 → 1800x788"
   }
 }
