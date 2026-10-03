@@ -1702,5 +1702,39 @@ var _sub=window.gcSubmit;
 if(_sub) window.gcSubmit=function(e){var q=inp.value.trim();_sub(e);if(q.length<2)return;
  load().then(function(ix){var r=find(ix,q);if(r)setTimeout(function(){_add?_add(r,'bot'):0;},650);}).catch(function(){});};
 })();</script><!-- /안내 도우미 1단계 -->
+<!-- 안내 도우미 2단계 --><style id="gca-css">.gc-ai-note{padding:6px 16px;font-size:12px;line-height:1.5;color:var(--ink-3);background:var(--color-background,#F6F1E7);border-bottom:1px solid var(--line)}.gc-msg.gc-wait{color:var(--ink-3);font-style:italic}.gc-src{margin-top:8px}.gc-src b{display:block;margin-bottom:2px;font-size:12px;letter-spacing:.04em;color:var(--gold-2)}.gc-src a{display:flex;align-items:center;min-height:44px;padding:6px 10px;margin:4px 0;border-radius:10px;border:1px solid var(--line);background:var(--color-surface);color:var(--navy);font-weight:700;font-size:13.5px;line-height:1.4;text-decoration:none}</style><script id="gca-js">(function(){
+var AI_URL='https://gmc-guide-ai.gmc-guide-ai.workers.dev',MODE='test';
+var qs=location.search;try{if(/[?&]ai=1/.test(qs))localStorage.setItem('gc-ai','1');if(/[?&]ai=0/.test(qs))localStorage.removeItem('gc-ai');}catch(_){}
+var on=MODE==='on';try{on=on||localStorage.getItem('gc-ai')==='1';}catch(_){}
+if(!on||!AI_URL)return;
+var form=document.querySelector('.gc-in'),inp=document.getElementById('gcInput'),head=document.querySelector('.gc-head'),box=document.getElementById('gcBody');
+if(!form||!inp||!head||!box)return;
+function L(){return document.body.classList.contains('lang-en')?'en':'ko';}
+function T(ko,en){return L()==='en'?en:ko;}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+var note=document.createElement('div');note.className='gc-ai-note';
+note.innerHTML='<span class="ko">AI 안내 도우미입니다. 틀릴 수 있으니 중요한 것은 교회에 확인해 주십시오.</span><span class="en">AI guide. It can be wrong — please confirm important details with the church.</span>';
+head.parentNode.insertBefore(note,head.nextSibling);
+var CR=['자살','죽고싶','살기싫','자해','손목','목숨','학대','때려','맞고있','성폭','suicide','killmyself','endmylife','selfharm','abuse'];
+function crisis(q){var s=q.toLowerCase().replace(/[\s\p{P}\p{S}]/gu,'');return CR.some(function(w){return s.indexOf(w)>-1;});}
+var CRT={ko:'지금 많이 힘드신 것 같습니다. 혼자 견디지 마십시오. 위험한 상황이면 바로 <b>911</b>, 마음이 무너질 때는 <b>988</b>(미국 자살·위기 상담, 전화·문자 24시간)로 연락해 주십시오. 교회도 곁에 있겠습니다: <a href="tel:4253500191">425-350-0191</a>.',
+ en:'It sounds like you are going through something very hard. Please do not carry it alone. If you are in danger, call <b>911</b>. For crisis support, call or text <b>988</b> (24/7). Our church is here for you too: <a href="tel:4253500191">425-350-0191</a>.'};
+var prev=window.gcSubmit;
+function lastUser(){var u=box.querySelectorAll('.gc-msg.user');return u[u.length-1];}
+function fallback(q){var u=lastUser();if(u)u.remove();inp.value=q;prev&&prev({preventDefault:function(){}});}
+window.gcSubmit=function(e){e&&e.preventDefault&&e.preventDefault();var q=inp.value.trim();if(!q)return;
+ gcAdd(esc(q),'user');inp.value='';
+ if(crisis(q)){setTimeout(function(){gcAdd(CRT[/[가-힣]/.test(q)?'ko':'en'],'bot');},200);return;}
+ var w=document.createElement('div');w.className='gc-msg bot gc-wait';w.textContent=T('찾고 있습니다…','Looking it up…');box.appendChild(w);box.scrollTop=box.scrollHeight;
+ var ctl=window.AbortController?new AbortController():null,tm=setTimeout(function(){ctl&&ctl.abort();},12000);
+ fetch(AI_URL+'/ask',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({q:q}),signal:ctl?ctl.signal:undefined})
+ .then(function(r){return r.json();}).then(function(r){clearTimeout(tm);w.remove();
+  if(r&&r.ok){var h=esc(r.text).replace(/\n/g,'<br>');
+   if(r.sources&&r.sources.length)h+='<div class="gc-src"><b>'+T('근거','Sources')+'</b>'+r.sources.map(function(s){return '<a href="'+esc(s.url)+'">'+esc(s.title)+'</a>';}).join('')+'</div>';
+   gcAdd(h,'bot');return;}
+  if(r&&r.reason==='limit'){gcAdd(T('오늘은 질문을 많이 해 주셨습니다. 자세한 것은 <a href="tel:4253500191">425-350-0191</a> 또는 <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a> 로 연락해 주십시오.','You have asked many questions today. Please reach us at <a href="tel:4253500191">425-350-0191</a> or <a href="mailto:info@ijiguchon.org">info@ijiguchon.org</a>.'),'bot');return;}
+  fallback(q);})
+ .catch(function(){clearTimeout(tm);w.remove();fallback(q);});};
+})();</script><!-- /안내 도우미 2단계 -->
 </body>
 </html>
