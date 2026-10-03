@@ -1837,7 +1837,7 @@ async function renderColumn(){
   try{
     var fid=(COLUMN_FOLDER.match(/folders\/([-\w]+)/)||[])[1];
     var r=await fetch('https://www.googleapis.com/drive/v3/files?q='+encodeURIComponent("'"+fid+"' in parents and trashed=false")+'&key='+GDRIVE_API_KEY+'&fields='+encodeURIComponent('files(id,name,mimeType,webViewLink)')+'&includeItemsFromAllDrives=true&supportsAllDrives=true&pageSize=300');
-    if(!r.ok) return; var j=await r.json(); var files=(j.files||[]).filter(function(f){ return f.mimeType!=='application/vnd.google-apps.folder'; });
+    if(!r.ok) return; var j=await r.json(); var files=(j.files||[]).filter(function(f){ return f.mimeType!=='application/vnd.google-apps.folder' && !/^image\//i.test(f.mimeType||''); });
     var by={}; files.forEach(function(f){ var m=(f.name||'').match(/^\s*(\d{2})(\d{2})(\d{2})/); if(!m) return; var iso='20'+m[3]+'-'+m[1]+'-'+m[2]; if(/(슬라이드|slides?|ppt)/i.test(f.name)) return; (by[iso]=by[iso]||[]).push(f); });
     var dates=Object.keys(by).filter(function(d){ return d<=today; }).sort(); var iso=dates[dates.length-1]; if(!iso) return;
     var body=by[iso].sort(function(a,b){ return (/[가-힣]/.test(b.name)?1:0)-(/[가-힣]/.test(a.name)?1:0); })[0];
