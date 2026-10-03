@@ -1406,10 +1406,44 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
   function seriesOf(t){ if(/목장 사역의 본질을 찾아서/.test(t)) return '목장 사역의 본질을 찾아서'; if(/12주|12\.12|온전한 영성/.test(t)) return '12주 여정'; return ''; }
   function short(t){ return String(t||'').replace(/^목장 사역의 본질을 찾아서\s*-\s*/,'').replace(/^[“"]|[”"]$/g,'').trim(); }
   function fmt(iso){ var d=iso.split('-'); return (+d[1])+'.'+(+d[2])+'.'+d[0]; }
-  function build(files){
+  /* ── 칼럼 폴더의 Google 문서 · .txt · .md 를 본문으로 읽는다 (gmcDocText) ──
+     목사님이 드라이브 칼럼 폴더에 "MMDDYY_제목" 이름으로 Google 문서를 만들어 글을 쓰면
+     PDF 없이도 이 페이지에서 바로 글(HTML)로 읽힌다. 문단 = 문서의 줄 하나. */
+  function isDocText(f){
+    var n=String((f&&f.name)||''), mt=String((f&&f.mimeType)||'');
+    if(!/^\s*\d{6}/.test(n)) return false;
+    return mt==='application/vnd.google-apps.document' || /\.(txt|md)$/i.test(n) || mt==='text/plain' || mt==='text/markdown';
+  }
+  function docTextUrl(f){
+    return f.mimeType==='application/vnd.google-apps.document'
+      ? 'https://www.googleapis.com/drive/v3/files/'+f.id+'/export?mimeType=text/plain&key='+GDRIVE_API_KEY
+      : 'https://www.googleapis.com/drive/v3/files/'+f.id+'?alt=media&key='+GDRIVE_API_KEY;
+  }
+  function parseDocText(f,text){
+    var m=String(f.name||'').match(/^\s*(\d{2})(\d{2})(\d{2})[_\s.\-]*(.*)$/); if(!m) return null;
+    var iso='20'+m[3]+'-'+m[1]+'-'+m[2], title=m[4].replace(/\.(txt|md)$/i,'').replace(/_+/g,' ').trim();
+    var lines=String(text||'').replace(/^\ufeff/,'').replace(/\r\n?/g,'\n').split('\n');
+    var paras=[];
+    lines.forEach(function(ln){
+      var s=ln.replace(/\s+/g,' ').trim(); if(!s) return;
+      s=s.replace(/^#{1,6}\s+/,'').replace(/\*\*(.+?)\*\*/g,'$1').replace(/^[-*]\s+/,'');   // 마크다운 표시 제거
+      paras.push(s);
+    });
+    if(!paras.length) return null;
+    if(!title) title=paras.shift();
+    return {date:iso,title:title,author:'김성수목사',paras:paras,kind:'text',src:f.id};
+  }
+  function build(files,extra){
     var list=CB_TEXT.map(function(c){ return {date:c.date,title:c.title,paras:c.paras||[],author:c.author||'김성수목사',kind:'text'}; });
+    /* 드라이브 칼럼 폴더의 Google 문서·txt·md 본문을 합친다. 같은 날짜가 이미 있으면 드라이브 쪽이 최신이다. (gmcDocText) */
+    (extra||[]).forEach(function(d){
+      var rec={date:d.date,title:d.title,paras:d.paras||[],author:d.author||'김성수목사',kind:'text'};
+      var i=-1; for(var n=0;n<list.length;n++){ if(list[n].date===d.date){ i=n; break; } }
+      if(i>=0) list[i]=rec; else list.push(rec);
+    });
     (files||[]).forEach(function(f){
       if(f.mimeType==='application/vnd.google-apps.folder') return;
+      if(isDocText(f)) return;   // 본문은 위에서 extra로 합쳤다
       var m=(f.name||'').match(/^\s*(\d{2})(\d{2})(\d{2})[_\s.\-]*(.*)$/); if(!m) return;
       if(/(슬라이드|slides?|ppt)/i.test(f.name)) return;
       var iso='20'+m[3]+'-'+m[1]+'-'+m[2], title=m[4].replace(/\.[a-z0-9]+$/i,'').replace(/_+/g,' ').trim();
@@ -1507,7 +1541,17 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
       var r=await fetch('https://www.googleapis.com/drive/v3/files?q='+encodeURIComponent("'"+fid+"' in parents and trashed=false")+'&key='+GDRIVE_API_KEY+'&fields='+encodeURIComponent('files(id,name,mimeType)')+'&includeItemsFromAllDrives=true&supportsAllDrives=true&pageSize=300');
       if(r.ok){ var j=await r.json(); files=j.files||[]; }
     }catch(e){}
-    build(files); chips(); route();
+    /* Google 문서 · .txt · .md (파일명 MMDDYY_제목) → 본문 텍스트 → 글로 표시 (gmcDocText) */
+    var extra=[];
+    try{
+      var tx=(files||[]).filter(isDocText);
+      var got2=await Promise.all(tx.map(function(f){
+        return fetch(docTextUrl(f)).then(function(rr){ return rr.ok?rr.text():null; })
+          .then(function(t){ return t==null?null:parseDocText(f,t); }).catch(function(){ return null; });
+      }));
+      got2.forEach(function(d){ if(d) extra.push(d); });
+    }catch(e){}
+    build(files,extra); chips(); route();
   }
   document.addEventListener('DOMContentLoaded',function(){
     if(!g('cornerApp')) return;
