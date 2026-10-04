@@ -303,21 +303,28 @@ function renderLinks(){
   w.innerHTML=h+'</div>';
 }
 
-// 리더 코드 목록 (암호로 조회)
+// 리더 코드 목록 (암호로 조회) — 공용 코드까지 한눈에 (build/dashboard_codes.py, 2026-10-03)
 async function loadCodes(){
-  try{ const r=await fetch(SCRIPT_URL+'?codes='+encodeURIComponent(DASH_CODE)); window.__codes=await r.json(); renderCodes(); }catch(e){}
+  try{ const r=await fetch(SCRIPT_URL+'?codes='+encodeURIComponent(DASH_CODE)); window.__codes=await r.json(); }catch(e){}
+  try{ const t=await (await fetch('/360/',{cache:'no-store'})).text(); const m=t.match(/var GATE_CODE\s*=\s*'([^']*)'/); window.__gate360=m?m[1]:''; }catch(e){}
+  renderCodes();
 }
 function renderCodes(){
   const j=window.__codes, w=$('codesWrap'); if(!w) return;
-  if(!j||!j.ok||!j.list||!j.list.length){ w.innerHTML=''; return; }
-  let h='<div class="card"><div class="sec" style="font-size:13px;font-weight:800;color:#1a3560">'+(lang==='ko'?'리더 코드 (내 목양 접속용)':'Leader codes (for My Flock)')+'</div>';
-  h+='<div style="font-size:12px;color:#8a93a2;margin:4px 0 10px">'+(lang==='ko'?'각 리더에게 /my 링크와 아래 코드를 알려주세요. 잊으면 여기서 확인.':'Give each leader the /my link and their code. Look them up here.')+'</div>';
-  j.list.forEach(function(c){
-    h+='<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px solid #ECE6DC">'
-      +'<div><b>'+c.name+'</b> <span style="color:#8a93a2;font-size:12.5px">'+(c.범위||'')+'</span></div>'
-      +'<div style="font-family:var(--font-mono);font-weight:800;color:#26407A;background:#EAF1FB;border-radius:8px;padding:3px 10px">'+c.code+'</div></div>';
-  });
-  h+='<div style="font-size:12px;color:#8a93a2;margin-top:8px">'+(lang==='ko'?'링크: www.ijiguchon.org/my':'Link: www.ijiguchon.org/my')+'</div></div>';
+  if(!j||!j.ok){ w.innerHTML=''; return; }
+  const ko=lang==='ko', e=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const row=(name,scope,code)=>'<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px solid #ECE6DC">'
+    +'<div><b>'+e(name)+'</b> <span style="color:#8a93a2;font-size:12.5px">'+e(scope)+'</span></div>'
+    +'<div style="font-family:var(--font-mono);font-weight:800;color:#26407A;background:#EAF1FB;border-radius:8px;padding:3px 10px">'+e(code)+'</div></div>';
+  const sub=t=>'<div style="font-size:12.5px;font-weight:800;color:#1a3560;margin:14px 0 2px">'+t+'</div>';
+  let h='<div class="card"><div class="sec" style="font-size:13px;font-weight:800;color:#1a3560">'+(ko?'코드 한눈에 보기':'All access codes')+'</div>';
+  h+='<div style="font-size:12px;color:#8a93a2;margin:4px 0 4px">'+(ko?'목자·스탭에게는 각자의 코드만 알려 주십시오. 잊으셨다고 하면 여기서 확인합니다. 마스터 키는 여기 표시하지 않습니다.':'Give each person only their own code. Look them up here. The master key is not shown.')+'</div>';
+  const list=j.list||[];
+  if(list.length){ h+=sub(ko?'개인 코드 · 내 목양 · 출석부':'Personal codes · My Flock · attendance'); list.forEach(c=>{ h+=row(c.name,c.범위,c.code); }); }
+  const shared=(j.shared||[]).slice();
+  if(window.__gate360) shared.push({name:ko?'가정교회 360 목자 공용 코드':'House Church 360 shared code',범위:ko?'가정교회 360 · 목양 도서관':'House Church 360 · library',code:window.__gate360});
+  if(shared.length){ h+=sub(ko?'공용 코드':'Shared codes'); shared.forEach(c=>{ h+=row(c.name,c.범위,c.code); }); }
+  h+='<div style="font-size:12px;color:#8a93a2;margin-top:8px">'+(ko?'링크: 내 목양 www.ijiguchon.org/my · 출석부 /attend · 출석 체크 /checkin · 가정교회 360 /360':'Links: www.ijiguchon.org/my · /attend · /checkin · /360')+'</div></div>';
   w.innerHTML=h;
 }
 
