@@ -166,11 +166,16 @@ ready(function(){
 /* 5) 넣은 코드가 마스터 키면 기억 (대시보드 서버가 맞다고 할 때만) */
 var last='',lastT=0;
 function seen(inp){
-  var v=inp&&String(inp.value||'').trim(); if(!v||v.length<6)return;
+  var v=inp&&String(inp.value||'').trim(); if(!v)return;   /* 길이 제한 없음 — 짧은 대시보드 암호도 통하게 (2026-10-03) */
   if(v===last&&Date.now()-lastT<3000)return; last=v;lastT=Date.now();
-  if(v===get())return;
+  var is360=/^\/360\//.test(P), er=document.getElementById('err'), msg='';
+  /* 360: 공용 코드가 아니면 화면이 먼저 '맞지 않습니다'를 띄우므로, 서버 확인 동안 '확인 중'으로 바꿔 둠 */
+  if(is360)setTimeout(function(){if(!ok360()&&er){msg=er.textContent;er.textContent=document.body.classList.contains('lang-en')?'Checking…':'확인 중…';}},0);
   var keep=['gmk-keep','lc-keep'].some(function(id){var c=document.getElementById(id);return c&&c.checked;});
-  check(v).then(function(ok){if(!ok)return;put(v,keep);if(/^\/360\//.test(P)&&!ok360())open360();});
+  check(v).then(function(ok){
+    if(ok){put(v,keep);if(is360&&!ok360())open360();return;}
+    if(is360&&er&&!ok360()&&msg)er.textContent=msg;
+  });
 }
 document.addEventListener('submit',function(e){var f=e.target;if(f&&f.querySelector)seen(f.querySelector('#code,#lc-in,#mgCode,#galK'));},true);
 document.addEventListener('click',function(e){
