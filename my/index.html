@@ -138,7 +138,60 @@ function jsStepCard(steps){
 }
 </script>
 </head>
-<body><a class="skip-link" href="#tool-main">본문 바로가기</a>
+<body>
+<script id="gmk-js">(function(){
+var GATE='https://script.google.com/macros/s/AKfycbzt_mgY8y0IzwKmFGm7Qytg4ryF76cZD9NqnI3BNnyvNqgEVYI5fKsreqjh_1SyYwAR/exec',K='gmcMaster',H=12*36e5,KEEP=30*24*36e5,P=location.pathname;
+function get(){try{var o=JSON.parse(localStorage.getItem(K)||'null');if(o&&o.k&&o.x>Date.now())return o.k;localStorage.removeItem(K);}catch(_){}return '';}
+function put(k,keep){try{localStorage.setItem(K,JSON.stringify({k:k,x:Date.now()+(keep?KEEP:H)}));}catch(_){}}
+function clear(){try{localStorage.removeItem(K);}catch(_){}}
+function check(k){return fetch(GATE+'?gate='+encodeURIComponent(k)).then(function(r){return r.json();}).then(function(j){return !!(j&&j.ok===true);}).catch(function(){return false;});}
+function pre(k,v){try{if(!sessionStorage.getItem(k))sessionStorage.setItem(k,v);}catch(_){}}
+var m=get();
+/* 1) 각 페이지가 스스로 여는 자리에 미리 넣기 */
+if(m){
+  if(/^\/dashboard\//.test(P))pre('gmcDashK',m);
+  if(/^\/(my|attend|checkin)\//.test(P))pre('gmcMy',m);
+  if(/^\/manage\//.test(P))pre('gmcAdminCode',m);
+}
+function ready(f){if(document.readyState!=='loading')f();else document.addEventListener('DOMContentLoaded',f);}
+function open360(){try{localStorage.setItem('gmc-360-ok','1');}catch(_){}
+  if(typeof window.show==='function'&&document.getElementById('portal')){window.show(true);var e=document.getElementById('err');if(e)e.textContent='';}else location.reload();}
+function ok360(){try{return localStorage.getItem('gmc-360-ok')==='1';}catch(_){return true;}}
+ready(function(){
+  /* 2) 가정교회 360 · 목양 도서관: 마스터 키가 있으면 서버에 물어 열기 */
+  if(/^\/360\//.test(P)&&m&&!ok360())check(m).then(function(ok){if(ok)open360();});
+  /* 3) AI 질문 기록: 칸 채우고 불러오기 */
+  var gk=document.getElementById('galK'),gf=document.getElementById('galF');
+  if(m&&gk&&gf&&!gk.value){gk.value=m;if(gf.requestSubmit)gf.requestSubmit();}
+  /* 4) 대시보드 입구에 '30일 기억' */
+  var dc=document.getElementById('code');
+  if(/^\/dashboard\//.test(P)&&dc&&!document.getElementById('gmk-keep')){
+    var l=document.createElement('label');l.style.cssText='display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;margin-top:6px;font-size:13px;color:var(--color-text-secondary,#48505e);cursor:pointer';
+    l.innerHTML='<input type="checkbox" id="gmk-keep" style="width:20px;height:20px"> 이 기기에서 30일 동안 기억 (담임목사 마스터 키)';
+    dc.parentNode.insertBefore(l,dc.nextSibling);
+  }
+});
+/* 5) 넣은 코드가 마스터 키면 기억 (대시보드 서버가 맞다고 할 때만) */
+var last='',lastT=0;
+function seen(inp){
+  var v=inp&&String(inp.value||'').trim(); if(!v||v.length<6)return;
+  if(v===last&&Date.now()-lastT<3000)return; last=v;lastT=Date.now();
+  if(v===get())return;
+  var keep=['gmk-keep','lc-keep'].some(function(id){var c=document.getElementById(id);return c&&c.checked;});
+  check(v).then(function(ok){if(!ok)return;put(v,keep);if(/^\/360\//.test(P)&&!ok360())open360();});
+}
+document.addEventListener('submit',function(e){var f=e.target;if(f&&f.querySelector)seen(f.querySelector('#code,#lc-in,#mgCode,#galK'));},true);
+document.addEventListener('click',function(e){
+  var b=e.target&&e.target.closest&&e.target.closest('button,a');if(!b)return;
+  if(b.id==='enter'||b.id==='goBtn'){seen(document.getElementById('code'));return;}
+  /* 6) 잠그기 → 마스터 키도 지움 */
+  if(b.id==='lockBtn'||/잠그기|잠금|Lock/.test(b.textContent||''))clear();
+},true);
+window.gmcMasterClear=clear;
+})();</script>
+
+
+<a class="skip-link" href="#tool-main">본문 바로가기</a>
 <header>
   <div class="wrap" id="tool-main">
     <div onclick="location.href=\'/\'" style="cursor:pointer" title="홈으로 / Home" role="link" tabindex="0">
