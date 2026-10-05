@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>성도 찾기 · Hebron Community</title>
+<meta name="description" content="도시별로 한인 성도와 교회, 사업체를 찾는 커뮤니티 검색 시제품입니다."/>
+<meta name="robots" content="noindex, nofollow"/>
+<meta name="theme-color" content="#0f1a33"/>
+<link rel="icon" href="/favicon.ico"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..600&display=swap">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"/>
+<style>
+  :root{
+    --font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+
+    --color-background:#0f1a33;
+    --color-surface:#172647;
+    --color-surface-hover:#1d2f55;
+    --color-text-primary:#f6f1e7;
+    --color-text-secondary:#c9cfdc;
+    --color-text-muted:#9aa4b8;
+    --color-text-inverse:#14213d;
+    --color-border:#2a3b62;
+    --color-primary:#14213d;
+    --color-accent:#b8924a;
+    --color-accent-hover:#cba566;
+    --color-focus:#e0c27f;
+
+    --space-4:4px; --space-8:8px; --space-12:12px; --space-16:16px; --space-20:20px;
+    --space-24:24px; --space-32:32px; --space-40:40px; --space-48:48px; --space-64:64px;
+    --radius-sm:6px; --radius-md:10px; --radius-lg:14px; --radius-pill:9999px;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.25);
+    --shadow-md:0 6px 18px rgba(0,0,0,.28);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--font-sans);background:var(--color-background);color:var(--color-text-primary);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--color-focus);outline-offset:2px}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 var(--space-16)}
+  @media(min-width:768px){ .wrap{padding:0 var(--space-32)} }
+
+  /* 머리 */
+  .top{border-bottom:1px solid var(--color-border)}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:var(--space-12);text-decoration:none}
+  .brand svg{width:32px;height:32px}
+  .brand b{font-size:16px;font-weight:700;letter-spacing:-.2px}
+  .brand small{display:block;font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--color-accent)}
+  .badge{font-size:12px;font-weight:600;color:var(--color-accent);border:1px solid var(--color-accent);border-radius:var(--radius-pill);padding:var(--space-4) var(--space-12)}
+
+  /* 검색 영역 */
+  .hero{padding:var(--space-48) 0 var(--space-32)}
+  .hero h1{font-size:28px;font-weight:800;line-height:1.35;letter-spacing:-.5px;word-break:keep-all}
+  @media(min-width:768px){ .hero h1{font-size:40px} }
+  .hero p{margin-top:var(--space-8);color:var(--color-text-secondary);font-size:16px;word-break:keep-all}
+  .search{margin-top:var(--space-24);position:relative;max-width:720px}
+  .search label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .search svg{position:absolute;left:var(--space-16);top:50%;transform:translateY(-50%);width:20px;height:20px;stroke:var(--color-text-muted);fill:none;stroke-width:2;pointer-events:none}
+  .search input{width:100%;height:56px;padding:0 var(--space-48) 0 var(--space-48);font:inherit;font-size:16px;color:var(--color-text-primary);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);transition:border-color .15s}
+  .search input::placeholder{color:var(--color-text-muted)}
+  .search input:hover{border-color:#3a4f7d}
+  .search input:focus{border-color:var(--color-accent);outline:none;box-shadow:0 0 0 3px rgba(184,146,74,.35)}
+  .clear{position:absolute;right:var(--space-4);top:50%;transform:translateY(-50%);width:44px;height:44px;border:0;background:none;color:var(--color-text-muted);cursor:pointer;border-radius:var(--radius-md);font-size:20px;line-height:1}
+  .clear:hover{color:var(--color-text-primary)}
+  .clear[hidden]{display:none}
+
+  /* 도시 버튼 */
+  .cities{display:flex;gap:var(--space-8);margin-top:var(--space-20);overflow-x:auto;padding-bottom:var(--space-4);scrollbar-width:none}
+  .cities::-webkit-scrollbar{display:none}
+  .city{flex:0 0 auto;min-height:44px;padding:0 var(--space-20);font:inherit;font-size:14px;font-weight:600;color:var(--color-text-secondary);background:transparent;border:1px solid var(--color-border);border-radius:var(--radius-pill);cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+  .city:hover{border-color:var(--color-accent);color:var(--color-text-primary)}
+  .city[aria-pressed="true"]{background:var(--color-accent);border-color:var(--color-accent);color:var(--color-text-inverse)}
+  .city .n{font-family:var(--font-mono);font-size:12px;margin-left:var(--space-4);opacity:.75}
+
+  /* 결과 */
+  .meta{display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-12);padding:var(--space-24) 0 var(--space-16);border-top:1px solid var(--color-border)}
+  .meta h2{font-size:18px;font-weight:600}
+  .meta span{font-size:14px;color:var(--color-text-muted)}
+  .grid{display:grid;grid-template-columns:1fr;gap:var(--space-16);padding-bottom:var(--space-64);list-style:none}
+  @media(min-width:640px){ .grid{grid-template-columns:repeat(2,1fr)} }
+  @media(min-width:1024px){ .grid{grid-template-columns:repeat(3,1fr)} }
+
+  .card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-20);display:flex;flex-direction:column;gap:var(--space-16);transition:border-color .15s,background .15s}
+  .card:hover{border-color:#3a4f7d;background:var(--color-surface-hover)}
+  .head{display:flex;align-items:center;gap:var(--space-12)}
+  .avatar{flex:0 0 auto;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:18px;font-weight:700;background:var(--color-primary);color:var(--color-accent);border:1px solid var(--color-border)}
+  .head h3{font-size:18px;font-weight:700;line-height:1.3}
+  .head .city-tag{font-size:13px;color:var(--color-accent);font-weight:600}
+  .rows{display:grid;gap:var(--space-8);font-size:14px}
+  .row{display:grid;grid-template-columns:64px 1fr;gap:var(--space-8)}
+  .row dt{color:var(--color-text-muted)}
+  .row dd{color:var(--color-text-secondary);word-break:keep-all}
+  .biz{display:inline-block;font-size:12px;font-weight:600;padding:2px var(--space-8);border-radius:var(--radius-sm);background:rgba(184,146,74,.16);color:var(--color-accent-hover)}
+  .call{display:flex;align-items:center;justify-content:center;gap:var(--space-8);min-height:44px;margin-top:auto;border-radius:var(--radius-md);border:1px solid var(--color-accent);color:var(--color-accent);font-weight:600;font-size:15px;text-decoration:none;font-family:var(--font-mono);transition:background .15s,color .15s}
+  .call:hover{background:var(--color-accent);color:var(--color-text-inverse)}
+  .call svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+
+  .empty{padding:var(--space-48) var(--space-24);text-align:center;border:1px dashed var(--color-border);border-radius:var(--radius-lg);color:var(--color-text-secondary)}
+  .empty b{display:block;font-size:18px;color:var(--color-text-primary);margin-bottom:var(--space-8)}
+  .empty button{margin-top:var(--space-16);min-height:44px;padding:0 var(--space-20);font:inherit;font-weight:600;color:var(--color-text-inverse);background:var(--color-accent);border:0;border-radius:var(--radius-md);cursor:pointer}
+  .empty button:hover{background:var(--color-accent-hover)}
+  [hidden]{display:none !important}
+
+  .foot{border-top:1px solid var(--color-border);padding:var(--space-24) 0 var(--space-40);font-size:13px;color:var(--color-text-muted)}
+
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important;animation:none !important} }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="홈으로">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#14213d" stroke="#b8924a" stroke-width="1.5"/><path d="M9 21V11m14 10V11M9 16h14" stroke="#b8924a" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <span><small>Hebron Community</small><b>성도 찾기</b></span>
+    </a>
+    <span class="badge">시제품 · 예시 자료</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero" aria-labelledby="q-title">
+    <h1 id="q-title">어느 도시에서 성도를 찾으세요?</h1>
+    <p>이름, 교회, 업종으로 찾아보세요. 도시를 골라 범위를 좁힐 수 있습니다.</p>
+
+    <form class="search" role="search" onsubmit="return false">
+      <label for="q">성도 검색</label>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" autocomplete="off" placeholder="예) 김, 부동산, 한인장로교회, Dallas"/>
+      <button class="clear" type="button" id="clear" aria-label="검색어 지우기" hidden>&times;</button>
+    </form>
+
+    <div class="cities" role="group" aria-label="도시 선택" id="cities"></div>
+  </section>
+
+  <section aria-labelledby="r-title">
+    <div class="meta">
+      <h2 id="r-title">검색 결과</h2>
+      <span id="count" aria-live="polite"></span>
+    </div>
+    <ul class="grid" id="results"></ul>
+    <div class="empty" id="empty" hidden>
+      <b>찾는 성도가 없습니다</b>
+      다른 검색어를 넣어 보시거나 모든 도시에서 찾아보세요.
+      <br><button type="button" id="reset">처음부터 다시 찾기</button>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">이 페이지의 이름·교회·전화번호는 모두 시연용 예시입니다. 실제 서비스에서는 본인 동의를 받은 정보만 공개합니다.</div>
+</footer>
+
+<script>
+(function(){
+  // 예시 자료 — 실제 인물·업체가 아닙니다. 전화번호는 555 시연용 번호입니다.
+  var MEMBERS = [
+    {name:'김은혜', city:'Seattle',  church:'시애틀지구촌교회',   biz:'부동산 중개',    phone:'206-555-0101'},
+    {name:'박성민', city:'Seattle',  church:'시애틀형제교회',     biz:'자동차 정비',    phone:'425-555-0102'},
+    {name:'이하늘', city:'LA',       church:'LA 은혜한인교회',    biz:'회계 · 세무',    phone:'213-555-0103'},
+    {name:'최다윗', city:'LA',       church:'남가주 사랑의교회',  biz:'한식당',         phone:'323-555-0104'},
+    {name:'정소망', city:'Dallas',   church:'달라스 새생명교회',  biz:'치과',           phone:'214-555-0105'},
+    {name:'강요셉', city:'Dallas',   church:'달라스 한인침례교회', biz:'보험',          phone:'972-555-0106'},
+    {name:'윤사랑', city:'New York', church:'뉴욕 한인장로교회',  biz:'네일 살롱',      phone:'718-555-0107'},
+    {name:'한바울', city:'New York', church:'퀸즈 한인교회',      biz:'이민 법률 상담', phone:'212-555-0108'},
+    {name:'조예린', city:'Chicago',  church:'시카고 한인연합교회', biz:'세탁소',        phone:'312-555-0109'},
+    {name:'신믿음', city:'Chicago',  church:'시카고 은혜교회',    biz:'IT 컨설팅',      phone:'773-555-0110'}
+  ];
+  var CITIES = [
+    {key:'',         ko:'전체'},
+    {key:'Seattle',  ko:'시애틀'},
+    {key:'LA',       ko:'LA'},
+    {key:'Dallas',   ko:'달라스'},
+    {key:'New York', ko:'뉴욕'},
+    {key:'Chicago',  ko:'시카고'}
+  ];
+  var cityKo = {}; CITIES.forEach(function(c){ cityKo[c.key]=c.ko; });
+
+  var state = {q:'', city:''};
+  var $q = document.getElementById('q'), $clear = document.getElementById('clear');
+  var $cities = document.getElementById('cities'), $results = document.getElementById('results');
+  var $count = document.getElementById('count'), $empty = document.getElementById('empty');
+
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+
+  function matchQuery(m, q){
+    if(!q) return true;
+    var hay = [m.name, m.city, cityKo[m.city], m.church, m.biz, m.phone].join(' ').toLowerCase();
+    return q.toLowerCase().split(/\s+/).every(function(t){ return hay.indexOf(t) > -1; });
+  }
+
+  function renderCities(){
+    var base = MEMBERS.filter(function(m){ return matchQuery(m, state.q); });
+    $cities.innerHTML = CITIES.map(function(c){
+      var n = c.key ? base.filter(function(m){ return m.city===c.key; }).length : base.length;
+      return '<button type="button" class="city" data-city="'+esc(c.key)+'" aria-pressed="'+(state.city===c.key)+'">'
+        + esc(c.ko) + (c.key && c.key!==c.ko ? ' <span lang="en">'+esc(c.key)+'</span>' : '')
+        + '<span class="n" aria-label="'+n+'명">'+n+'</span></button>';
+    }).join('');
+  }
+
+  function renderResults(){
+    var list = MEMBERS.filter(function(m){ return (!state.city || m.city===state.city) && matchQuery(m, state.q); });
+    $count.textContent = list.length + '명' + (state.city ? ' · ' + cityKo[state.city] : '');
+    $empty.hidden = list.length > 0;
+    $results.innerHTML = list.map(function(m){
+      var tel = '+1' + m.phone.replace(/\D/g,'');
+      return '<li class="card">'
+        + '<div class="head"><span class="avatar" aria-hidden="true">'+esc(m.name.charAt(0))+'</span>'
+        + '<div><h3>'+esc(m.name)+'</h3><span class="city-tag">'+esc(cityKo[m.city])+(cityKo[m.city]!==m.city ? ' · '+esc(m.city) : '')+'</span></div></div>'
+        + '<dl class="rows">'
+        + '<div class="row"><dt>교회</dt><dd>'+esc(m.church)+'</dd></div>'
+        + '<div class="row"><dt>업종</dt><dd><span class="biz">'+esc(m.biz)+'</span></dd></div>'
+        + '</dl>'
+        + '<a class="call" href="tel:'+tel+'" aria-label="'+esc(m.name)+'님에게 전화하기 '+esc(m.phone)+'">'
+        + '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg>'
+        + esc(m.phone)+'</a>'
+        + '</li>';
+    }).join('');
+  }
+
+  function render(){ renderCities(); renderResults(); $clear.hidden = !state.q; }
+
+  $q.addEventListener('input', function(){ state.q = $q.value.trim(); render(); });
+  $clear.addEventListener('click', function(){ $q.value=''; state.q=''; render(); $q.focus(); });
+  $cities.addEventListener('click', function(e){
+    var b = e.target.closest('.city'); if(!b) return;
+    state.city = b.getAttribute('data-city'); render();
+    var again = $cities.querySelector('[data-city="'+state.city+'"]'); if(again) again.focus();
+  });
+  document.getElementById('reset').addEventListener('click', function(){ $q.value=''; state.q=''; state.city=''; render(); $q.focus(); });
+
+  render();
+})();
+</script>
+</body>
+</html>
