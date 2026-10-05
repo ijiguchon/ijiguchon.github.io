@@ -888,7 +888,7 @@ function add(){var en=document.querySelector('button.lang,[onclick*="toggleLang"
  function lab(){b.textContent=['','가','가+','가++'][lv];b.setAttribute('aria-label','글자 크기: '+['','보통','크게','아주 크게'][lv]+'. 누르면 바뀝니다');}
  lab();b.onclick=function(){set(lv%3+1);lab();};en.parentNode.insertBefore(b,en);}
 if(document.readyState!=='loading')add();else document.addEventListener('DOMContentLoaded',add);
-})();</script><!-- /휴대폰 글자 --></head>
+})();</script><!-- /휴대폰 글자 --><style id="ss-css">.st-core h3{font-size:20px}.st-core>p.st-one{margin-top:6px;font-size:16px;line-height:1.6;color:var(--ink)}.st-facts{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;text-align:left}.st-facts li{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;background:var(--color-surface,#fff);font-size:16px;line-height:1.5;color:var(--ink)}.st-facts li::before{content:"";flex:0 0 8px;height:8px;margin-top:8px;border-radius:50%;background:var(--gold,#B8924A)}.st-go{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;margin-top:14px;border:0;border-radius:999px;background:var(--navy,#14213d);color:#fff;font:inherit;font-size:16px;font-weight:800;cursor:pointer}.st-go:focus-visible,.st-more>summary:focus-visible{outline:3px solid var(--color-accent,#B8924A);outline-offset:2px}.st-more{margin-top:10px;text-align:left}.st-more>summary{display:flex;align-items:center;justify-content:center;min-height:44px;cursor:pointer;list-style:none;font-size:15px;font-weight:700;color:var(--gold-2,#8a6a2f)}.st-more>summary::-webkit-details-marker{display:none}.st-more>summary::after{content:"+";margin-left:6px;font-weight:800}.st-more[open]>summary::after{content:"−"}.st-more h3{margin-top:12px;font-size:17px}.st-more p{margin-top:6px}</style></head>
 <body><script id="hm-early-js">(function(){try{var t=new URLSearchParams(location.search).get("tab");if(!t||t==="newcomer"){document.body.classList.add("hm-home","hm-intro");}}catch(e){}})();</script><a class="skip-link" href="#main"><span class="ko">본문 바로가기</span><span class="en">Skip to content</span></a>
 
 <!-- ════ 상단 탭 바 ════ -->
@@ -1132,14 +1132,18 @@ img.onload=function(){
     
 
     <div class="st-wrap">
-      <div class="st-term tint">
-        <h3><span class="ko">삶공부가 뭔가요?</span><span class="en">What is a Life Study?</span></h3>
-        <p><span class="ko">지식 위주의 성경공부에서 벗어나, <b>삶 속에서 실천하고 하나님의 능력을 경험하며</b> 변화해 가는 과정입니다. 삶공부는 <b>목장과 함께 어우러질 때</b> 의미가 있습니다. 배운 것이 목장에서 섬기고 사랑하는 실천으로 이어지고, 그 변화가 다음 단계의 삶공부로 이끌어 예수님을 닮아 가는 제자로 자라게 합니다. 믿음이 있든 없든 편하게 참여하실 수 있습니다.</span><span class="en">Not knowledge-centered Bible study, but a process of <b>practicing faith in daily life and experiencing God's power</b> as we are changed. Life Studies mean most <b>together with the mokjang</b>: what we learn becomes serving and loving there, and that change leads to the next study as we grow into disciples who resemble Jesus. Come whether you believe or not.</span></p>
-      </div>
-      <div class="st-term">
-        <h3><span class="ko">언제 열리나요?</span><span class="en">When do they run?</span></h3>
-        <p><span class="ko"><b>봄 학기(2–5월)</b>와 <b>가을 학기(9–12월)</b>에 과정 전체를 엽니다. <b>여름(6월)</b>에는 <b>생명의 삶</b>만 따로 엽니다 — 첫걸음을 오래 기다리지 않도록 한 해 세 번 여는 과정입니다.</span><span class="en">The full set opens in the <b>spring term (Feb–May)</b> and the <b>fall term (Sep–Dec)</b>. In <b>summer (June)</b> only <b>Living Life</b> runs, so no one waits long for that first step.</span></p>
-        <p><span class="ko">여럿이 모이는 과정은 <b>3명 이상</b>이면 엽니다. <b>1:1 과정</b>은 학기와 상관없이 <b>수시로</b> 시작하실 수 있습니다.</span><span class="en">Group courses open once <b>three or more</b> sign up. <b>1:1 courses</b> can start <b>any time</b>.</span></p>
+      <div class="st-term tint st-core"><!-- 삶공부 핵심 -->
+        <h3><span class="ko">삶으로 배우는 성경공부</span><span class="en">Bible study you live out</span></h3>
+        <p class="st-one"><span class="ko">믿음이 있든 없든 편하게 시작하실 수 있습니다.</span><span class="en">Start whether you believe or not.</span></p>
+        <ul class="st-facts">
+          <li><span><span class="ko">처음이라면 <b>생명의 삶</b>부터 — 봄 · 6월 · 가을, 한 해 세 번</span><span class="en">New? Start with <b>Living Life</b> — spring, June and fall</span></span></li>
+          <li><span><span class="ko">여럿이 듣는 과정은 <b>3명</b>이면 시작</span><span class="en">Group courses open with <b>three</b></span></span></li>
+          <li><span><span class="ko"><b>1:1 과정</b>은 언제든 시작</span><span class="en"><b>1:1 courses</b> start any time</span></span></li>
+        </ul>
+        <button type="button" class="st-go" onclick="openStudy('생명의 삶')"><span class="ko">생명의 삶 등록하기</span><span class="en">Register for Living Life</span></button>
+        <details class="st-more"><summary><span class="ko">자세히 보기</span><span class="en">More</span></summary>
+        <h3><span class="ko">삶공부가 뭔가요?</span><span class="en">What is a Life Study?</span></h3><p><span class="ko">지식 위주의 성경공부에서 벗어나, <b>삶 속에서 실천하고 하나님의 능력을 경험하며</b> 변화해 가는 과정입니다. 삶공부는 <b>목장과 함께 어우러질 때</b> 의미가 있습니다. 배운 것이 목장에서 섬기고 사랑하는 실천으로 이어지고, 그 변화가 다음 단계의 삶공부로 이끌어 예수님을 닮아 가는 제자로 자라게 합니다. 믿음이 있든 없든 편하게 참여하실 수 있습니다.</span><span class="en">Not knowledge-centered Bible study, but a process of <b>practicing faith in daily life and experiencing God's power</b> as we are changed. Life Studies mean most <b>together with the mokjang</b>: what we learn becomes serving and loving there, and that change leads to the next study as we grow into disciples who resemble Jesus. Come whether you believe or not.</span></p><h3><span class="ko">언제 열리나요?</span><span class="en">When do they run?</span></h3><p><span class="ko"><b>봄 학기(2–5월)</b>와 <b>가을 학기(9–12월)</b>에 과정 전체를 엽니다. <b>여름(6월)</b>에는 <b>생명의 삶</b>만 따로 엽니다 — 첫걸음을 오래 기다리지 않도록 한 해 세 번 여는 과정입니다.</span><span class="en">The full set opens in the <b>spring term (Feb–May)</b> and the <b>fall term (Sep–Dec)</b>. In <b>summer (June)</b> only <b>Living Life</b> runs, so no one waits long for that first step.</span></p><p><span class="ko">여럿이 모이는 과정은 <b>3명 이상</b>이면 엽니다. <b>1:1 과정</b>은 학기와 상관없이 <b>수시로</b> 시작하실 수 있습니다.</span><span class="en">Group courses open once <b>three or more</b> sign up. <b>1:1 courses</b> can start <b>any time</b>.</span></p>
+        </details>
       </div>
 
 <div class="cut"><span><span class="ko">기본 과정</span><span class="en">Core courses</span></span></div>
@@ -1172,7 +1176,7 @@ img.onload=function(){
         </div>
       </details>
 <div class="cut"><span><span class="ko">등록</span><span class="en">Register</span></span></div>
-      <form class="gf" id="studyForm" onsubmit="submitStudy(event)" style="margin-top:0">
+      <details class="stf" id="studyReg" style="margin-top:0"><summary><span><span class="ft"><span class="ko">삶공부 등록하기</span><span class="en">Register</span></span><span class="fs" style="display:block"><span class="ko">이름 · 연락처 · 과정 — 1분이면 됩니다</span><span class="en">Name, contact, course — one minute</span></span></span><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></summary><div class="fb"><form class="gf" id="studyForm" onsubmit="submitStudy(event)" style="margin-top:0">
         <div class="gbody">
           <h3><span class="ko">삶공부 등록</span><span class="en">Register for a course</span></h3>
           <div class="gsub"><span class="ko">어느 과정부터 시작할지 모르셔도 괜찮습니다. 문의해 주시면 함께 정하겠습니다.</span><span class="en">Not sure where to start? Just ask — we'll figure it out together.</span></div>
@@ -1196,7 +1200,7 @@ img.onload=function(){
           <div class="gnote"><span class="ko">등록 내용은 교회 사무(office@ijiguchon.org)로 전달되고, 개강 안내를 보내드립니다.</span><span class="en">Sent to the church office; we'll follow up with start details.</span></div>
         </div>
         <div class="gok"><div class="ok1"><span class="ko">등록되었습니다</span><span class="en">You're registered</span></div><div class="ok2"><span class="ko">개강 안내를 곧 보내드리겠습니다. 감사합니다.</span><span class="en">We'll send you the start details. Thank you.</span></div></div>
-      </form>
+      </form></div></details>
 
 <div class="cut"><span><span class="ko">첫걸음</span><span class="en">First steps</span></span></div>
       <div class="mem-row"><button class="mbtn" type="button" onclick="openModal('accept')"><span class="mi "><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12"/></svg></span><span class="mb"><span class="mt"><span class="ko">예수 영접 모임</span><span class="en">Starting Point</span></span><span class="ms"><span class="ko">처음부터 천천히, 부담 없이</span><span class="en">Explore faith from the beginning</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></button><button class="mbtn" type="button" onclick="openModal('baptism')"><span class="mi t"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span><span class="mb"><span class="mt"><span class="ko">침례 신청</span><span class="en">Baptism</span></span><span class="ms"><span class="ko">새로운 시작을 공동체가 함께 축하합니다</span><span class="en">A new beginning, celebrated together</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></button></div>
@@ -1622,6 +1626,7 @@ async function resolveShare(){
 /* 삶공부 등록 — 앱과 같은 앱스스크립트 백엔드로 전송 */
 function openStudy(name){
   goTab('study');
+  var rg=document.getElementById('studyReg'); if(rg) rg.open=true;
   var sel=document.getElementById('studySel'); if(sel){ for(var i=0;i<sel.options.length;i++){ if(sel.options[i].value.indexOf(name)===0){ sel.selectedIndex=i; break; } } }
   var f=document.getElementById('studyForm'); if(f) setTimeout(function(){ f.scrollIntoView({behavior:'smooth',block:'start'}); var n=f.querySelector('input[name="이름"]'); if(n) n.focus({preventScroll:true}); },60);
 }
