@@ -186,7 +186,20 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 <style id="ph-space-css">.ph{margin:22px -6px 22px;border-radius:18px;overflow:hidden;position:relative;background:#dfeaf2}.ph img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}.ph .cr{position:absolute;right:10px;bottom:8px;font-size:12px;color:rgba(255,255,255,.9);text-shadow:0 1px 3px rgba(0,0,0,.6)}.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,247,230,0) 55%,rgba(11,24,48,.28));pointer-events:none}</style>
 <style id="space-bright">:root{--ground:#DCEBF3;--card-top:#FFFFFF;--card-bot:#FFF7E6;--gold:#B8862F;--gold-deep:#9C6F1F;--terra:#B4572F;--ink:#14213d;--muted:#56627a;--faint:rgba(184,134,47,.32);--halo:rgba(255,236,190,.6)}body{background:radial-gradient(120% 80% at 50% -8%,#CFE6F5 0%,rgba(207,230,245,0) 60%),linear-gradient(180deg,#E6F2F8 0%,#F7F1E3 100%)}.card{box-shadow:0 24px 60px -32px rgba(20,33,61,.4),inset 0 1px 0 rgba(255,255,255,.9)}.lead{color:#33415c}.lead b{color:#14213d}.body{color:#44526b}.body b{color:#14213d}.cta{background:linear-gradient(180deg,#F3CB74,#DDA63F);color:#2a1c0c;box-shadow:0 10px 26px -14px rgba(184,134,47,.7)}.cta.ghost{background:transparent;border:1px solid var(--gold);color:#8A5F14;box-shadow:none}.cta.ghost svg{stroke:#8A5F14}.cta.ghost:hover{background:rgba(184,134,47,.1)}.url{color:#8A5F14}.foot{color:#8A5F14}.how{border-top:1px solid rgba(20,33,61,.1)}.how-ic{background:rgba(184,134,47,.12)}.smsg{background:rgba(184,134,47,.07)}.smsg li{color:#44526b}.ph::after{display:none}.ph{background:#dfeaf2}.langbtn{background:rgba(184,134,47,.12);color:#8A5F14}</style>
 <style id="a11y-tap-css">.mjw-meta a[href^="mailto:"],.sl-h a,.tab-cta a{display:inline-flex;align-items:center;min-height:44px}.mjw-meta a[href^="mailto:"]{padding:0 2px}</style>
-</head>
+<!-- 휴대폰 글자 --><style id="mt-css">.ts-btn{display:none}@media (max-width:767px){html.ts1{-webkit-text-size-adjust:115%!important;text-size-adjust:115%!important}html.ts2{-webkit-text-size-adjust:130%!important;text-size-adjust:130%!important}html.ts3{-webkit-text-size-adjust:145%!important;text-size-adjust:145%!important}html.ts1 body,html.ts2 body,html.ts3 body{overflow-wrap:break-word}.topbar,.top,header,.ts-keep{-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}.ts-btn+*>svg{display:none}.ts-btn+*{min-width:44px;padding-left:8px!important;padding-right:8px!important}.ts-btn{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 6px;margin-right:2px;border:0;border-radius:999px;background:transparent;color:inherit;font:inherit;font-size:15px;font-weight:800;cursor:pointer;-webkit-tap-highlight-color:transparent}.ts-btn:focus-visible{outline:3px solid var(--color-accent,#B8924A);outline-offset:2px}}</style><script id="mt-js">(function(){
+var MODE='test',q=location.search;
+try{if(/[?&]big=1/.test(q))localStorage.setItem('gmc-ts-test','1');if(/[?&]big=0/.test(q))localStorage.removeItem('gmc-ts-test');}catch(_){}
+var on=MODE==='on';try{on=on||localStorage.getItem('gmc-ts-test')==='1';}catch(_){}
+if(!on)return;
+var H=document.documentElement,lv=1;try{lv=+localStorage.getItem('gmc-ts')||1;}catch(_){}if(!(lv>=1&&lv<=3))lv=1;
+function set(n){H.classList.remove('ts1','ts2','ts3');H.classList.add('ts'+n);lv=n;try{localStorage.setItem('gmc-ts',String(n));}catch(_){}}
+set(lv);
+function add(){var en=document.querySelector('button.lang,[onclick*="toggleLang"]');if(!en||document.getElementById('tsBtn'))return;
+ var b=document.createElement('button');b.type='button';b.id='tsBtn';b.className='ts-btn';
+ function lab(){b.textContent=['','가','가+','가++'][lv];b.setAttribute('aria-label','글자 크기: '+['','보통','크게','아주 크게'][lv]+'. 누르면 바뀝니다');}
+ lab();b.onclick=function(){set(lv%3+1);lab();};en.parentNode.insertBefore(b,en);}
+if(document.readyState!=='loading')add();else document.addEventListener('DOMContentLoaded',add);
+})();</script><!-- /휴대폰 글자 --></head>
 <body><a class="skip-link" href="#tool-main">본문 바로가기</a>
 <main class="card" id="tool-main">
   <button class="langbtn" id="langbtn" onclick="toggleLang()" aria-label="언어 전환 / Switch language">

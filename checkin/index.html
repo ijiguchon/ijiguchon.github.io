@@ -105,7 +105,20 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 }
 </style>
 <style id="gmc-tool-polish">:root{--navy:var(--color-primary)!important;--navy-2:var(--color-primary-hover)!important;--navy2:var(--color-primary-hover)!important;--gold:var(--color-accent)!important;--gold-2:var(--color-accent-strong)!important;--gold2:var(--color-accent-strong)!important;--cream:var(--color-background)!important}body>header.hero{background:linear-gradient(150deg,var(--color-primary-hover),var(--color-primary))!important}.lead-q{background:#FBF8F2!important;border-color:rgba(184,146,74,.35)!important;color:var(--color-text-secondary)!important}h1,h2,h3{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;font-weight:800;letter-spacing:-.03em;word-break:keep-all}h1{letter-spacing:-.04em}.skip-link{position:absolute;left:12px;top:-80px;z-index:10000;padding:10px 16px;border-radius:10px;background:#14213d;color:#fff;font-weight:700;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}.skip-link:focus{top:12px;outline:3px solid #B8924A;outline-offset:2px}</style><style id="a11y-tap-css">.mjw-meta a[href^="mailto:"],.sl-h a,.tab-cta a{display:inline-flex;align-items:center;min-height:44px}.mjw-meta a[href^="mailto:"]{padding:0 2px}</style>
-</head>
+<!-- 휴대폰 글자 --><style id="mt-css">.ts-btn{display:none}@media (max-width:767px){html.ts1{-webkit-text-size-adjust:115%!important;text-size-adjust:115%!important}html.ts2{-webkit-text-size-adjust:130%!important;text-size-adjust:130%!important}html.ts3{-webkit-text-size-adjust:145%!important;text-size-adjust:145%!important}html.ts1 body,html.ts2 body,html.ts3 body{overflow-wrap:break-word}.topbar,.top,header,.ts-keep{-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}.ts-btn+*>svg{display:none}.ts-btn+*{min-width:44px;padding-left:8px!important;padding-right:8px!important}.ts-btn{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 6px;margin-right:2px;border:0;border-radius:999px;background:transparent;color:inherit;font:inherit;font-size:15px;font-weight:800;cursor:pointer;-webkit-tap-highlight-color:transparent}.ts-btn:focus-visible{outline:3px solid var(--color-accent,#B8924A);outline-offset:2px}}</style><script id="mt-js">(function(){
+var MODE='test',q=location.search;
+try{if(/[?&]big=1/.test(q))localStorage.setItem('gmc-ts-test','1');if(/[?&]big=0/.test(q))localStorage.removeItem('gmc-ts-test');}catch(_){}
+var on=MODE==='on';try{on=on||localStorage.getItem('gmc-ts-test')==='1';}catch(_){}
+if(!on)return;
+var H=document.documentElement,lv=1;try{lv=+localStorage.getItem('gmc-ts')||1;}catch(_){}if(!(lv>=1&&lv<=3))lv=1;
+function set(n){H.classList.remove('ts1','ts2','ts3');H.classList.add('ts'+n);lv=n;try{localStorage.setItem('gmc-ts',String(n));}catch(_){}}
+set(lv);
+function add(){var en=document.querySelector('button.lang,[onclick*="toggleLang"]');if(!en||document.getElementById('tsBtn'))return;
+ var b=document.createElement('button');b.type='button';b.id='tsBtn';b.className='ts-btn';
+ function lab(){b.textContent=['','가','가+','가++'][lv];b.setAttribute('aria-label','글자 크기: '+['','보통','크게','아주 크게'][lv]+'. 누르면 바뀝니다');}
+ lab();b.onclick=function(){set(lv%3+1);lab();};en.parentNode.insertBefore(b,en);}
+if(document.readyState!=='loading')add();else document.addEventListener('DOMContentLoaded',add);
+})();</script><!-- /휴대폰 글자 --></head>
 <body>
 <script id="gmk-js">(function(){
 var GATE='https://script.google.com/macros/s/AKfycbzt_mgY8y0IzwKmFGm7Qytg4ryF76cZD9NqnI3BNnyvNqgEVYI5fKsreqjh_1SyYwAR/exec',K='gmcMaster',H=12*36e5,KEEP=30*24*36e5,P=location.pathname;
