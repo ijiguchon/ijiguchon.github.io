@@ -1700,5 +1700,12 @@ function apply(){ var want=''; try{ want=localStorage.getItem(K)||''; }catch(e){
   if(typeof window.toggleLang==='function'&&!window.toggleLang.__gls){ var o=window.toggleLang; window.toggleLang=function(){ var r=o.apply(this,arguments); save(); globe(); return r; }; window.toggleLang.__gls=1; } }
 if(document.readyState!=='loading') setTimeout(apply,30); else document.addEventListener('DOMContentLoaded',function(){ setTimeout(apply,30); });
 })();</script>
+<script id="gmcQLog">/* 안내 도우미 질문 기록 (gmcQLog): 입력한 질문만 비공개 시트로 — 이메일·전화번호는 서버에서 지움 */(function(){
+var API='https://script.google.com/macros/s/AKfycbxLrmmSIDGYBELSw_tQ3K18LOupBcAGaKb1z5Z8GGKegIjBVEj3p0AETAn-l6MslJIDYg/exec';
+function hook(){ if(typeof window.gcSubmit!=='function'||window.gcSubmit.__ql) return; var o=window.gcSubmit;
+  window.gcSubmit=function(e){ try{ var i=document.getElementById('gcInput'), q=i?String(i.value||'').trim():''; if(q.length>=2&&!/^(localhost|127\.)/.test(location.hostname)) fetch(API,{method:'POST',keepalive:true,body:JSON.stringify({action:'q',q:q,lang:document.body.classList.contains('lang-en')?'en':'ko',page:location.pathname})}).catch(function(){}); }catch(_){} return o.apply(this,arguments); };
+  window.gcSubmit.__ql=1; }
+if(document.readyState!=='loading') setTimeout(hook,50); else document.addEventListener('DOMContentLoaded',function(){ setTimeout(hook,50); });
+})();</script>
 </body>
 </html>
