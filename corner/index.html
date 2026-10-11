@@ -1443,18 +1443,37 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
       var s=ln.replace(/\s+/g,' ').trim(); if(!s) return;
       s=s.replace(/^#{1,6}\s+/,'').replace(/\*\*(.+?)\*\*/g,'$1').replace(/^[-*]\s+/,'');   // 마크다운 표시 제거
       var fm=s.match(/^\[?\s*(?:사진|그림|이미지|photo|image)\s*[:：]?\s*(\S+?)\s*\]?$/i);   /* 번호 또는 주소 (gmcPhotoUrl) */
-      if(fm){ figs[paras.length]=/^\d+$/.test(fm[1])?+fm[1]:fm[1]; return; }
+      if(fm){ (figs[paras.length]=figs[paras.length]||[]).push(/^\d+$/.test(fm[1])?+fm[1]:fm[1]); return; }   /* 한 자리에 여러 장 (gmcDocImages) */
       paras.push(s);
     });
     if(!paras.length) return null;
     if(!title) title=paras.shift();
     return {date:iso,title:title,author:'김성수목사',paras:paras,figs:figs,kind:'text',src:f.id};
   }
+  /* ── 문서 속 그림 (gmcDocImages): 칼럼을 열 때 Google 문서를 HTML로 한 번 더 받아 그림을 제자리에 넣는다 ── */
+  function docHtmlUrl(id){ return 'https://www.googleapis.com/drive/v3/files/'+id+'/export?mimeType=text/html&key='+GDRIVE_API_KEY; }
+  function htmlToLines(t){
+    var d=new DOMParser().parseFromString(String(t||''),'text/html'), out=[];
+    d.body.querySelectorAll('p,h1,h2,h3,h4,h5,h6,li').forEach(function(el){
+      el.querySelectorAll('img').forEach(function(im){ var s=im.getAttribute('src')||''; if(s) out.push('[사진 '+s+']'); });
+      var tx=(el.textContent||'').replace(/\u00a0/g,' ').replace(/\s+/g,' ').trim(); if(tx) out.push(tx);
+    });
+    return out.join('\n');
+  }
+  function enrichDoc(x){
+    if(!x||!x.gdoc||!x.src||x.richTried) return; x.richTried=true;
+    fetch(docHtmlUrl(x.src)).then(function(r){ return r.ok?r.text():null; }).then(function(t){
+      if(!t||!/<img[\s>]/i.test(t)) return;
+      var d=parseDocText({name:'000000_x'},htmlToLines(t)); if(!d||!d.paras.length) return;
+      x.paras=d.paras; x.figs=d.figs;
+      if(new URLSearchParams(location.search).get('c')===String(x.key)) openItem(x.key,false);
+    }).catch(function(){});
+  }
   function build(files,extra){
     var list=CB_TEXT.map(function(c){ return {date:c.date,title:c.title,paras:c.paras||[],author:c.author||'김성수목사',kind:'text'}; });
     /* 드라이브 칼럼 폴더의 Google 문서·txt·md 본문을 합친다. 같은 날짜가 이미 있으면 드라이브 쪽이 최신이다. (gmcDocText) */
     (extra||[]).forEach(function(d){
-      var rec={date:d.date,title:d.title,paras:d.paras||[],figs:d.figs||{},imgs:d.imgs||[],author:d.author||'김성수목사',kind:'text'};
+      var rec={date:d.date,title:d.title,paras:d.paras||[],figs:d.figs||{},imgs:d.imgs||[],author:d.author||'김성수목사',kind:'text',src:d.src,gdoc:!!d.gdoc};
       var i=-1; for(var n=0;n<list.length;n++){ if(list[n].date===d.date){ i=n; break; } }
       if(i>=0) list[i]=rec; else list.push(rec);
     });
@@ -1531,8 +1550,8 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
       if(ps.length && nt && norm(ps[0]).indexOf(nt)>-1) ps.shift();                 // 첫 줄이 제목 반복이면 생략
       var off=x.paras.length-ps.length, imgs=x.imgs||[], figs=x.figs||{}, auto=!Object.keys(figs).length;
       function figAt(i){ var n=figs[i]; if(auto&&imgs.length){ var N=x.paras.length, M=imgs.length; for(var k=0;k<M;k++){ if(Math.round((k+1)*N/(M+1))===i) n=k+1; } }
-        if(!n) return ''; var src=(typeof n==='string')?n:(imgs[n-1]?'https://lh3.googleusercontent.com/d/'+imgs[n-1].id+'=w1600':''); if(!src) return '';
-        return '<figure class="cb-fig"><img src="'+esc(src)+'" alt="" loading="lazy"></figure>'; }
+        if(!n) return ''; return [].concat(n).map(function(v){ var src=(typeof v==='string')?v:(imgs[v-1]?'https://lh3.googleusercontent.com/d/'+imgs[v-1].id+'=w1600':'');
+          return src?'<figure class="cb-fig"><img src="'+esc(src)+'" alt="" loading="lazy"></figure>':''; }).join(''); }
       h+='<div class="cb-body">'+ps.map(function(p,j){ var sub=(j===0 && p.length<60); return figAt(j+off)+'<p'+(sub?' class="cb-sub"':'')+'>'+esc(p)+'</p>'; }).join('')+figAt(x.paras.length)+'</div>';
       if(x.pdf) h+='<a class="cb-open" href="https://drive.google.com/file/d/'+x.pdf+'/view" target="_blank" rel="noopener">'+gmBi('PDF로 보기 →','Open PDF →')+'</a>';
     } else if(x.pdf){
@@ -1544,6 +1563,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
       +'<div class="cb-nav">'+(older?'<a href="/corner/?c='+older.key+'" data-k="'+older.key+'"><small>'+gmBi('← 이전 글','← Previous')+'</small>'+esc(short(older.title))+'</a>':'')
       +(newer?'<a class="nx" href="/corner/?c='+newer.key+'" data-k="'+newer.key+'"><small>'+gmBi('다음 글 →','Next →')+'</small>'+esc(short(newer.title))+'</a>':'')+'</div>';
     var art=g('cbRead'); art.innerHTML=h; setMode(true);
+    enrichDoc(x);   /* 문서 속 그림 (gmcDocImages) */
     art.querySelector('.cb-back').onclick=function(){ showList(true); window.scrollTo({top:0}); };
     art.querySelectorAll('.cb-nav a').forEach(function(a){ a.onclick=function(e){ e.preventDefault(); openItem(a.getAttribute('data-k'),true); }; });
     art.querySelector('.cb-share').onclick=async function(){
@@ -1569,7 +1589,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
       var tx=(files||[]).filter(isDocText);
       var got2=await Promise.all(tx.map(function(f){
         return fetch(docTextUrl(f)).then(function(rr){ return rr.ok?rr.text():null; })
-          .then(function(t){ return t==null?null:parseDocText(f,t); }).catch(function(){ return null; });
+          .then(function(t){ var d=t==null?null:parseDocText(f,t); if(d) d.gdoc=(f.mimeType==='application/vnd.google-apps.document'); return d; }).catch(function(){ return null; });
       }));
       got2.forEach(function(d){ if(d) extra.push(d); });
     }catch(e){}
