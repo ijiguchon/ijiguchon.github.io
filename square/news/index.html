@@ -1532,8 +1532,10 @@ function gbSection(sc,o){
   if(k==='처음'){
     return '<section class="gb-s gb-first"><h3>'+gbBi(nm[0],nm[1])+'</h3><dl class="gb-kv">'+it.map(function(x){
       return '<div><dt>'+gbEsc(x.l)+'</dt><dd>'+gbEsc(x.v)+(x.p?'<small>'+gbEsc(x.p)+'</small>':'')+'</dd></div>'; }).join('')+'</dl>'
-      +'<button type="button" class="gb-easy-btn" aria-pressed="false" onclick="var g=this.closest(\'.gb\');var on=g.classList.toggle(\'gb-easy\');this.setAttribute(\'aria-pressed\',on);">'
-      +gbBi('예배 순서 쉬운 설명 보기','Explain the order of worship')+'</button></section>';
+      +'<button type="button" class="gb-easy-btn" aria-pressed="false" onclick="var g=this.closest(\'.gb\');var on=g.classList.toggle(\'gb-easy\');this.setAttribute(\'aria-pressed\',on);if(on){var w=document.getElementById(\'gb-sec-예배\');if(w)w.scrollIntoView({behavior:\'smooth\',block:\'start\'});}">'
+      +'<span class="gb-easy-ic" aria-hidden="true">?</span><span class="gb-easy-tx"><b class="gb-easy-off">'+gbBi('예배 순서 설명 보기','Explain the order of worship')+'</b><b class="gb-easy-on">'+gbBi('예배 순서 설명 닫기','Hide explanations')+'</b>'
+      +'<small class="gb-easy-off">'+gbBi('찬양·봉헌·축도… 순서마다 무엇을 하는지 알려 드려요','What happens at each part of the service')+'</small><small class="gb-easy-on">'+gbBi('아래 예배 순서에 노란 설명이 붙었습니다','Explanations are shown in the order of worship')+'</small></span>'
+      +'<span class="gb-easy-go" aria-hidden="true">→</span></button></section>';
   }
   if(k==='출석'||k==='헌신'){
     return '<section class="gb-s gb-stats"><h3>'+gbBi(nm[0],nm[1])+'</h3><div class="gb-chips">'+it.map(function(x){
@@ -1606,9 +1608,16 @@ var GB_CSS=[
 '.gb-foot{background:var(--gb-cream);padding:16px 22px;border-top:1px solid var(--gb-line)}.gb-staff{margin:0 0 8px;display:flex;flex-wrap:wrap;gap:4px 18px;font-size:13px}.gb-staff div{display:flex;gap:6px}.gb-staff dt{color:var(--gb-muted)}.gb-staff dd{margin:0;font-weight:600;color:var(--gb-navy)}.gb-staff small{color:var(--gb-muted);font-weight:500}',
 '.gb-addr{margin:0;font-size:12.5px;color:var(--gb-muted)}.gb-foot{color:var(--gb-navy)}',
 '.gb-firstwrap{border-bottom:1px solid var(--gb-line);background:linear-gradient(180deg,var(--gb-cream),transparent)}.gb-first{border-bottom:0}.gb-first .gb-kv{grid-template-columns:repeat(auto-fit,minmax(min(100%,19em),1fr));column-gap:24px}.gb-kv dd,.gb-news li,.gb-pc{overflow-wrap:anywhere}.gb-s,.gb-kv div,.gb-kv dd{min-width:0}',
-'.gb-easy-btn{margin-top:14px;font:inherit;font-size:13.5px;font-weight:700;color:var(--gb-navy);background:#fff;border:1.5px solid var(--gb-gold);border-radius:999px;padding:8px 16px;cursor:pointer}',
-'.gb-easy-btn[aria-pressed="true"]{background:var(--gb-gold);color:#fff}',
-'.gb-ex{display:none;grid-column:1/-1;font-size:12.5px;color:var(--gb-muted);background:var(--gb-cream);border-radius:8px;padding:5px 10px;margin-top:2px}.gb-easy .gb-ex{display:block}',
+'.gb-easy-btn{margin-top:16px;width:100%;max-width:560px;display:flex;align-items:center;gap:12px;text-align:left;font:inherit;color:#fff;background:linear-gradient(135deg,#b8862b,#9a6d1f);border:0;border-radius:14px;padding:12px 16px;cursor:pointer;box-shadow:0 6px 16px rgba(169,124,47,.35);animation:gbPulse 2.4s ease-in-out 3}',
+'.gb-easy-btn:hover{filter:brightness(1.05)}.gb-easy-btn:focus-visible{outline:3px solid var(--gb-navy);outline-offset:3px}',
+'.gb-easy-ic{flex:none;width:34px;height:34px;border-radius:50%;background:#fff;color:#9a6d1f;display:grid;place-items:center;font-weight:900;font-size:19px}',
+'.gb-easy-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.gb-easy-tx b{font-size:15.5px;line-height:1.35}.gb-easy-tx small{font-size:12.5px;opacity:.92;line-height:1.4}',
+'.gb-easy-go{flex:none;font-size:20px;font-weight:700}',
+'.gb-easy-on{display:none!important}.gb-easy .gb-easy-on{display:block!important}.gb-easy .gb-easy-off{display:none!important}',
+'.gb-easy .gb-easy-btn{background:var(--gb-navy);box-shadow:none;animation:none}.gb-easy .gb-easy-ic{color:var(--gb-navy)}.gb-easy .gb-easy-go{transform:rotate(90deg)}',
+'@keyframes gbPulse{0%,100%{box-shadow:0 6px 16px rgba(169,124,47,.35)}50%{box-shadow:0 6px 16px rgba(169,124,47,.35),0 0 0 7px rgba(184,134,43,.18)}}',
+'@media (prefers-reduced-motion:reduce){.gb-easy-btn{animation:none}}',
+'.gb-ex{display:none;grid-column:1/-1;font-size:13px;line-height:1.55;color:#5b4a26;background:#fbf1d9;border-left:3px solid var(--gb-gold);border-radius:6px;padding:6px 10px;margin-top:3px}.gb-easy .gb-ex{display:block}',
 '.gb-terms{margin:14px 0 0;padding:12px 14px;border:1px dashed var(--gb-line);border-radius:12px;display:grid;gap:5px;font-size:13px}.gb-terms-h{font-weight:800;color:var(--gb-gold);font-size:12px;letter-spacing:.08em}',
 '.gb-terms div{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px}.gb-terms dt{font-weight:700}.gb-terms dd{margin:0;color:var(--gb-muted)}',
 '@media(max-width:760px){.gb-grid{grid-template-columns:minmax(0,1fr)}.gb-colL{border-right:0;border-bottom:1px solid var(--gb-line)}.gb-top{grid-template-columns:1fr}.gb-meta{text-align:left;align-items:flex-start}.gb-pi{grid-template-columns:7.2em minmax(0,1fr)}.gb-pp{grid-column:2;text-align:left}.gb-s{padding:16px}}'
