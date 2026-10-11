@@ -173,7 +173,7 @@ function gbSection(sc,o){
       return '<div><dt>'+gbEsc(x.l)+'</dt><dd>'+gbEsc(x.v)+(x.p?'<small>'+gbEsc(x.p)+'</small>':'')+'</dd></div>'; }).join('')+'</dl>'
       +'<button type="button" class="gb-easy-btn" aria-pressed="false" onclick="var g=this.closest(\'.gb\');var on=g.classList.toggle(\'gb-easy\');this.setAttribute(\'aria-pressed\',on);if(on){var w=document.getElementById(\'gb-sec-예배\');if(w)w.scrollIntoView({behavior:\'smooth\',block:\'start\'});}">'
       +'<span class="gb-easy-ic" aria-hidden="true">?</span><span class="gb-easy-tx"><b class="gb-easy-off">'+gbBi('예배 순서 설명 보기','Explain the order of worship')+'</b><b class="gb-easy-on">'+gbBi('예배 순서 설명 닫기','Hide explanations')+'</b>'
-      +'<small class="gb-easy-off">'+gbBi('찬양·봉헌·축도… 순서마다 무엇을 하는지 알려 드려요','What happens at each part of the service')+'</small><small class="gb-easy-on">'+gbBi('아래 예배 순서에 노란 설명이 붙었습니다','Explanations are shown in the order of worship')+'</small></span>'
+      +'</span>'
       +'<span class="gb-easy-go" aria-hidden="true">→</span></button></section>';
   }
   if(k==='출석'||k==='헌신'){
@@ -247,7 +247,7 @@ var GB_CSS=[
 '.gb-foot{background:var(--gb-cream);padding:16px 22px;border-top:1px solid var(--gb-line)}.gb-staff{margin:0 0 8px;display:flex;flex-wrap:wrap;gap:4px 18px;font-size:13px}.gb-staff div{display:flex;gap:6px}.gb-staff dt{color:var(--gb-muted)}.gb-staff dd{margin:0;font-weight:600;color:var(--gb-navy)}.gb-staff small{color:var(--gb-muted);font-weight:500}',
 '.gb-addr{margin:0;font-size:12.5px;color:var(--gb-muted)}.gb-foot{color:var(--gb-navy)}',
 '.gb-firstwrap{border-bottom:1px solid var(--gb-line);background:linear-gradient(180deg,var(--gb-cream),transparent)}.gb-first{border-bottom:0}.gb-first .gb-kv{grid-template-columns:repeat(auto-fit,minmax(min(100%,19em),1fr));column-gap:24px}.gb-kv dd,.gb-news li,.gb-pc{overflow-wrap:anywhere}.gb-s,.gb-kv div,.gb-kv dd{min-width:0}',
-'.gb-easy-btn{margin-top:16px;width:100%;max-width:560px;display:flex;align-items:center;gap:12px;text-align:left;font:inherit;color:#fff;background:linear-gradient(135deg,#b8862b,#9a6d1f);border:0;border-radius:14px;padding:12px 16px;cursor:pointer;box-shadow:0 6px 16px rgba(169,124,47,.35);animation:gbPulse 2.4s ease-in-out 3}',
+'.gb-easy-btn{margin-top:16px;width:100%;max-width:560px;display:flex;align-items:center;gap:12px;text-align:left;font:inherit;color:#fff;background:linear-gradient(135deg,#b8862b,#9a6d1f);border:0;border-radius:14px;padding:10px 16px;cursor:pointer;box-shadow:0 6px 16px rgba(169,124,47,.35);animation:gbPulse 2.4s ease-in-out 3}',
 '.gb-easy-btn:hover{filter:brightness(1.05)}.gb-easy-btn:focus-visible{outline:3px solid var(--gb-navy);outline-offset:3px}',
 '.gb-easy-ic{flex:none;width:34px;height:34px;border-radius:50%;background:#fff;color:#9a6d1f;display:grid;place-items:center;font-weight:900;font-size:19px}',
 '.gb-easy-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.gb-easy-tx b{font-size:15.5px;line-height:1.35}.gb-easy-tx small{font-size:12.5px;opacity:.92;line-height:1.4}',
