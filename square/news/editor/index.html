@@ -426,7 +426,7 @@ async function copyText(){
     let ok=false; try{ ok=document.execCommand('copy'); }catch(_){} ta.remove(); return ok; }
 }
 /* 바로 올리기: 비밀번호를 한 번 넣으면 이 컴퓨터에 기억 */
-function getPass(){ try{ return localStorage.getItem('gmcBulletinPass')||''; }catch(e){ return ''; } }
+function getPass(){ try{ var o=JSON.parse(localStorage.getItem('gmcMaster')||'null'); return localStorage.getItem('gmcBulletinPass')||((o&&o.k&&o.x>Date.now())?o.k:''); }catch(e){ return ''; } }   /* 주보 비밀번호, 없으면 담임목사 마스터 키 */
 function setPass(v){ try{ v?localStorage.setItem('gmcBulletinPass',v):localStorage.removeItem('gmcBulletinPass'); }catch(e){} }
 async function directSave(){
   const title=iso2key(S.date)+'_교회소식', b=$('#bSave');
@@ -445,7 +445,7 @@ async function directSave(){
 }
 function askPass(){ return new Promise(res=>{
   const box=$('#steps'); $('#dlgH').textContent='담당자 비밀번호';
-  box.innerHTML='<li style="list-style:none;margin-left:-1.4em">주보 담당자 비밀번호를 넣어 주세요. 이 컴퓨터에서는 한 번만 넣으면 됩니다.<br><input id="pw" type="password" autocomplete="current-password" style="margin-top:8px;font-size:16px;padding:9px 10px"><br><button class="btn pri" id="pwOk" style="margin-top:10px">올리기</button></li>';
+  box.innerHTML='<li style="list-style:none;margin-left:-1.4em">주보 담당자 비밀번호(또는 담임목사 마스터 키)를 넣어 주세요. 이 컴퓨터에서는 한 번만 넣으면 됩니다.<br><input id="pw" type="password" autocomplete="current-password" style="margin-top:8px;font-size:16px;padding:9px 10px"><br><button class="btn pri" id="pwOk" style="margin-top:10px">올리기</button></li>';
   $('#dlgCopy').hidden=true; $('.dlg-foot').hidden=true; $('#dlg').hidden=false; const i=$('#pw'); i.focus();
   const done=v=>{ $('#dlg').hidden=true; $('#dlgH').textContent='홈페이지에 올리기'; $('#dlgCopy').hidden=false; $('.dlg-foot').hidden=false; $('#dlgClose').onclick=closeDefault; res(v); };
   $('#pwOk').onclick=()=>done(i.value.trim()); i.onkeydown=e=>{ if(e.key==='Enter') done(i.value.trim()); };

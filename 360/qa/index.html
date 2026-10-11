@@ -86,8 +86,8 @@ a{color:inherit}button,input,select{font:inherit;color:inherit}
   <p class="lead"><span class="ko">'궁금한 점 물어보기'에 들어온 질문입니다. 이메일·전화번호는 지우고 저장합니다. 장난 글은 수정하거나 삭제하세요.</span><span class="en">Questions asked in "Ask a question". Emails and phone numbers are removed. Edit or delete prank entries.</span></p>
 
   <section class="card gate" id="gate">
-    <h2><span class="ko">🔒 담임목사 키</span><span class="en">🔒 Lead pastor key</span></h2>
-    <p class="lead" style="margin:0"><span class="ko">교회 스크립트에 넣어 둔 관리자 키(ADMIN_KEY)를 넣어 주세요. 이 창을 닫으면 다시 물어봅니다.</span><span class="en">Enter the admin key (ADMIN_KEY). You'll be asked again after closing this tab.</span></p>
+    <h2><span class="ko">🔒 마스터 키</span><span class="en">🔒 Master key</span></h2>
+    <p class="lead" style="margin:0"><span class="ko">목양 대시보드에 쓰시는 마스터 키를 넣어 주세요. 한 번 넣으면 다른 화면에서도 함께 열립니다.</span><span class="en">Enter your master key (the dashboard passcode). It opens the other admin pages too.</span></p>
     <form id="keyF"><input id="keyI" type="password" autocomplete="off" placeholder="••••" aria-label="Admin key"><button class="btn pri" type="submit"><span class="ko">열기</span><span class="en">Open</span></button></form>
     <div class="msg" id="keyM" role="alert"></div>
   </section>
@@ -138,7 +138,8 @@ var S={items:[],topics:[],selQ:'',shown:30};
 function EN(){ return document.body.classList.contains('lang-en'); }
 function tn(c){ return EN()?(TOPIC_EN[c]||c):c; }
 function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-function key(){ try{ return sessionStorage.getItem('gmcQaKey')||''; }catch(e){ return ''; } }
+function master(){ try{ var o=JSON.parse(localStorage.getItem('gmcMaster')||'null'); if(o&&o.k&&o.x>Date.now()) return o.k; }catch(e){} return ''; }
+function key(){ try{ return sessionStorage.getItem('gmcQaKey')||master(); }catch(e){ return master(); } }
 function setKey(k){ try{ k?sessionStorage.setItem('gmcQaKey',k):sessionStorage.removeItem('gmcQaKey'); }catch(e){} }
 /* 360이 잠겨 있으면 360으로 */
 try{ if(localStorage.getItem('gmc-360-ok')!=='1'){ location.replace('/360/'); return; } }catch(e){}
@@ -148,6 +149,7 @@ function load(){
   $('keyM').textContent='';
   fetch(API+'?action=qstats&key='+encodeURIComponent(k),{cache:'no-store'}).then(function(r){ return r.json(); }).then(function(j){
     if(!j.ok){ setKey(''); $('gate').classList.remove('hide'); $('app').classList.add('hide'); $('keyM').textContent=j.code==='key'?(EN()?'The key does not match.':'키가 맞지 않습니다.'):(EN()?'Not ready yet.':'아직 준비되지 않았습니다. 교회 스크립트를 새 버전으로 바꿔 주세요.'); return; }
+    try{ if(!master()) localStorage.setItem('gmcMaster',JSON.stringify({k:k,x:Date.now()+12*36e5})); }catch(_){}
     S.items=(j.items||[]).slice().sort(function(a,b){ return a.d<b.d?1:-1; }); S.topics=j.topics||[]; if(j.sheet) $('sheetA').href=j.sheet;
     var qs=quarters(); if(!S.selQ||qs.indexOf(S.selQ)<0) S.selQ=qs[qs.length-1]||'';
     $('gate').classList.add('hide'); $('app').classList.remove('hide'); fillFilters(); render();
