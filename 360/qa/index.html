@@ -132,7 +132,7 @@ a{color:inherit}button,input,select{font:inherit;color:inherit}
 function toggleLang(){ document.body.classList.toggle('lang-en'); document.getElementById('langTxt').textContent=document.body.classList.contains('lang-en')?'한글':'EN'; render(); }
 (function(){
 var API='https://script.google.com/macros/s/AKfycbxLrmmSIDGYBELSw_tQ3K18LOupBcAGaKb1z5Z8GGKegIjBVEj3p0AETAn-l6MslJIDYg/exec';
-var TOPIC_EN={'위기 안내':'Crisis','자녀·청소년':'Kids & youth','예배·시간':'Worship & times','장소·주차':'Location & parking','처음 방문·등록':'First visit & joining','목장·가정교회':'Mokjang','헌금':'Giving','기도·상담':'Prayer & care','침례·신앙':'Baptism & faith','행사·일정':'Events','교회 소개':'About us','기타':'Other'};
+var TOPIC_EN={'위기 안내':'Crisis','자녀·청소년':'Kids & youth','예배·시간':'Worship & times','장소·주차':'Location & parking','처음 방문·등록':'First visit & joining','목장·가정교회':'House Church','헌금':'Giving','기도·상담':'Prayer & care','침례·신앙':'Baptism & faith','행사·일정':'Events','교회 소개':'About us','기타':'Other'};
 var $=function(id){ return document.getElementById(id); };
 var S={items:[],topics:[],selQ:'',shown:30};
 function EN(){ return document.body.classList.contains('lang-en'); }

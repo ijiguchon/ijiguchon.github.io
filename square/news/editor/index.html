@@ -169,7 +169,7 @@ function gbSection(sc,o){
     var terms=EN?[]:GB_TERMS.filter(function(t){ return all.indexOf(t[0])>-1 || all.replace(/\s/g,'').indexOf(t[0].replace(/\s/g,''))>-1; });
     return '<section class="gb-s gb-news"><h3>'+gbBi(nm[0],nm[1])+'</h3><ol>'+it.map(function(x){
       return '<li>'+(x.l?'<b>'+gbEsc(x.l)+'</b>':'')+'<span>'+gbEsc(x.v)+(x.p?' <small>'+gbEsc(x.p)+'</small>':'')+'</span></li>'; }).join('')+'</ol>'
-      +'<a class="gb-more" href="/?tab=mokjang">'+gbBi('목장이 궁금하세요? 목장 안내 보기 →','Curious about Mokjang (house church)? Learn more →')+'</a>'
+      +'<a class="gb-more" href="/?tab=mokjang">'+gbBi('목장이 궁금하세요? 목장 안내 보기 →','Curious about House Church? Learn more →')+'</a>'
       +(terms.length?'<dl class="gb-terms"><span class="gb-terms-h">'+gbBi('처음 들으시는 말','Words you may hear')+'</span>'+terms.map(function(t){ return '<div><dt>'+gbEsc(t[0])+'</dt><dd>'+gbEsc(t[1])+'</dd></div>'; }).join('')+'</dl>':'')
       +'</section>';
   }
