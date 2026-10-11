@@ -193,7 +193,8 @@ function gbHTML(iso,secs,o){
   var h='<article class="gb">';
   h+='<header class="gb-top"><div class="gb-brand"><span class="gb-logo"><img src="'+GB_LOGO+'" alt="" width="40" height="40"></span><span class="gb-bt"><b>'+gbEsc(gbVal(church,'이름')||'시애틀지구촌교회')+'</b><span>'+gbEsc(gbVal(church,'영문')||'Global Mission Church of Greater Seattle')+'</span></span></div>'
     +'<div class="gb-meta">'+(vol?'<span>'+gbEsc(vol)+'</span>':'')+'<b>'+gbBi(d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 주일','Sunday, '+MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear())+'</b>'
-    +(o.pdf?'<a href="'+gbEsc(o.pdf)+'" target="_blank" rel="noopener">'+gbBi('주보 PDF','PDF')+'</a>':'')+'</div>'
+    +'<span class="gb-meta-acts">'+(o.pdf?'<a href="'+gbEsc(o.pdf)+'" target="_blank" rel="noopener">'+gbBi('주보 PDF','PDF')+'</a>':'')
+    +'<button type="button" class="gb-print" onclick="gbPrint(this)">'+gbBi('🖨 인쇄용 보기','🖨 Print')+'</button></span></div>'
     +'<div class="gb-mottos">'+mottos.map(function(m){ return '<span>'+gbEsc(m)+'</span>'; }).join('')+'</div></header>';
   var used={'주보':1,'교회':1,'사역자':1,'처음':1}, L='', R='', first=gbGet(secs,'처음'), has={};
   function sec(sc){ var x=gbSection(sc,o); if(!x) return ''; has[sc.k]=1; return x.replace('<section class=','<section id="gb-sec-'+sc.k+'" class='); }
@@ -217,13 +218,35 @@ function gbHTML(iso,secs,o){
   h+='</footer></article>';
   return h;
 }
+/* 인쇄용 보기: 주보만 새 창에 띄워 A4/레터 한 장 크기로 인쇄 (홈페이지 메뉴·단추는 빠짐) */
+var GB_PRINT_CSS='@page{size:auto;margin:10mm}html,body{margin:0;background:#fff}body{font-family:"IBM Plex Sans KR","Pretendard","Malgun Gothic",system-ui,sans-serif;color:#1f3a5f;-webkit-print-color-adjust:exact;print-color-adjust:exact}'
+ +'.gb-pw{max-width:780px;margin:0 auto}.gb-pw .en{display:none}.gb-pw .gb{box-shadow:none!important;border-radius:0!important;margin:0!important}'
+ +'.gb-pw .gb-nav,.gb-pw .gb-easy-btn,.gb-pw .gb-commit,.gb-pw .gb-meta-acts,.gb-pw .gb-more,.gb-pw .gb-col-go,.gb-pw .gb-give{display:none!important}'
+ +'.gb-pw .gb-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)!important}.gb-pw .gb-colL{border-right:1px solid #e6e1d6!important;border-bottom:0!important}'
+ +'.gb-pw .gb-top{grid-template-columns:1fr auto!important;padding:14px 18px 10px!important}.gb-pw .gb-meta{text-align:right!important;align-items:flex-end!important}'
+ +'.gb-pw .gb-pi{grid-template-columns:7.6em minmax(0,1fr) auto!important;gap:2px 8px!important}.gb-pw .gb-pp{grid-column:auto!important;text-align:right!important}'
+ +'.gb-pw .gb-s{padding:10px 14px!important}.gb-pw .gb-firstwrap .gb-s{padding:10px 14px 8px!important}.gb-pw .gb-first .gb-kv{grid-template-columns:1fr 1fr!important}'
+ +'.gb-pw .gb-terms{display:none!important}.gb-pw .gb-foot{padding:10px 14px!important}'
+ +'.gb-pw-bar{display:flex;gap:8px;justify-content:center;padding:12px;font:600 14px system-ui,sans-serif}.gb-pw-bar button{font:inherit;padding:8px 16px;border-radius:8px;border:1px solid #1f3a5f;background:#1f3a5f;color:#fff;cursor:pointer}.gb-pw-bar button+button{background:#fff;color:#1f3a5f}'
+ +'@media print{.gb-pw-bar{display:none}.gb-pw{max-width:none;zoom:.7}}';
+function gbPrint(btn){
+  var g=btn.closest('.gb'); if(!g) return;
+  var html=g.outerHTML.replace(/ src="\/(?!\/)/g,' src="'+location.origin+'/');
+  var w=window.open('','_blank'); if(!w){ window.print(); return; }
+  w.document.open();
+  w.document.write('<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>시애틀지구촌교회 주보</title>'
+    +'<style>'+GB_CSS+GB_PRINT_CSS+'</style></head><body><div class="gb-pw-bar"><button onclick="print()">🖨 인쇄하기</button><button onclick="close()">닫기</button></div><div class="gb-pw">'+html+'</div>'
+    +'<scr'+'ipt>window.onload=function(){setTimeout(function(){print()},400)};</scr'+'ipt></body></html>');
+  w.document.close();
+}
+try{ window.gbPrint=gbPrint; }catch(e){}
 var GB_CSS=[
 '.gb{--gb-navy:var(--navy,#1f3a5f);--gb-gold:var(--gold-2,#a97c2f);--gb-cream:var(--cream,#f7f1e6);--gb-line:var(--line,#e6e1d6);--gb-muted:var(--muted,#6b6f78);--gb-paper:var(--color-surface,#fffdf8);',
 ' background:var(--gb-paper);border:1px solid var(--gb-line);border-radius:20px;overflow:hidden;overflow:clip;box-shadow:0 14px 34px rgba(20,33,61,.08);margin:0 0 24px;color:var(--gb-navy);word-break:keep-all}',
 '.gb-top{background:var(--gb-navy);color:#fff;padding:22px 24px 16px;display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:end}',
 '.gb-brand{display:flex;align-items:center;gap:12px}.gb-logo{flex:none;width:52px;height:52px;border-radius:14px;background:#fff;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.18)}.gb-logo img{width:40px;height:40px;display:block}.gb-bt{min-width:0}.gb-brand b{display:block;font-size:22px;letter-spacing:-.01em}.gb-bt>span{display:block;font-size:12px;opacity:.75;letter-spacing:.04em}',
 '.gb-meta{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:2px}.gb-meta span{font-size:12px;opacity:.75;letter-spacing:.06em}.gb-meta b{font-size:15px}',
-'.gb-meta a{margin-top:4px;font-size:12px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:3px 10px;text-decoration:none}',
+'.gb-meta-acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.gb-print{font:inherit;cursor:pointer;background:transparent}.gb-meta .gb-print{font-size:12px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:3px 10px}.gb-meta a{margin-top:0;font-size:12px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:3px 10px;text-decoration:none}',
 '.gb-mottos{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);font-size:12.5px;letter-spacing:.18em;color:#e9d9b6}',
 '.gb-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)}.gb-colL{border-right:1px solid var(--gb-line)}',
 '.gb-nav{position:sticky;top:var(--gb-top,0px);z-index:6;background:var(--gb-paper);border-bottom:1px solid var(--gb-line);box-shadow:0 4px 10px rgba(20,33,61,.06)}'
