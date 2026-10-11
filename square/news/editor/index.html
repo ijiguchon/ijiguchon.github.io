@@ -114,6 +114,10 @@ var GB_EASY={'공동체 시간':'서로 인사하고 이번 주 교회 소식을
   '봉헌':'감사의 마음을 드리는 시간입니다. 처음 오신 분은 부담 갖지 않으셔도 됩니다.','대표기도':'한 분이 교회를 대표해 기도합니다. 마음으로 함께하시면 됩니다.',
   '성경합독':'오늘 말씀의 성경 본문을 다 함께 소리 내어 읽습니다.','말씀':'목사님이 성경 본문을 풀어 설교합니다.',
   '헌신과 결단':'말씀을 마음에 새기며 함께 찬송합니다. 헌신하실 분은 축도 전에 강단 앞으로 나와 헌신카드를 작성하고 목사님께 보내 주세요.','축도':'하나님의 복을 비는 기도로 예배를 마칩니다.'};
+var GB_EASY_EN={'공동체 시간':'We greet one another and share this week\'s church news.','경배와 찬양':'We praise God together in song. Feel free to simply listen.',
+  '봉헌':'A time to give with thankful hearts. First-time guests need not feel any obligation.','대표기도':'One person prays on behalf of the church. Join in your heart.',
+  '성경합독':'We read today\'s Scripture passage aloud together.','말씀':'The pastor explains and preaches from the Bible passage.',
+  '헌신과 결단':'We sing together, taking the message to heart. If you would like to commit, come forward before the benediction, fill out a commitment card and send it to the pastor.','축도':'The service closes with a prayer of blessing.'};
 /* 소식에 나오는 교회 용어 풀이 */
 var GB_TERMS=[['목장','가정에서 모여 함께 식사하고 삶을 나누는 작은 교회 모임'],['목자','목장을 섬기는 평신도 리더'],['삶공부','신앙의 기초부터 함께 배우는 성경 공부 과정'],
   ['경청 21','21일 동안 함께 하나님께 귀 기울이며 기도하는 시간'],['새번역','원어에서 쉬운 우리말로 옮긴 성경 번역'],['토요새벽','토요일 아침 6시에 모이는 기도회'],['VIP','우리가 기도하며 초대하고 싶은 소중한 이웃']];
@@ -136,24 +140,24 @@ function gbParse(t){
 function gbGet(secs,k){ for(var i=0;i<secs.length;i++) if(secs[i].k===k) return secs[i]; return null; }
 function gbVal(sc,label){ if(!sc) return ''; for(var i=0;i<sc.items.length;i++) if(sc.items[i].l===label) return sc.items[i].v; return ''; }
 function gbSection(sc,o){
-  var k=sc.k, nm=GB_SEC[k]||[k,k], h='', it=sc.items;
+  var k=sc.k, nm=GB_SEC[k]||[k,k], h='', it=sc.items, EN=o.lang==='en', PF=EN?'gb-en-':'gb-sec-';
   if(k==='예배'){
     var time=gbVal(sc,'시간'), star=false;
     h+='<ol class="gb-prog">'+it.filter(function(x){ return x.l!=='시간'; }).map(function(x){
       if(!x.l) return '<li class="gb-note">'+gbEsc(x.v)+'</li>';
       var m=x.l.match(/^(\*)?\s*([^(（]+?)\s*(?:[(（](.+?)[)）])?$/)||[null,'',x.l,''], st=!!m[1]; if(st) star=true;
-      var ex=GB_EASY[m[2].replace(/\s+/g,' ').trim()];
-      return '<li class="gb-pi"><span class="gb-pl">'+(st?'<i class="gb-st" title="일어나서">*</i>':'')+'<b>'+gbEsc(m[2])+'</b>'+(m[3]?'<small>'+gbEsc(m[3])+'</small>':'')+'</span>'
+      var ex=(EN?GB_EASY_EN:GB_EASY)[m[2].replace(/\s+/g,' ').trim()], nmL=(EN&&m[3])?m[3]:m[2], nmS=(EN&&m[3])?'':m[3];
+      return '<li class="gb-pi"><span class="gb-pl">'+(st?'<i class="gb-st" title="일어나서">*</i>':'')+'<b>'+gbEsc(nmL)+'</b>'+(nmS?'<small>'+gbEsc(nmS)+'</small>':'')+'</span>'
         +'<span class="gb-pc">'+gbEsc(x.v)+'</span><span class="gb-pp">'+gbEsc(x.p)+'</span>'
         +(/^헌신/.test(m[2].trim())?'<a class="gb-commit" href="/?tab=worship&amp;open=commit">'+gbBi('✎ 헌신카드 작성하기','✎ Fill out a commitment card')+'</a>':'')
-        +(ex?'<span class="gb-ex">'+gbEsc(ex).replace('헌신카드','<a href="/?tab=worship&amp;open=commit">헌신카드</a>')+'</span>':'')+'</li>';
+        +(ex?'<span class="gb-ex">'+gbEsc(ex).replace(EN?'commitment card':'헌신카드',function(w){ return '<a href="/?tab=worship&amp;open=commit">'+w+'</a>'; })+'</span>':'')+'</li>';
     }).join('')+'</ol>';
     if(star) h+='<p class="gb-foot-note">* '+gbBi('일어나서 (몸이 불편한 분은 앉아서)','Please stand if you are able')+'</p>';
     return '<section class="gb-s gb-worship"><h3>'+gbBi(nm[0],nm[1])+(time?'<em>'+gbEsc(time)+'</em>':'')+'</h3>'+h+'</section>';
   }
   if(k==='칼럼'){
     var title=gbVal(sc,'제목')||(it[0]&&it[0].v)||'';
-    return '<section class="gb-s gb-col"><h3>'+gbBi(nm[0],nm[1])+'</h3><a href="'+gbEsc(o.columnHref||'/corner/')+'"><b>'+gbEsc(title)+'</b><span class="gb-col-go">칼럼 전문 읽기 →</span></a></section>';
+    return '<section class="gb-s gb-col"><h3>'+gbBi(nm[0],nm[1])+'</h3><a href="'+gbEsc(o.columnHref||'/corner/')+'"><b>'+gbEsc(title)+'</b><span class="gb-col-go">'+(EN?'Read the column (in Korean) →':'칼럼 전문 읽기 →')+'</span></a></section>';
   }
   if(k==='환영'||k==='헌금'){
     h=it.map(function(x){ return '<p>'+gbEsc(x.l?x.l+': '+x.v:x.v)+'</p>'; }).join('');
@@ -162,7 +166,7 @@ function gbSection(sc,o){
   }
   if(k==='소식'){
     var all=it.map(function(x){ return x.l+' '+x.v+' '+x.p; }).join(' ').replace(/\s+/g,' ');
-    var terms=GB_TERMS.filter(function(t){ return all.indexOf(t[0])>-1 || all.replace(/\s/g,'').indexOf(t[0].replace(/\s/g,''))>-1; });
+    var terms=EN?[]:GB_TERMS.filter(function(t){ return all.indexOf(t[0])>-1 || all.replace(/\s/g,'').indexOf(t[0].replace(/\s/g,''))>-1; });
     return '<section class="gb-s gb-news"><h3>'+gbBi(nm[0],nm[1])+'</h3><ol>'+it.map(function(x){
       return '<li>'+(x.l?'<b>'+gbEsc(x.l)+'</b>':'')+'<span>'+gbEsc(x.v)+(x.p?' <small>'+gbEsc(x.p)+'</small>':'')+'</span></li>'; }).join('')+'</ol>'
       +'<a class="gb-more" href="/?tab=mokjang">'+gbBi('목장이 궁금하세요? 목장 안내 보기 →','Curious about Mokjang (house church)? Learn more →')+'</a>'
@@ -172,32 +176,32 @@ function gbSection(sc,o){
   if(k==='처음'){
     return '<section class="gb-s gb-first"><h3>'+gbBi(nm[0],nm[1])+'</h3><dl class="gb-kv">'+it.map(function(x){
       return '<div><dt>'+gbEsc(x.l)+'</dt><dd>'+gbEsc(x.v)+(x.p?'<small>'+gbEsc(x.p)+'</small>':'')+'</dd></div>'; }).join('')+'</dl>'
-      +'<button type="button" class="gb-easy-btn" aria-pressed="false" onclick="var g=this.closest(\'.gb\');var on=g.classList.toggle(\'gb-easy\');this.setAttribute(\'aria-pressed\',on);if(on){var w=document.getElementById(\'gb-sec-예배\');if(w)w.scrollIntoView({behavior:\'smooth\',block:\'start\'});}">'
+      +'<button type="button" class="gb-easy-btn" aria-pressed="false" onclick="var g=this.closest(\'.gb\');var on=g.classList.toggle(\'gb-easy\');this.setAttribute(\'aria-pressed\',on);if(on){var w=document.getElementById(\''+PF+'예배\');if(w)w.scrollIntoView({behavior:\'smooth\',block:\'start\'});}">'
       +'<span class="gb-easy-ic" aria-hidden="true">?</span><span class="gb-easy-tx"><b class="gb-easy-off">'+gbBi('예배 순서 설명 보기','Explain the order of worship')+'</b><b class="gb-easy-on">'+gbBi('예배 순서 설명 닫기','Hide explanations')+'</b>'
       +'</span>'
       +'<span class="gb-easy-go" aria-hidden="true">→</span></button></section>';
   }
   if(k==='출석'||k==='헌신'){
     return '<section class="gb-s gb-stats"><h3>'+gbBi(nm[0],nm[1])+'</h3><div class="gb-chips">'+it.map(function(x){
-      var tot=/총/.test(x.l); return '<span'+(tot?' class="gb-tot"':'')+'>'+(x.l?'<em>'+gbEsc(x.l)+'</em>':'')+'<b>'+gbEsc(x.v)+'</b></span>'; }).join('')+'</div></section>';
+      var tot=/총|total/i.test(x.l); return '<span'+(tot?' class="gb-tot"':'')+'>'+(x.l?'<em>'+gbEsc(x.l)+'</em>':'')+'<b>'+gbEsc(x.v)+'</b></span>'; }).join('')+'</div></section>';
   }
   return '<section class="gb-s gb-kv-s"><h3>'+gbBi(nm[0],nm[1])+'</h3><dl class="gb-kv">'+it.map(function(x){
     return '<div><dt>'+gbEsc(x.l)+'</dt><dd>'+gbEsc(x.v)+(x.p?'<small>'+gbEsc(x.p)+'</small>':'')+'</dd></div>'; }).join('')+'</dl></section>';
 }
 var GB_LOGO=(typeof GB_LOGO!=='undefined'&&GB_LOGO)||'/images/logo-mark.png';   /* 교회 로고 (홈페이지와 같은 마크) */
 function gbHTML(iso,secs,o){
-  o=o||{}; var d=new Date(iso+'T12:00:00'), MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  o=o||{}; var EN=o.lang==='en', PF=EN?'gb-en-':'gb-sec-', d=new Date(iso+'T12:00:00'), MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var top=gbGet(secs,'주보'), church=gbGet(secs,'교회'), staff=gbGet(secs,'사역자');
   var vol=gbVal(top,'권호'), mottos=top?top.items.filter(function(x){ return x.l==='표어'; }).map(function(x){ return x.v; }):[];
   if(!mottos.length) mottos=['평신도 사역자를 세우는 교회','차세대 사역자를 세우는 교회'];
   var h='<article class="gb">';
-  h+='<header class="gb-top"><div class="gb-brand"><span class="gb-logo"><img src="'+GB_LOGO+'" alt="" width="40" height="40"></span><span class="gb-bt"><b>'+gbEsc(gbVal(church,'이름')||'시애틀지구촌교회')+'</b><span>'+gbEsc(gbVal(church,'영문')||'Global Mission Church of Greater Seattle')+'</span></span></div>'
+  h+='<header class="gb-top"><div class="gb-brand"><span class="gb-logo"><img src="'+GB_LOGO+'" alt="" width="40" height="40"></span><span class="gb-bt"><b>'+gbEsc(EN?(gbVal(church,'영문')||'Global Mission Church of Greater Seattle'):(gbVal(church,'이름')||'시애틀지구촌교회'))+'</b><span>'+gbEsc(EN?'시애틀지구촌교회':(gbVal(church,'영문')||'Global Mission Church of Greater Seattle'))+'</span></span></div>'
     +'<div class="gb-meta">'+(vol?'<span>'+gbEsc(vol)+'</span>':'')+'<b>'+gbBi(d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 주일','Sunday, '+MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear())+'</b>'
     +'<span class="gb-meta-acts">'+(o.pdf?'<a href="'+gbEsc(o.pdf)+'" target="_blank" rel="noopener">'+gbBi('주보 PDF','PDF')+'</a>':'')
     +'<button type="button" class="gb-print" onclick="gbPrint(this)">'+gbBi('🖨 인쇄용 보기','🖨 Print')+'</button></span></div>'
     +'<div class="gb-mottos">'+mottos.map(function(m){ return '<span>'+gbEsc(m)+'</span>'; }).join('')+'</div></header>';
   var used={'주보':1,'교회':1,'사역자':1,'처음':1}, L='', R='', first=gbGet(secs,'처음'), has={};
-  function sec(sc){ var x=gbSection(sc,o); if(!x) return ''; has[sc.k]=1; return x.replace('<section class=','<section id="gb-sec-'+sc.k+'" class='); }
+  function sec(sc){ var x=gbSection(sc,o); if(!x) return ''; has[sc.k]=1; return x.replace('<section class=','<section id="'+PF+sc.k+'" class='); }
   var F=first?sec(first):'';
   GB_LEFT.forEach(function(k){ var s=gbGet(secs,k); if(s){ L+=sec(s); used[k]=1; } });
   GB_RIGHT.forEach(function(k){ var s=gbGet(secs,k); if(s){ R+=sec(s); used[k]=1; } });
@@ -206,12 +210,12 @@ function gbHTML(iso,secs,o){
   /* 휴대폰에서 보고 싶은 칸으로 바로 가는 단추 (화면을 내려도 위에 붙어 있음) */
   var go="var t=document.getElementById(this.getAttribute('data-t'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});";
   h+='<nav class="gb-nav" aria-label="주보 바로가기"><div class="gb-nav-in">'+GB_NAV.filter(function(n){ return has[n[0]]; }).map(function(n){
-      return '<button type="button" data-t="gb-sec-'+n[0]+'" onclick="'+go+'">'+gbBi(n[1],n[2])+'</button>'; }).join('')
+      return '<button type="button" data-t="'+PF+n[0]+'" onclick="'+go+'">'+gbBi(n[1],n[2])+'</button>'; }).join('')
     +(o.ts?'<button type="button" class="gb-nav-ts" onclick="var b=document.getElementById(\'tsBtn\');if(b)b.click();" aria-label="글자 크기 바꾸기">'+gbBi('가 글자 크기','Text size')+'</button>':'')
     +'</div></nav>';
   if(F) h+='<div class="gb-firstwrap">'+F+'</div>';
   h+='<div class="gb-grid"><div class="gb-colL">'+L+'</div><div class="gb-colR">'+R+'</div></div>';
-  h+='<footer class="gb-foot" id="gb-sec-사역자">';
+  h+='<footer class="gb-foot" id="'+PF+'사역자">';
   if(staff) h+='<dl class="gb-staff">'+staff.items.map(function(x){ return '<div><dt>'+gbEsc(x.l)+'</dt><dd>'+gbEsc(x.v)+(x.p?' <small>'+gbEsc(x.p)+'</small>':'')+'</dd></div>'; }).join('')+'</dl>';
   var addr=gbVal(church,'주소'), web=gbVal(church,'웹');
   h+='<p class="gb-addr">'+gbEsc(gbVal(church,'영문')||'Global Mission Church of Greater Seattle')+(addr?' · '+gbEsc(addr):'')+(web?' · '+gbEsc(web):'')+'</p>';
@@ -219,8 +223,8 @@ function gbHTML(iso,secs,o){
   return h;
 }
 /* 인쇄용 보기: 주보만 새 창에 띄워 A4/레터 한 장 크기로 인쇄 (홈페이지 메뉴·단추는 빠짐) */
-var GB_PRINT_CSS='@page{size:auto;margin:10mm}html,body{margin:0;background:#fff}body{font-family:"IBM Plex Sans KR","Pretendard","Malgun Gothic",system-ui,sans-serif;color:#1f3a5f;-webkit-print-color-adjust:exact;print-color-adjust:exact}'
- +'.gb-pw{max-width:780px;margin:0 auto}.gb-pw .en{display:none}.gb-pw .gb{box-shadow:none!important;border-radius:0!important;margin:0!important}'
+var GB_PRINT_CSS='body.lang-en .gb-pw .ko{display:none}body.lang-en .gb-pw .en{display:inline!important}@page{size:auto;margin:10mm}html,body{margin:0;background:#fff}body{font-family:"IBM Plex Sans KR","Pretendard","Malgun Gothic",system-ui,sans-serif;color:#1f3a5f;-webkit-print-color-adjust:exact;print-color-adjust:exact}'
+ +'.gb-pw{max-width:780px;margin:0 auto}body:not(.lang-en) .gb-pw .en{display:none}.gb-pw .gb{box-shadow:none!important;border-radius:0!important;margin:0!important}'
  +'.gb-pw .gb-nav,.gb-pw .gb-easy-btn,.gb-pw .gb-commit,.gb-pw .gb-meta-acts,.gb-pw .gb-more,.gb-pw .gb-col-go,.gb-pw .gb-give{display:none!important}'
  +'.gb-pw .gb-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)!important}.gb-pw .gb-colL{border-right:1px solid #e6e1d6!important;border-bottom:0!important}'
  +'.gb-pw .gb-top{grid-template-columns:1fr auto!important;padding:14px 18px 10px!important}.gb-pw .gb-meta{text-align:right!important;align-items:flex-end!important}'
@@ -235,7 +239,7 @@ function gbPrint(btn){
   var w=window.open('','_blank'); if(!w){ window.print(); return; }
   w.document.open();
   w.document.write('<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>시애틀지구촌교회 주보</title>'
-    +'<style>'+GB_CSS+GB_PRINT_CSS+'</style></head><body><div class="gb-pw-bar"><button onclick="print()">🖨 인쇄하기</button><button onclick="close()">닫기</button></div><div class="gb-pw">'+html+'</div>'
+    +'<style>'+GB_CSS+GB_PRINT_CSS+'</style></head><body'+(document.body.classList.contains('lang-en')?' class="lang-en"':'')+'><div class="gb-pw-bar"><button onclick="print()">🖨 인쇄하기</button><button onclick="close()">닫기</button></div><div class="gb-pw">'+html+'</div>'
     +'<scr'+'ipt>window.onload=function(){setTimeout(function(){print()},400)};</scr'+'ipt></body></html>');
   w.document.close();
 }

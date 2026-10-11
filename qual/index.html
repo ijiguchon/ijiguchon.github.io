@@ -323,5 +323,17 @@ function later(){clearTimeout(t);t=setTimeout(fix,120);}
 fix();
 if(window.MutationObserver)new MutationObserver(later).observe(document.documentElement,{childList:true,subtree:true});
 })();</script>
+<script id="gmcLangSync">/* 언어 기억 + 지구본 단추 (gmcLangSync) */(function(){
+var K='gmc-lang', G='<svg class="gls-globe" viewBox="0 0 24 24" aria-hidden="true" style="width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;flex:none;vertical-align:-3px;margin-right:4px"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>';
+function btn(){ return document.querySelector('[onclick*="toggleLang"],#langBtn,button.lang,button.langbtn,button.lang-btn'); }
+function en(){ try{ if(typeof currentLang==='string') return currentLang==='en'; }catch(e){} return document.body.classList.contains('lang-en'); }
+function save(){ try{ localStorage.setItem(K,en()?'en':'ko'); }catch(e){} }
+function globe(){ var b=btn(); if(b && !b.querySelector('svg')){ b.insertAdjacentHTML('afterbegin',G); b.style.display=b.style.display||''; b.classList.add('gls-has'); } }
+function apply(){ var want=''; try{ want=localStorage.getItem(K)||''; }catch(e){}
+  if(want && (want==='en')!==en()){ var b=btn(); if(b) b.click(); else document.body.classList.toggle('lang-en',want==='en'); }
+  globe(); new MutationObserver(save).observe(document.body,{attributes:true,attributeFilter:['class']});
+  if(typeof window.toggleLang==='function'&&!window.toggleLang.__gls){ var o=window.toggleLang; window.toggleLang=function(){ var r=o.apply(this,arguments); save(); globe(); return r; }; window.toggleLang.__gls=1; } }
+if(document.readyState!=='loading') setTimeout(apply,30); else document.addEventListener('DOMContentLoaded',function(){ setTimeout(apply,30); });
+})();</script>
 </body>
 </html>
