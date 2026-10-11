@@ -1555,7 +1555,7 @@ function gbHTML(iso,secs,o){
   var top=gbGet(secs,'주보'), church=gbGet(secs,'교회'), staff=gbGet(secs,'사역자');
   var vol=gbVal(top,'권호'), mottos=top?top.items.filter(function(x){ return x.l==='표어'; }).map(function(x){ return x.v; }):[];
   if(!mottos.length) mottos=['평신도 사역자를 세우는 교회','차세대 사역자를 세우는 교회'];
-  var h='<article class="gb">';
+  var h='<article class="gb'+(EN?' gb-en':'')+'">';
   h+='<header class="gb-top"><div class="gb-brand"><span class="gb-logo"><img src="'+GB_LOGO+'" alt="" width="40" height="40"></span><span class="gb-bt"><b>'+gbEsc(EN?(gbVal(church,'영문')||'Global Mission Church of Greater Seattle'):(gbVal(church,'이름')||'시애틀지구촌교회'))+'</b><span>'+gbEsc(EN?'시애틀지구촌교회':(gbVal(church,'영문')||'Global Mission Church of Greater Seattle'))+'</span></span></div>'
     +'<div class="gb-meta">'+(vol?'<span>'+gbEsc(vol)+'</span>':'')+'<b>'+gbBi(d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 주일','Sunday, '+MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear())+'</b>'
     +'<span class="gb-meta-acts">'+(o.pdf?'<a href="'+gbEsc(o.pdf)+'" target="_blank" rel="noopener">'+gbBi('주보 PDF','PDF')+'</a>':'')
@@ -1610,7 +1610,7 @@ var GB_CSS=[
 ' background:var(--gb-paper);border:1px solid var(--gb-line);border-radius:20px;overflow:hidden;overflow:clip;box-shadow:0 14px 34px rgba(20,33,61,.08);margin:0 0 24px;color:var(--gb-navy);word-break:keep-all}',
 '.gb-top{background:var(--gb-navy);color:#fff;padding:22px 24px 16px;display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:end}',
 '.gb-brand{display:flex;align-items:center;gap:12px}.gb-logo{flex:none;width:52px;height:52px;border-radius:14px;background:#fff;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.18)}.gb-logo img{width:40px;height:40px;display:block}.gb-bt{min-width:0}.gb-brand b{display:block;font-size:22px;letter-spacing:-.01em}.gb-bt>span{display:block;font-size:12px;opacity:.75;letter-spacing:.04em}',
-'.gb-meta{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:2px}.gb-meta span{font-size:12px;opacity:.75;letter-spacing:.06em}.gb-meta b{font-size:15px}',
+'.gb-en .gb-brand b{font-size:18px;line-height:1.25}.gb-meta{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:2px}.gb-meta span{font-size:12px;opacity:.75;letter-spacing:.06em}.gb-meta b{font-size:15px}',
 '.gb-meta-acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.gb-print{font:inherit;cursor:pointer;background:transparent}.gb-meta .gb-print{font-size:12px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:3px 10px}.gb-meta a{margin-top:0;font-size:12px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:3px 10px;text-decoration:none}',
 '.gb-mottos{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);font-size:12.5px;letter-spacing:.18em;color:#e9d9b6}',
 '.gb-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)}.gb-colL{border-right:1px solid var(--gb-line)}',
