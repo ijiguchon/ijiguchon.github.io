@@ -362,7 +362,7 @@ $('#bNext').onclick=()=>{
 };
 
 /* ---------- 드라이브 (홈페이지용: 공개 읽기 + 구글 문서에 붙여 넣기) ---------- */
-const KEY='AIzaSyBL3EXN_i8b9RkcXPa4x_FD2M3sKTQpVgY', API='https://www.googleapis.com/drive/v3/files', SAVE_URL='';
+const KEY='AIzaSyBL3EXN_i8b9RkcXPa4x_FD2M3sKTQpVgY', API='https://www.googleapis.com/drive/v3/files', SAVE_URL='https://script.google.com/macros/s/AKfycbxLrmmSIDGYBELSw_tQ3K18LOupBcAGaKb1z5Z8GGKegIjBVEj3p0AETAn-l6MslJIDYg/exec';
 async function listFolder(){
   const r=await fetch(API+'?q='+encodeURIComponent("'"+FOLDER+"' in parents and trashed=false")+'&fields='+encodeURIComponent('files(id,name,mimeType)')+'&pageSize=300&supportsAllDrives=true&includeItemsFromAllDrives=true&key='+KEY,{cache:'no-store'});
   if(!r.ok) throw new Error('드라이브 '+r.status); return (await r.json()).files||[];
