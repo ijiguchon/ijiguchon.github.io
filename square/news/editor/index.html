@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/favicon.ico">
+<title>웹 주보 편집기 · 시애틀지구촌교회</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: 왼쪽 입력 칸(칸별 접기) + 오른쪽 실제 주보 미리보기(고정). 좁은 화면은 위아래. */
+:root{--bg:#eef0f3;--panel:#fff;--ink:#1b2433;--muted:#5d6676;--line:#d9dde4;--navy:#1f3a5f;--gold:#a97c2f;--soft:#f3ead9;--ok:#2f6b45;--danger:#a23b2c;--focus:#3d6fb0;
+  --f-ui:"IBM Plex Sans KR",system-ui,-apple-system,"Malgun Gothic",sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141922;--panel:#1c2330;--ink:#e7eaf0;--muted:#9aa3b2;--line:#2e3746;--navy:#9fbbe0;--gold:#d6ad62;--soft:#3a3122;--ok:#7cc495;--danger:#e07a6a;--focus:#7aa7e0;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141922;--panel:#1c2330;--ink:#e7eaf0;--muted:#9aa3b2;--line:#2e3746;--navy:#9fbbe0;--gold:#d6ad62;--soft:#3a3122;--ok:#7cc495;--danger:#e07a6a;--focus:#7aa7e0;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:14px;padding-inline:16px;padding-block:0 60px}
+button,input,textarea,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.top{max-width:1400px;margin-inline:auto;padding-block:16px 12px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.top h1{margin:0;font-size:20px;color:var(--navy)}.top p{margin:2px 0 0;color:var(--muted);font-size:13px}
+.acts{margin-left:auto;display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:8px 12px;cursor:pointer;font-weight:600;white-space:nowrap}
+.btn:hover{border-color:var(--navy)}.btn.pri{background:var(--navy);border-color:var(--navy);color:var(--panel)}.btn:disabled{opacity:.5;cursor:default}
+.btn.sm{padding:4px 9px;font-size:12.5px;font-weight:500}
+.grid{max-width:1400px;margin-inline:auto;display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:18px;align-items:start}
+@media(max-width:980px){.grid{grid-template-columns:minmax(0,1fr)}}
+.ed{display:flex;flex-direction:column;gap:10px;min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0}
+.meta{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:8px}
+.meta label{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--muted)}
+input,textarea{border:1px solid var(--line);border-radius:7px;padding:6px 8px;background:var(--bg);width:100%;min-width:0}
+textarea{resize:vertical;min-height:54px;line-height:1.5}
+details.sec{background:var(--panel);border:1px solid var(--line);border-radius:12px;min-width:0}
+details.sec>summary{cursor:pointer;padding:11px 14px;display:flex;align-items:center;gap:8px;list-style:none}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary b{color:var(--navy);font-size:14.5px}details.sec>summary span{color:var(--muted);font-size:12px}
+details.sec>summary::before{content:"▸";color:var(--gold);transition:transform .15s}details.sec[open]>summary::before{transform:rotate(90deg)}
+.rows{padding:0 12px 12px;display:flex;flex-direction:column;gap:6px}
+.row{display:grid;grid-template-columns:8.5em minmax(0,1fr) 7.5em auto;gap:6px;align-items:start}
+.row.two{grid-template-columns:8.5em minmax(0,1fr) auto}.row.one{grid-template-columns:minmax(0,1fr) auto}
+.ctl{display:flex;gap:3px}.ctl button{border:1px solid var(--line);background:var(--panel);border-radius:6px;width:26px;height:30px;cursor:pointer;font-size:11px}
+.hint{color:var(--muted);font-size:12px;margin:0 0 6px}
+.status{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:min(560px,calc(100% - 32px));background:var(--navy);color:var(--panel);padding:11px 15px;border-radius:10px;z-index:40;font-size:14px;line-height:1.5}
+.status.ok{background:var(--ok)}.status.err{background:var(--danger)}.status a{color:inherit;font-weight:700}
+.pv{position:sticky;top:env(safe-area-inset-top,0px);min-width:0}
+.pvbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:var(--muted);font-size:12.5px}
+.pvbox{max-height:calc(100vh - 90px);overflow:auto;border-radius:20px;background:#f4f1ea;padding:12px}
+@media(max-width:980px){.pv{position:static}.pvbox{max-height:none}}
+/* 주보 미리보기는 홈페이지와 같은 밝은 종이 색으로 고정 */
+.pvbox{--navy:#1f3a5f;--gold-2:#a97c2f;--cream:#f7f1e6;--line:#e6e1d6;--muted:#6b6f78;--color-surface:#fffdf8;color:#1f3a5f;font-family:"IBM Plex Sans KR",system-ui,sans-serif}
+.pvbox .en{display:none}
+.dlg{position:fixed;inset:0;background:rgba(10,16,28,.55);display:grid;place-items:center;z-index:50;padding:16px}.dlg[hidden]{display:none}
+.dlg-box{background:var(--panel);color:var(--ink);border-radius:14px;max-width:560px;width:100%;padding:20px 22px;box-shadow:0 20px 50px rgba(0,0,0,.3);max-height:calc(100vh - 32px);overflow:auto}
+.dlg-box h2{margin:0 0 12px;font-size:18px;color:var(--navy)}
+.steps{margin:0;padding-left:1.4em;display:grid;gap:12px;line-height:1.6;font-size:15px}.steps b{color:var(--navy)}
+.steps .go{display:inline-block;margin-top:6px;background:var(--navy);color:var(--panel);border-radius:8px;padding:8px 14px;font-weight:700;text-decoration:none}
+.steps code{background:var(--soft);border-radius:5px;padding:1px 6px;font-weight:700}
+.dlg-foot{margin:14px 0 0;font-size:13px;color:var(--muted);line-height:1.6}.dlg-foot a{color:var(--navy);font-weight:700}
+.dlg-acts{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<style id="gbcss"></style>
+</head><body>
+
+<header class="top">
+  <div><h1>웹 주보 편집기</h1><p>칸을 채우면 미리보기 주보가 바로 바뀝니다. 다 고치면 '홈페이지에 올리기'를 누르세요.</p></div>
+  <div class="acts">
+    <button class="btn" id="bLoad">최신 주보 불러오기</button>
+    <button class="btn" id="bNext">다음 주일 주보 시작</button>
+    <button class="btn" id="bUndo" disabled title="방금 한 일(다음 주일 시작·불러오기·줄 지우기)을 취소합니다">↶ 되돌리기</button>
+    <button class="btn" id="bCopy">문서 내용 복사</button>
+    <button class="btn pri" id="bSave">홈페이지에 올리기</button>
+  </div>
+</header>
+<div class="grid">
+  <div class="ed">
+    <div class="card">
+      <div class="meta">
+        <label>주일 날짜<input type="date" id="fDate"></label>
+        <label>권 (Vol.)<input id="fVol" inputmode="numeric"></label>
+        <label>호 (No.)<input id="fNo" inputmode="numeric"></label>
+      </div>
+      <p class="hint" id="dateHint" style="margin:8px 0 0"></p>
+    </div>
+    <div id="secs"></div>
+  </div>
+  <div class="pv">
+    <div class="pvbar"><span>미리보기 · 홈페이지 '교회 소식'에 이렇게 보입니다</span><span id="saveState"></span></div>
+    <div class="pvbox" id="preview"></div>
+  </div>
+</div>
+<div class="status" id="status" role="status" aria-live="polite" hidden></div>
+<div class="dlg" id="dlg" hidden><div class="dlg-box" role="dialog" aria-modal="true" aria-labelledby="dlgH">
+  <h2 id="dlgH">홈페이지에 올리기</h2>
+  <ol class="steps" id="steps"></ol>
+  <p class="dlg-foot">구글 문서는 <b>bulletin@ijiguchon.org</b> 계정으로 로그인한 상태에서 여세요. 붙여 넣고 나면 자동 저장되고, 1분쯤 뒤 <a href="/square/news/" target="_blank" rel="noopener">교회 소식</a>에 나옵니다.</p>
+  <div class="dlg-acts"><button class="btn" id="dlgCopy">내용 다시 복사</button><button class="btn pri" id="dlgClose">닫기</button></div>
+</div></div>
+
+<script>
+var GB_LOGO='/images/logo-mark.png';
+/* ── 시애틀지구촌교회 웹 주보 그리기 (gmcBulletin) ──
+   문서 형식: [칸 이름] 줄 아래에 "항목: 내용 | 담당" 줄. ※ 로 시작하는 줄은 안내문이라 무시.
+   칸: 주보 · 환영 · 소식 · 예배 · 칼럼 · 봉사 · 친교 · 출석 · 헌신 · 헌금 · 안내 · 사역자 · 교회 */
+var GB_SEC={'환영':['환영합니다','Welcome'],'소식':['지구촌 소식','Church news'],'예배':['주일연합예배','Sunday united worship'],
+  '칼럼':['목회자 코너',"Pastor's corner"],'봉사':['봉사 담당','Serving'],'친교':['목장 친교','Fellowship meal'],'출석':['지난 주 출석','Last week attendance'],
+  '헌신':['지난 주 헌신','Last week'],'헌금':['감사 헌금','Offering'],'안내':['주일연합예배 및 주간모임','Worship & weekly gatherings'],
+  '사역자':['섬기는 사람들','Ministry team'],'교회':['교회','Church']};
+GB_SEC['처음']=['처음 오셨나요?','First time here?'];
+/* 휴대폰 바로가기 단추 이름 */
+var GB_NAV=[['처음','처음 오셨나요','New here'],['예배','예배 순서','Worship'],['소식','교회 소식','News'],['봉사','봉사','Serving'],['친교','친교','Meals'],['출석','출석','Attendance'],['칼럼','목회칼럼','Column'],['안내','모임 시간','Times'],['사역자','섬기는 사람들','Team']];
+var GB_LEFT=['예배','칼럼','안내'], GB_RIGHT=['환영','소식','봉사','친교','출석','헌신','헌금'];
+/* 처음 오신 분을 위한 예배 순서 쉬운 설명 */
+var GB_EASY={'공동체 시간':'서로 인사하고 이번 주 교회 소식을 나눕니다.','경배와 찬양':'다 함께 노래로 하나님을 찬양합니다. 따라 부르기 어려우면 들으셔도 괜찮습니다.',
+  '봉헌':'감사의 마음을 드리는 시간입니다. 처음 오신 분은 부담 갖지 않으셔도 됩니다.','대표기도':'한 분이 교회를 대표해 기도합니다. 마음으로 함께하시면 됩니다.',
+  '성경합독':'오늘 말씀의 성경 본문을 다 함께 소리 내어 읽습니다.','말씀':'목사님이 성경 본문을 풀어 설교합니다.',
+  '헌신과 결단':'들은 말씀을 마음에 새기며 다 함께 찬송합니다.','축도':'하나님의 복을 비는 기도로 예배를 마칩니다.'};
+/* 소식에 나오는 교회 용어 풀이 */
+var GB_TERMS=[['목장','가정에서 모여 함께 식사하고 삶을 나누는 작은 교회 모임'],['목자','목장을 섬기는 평신도 리더'],['삶공부','신앙의 기초부터 함께 배우는 성경 공부 과정'],
+  ['경청 21','21일 동안 함께 하나님께 귀 기울이며 기도하는 시간'],['새번역','원어에서 쉬운 우리말로 옮긴 성경 번역'],['토요새벽','토요일 아침 6시에 모이는 기도회'],['VIP','우리가 기도하며 초대하고 싶은 소중한 이웃']];
+function gbEsc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function gbBi(ko,en){ return '<span class="ko">'+gbEsc(ko)+'</span><span class="en">'+gbEsc(en)+'</span>'; }
+function gbParse(t){
+  var secs=[], cur=null;
+  String(t||'').replace(/^﻿/,'').replace(/\\([\[\]_*#.\-!()>|+])/g,'$1').replace(/\r\n?/g,'\n').split('\n').forEach(function(ln){
+    var s=ln.replace(/[ \s]+/g,' ').trim(); if(!s || /^※/.test(s)) return;
+    var h=s.match(/^[\[【]\s*(.+?)\s*[\]】]$/); if(h){ cur={k:h[1].replace(/\s+/g,''),items:[]}; secs.push(cur); return; }
+    if(!cur){ cur={k:'소식',items:[]}; secs.push(cur); }
+    var kv=s.match(/^([^:：]{1,40}?)\s*[:：]\s*(.*)$/);
+    if(kv && (/^(https?|www)$/i.test(kv[1].trim()) || /^\d{1,2}$/.test(kv[1].trim()))) kv=null;
+    var l=kv?kv[1].trim():'', rest=kv?kv[2]:s, p=rest.split(/\s*\|\s*/);
+    cur.items.push({l:l, v:(p[0]||'').trim(), p:p.slice(1).join(' · ').trim()});
+  });
+  return secs.map(function(sc){ sc.items=sc.items.filter(function(it){ return it.v!=='' || it.p!==''; }); return sc; })
+    .filter(function(sc){ return sc.items.length; });
+}
+function gbGet(secs,k){ for(var i=0;i<secs.length;i++) if(secs[i].k===k) return secs[i]; return null; }
+function gbVal(sc,label){ if(!sc) return ''; for(var i=0;i<sc.items.length;i++) if(sc.items[i].l===label) return sc.items[i].v; return ''; }
+function gbSection(sc,o){
+  var k=sc.k, nm=GB_SEC[k]||[k,k], h='', it=sc.items;
+  if(k==='예배'){
+    var time=gbVal(sc,'시간'), star=false;
+    h+='<ol class="gb-prog">'+it.filter(function(x){ return x.l!=='시간'; }).map(function(x){
+      if(!x.l) return '<li class="gb-note">'+gbEsc(x.v)+'</li>';
+      var m=x.l.match(/^(\*)?\s*([^(（]+?)\s*(?:[(（](.+?)[)）])?$/)||[null,'',x.l,''], st=!!m[1]; if(st) star=true;
+      var ex=GB_EASY[m[2].replace(/\s+/g,' ').trim()];
+      return '<li class="gb-pi"><span class="gb-pl">'+(st?'<i class="gb-st" title="일어나서">*</i>':'')+'<b>'+gbEsc(m[2])+'</b>'+(m[3]?'<small>'+gbEsc(m[3])+'</small>':'')+'</span>'
+        +'<span class="gb-pc">'+gbEsc(x.v)+'</span><span class="gb-pp">'+gbEsc(x.p)+'</span>'
+        +(ex?'<span class="gb-ex">'+gbEsc(ex)+'</span>':'')+'</li>';
+    }).join('')+'</ol>';
+    if(star) h+='<p class="gb-foot-note">* '+gbBi('일어나서 (몸이 불편한 분은 앉아서)','Please stand if you are able')+'</p>';
+    return '<section class="gb-s gb-worship"><h3>'+gbBi(nm[0],nm[1])+(time?'<em>'+gbEsc(time)+'</em>':'')+'</h3>'+h+'</section>';
+  }
+  if(k==='칼럼'){
+    var title=gbVal(sc,'제목')||(it[0]&&it[0].v)||'';
+    return '<section class="gb-s gb-col"><h3>'+gbBi(nm[0],nm[1])+'</h3><a href="'+gbEsc(o.columnHref||'/corner/')+'"><b>'+gbEsc(title)+'</b><span class="gb-col-go">칼럼 전문 읽기 →</span></a></section>';
+  }
+  if(k==='환영'||k==='헌금'){
+    h=it.map(function(x){ return '<p>'+gbEsc(x.l?x.l+': '+x.v:x.v)+'</p>'; }).join('');
+    if(k==='헌금') h+='<a class="gb-give" href="/give/">'+gbBi('온라인 헌금 →','Give online →')+'</a>';
+    return '<section class="gb-s gb-'+(k==='환영'?'welcome':'give-s')+'"><h3>'+gbBi(nm[0],nm[1])+'</h3>'+h+'</section>';
+  }
+  if(k==='소식'){
+    var all=it.map(function(x){ return x.l+' '+x.v+' '+x.p; }).join(' ').replace(/\s+/g,' ');
+    var terms=GB_TERMS.filter(function(t){ return all.indexOf(t[0])>-1 || all.replace(/\s/g,'').indexOf(t[0].replace(/\s/g,''))>-1; });
+    return '<section class="gb-s gb-news"><h3>'+gbBi(nm[0],nm[1])+'</h3><ol>'+it.map(function(x){
+      return '<li>'+(x.l?'<b>'+gbEsc(x.l)+'</b>':'')+'<span>'+gbEsc(x.v)+(x.p?' <small>'+gbEsc(x.p)+'</small>':'')+'</span></li>'; }).join('')+'</ol>'
+      +'<a class="gb-more" href="/?tab=mokjang">'+gbBi('목장이 궁금하세요? 목장 안내 보기 →','Curious about Mokjang (house church)? Learn more →')+'</a>'
+      +(terms.length?'<dl class="gb-terms"><span class="gb-terms-h">'+gbBi('처음 들으시는 말','Words you may hear')+'</span>'+terms.map(function(t){ return '<div><dt>'+gbEsc(t[0])+'</dt><dd>'+gbEsc(t[1])+'</dd></div>'; }).join('')+'</dl>':'')
+      +'</section>';
+  }
+  if(k==='처음'){
+    return '<section class="gb-s gb-first"><h3>'+gbBi(nm[0],nm[1])+'</h3><dl class="gb-kv">'+it.map(function(x){
+      return '<div><dt>'+gbEsc(x.l)+'</dt><dd>'+gbEsc(x.v)+(x.p?'<small>'+gbEsc(x.p)+'</small>':'')+'</dd></div>'; }).join('')+'</dl>'
+      +'<button type="button" class="gb-easy-btn" aria-pressed="false" onclick="var g=this.closest(\'.gb\');var on=g.classList.toggle(\'gb-easy\');this.setAttribute(\'aria-pressed\',on);">'
+      +gbBi('예배 순서 쉬운 설명 보기','Explain the order of worship')+'</button></section>';
+  }
+  if(k==='출석'||k==='헌신'){
+    return '<section class="gb-s gb-stats"><h3>'+gbBi(nm[0],nm[1])+'</h3><div class="gb-chips">'+it.map(function(x){
+      var tot=/총/.test(x.l); return '<span'+(tot?' class="gb-tot"':'')+'>'+(x.l?'<em>'+gbEsc(x.l)+'</em>':'')+'<b>'+gbEsc(x.v)+'</b></span>'; }).join('')+'</div></section>';
+  }
+  return '<section class="gb-s gb-kv-s"><h3>'+gbBi(nm[0],nm[1])+'</h3><dl class="gb-kv">'+it.map(function(x){
+    return '<div><dt>'+gbEsc(x.l)+'</dt><dd>'+gbEsc(x.v)+(x.p?'<small>'+gbEsc(x.p)+'</small>':'')+'</dd></div>'; }).join('')+'</dl></section>';
+}
+var GB_LOGO=(typeof GB_LOGO!=='undefined'&&GB_LOGO)||'/images/logo-mark.png';   /* 교회 로고 (홈페이지와 같은 마크) */
+function gbHTML(iso,secs,o){
+  o=o||{}; var d=new Date(iso+'T12:00:00'), MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var top=gbGet(secs,'주보'), church=gbGet(secs,'교회'), staff=gbGet(secs,'사역자');
+  var vol=gbVal(top,'권호'), mottos=top?top.items.filter(function(x){ return x.l==='표어'; }).map(function(x){ return x.v; }):[];
+  if(!mottos.length) mottos=['평신도 사역자를 세우는 교회','차세대 사역자를 세우는 교회'];
+  var h='<article class="gb">';
+  h+='<header class="gb-top"><div class="gb-brand"><span class="gb-logo"><img src="'+GB_LOGO+'" alt="" width="40" height="40"></span><span class="gb-bt"><b>'+gbEsc(gbVal(church,'이름')||'시애틀지구촌교회')+'</b><span>'+gbEsc(gbVal(church,'영문')||'Global Mission Church of Greater Seattle')+'</span></span></div>'
+    +'<div class="gb-meta">'+(vol?'<span>'+gbEsc(vol)+'</span>':'')+'<b>'+gbBi(d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 주일','Sunday, '+MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear())+'</b>'
+    +(o.pdf?'<a href="'+gbEsc(o.pdf)+'" target="_blank" rel="noopener">'+gbBi('주보 PDF','PDF')+'</a>':'')+'</div>'
+    +'<div class="gb-mottos">'+mottos.map(function(m){ return '<span>'+gbEsc(m)+'</span>'; }).join('')+'</div></header>';
+  var used={'주보':1,'교회':1,'사역자':1,'처음':1}, L='', R='', first=gbGet(secs,'처음'), has={};
+  function sec(sc){ var x=gbSection(sc,o); if(!x) return ''; has[sc.k]=1; return x.replace('<section class=','<section id="gb-sec-'+sc.k+'" class='); }
+  var F=first?sec(first):'';
+  GB_LEFT.forEach(function(k){ var s=gbGet(secs,k); if(s){ L+=sec(s); used[k]=1; } });
+  GB_RIGHT.forEach(function(k){ var s=gbGet(secs,k); if(s){ R+=sec(s); used[k]=1; } });
+  secs.forEach(function(s){ if(!used[s.k]){ R+=sec(s); used[s.k]=1; } });
+  if(staff) has['사역자']=1;
+  /* 휴대폰에서 보고 싶은 칸으로 바로 가는 단추 (화면을 내려도 위에 붙어 있음) */
+  var go="var t=document.getElementById(this.getAttribute('data-t'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});";
+  h+='<nav class="gb-nav" aria-label="주보 바로가기"><div class="gb-nav-in">'+GB_NAV.filter(function(n){ return has[n[0]]; }).map(function(n){
+      return '<button type="button" data-t="gb-sec-'+n[0]+'" onclick="'+go+'">'+gbBi(n[1],n[2])+'</button>'; }).join('')
+    +(o.ts?'<button type="button" class="gb-nav-ts" onclick="var b=document.getElementById(\'tsBtn\');if(b)b.click();" aria-label="글자 크기 바꾸기">'+gbBi('가 글자 크기','Text size')+'</button>':'')
+    +'</div></nav>';
+  if(F) h+='<div class="gb-firstwrap">'+F+'</div>';
+  h+='<div class="gb-grid"><div class="gb-colL">'+L+'</div><div class="gb-colR">'+R+'</div></div>';
+  h+='<footer class="gb-foot" id="gb-sec-사역자">';
+  if(staff) h+='<dl class="gb-staff">'+staff.items.map(function(x){ return '<div><dt>'+gbEsc(x.l)+'</dt><dd>'+gbEsc(x.v)+(x.p?' <small>'+gbEsc(x.p)+'</small>':'')+'</dd></div>'; }).join('')+'</dl>';
+  var addr=gbVal(church,'주소'), web=gbVal(church,'웹');
+  h+='<p class="gb-addr">'+gbEsc(gbVal(church,'영문')||'Global Mission Church of Greater Seattle')+(addr?' · '+gbEsc(addr):'')+(web?' · '+gbEsc(web):'')+'</p>';
+  h+='</footer></article>';
+  return h;
+}
+var GB_CSS=[
+'.gb{--gb-navy:var(--navy,#1f3a5f);--gb-gold:var(--gold-2,#a97c2f);--gb-cream:var(--cream,#f7f1e6);--gb-line:var(--line,#e6e1d6);--gb-muted:var(--muted,#6b6f78);--gb-paper:var(--color-surface,#fffdf8);',
+' background:var(--gb-paper);border:1px solid var(--gb-line);border-radius:20px;overflow:hidden;overflow:clip;box-shadow:0 14px 34px rgba(20,33,61,.08);margin:0 0 24px;color:var(--gb-navy);word-break:keep-all}',
+'.gb-top{background:var(--gb-navy);color:#fff;padding:22px 24px 16px;display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:end}',
+'.gb-brand{display:flex;align-items:center;gap:12px}.gb-logo{flex:none;width:52px;height:52px;border-radius:14px;background:#fff;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.18)}.gb-logo img{width:40px;height:40px;display:block}.gb-bt{min-width:0}.gb-brand b{display:block;font-size:22px;letter-spacing:-.01em}.gb-bt>span{display:block;font-size:12px;opacity:.75;letter-spacing:.04em}',
+'.gb-meta{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:2px}.gb-meta span{font-size:12px;opacity:.75;letter-spacing:.06em}.gb-meta b{font-size:15px}',
+'.gb-meta a{margin-top:4px;font-size:12px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:3px 10px;text-decoration:none}',
+'.gb-mottos{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.18);font-size:12.5px;letter-spacing:.18em;color:#e9d9b6}',
+'.gb-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)}.gb-colL{border-right:1px solid var(--gb-line)}',
+'.gb-nav{position:sticky;top:var(--gb-top,0px);z-index:6;background:var(--gb-paper);border-bottom:1px solid var(--gb-line);box-shadow:0 4px 10px rgba(20,33,61,.06)}'
++'.gb-nav-in{display:flex;gap:7px;overflow-x:auto;padding:10px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.gb-nav-in::-webkit-scrollbar{display:none}'
++'.gb-nav button{flex:none;font:inherit;font-size:14px;font-weight:700;color:var(--gb-navy);background:var(--gb-cream);border:1px solid var(--gb-line);border-radius:999px;padding:8px 14px;cursor:pointer;white-space:nowrap}.gb-nav button:active{background:var(--gb-gold);color:#fff}'
++'.gb-nav .gb-nav-ts{background:#fff;border-color:var(--gb-gold)}'
++'.gb-s,.gb-foot{scroll-margin-top:calc(var(--gb-top,0px) + 64px)}'
++'.gb-more{display:inline-block;margin-top:12px;font-size:13.5px;font-weight:700;color:var(--gb-gold);text-decoration:none}',
+'.gb-s{display:block;padding:18px 22px;border-bottom:1px solid var(--gb-line)}.gb-colL .gb-s:last-child,.gb-colR .gb-s:last-child{border-bottom:0}',
+'.gb-s h3{margin:0 0 12px;font-size:13px;font-weight:800;letter-spacing:.12em;color:var(--gb-gold);display:flex;justify-content:space-between;gap:8px}.gb-s h3 em{font-style:normal;color:var(--gb-navy);letter-spacing:.02em}',
+'.gb-prog{list-style:none;margin:0;padding:0;display:grid;gap:9px}.gb-pi{display:grid;grid-template-columns:8.6em minmax(0,1fr) auto;gap:4px 10px;align-items:baseline;line-height:1.5}',
+'.gb-pl b{font-size:14.5px}.gb-pl small{display:block;font-size:11px;color:var(--gb-muted)}.gb-st{font-style:normal;color:var(--gb-gold);font-weight:800;margin-right:2px}',
+'.gb-pc{font-weight:600;font-size:14.5px}.gb-pp{font-size:13px;color:var(--gb-muted);text-align:right;white-space:nowrap}',
+'.gb-note,.gb-foot-note{font-size:12.5px;color:var(--gb-muted);line-height:1.6;margin:6px 0 0}.gb-note{grid-column:1/-1}',
+'.gb-col{background:linear-gradient(180deg,transparent,var(--gb-cream))}.gb-col a{text-decoration:none;color:var(--gb-navy);display:block}.gb-col b{display:block;font-size:17px;line-height:1.5}.gb-col-go{display:inline-block;margin-top:8px;font-size:13px;font-weight:700;color:var(--gb-gold)}',
+'.gb-welcome p{margin:0;padding:12px 14px;background:var(--gb-cream);border-radius:12px;font-weight:600;line-height:1.7}',
+'.gb-news ol{margin:0;padding-left:1.4em;display:grid;gap:9px;line-height:1.65}.gb-news li b{margin-right:6px}.gb-news small{color:var(--gb-muted)}',
+'.gb-kv{margin:0;display:grid;gap:7px}.gb-kv div{display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:10px;line-height:1.55}.gb-kv dt{color:var(--gb-muted);font-size:13.5px}.gb-kv dd{margin:0;font-weight:600;min-width:0}.gb-kv small{display:block;font-weight:500;font-size:12.5px;color:var(--gb-muted)}',
+'.gb-chips{display:flex;flex-wrap:wrap;gap:7px}.gb-chips span{background:var(--gb-cream);border-radius:999px;padding:5px 12px;font-size:13.5px}.gb-chips em{font-style:normal;color:var(--gb-muted);margin-right:4px}',
+'.gb-chips .gb-tot{background:var(--gb-navy);color:#fff}.gb-chips .gb-tot em{color:#e9d9b6}',
+'.gb-give-s p{margin:0 0 4px;font-size:13.5px;line-height:1.6;color:var(--gb-muted)}.gb-give{font-size:13px;font-weight:700;color:var(--gb-gold);text-decoration:none}',
+'.gb-foot{background:var(--gb-cream);padding:16px 22px;border-top:1px solid var(--gb-line)}.gb-staff{margin:0 0 8px;display:flex;flex-wrap:wrap;gap:4px 18px;font-size:13px}.gb-staff div{display:flex;gap:6px}.gb-staff dt{color:var(--gb-muted)}.gb-staff dd{margin:0;font-weight:600;color:var(--gb-navy)}.gb-staff small{color:var(--gb-muted);font-weight:500}',
+'.gb-addr{margin:0;font-size:12.5px;color:var(--gb-muted)}.gb-foot{color:var(--gb-navy)}',
+'.gb-firstwrap{border-bottom:1px solid var(--gb-line);background:linear-gradient(180deg,var(--gb-cream),transparent)}.gb-first{border-bottom:0}.gb-first .gb-kv{grid-template-columns:repeat(auto-fit,minmax(19em,1fr));column-gap:24px}',
+'.gb-easy-btn{margin-top:14px;font:inherit;font-size:13.5px;font-weight:700;color:var(--gb-navy);background:#fff;border:1.5px solid var(--gb-gold);border-radius:999px;padding:8px 16px;cursor:pointer}',
+'.gb-easy-btn[aria-pressed="true"]{background:var(--gb-gold);color:#fff}',
+'.gb-ex{display:none;grid-column:1/-1;font-size:12.5px;color:var(--gb-muted);background:var(--gb-cream);border-radius:8px;padding:5px 10px;margin-top:2px}.gb-easy .gb-ex{display:block}',
+'.gb-terms{margin:14px 0 0;padding:12px 14px;border:1px dashed var(--gb-line);border-radius:12px;display:grid;gap:5px;font-size:13px}.gb-terms-h{font-weight:800;color:var(--gb-gold);font-size:12px;letter-spacing:.08em}',
+'.gb-terms div{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px}.gb-terms dt{font-weight:700}.gb-terms dd{margin:0;color:var(--gb-muted)}',
+'@media(max-width:760px){.gb-grid{grid-template-columns:minmax(0,1fr)}.gb-colL{border-right:0;border-bottom:1px solid var(--gb-line)}.gb-top{grid-template-columns:1fr}.gb-meta{text-align:left;align-items:flex-start}.gb-pi{grid-template-columns:7.2em minmax(0,1fr)}.gb-pp{grid-column:2;text-align:left}.gb-s{padding:16px}}'
+].join('');
+
+</script>
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+const FOLDER='15_4TMBpg7E7w_5YAjd3GJ-hohnLw_FuB';
+const ORDER=['처음','환영','소식','예배','칼럼','봉사','친교','출석','헌신','헌금','안내','사역자','교회','주보'];
+const KIND={'환영':'one','헌금':'one','출석':'two','헌신':'two','친교':'two','칼럼':'two','교회':'two','주보':'two','처음':'two'};
+const HINT={'처음':'처음 오신 분이 가장 먼저 보는 안내입니다. "항목: 내용"','소식':'한 줄에 소식 하나. 제목과 내용을 나눠 쓰면 제목이 굵게 보입니다.',
+ '예배':'순서 이름 앞에 *를 붙이면 "일어나서" 표시가 됩니다. "시간" 줄은 제목 옆에 보입니다. 항목을 비우면 안내 문장으로 보입니다.',
+ '봉사':'예: 기도 / 10/11 박성건 · 10/18 이인규','친교':'예: 10/11 / 인도네시아 목장','출석':'숫자를 비우면 그 항목은 나오지 않습니다.',
+ '칼럼':'이번 주 목회칼럼 제목만 쓰면 칼럼 링크 카드가 됩니다.',
+ '사역자':'이름을 비운 줄은 나오지 않습니다. 셋째 칸은 영문 이름·직함입니다.','주보':'표어를 고칠 수 있습니다. 권·호는 위 칸에서.'};
+let S={date:'',vol:'',no:'',secs:{}};
+
+/* ---------- 문서 ↔ 상태 ---------- */
+function textToState(t,iso){
+  const st={date:iso||'',vol:'',no:'',secs:{}};
+  gbParse(t).forEach(sc=>{ st.secs[sc.k]=sc.items.map(x=>({l:x.l,v:x.v,p:x.p})); });
+  const top=st.secs['주보']||[]; const kh=top.find(x=>x.l==='권호');
+  if(kh){ const m=kh.v.match(/Vol\.?\s*(\d+)\s*No\.?\s*(\d+)/i); if(m){ st.vol=m[1]; st.no=m[2]; } }
+  st.secs['주보']=top.filter(x=>x.l!=='권호');
+  return st;
+}
+function iso2key(iso){ const [y,m,d]=iso.split('-'); return m+d+y.slice(2); }
+function key2iso(k){ return '20'+k.slice(4,6)+'-'+k.slice(0,2)+'-'+k.slice(2,4); }
+function fmtKo(iso){ const d=new Date(iso+'T12:00:00'); return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일'; }
+function stateToText(){
+  const L=['※ 시애틀지구촌교회 웹 주보 · '+(S.date?fmtKo(S.date):''),'※ 이 문서는 웹 주보 편집기에서 만들었습니다. 직접 고쳐도 됩니다. [대괄호] 줄은 칸 제목, "항목: 내용 | 담당" 형식입니다.',''];
+  const top=[]; if(S.vol||S.no) top.push({l:'권호',v:'Vol. '+S.vol+' No.'+S.no,p:''});
+  const secs=Object.assign({},S.secs,{'주보':top.concat(S.secs['주보']||[])});
+  ['주보'].concat(ORDER.filter(k=>k!=='주보')).forEach(k=>{
+    const rows=(secs[k]||[]).filter(r=>(r.v||'').trim()||(r.p||'').trim()); if(!rows.length) return;
+    L.push('['+k+']');
+    rows.forEach(r=>{ const v=(r.v||'').replace(/\n+/g,' ').trim(), p=(r.p||'').trim(); L.push((r.l?r.l.trim()+': ':'')+v+(p?' | '+p:'')); });
+    L.push('');
+  });
+  return L.join('\n');
+}
+
+/* ---------- 화면 ---------- */
+function esc(s){ return gbEsc(s); }
+function renderSecs(){
+  $('#secs').innerHTML=ORDER.map(k=>{
+    const nm=(GB_SEC[k]||[k])[0], kind=KIND[k]||'three', rows=S.secs[k]||[];
+    return `<details class="sec" data-k="${k}"${['소식','예배','출석'].includes(k)?' open':''}><summary><b>${esc(k==='주보'?'머리말·표어':nm)}</b><span>${rows.length}줄</span></summary><div class="rows">
+      ${HINT[k]?`<p class="hint">${esc(HINT[k])}</p>`:''}
+      ${rows.map((r,i)=>rowHTML(k,kind,r,i)).join('')}
+      <div><button class="btn sm" data-a="add">+ 줄 추가</button></div></div></details>`;
+  }).join('');
+}
+function rowHTML(k,kind,r,i){
+  const ctl=`<div class="ctl"><button data-a="up" aria-label="위로">▲</button><button data-a="dn" aria-label="아래로">▼</button><button data-a="del" aria-label="줄 지우기">✕</button></div>`;
+  if(kind==='one') return `<div class="row one" data-i="${i}"><textarea data-f="v" aria-label="${esc(k)} 내용">${esc(r.v)}</textarea>${ctl}</div>`;
+  const ph1=k==='예배'?'순서':(k==='친교'?'날짜':(k==='목장'?'목장 이름':'항목')), ph3=k==='예배'?'담당':(k==='사역자'?'영문 (예: Church Administrator)':'비고');
+  const ph2=k==='목장'?'목자·목녀 이름':(k==='사역자'?'이름':'내용');
+  if(kind==='two') return `<div class="row two" data-i="${i}"><input data-f="l" value="${esc(r.l)}" placeholder="${ph1}" aria-label="${esc(k)} 항목"><input data-f="v" value="${esc(r.v)}" placeholder="내용" aria-label="${esc(k)} 내용">${ctl}</div>`;
+  return `<div class="row" data-i="${i}"><input data-f="l" value="${esc(r.l)}" placeholder="${ph1}" aria-label="${esc(k)} 항목"><input data-f="v" value="${esc(r.v)}" placeholder="${ph2}" aria-label="${esc(k)} 내용"><input data-f="p" value="${esc(r.p)}" placeholder="${ph3}" aria-label="${esc(k)} ${ph3}">${ctl}</div>`;
+}
+let pvT; function refresh(){ clearTimeout(pvT); pvT=setTimeout(()=>{
+  const iso=S.date||new Date().toISOString().slice(0,10);
+  $('#preview').innerHTML=gbHTML(iso,gbParse(stateToText()),{});
+  const d=S.date?new Date(S.date+'T12:00:00'):null;
+  $('#dateHint').textContent=!d?'주일 날짜를 고르세요.':(d.getDay()!==0?'⚠ 고른 날짜가 주일이 아닙니다.':`문서 이름: ${iso2key(S.date)}_교회소식`);
+  try{ localStorage.setItem('gmcBulletinDraft',JSON.stringify(S)); }catch(e){}
+},120); }
+$('#secs').addEventListener('input',e=>{
+  const sec=e.target.closest('details.sec'), row=e.target.closest('.row'); if(!sec||!row) return;
+  const k=sec.dataset.k, i=+row.dataset.i, f=e.target.dataset.f; S.secs[k][i][f]=e.target.value; refresh();
+});
+$('#secs').addEventListener('click',e=>{
+  const b=e.target.closest('button[data-a]'); if(!b) return; e.preventDefault();
+  const sec=b.closest('details.sec'), k=sec.dataset.k; S.secs[k]=S.secs[k]||[]; const rows=S.secs[k];
+  if(b.dataset.a==='add'){ rows.push({l:'',v:'',p:''}); }
+  else{ const i=+b.closest('.row').dataset.i;
+    if(b.dataset.a==='del'){ snap('줄 지우기'); rows.splice(i,1); }
+    else{ const j=i+(b.dataset.a==='up'?-1:1); if(j<0||j>=rows.length) return; [rows[i],rows[j]]=[rows[j],rows[i]]; } }
+  const open=[...document.querySelectorAll('details.sec[open]')].map(d=>d.dataset.k);
+  renderSecs(); open.forEach(x=>{ const d=document.querySelector(`details.sec[data-k="${x}"]`); if(d) d.open=true; });
+  if(b.dataset.a==='add'){ const last=sec&&document.querySelector(`details.sec[data-k="${k}"] .row:last-of-type input, details.sec[data-k="${k}"] .row:last-of-type textarea`); if(last) last.focus(); }
+  refresh();
+});
+['fDate','fVol','fNo'].forEach(id=>$('#'+id).addEventListener('input',e=>{ S[{fDate:'date',fVol:'vol',fNo:'no'}[id]]=e.target.value.trim(); refresh(); }));
+function fillMeta(){ $('#fDate').value=S.date; $('#fVol').value=S.vol; $('#fNo').value=S.no; }
+let stT; function status(msg,kind,html){ const el=$('#status'); el.className='status'+(kind?' '+kind:''); if(html) el.innerHTML=msg; else el.textContent=msg; el.hidden=!msg; clearTimeout(stT); if(kind==='ok') stT=setTimeout(()=>{el.hidden=true;},8000); }
+$('#status').addEventListener('click',e=>{ if(!e.target.closest('a')) $('#status').hidden=true; });
+
+/* ---------- 되돌리기: 다음 주일 시작·불러오기·줄 지우기 직전 상태를 20개까지 보관 ---------- */
+let UNDO=[]; try{ UNDO=JSON.parse(localStorage.getItem('gmcBulletinUndo')||'[]')||[]; }catch(e){ UNDO=[]; }
+function updUndo(){ const b=$('#bUndo'), u=UNDO[UNDO.length-1]; b.disabled=!u; b.textContent=u?`↶ 되돌리기 (${u.label})`:'↶ 되돌리기'; }
+function snap(label){ UNDO.push({label,s:JSON.stringify(S)}); if(UNDO.length>20) UNDO.shift(); try{ localStorage.setItem('gmcBulletinUndo',JSON.stringify(UNDO)); }catch(e){} updUndo(); }
+$('#bUndo').onclick=()=>{
+  const u=UNDO.pop(); if(!u) return; try{ localStorage.setItem('gmcBulletinUndo',JSON.stringify(UNDO)); }catch(e){}
+  S=JSON.parse(u.s); fillMeta(); renderSecs(); refresh(); updUndo();
+  status(`'${u.label}' 하기 전으로 되돌렸습니다 — ${S.date?fmtKo(S.date):''} 주보`,'ok');
+};
+
+/* ---------- 다음 주일 ---------- */
+$('#bNext').onclick=()=>{
+  if(!S.date){ status('먼저 주일 날짜를 고르세요.','err'); return; }
+  snap('다음 주일 시작');
+  const d=new Date(S.date+'T12:00:00'); d.setDate(d.getDate()+7);
+  S.date=d.toISOString().slice(0,10); if(S.no) S.no=String(+S.no+1);
+  ['출석','헌신'].forEach(k=>(S.secs[k]||[]).forEach(r=>{ if(!/^\d{4}년/.test(r.l)) r.v=''; }));
+  (S.secs['칼럼']||[]).forEach(r=>{ r.v=''; });
+  fillMeta(); renderSecs(); refresh();
+  status(`${fmtKo(S.date)} 주보를 시작했습니다. 출석·헌신 숫자와 칼럼 제목을 비웠으니, 바뀐 내용만 고치세요. 잘못 눌렀으면 '↶ 되돌리기'를 누르세요.`,'ok');
+};
+
+/* ---------- 드라이브 (홈페이지용: 공개 읽기 + 구글 문서에 붙여 넣기) ---------- */
+const KEY='AIzaSyBL3EXN_i8b9RkcXPa4x_FD2M3sKTQpVgY', API='https://www.googleapis.com/drive/v3/files';
+async function listFolder(){
+  const r=await fetch(API+'?q='+encodeURIComponent("'"+FOLDER+"' in parents and trashed=false")+'&fields='+encodeURIComponent('files(id,name,mimeType)')+'&pageSize=300&supportsAllDrives=true&includeItemsFromAllDrives=true&key='+KEY,{cache:'no-store'});
+  if(!r.ok) throw new Error('드라이브 '+r.status); return (await r.json()).files||[];
+}
+const isNews=f=>f.mimeType==='application/vnd.google-apps.document'&&/^\d{6}_교회소식$/.test(f.name||'');
+const sortKey=t=>t.slice(4,6)+t.slice(0,4);
+async function loadLatest(initial){
+  const b=$('#bLoad'); b.disabled=true; if(!initial) status('최신 주보를 찾는 중…');
+  try{
+    const files=(await listFolder()).filter(isNews).sort((a,c)=>sortKey(c.name).localeCompare(sortKey(a.name)));
+    if(!files.length){ if(!initial) status('주보 폴더에 "MMDDYY_교회소식" 문서가 아직 없습니다.','err'); return false; }
+    const f=files[0]; const r=await fetch(API+'/'+f.id+'/export?mimeType=text/plain&key='+KEY,{cache:'no-store'}); if(!r.ok) throw new Error('문서 '+r.status);
+    const txt=await r.text(); if(!initial) snap('불러오기');
+    S=textToState(txt,key2iso(f.name.slice(0,6))); fillMeta(); renderSecs(); refresh();
+    status(`${fmtKo(S.date)} 주보를 불러왔습니다.${initial?' 새 주일이면 \'다음 주일 주보 시작\'을 누르세요.':''}`,'ok'); return true;
+  }catch(e){ status('주보를 불러오지 못했습니다 ('+e.message+'). 인터넷 연결을 확인해 주세요.','err'); return false; }
+  finally{ b.disabled=false; }
+}
+$('#bLoad').onclick=()=>loadLatest(false);
+async function copyText(){
+  const t=stateToText();
+  try{ await navigator.clipboard.writeText(t); return true; }
+  catch(e){ const ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
+    let ok=false; try{ ok=document.execCommand('copy'); }catch(_){} ta.remove(); return ok; }
+}
+$('#bSave').onclick=async()=>{
+  if(!S.date){ status('주일 날짜를 먼저 고르세요.','err'); return; }
+  const title=iso2key(S.date)+'_교회소식', copied=await copyText();
+  const steps=$('#steps');
+  steps.innerHTML='<li>'+(copied?'<b>주보 내용을 복사했습니다.</b>':'<b>복사가 막혔습니다.</b> 아래 \'내용 다시 복사\'를 눌러 주세요.')+'</li><li>문서를 찾는 중…</li>';
+  $('#dlg').hidden=false; $('#dlgClose').focus();
+  let files=[]; try{ files=await listFolder(); }catch(e){}
+  const same=files.find(f=>isNews(f)&&f.name===title), tpl=files.find(f=>/^양식_교회소식/.test(f.name||''));
+  const folderUrl='https://drive.google.com/drive/folders/'+FOLDER;
+  let two, three='<li>열린 구글 문서에서 <b>전체 선택(Ctrl+A, 맥은 ⌘+A)</b> 후 <b>붙여 넣기(Ctrl+V, 맥은 ⌘+V)</b>를 하세요. 원래 있던 글은 모두 지워지고 새 주보로 바뀝니다.</li>';
+  if(same){
+    two='<li>이 주일 문서가 이미 있습니다: <code>'+esc(title)+'</code><br><a class="go" href="https://docs.google.com/document/d/'+same.id+'/edit" target="_blank" rel="noopener">이 주 문서 열기 →</a></li>';
+  }else if(tpl){
+    two='<li>새 주보 문서를 만듭니다. 아래 단추를 누르면 구글이 <b>사본 만들기</b> 창을 보여 줍니다. 이름을 <code>'+esc(title)+'</code> 로, 폴더를 <b>주보</b>로 확인하고 <b>사본 만들기</b>를 누르세요.<br>'
+      +'<a class="go" href="https://docs.google.com/document/d/'+tpl.id+'/copy?title='+encodeURIComponent(title)+'&copyDestination='+FOLDER+'" target="_blank" rel="noopener">새 주보 문서 만들기 →</a></li>';
+  }else{
+    two='<li><a class="go" href="'+folderUrl+'" target="_blank" rel="noopener">주보 폴더 열기 →</a><br>새 구글 문서를 만들고 이름을 <code>'+esc(title)+'</code> 로 바꾸세요.</li>';
+  }
+  steps.innerHTML=steps.firstElementChild.outerHTML+two+three;
+};
+$('#dlgCopy').onclick=async()=>{ const ok=await copyText(); status(ok?'주보 내용을 다시 복사했습니다.':'복사가 막혀 있습니다.',ok?'ok':'err'); };
+$('#dlgClose').onclick=()=>{ $('#dlg').hidden=true; };
+$('#dlg').addEventListener('click',e=>{ if(e.target.id==='dlg') $('#dlg').hidden=true; });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') $('#dlg').hidden=true; });
+$('#bCopy').onclick=async()=>{ const ok=await copyText(); status(ok?'문서 내용을 복사했습니다. 구글 문서에 붙여 넣으면 같은 주보가 됩니다.':'복사가 막혀 있습니다.',ok?'ok':'err'); };
+
+/* ---------- 시작 ---------- */
+document.getElementById('gbcss').textContent=GB_CSS;
+const SAMPLE="※ 시애틀지구촌교회 웹 주보 · 2026년 10월 11일\n※ [대괄호] 줄은 칸 제목입니다. \"항목: 내용 | 담당\" 형식으로 쓰고, 필요 없는 줄은 지우세요. 빈 줄과 ※ 줄은 홈페이지에 나오지 않습니다.\n\n[주보]\n권호: Vol. 24 No.40\n표어: 평신도 사역자를 세우는 교회\n표어: 차세대 사역자를 세우는 교회\n\n[처음]\n예배 시간: 매주 주일 오후 1:30\n장소: 12918 35th Ave SE, Everett, WA 98208\n자녀 예배: 어린이·청소년 예배가 같은 시간에 따로 있습니다.\n헌금: 처음 오신 분은 헌금의 의무가 없습니다. 편안한 마음으로 예배하세요.\n성경: 쉽게 이해되는 우리말 \"새번역\" 성경을 씁니다.\n예배 후: 새교우실에서 김성수 목사님과 인사 나누세요.\n\n[환영]\n오늘 저희 교회에 처음 오신 분을 진심으로 환영하고 축하합니다. 예배 후에 새교우실에서 담임목사를 만나고 가시기 바랍니다.\n\n[소식]\n감사: 베들레햄 침례교회 이모세 목사님과 사모님께 감사드립니다.\n경청 21: 10월 30일(금)까지(주일 제외) — 기도제목: \"새 장소에서 새 일을 보게 하소서\"\n예배시간: 주일연합예배는 오후 1:30입니다.\n홈페이지 활용: 다음 주일예배, 목회칼럼, 목장 나눔지 등을 잘 활용 바랍니다.\n\n[예배]\n시간: 오후 1:30\n공동체 시간 (Community Hour): 환영 및 소식 | 인도자\n*경배와 찬양 (Praise & Worship): 그 날이 도적같이 / 내 갈급함 / 그 사랑 얼마나 | 지구촌 찬양팀\n봉헌 (Offering): 감사한 마음으로 (예배 전 입구 헌금함 또는 온라인) | 다같이\n대표기도 (Representative Prayer): 박성건 목자\n*성경합독 (Scripture Reading): 사도행전 18:18-28 | 다같이\n말씀 (Message): 평신도 부부가 교수를 가르치다 | 김성수 목사\n*헌신과 결단 (Commitment): 주님의 마음을 본받는 자 (찬 455장) | 다같이\n*축도 (Benediction): 하나님의 복을 비는 기도 | 인도자\n시애틀지구촌교회는 처음 신앙을 접하는 분들을 위해 쉽게 이해되면서도 원어에서 한글로 번역된 \"새번역\" 성경을 사용합니다.\n\n[칼럼]\n제목: 하나님의 은혜는 어떻게 찾아오는가?\n\n[봉사]\n기도: 10/11 박성건 · 10/18 이인규 · 10/25 박보라\n봉헌: 10/11 박소연 · 10/18 장희주 · 10/25 홍진희\n\n[친교]\n10/11: 인도네시아 목장\n10/18: 멕시코 목장\n10/25: 이스라엘 목장 1\n\n[출석]\n2부: 10\n목장: 5\n유초등부: 4\nYouth: 2\n토요새벽: 3\n총인원: 24\n\n[헌신]\n2026년 영접: 0\n확인: 0\n침례: 0\n분가: 0\n\n[헌금]\n오늘 교회에 처음 나오신 분은 헌금의 의무가 없습니다. 편안한 마음으로 예배에 참여하시기 바랍니다.\n\n[안내]\n한어부 (Korean): 오후 1:30\n어린이 (Children): 오후 1:30\n청소년 (Youth): 오후 1:30\n영어부 (English): 오후 1:30\n토요새벽기도회: 오전 6:00\n주간기도: 가정, 직장에서 | HebronAltar.com\n\n[사역자]\n담임목사: 김성수 | Sung Soo Kim, Lead Pastor\n청소년 목사: Garrett Woods | Youth Pastor\n어린이 사역: 김지영 | Joy Kim, Children Ministry Director\n\n[교회]\n이름: 시애틀지구촌교회\n영문: Global Mission Church of Greater Seattle\n주소: 12918 35th Ave SE, Everett, WA 98208\n웹: www.ijiguchon.org\n";
+(function start(){
+  let saved=null; try{ saved=JSON.parse(localStorage.getItem('gmcBulletinDraft')||'null'); }catch(e){}
+  S=(saved&&saved.secs)?saved:textToState(SAMPLE,'2026-10-11');
+  fillMeta(); renderSecs(); refresh(); updUndo();
+  if(!(saved&&saved.secs)) loadLatest(true);   /* 처음 열면 드라이브의 최신 주보부터 */
+  else status('지난번 쓰던 내용을 이어서 보여 드립니다. 새로 시작하려면 \'최신 주보 불러오기\'를 누르세요.','ok');
+})();
+</script>
+</body></html>
