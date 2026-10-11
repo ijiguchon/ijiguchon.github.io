@@ -362,7 +362,7 @@ $('#bNext').onclick=()=>{
 };
 
 /* ---------- 드라이브 (홈페이지용: 공개 읽기 + 구글 문서에 붙여 넣기) ---------- */
-const KEY='AIzaSyBL3EXN_i8b9RkcXPa4x_FD2M3sKTQpVgY', API='https://www.googleapis.com/drive/v3/files';
+const KEY='AIzaSyBL3EXN_i8b9RkcXPa4x_FD2M3sKTQpVgY', API='https://www.googleapis.com/drive/v3/files', SAVE_URL='';
 async function listFolder(){
   const r=await fetch(API+'?q='+encodeURIComponent("'"+FOLDER+"' in parents and trashed=false")+'&fields='+encodeURIComponent('files(id,name,mimeType)')+'&pageSize=300&supportsAllDrives=true&includeItemsFromAllDrives=true&key='+KEY,{cache:'no-store'});
   if(!r.ok) throw new Error('드라이브 '+r.status); return (await r.json()).files||[];
@@ -388,8 +388,35 @@ async function copyText(){
   catch(e){ const ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
     let ok=false; try{ ok=document.execCommand('copy'); }catch(_){} ta.remove(); return ok; }
 }
+/* 바로 올리기: 비밀번호를 한 번 넣으면 이 컴퓨터에 기억 */
+function getPass(){ try{ return localStorage.getItem('gmcBulletinPass')||''; }catch(e){ return ''; } }
+function setPass(v){ try{ v?localStorage.setItem('gmcBulletinPass',v):localStorage.removeItem('gmcBulletinPass'); }catch(e){} }
+async function directSave(){
+  const title=iso2key(S.date)+'_교회소식', b=$('#bSave');
+  let pass=getPass();
+  if(!pass){ pass=await askPass(); if(!pass) return; }
+  b.disabled=true; status('홈페이지에 올리는 중…');
+  try{
+    const r=await fetch(SAVE_URL,{method:'POST',body:JSON.stringify({pass,title,text:stateToText()})});
+    const j=await r.json();
+    if(!j.ok){ if(j.code==='pass'){ setPass(''); status('비밀번호가 맞지 않습니다. 다시 눌러 넣어 주세요.','err'); } else status('올리지 못했습니다: '+(j.error||'알 수 없음'),'err'); return; }
+    setPass(pass);
+    $('#saveState').textContent='마지막 게시: '+new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
+    status(`올렸습니다. 1분쯤 뒤 <a href="/square/news/#news-${S.date}" target="_blank" rel="noopener">교회 소식</a>에서 확인하세요.${j.replaced?' 이전 문서는 "이전판_"으로 보관했습니다.':''}`,'ok',true);
+  }catch(e){ status('인터넷 연결 문제로 올리지 못했습니다. 잠시 뒤 다시 눌러 주세요.','err'); }
+  finally{ b.disabled=false; }
+}
+function askPass(){ return new Promise(res=>{
+  const box=$('#steps'); $('#dlgH').textContent='담당자 비밀번호';
+  box.innerHTML='<li style="list-style:none;margin-left:-1.4em">주보 담당자 비밀번호를 넣어 주세요. 이 컴퓨터에서는 한 번만 넣으면 됩니다.<br><input id="pw" type="password" autocomplete="current-password" style="margin-top:8px;font-size:16px;padding:9px 10px"><br><button class="btn pri" id="pwOk" style="margin-top:10px">올리기</button></li>';
+  $('#dlgCopy').hidden=true; $('.dlg-foot').hidden=true; $('#dlg').hidden=false; const i=$('#pw'); i.focus();
+  const done=v=>{ $('#dlg').hidden=true; $('#dlgH').textContent='홈페이지에 올리기'; $('#dlgCopy').hidden=false; $('.dlg-foot').hidden=false; $('#dlgClose').onclick=closeDefault; res(v); };
+  $('#pwOk').onclick=()=>done(i.value.trim()); i.onkeydown=e=>{ if(e.key==='Enter') done(i.value.trim()); };
+  $('#dlgClose').onclick=()=>done('');
+}); }
 $('#bSave').onclick=async()=>{
   if(!S.date){ status('주일 날짜를 먼저 고르세요.','err'); return; }
+  if(SAVE_URL) return directSave();
   const title=iso2key(S.date)+'_교회소식', copied=await copyText();
   const steps=$('#steps');
   steps.innerHTML='<li>'+(copied?'<b>주보 내용을 복사했습니다.</b>':'<b>복사가 막혔습니다.</b> 아래 \'내용 다시 복사\'를 눌러 주세요.')+'</li><li>문서를 찾는 중…</li>';
@@ -410,6 +437,7 @@ $('#bSave').onclick=async()=>{
 };
 $('#dlgCopy').onclick=async()=>{ const ok=await copyText(); status(ok?'주보 내용을 다시 복사했습니다.':'복사가 막혀 있습니다.',ok?'ok':'err'); };
 $('#dlgClose').onclick=()=>{ $('#dlg').hidden=true; };
+const closeDefault=$('#dlgClose').onclick;
 $('#dlg').addEventListener('click',e=>{ if(e.target.id==='dlg') $('#dlg').hidden=true; });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') $('#dlg').hidden=true; });
 $('#bCopy').onclick=async()=>{ const ok=await copyText(); status(ok?'문서 내용을 복사했습니다. 구글 문서에 붙여 넣으면 같은 주보가 됩니다.':'복사가 막혀 있습니다.',ok?'ok':'err'); };
