@@ -1799,6 +1799,7 @@ function submitForm(e,id){
   var fd=new FormData(form), fields={}; fd.forEach(function(v,k){ fields[k]=v; }); fields['접수경로']='홈페이지';
   var mail=String(fields['이메일']||'').trim();
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({type:id,subject:GM[id].s,fields:fields,replyTo:/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)?mail:''})}).catch(function(){});
+  if(id==='commit'){ fetch('https://script.google.com/macros/s/AKfycbxLrmmSIDGYBELSw_tQ3K18LOupBcAGaKb1z5Z8GGKegIjBVEj3p0AETAn-l6MslJIDYg/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'commit',fields:fields})}).catch(function(){}); }   /* gmcCommitLog: 헌신카드를 날짜별 문서에 기록하고 pastor@ 로 바로 알림 */
   setTimeout(function(){ document.getElementById('gm-'+id+'-body').style.display='none'; document.getElementById('gm-'+id+'-ok').classList.add('show'); setTimeout(function(){ closeModal(id); },2800); },400);
 }
 document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ var o=document.querySelector('.gm-ov.open'); if(o) closeModal(o.id.replace('gm-','')); } });
