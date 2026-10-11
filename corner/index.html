@@ -1490,7 +1490,9 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
     });
     list.sort(function(a,b){ return a.date<b.date?-1:(a.date>b.date?1:0); });
     var seen={};
-    list.forEach(function(x,i){ x.no=i+1; x.series=seriesOf(x.title); var k=x.date; if(seen[k]) k=k+'-'+x.no; seen[k]=1; x.key=k; });
+  /* 주보 번호 (gmBulNo): 칼럼 날짜 → 가장 가까운 주일 → Vol./No. */
+  function gmBulNo(iso){ var d=new Date(iso+'T12:00:00'), w=d.getDay(); d.setDate(d.getDate()+(w<=3?-w:7-w)); var y=d.getFullYear(), f=new Date(y,0,1,12); f.setDate(1+((7-f.getDay())%7)); var n=Math.round((d-f)/6048e5)+1; if(y===2026 && d>=new Date(2026,2,22,12)) n-=1;   /* 2026 주보: 3/15·3/22 둘 다 No.11 */ return {vol:y-2002,no:n}; }
+    list.forEach(function(x,i){ x.no=i+1; x.bn=gmBulNo(x.date); x.series=seriesOf(x.title); var k=x.date; if(seen[k]) k=k+'-'+x.no; seen[k]=1; x.key=k; });
     items=list.reverse();
   }
   function filtered(){ return items.filter(function(x){ return (ser||q||x!==items[0]) && (!ser||x.series===ser) && (!q||short(x.title).toLowerCase().indexOf(q)>-1||x.title.toLowerCase().indexOf(q)>-1); }); }
@@ -1518,7 +1520,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
     if(!L.length){ box.innerHTML='<div class="bd-empty">'+gmBi('찾는 칼럼이 없습니다.','No columns found.')+'</div>'; g('cbMore').style.display='none'; return; }
     var show=L.slice(0,FIRST+(page-1)*PER);
     box.innerHTML=show.map(function(x){
-      return '<a class="cb-row" href="/corner/?c='+x.key+'" data-k="'+x.key+'"><span class="cb-no">'+x.no+'</span><span class="cb-main"><span class="cb-t">'+esc(short(x.title))
+      return '<a class="cb-row" href="/corner/?c='+x.key+'" data-k="'+x.key+'"><span class="cb-no">'+x.bn.no+'</span><span class="cb-main"><span class="cb-t">'+esc(short(x.title))
         +'</span><span class="cb-m">'+fmt(x.date)+(x.series?' · '+esc(x.series):'')+'</span></span><span class="nw-go">'+CH+'</span></a>';
     }).join('');
     box.querySelectorAll('.cb-row').forEach(function(a){ a.onclick=function(e){ e.preventDefault(); openItem(a.getAttribute('data-k'),true); }; });
@@ -1543,7 +1545,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
     if(i<0){ showList(false); return; }
     var x=items[i], older=items[i+1], newer=items[i-1], t=short(x.title);
     var h='<button type="button" class="cb-back">'+gmBi('← 목록으로','← All columns')+'</button>'
-      +'<div class="cb-eye">'+gmBi('목회칼럼','Pastor\'s column')+' · No. '+x.no+(x.series?' · '+esc(x.series):'')+'</div>'
+      +'<div class="cb-eye">'+gmBi('목회칼럼','Pastor\'s column')+' · Vol. '+x.bn.vol+' No.'+('0'+x.bn.no).slice(-2)+(x.series?' · '+esc(x.series):'')+'</div>'
       +'<h2 class="cb-h">'+esc(t)+'</h2><div class="cb-by">'+esc(String(x.author).replace('목사',' 목사').replace('  ',' '))+' · '+fmt(x.date)+'</div>';
     if(x.paras && x.paras.length){
       var ps=x.paras.slice(); var nt=norm(t).slice(0,8);
