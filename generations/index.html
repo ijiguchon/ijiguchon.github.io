@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>두 세대가 묻고 답하다 · 시애틀지구촌교회</title>
+<meta name="description" content="젊은 세대와 먼저 걸어온 세대가 한 달에 한 번 서로에게 묻고 답합니다. 읽는 나도 같은 질문 앞에 서 봅니다.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#14213d">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192-em.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&display=swap">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>
+:root{--color-primary:var(--color-primary);--color-accent:var(--color-accent);}
+html:root{--color-accent-strong:#7A5A23}
+:root{--color-background:var(--color-background);--color-surface:#ffffff;--color-border:var(--color-border);
+--color-text-primary:var(--color-text-primary);--color-text-secondary:var(--color-text-secondary);--tg-muted:#5f6572;--color-focus:#2c77b0;
+--font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+--g-young:#2f6f8f;--g-elder:#8a5a2b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--color-background);color:var(--color-text-primary);font-family:var(--font-sans);font-size:16px;line-height:1.75;word-break:keep-all}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px}
+.top{display:flex;align-items:center;gap:12px;max-width:1040px;margin:0 auto;padding:16px}
+.top img{width:36px;height:36px}.top a{display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;font-weight:700}
+.top .back{margin-left:auto;padding:0 16px;border:1px solid var(--color-border);border-radius:var(--radius-pill);background:var(--color-surface);font-size:14px}
+main{max-width:1040px;margin:0 auto;padding:0 16px 80px}
+.hero{padding:32px 0 8px}
+.eye{font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--color-accent-strong);display:flex;align-items:center;gap:12px}
+.eye::before{content:"";width:28px;height:2px;border-radius:2px;background:var(--color-accent)}
+h1{margin:12px 0 0;font-size:clamp(32px,6vw,52px);line-height:1.15;letter-spacing:-.03em;color:var(--color-primary)}
+.lead{margin:16px 0 0;max-width:660px;font-size:clamp(17px,2.2vw,19px);color:var(--color-text-secondary)}
+.how{display:grid;grid-template-columns:1fr;gap:10px;margin:28px 0 0;padding:0;list-style:none}
+@media (min-width:720px){.how{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}
+.how li{padding:16px 20px;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)}
+.how b{display:block;font-size:17px;color:var(--color-primary)}
+.how span{display:block;margin-top:4px;font-size:15px;color:var(--color-text-secondary)}
+.how em{font-style:normal;font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--color-accent-strong)}
+.issue{margin:32px 0 0;border-radius:var(--radius-xl);background:var(--color-surface);border:1px solid var(--color-border);overflow:hidden}
+.ih{padding:28px 24px 24px;background:var(--color-primary);color:var(--color-background)}
+@media (min-width:720px){.ih{padding:40px 40px 32px}}
+.dir{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;font-weight:700}
+.dir .c{display:inline-flex;align-items:center;gap:8px;min-height:32px;padding:0 12px;border-radius:var(--radius-pill);background:rgba(246,241,231,.12)}
+.dir .c i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.dir svg{width:18px;height:18px;fill:none;stroke:var(--color-accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ih .mo{margin:16px 0 0;font-size:13px;letter-spacing:.12em;color:var(--color-accent)}
+.ih h2{margin:8px 0 0;font-size:clamp(24px,4.4vw,34px);line-height:1.4;letter-spacing:-.02em;color:var(--color-text-inverse)}
+.ih .why{margin:14px 0 0;max-width:680px;font-size:16px;color:rgba(246,241,231,.82)}
+.ib{padding:28px 24px 32px}
+@media (min-width:720px){.ib{padding:36px 40px 40px}}
+.lab{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--color-accent-strong)}
+.ans{max-width:720px;margin:10px 0 0;font-size:17px;line-height:1.9}
+.ans p{margin:0 0 1.1em}
+.by{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;max-width:720px;margin:4px 0 0;padding:14px 0 0;border-top:1px solid var(--color-border);font-size:15px;color:var(--tg-muted)}
+.by b{color:var(--color-text-primary);font-size:16px}
+.rep{max-width:720px;margin:28px 0 0;padding:18px 20px;border-left:3px solid var(--tc,var(--color-accent));background:#fbf8f1;border-radius:0 14px 14px 0}
+.rep p{margin:6px 0 0;font-size:16px}
+.ph{max-width:720px;margin:12px 0 0;padding:20px;border:2px dashed var(--color-border);border-radius:var(--radius-lg);background:#fdfbf6}
+.ph .t{margin:0;font-weight:800;color:var(--color-primary)}
+.ph ol{margin:10px 0 0;padding-left:22px;color:var(--color-text-secondary)}
+.ph ol li{margin:6px 0}
+.ph .s{margin:12px 0 0;font-size:14px;color:var(--tg-muted)}
+.soon{max-width:720px;margin:12px 0 0;padding:18px 20px;border-radius:var(--radius-lg);background:#fbf8f1;color:var(--color-text-secondary)}
+.you{margin:32px 0 0;padding:24px;border-radius:16px;background:#f3ead8}
+@media (min-width:720px){.you{padding:28px 32px}}
+.you h3{margin:4px 0 0;font-size:22px;line-height:1.4;color:var(--color-primary)}
+.you ul{margin:14px 0 0;padding:0;list-style:none}
+.you li{position:relative;margin:10px 0 0;padding-left:28px;font-size:17px}
+.you li::before{content:"";position:absolute;left:4px;top:.62em;width:12px;height:2px;border-radius:2px;background:var(--color-accent)}
+.you .pr{margin:18px 0 0;padding-top:14px;border-top:1px solid rgba(122,90,35,.25);font-size:16px;color:var(--color-text-secondary)}
+.vs{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:24px 0 0}
+.vs .r{font-weight:800;color:var(--color-primary)}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:var(--radius-pill);text-decoration:none;font-weight:700;font-size:15px;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-primary)}
+.btn.k{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-text-inverse)}
+.btn:hover{border-color:var(--color-accent)}
+.table{margin:32px 0 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;border-radius:16px;border:1px solid var(--color-border);background:var(--color-surface)}
+.table p{margin:0;font-size:16px;color:var(--color-text-secondary);max-width:520px}
+.table b{color:var(--color-primary)}
+.list{margin:48px 0 0}
+.list h2{margin:0;font-size:clamp(22px,3.4vw,28px);color:var(--color-primary)}
+.list ol{margin:16px 0 0;padding:0;list-style:none;border-top:1px solid var(--color-border)}
+.list li{border-bottom:1px solid var(--color-border)}
+.list a,.list .x{display:grid;grid-template-columns:72px 1fr auto;gap:4px 14px;align-items:center;min-height:64px;padding:12px 4px;text-decoration:none}
+.list .m{font-size:14px;font-weight:700;color:var(--tg-muted)}
+.list .q{font-size:16px;line-height:1.5}
+.list .d{grid-column:2;font-size:14px;color:var(--tg-muted)}
+.list .st{grid-row:1/3;grid-column:3;font-size:13px;font-weight:700;color:var(--tg-muted)}
+.list a .st{color:var(--color-accent-strong)}
+.list a:hover .q{color:var(--color-primary);text-decoration:underline}
+.list li.cur{background:#fbf8f1}
+.list .x .q{color:var(--color-text-secondary)}
+.note{margin:28px 0 0;font-size:14px;color:var(--tg-muted)}
+.pv{margin:20px 0 0;padding:12px 16px;border-radius:12px;background:#fff4dc;border:1px solid #e9cf96;font-size:15px}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap">
+<style id="hebron-ds">
+/* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
+:root{
+  /* Typography */
+  --font-korean:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-english:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  /* 교회 예외: 큰 제목용 명조 — 영문 Cormorant Garamond, 한글 고운바탕 */
+  --font-display:'Cormorant Garamond','Gowun Batang','Pretendard Variable',serif;
+  --text-display:clamp(40px,6vw,64px); --text-h1:clamp(32px,4.4vw,48px); --text-h2:clamp(26px,3.4vw,36px);
+  --text-h3:clamp(22px,2.6vw,28px); --text-h4:clamp(18px,2vw,22px);
+  --text-body-lg:18px; --text-body:16px; --text-body-sm:14px; --text-caption:12.5px;
+  --weight-regular:400; --weight-medium:500; --weight-semibold:600; --weight-bold:700; --weight-extrabold:800;
+  --leading-heading:1.25; --leading-body:1.7; --leading-ui:1.5; --leading-caption:1.5;
+  --tracking-display:-0.02em; --tracking-heading:-0.015em; --tracking-body:-0.005em; --tracking-ui:0;
+  /* Color — semantic (Church theme: heritage navy · warm gold · cream) */
+  --color-background:#F6F1E7; --color-background-secondary:#F1E6D3;
+  --color-surface:#ffffff; --color-surface-muted:#FBF8F2;
+  --color-text-primary:#1c1f26; --color-text-secondary:#4a4f5a; --color-text-muted:#7c8290;
+  --color-text-disabled:#a9aeb8; --color-text-inverse:#ffffff;
+  --color-border:#E3D9C6; --color-border-subtle:#EAE3D5; --color-border-strong:#D9C7A0;
+  --color-primary:#14213d; --color-primary-hover:#1f2f55; --color-primary-active:#0d1730; --color-primary-foreground:#ffffff;
+  --color-accent:#B8924A; --color-accent-hover:#8f6a2a; --color-accent-strong:#9A7130;
+  --color-accent-bright:#CDA65B; --color-accent-deep:#A67A2E; --color-accent-on-dark:#E9C77B;
+  --color-success:#12857c; --color-success-soft:#34c3b5; --color-warning:#B7791F;
+  --color-error:#b4532a; --color-info:#2c4d8a; --color-info-soft:#5b7fb5;
+  --color-focus:#2c77b0;
+  --color-scripture:var(--color-primary);
+  --color-brand-kakao:#FEE500; --color-brand-kakao-foreground:#3A1D1D;
+  /* Spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px;
+  --space-10:40px; --space-12:48px; --space-16:64px; --space-20:80px; --space-24:96px; --space-32:128px;
+  --space-xs:var(--space-1); --space-sm:var(--space-2); --space-md:var(--space-4); --space-lg:var(--space-6);
+  --space-xl:var(--space-8); --space-2xl:var(--space-12); --space-3xl:var(--space-16);
+  /* Radius */
+  --radius-sm:6px; --radius-md:10px; --radius-lg:14px; --radius-xl:20px; --radius-pill:9999px;
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(20,33,61,.06); --shadow-md:0 6px 18px rgba(40,30,10,.06); --shadow-lg:0 18px 40px rgba(20,33,61,.12);
+  /* Layout (breakpoints: sm 560 · md 760 · lg 900 — CSS 변수는 media query에 못 쓰므로 값으로 사용) */
+  --container-max:1200px; --container-reading:760px; --touch-target:44px;
+  /* Motion · Layers */
+  --transition-fast:.15s ease; --transition-base:.2s ease;
+  --z-header:50; --z-dropdown:60; --z-floating:1100; --z-modal:1200;
+}
+html,body{font-family:var(--font-sans)}
+body{font-weight:var(--weight-regular)}
+button,input,select,textarea,optgroup{font-family:inherit}
+code,pre,kbd,samp{font-family:var(--font-mono)}
+:focus-visible{outline:3px solid var(--color-focus)!important;outline-offset:2px!important}
+.host-acts a,.member .mct a,.bd-chip,.loc-go,.cb-acts button,.cb-more,.gm-x,.tm-i,.pgnav button,.d-settle,.ms-kakao,.dp-others a,.dp-hosp button{min-height:var(--touch-target)}
+.gm-x{min-width:var(--touch-target)}
+.lang,.psnav,.gc-send,.gc-x,.d-more{min-height:var(--touch-target)}
+.psnav,.gc-send,.gc-x{min-width:var(--touch-target)}
+.d-greet{display:inline-flex;align-items:center;min-height:var(--touch-target)}
+.tabs .tab{min-height:40px} /* 예외: 모바일 헤더 높이 — 문서화됨 */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<header class="top"><a href="/"><img src="/images/logo-mark-96.webp" alt="" width="36" height="36"><span>시애틀지구촌교회</span></a><a class="back" href="/">홈으로</a></header>
+<main id="main">
+<section class="hero">
+<div class="eye">두 세대 · TWO GENERATIONS</div>
+<h1>두 세대가 묻고 답하다</h1>
+<p class="lead">같은 교회, 다른 시간을 지나온 두 세대가 한 달에 한 번 서로에게 묻고 답합니다. 묻는 쪽도 답하는 쪽도 진심입니다. 읽으시는 당신도 그 질문 앞에 잠시 서 보시기를 바랍니다.</p>
+<ol class="how">
+<li><em>01</em><b>묻습니다</b><span>한 세대가 다른 세대에게 정말 궁금했던 것을</span></li>
+<li><em>02</em><b>답합니다</b><span>자신이 살아온 삶과 자란 문화, 만난 하나님의 자리에서</span></li>
+<li><em>03</em><b>돌아봅니다</b><span>읽는 나도 같은 질문을 하나님 앞에 내어 놓으며</span></li>
+</ol>
+<p class="pv" id="pv" hidden>미리 보기입니다. 모든 회가 열려 있고, 답이 아직 없는 자리에는 답하시는 분께 드릴 길잡이가 보입니다.</p>
+</section>
+<article class="issue" id="issue" aria-live="polite"></article>
+<section class="list" aria-labelledby="lt"><h2 id="lt">열두 달의 질문</h2><ol id="list"></ol></section>
+<p class="note">질문은 한국과 미주 한인 교회의 세대 연구를 참고해 정했습니다. 답은 우리 교회 성도님들이 직접 쓰신 글이며, 이름은 본인이 원하시는 대로 적습니다.<br>성경: 새번역(대한성서공회) · ESV(Crossway). 말씀은 링크를 눌러 원문으로 읽으실 수 있습니다.</p>
+</main>
+<script>
+(function(){
+var D=[{"no": 1, "month": "2026-11", "from": "young", "question": "이민 와서 가장 외로웠던 날, 무엇이 그 하루를 버티게 했나요?", "why": "타주와 한국에서 막 이 도시에 온 젊은 세대에게 '첫해'는 지금도 진행 중입니다. 그 길을 먼저 걸어온 분께 듣고 싶습니다.", "verse": ["시편 139:7-10", "PSA.139.7-10"], "reflect": ["나에게 가장 외로웠던 날은 언제였나요?", "그날 나를 붙든 것은 무엇이었나요? 돌아보면 그 자리에도 하나님이 계셨을까요?"], "answer": "", "name": "", "bg": "", "asker": "", "reply": ""}, {"no": 2, "month": "2026-12", "from": "elder", "question": "교회에 오지 않아도 신앙을 지킬 수 있다고 생각하나요? 그래도 함께 모이는 이유가 있다면 무엇인가요?", "why": "온라인 예배와 혼자 지키는 믿음이 익숙한 세대입니다. 젊은 세대가 생각하는 '함께'의 의미를 듣고 싶습니다.", "verse": ["히브리서 10:24-25", "HEB.10.24-25"], "reflect": ["나는 무엇 때문에 모이고, 무엇 때문에 멀어졌나요?", "혼자서는 할 수 없는 신앙의 일이 있다면 무엇일까요?"], "answer": "", "name": "", "bg": "", "asker": "", "reply": ""}, {"no": 3, "month": "2027-01", "from": "young", "question": "교회와 사람에게 실망한 날도 있었을 텐데, 그래도 교회를 떠나지 않은 이유는 무엇인가요?", "why": "교회를 떠난 젊은이들이 자주 꼽는 이유 가운데 하나가 '말과 삶이 달라서'입니다. 그 실망을 지나온 분의 이야기가 궁금합니다.", "verse": ["요한복음 6:66-68", "JHN.6.66-68"], "reflect": ["나를 교회에서 멀어지게 한 장면이 있다면 무엇인가요?", "사람에게 실망한 마음과 하나님을 향한 마음을 따로 놓고 보면 어떤가요?"], "answer": "", "name": "", "bg": "", "asker": "", "reply": ""}, {"no": 4, "month": "2027-02", "from": "elder", "question": "그렇게 바쁜 하루 속에서, 신앙은 어디에 자리하고 있나요?", "why": "일과 육아, 비자와 이직 사이에서 하루를 사는 세대입니다. 그 속에서 하나님을 만나는 자리가 어디인지 듣고 싶습니다.", "verse": ["마태복음 11:28-30", "MAT.11.28-30"], "reflect": ["오늘 하루, 하나님을 떠올린 순간이 있었나요?", "내 하루에서 하나님께 내어 드릴 수 있는 10분은 언제일까요?"], "answer": "", "name": "", "bg": "", "asker": "", "reply": ""}, {"no": 5, "month": "2027-03", "from": "young", "question": "하나님이 멀게 느껴지거나 믿음이 흔들린 적이 있나요? 그때 어떻게 다시 돌아오셨나요?", "why": "젊은 세대는 의심을 숨기기보다 말하고 싶어 합니다. 오래 믿어 온 분에게도 그런 시간이 있었는지 묻고 싶습니다.", "verse": ["마가복음 9:23-24", "MRK.9.23-24"], "reflect": ["지금 내 마음에 있는 가장 솔직한 의문은 무엇인가요?", "그 의문을 그대로 하나님께 말씀드린다면 어떤 문장이 될까요?"], "answer": "", "name": "", "bg": "", "asker": "", "reply": ""}, {"no": 6, "month": "2027-04", "from": "elder", "question": "우리 세대의 신앙이 답답해 보일 때는 언제인가요? 그래도 물려받고 싶은 것이 있다면 무엇인가요?", "why": "세대 차이는 피할 수 없지만, 믿음은 세대를 건너 이어집니다. 젊은 세대가 무엇을 이어받고 싶은지 듣고 싶습니다.", "verse": ["디모데후서 1:5", "2TI.1.5"], "reflect": ["나에게 믿음을 물려준 사람은 누구인가요?", "나는 다음 사람에게 어떤 믿음을 남기고 싶나요?"], "answer": "", "name": "", "bg": "", "asker": "", "reply": ""}, {"no": 7, "month": "2027-05", "from": "young", "question": "자녀를 키우며 가장 잘했다고 생각하는 일과, 다시 한다면 다르게 하고 싶은 일은 무엇인가요?", "why": "가정의 달입니다. 이민 가정에서 자녀를 키우는 젊은 부모들이 먼저 키워 본 분께 꼭 묻고 싶어 하는 질문입니다.", "verse": ["누가복음 15:20", "LUK.15.20"], "reflect": ["부모님께 받은 것 가운데 고마운 것 하나는 무엇인가요?", "아버지 하나님은 지금 나를 어떤 눈으로 보고 계실까요?"], "answer": "", "name": "", "bg": "", "asker": "", "reply": ""}, {"no": 8, "month": "2027-06", "from": "elder", "question": "교회에 꼭 바라는 것 한 가지를 말한다면 무엇인가요?", "why": "젊은 세대는 자기 삶과 문화에 닿는 신앙을 찾습니다. 그들이 꿈꾸는 교회의 모습을 직접 듣고 싶습니다.", "verse": ["사도행전 2:46-47", "ACT.2.46-47"], "reflect": ["내가 다시 가고 싶은 교회는 어떤 모습인가요?", "그 교회를 위해 내가 먼저 할 수 있는 작은 일은 무엇일까요?"], "answer": "", "name": "", "bg": "", "asker": "", "reply": ""}, {"no": 9, "month": "2027-07", "from": "young", "question": "지금 제 나이였을 때 무엇을 가장 두려워하셨나요? 그 두려움은 어떻게 되었나요?", "why": "직장과 미래, 체류와 결혼 앞에서 젊은 세대는 불안합니다. 같은 나이를 먼저 지나온 분의 시선이 필요합니다.", "verse": ["이사야 41:10", "ISA.41.10"], "reflect": ["요즘 나를 가장 두렵게 하는 것은 무엇인가요?", "10년 뒤의 내가 오늘의 나에게 무슨 말을 해 줄까요?"], "answer": "", "name": "", "bg": "", "asker": "", "reply": ""}, {"no": 10, "month": "2027-08", "from": "elder", "question": "무엇이 당신을 가장 지치게 하고, 무엇이 다시 일어서게 하나요?", "why": "열심히 사는 만큼 쉽게 지치는 세대입니다. 그들의 피로와 회복을 이해하고 싶습니다.", "verse": ["열왕기상 19:5-7", "1KI.19.5-7"], "reflect": ["요즘 나는 얼마나 지쳐 있나요?", "엘리야에게 먼저 빵과 잠을 주신 하나님은 지금 나에게 무엇을 주고 싶으실까요?"], "answer": "", "name": "", "bg": "", "asker": "", "reply": ""}, {"no": 11, "month": "2027-09", "from": "young", "question": "나이 들어 가며 새롭게 알게 된 하나님은 어떤 분인가요?", "why": "젊을 때 만난 하나님과 오래 걸은 뒤에 아는 하나님은 다를 것입니다. 그 차이를 듣고 싶습니다.", "verse": ["이사야 46:4", "ISA.46.4"], "reflect": ["내가 아는 하나님은 지금 어떤 분인가요?", "앞으로 하나님을 더 알고 싶은 부분은 무엇인가요?"], "answer": "", "name": "", "bg": "", "asker": "", "reply": ""}, {"no": 12, "month": "2027-10", "from": "elder", "question": "하나님이 정말 계신다면, 지금 가장 여쭙고 싶은 질문은 무엇인가요?", "why": "질문하는 신앙도 신앙입니다. 젊은 세대가 하나님 앞에 내놓고 싶은 질문을 함께 들어 보고 싶습니다.", "verse": ["시편 13:1-2", "PSA.13.1-2"], "reflect": ["내가 하나님께 가장 여쭙고 싶은 질문은 무엇인가요?", "그 질문을 품은 채로 오늘 한 번 기도해 볼 수 있을까요?"], "answer": "", "name": "", "bg": "", "asker": "", "reply": ""}];
+var G={young:{n:'젊은 세대',s:'20·30대',c:'var(--g-young)'},elder:{n:'먼저 걸어온 세대',s:'60대 이상',c:'var(--g-elder)'}};
+var preview=/[?&]preview=1\b/.test(location.search);
+function pad(n){return ('0'+n).slice(-2);}
+var now=new Date(), ym=now.getFullYear()+'-'+pad(now.getMonth()+1);
+function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function mo(m){var p=m.split('-');return p[0]+'년 '+(+p[1])+'월';}
+function sm(m){var p=m.split('-');return (+p[1])+'월';}
+function other(f){return f==='young'?'elder':'young';}
+function live(x){return !!x.answer&&x.month<=ym;}
+var ARR='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+var GUIDE='<ol><li><b>그때의 한 장면</b> — 이 질문을 듣고 떠오르는 날, 장소, 사람 하나</li><li><b>내가 자란 자리</b> — 그 시절의 나이, 형편, 이민 생활과 문화</li><li><b>그 속에서 만난 하나님</b> — 붙들어 준 말씀이나 기도, 사람, 혹은 흔들렸던 마음까지</li><li><b>묻는 세대에게 건네는 한마디</b> — 가르치기보다 곁에 앉아 하는 말로</li></ol>';
+function para(t){return esc(t).split(/\n\s*\n/).map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('');}
+var q=location.search.match(/[?&]n=(\d+)/), pick=-1;
+if(q){D.forEach(function(x,i){if(x.no===+q[1]&&(preview||live(x)))pick=i;});}
+if(pick<0){D.forEach(function(x,i){if(live(x))pick=i;});}
+if(pick<0&&preview)pick=0;
+if(preview)document.getElementById('pv').hidden=false;
+var box=document.getElementById('issue');
+if(pick<0){
+  var nx=D.filter(function(x){return x.month>=ym;})[0]||D[0];
+  box.innerHTML='<div class="ih"><div class="dir"><span class="c"><i style="background:'+G[nx.from].c+'"></i>'+G[nx.from].n+'가 묻고</span>'+ARR+'<span class="c"><i style="background:'+G[other(nx.from)].c+'"></i>'+G[other(nx.from)].n+'가 답합니다</span></div>'
+   +'<p class="mo">'+mo(nx.month)+' · 첫 이야기</p><h2>'+esc(nx.question)+'</h2><p class="why">'+esc(nx.why)+'</p></div>'
+   +'<div class="ib"><div class="soon">'+sm(nx.month)+'에 첫 답이 실립니다. 그때까지 이 질문을 먼저 마음에 품어 보십시오.</div>'+you(nx)+'</div>';
+}else{
+  var x=D[pick], f=G[x.from], t=G[other(x.from)];
+  box.style.setProperty('--tc',t.c);
+  var body;
+  if(x.answer){
+    body='<div class="lab">'+t.n+'의 답</div><div class="ans">'+para(x.answer)+'</div>'
+      +'<p class="by"><b>'+esc(x.name)+'</b><span>'+esc(x.bg)+'</span></p>'
+      +(x.reply?'<div class="rep"><div class="lab">물었던 '+f.n+'의 한마디'+(x.asker?' · '+esc(x.asker):'')+'</div>'+para(x.reply)+'</div>':'');
+  }else{
+    body='<div class="lab">'+t.n+'의 답</div><div class="ph"><p class="t">이 자리에는 '+t.n+'('+t.s+') 성도님이 직접 쓰신 답이 실립니다.</p>'
+      +'<p class="s" style="margin-top:6px">답하시는 분께 드리는 길잡이 (600~900자)</p>'+GUIDE
+      +'<p class="s">이름 표기와 소개 한 줄은 본인이 정하십니다. 사진은 싣지 않습니다.</p></div>';
+  }
+  box.innerHTML='<div class="ih"><div class="dir"><span class="c"><i style="background:'+f.c+'"></i>'+f.n+'가 묻고</span>'+ARR+'<span class="c"><i style="background:'+t.c+'"></i>'+t.n+'가 답합니다</span></div>'
+    +'<p class="mo">'+mo(x.month)+' · 제'+x.no+'회</p><h2>'+esc(x.question)+'</h2><p class="why">'+esc(x.why)+'</p></div>'
+    +'<div class="ib">'+body+you(x)+'</div>';
+}
+function you(x){
+  var v=x.verse||[];
+  return '<section class="you" aria-label="읽는 당신에게"><div class="lab">읽는 당신에게</div><h3>같은 질문을 나에게 해 봅니다</h3><ul>'
+    +x.reflect.map(function(r){return '<li>'+esc(r)+'</li>';}).join('')+'</ul>'
+    +'<p class="pr">오늘 이 질문을 그대로 하나님께 드려 보십시오. 대답은 천천히 와도 좋습니다.</p></section>'
+    +(v[1]?'<div class="vs"><span class="lab">함께 읽는 말씀</span><span class="r">'+esc(v[0])+'</span><span class="btns"><a class="btn k" href="https://www.bible.com/ko/bible/142/'+v[1]+'.RNKSV" target="_blank" rel="noopener">새번역으로 읽기</a><a class="btn" href="https://www.bible.com/bible/59/'+v[1]+'.ESV" target="_blank" rel="noopener">ESV로 읽기</a></span></div>':'')
+    +'<div class="table"><p>이 질문은 식탁에서 더 깊어집니다. <b>주중 목장 식탁</b>에서 두 세대가 함께 밥을 먹고 이야기를 나눕니다.</p><span class="btns"><a class="btn" href="/?tab=mokjang">목장 알아보기</a><a class="btn" href="/welcome/">처음 오시는 분께</a></span></div>';
+}
+var ol=document.getElementById('list');
+D.forEach(function(x,i){
+  var li=document.createElement('li'), on=preview||live(x), f=G[x.from], t=G[other(x.from)];
+  if(i===pick)li.className='cur';
+  var inner='<span class="m">'+sm(x.month)+'</span><span class="q">'+esc(x.question)+'</span><span class="st">'+(live(x)?'읽기':(x.answer?'곧 공개':'준비 중'))+'</span><span class="d">'+f.n+'가 묻고 '+t.n+'가 답합니다</span>';
+  li.innerHTML=on?'<a href="?n='+x.no+(preview?'&preview=1':'')+'"'+(i===pick?' aria-current="page"':'')+'>'+inner+'</a>':'<div class="x">'+inner+'</div>';
+  ol.appendChild(li);
+});
+})();
+</script>
+<script id="gmc-autoupdate">(function(){
+if(!('serviceWorker' in navigator)||!window.fetch)return;
+var V0=null,had=!!navigator.serviceWorker.controller,going=false;
+function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='search')return true;
+var f=document.querySelectorAll('textarea,input:not([type=hidden]):not([type=search]):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])');
+for(var i=0;i<f.length;i++){if(f[i].value&&f[i].value!==f[i].defaultValue)return true;}return false;}
+function reload(){if(going||busy())return;try{var t=+sessionStorage.getItem('gmc-au')||0;if(Date.now()-t<15000)return;sessionStorage.setItem('gmc-au',Date.now());}catch(_){}
+going=true;location.reload();}
+navigator.serviceWorker.addEventListener('controllerchange',function(){if(had)reload();had=true;});
+function upd(){return navigator.serviceWorker.getRegistration().then(function(g){if(g)return g.update();}).catch(function(){});}
+function check(){fetch('/version.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(j){
+if(!j||!j.v)return;if(V0===null){V0=j.v;return;}
+if(j.v!==V0){V0=j.v;upd().then(function(){setTimeout(reload,4000);});}}).catch(function(){});}
+function start(){navigator.serviceWorker.register('/sw.js',{updateViaCache:'none'}).then(function(g){g.update();}).catch(function(){});check();}
+if(document.readyState==='complete')start();else window.addEventListener('load',start);
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')check();});
+window.addEventListener('pageshow',function(e){if(e.persisted)check();});
+setInterval(function(){if(document.visibilityState==='visible')check();},20*60*1000);
+})();</script>
+</body>
+</html>

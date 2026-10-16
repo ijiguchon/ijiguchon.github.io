@@ -57,6 +57,7 @@ details.sec>summary::before{content:"▸";color:var(--gold);transition:transform
 .dlg-foot{margin:14px 0 0;font-size:13px;color:var(--muted);line-height:1.6}.dlg-foot a{color:var(--navy);font-weight:700}
 .dlg-acts{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
 .pub{border:1px solid var(--line);border-radius:8px;margin:10px 0 0;padding:6px 12px 8px;display:flex;flex-wrap:wrap;gap:0 18px;align-items:center}.pub legend{font-size:13px;font-weight:700;padding:0 4px}.pub label{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-size:14px;cursor:pointer}.pub input{width:18px;height:18px;accent-color:var(--navy)}.pub .hint{flex-basis:100%;margin:0;font-size:13px}
+.flow{flex-basis:100%;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}.flow ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}@media(max-width:1100px){.flow ol{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.flow ol{grid-template-columns:minmax(0,1fr)}}.fs{position:relative;display:flex;flex-direction:column;gap:8px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}.fs .fn{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;border:2px solid var(--navy);color:var(--navy);font-weight:800;font-size:14px}.fs .ft b{display:block;font-size:15px;color:var(--navy)}.fs .ft small{display:block;margin-top:2px;font-size:12.5px;color:var(--muted);line-height:1.5}.fs .btn{margin-top:auto;min-height:44px;font-size:14.5px}.fs.done{border-color:var(--ok)}.fs.done .fn{background:var(--ok);border-color:var(--ok);color:var(--panel)}.fs.done .fn::after{content:""}.fs.now{border:2px solid var(--gold);background:var(--panel);box-shadow:0 6px 16px rgba(20,33,61,.08)}.fs.now .fn{background:var(--gold);border-color:var(--gold);color:var(--panel)}.fs .who{display:flex;flex-direction:column;gap:3px;margin-top:8px;font-size:12.5px;color:var(--muted)}.fs .who input{min-height:40px;font-size:14px;background:var(--panel)}.flow-now{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:10px;font-size:13.5px;line-height:1.5}#flowNow{flex:1 1 320px;color:var(--ink)}#flowNow b{color:var(--navy)}#flowNow .dirty{color:var(--danger);font-weight:700}#flowNow .draft{color:var(--gold);font-weight:700}#flowNow .live{color:var(--ok);font-weight:700}.flow-sub{display:flex;gap:6px;margin-left:auto}.flow-sub .btn{min-height:36px}.top>div:first-child{flex:1 1 320px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <style id="gbcss"></style>
@@ -65,14 +66,17 @@ details.sec>summary::before{content:"▸";color:var(--gold);transition:transform
 </head><body>
 
 <header class="top">
-  <div><h1>웹 주보 편집기</h1><p>칸을 채우면 미리보기 주보가 바로 바뀝니다. 다 고치면 '홈페이지에 올리기'를 누르세요.</p></div>
-  <div class="acts">
-    <button class="btn" id="bLoad">최신 주보 불러오기</button>
-    <button class="btn" id="bNext">다음 주일 주보 시작</button>
-    <button class="btn" id="bUndo" disabled title="방금 한 일(다음 주일 시작·불러오기·줄 지우기)을 취소합니다">↶ 되돌리기</button>
-    <button class="btn" id="bCopy">문서 내용 복사</button>
-    <button class="btn pri" id="bSave">홈페이지에 올리기</button>
-  </div>
+  <div><h1>웹 주보 편집기</h1><p>어디서 누가 고쳐도 같은 주보를 이어서 씁니다. 아래 1에서 4 순서대로 누르세요. 칸을 채우면 오른쪽 미리보기가 바로 바뀝니다.</p></div>
+  <nav class="flow" aria-label="주보 만드는 순서">
+    <ol>
+      <li class="fs" id="fs1"><span class="fn" aria-hidden="true">1</span><div class="ft"><b>최신 저장본 불러오기</b><small>누가 어디서 저장했든 가장 최근 것을 엽니다</small></div><button class="btn" id="bLoad">불러오기</button></li>
+      <li class="fs" id="fs2"><span class="fn" aria-hidden="true">2</span><div class="ft"><b>새 주일이면 시작</b><small>지난 주보를 바탕으로 다음 주일 칸을 만듭니다. 이미 시작했으면 건너뜁니다</small></div><button class="btn" id="bNext">다음 주일 주보 시작</button></li>
+      <li class="fs" id="fs3"><span class="fn" aria-hidden="true">3</span><div class="ft"><b>고치고 저장 · 함께 쓰기</b><small>저장하면 다른 분이 이어서 고칩니다. 설교 제목·본문·끝 찬송은 저장하는 즉시 예배 탭에 나오고, 주보 전체는 4번을 누른 뒤 교회 소식에 나옵니다</small>
+        <label class="who">저장하는 사람<input id="fWho" list="whoList" autocomplete="name" placeholder="예: 이윤아"></label><datalist id="whoList"><option value="김성수 목사"><option value="이윤아"></datalist></div><button class="btn" id="bDraft">저장</button></li>
+      <li class="fs" id="fs4"><span class="fn" aria-hidden="true">4</span><div class="ft"><b>최종본 홈페이지에 올리기</b><small>다 고쳤으면 주보 담당이 올립니다. 공개 시각은 아래 '홈페이지 공개'에서 고릅니다</small></div><button class="btn pri" id="bSave">홈페이지에 올리기</button></li>
+    </ol>
+    <div class="flow-now"><span id="flowNow" role="status" aria-live="polite"></span><span class="flow-sub"><button class="btn sm" id="bUndo" disabled title="방금 한 일(다음 주일 시작·불러오기·줄 지우기)을 취소합니다">↶ 되돌리기</button><button class="btn sm" id="bCopy">문서 내용 복사</button></span></div>
+  </nav>
 </header>
 <div class="grid">
   <div class="ed">
@@ -326,9 +330,9 @@ function textToState(t,iso){
   gbParse(t).forEach(sc=>{ st.secs[sc.k]=sc.items.map(x=>({l:x.l,v:x.v,p:x.p})); });
   const top=st.secs['주보']||[]; const kh=top.find(x=>x.l==='권호');
   if(kh){ const m=kh.v.match(/Vol\.?\s*(\d+)\s*No\.?\s*(\d+)/i); if(m){ st.vol=m[1]; st.no=m[2]; } }
-  const pb=top.find(x=>x.l==='공개'); st.pub=(pb&&/지금/.test(pb.v))?'now':'auto'; /* 예약 공개 (2026-10-15) */
+  const pb=top.find(x=>x.l==='공개'); st.pub=(pb&&/지금/.test(pb.v))?'now':'auto'; st.draft=!!(pb&&/저장만/.test(pb.v)); const sv=top.find(x=>x.l==='저장'); st.base=sv?sv.v:''; /* 초안 저장 (2026-10-16) */ /* 예약 공개 (2026-10-15) */
   const ap=top.find(x=>x.l==='출석 공개'); st.attPub=(ap&&/모두/.test(ap.v))?'all':'leader';
-  st.secs['주보']=top.filter(x=>x.l!=='권호'&&x.l!=='공개'&&x.l!=='출석 공개');
+  st.secs['주보']=top.filter(x=>x.l!=='권호'&&x.l!=='공개'&&x.l!=='출석 공개'&&x.l!=='저장');
   return st;
 }
 function iso2key(iso){ const [y,m,d]=iso.split('-'); return m+d+y.slice(2); }
@@ -336,7 +340,7 @@ function key2iso(k){ return '20'+k.slice(4,6)+'-'+k.slice(0,2)+'-'+k.slice(2,4);
 function fmtKo(iso){ const d=new Date(iso+'T12:00:00'); return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일'; }
 function stateToText(){
   const L=['※ 시애틀지구촌교회 웹 주보 · '+(S.date?fmtKo(S.date):''),'※ 이 문서는 웹 주보 편집기에서 만들었습니다. 직접 고쳐도 됩니다. [대괄호] 줄은 칸 제목, "항목: 내용 | 담당" 형식입니다.',''];
-  const top=[]; if(S.vol||S.no) top.push({l:'권호',v:'Vol. '+S.vol+' No.'+S.no,p:''}); top.push({l:'공개',v:S.pub==='now'?'지금':'자동 (주일 0시)',p:''}); top.push({l:'출석 공개',v:S.attPub==='all'?'모두':'리더만',p:''});
+  const top=[]; if(S.vol||S.no) top.push({l:'권호',v:'Vol. '+S.vol+' No.'+S.no,p:''}); top.push({l:'공개',v:SAVE_MODE==='draft'?'저장만 (교회 소식에 안 보임)':(S.pub==='now'?'지금':'자동 (주일 0시)'),p:''}); if(STAMP) top.push({l:'저장',v:STAMP,p:''}); top.push({l:'출석 공개',v:S.attPub==='all'?'모두':'리더만',p:''});
   const secs=Object.assign({},S.secs,{'주보':top.concat(S.secs['주보']||[])});
   ['주보'].concat(ORDER.filter(k=>k!=='주보')).forEach(k=>{
     const rows=(secs[k]||[]).filter(r=>(r.v||'').trim()||(r.p||'').trim()); if(!rows.length) return;
@@ -420,11 +424,11 @@ $('#bNext').onclick=()=>{
   if(!S.date){ status('먼저 주일 날짜를 고르세요.','err'); return; }
   snap('다음 주일 시작');
   const d=new Date(S.date+'T12:00:00'); d.setDate(d.getDate()+7);
-  S.date=d.toISOString().slice(0,10); if(S.no) S.no=String(+S.no+1); S.pub='auto';
+  S.date=d.toISOString().slice(0,10); if(S.no) S.no=String(+S.no+1); S.pub='auto'; S.dirty=1; S.base=''; S.draft=false; (S.secs['예배']||[]).forEach(r=>{ if(/말씀|Message|성경|Scripture|헌신과\s*결단|Commitment/i.test(r.l||'')) r.v=''; }); (S.secs['나눔']||[]).forEach(r=>{ r.v=''; });
   ['출석','헌신','헌금내역'].forEach(k=>(S.secs[k]||[]).forEach(r=>{ if(!/^\d{4}년/.test(r.l)) r.v=''; }));
   (S.secs['칼럼']||[]).forEach(r=>{ r.v=''; });
   fillMeta(); renderSecs(); refresh();
-  status(`${fmtKo(S.date)} 주보를 시작했습니다. 출석·헌신·헌금 숫자와 칼럼 제목을 비웠으니, 바뀐 내용만 고치세요. 잘못 눌렀으면 '↶ 되돌리기'를 누르세요.`,'ok');
+  status(`${fmtKo(S.date)} 주보를 시작했습니다. 설교 제목·본문·끝 찬송과 나눔 질문, 출석·헌신·헌금 숫자와 칼럼 제목을 비웠으니, 바뀐 내용만 고치세요. 잘못 눌렀으면 '↶ 되돌리기'를 누르세요.`,'ok');
 };
 
 /* ---------- 드라이브 (홈페이지용: 공개 읽기 + 구글 문서에 붙여 넣기) ---------- */
@@ -442,7 +446,7 @@ async function loadLatest(initial){
     if(!files.length){ if(!initial) status('주보 폴더에 "MMDDYY_교회소식" 문서가 아직 없습니다.','err'); return false; }
     const f=files[0]; const r=await fetch(API+'/'+f.id+'/export?mimeType=text/plain&key='+KEY,{cache:'no-store'}); if(!r.ok) throw new Error('문서 '+r.status);
     const txt=await r.text(); if(!initial) snap('불러오기');
-    S=textToState(txt,key2iso(f.name.slice(0,6))); fillMeta(); renderSecs(); refresh();
+    S=textToState(txt,key2iso(f.name.slice(0,6))); S.loaded=1; fillMeta(); renderSecs(); refresh(); showStamp();
     status(`${fmtKo(S.date)} 주보를 불러왔습니다.${initial?' 새 주일이면 \'다음 주일 주보 시작\'을 누르세요.':''}`,'ok'); return true;
   }catch(e){ status('주보를 불러오지 못했습니다 ('+e.message+'). 인터넷 연결을 확인해 주세요.','err'); return false; }
   finally{ b.disabled=false; }
@@ -457,20 +461,29 @@ async function copyText(){
 /* 바로 올리기: 비밀번호를 한 번 넣으면 이 컴퓨터에 기억 */
 function getPass(){ try{ var o=JSON.parse(localStorage.getItem('gmcMaster')||'null'); return localStorage.getItem('gmcBulletinPass')||((o&&o.k&&o.x>Date.now())?o.k:''); }catch(e){ return ''; } }   /* 주보 비밀번호, 없으면 담임목사 마스터 키 */
 function setPass(v){ try{ v?localStorage.setItem('gmcBulletinPass',v):localStorage.removeItem('gmcBulletinPass'); }catch(e){} }
-async function directSave(){
-  const title=iso2key(S.date)+'_교회소식', b=$('#bSave');
+async function directSave(mode){
+  const title=iso2key(S.date)+'_교회소식', b=$(mode==='draft'?'#bDraft':'#bSave');
+  const who=($('#fWho').value||'').trim(); if(!who){ status('3번 칸의 \'저장하는 사람\'에 이름을 적어 주세요. 이 기기에서는 한 번만 적으면 됩니다.','err'); $('#fWho').focus(); return; }
   let pass=getPass();
   if(!pass){ pass=await askPass(); if(!pass) return; }
-  b.disabled=true; status('홈페이지에 올리는 중…');
+  b.disabled=true; status('다른 분이 그사이 저장했는지 확인하는 중…');
+  try{ const rd=await remoteDoc(title); if(rd&&(rd.st.base||'')!==(S.base||'')){
+    const by=rd.st.base||'다른 분이 (이름 없이)';
+    const c=await choose('<b>'+esc(by)+'</b>에 이 주일 주보가 저장되었습니다. 지금 화면은 그보다 앞선 내용에서 고친 것입니다.<br>그 내용을 불러와 이어서 고치시기를 권합니다. 지금 화면으로 저장해도 앞 문서는 \'이전판_\'으로 보관됩니다.');
+    if(c==='load'){ b.disabled=false; useRemote(rd,'먼저 저장된 내용을 불러왔습니다. 이어서 고친 뒤 다시 저장하세요. 방금 화면은 되돌리기로 돌아갈 수 있습니다.'); return; }
+    if(c!=='over'){ b.disabled=false; status(''); return; } } }catch(e){}
+  const stamp=stampNow(who); SAVE_MODE=mode==='draft'?'draft':''; STAMP=stamp; const text=stateToText(); SAVE_MODE=''; STAMP='';
+  status(mode==='draft'?'저장하는 중…':'홈페이지에 올리는 중…');
   try{
-    const r=await fetch(SAVE_URL,{method:'POST',body:JSON.stringify({pass,title,text:stateToText()})});
+    const r=await fetch(SAVE_URL,{method:'POST',body:JSON.stringify({pass,title,text})});
     const j=await r.json();
     if(!j.ok){ if(j.code==='pass'){ setPass(''); status('비밀번호가 맞지 않습니다. 다시 눌러 넣어 주세요.','err'); } else status('올리지 못했습니다: '+(j.error||'알 수 없음'),'err'); return; }
-    setPass(pass);
-    $('#saveState').textContent='마지막 게시: '+new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
+    setPass(pass); S.base=stamp; S.dirty=0; S.draft=(mode==='draft'); try{ localStorage.setItem('gmcBulletinDraft',JSON.stringify(S)); }catch(e){}
+    showStamp();
     status(`올렸습니다. 1분쯤 뒤 <a href="/square/news/#news-${S.date}" target="_blank" rel="noopener">교회 소식</a>에서 확인하세요.${j.replaced?' 이전 문서는 "이전판_"으로 보관했습니다.':''}`,'ok',true);
     if(S.pub!=='now'&&S.date>ptToday()) status('예약했습니다. '+pubWhen()+'에 교회 소식에 저절로 나옵니다. 그 전까지는 고쳐서 다시 올려도 됩니다.'+(j.replaced?' 이전 문서는 "이전판_"으로 보관했습니다.':''),'ok',true);
-  }catch(e){ status('인터넷 연결 문제로 올리지 못했습니다. 잠시 뒤 다시 눌러 주세요.','err'); }
+    if(mode==='draft') status('저장했습니다. 설교 제목·본문·끝 찬송·나눔 질문은 예배 탭에 바로 나옵니다. 주보 전체는 4번을 누른 뒤 교회 소식에 나옵니다. 누구든 편집기를 열면 이 내용에서 이어서 고칠 수 있습니다. 다 되면 4번 \'홈페이지에 올리기\'를 누르세요.','ok');
+  }catch(e){ status('인터넷 연결 문제로 '+(mode==='draft'?'저장하지':'올리지')+' 못했습니다. 잠시 뒤 다시 눌러 주세요.','err'); }
   finally{ b.disabled=false; }
 }
 function askPass(){ return new Promise(res=>{
@@ -483,7 +496,7 @@ function askPass(){ return new Promise(res=>{
 }); }
 $('#bSave').onclick=async()=>{
   if(!S.date){ status('주일 날짜를 먼저 고르세요.','err'); return; }
-  if(SAVE_URL) return directSave();
+  if(SAVE_URL) return directSave('final');
   const title=iso2key(S.date)+'_교회소식', copied=await copyText();
   const steps=$('#steps');
   steps.innerHTML='<li>'+(copied?'<b>주보 내용을 복사했습니다.</b>':'<b>복사가 막혔습니다.</b> 아래 \'내용 다시 복사\'를 눌러 주세요.')+'</li><li>문서를 찾는 중…</li>';
@@ -509,6 +522,98 @@ $('#dlg').addEventListener('click',e=>{ if(e.target.id==='dlg') $('#dlg').hidden
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') $('#dlg').hidden=true; });
 $('#bCopy').onclick=async()=>{ const ok=await copyText(); status(ok?'문서 내용을 복사했습니다. 구글 문서에 붙여 넣으면 같은 주보가 됩니다.':'복사가 막혀 있습니다.',ok?'ok':'err'); };
 
+/* 초안 저장 (2026-10-16) */
+let SAVE_MODE='', STAMP='';
+const WHO_KEY='gmcBulletinWho';
+function stampNow(who){ let t; try{ t=new Intl.DateTimeFormat('ko-KR',{timeZone:'America/Los_Angeles',month:'long',day:'numeric',weekday:'short',hour:'numeric',minute:'2-digit'}).format(new Date()); }catch(e){ t=new Date().toLocaleString('ko-KR'); } return t+' (시애틀) · '+who; }
+function flowSync(){
+  const el=$('#flowNow'); if(!el) return;
+  const day=S.date?fmtKo(S.date)+' 주보':'주일 날짜를 고르세요';
+  let h='지금 화면: <b>'+esc(day)+'</b>';
+  if(S.base) h+=' · 마지막 저장 '+esc(S.base)+(S.draft?' · <span class="draft">저장본(교회 소식에는 아직 안 보임)</span>':' · '+liveLab());
+  else if(S.loaded) h+=' · '+(S.draft?'<span class="draft">저장본(교회 소식에는 아직 안 보임)</span>':liveLab());
+  else h+=' · 아직 저장한 적이 없습니다';
+  if(S.dirty) h+=' · <span class="dirty">고친 내용을 아직 저장하지 않았습니다</span>';
+  el.innerHTML=h;
+  const sv=!!S.base||!!S.loaded, st=[sv, !!S.date, sv&&!S.dirty, sv&&!S.draft&&!S.dirty];
+  let now=st.indexOf(false); if(now===1&&S.base) now=2;
+  if(now<0&&S.date&&S.date<=ptToday()) now=1;   /* 지난 주일 최종본이면 '새 주일 시작' 차례 */
+  ['#fs1','#fs2','#fs3','#fs4'].forEach((id,i)=>{ const li=$(id); if(!li) return; li.classList.toggle('done',st[i]&&i!==1); li.classList.toggle('now',i===now); });
+}
+function liveLab(){ return (S.pub!=='now'&&S.date&&S.date>ptToday())?'<span class="live">올림 · '+esc(pubWhen())+'에 교회 소식에 나옴</span>':'<span class="live">홈페이지에 올린 주보</span>'; }
+function showStamp(){ $('#saveState').textContent=S.base?('마지막 저장: '+S.base):''; flowSync(); }
+document.addEventListener('input',e=>{ if(e.target.closest&&e.target.closest('#secs,.meta')){ S.dirty=1; setTimeout(flowSync,150); } },true);
+document.addEventListener('click',e=>{ if(e.target.closest&&e.target.closest('#secs button[data-a]')){ S.dirty=1; setTimeout(flowSync,150); } },true);
+document.addEventListener('change',e=>{ if(e.target.name==='pub'||e.target.name==='attpub'){ S.dirty=1; setTimeout(flowSync,150); } },true);
+async function remoteDoc(title){
+  const f=(await listFolder()).find(x=>isNews(x)&&x.name===title); if(!f) return null;
+  const r=await fetch(API+'/'+f.id+'/export?mimeType=text/plain&key='+KEY,{cache:'no-store'}); if(!r.ok) throw new Error('문서 '+r.status);
+  const txt=await r.text(); return {txt, st:textToState(txt,key2iso(title.slice(0,6)))};
+}
+function choose(msg){ return new Promise(res=>{
+  const box=$('#steps'); $('#dlgH').textContent='먼저 저장된 내용이 있습니다';
+  box.innerHTML='<li style="list-style:none;margin-left:-1.4em">'+msg+'<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px"><button class="btn pri" id="chLoad" style="min-height:44px">그 내용 불러오기 (추천)</button><button class="btn" id="chOver" style="min-height:44px">지금 화면으로 저장</button></div></li>';
+  $('#dlgCopy').hidden=true; $('.dlg-foot').hidden=true; $('#dlg').hidden=false; $('#chLoad').focus();
+  const done=v=>{ $('#dlg').hidden=true; $('#dlgH').textContent='홈페이지에 올리기'; $('#dlgCopy').hidden=false; $('.dlg-foot').hidden=false; $('#dlgClose').onclick=closeDefault; res(v); };
+  $('#chLoad').onclick=()=>done('load'); $('#chOver').onclick=()=>done('over'); $('#dlgClose').onclick=()=>done('');
+}); }
+function useRemote(rd,msg){ snap('불러오기'); S=rd.st; S.loaded=1; fillMeta(); renderSecs(); refresh(); showStamp(); updUndo(); status(msg,'ok'); }
+async function syncOnOpen(){
+  try{
+    const files=(await listFolder()).filter(isNews).sort((a,c)=>sortKey(c.name).localeCompare(sortKey(a.name)));
+    if(!files.length){ flowSync(); return; }
+    const f=files[0], iso=key2iso(f.name.slice(0,6));
+    if(S.date&&iso<S.date){ status('지난번 쓰던 내용을 이어서 보여 드립니다.','ok'); flowSync(); return; }
+    const rd=await remoteDoc(f.name); if(!rd){ flowSync(); return; }
+    if(iso===S.date&&(rd.st.base||'')===(S.base||'')){ status('지난번 쓰던 내용을 이어서 보여 드립니다. 저장된 최신본과 같습니다.','ok'); flowSync(); return; }
+    const who=rd.st.base?rd.st.base.split(' · ').pop():'다른 분';
+    if(!S.dirty){ useRemote(rd,who+'님이 저장한 최신 주보('+fmtKo(iso)+')를 불러왔습니다.'); return; }
+    status(who+'님이 더 새로 저장한 주보('+fmtKo(iso)+')가 있습니다. 이 기기에서 고친 내용은 아직 저장하지 않았습니다. ① 불러오기를 누르면 최신본으로 바뀌고, 지금 화면은 되돌리기로 돌아올 수 있습니다.','err');
+    flowSync();
+  }catch(e){ status('지난번 쓰던 내용을 이어서 보여 드립니다. (인터넷 연결을 확인하면 최신 저장본도 볼 수 있습니다)','ok'); flowSync(); }
+}
+$('#bDraft').onclick=()=>{
+  if(!S.date){ status('주일 날짜를 먼저 고르세요.','err'); return; }
+  if(!SAVE_URL){ status('저장할 곳이 연결되어 있지 않습니다. 문서 내용 복사를 이용해 주세요.','err'); return; }
+  directSave('draft');
+};
+const _rf=refresh; refresh=function(){ _rf(); setTimeout(flowSync,200); };
+window.addEventListener('load',()=>setTimeout(flowSync,50));
+(function(){ const w=$('#fWho'); if(!w) return; try{ w.value=localStorage.getItem(WHO_KEY)||''; }catch(e){} w.addEventListener('input',()=>{ try{ localStorage.setItem(WHO_KEY,w.value.trim()); }catch(e){} }); })();
+
+/* 예배 연결 (2026-10-16) */
+const MANAGE_F="https://script.google.com/macros/s/AKfycbwYzl52wGCMxrFENoxA7We46xCadk_TTZvudqE3QHb25URk8vbzHcQlw7G45mMPXUu6qg/exec";
+function hyRow(){ const rows=(S.secs['예배']=S.secs['예배']||[]); return rows.find(x=>/헌신과\s*결단|Commitment|끝\s*찬송/i.test(x.l||'')); }
+function hyNo(v){ const m=String(v||'').match(/(\d+)\s*장/); return m?m[1]:''; }
+function hyPut(no,title){
+  let r=hyRow(); if(!r){ r={l:'*헌신과 결단 (Commitment)',v:'',p:'다같이'}; S.secs['예배'].push(r); }
+  r.v=((title?title+' ':'')+'(찬 '+no+'장)').trim(); S.dirty=1;
+  const open=[...document.querySelectorAll('details.sec[open]')].map(d=>d.dataset.k);
+  renderSecs(); open.forEach(x=>{ const d=document.querySelector(`details.sec[data-k="${x}"]`); if(d) d.open=true; }); refresh();
+}
+async function hymnLinkCheck(){
+  try{
+    const q=new URLSearchParams(location.search), pn=(q.get('hymn')||'').replace(/\D/g,''), pd=q.get('d')||'';
+    if(pn){
+      history.replaceState(null,'',location.pathname);
+      if(pd&&S.date!==pd){ status('관리 화면의 끝 찬송은 '+fmtKo(pd)+' 주보용입니다. 지금 화면은 '+(S.date?fmtKo(S.date):'날짜 없는')+' 주보라 넣지 않았습니다. 1번으로 그 주 주보를 연 뒤 다시 눌러 주세요.','err'); return; }
+      hyPut(pn,(q.get('ht')||'').trim()); status('관리 화면의 끝 찬송('+pn+'장)을 주보 [예배] 칸에 넣었습니다. 3번 저장을 누르면 함께 저장됩니다.','ok'); return;
+    }
+    if(!MANAGE_F||!S.date) return;
+    const j=await (await fetch(MANAGE_F+'?list=hymn',{cache:'no-store'})).json(); const h=j&&j.hymn;
+    if(!h||h.date!==S.date) return;
+    const mn=String(h.no||'').replace(/\D/g,''); if(!mn) return;
+    const row=hyRow(), bn=row?hyNo(row.v):'';
+    if(!bn){ hyPut(mn,h.title||''); status('관리 화면에 저장된 끝 찬송('+mn+'장)을 주보 [예배] 칸에 넣었습니다. 3번 저장을 누르세요.','ok'); return; }
+    if(bn!==mn){
+      status('끝 찬송이 서로 다릅니다. 주보는 '+bn+'장, 관리 화면은 '+mn+'장입니다. 예배 탭에는 주보에 적힌 '+bn+'장이 나옵니다. <a href="#" id="hyUse">관리 화면 것('+mn+'장)으로 바꾸기</a>','err',true);
+      const a=document.getElementById('hyUse'); if(a) a.onclick=e=>{ e.preventDefault(); hyPut(mn,h.title||''); status(mn+'장으로 바꿨습니다. 3번 저장을 누르세요.','ok'); };
+    }
+  }catch(e){}
+}
+{ const _so=syncOnOpen; syncOnOpen=async function(){ await _so(); hymnLinkCheck(); };
+  const _ll=loadLatest; loadLatest=async function(i){ const r=await _ll(i); if(r) hymnLinkCheck(); return r; }; }
+/* /예배 연결 */
 /* ---------- 시작 ---------- */
 document.getElementById('gbcss').textContent=GB_CSS;
 const SAMPLE="※ 시애틀지구촌교회 웹 주보 · 2026년 10월 11일\n※ [대괄호] 줄은 칸 제목입니다. \"항목: 내용 | 담당\" 형식으로 쓰고, 필요 없는 줄은 지우세요. 빈 줄과 ※ 줄은 홈페이지에 나오지 않습니다.\n\n[주보]\n권호: Vol. 24 No.40\n표어: 평신도 사역자를 세우는 교회\n표어: 차세대 사역자를 세우는 교회\n\n[처음]\n예배 시간: 매주 주일 오후 1:30\n장소: 12918 35th Ave SE, Everett, WA 98208\n자녀 예배: 어린이·청소년 예배가 같은 시간에 따로 있습니다.\n헌금: 처음 오신 분은 헌금의 의무가 없습니다. 편안한 마음으로 예배하세요.\n성경: 쉽게 이해되는 우리말 \"새번역\" 성경을 씁니다.\n예배 후: 새교우실에서 김성수 목사님과 인사 나누세요.\n\n[환영]\n오늘 저희 교회에 처음 오신 분을 진심으로 환영하고 축하합니다. 예배 후에 새교우실에서 담임목사를 만나고 가시기 바랍니다.\n\n[소식]\n감사: 베들레햄 침례교회 이모세 목사님과 사모님께 감사드립니다.\n경청 21: 10월 30일(금)까지(주일 제외) — 기도제목: \"새 장소에서 새 일을 보게 하소서\"\n예배시간: 주일연합예배는 오후 1:30입니다.\n홈페이지 활용: 다음 주일예배, 목회칼럼, 목장 나눔지 등을 잘 활용 바랍니다.\n\n[예배]\n시간: 오후 1:30\n공동체 시간 (Community Hour): 환영 및 소식 | 인도자\n*경배와 찬양 (Praise & Worship): 그 날이 도적같이 / 내 갈급함 / 그 사랑 얼마나 | 지구촌 찬양팀\n봉헌 (Offering): 감사한 마음으로 (예배 전 입구 헌금함 또는 온라인) | 다같이\n대표기도 (Representative Prayer): 박성건 목자\n*성경합독 (Scripture Reading): 사도행전 18:18-28 | 다같이\n말씀 (Message): 평신도 부부가 교수를 가르치다 | 김성수 목사\n*헌신과 결단 (Commitment): 주님의 마음을 본받는 자 (찬 455장) | 다같이\n*축도 (Benediction): 하나님의 복을 비는 기도 | 인도자\n\n[칼럼]\n제목: 하나님의 은혜는 어떻게 찾아오는가?\n\n[봉사]\n기도: 10/11 박성건 · 10/18 이인규 · 10/25 박보라\n봉헌: 10/11 박소연 · 10/18 장희주 · 10/25 홍진희\n\n[친교]\n10/11: 인도네시아 목장\n10/18: 멕시코 목장\n10/25: 이스라엘 목장 1\n\n[출석]\n2부: 10\n목장: 5\n유초등부: 4\nYouth: 2\n토요새벽: 3\n총인원: 24\n\n[헌신]\n2026년 영접: 0\n확인: 0\n침례: 0\n분가: 0\n\n[헌금]\n오늘 교회에 처음 나오신 분은 헌금의 의무가 없습니다. 편안한 마음으로 예배에 참여하시기 바랍니다.\n\n[안내]\n한어부 (Korean): 오후 1:30\n어린이 (Children): 오후 1:30\n청소년 (Youth): 오후 1:30\n영어부 (English): 오후 1:30\n토요새벽기도회: 오전 6:00\n주간기도: 가정, 직장에서 | HebronAltar.com\n\n[사역자]\n담임목사: 김성수 | Sung Soo Kim, Lead Pastor\n청소년 목사: Garrett Woods | Youth Pastor\n어린이 사역: 김지영 | Joy Kim, Children Ministry Director\n\n[교회]\n이름: 시애틀지구촌교회\n영문: Global Mission Church of Greater Seattle\n주소: 12918 35th Ave SE, Everett, WA 98208\n웹: www.ijiguchon.org\n";
@@ -517,7 +622,7 @@ const SAMPLE="※ 시애틀지구촌교회 웹 주보 · 2026년 10월 11일\n�
   S=(saved&&saved.secs)?saved:textToState(SAMPLE,'2026-10-11');
   fillMeta(); renderSecs(); refresh(); updUndo();
   if(!(saved&&saved.secs)) loadLatest(true);   /* 처음 열면 드라이브의 최신 주보부터 */
-  else status('지난번 쓰던 내용을 이어서 보여 드립니다. 새로 시작하려면 \'최신 주보 불러오기\'를 누르세요.','ok');
+  else syncOnOpen();
 })();
 </script>
 </body></html>
