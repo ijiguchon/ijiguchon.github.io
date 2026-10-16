@@ -749,7 +749,8 @@ function add(){var en=document.querySelector('button.lang,[onclick*="toggleLang"
  function lab(){b.textContent=['','가','가+','가++'][lv];b.setAttribute('aria-label','글자 크기: '+['','보통','크게','아주 크게'][lv]+'. 누르면 바뀝니다');}
  lab();b.onclick=function(){set(lv%3+1);lab();};en.parentNode.insertBefore(b,en);}
 if(document.readyState!=='loading')add();else document.addEventListener('DOMContentLoaded',add);
-})();</script><!-- /휴대폰 글자 --></head>
+})();</script><!-- /휴대폰 글자 --><style id="gb-btn-css">.gb-meta .gb-meta-acts{gap:8px;margin-top:8px}.gb-meta .gb-meta-acts a,.gb-meta .gb-meta-acts .gb-print{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px;font-size:13.5px;line-height:1}.gb-meta .gb-meta-acts span{opacity:1;font-size:inherit;letter-spacing:0}.gb-meta .gb-print svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round}.gb-meta .gb-meta-acts a:focus-visible,.gb-meta .gb-print:focus-visible{outline:3px solid #9cc3ff;outline-offset:2px}</style>
+</head>
 <body><a class="skip-link" href="#main"><span class="ko">본문 바로가기</span><span class="en">Skip to content</span></a>
 <div class="topbar">
   <div class="row">
@@ -1483,6 +1484,7 @@ var GB_EASY_EN={'공동체 시간':'We greet one another and share this week\'s 
 var GB_TERMS=[['목장','가정에서 모여 함께 식사하고 삶을 나누는 작은 교회 모임'],['목자','목장을 섬기는 평신도 리더'],['삶공부','신앙의 기초부터 함께 배우는 성경 공부 과정'],
   ['경청 21','21일 동안 함께 하나님께 귀 기울이며 기도하는 시간'],['새번역','원어에서 쉬운 우리말로 옮긴 성경 번역'],['토요새벽','토요일 아침 6시에 모이는 기도회'],['VIP','우리가 기도하며 초대하고 싶은 소중한 이웃']];
 function gbEsc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+var GB_PRN_ICON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg>';
 function gbBi(ko,en){ return '<span class="ko">'+gbEsc(ko)+'</span><span class="en">'+gbEsc(en)+'</span>'; }
 function gbParse(t){
   var secs=[], cur=null;
@@ -1559,7 +1561,7 @@ function gbHTML(iso,secs,o){
   h+='<header class="gb-top"><div class="gb-brand"><span class="gb-logo"><img src="'+GB_LOGO+'" alt="" width="40" height="40"></span><span class="gb-bt"><b>'+gbEsc(EN?(gbVal(church,'영문')||'Global Mission Church of Greater Seattle'):(gbVal(church,'이름')||'시애틀지구촌교회'))+'</b><span>'+gbEsc(EN?'시애틀지구촌교회':(gbVal(church,'영문')||'Global Mission Church of Greater Seattle'))+'</span></span></div>'
     +'<div class="gb-meta">'+(vol?'<span>'+gbEsc(vol)+'</span>':'')+'<b>'+gbBi(d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 주일','Sunday, '+MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear())+'</b>'
     +'<span class="gb-meta-acts">'+(o.pdf?'<a href="'+gbEsc(o.pdf)+'" target="_blank" rel="noopener">'+gbBi('주보 PDF','PDF')+'</a>':'')
-    +'<button type="button" class="gb-print" onclick="gbPrint(this)">'+gbBi('🖨 인쇄용 보기','🖨 Print')+'</button></span></div>'
+    +'<button type="button" class="gb-print" onclick="gbPrint(this)">'+GB_PRN_ICON+gbBi('인쇄 · PDF 저장','Print · PDF')+'</button></span></div>'
     +'<div class="gb-mottos">'+mottos.map(function(m){ return '<span>'+gbEsc(m)+'</span>'; }).join('')+'</div></header>';
   var used={'주보':1,'교회':1,'사역자':1,'처음':1}, L='', R='', first=gbGet(secs,'처음'), has={};
   function sec(sc){ var x=gbSection(sc,o); if(!x) return ''; has[sc.k]=1; return x.replace('<section class=','<section id="'+PF+sc.k+'" class='); }
@@ -1600,7 +1602,7 @@ function gbPrint(btn){
   var w=window.open('','_blank'); if(!w){ window.print(); return; }
   w.document.open();
   w.document.write('<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>시애틀지구촌교회 주보</title>'
-    +'<style>'+GB_CSS+GB_PRINT_CSS+'</style></head><body'+(document.body.classList.contains('lang-en')?' class="lang-en"':'')+'><div class="gb-pw-bar"><button onclick="print()">🖨 인쇄하기</button><button onclick="close()">닫기</button></div><div class="gb-pw">'+html+'</div>'
+    +'<style>'+GB_CSS+GB_PRINT_CSS+'</style></head><body'+(document.body.classList.contains('lang-en')?' class="lang-en"':'')+'><div class="gb-pw-bar"><button onclick="print()">인쇄하기</button><button onclick="close()">닫기</button></div><div class="gb-pw">'+html+'</div>'
     +'<scr'+'ipt>window.onload=function(){setTimeout(function(){print()},400)};</scr'+'ipt></body></html>');
   w.document.close();
 }
