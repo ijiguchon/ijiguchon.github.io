@@ -1465,21 +1465,22 @@ GM.board = { s:'[GMC] 나눔터 새 글',
    문서 형식: [칸 이름] 줄 아래에 "항목: 내용 | 담당" 줄. ※ 로 시작하는 줄은 안내문이라 무시.
    칸: 주보 · 환영 · 소식 · 예배 · 칼럼 · 봉사 · 친교 · 출석 · 헌신 · 헌금 · 안내 · 사역자 · 교회 */
 var GB_SEC={'환영':['환영합니다','Welcome'],'소식':['지구촌 소식','Church news'],'예배':['주일연합예배','Sunday united worship'],
-  '칼럼':['목회칼럼',"Pastor's column"],'봉사':['봉사 담당','Serving'],'친교':['목장 친교','Fellowship meal'],'출석':['지난 주 출석','Last week attendance'],
+  '칼럼':['성수생각',"Sung Soo's Thoughts"],'봉사':['봉사 담당','Serving'],'친교':['목장 친교','Fellowship meal'],'출석':['지난 주 출석','Last week attendance'],
   '헌신':['지난 주 헌신','Last week'],'헌금':['감사 헌금','Offering'],'안내':['주일연합예배 및 주간모임','Worship & weekly gatherings'],
   '사역자':['섬기는 사람들','Ministry team'],'교회':['교회','Church']};
 GB_SEC['처음']=['처음 오셨나요?','First time here?'];
+GB_SEC['나눔']=['이번 주 나눔 질문',"This week's question"];   /* 목장 식탁에서 나눌 질문 (2026-10-16) */
 /* 휴대폰 바로가기 단추 이름 */
-var GB_NAV=[['처음','처음 오셨나요','New here'],['예배','예배 순서','Worship'],['소식','교회 소식','News'],['봉사','봉사','Serving'],['친교','친교','Meals'],['출석','출석','Attendance'],['칼럼','성수생각','Column'],['안내','모임 시간','Times'],['사역자','섬기는 사람들','Team']];
+var GB_NAV=[['처음','처음 오셨나요','New here'],['예배','예배 순서','Worship'],['나눔','나눔 질문','Question'],['소식','교회 소식','News'],['봉사','봉사','Serving'],['친교','친교','Meals'],['출석','출석','Attendance'],['칼럼','성수생각','Column'],['안내','모임 시간','Times'],['사역자','섬기는 사람들','Team']];
 GB_SEC['헌금내역']=['지난 주 헌금','Last week offering'];   /* 숫자만 · 리더만 (2026-10-15) */
-var GB_LEFT=['예배','칼럼','안내'], GB_RIGHT=['환영','소식','봉사','친교','출석','헌신','헌금내역','헌금'];
+var GB_LEFT=['예배','나눔','칼럼','안내'], GB_RIGHT=['환영','소식','봉사','친교','출석','헌신','헌금내역','헌금'];
 /* 처음 오신 분을 위한 예배 순서 쉬운 설명 */
-var GB_EASY={'공동체 시간':'서로 인사하고 이번 주 교회 소식을 나눕니다.','경배와 찬양':'다 함께 노래로 하나님을 찬양합니다. 따라 부르기 어려우면 들으셔도 괜찮습니다.',
-  '봉헌':'감사의 마음을 드리는 시간입니다. 처음 오신 분은 부담 갖지 않으셔도 됩니다.','대표기도':'한 분이 교회를 대표해 기도합니다. 마음으로 함께하시면 됩니다.',
+var GB_EASY={'공동체 시간':'서로 인사하고 이번 주 교회 소식을 나눕니다.','경배와 찬양':'다 함께 노래로 하나님을 찬양합니다. 따라 부르셔도, 귀 기울여 들으셔도 좋습니다.',
+  '봉헌':'감사의 마음을 드리는 시간입니다. 처음 오신 분은 마음으로 함께하시면 됩니다.','대표기도':'한 분이 교회를 대표해 기도합니다. 마음으로 함께하시면 됩니다.',
   '성경합독':'오늘 말씀의 성경 본문을 다 함께 소리 내어 읽습니다.','말씀':'목사님이 성경 본문을 풀어 설교합니다.',
   '헌신과 결단':'말씀을 마음에 새기며 함께 찬송합니다. 헌신하실 분은 축도 전에 강단 앞으로 나와 헌신카드를 작성하고 목사님께 보내 주세요.','축도':'하나님의 복을 비는 기도로 예배를 마칩니다.'};
-var GB_EASY_EN={'공동체 시간':'We greet one another and share this week\'s church news.','경배와 찬양':'We praise God together in song. Feel free to simply listen.',
-  '봉헌':'A time to give with thankful hearts. First-time guests need not feel any obligation.','대표기도':'One person prays on behalf of the church. Join in your heart.',
+var GB_EASY_EN={'공동체 시간':'We greet one another and share this week\'s church news.','경배와 찬양':'We praise God together in song. Sing along or listen in.',
+  '봉헌':'A time to give with thankful hearts. First-time guests are welcome to join in heart.','대표기도':'One person prays on behalf of the church. Join in your heart.',
   '성경합독':'We read today\'s Scripture passage aloud together.','말씀':'The pastor explains and preaches from the Bible passage.',
   '헌신과 결단':'We sing together, taking the message to heart. If you would like to commit, come forward before the benediction, fill out a commitment card and send it to the pastor.','축도':'The service closes with a prayer of blessing.'};
 /* 소식에 나오는 교회 용어 풀이 */
