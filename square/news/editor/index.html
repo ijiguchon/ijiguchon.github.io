@@ -112,7 +112,8 @@ var GB_SEC={'환영':['환영합니다','Welcome'],'소식':['지구촌 소식',
 GB_SEC['처음']=['처음 오셨나요?','First time here?'];
 /* 휴대폰 바로가기 단추 이름 */
 var GB_NAV=[['처음','처음 오셨나요','New here'],['예배','예배 순서','Worship'],['소식','교회 소식','News'],['봉사','봉사','Serving'],['친교','친교','Meals'],['출석','출석','Attendance'],['칼럼','목회칼럼','Column'],['안내','모임 시간','Times'],['사역자','섬기는 사람들','Team']];
-var GB_LEFT=['예배','칼럼','안내'], GB_RIGHT=['환영','소식','봉사','친교','출석','헌신','헌금'];
+GB_SEC['헌금내역']=['지난 주 헌금','Last week offering'];   /* 숫자만 · 리더만 (2026-10-15) */
+var GB_LEFT=['예배','칼럼','안내'], GB_RIGHT=['환영','소식','봉사','친교','출석','헌신','헌금내역','헌금'];
 /* 처음 오신 분을 위한 예배 순서 쉬운 설명 */
 var GB_EASY={'공동체 시간':'서로 인사하고 이번 주 교회 소식을 나눕니다.','경배와 찬양':'다 함께 노래로 하나님을 찬양합니다. 따라 부르기 어려우면 들으셔도 괜찮습니다.',
   '봉헌':'감사의 마음을 드리는 시간입니다. 처음 오신 분은 부담 갖지 않으셔도 됩니다.','대표기도':'한 분이 교회를 대표해 기도합니다. 마음으로 함께하시면 됩니다.',
@@ -188,10 +189,10 @@ function gbSection(sc,o){
       +'</span>'
       +'<span class="gb-easy-go" aria-hidden="true">→</span></button></section>';
   }
-  if(k==='출석'){   /* 리더만 · 접어서 (2026-10-15) */
+  if(k==='출석'||k==='헌금내역'){   /* 리더만 · 접어서 (2026-10-15) */
     if(!gbLeader()) return '';
     return '<section class="gb-s gb-stats gb-att"><details><summary>'+gbBi(nm[0]+' · 리더용',nm[1]+' · leaders')+'</summary><div class="gb-chips">'+it.map(function(x){
-      var tot=/총|total/i.test(x.l); return '<span'+(tot?' class="gb-tot"':'')+'>'+(x.l?'<em>'+gbEsc(x.l)+'</em>':'')+'<b>'+gbEsc(x.v)+'</b></span>'; }).join('')+'</div></details></section>';
+      var tot=/총|합계|total/i.test(x.l); return '<span'+(tot?' class="gb-tot"':'')+'>'+(x.l?'<em>'+gbEsc(x.l)+'</em>':'')+'<b>'+gbEsc(x.v)+'</b></span>'; }).join('')+'</div></details></section>';
   }
   if(k==='출석'||k==='헌신'){
     return '<section class="gb-s gb-stats"><h3>'+gbBi(nm[0],nm[1])+'</h3><div class="gb-chips">'+it.map(function(x){
@@ -307,11 +308,11 @@ var GB_CSS=[
 "use strict";
 const $=s=>document.querySelector(s);
 const FOLDER='15_4TMBpg7E7w_5YAjd3GJ-hohnLw_FuB';
-const ORDER=['처음','환영','소식','예배','칼럼','봉사','친교','출석','헌신','헌금','안내','사역자','교회','주보'];
-const KIND={'환영':'one','헌금':'one','출석':'two','헌신':'two','친교':'two','칼럼':'two','교회':'two','주보':'two','처음':'two'};
+const ORDER=['처음','환영','소식','예배','칼럼','봉사','친교','출석','헌신','헌금내역','헌금','안내','사역자','교회','주보'];
+const KIND={'환영':'one','헌금':'one','출석':'two','헌신':'two','헌금내역':'two','친교':'two','칼럼':'two','교회':'two','주보':'two','처음':'two'};
 const HINT={'처음':'처음 오신 분이 가장 먼저 보는 안내입니다. "항목: 내용"','소식':'한 줄에 소식 하나. 제목과 내용을 나눠 쓰면 제목이 굵게 보입니다.',
  '예배':'순서 이름 앞에 *를 붙이면 "일어나서" 표시가 됩니다. "시간" 줄은 제목 옆에 보입니다. 항목을 비우면 안내 문장으로 보입니다.',
- '봉사':'예: 기도 / 10/11 박성건 · 10/18 이인규','친교':'예: 10/11 / 인도네시아 목장','출석':'숫자를 비우면 그 항목은 나오지 않습니다.',
+ '봉사':'예: 기도 / 10/11 박성건 · 10/18 이인규','친교':'예: 10/11 / 인도네시아 목장','출석':'숫자를 비우면 그 항목은 나오지 않습니다.','헌금내역':'리더에게만 접혀서 보입니다. 항목별 금액과 합계만 쓰고, 이름은 쓰지 않습니다. 금액을 비운 줄은 나오지 않습니다.',
  '칼럼':'이번 주 목회칼럼 제목만 쓰면 칼럼 링크 카드가 됩니다.',
  '사역자':'이름을 비운 줄은 나오지 않습니다. 셋째 칸은 영문 이름·직함입니다.','주보':'표어를 고칠 수 있습니다. 권·호는 위 칸에서.'};
 let S={date:'',vol:'',no:'',secs:{}};
@@ -345,6 +346,7 @@ function stateToText(){
 /* ---------- 화면 ---------- */
 function esc(s){ return gbEsc(s); }
 function renderSecs(){
+  if(!(S.secs['헌금내역']||[]).length) S.secs['헌금내역']=['주일헌금','십일조','감사헌금','선교헌금','합계'].map(l=>({l,v:'',p:''}));
   $('#secs').innerHTML=ORDER.map(k=>{
     const nm=(GB_SEC[k]||[k])[0], kind=KIND[k]||'three', rows=S.secs[k]||[];
     return `<details class="sec" data-k="${k}"${['소식','예배','출석'].includes(k)?' open':''}><summary><b>${esc(k==='주보'?'머리말·표어':nm)}</b><span>${rows.length}줄</span></summary><div class="rows">
@@ -412,10 +414,10 @@ $('#bNext').onclick=()=>{
   snap('다음 주일 시작');
   const d=new Date(S.date+'T12:00:00'); d.setDate(d.getDate()+7);
   S.date=d.toISOString().slice(0,10); if(S.no) S.no=String(+S.no+1); S.pub='auto';
-  ['출석','헌신'].forEach(k=>(S.secs[k]||[]).forEach(r=>{ if(!/^\d{4}년/.test(r.l)) r.v=''; }));
+  ['출석','헌신','헌금내역'].forEach(k=>(S.secs[k]||[]).forEach(r=>{ if(!/^\d{4}년/.test(r.l)) r.v=''; }));
   (S.secs['칼럼']||[]).forEach(r=>{ r.v=''; });
   fillMeta(); renderSecs(); refresh();
-  status(`${fmtKo(S.date)} 주보를 시작했습니다. 출석·헌신 숫자와 칼럼 제목을 비웠으니, 바뀐 내용만 고치세요. 잘못 눌렀으면 '↶ 되돌리기'를 누르세요.`,'ok');
+  status(`${fmtKo(S.date)} 주보를 시작했습니다. 출석·헌신·헌금 숫자와 칼럼 제목을 비웠으니, 바뀐 내용만 고치세요. 잘못 눌렀으면 '↶ 되돌리기'를 누르세요.`,'ok');
 };
 
 /* ---------- 드라이브 (홈페이지용: 공개 읽기 + 구글 문서에 붙여 넣기) ---------- */
