@@ -1548,7 +1548,7 @@ function gbSection(sc,o){
       +'</span>'
       +'<span class="gb-easy-go" aria-hidden="true">→</span></button></section>';
   }
-  if(k==='출석'||k==='헌금내역'){   /* 리더만 · 접어서 (2026-10-15) */
+  if((k==='출석'&&!o.attAll)||k==='헌금내역'){   /* 리더만 · 접어서 (2026-10-15) — 출석은 편집기에서 '모두에게'를 고르면 펼쳐서 모두에게 */
     if(!gbLeader()) return '';
     return '<section class="gb-s gb-stats gb-att"><details><summary>'+gbBi(nm[0]+' · 리더용',nm[1]+' · leaders')+'</summary><div class="gb-chips">'+it.map(function(x){
       var tot=/총|합계|total/i.test(x.l); return '<span'+(tot?' class="gb-tot"':'')+'>'+(x.l?'<em>'+gbEsc(x.l)+'</em>':'')+'<b>'+gbEsc(x.v)+'</b></span>'; }).join('')+'</div></details></section>';
@@ -1564,6 +1564,7 @@ var GB_LOGO=(typeof GB_LOGO!=='undefined'&&GB_LOGO)||'/images/logo-mark.png';   
 function gbHTML(iso,secs,o){
   o=o||{}; var EN=o.lang==='en', PF=EN?'gb-en-':'gb-sec-', d=new Date(iso+'T12:00:00'), MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var top=gbGet(secs,'주보'), church=gbGet(secs,'교회'), staff=gbGet(secs,'사역자');
+  o.attAll=/모두/.test(gbVal(top,'출석 공개'));   /* 출석 공개 고르기 (2026-10-15) */
   var vol=gbVal(top,'권호'), mottos=top?top.items.filter(function(x){ return x.l==='표어'; }).map(function(x){ return x.v; }):[];
   if(!mottos.length) mottos=['평신도 사역자를 세우는 교회','차세대 사역자를 세우는 교회'];
   var h='<article class="gb'+(EN?' gb-en':'')+'">';

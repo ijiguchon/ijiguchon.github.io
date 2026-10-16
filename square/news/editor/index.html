@@ -189,7 +189,7 @@ function gbSection(sc,o){
       +'</span>'
       +'<span class="gb-easy-go" aria-hidden="true">→</span></button></section>';
   }
-  if(k==='출석'||k==='헌금내역'){   /* 리더만 · 접어서 (2026-10-15) */
+  if((k==='출석'&&!o.attAll)||k==='헌금내역'){   /* 리더만 · 접어서 (2026-10-15) — 출석은 편집기에서 '모두에게'를 고르면 펼쳐서 모두에게 */
     if(!gbLeader()) return '';
     return '<section class="gb-s gb-stats gb-att"><details><summary>'+gbBi(nm[0]+' · 리더용',nm[1]+' · leaders')+'</summary><div class="gb-chips">'+it.map(function(x){
       var tot=/총|합계|total/i.test(x.l); return '<span'+(tot?' class="gb-tot"':'')+'>'+(x.l?'<em>'+gbEsc(x.l)+'</em>':'')+'<b>'+gbEsc(x.v)+'</b></span>'; }).join('')+'</div></details></section>';
@@ -205,6 +205,7 @@ var GB_LOGO=(typeof GB_LOGO!=='undefined'&&GB_LOGO)||'/images/logo-mark.png';   
 function gbHTML(iso,secs,o){
   o=o||{}; var EN=o.lang==='en', PF=EN?'gb-en-':'gb-sec-', d=new Date(iso+'T12:00:00'), MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var top=gbGet(secs,'주보'), church=gbGet(secs,'교회'), staff=gbGet(secs,'사역자');
+  o.attAll=/모두/.test(gbVal(top,'출석 공개'));   /* 출석 공개 고르기 (2026-10-15) */
   var vol=gbVal(top,'권호'), mottos=top?top.items.filter(function(x){ return x.l==='표어'; }).map(function(x){ return x.v; }):[];
   if(!mottos.length) mottos=['평신도 사역자를 세우는 교회','차세대 사역자를 세우는 교회'];
   var h='<article class="gb'+(EN?' gb-en':'')+'">';
@@ -324,7 +325,8 @@ function textToState(t,iso){
   const top=st.secs['주보']||[]; const kh=top.find(x=>x.l==='권호');
   if(kh){ const m=kh.v.match(/Vol\.?\s*(\d+)\s*No\.?\s*(\d+)/i); if(m){ st.vol=m[1]; st.no=m[2]; } }
   const pb=top.find(x=>x.l==='공개'); st.pub=(pb&&/지금/.test(pb.v))?'now':'auto'; /* 예약 공개 (2026-10-15) */
-  st.secs['주보']=top.filter(x=>x.l!=='권호'&&x.l!=='공개');
+  const ap=top.find(x=>x.l==='출석 공개'); st.attPub=(ap&&/모두/.test(ap.v))?'all':'leader';
+  st.secs['주보']=top.filter(x=>x.l!=='권호'&&x.l!=='공개'&&x.l!=='출석 공개');
   return st;
 }
 function iso2key(iso){ const [y,m,d]=iso.split('-'); return m+d+y.slice(2); }
@@ -332,7 +334,7 @@ function key2iso(k){ return '20'+k.slice(4,6)+'-'+k.slice(0,2)+'-'+k.slice(2,4);
 function fmtKo(iso){ const d=new Date(iso+'T12:00:00'); return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일'; }
 function stateToText(){
   const L=['※ 시애틀지구촌교회 웹 주보 · '+(S.date?fmtKo(S.date):''),'※ 이 문서는 웹 주보 편집기에서 만들었습니다. 직접 고쳐도 됩니다. [대괄호] 줄은 칸 제목, "항목: 내용 | 담당" 형식입니다.',''];
-  const top=[]; if(S.vol||S.no) top.push({l:'권호',v:'Vol. '+S.vol+' No.'+S.no,p:''}); top.push({l:'공개',v:S.pub==='now'?'지금':'자동 (주일 0시)',p:''});
+  const top=[]; if(S.vol||S.no) top.push({l:'권호',v:'Vol. '+S.vol+' No.'+S.no,p:''}); top.push({l:'공개',v:S.pub==='now'?'지금':'자동 (주일 0시)',p:''}); top.push({l:'출석 공개',v:S.attPub==='all'?'모두':'리더만',p:''});
   const secs=Object.assign({},S.secs,{'주보':top.concat(S.secs['주보']||[])});
   ['주보'].concat(ORDER.filter(k=>k!=='주보')).forEach(k=>{
     const rows=(secs[k]||[]).filter(r=>(r.v||'').trim()||(r.p||'').trim()); if(!rows.length) return;
@@ -350,7 +352,7 @@ function renderSecs(){
   $('#secs').innerHTML=ORDER.map(k=>{
     const nm=(GB_SEC[k]||[k])[0], kind=KIND[k]||'three', rows=S.secs[k]||[];
     return `<details class="sec" data-k="${k}"${['소식','예배','출석'].includes(k)?' open':''}><summary><b>${esc(k==='주보'?'머리말·표어':nm)}</b><span>${rows.length}줄</span></summary><div class="rows">
-      ${HINT[k]?`<p class="hint">${esc(HINT[k])}</p>`:''}
+      ${HINT[k]?`<p class="hint">${esc(HINT[k])}</p>`:''}${k==='출석'?attSw():''}
       ${rows.map((r,i)=>rowHTML(k,kind,r,i)).join('')}
       <div><button class="btn sm" data-a="add">+ 줄 추가</button></div></div></details>`;
   }).join('');
@@ -395,6 +397,9 @@ function pubSync(){ const v=S.pub==='now'?'now':'auto'; document.querySelectorAl
   const h=document.getElementById('pubHint'); if(!h) return; const fut=!!S.date&&S.date>ptToday();
   h.textContent=v==='now'?'올리는 즉시 교회 소식에 나옵니다.':(fut?'올려 두면 '+pubWhen()+'에 저절로 교회 소식에 나옵니다. 그 전까지는 몇 번이든 고쳐 다시 올려도 됩니다.':'그 주일이 이미 되어, 올리면 바로 나옵니다.'); }
 document.querySelectorAll('input[name=pub]').forEach(r=>r.addEventListener('change',()=>{ S.pub=r.value; pubSync(); refresh(); }));
+/* 출석 공개 고르기 (2026-10-15) */
+function attSw(){ const a=S.attPub==='all'; return '<fieldset class="pub att-sw"><legend>홈페이지에</legend>'+'<label><input type="radio" name="attpub" value="leader"'+(a?'':' checked')+'> 리더에게만 (접어서)</label>'+'<label><input type="radio" name="attpub" value="all"'+(a?' checked':'')+'> 모두에게 보이기</label></fieldset>'; }
+document.addEventListener('change',e=>{ if(e.target&&e.target.name==='attpub'){ S.attPub=e.target.value; refresh(); } });
 let stT; function status(msg,kind,html){ const el=$('#status'); el.className='status'+(kind?' '+kind:''); if(html) el.innerHTML=msg; else el.textContent=msg; el.hidden=!msg; clearTimeout(stT); if(kind==='ok') stT=setTimeout(()=>{el.hidden=true;},8000); }
 $('#status').addEventListener('click',e=>{ if(!e.target.closest('a')) $('#status').hidden=true; });
 
