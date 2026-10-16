@@ -612,7 +612,14 @@ async function hymnLinkCheck(){
   }catch(e){}
 }
 { const _so=syncOnOpen; syncOnOpen=async function(){ await _so(); hymnLinkCheck(); };
-  const _ll=loadLatest; loadLatest=async function(i){ const r=await _ll(i); if(r) hymnLinkCheck(); return r; }; }
+  const _ll=loadLatest; loadLatest=async function(i){ const r=await _ll(i);
+    if(r&&S.date&&S.date>=ptToday()) status(fmtKo(S.date)+' 주보를 불러왔습니다. 이번 주일 주보입니다. 고칠 것이 있으면 고친 뒤 3번 저장, 다 되었으면 4번을 누르세요.','ok');
+    if(r) hymnLinkCheck(); return r; };
+  /* 이번 주일이 지나기 전에 '다음 주일 시작'을 누르면 한 번 더 묻기 — 올려 둔 이번 주 주보를 지키려고 */
+  const _nx=$('#bNext').onclick; $('#bNext').onclick=()=>{
+    if(S.date&&S.date>=ptToday()){ const d=new Date(S.date+'T12:00:00'); d.setDate(d.getDate()+7);
+      if(!confirm(fmtKo(S.date)+' 주일이 아직 지나지 않았습니다.\n'+fmtKo(d.toISOString().slice(0,10))+' 주보를 새로 시작할까요?\n('+fmtKo(S.date)+' 주보는 드라이브에 그대로 남습니다)')) return; }
+    _nx(); }; }
 /* /예배 연결 */
 /* ---------- 시작 ---------- */
 document.getElementById('gbcss').textContent=GB_CSS;
