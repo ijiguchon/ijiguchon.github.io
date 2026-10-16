@@ -1756,5 +1756,24 @@ function hook(){ if(typeof window.gcSubmit!=='function'||window.gcSubmit.__ql) r
   window.gcSubmit.__ql=1; }
 if(document.readyState!=='loading') setTimeout(hook,50); else document.addEventListener('DOMContentLoaded',function(){ setTimeout(hook,50); });
 })();</script>
+<script id="gmc-autoupdate">(function(){
+if(!('serviceWorker' in navigator)||!window.fetch)return;
+var V0=null,had=!!navigator.serviceWorker.controller,going=false;
+function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='search')return true;
+var f=document.querySelectorAll('textarea,input:not([type=hidden]):not([type=search]):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])');
+for(var i=0;i<f.length;i++){if(f[i].value&&f[i].value!==f[i].defaultValue)return true;}return false;}
+function reload(){if(going||busy())return;try{var t=+sessionStorage.getItem('gmc-au')||0;if(Date.now()-t<15000)return;sessionStorage.setItem('gmc-au',Date.now());}catch(_){}
+going=true;location.reload();}
+navigator.serviceWorker.addEventListener('controllerchange',function(){if(had)reload();had=true;});
+function upd(){return navigator.serviceWorker.getRegistration().then(function(g){if(g)return g.update();}).catch(function(){});}
+function check(){fetch('/version.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(j){
+if(!j||!j.v)return;if(V0===null){V0=j.v;return;}
+if(j.v!==V0){V0=j.v;upd().then(function(){setTimeout(reload,4000);});}}).catch(function(){});}
+function start(){navigator.serviceWorker.register('/sw.js',{updateViaCache:'none'}).then(function(g){g.update();}).catch(function(){});check();}
+if(document.readyState==='complete')start();else window.addEventListener('load',start);
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')check();});
+window.addEventListener('pageshow',function(e){if(e.persisted)check();});
+setInterval(function(){if(document.visibilityState==='visible')check();},20*60*1000);
+})();</script>
 </body>
 </html>
