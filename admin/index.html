@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>관리 모음 · 시애틀지구촌교회</title>
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>
+:root{--color-primary:#14213d;--color-accent:#B8924A;--color-background:#F6F1E7;--color-surface:#fff;--color-border:#E3D9C6;--ink:#1d2430;--ink-2:#4a4f5a;--focus:#2c77b0}
+*{box-sizing:border-box}body{margin:0;background:var(--color-background);color:var(--ink);font-family:'Pretendard Variable',Pretendard,-apple-system,'Segoe UI',sans-serif;word-break:keep-all}
+.wrap{max-width:720px;margin:0 auto;padding:28px 16px 48px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.top a.home{display:inline-flex;align-items:center;min-height:44px;font-weight:700;color:var(--color-primary);text-decoration:none}
+h1{margin:6px 0 0;font-size:26px;font-weight:800;color:var(--color-primary);letter-spacing:-.02em}
+.lead{margin:6px 0 0;font-size:15px;color:var(--ink-2)}
+.gate{margin-top:20px;padding:20px;border-radius:16px;background:var(--color-surface);border:1px solid var(--color-border)}
+.gate label{display:block;font-weight:800;color:var(--color-primary)}
+.gate .row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.gate input[type=password]{flex:1 1 200px;min-height:44px;padding:0 12px;border:1.5px solid var(--color-border);border-radius:10px;font:inherit;font-size:16px}
+.gate .keep{display:flex;align-items:center;gap:8px;min-height:44px;margin-top:6px;font-size:14px;color:var(--ink-2)}
+.btn{min-height:44px;padding:0 18px;border:0;border-radius:10px;background:var(--color-primary);color:#fff;font:inherit;font-weight:800;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--color-primary);border:1.5px solid var(--color-border)}
+.msg{margin-top:8px;font-size:14px;font-weight:700;color:#9b2c2c;min-height:1em}
+.grp{margin-top:24px}.grp h2{font-size:14px;font-weight:800;letter-spacing:.04em;color:#8a6a2e;margin:0 0 8px}
+.grp ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.grp a{display:flex;align-items:center;gap:12px;min-height:56px;padding:12px 16px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-border);text-decoration:none;color:var(--ink)}
+.grp a:hover{border-color:var(--color-accent)}
+.grp .t{flex:1;min-width:0}.grp b{display:block;font-size:16.5px;color:var(--color-primary)}.grp small{display:block;margin-top:2px;font-size:13px;color:var(--ink-2)}
+.grp svg{flex:none;width:18px;height:18px;fill:none;stroke:#8a6a2e;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.foot{margin-top:28px;display:flex;justify-content:flex-end}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top"><a class="home" href="/">← 홈페이지</a></div>
+  <h1>관리 모음</h1>
+  <p class="lead">담임목사 · 스탭이 쓰는 관리 화면을 한곳에 모았습니다.</p>
+  <form class="gate" id="gate" hidden>
+    <label for="k">마스터 키 (목양 대시보드 암호)</label>
+    <div class="row"><input id="k" type="password" autocomplete="current-password"><button class="btn" type="submit">들어가기</button></div>
+    <label class="keep"><input type="checkbox" id="keep"> 이 기기에서 30일 동안 기억</label>
+    <p class="msg" id="msg" role="alert"></p>
+  </form>
+  <div id="hub" hidden>
+    <section class="grp"><h2>매주 쓰는 것</h2><ul><li><a href="/square/news/editor/"><span class="t"><b>웹 주보 편집기</b><small>주보를 쓰면 예배 탭 설교 제목 · 본문 · 끝 찬송도 함께 바뀝니다</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></li><li><a href="/bulletin/"><span class="t"><b>교회 소식(주보) 보기</b><small>올린 주보가 어떻게 보이는지</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></li><li><a href="https://drive.google.com/drive/folders/1GPn9TbYUoUaAqcLHK0x6M2-vV_B5GgpK" target="_blank" rel="noopener"><span class="t"><b>끝 찬송 폴더(구글 드라이브)</b><small>MMDDYY_찬송.txt — 1줄 번호·제목, 2줄 유튜브 주소</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></li><li><a href="https://drive.google.com/drive/folders/1IU-vHeK5ZlUVSEPaOp0moJC9ZGJBQ4yC" target="_blank" rel="noopener"><span class="t"><b>주일예배 PPT 폴더(구글 드라이브)</b><small>예배 탭 '주일예배 PPT' 칸이 여기를 읽습니다</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></li><li><a href="https://drive.google.com/drive/folders/15_4TMBpg7E7w_5YAjd3GJ-hohnLw_FuB" target="_blank" rel="noopener"><span class="t"><b>주보 폴더(구글 드라이브)</b><small>MMDDYY_교회소식 문서 · 지난 주보 보관</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></li></ul></section><section class="grp"><h2>목양</h2><ul><li><a href="/dashboard/"><span class="t"><b>목양 대시보드</b><small>교회 전체 걸음 · 출석 흐름</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></li><li><a href="/my/"><span class="t"><b>내 목양</b><small>목장별 식구와 걸음</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></li><li><a href="/checkin/"><span class="t"><b>출석 체크</b><small>주일 예배 출석</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></li><li><a href="/attend/"><span class="t"><b>교회학교 출석부</b><small>어린이 · 청소년</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></li><li><a href="/360/"><span class="t"><b>가정교회 360</b><small>목자 공지 · 지난 주 출석 · 찾기</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></li><li><a href="/360/library/"><span class="t"><b>목양 도서관</b><small>목자 훈련 자료 · 개척 목장 상황판</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></li></ul></section><section class="grp"><h2>홈페이지 관리</h2><ul><li><a href="/manage/"><span class="t"><b>교회 관리</b><small>나눔터 글 · 교회 일정 · 목장 기도 · AI 질문 기록</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></li></ul></section>
+    <div class="foot"><button class="btn ghost" type="button" id="lock">잠그기</button></div>
+  </div>
+</main>
+<script>(function(){
+var GATE='https://script.google.com/macros/s/AKfycbzt_mgY8y0IzwKmFGm7Qytg4ryF76cZD9NqnI3BNnyvNqgEVYI5fKsreqjh_1SyYwAR/exec',K='gmcMaster',H=12*36e5,KEEP=30*24*36e5;
+function get(){try{var o=JSON.parse(localStorage.getItem(K)||'null');if(o&&o.k&&o.x>Date.now())return o.k;}catch(_){}return '';}
+function put(k,keep){try{localStorage.setItem(K,JSON.stringify({k:k,x:Date.now()+(keep?KEEP:H)}));}catch(_){}}
+var g=document.getElementById('gate'),hub=document.getElementById('hub'),msg=document.getElementById('msg');
+function open(){g.hidden=true;hub.hidden=false;}
+function lock(){try{localStorage.removeItem(K);sessionStorage.removeItem('gmcAdminCode');sessionStorage.removeItem('gmcDashK');sessionStorage.removeItem('gmcMy');}catch(_){}hub.hidden=true;g.hidden=false;document.getElementById('k').value='';}
+if(get())open();else g.hidden=false;
+g.addEventListener('submit',function(e){e.preventDefault();var k=document.getElementById('k').value.trim();if(!k)return;msg.textContent='확인하는 중…';
+fetch(GATE+'?gate='+encodeURIComponent(k)).then(function(r){return r.json();}).then(function(j){if(j&&j.ok===true){put(k,document.getElementById('keep').checked);msg.textContent='';open();}else msg.textContent='키가 맞지 않습니다.';}).catch(function(){msg.textContent='연결이 원활하지 않습니다. 잠시 뒤 다시 해 주십시오.';});});
+document.getElementById('lock').addEventListener('click',lock);
+})();</script>
+</body>
+</html>
