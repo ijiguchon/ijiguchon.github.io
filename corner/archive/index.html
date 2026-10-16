@@ -777,9 +777,9 @@ if(document.readyState!=='loading')add();else document.addEventListener('DOMCont
 <section class="panel show sec" style="padding-top:34px">
   <div class="wrap">
 <figure class="phw" data-th="hdr"><img src="/images/nature/column-pastor.webp" width="1280" height="560" decoding="async" style="object-position:50% 40%" alt="책장 앞에서 고개를 숙이고 글을 읽는 김성수 목사"></figure>
-    <div class="sec-eyebrow"><span class="ko">지구촌 마당 · 목회칼럼</span><span class="en">Square · Pastor's column</span></div>
+    <div class="sec-eyebrow"><span class="ko">목회자 코너 · 성수생각</span><span class="en">Pastor's corner · Sung Soo's Thoughts</span></div>
     <h2 class="sec-title"><span class="ko">지난 칼럼 모음</span><span class="en">Column archive</span></h2>
-    <p class="sec-lead"><span class="ko">2003년부터 2025년까지 김성수 목사가 쓴 목회칼럼 913편을 모았습니다. 신문에 실린 글에는 실린 곳을 표시했습니다. 제목과 본문으로 찾아보실 수 있습니다.</span><span class="en">898 columns from 2005 to 2025. Search by title or text.</span></p>
+    <p class="sec-lead"><span class="ko">2003년부터 2025년까지 김성수 목사가 쓴 칼럼 913편을 모았습니다. 신문에 실린 글에는 실린 곳을 표시했습니다. 제목과 본문으로 찾아보실 수 있습니다.</span><span class="en">898 columns from 2005 to 2025. Search by title or text.</span></p>
     <style>
       .ca{max-width:820px;margin:18px auto 0;text-align:left}
       .ca-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -811,7 +811,7 @@ if(document.readyState!=='loading')add();else document.addEventListener('DOMCont
       </div>
       <div id="caRead" class="ca-read" style="display:none"></div>
     </div>
-    <div class="tab-cta" style="margin-top:34px"><a href="/corner/"><span class="ko">최근 목회칼럼으로</span><span class="en">Back to recent columns</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    <div class="tab-cta" style="margin-top:34px"><a href="/corner/"><span class="ko">최근 칼럼으로</span><span class="en">Back to recent columns</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 </main>
@@ -1487,7 +1487,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
   function g(id){ return document.getElementById(id); }
   function norm(s){ return String(s||'').replace(/[\s.,?!“”"'‘’·\-–#()\[\]:0-9]/g,''); }
   function seriesOf(t){ if(/목장 사역의 본질을 찾아서/.test(t)) return '목장 사역의 본질을 찾아서'; if(/12주|12\.12|온전한 영성/.test(t)) return '12주 여정'; return ''; }
-  function short(t){ return String(t||'').replace(/^목장 사역의 본질을 찾아서\s*-\s*/,'').replace(/^[“"]|[”"]$/g,'').trim(); }
+  function short(t){ return String(t||'').replace(/\s*[\[(（]?\s*목회\s*칼럼\s*[\])）]?\s*$/,'').replace(/^목장 사역의 본질을 찾아서\s*-\s*/,'').replace(/^[“"]|[”"]$/g,'').trim(); }
   function fmt(iso){ var d=iso.split('-'); return (+d[1])+'.'+(+d[2])+'.'+d[0]; }
   function build(files){
     var list=CB_TEXT.map(function(c){ return {date:c.date,title:c.title,paras:c.paras||[],author:c.author||'김성수목사',kind:'text'}; });
@@ -1534,7 +1534,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
   }
   function showList(push){
     setMode(false); drawList();
-    document.title='목회칼럼 · 시애틀지구촌교회';
+    document.title='성수생각 · 목회자 코너 · 시애틀지구촌교회';
     if(push) history.pushState({},'','/corner/');
   }
   function openItem(key,push){
@@ -1561,11 +1561,11 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
     art.querySelector('.cb-back').onclick=function(){ showList(true); window.scrollTo({top:0}); };
     art.querySelectorAll('.cb-nav a').forEach(function(a){ a.onclick=function(e){ e.preventDefault(); openItem(a.getAttribute('data-k'),true); }; });
     art.querySelector('.cb-share').onclick=async function(){
-      var url=location.origin+'/corner/?c='+x.key, data={title:t+' · 시애틀지구촌교회 목회칼럼', url:url};
+      var url=location.origin+'/corner/?c='+x.key, data={title:t+' · 성수생각 · 시애틀지구촌교회', url:url};
       if(navigator.share){ try{ await navigator.share(data); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
       try{ await navigator.clipboard.writeText(url); alert(gmEn()?'Link copied.':'칼럼 주소를 복사했습니다. 붙여넣기로 전해 주십시오.'); }catch(e){ window.prompt(gmEn()?'Copy this link':'아래 주소를 복사해 전해 주십시오', url); }
     };
-    document.title=t+' · 목회칼럼';
+    document.title=t+' · 성수생각';
     if(push) history.pushState({c:x.key},'','/corner/?c='+x.key);
     window.scrollTo({top:0});
   }
@@ -1795,7 +1795,7 @@ function find(ix,q){var ws=toks(q);if(!ws.length)return '';
  if(!P.length&&!C.length)return '';
  var h='<div class="gc-res">';
  if(P.length)h+='<b>'+T('홈페이지에서 찾은 곳','Found on our site')+'</b>'+P.map(function(a){return '<a href="'+esc(a.o.u)+'">'+esc(a.o.t)+'</a>';}).join('');
- if(C.length)h+='<b>'+T('목회칼럼에서','From the pastor\'s columns')+'</b>'+C.map(function(a){return '<a href="/corner/archive/?n='+a.o.n+'">'+esc(a.o.t)+'<small>'+esc(a.o.d)+'</small></a>';}).join('');
+ if(C.length)h+='<b>'+T('성수생각에서','From the pastor\'s columns')+'</b>'+C.map(function(a){return '<a href="/corner/archive/?n='+a.o.n+'">'+esc(a.o.t)+'<small>'+esc(a.o.d)+'</small></a>';}).join('');
  return h+'</div>';}
 var _sub=window.gcSubmit;
 if(_sub) window.gcSubmit=function(e){var q=inp.value.trim();_sub(e);if(q.length<2)return;

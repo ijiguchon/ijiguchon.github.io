@@ -1747,7 +1747,7 @@ function find(ix,q){var ws=toks(q);if(!ws.length)return '';
  if(!P.length&&!C.length)return '';
  var h='<div class="gc-res">';
  if(P.length)h+='<b>'+T('홈페이지에서 찾은 곳','Found on our site')+'</b>'+P.map(function(a){return '<a href="'+esc(a.o.u)+'">'+esc(a.o.t)+'</a>';}).join('');
- if(C.length)h+='<b>'+T('목회칼럼에서','From the pastor\'s columns')+'</b>'+C.map(function(a){return '<a href="/corner/archive/?n='+a.o.n+'">'+esc(a.o.t)+'<small>'+esc(a.o.d)+'</small></a>';}).join('');
+ if(C.length)h+='<b>'+T('성수생각에서','From the pastor\'s columns')+'</b>'+C.map(function(a){return '<a href="/corner/archive/?n='+a.o.n+'">'+esc(a.o.t)+'<small>'+esc(a.o.d)+'</small></a>';}).join('');
  return h+'</div>';}
 var _sub=window.gcSubmit;
 if(_sub) window.gcSubmit=function(e){var q=inp.value.trim();_sub(e);if(q.length<2)return;
