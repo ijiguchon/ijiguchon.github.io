@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>대림절 달력 · 시애틀지구촌교회</title>
+<meta name="description" content="대림절 첫째 주일부터 성탄절까지, 하루에 하나씩 여는 말씀의 문">
+<meta name="theme-color" content="#14213d">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192-em.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&display=swap">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>
+:root{--color-primary:var(--color-primary);--color-accent:var(--color-accent);--color-accent-strong:#8A6529;--color-background:var(--color-background);--color-surface:#ffffff;--color-border:var(--color-border);
+--color-text-primary:var(--color-text-primary);--color-text-secondary:var(--color-text-secondary);--color-focus:#2c77b0;--font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+--t-hope:#2f5d8a;--t-peace:#3b7a6a;--t-joy:#b2702a;--t-love:#a3434f;--t-xmas:var(--color-accent)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--color-background);color:var(--color-text-primary);font-family:var(--font-sans);font-size:16px;line-height:1.7;word-break:keep-all}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px}
+.top{display:flex;align-items:center;gap:12px;max-width:1040px;margin:0 auto;padding:16px}
+.top img{width:36px;height:36px}.top a{display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;font-weight:700}
+.top .back{margin-left:auto;padding:0 16px;border:1px solid var(--color-border);border-radius:var(--radius-pill);background:var(--color-surface);font-size:14px}
+main{max-width:1040px;margin:0 auto;padding:0 16px 80px}
+.hero{padding:32px 0 8px}
+.eye{font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--color-accent-strong);display:flex;align-items:center;gap:12px}
+.eye::before{content:"";width:28px;height:2px;border-radius:2px;background:var(--color-accent)}
+h1{margin:12px 0 0;font-size:clamp(32px,6vw,52px);line-height:1.15;letter-spacing:-.03em;color:var(--color-primary)}
+.lead{margin:14px 0 0;max-width:640px;font-size:clamp(17px,2.2vw,19px);color:var(--color-text-secondary)}
+.weeks{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0;padding:0;list-style:none}
+.weeks li{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:var(--radius-pill);background:var(--color-surface);border:1px solid var(--color-border);font-size:14px;font-weight:600}
+.weeks i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.wait{margin:24px 0 0;padding:16px 20px;border-radius:16px;background:var(--color-primary);color:var(--color-background);font-size:16px}
+.wait b{color:var(--color-accent)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:28px 0 0}
+@media (min-width:640px){.grid{grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}}
+.door{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:88px;padding:12px;border-radius:16px;border:1px solid var(--color-border);background:var(--color-surface);
+font:inherit;color:var(--color-text-primary);text-align:left;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+.door .n{font-size:24px;font-weight:800;line-height:1;letter-spacing:-.02em}
+.door .d{font-size:13px;color:var(--color-text-secondary)}
+.door .bar{position:absolute;left:12px;right:12px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--tc)}
+.door:hover:not([disabled]){transform:translateY(-2px);box-shadow:0 10px 24px rgba(20,33,61,.10);border-color:var(--tc)}
+.door[disabled]{cursor:default;background:transparent;color:#5f6572;border-style:dashed}
+.door[disabled] .bar{opacity:.35}
+.door.seen{background:color-mix(in srgb,var(--tc) 8%,var(--color-surface))}
+.door.today{border:2px solid var(--tc);box-shadow:0 8px 22px rgba(20,33,61,.12)}
+.door.today .d::after{content:" 오늘";color:var(--tc);font-weight:700}
+.door.on{background:var(--tc);color:var(--color-text-inverse);border-color:var(--tc)}.door.on .d{color:rgba(255,255,255,.85)}
+.door .lk{width:16px;height:16px;align-self:flex-end;fill:none;stroke:currentColor;stroke-width:1.8;opacity:.6}
+.panel{margin:20px 0 0;padding:28px 24px;border-radius:var(--radius-xl);background:var(--color-primary);color:var(--color-background);box-shadow:0 18px 40px rgba(20,33,61,.18)}
+.panel[hidden]{display:none}
+.panel .pe{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--color-accent)}
+.panel h2{margin:8px 0 0;font-size:clamp(26px,4.6vw,34px);line-height:1.25;color:var(--color-text-inverse)}
+.panel .q{margin:16px 0 0;font-size:clamp(18px,2.6vw,21px);line-height:1.6;color:var(--color-text-inverse)}
+.panel .ql{margin:20px 0 0;font-size:13px;letter-spacing:.08em;color:rgba(246,241,231,.7)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0}
+.btns a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:var(--radius-pill);text-decoration:none;font-weight:700;font-size:15px}
+.btns .k{background:var(--color-accent);color:var(--color-primary)}.btns .e{border:1px solid rgba(246,241,231,.4);color:var(--color-text-inverse)}
+.note{margin:28px 0 0;font-size:14px;color:var(--color-text-secondary)}
+@media (prefers-reduced-motion:reduce){.door{transition:none}.door:hover:not([disabled]){transform:none}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap">
+<style id="hebron-ds">
+/* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
+:root{
+  /* Typography */
+  --font-korean:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-english:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  /* 교회 예외: 큰 제목용 명조 — 영문 Cormorant Garamond, 한글 고운바탕 */
+  --font-display:'Cormorant Garamond','Gowun Batang','Pretendard Variable',serif;
+  --text-display:clamp(40px,6vw,64px); --text-h1:clamp(32px,4.4vw,48px); --text-h2:clamp(26px,3.4vw,36px);
+  --text-h3:clamp(22px,2.6vw,28px); --text-h4:clamp(18px,2vw,22px);
+  --text-body-lg:18px; --text-body:16px; --text-body-sm:14px; --text-caption:12.5px;
+  --weight-regular:400; --weight-medium:500; --weight-semibold:600; --weight-bold:700; --weight-extrabold:800;
+  --leading-heading:1.25; --leading-body:1.7; --leading-ui:1.5; --leading-caption:1.5;
+  --tracking-display:-0.02em; --tracking-heading:-0.015em; --tracking-body:-0.005em; --tracking-ui:0;
+  /* Color — semantic (Church theme: heritage navy · warm gold · cream) */
+  --color-background:#F6F1E7; --color-background-secondary:#F1E6D3;
+  --color-surface:#ffffff; --color-surface-muted:#FBF8F2;
+  --color-text-primary:#1c1f26; --color-text-secondary:#4a4f5a; --color-text-muted:#7c8290;
+  --color-text-disabled:#a9aeb8; --color-text-inverse:#ffffff;
+  --color-border:#E3D9C6; --color-border-subtle:#EAE3D5; --color-border-strong:#D9C7A0;
+  --color-primary:#14213d; --color-primary-hover:#1f2f55; --color-primary-active:#0d1730; --color-primary-foreground:#ffffff;
+  --color-accent:#B8924A; --color-accent-hover:#8f6a2a; --color-accent-strong:#9A7130;
+  --color-accent-bright:#CDA65B; --color-accent-deep:#A67A2E; --color-accent-on-dark:#E9C77B;
+  --color-success:#12857c; --color-success-soft:#34c3b5; --color-warning:#B7791F;
+  --color-error:#b4532a; --color-info:#2c4d8a; --color-info-soft:#5b7fb5;
+  --color-focus:#2c77b0;
+  --color-scripture:var(--color-primary);
+  --color-brand-kakao:#FEE500; --color-brand-kakao-foreground:#3A1D1D;
+  /* Spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px;
+  --space-10:40px; --space-12:48px; --space-16:64px; --space-20:80px; --space-24:96px; --space-32:128px;
+  --space-xs:var(--space-1); --space-sm:var(--space-2); --space-md:var(--space-4); --space-lg:var(--space-6);
+  --space-xl:var(--space-8); --space-2xl:var(--space-12); --space-3xl:var(--space-16);
+  /* Radius */
+  --radius-sm:6px; --radius-md:10px; --radius-lg:14px; --radius-xl:20px; --radius-pill:9999px;
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(20,33,61,.06); --shadow-md:0 6px 18px rgba(40,30,10,.06); --shadow-lg:0 18px 40px rgba(20,33,61,.12);
+  /* Layout (breakpoints: sm 560 · md 760 · lg 900 — CSS 변수는 media query에 못 쓰므로 값으로 사용) */
+  --container-max:1200px; --container-reading:760px; --touch-target:44px;
+  /* Motion · Layers */
+  --transition-fast:.15s ease; --transition-base:.2s ease;
+  --z-header:50; --z-dropdown:60; --z-floating:1100; --z-modal:1200;
+}
+html,body{font-family:var(--font-sans)}
+body{font-weight:var(--weight-regular)}
+button,input,select,textarea,optgroup{font-family:inherit}
+code,pre,kbd,samp{font-family:var(--font-mono)}
+:focus-visible{outline:3px solid var(--color-focus)!important;outline-offset:2px!important}
+.host-acts a,.member .mct a,.bd-chip,.loc-go,.cb-acts button,.cb-more,.gm-x,.tm-i,.pgnav button,.d-settle,.ms-kakao,.dp-others a,.dp-hosp button{min-height:var(--touch-target)}
+.gm-x{min-width:var(--touch-target)}
+.lang,.psnav,.gc-send,.gc-x,.d-more{min-height:var(--touch-target)}
+.psnav,.gc-send,.gc-x{min-width:var(--touch-target)}
+.d-greet{display:inline-flex;align-items:center;min-height:var(--touch-target)}
+.tabs .tab{min-height:40px} /* 예외: 모바일 헤더 높이 — 문서화됨 */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<header class="top"><a href="/"><img src="/images/logo-mark.png" alt="" width="36" height="36"><span>시애틀지구촌교회</span></a><a class="back" href="/">홈으로</a></header>
+<main id="main">
+<section class="hero">
+<div class="eye">대림절 · ADVENT 2026</div>
+<h1>하루에 하나, 말씀의 문을 엽니다</h1>
+<p class="lead">대림절 첫째 주일(11월 29일)부터 성탄절까지 스물일곱 날입니다. 그날의 문을 열고, 말씀을 읽고, 질문 하나를 온 가족이 함께 나눠 보십시오.</p>
+<ul class="weeks" aria-label="주별 주제">
+<li><i style="background:var(--t-hope)"></i>첫째 주 · 소망</li><li><i style="background:var(--t-peace)"></i>둘째 주 · 평화</li>
+<li><i style="background:var(--t-joy)"></i>셋째 주 · 기쁨</li><li><i style="background:var(--t-love)"></i>넷째 주 · 사랑</li><li><i style="background:var(--t-xmas)"></i>성탄</li></ul>
+<p class="wait" id="wait" hidden></p>
+</section>
+<div class="grid" id="grid" role="list"></div>
+<section class="panel" id="panel" hidden aria-live="polite"></section>
+<p class="note">성경: 새번역(대한성서공회) · ESV(Crossway). 본문은 링크를 눌러 원문으로 읽으실 수 있습니다.</p>
+</main>
+<script>
+(function(){
+var DAYS=[["2026-11-29", "소망", "이사야 9:2", "ISA.9.2", "어둠 속에서 작은 빛을 본 순간이 있었나요?"], ["2026-11-30", "소망", "이사야 9:6-7", "ISA.9.6-7", "예수님을 부르는 이름 가운데 오늘 내 마음에 가장 와닿는 이름은 무엇인가요?"], ["2026-12-01", "소망", "예레미야 33:14-16", "JER.33.14-16", "하나님이 하신 약속 가운데 내가 기다리는 것은 무엇인가요?"], ["2026-12-02", "소망", "이사야 40:1-5", "ISA.40.1-5", "요즘 위로가 필요한 사람은 누구인가요? 오늘 한마디 건네 볼까요?"], ["2026-12-03", "소망", "이사야 40:28-31", "ISA.40.28-31", "지칠 때 나는 무엇으로 다시 힘을 얻나요?"], ["2026-12-04", "소망", "미가 5:2", "MIC.5.2", "작고 보잘것없어 보이는 곳에서 하나님이 일하신 것을 본 적이 있나요?"], ["2026-12-05", "소망", "이사야 11:1-5", "ISA.11.1-5", "잘린 그루터기에서 새싹이 나듯, 다시 시작하고 싶은 일이 있나요?"], ["2026-12-06", "평화", "이사야 2:2-4", "ISA.2.2-4", "내 손에 들린 칼을 보습으로 바꾼다면, 무엇을 내려놓고 싶나요?"], ["2026-12-07", "평화", "이사야 11:6-9", "ISA.11.6-9", "우리 집과 목장에서 함께 앉기 어려운 사이가 있다면, 오늘 무엇을 해 볼 수 있을까요?"], ["2026-12-08", "평화", "누가복음 1:26-38", "LUK.1.26-38", "마리아처럼 하나님의 말씀에 나를 맡기기 어려운 부분은 무엇인가요?"], ["2026-12-09", "평화", "누가복음 1:39-45", "LUK.1.39-45", "기쁜 소식을 가장 먼저 나누고 싶은 사람은 누구인가요?"], ["2026-12-10", "평화", "누가복음 1:46-55", "LUK.1.46-55", "올해 하나님이 내게 해 주신 큰일 하나를 적어 볼까요?"], ["2026-12-11", "평화", "누가복음 1:67-79", "LUK.1.67-79", "이번 주 내가 걷고 싶은 평화의 길은 어디인가요?"], ["2026-12-12", "평화", "말라기 3:1", "MAL.3.1", "예수님을 맞이하려고 내 마음에서 먼저 치우고 싶은 것은 무엇인가요?"], ["2026-12-13", "기쁨", "이사야 35:1-10", "ISA.35.1-10", "메마른 광야 같던 시간에 꽃이 핀 경험이 있나요?"], ["2026-12-14", "기쁨", "스바냐 3:14-17", "ZEP.3.14-17", "하나님이 나 때문에 기뻐하신다는 말을 들으면 어떤 마음이 드나요?"], ["2026-12-15", "기쁨", "마태복음 1:18-25", "MAT.1.18-25", "요셉처럼 조용히 순종해야 했던 때가 있었나요?"], ["2026-12-16", "기쁨", "이사야 7:14", "ISA.7.14", "하나님이 우리와 함께 계신다는 것을 오늘 언제 느꼈나요?"], ["2026-12-17", "기쁨", "시편 98:4-9", "PSA.98.4-9", "오늘 하나님께 드리고 싶은 노래는 무엇인가요? 함께 불러 볼까요?"], ["2026-12-18", "기쁨", "이사야 61:1-3", "ISA.61.1-3", "우리 이웃 가운데 기쁜 소식이 필요한 사람은 누구인가요?"], ["2026-12-19", "기쁨", "로마서 15:13", "ROM.15.13", "소망이 넘치는 사람은 어떤 얼굴일까요? 그 얼굴로 누구를 만나고 싶나요?"], ["2026-12-20", "사랑", "요한복음 3:16-17", "JHN.3.16-17", "내가 받은 하나님의 사랑을 한 문장으로 말해 볼까요?"], ["2026-12-21", "사랑", "요한일서 4:9-10", "1JN.4.9-10", "사랑을 먼저 받았던 기억 하나를 나눠 볼까요?"], ["2026-12-22", "사랑", "갈라디아서 4:4-7", "GAL.4.4-7", "하나님의 자녀라는 이름이 오늘 내게 어떤 힘이 되나요?"], ["2026-12-23", "사랑", "빌립보서 2:5-8", "PHP.2.5-8", "예수님처럼 낮아져서 섬길 수 있는 자리는 어디인가요?"], ["2026-12-24", "사랑", "누가복음 2:1-7", "LUK.2.1-7", "방이 없어 구유에 누이신 예수님 — 내 마음에 그분을 위한 자리는 넉넉한가요?"], ["2026-12-25", "성탄", "누가복음 2:8-14", "LUK.2.8-14", "성탄을 축하합니다. 오늘 누구에게 이 기쁜 소식을 전하고 싶나요?"]];
+var TC={'소망':'var(--t-hope)','평화':'var(--t-peace)','기쁨':'var(--t-joy)','사랑':'var(--t-love)','성탄':'var(--t-xmas)'};
+var preview=/[?&]preview=1\b/.test(location.search);
+function pad(n){return ('0'+n).slice(-2);}
+var now=new Date(), today=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+var seen={};try{seen=JSON.parse(localStorage.getItem('gmc-advent-seen')||'{}')||{};}catch(_){}
+function save(){try{localStorage.setItem('gmc-advent-seen',JSON.stringify(seen));}catch(_){}}
+function md(iso){var p=iso.split('-');return (+p[1])+'월 '+(+p[2])+'일';}
+function sd(iso){var p=iso.split('-');return (+p[1])+'.'+(+p[2]);}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+var grid=document.getElementById('grid'), panel=document.getElementById('panel'), cur=-1;
+var LOCK='<svg class="lk" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>';
+DAYS.forEach(function(d,i){
+  var open=preview||d[0]<=today, b=document.createElement('button');
+  b.type='button';b.className='door';b.setAttribute('role','listitem');b.style.setProperty('--tc',TC[d[1]]);
+  b.innerHTML='<span class="bar"></span><span class="n">'+(i+1)+'</span><span class="d">'+sd(d[0])+'</span>'+(open?'':LOCK);
+  if(!open){b.disabled=true;b.setAttribute('aria-label',md(d[0])+'에 열립니다');}
+  else{b.setAttribute('aria-label',(i+1)+'번째 문, '+md(d[0])+', '+d[1]);b.setAttribute('aria-controls','panel');b.setAttribute('aria-expanded','false');b.onclick=function(){show(i);};}
+  if(d[0]===today)b.classList.add('today');if(seen[d[0]])b.classList.add('seen');
+  grid.appendChild(b);
+});
+function show(i){
+  var d=DAYS[i], bs=grid.querySelectorAll('.door');
+  bs.forEach(function(x,k){x.classList.toggle('on',k===i);if(!x.disabled)x.setAttribute('aria-expanded',k===i?'true':'false');});
+  panel.style.background=TC[d[1]].indexOf('xmas')>-1?'var(--color-primary)':'';
+  panel.innerHTML='<div class="pe">'+(i+1)+'번째 문 · '+md(d[0])+' · '+esc(d[1])+'</div><h2>'+esc(d[2])+'</h2>'
+    +'<p class="ql">함께 나눌 질문</p><p class="q">'+esc(d[4])+'</p>'
+    +'<div class="btns"><a class="k" href="https://www.bible.com/ko/bible/142/'+d[3]+'.RNKSV" target="_blank" rel="noopener">새번역으로 읽기</a>'
+    +'<a class="e" href="https://www.bible.com/bible/59/'+d[3]+'.ESV" target="_blank" rel="noopener">ESV로 읽기</a></div>';
+  panel.hidden=false;seen[d[0]]=1;save();bs[i].classList.add('seen');cur=i;
+  if(panel.getBoundingClientRect().top>innerHeight*0.6)panel.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});
+}
+var w=document.getElementById('wait');
+if(!preview&&today<DAYS[0][0]){var days=Math.ceil((new Date(DAYS[0][0]+'T00:00:00')-new Date(today+'T00:00:00'))/864e5);w.innerHTML='<b>'+md(DAYS[0][0])+'</b>, 첫 문이 열립니다. 앞으로 '+days+'일 남았습니다.';w.hidden=false;}
+var ti=-1;DAYS.forEach(function(d,i){if(d[0]<=today||preview)ti=i;});if(preview)ti=DAYS.findIndex(function(d){return d[0]===today;});
+if(ti>=0&&(preview||DAYS[ti][0]===today))show(ti);
+})();
+</script>
+<script id="gmc-autoupdate">(function(){
+if(!('serviceWorker' in navigator)||!window.fetch)return;
+var V0=null,had=!!navigator.serviceWorker.controller,going=false;
+function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='search')return true;
+var f=document.querySelectorAll('textarea,input:not([type=hidden]):not([type=search]):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])');
+for(var i=0;i<f.length;i++){if(f[i].value&&f[i].value!==f[i].defaultValue)return true;}return false;}
+function reload(){if(going||busy())return;try{var t=+sessionStorage.getItem('gmc-au')||0;if(Date.now()-t<15000)return;sessionStorage.setItem('gmc-au',Date.now());}catch(_){}
+going=true;location.reload();}
+navigator.serviceWorker.addEventListener('controllerchange',function(){if(had)reload();had=true;});
+function upd(){return navigator.serviceWorker.getRegistration().then(function(g){if(g)return g.update();}).catch(function(){});}
+function check(){fetch('/version.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(j){
+if(!j||!j.v)return;if(V0===null){V0=j.v;return;}
+if(j.v!==V0){V0=j.v;upd().then(function(){setTimeout(reload,4000);});}}).catch(function(){});}
+function start(){navigator.serviceWorker.register('/sw.js',{updateViaCache:'none'}).then(function(g){g.update();}).catch(function(){});check();}
+if(document.readyState==='complete')start();else window.addEventListener('load',start);
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')check();});
+window.addEventListener('pageshow',function(e){if(e.persisted)check();});
+setInterval(function(){if(document.visibilityState==='visible')check();},20*60*1000);
+})();</script>
+</body>
+</html>
