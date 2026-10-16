@@ -65,6 +65,7 @@ details.sec>summary::before{content:"▸";color:var(--gold);transition:transform
 <style id="gb-att-css">.gb-att summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;list-style:none}.gb-att summary::-webkit-details-marker{display:none}.gb-att summary::after{content:"";width:8px;height:8px;margin-left:auto;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform .2s}.gb-att details[open] summary::after{transform:rotate(-135deg)}.gb-att summary:focus-visible{outline:3px solid #2c77b0;outline-offset:2px}.gb-att .gb-chips{margin-top:6px}@media (prefers-reduced-motion:reduce){.gb-att summary::after{transition:none}}</style>
 <style id="flow2-css">.flow{background:#14213d;border:0;border-radius:16px;padding:16px 16px 14px;box-shadow:0 10px 28px rgba(20,33,61,.18)}.flow .flow-h{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:0 0 14px;color:#E9D4A8;font-size:14px;font-weight:800;letter-spacing:.08em}.flow .flow-h::before{content:"";width:24px;height:2px;border-radius:2px;background:#B8924A}.flow .flow-h span{color:#F6F1E7;letter-spacing:0;font-weight:500;font-size:13px;opacity:.9}.flow ol{gap:14px}.fs{background:var(--panel);border:2px solid transparent;border-radius:12px;padding:14px 14px 12px}.fs .fn{position:relative;width:38px;height:38px;font-size:18px;border:2px solid #14213d;color:#14213d;background:#F6F1E7}.fs .ft b{font-size:16px}@media(min-width:1101px){.fs:not(:last-child)::after{content:"";position:absolute;right:-12px;top:30px;width:9px;height:9px;border-top:3px solid #B8924A;border-right:3px solid #B8924A;transform:rotate(45deg);z-index:1}}.fs.now{border-color:#B8924A;box-shadow:0 0 0 4px rgba(184,146,74,.28)}.fs.now .fn{background:#B8924A;border-color:#B8924A;color:#14213d}.fs.now::before,.fs.done::before{position:absolute;top:-11px;right:12px;padding:1px 10px;border-radius:9999px;font-size:12px;font-weight:800;line-height:20px}.fs.now::before{content:"지금 할 차례";background:#B8924A;color:#14213d}.fs.done::before{content:"완료";background:#2f6b45;color:#fff}.fs.done{border-color:transparent}.fs.done .fn{background:#2f6b45;border-color:#2f6b45;color:transparent}.fs.done .fn::after{content:"";position:absolute;left:12px;top:6px;width:8px;height:15px;border-right:3px solid #fff;border-bottom:3px solid #fff;transform:rotate(45deg)}.fs .btn{font-weight:800}#fs3 .btn{background:#F6F1E7;border:2px solid #14213d;color:#14213d}#fs3 .btn:hover{background:#efe5d0}#fs4 .btn{background:#B8924A;border:2px solid #B8924A;color:#14213d}#fs4 .btn:hover{background:#c9a35c}.flow-now{margin-top:14px;padding:8px 12px;border-radius:10px;background:rgba(246,241,231,.08)}#flowNow{color:#F6F1E7}#flowNow b{color:#fff}#flowNow .draft{color:#E9D4A8}#flowNow .live{color:#a8dcb9}#flowNow .dirty{color:#ffb9ad}.flow-sub .btn{background:transparent;color:#F6F1E7;border-color:rgba(246,241,231,.4)}.flow-sub .btn:hover{border-color:#E9D4A8}.flow .btn:focus-visible{outline:3px solid #E9D4A8;outline-offset:2px}</style>
 <style id="ls-css">.ctl{align-items:center}.ctl select.pos{height:30px;width:58px;padding:0 4px;border:1.5px solid var(--gold);border-radius:6px;background:var(--panel);color:var(--navy);font-weight:800;font-size:13px;cursor:pointer}.ctl select.pos:focus-visible{outline:2px solid var(--focus);outline-offset:1px}.row-help{margin:0;padding:8px 12px;border-radius:10px;background:var(--panel);border:1px solid var(--line);font-size:13px}.row-help b{color:var(--navy)}.ctl .hidb{width:auto;min-width:52px;padding:0 8px;font-size:12.5px;font-weight:700;color:var(--navy)}.ctl .hidb.on{background:var(--navy);border-color:var(--navy);color:var(--panel)}.row.hid>input,.row.hid>textarea{opacity:.45;text-decoration:line-through;border-style:dashed}@media(max-width:620px){.row,.row.two{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}.row>input[data-f="p"]{grid-column:1/-1}.row>.ctl,.row.two>.ctl,.row.one>.ctl{grid-column:1/-1;justify-content:flex-end}.row.one{grid-template-columns:minmax(0,1fr)}}</style>
+<style id="as-css">.pc{margin:0;padding-left:1.2em;display:grid;gap:10px;font-size:15px;line-height:1.55}.pc .btn{margin-left:4px;min-height:36px}.pc-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.pc-acts .btn{min-height:44px}.newsave{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:0 0 14px;padding:10px 12px;border-radius:10px;background:#B8924A;color:#14213d;font-weight:700;font-size:14px;line-height:1.5}.newsave[hidden]{display:none}.newsave span{flex:1 1 260px}.newsave .btn{min-height:40px;background:#14213d;border-color:#14213d;color:#fff}.newsave .ns-x{background:transparent;color:#14213d;border-color:rgba(20,33,61,.4)}</style>
 </head><body>
 
 <header class="top">
@@ -669,6 +670,88 @@ document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closes
     const rows=S.secs['예배']||[], ls=rows.filter(x=>LS_RX.test(x.l||'')&&!x.h); if(ls.length){ ls.forEach(x=>{ x.h=1; }); lsRerender();
       status(fmtKo(S.date)+' 주보를 시작했습니다. 지난주 주의 만찬 줄은 그 자리에 가려 두었습니다. 이번 주에 하면 그 줄의 \'보이기\'를 누르세요.','ok'); } }; }
 /* /주의 만찬 */
+/* 주보 도우미 (2026-10-16) */
+const COL_FOLDER='1gc6QSSoAxbvy_F7rHn1PmENkobJaxXOL';
+let COL_CACHE=null;
+function colShort(t){ return String(t||'').replace(/\s*[\[(（]?\s*목회\s*칼럼\s*[\])）]?\s*$/,'').replace(/^[“"]|[”"]$/g,'').trim(); }
+async function colTitle(iso){ try{
+  if(!COL_CACHE){ const r=await fetch(API+'?q='+encodeURIComponent("'"+COL_FOLDER+"' in parents and trashed=false")+'&fields='+encodeURIComponent('files(id,name,mimeType)')+'&pageSize=300&supportsAllDrives=true&includeItemsFromAllDrives=true&key='+KEY,{cache:'no-store'}); COL_CACHE=r.ok?((await r.json()).files||[]):[]; }
+  const key=iso2key(iso); let best=null;
+  COL_CACHE.forEach(f=>{ const n=String(f.name||'').trim(); if(/^image\//i.test(f.mimeType||'')||/^이전판/.test(n)) return;
+    const m=n.match(/^(\d{6})[_\s-]+(.+?)(?:\.(?:pdf|docx?|txt|md))?$/i); if(!m||m[1]!==key) return;
+    const sc=f.mimeType==='application/vnd.google-apps.document'?2:1; if(!best||sc>best.s) best={s:sc,t:colShort(m[2])}; });
+  return best?best.t:'';
+}catch(e){ return ''; } }
+function colRow(){ const rows=(S.secs['칼럼']=S.secs['칼럼']||[]); let r=rows.find(x=>/제목/.test(x.l||'')); if(!r){ r={l:'제목',v:'',p:''}; rows.unshift(r); } return r; }
+async function colFill(force){ if(!S.date) return ''; const t=await colTitle(S.date); if(!t) return ''; const r=colRow();
+  if((force||!(r.v||'').trim())&&r.v!==t){ r.v=t; S.dirty=1; lsRerender(); return t; } return ''; }
+function mdIso(md,base){ const m=String(md).match(/^(\d{1,2})\/(\d{1,2})$/); if(!m||!base) return ''; const b=new Date(base+'T12:00:00'); let y=b.getFullYear(); const mo=+m[1], bm=b.getMonth()+1;
+  if(bm===12&&mo===1) y++; else if(bm===1&&mo===12) y--; return y+'-'+String(mo).padStart(2,'0')+'-'+String(+m[2]).padStart(2,'0'); }
+function isSun(iso){ const d=new Date(iso+'T12:00:00'); return !isNaN(d)&&d.getDay()===0&&d.getDate()===+iso.slice(8,10); }
+function rollDates(){ let n=0; const d=S.date;
+  (S.secs['봉사']||[]).forEach(r=>{ const parts=String(r.v||'').split(/\s*·\s*/); const keep=parts.filter(p=>{ const m=p.match(/^(\d{1,2}\/\d{1,2})(?!\d)/); if(!m) return true; const iso=mdIso(m[1],d); if(iso&&iso<d){ n++; return false; } return true; }); r.v=keep.join(' · '); });
+  if(S.secs['친교']) S.secs['친교']=S.secs['친교'].filter(r=>{ const m=String(r.l||'').match(/^(\d{1,2}\/\d{1,2})$/); if(!m) return true; const iso=mdIso(m[1],d); if(iso&&iso<d){ n++; return false; } return true; });
+  return n; }
+/* 3) 다음 주일 시작 때 정리 */
+{ const _nx3=$('#bNext').onclick; $('#bNext').onclick=()=>{ const d0=S.date; _nx3(); if(S.date===d0) return;
+    const n=rollDates(); COL_CACHE=null; lsRerender();
+    colFill(true).then(t=>{ const ls=(typeof LS_RX!=='undefined')&&(S.secs['예배']||[]).some(x=>LS_RX.test(x.l||'')&&x.h);
+      status(fmtKo(S.date)+' 주보를 시작했습니다. '+(n?'지난 날짜의 봉사·친교 '+n+'개를 뺐습니다(새 주 순서는 뒤에 더해 주세요). ':'')
+        +(t?'성수생각 제목을 이번 주 칼럼 \''+t+'\'(으)로 채웠습니다. ':'이번 주 칼럼이 아직 칼럼 폴더에 없어 성수생각 제목은 비워 두었습니다. ')
+        +(ls?'주의 만찬 줄은 가려 두었습니다. ':'')+'잘못 눌렀으면 되돌리기를 누르세요.','ok'); }); }; }
+{ const _so2=syncOnOpen; syncOnOpen=async function(){ await _so2(); const t=await colFill(false); if(t) status('성수생각 제목을 칼럼 폴더에서 \''+t+'\'(으)로 채웠습니다. 3번 저장을 누르세요.','ok'); };
+  const _ll2=loadLatest; loadLatest=async function(i){ const r=await _ll2(i); if(r){ const t=await colFill(false); if(t) status('성수생각 제목을 칼럼 폴더에서 \''+t+'\'(으)로 채웠습니다. 3번 저장을 누르세요.','ok'); } return r; }; }
+/* 1) 올리기 전 점검 */
+async function preCheck(){ const L=[]; if(!S.date) return L;
+  if(!isSun(S.date)) L.push({t:'주일 날짜가 주일이 아닙니다: '+fmtKo(S.date)});
+  const vis=(S.secs['예배']||[]).filter(r=>!r.h), g=rx=>{ const r=vis.find(x=>rx.test(x.l||'')); return r?(r.v||'').trim():null; };
+  const title=g(/말씀|Message/i), ref=g(/성경|Scripture/i), hy=g(/헌신과\s*결단|Commitment|끝\s*찬송/i);
+  if(!title) L.push({t:'설교 제목(말씀)이 비어 있습니다.'});
+  if(!ref) L.push({t:'성경 본문(성경합독)이 비어 있습니다.'});
+  if(hy!==null&&!/\d+\s*장/.test(hy)) L.push({t:'끝 찬송(헌신과 결단)에 찬송 번호가 없습니다. 예: (찬 455장) — 번호가 있어야 예배 탭에 영상이 연결됩니다.'});
+  let pv=null; try{ const p=new Date(S.date+'T12:00:00'); p.setDate(p.getDate()-7); const rd=await remoteDoc(iso2key(p.toISOString().slice(0,10))+'_교회소식'); pv=rd&&rd.st; }catch(e){}
+  const pg=(k,rx)=>{ const r=((pv&&pv.secs[k])||[]).find(x=>rx.test(x.l||'')); return r?(r.v||'').trim():''; };
+  if(pv&&title&&title===pg('예배',/말씀|Message/i)) L.push({t:'설교 제목이 지난주와 같습니다: "'+title+'"'});
+  const cr=(S.secs['칼럼']||[]).find(x=>/제목/.test(x.l||'')), ct=cr?(cr.v||'').trim():'';
+  COL_CACHE=null; const want=await colTitle(S.date);
+  if(want&&ct!==want) L.push({t:'성수생각 제목이 이번 주 칼럼과 다릅니다. 주보: "'+(ct||'비어 있음')+'" · 칼럼 폴더: "'+want+'"',fix:'col',want});
+  else if(!want&&pv&&ct&&ct===pg('칼럼',/제목/)) L.push({t:'성수생각 제목이 지난주와 같습니다: "'+ct+'"'});
+  const bad=[], chk=(name,md)=>{ const iso=mdIso(md,S.date); if(!iso) return; if(!isSun(iso)) bad.push(name+' '+md+'(주일 아님)'); else if(iso<S.date) bad.push(name+' '+md+'(지난 날짜)'); };
+  (S.secs['봉사']||[]).filter(r=>!r.h).forEach(r=>String(r.v||'').split(/\s*·\s*/).forEach(p=>{ const m=p.match(/^(\d{1,2}\/\d{1,2})(?!\d)/); if(m) chk((r.l||'봉사').trim(),m[1]); }));
+  (S.secs['친교']||[]).filter(r=>!r.h).forEach(r=>{ const m=String(r.l||'').match(/^(\d{1,2}\/\d{1,2})$/); if(m) chk('친교',m[1]); });
+  if(bad.length) L.push({t:'봉사·친교 날짜를 확인해 주세요: '+bad.join(', ')});
+  return L; }
+function checkDlg(L){ return new Promise(res=>{ const box=$('#steps'); $('#dlgH').textContent='올리기 전에 확인해 주세요';
+  box.innerHTML='<li style="list-style:none;margin-left:-1.4em"><ul class="pc">'+L.map((x,i)=>'<li>'+esc(x.t)+(x.fix==='col'?' <button class="btn sm" type="button" data-fix="'+i+'">칼럼 제목으로 바꾸기</button>':'')+'</li>').join('')+'</ul>'
+    +'<div class="pc-acts"><button class="btn pri" type="button" id="pcBack">돌아가서 고치기 (추천)</button><button class="btn" type="button" id="pcGo">그대로 올리기</button></div></li>';
+  $('#dlgCopy').hidden=true; $('.dlg-foot').hidden=true; $('#dlg').hidden=false; $('#pcBack').focus();
+  const done=v=>{ $('#dlg').hidden=true; $('#dlgH').textContent='홈페이지에 올리기'; $('#dlgCopy').hidden=false; $('.dlg-foot').hidden=false; $('#dlgClose').onclick=closeDefault; res(v); };
+  box.querySelectorAll('[data-fix]').forEach(b=>b.onclick=()=>{ const x=L[+b.dataset.fix]; colRow().v=x.want; S.dirty=1; lsRerender(); b.textContent='바꿨습니다'; b.disabled=true; });
+  $('#pcBack').onclick=()=>done('back'); $('#pcGo').onclick=()=>done('go'); $('#dlgClose').onclick=()=>done('back'); }); }
+{ const _sv=$('#bSave').onclick; $('#bSave').onclick=async()=>{ if(!S.date) return _sv();
+    status('올리기 전에 빠진 곳이 없는지 확인하는 중…'); let L=[]; try{ L=await preCheck(); }catch(e){}
+    if(L.length){ const c=await checkDlg(L); if(c!=='go'){ status('고친 뒤 4번을 다시 누르세요. 중간에 3번 저장을 눌러 두셔도 됩니다.','ok'); return; } }
+    status(''); return _sv(); }; }
+/* 2) 닫기 전 경고 + 새 저장 알림 */
+window.addEventListener('beforeunload',e=>{ if(S&&S.dirty){ e.preventDefault(); e.returnValue=''; } });
+let NS_LAST='';
+function showNew(msg,rd){ let el=$('#newSave'); const f=document.querySelector('.flow'); if(!f) return;
+  if(!el){ el=document.createElement('div'); el.id='newSave'; el.className='newsave'; el.setAttribute('role','status'); f.insertBefore(el,f.querySelector('ol')); }
+  const dirty=!!S.dirty;
+  el.innerHTML='<span>'+msg+(dirty?' 이 화면에서 고친 내용은 아직 저장하지 않았습니다.':'')+'</span><button class="btn" type="button" id="nsLoad">최신본 불러오기</button><button class="btn ns-x" type="button" id="nsX">닫기</button>';
+  el.hidden=false;
+  $('#nsLoad').onclick=()=>{ el.hidden=true; useRemote(rd,'최신 저장본을 불러왔습니다.'+(dirty?' 방금 화면은 되돌리기로 돌아갈 수 있습니다.':'')); };
+  $('#nsX').onclick=()=>{ el.hidden=true; }; }
+async function pollNew(){ if(document.hidden||!S.date||!$('#dlg').hidden) return;
+  try{ const files=(await listFolder()).filter(isNews).sort((a,c)=>sortKey(c.name).localeCompare(sortKey(a.name))); if(!files.length) return;
+    const mine=iso2key(S.date)+'_교회소식', top=files[0];
+    if(files.some(f=>f.name===mine)){ const rd=await remoteDoc(mine), b=(rd&&rd.st.base)||'';
+      if(b&&b!==(S.base||'')&&b!==NS_LAST){ NS_LAST=b; const who=b.split(' · ').pop(), when=b.split(' (시애틀)')[0]; showNew(esc(who)+'님이 '+esc(when)+'에 이 주보를 새로 저장했습니다.',rd); } }
+    else if(top&&sortKey(top.name)>sortKey(mine)&&top.name!==NS_LAST){ NS_LAST=top.name; const rd=await remoteDoc(top.name); if(rd) showNew('다른 분이 '+esc(fmtKo(key2iso(top.name.slice(0,6))))+' 주보를 먼저 시작했습니다.',rd); }
+  }catch(e){} }
+setInterval(pollNew,60000);
+document.addEventListener('visibilitychange',()=>{ if(!document.hidden) pollNew(); });
+/* /주보 도우미 */
 /* ---------- 시작 ---------- */
 document.getElementById('gbcss').textContent=GB_CSS;
 const SAMPLE="※ 시애틀지구촌교회 웹 주보 · 2026년 10월 11일\n※ [대괄호] 줄은 칸 제목입니다. \"항목: 내용 | 담당\" 형식으로 쓰고, 필요 없는 줄은 지우세요. 빈 줄과 ※ 줄은 홈페이지에 나오지 않습니다.\n\n[주보]\n권호: Vol. 24 No.40\n표어: 평신도 사역자를 세우는 교회\n표어: 차세대 사역자를 세우는 교회\n\n[처음]\n예배 시간: 매주 주일 오후 1:30\n장소: 12918 35th Ave SE, Everett, WA 98208\n자녀 예배: 어린이·청소년 예배가 같은 시간에 따로 있습니다.\n헌금: 처음 오신 분은 헌금의 의무가 없습니다. 편안한 마음으로 예배하세요.\n성경: 쉽게 이해되는 우리말 \"새번역\" 성경을 씁니다.\n예배 후: 새교우실에서 김성수 목사님과 인사 나누세요.\n\n[환영]\n오늘 저희 교회에 처음 오신 분을 진심으로 환영하고 축하합니다. 예배 후에 새교우실에서 담임목사를 만나고 가시기 바랍니다.\n\n[소식]\n감사: 베들레햄 침례교회 이모세 목사님과 사모님께 감사드립니다.\n경청 21: 10월 30일(금)까지(주일 제외) — 기도제목: \"새 장소에서 새 일을 보게 하소서\"\n예배시간: 주일연합예배는 오후 1:30입니다.\n홈페이지 활용: 다음 주일예배, 목회칼럼, 목장 나눔지 등을 잘 활용 바랍니다.\n\n[예배]\n시간: 오후 1:30\n공동체 시간 (Community Hour): 환영 및 소식 | 인도자\n*경배와 찬양 (Praise & Worship): 그 날이 도적같이 / 내 갈급함 / 그 사랑 얼마나 | 지구촌 찬양팀\n봉헌 (Offering): 감사한 마음으로 (예배 전 입구 헌금함 또는 온라인) | 다같이\n대표기도 (Representative Prayer): 박성건 목자\n*성경합독 (Scripture Reading): 사도행전 18:18-28 | 다같이\n말씀 (Message): 평신도 부부가 교수를 가르치다 | 김성수 목사\n*헌신과 결단 (Commitment): 주님의 마음을 본받는 자 (찬 455장) | 다같이\n*축도 (Benediction): 하나님의 복을 비는 기도 | 인도자\n\n[칼럼]\n제목: 하나님의 은혜는 어떻게 찾아오는가?\n\n[봉사]\n기도: 10/11 박성건 · 10/18 이인규 · 10/25 박보라\n봉헌: 10/11 박소연 · 10/18 장희주 · 10/25 홍진희\n\n[친교]\n10/11: 인도네시아 목장\n10/18: 멕시코 목장\n10/25: 이스라엘 목장 1\n\n[출석]\n2부: 10\n목장: 5\n유초등부: 4\nYouth: 2\n토요새벽: 3\n총인원: 24\n\n[헌신]\n2026년 영접: 0\n확인: 0\n침례: 0\n분가: 0\n\n[헌금]\n오늘 교회에 처음 나오신 분은 헌금의 의무가 없습니다. 편안한 마음으로 예배에 참여하시기 바랍니다.\n\n[안내]\n한어부 (Korean): 오후 1:30\n어린이 (Children): 오후 1:30\n청소년 (Youth): 오후 1:30\n영어부 (English): 오후 1:30\n토요새벽기도회: 오전 6:00\n주간기도: 가정, 직장에서 | HebronAltar.com\n\n[사역자]\n담임목사: 김성수 | Sung Soo Kim, Lead Pastor\n청소년 목사: Garrett Woods | Youth Pastor\n어린이 사역: 김지영 | Joy Kim, Children Ministry Director\n\n[교회]\n이름: 시애틀지구촌교회\n영문: Global Mission Church of Greater Seattle\n주소: 12918 35th Ave SE, Everett, WA 98208\n웹: www.ijiguchon.org\n";
