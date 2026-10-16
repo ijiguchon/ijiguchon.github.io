@@ -157,8 +157,8 @@ DAYS.forEach(function(d,i){
   var open=preview||d[0]<=today, b=document.createElement('button');
   b.type='button';b.className='door';b.style.setProperty('--tc',TC[d[1]]);
   b.innerHTML='<span class="bar"></span><span class="n">'+(i+1)+'</span><span class="d">'+sd(d[0])+'</span>'+(open?'':LOCK);
-  if(!open){b.disabled=true;b.setAttribute('aria-label',md(d[0])+'에 열립니다');}
-  else{b.setAttribute('aria-label',(i+1)+'번째 문, '+md(d[0])+', '+d[1]);b.setAttribute('aria-controls','panel');b.setAttribute('aria-expanded','false');b.onclick=function(){show(i);};}
+  if(!open){b.disabled=true;b.setAttribute('aria-label',(i+1)+' '+sd(d[0])+' · '+md(d[0])+'에 열립니다');}
+  else{b.setAttribute('aria-label',(i+1)+' '+sd(d[0])+' · '+d[1]+' · '+md(d[0]));b.setAttribute('aria-controls','panel');b.setAttribute('aria-expanded','false');b.onclick=function(){show(i);};}
   if(d[0]===today)b.classList.add('today');if(seen[d[0]])b.classList.add('seen');
   grid.appendChild(b);
 });

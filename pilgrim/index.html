@@ -1685,5 +1685,38 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 window.addEventListener('pageshow',function(e){if(e.persisted)check();});
 setInterval(function(){if(document.visibilityState==='visible')check();},20*60*1000);
 })();</script>
+<!-- tts --><style id="tts-css">
+.tts-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin:14px 0 4px;padding:0 18px;border-radius:9999px;border:1px solid #E3D9C6;background:#fff;
+font:inherit;font-size:15px;font-weight:700;color:var(--color-primary,#14213d);cursor:pointer}
+.tts-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.tts-btn[aria-pressed="true"]{background:var(--color-primary,#14213d);color:#fff;border-color:var(--color-primary,#14213d)}
+.tts-btn:focus-visible{outline:3px solid var(--color-focus,#2c77b0);outline-offset:3px}
+</style>
+<script id="tts-js">(function(){
+if(!('speechSynthesis' in window)||!window.SpeechSynthesisUtterance)return;
+var S=window.speechSynthesis,cur=null;
+var ICON_PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11"/></svg>';
+var ICON_STOP='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/></svg>';
+function en(){return document.documentElement.classList.contains('lang-en');}
+function label(b,on){b.setAttribute('aria-pressed',on?'true':'false');b.innerHTML=(on?ICON_STOP:ICON_PLAY)+'<span>'+(on?(en()?'Stop':'멈추기'):(en()?'Listen':'소리로 듣기'))+'</span>';}
+function stop(){S.cancel();if(cur){label(cur,false);cur=null;}}
+function chunks(t){var out=[],buf='';String(t).replace(/\s+/g,' ').split(/(?<=[.!?。…”"])\s+/).forEach(function(s){if((buf+' '+s).length>180){if(buf)out.push(buf);buf=s;}else buf=buf?buf+' '+s:s;});if(buf)out.push(buf);return out;}
+function speak(b,getText){if(cur===b){stop();return;}stop();var parts=[];getText().forEach(function(t){parts=parts.concat(chunks(t));});if(!parts.length)return;
+ cur=b;label(b,true);var lang=en()?'en-US':'ko-KR',v=(S.getVoices()||[]).filter(function(x){return x.lang&&x.lang.indexOf(lang.slice(0,2))===0;})[0];
+ parts.forEach(function(p,i){var u=new SpeechSynthesisUtterance(p);u.lang=lang;if(v)u.voice=v;u.rate=.95;if(i===parts.length-1)u.onend=function(){if(cur===b){label(b,false);cur=null;}};S.speak(u);});}
+function make(getText){var b=document.createElement('button');b.type='button';b.className='tts-btn';label(b,false);b.addEventListener('click',function(){speak(b,getText);});return b;}
+function txt(e){var c=e.cloneNode(true);c.querySelectorAll((en()?'.ko':'.en,.pg-esv,[lang=en],cite.en')).forEach(function(x){x.remove();});return c.textContent.replace(/\s+/g,' ').trim();}
+window.addEventListener('pagehide',stop);document.addEventListener('visibilitychange',function(){if(document.hidden)stop();});
+/* 성수생각 */
+var R=document.getElementById('cbRead');
+if(R){var arm=function(){var by=R.querySelector('.cb-by'),body=R.querySelectorAll('.cb-body p');if(!by||!body.length||R.querySelector('.tts-btn'))return;stop();
+ by.insertAdjacentElement('afterend',make(function(){var h=R.querySelector('.cb-h'),a=[h?h.textContent:''];R.querySelectorAll('.cb-body p').forEach(function(p){a.push(p.textContent);});return a;}));};
+ new MutationObserver(function(){if(!R.querySelector('.tts-btn'))stop();arm();}).observe(R,{childList:true,subtree:true});arm();}
+/* 순례길 */
+var PG=document.querySelector('.pg');
+if(PG){var lead=document.querySelector('.wrap > .sec-lead')||document.querySelector('h1.sec-title');
+ if(lead)lead.insertAdjacentElement('afterend',make(function(){var a=[],h=document.querySelector('h1.sec-title');if(h)a.push(txt(h));
+  PG.querySelectorAll('.pg-core,.pg-step,.pg-qs,.pg-sum').forEach(function(sec){sec.querySelectorAll('h2,h3,h4,p,blockquote,li').forEach(function(e){if(e.closest('.pg-esv,.pg-also,.pg-song,.pg-cta,.pg-src')||e.classList.contains('pg-esv')||e.classList.contains('pg-also'))return;if(e.parentElement&&e.parentElement.closest('blockquote,p,li')&&e.tagName!=='BLOCKQUOTE')return;var t=txt(e);if(t)a.push(t);});});return a;}));}
+})();</script><!-- /tts -->
 </body>
 </html>
