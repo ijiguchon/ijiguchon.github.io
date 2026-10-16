@@ -1427,10 +1427,45 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
   /* ── 칼럼 폴더의 Google 문서 · .txt · .md 를 본문으로 읽는다 (gmcDocText) ──
      목사님이 드라이브 칼럼 폴더에 "MMDDYY_제목" 이름으로 Google 문서를 만들어 글을 쓰면
      PDF 없이도 이 페이지에서 바로 글(HTML)로 읽힌다. 문단 = 문서의 줄 하나. */
+/* gmcDocx */
+  function isDocx(f){ return /\.docx$/i.test(String((f&&f.name)||'')) || String((f&&f.mimeType)||'')==='application/vnd.openxmlformats-officedocument.wordprocessingml.document'; }
+  var zipP=null;
+  function loadZip(){ if(window.JSZip) return Promise.resolve(window.JSZip); if(zipP) return zipP;
+    zipP=new Promise(function(ok,no){ var s=document.createElement('script'); s.src='https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js'; s.onload=function(){ ok(window.JSZip); }; s.onerror=no; document.head.appendChild(s); }); return zipP; }
+  function docxLines(buf){
+    var W='http://schemas.openxmlformats.org/wordprocessingml/2006/main', R='http://schemas.openxmlformats.org/officeDocument/2006/relationships';
+    return loadZip().then(function(JSZip){ return JSZip.loadAsync(buf); }).then(function(z){
+      var df=z.file('word/document.xml'); if(!df) return '';
+      var rf=z.file('word/_rels/document.xml.rels');
+      return Promise.all([df.async('string'), rf?rf.async('string'):Promise.resolve('')]).then(function(a){
+        var P=new DOMParser(), doc=P.parseFromString(a[0],'application/xml'), rels={};
+        if(a[1]){ var rd=P.parseFromString(a[1],'application/xml'), rs=rd.getElementsByTagName('Relationship'); for(var i=0;i<rs.length;i++) rels[rs[i].getAttribute('Id')]=rs[i].getAttribute('Target'); }
+        var urls={}, jobs=[];
+        function img(id){ var t=rels[id]; if(!t) return null; var p=t.replace(/^\/+/,''); p=/^word\//.test(p)?p:'word/'+p.replace(/^\.\//,'');
+          if(!urls[p]){ var zf=z.file(p); if(!zf) return null; urls[p]={u:null}; jobs.push(zf.async('blob').then(function(b){ urls[p].u=URL.createObjectURL(b); })); }
+          return urls[p]; }
+        var out=[], ps=doc.getElementsByTagNameNS(W,'p');
+        for(var i=0;i<ps.length;i++){
+          var p=ps[i], st=p.getElementsByTagNameNS(W,'pStyle')[0], sv=st?(st.getAttributeNS(W,'val')||st.getAttribute('w:val')||''):'';
+          if(/caption|캡션/i.test(sv)) continue;
+          var txt='', all=p.getElementsByTagName('*');
+          for(var k=0;k<all.length;k++){ var e=all[k], ln=e.localName;
+            if(ln==='t'&&e.namespaceURI===W) txt+=e.textContent;
+            else if((ln==='tab'||ln==='br')&&e.namespaceURI===W) txt+=' ';
+            else if(ln==='blip'||ln==='imagedata'){ var id=e.getAttributeNS(R,'embed')||e.getAttributeNS(R,'id')||e.getAttribute('r:embed')||e.getAttribute('r:id'); var o=id&&img(id);
+              if(o){ if(txt.trim()){ out.push({t:txt}); txt=''; } out.push({o:o}); } } }
+          if(txt.trim()) out.push({t:txt});
+        }
+        return Promise.all(jobs).then(function(){ return out.map(function(x){ return x.o?(x.o.u?'[사진 '+x.o.u+']':''):x.t.replace(/\s+/g,' ').trim(); }).filter(Boolean).join('\n'); });
+      });
+    });
+  }
+  function docxText(f){ return fetch('https://www.googleapis.com/drive/v3/files/'+f.id+'?alt=media&key='+GDRIVE_API_KEY).then(function(r){ return r.ok?r.arrayBuffer():null; }).then(function(b){ return b?docxLines(b):null; }); }
+  window.__gmcDocxLines=docxLines;
   function isDocText(f){
     var n=String((f&&f.name)||''), mt=String((f&&f.mimeType)||'');
     if(!/^\s*\d{6}/.test(n)) return false;
-    return mt==='application/vnd.google-apps.document' || /\.(txt|md)$/i.test(n) || mt==='text/plain' || mt==='text/markdown';
+    return mt==='application/vnd.google-apps.document' || /\.(txt|md|docx)$/i.test(n) || mt==='text/plain' || mt==='text/markdown' || mt==='application/vnd.openxmlformats-officedocument.wordprocessingml.document';
   }
   function docTextUrl(f){
     return f.mimeType==='application/vnd.google-apps.document'
@@ -1439,7 +1474,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
   }
   function parseDocText(f,text){
     var m=String(f.name||'').match(/^\s*(\d{2})(\d{2})(\d{2})[_\s.\-]*(.*)$/); if(!m) return null;
-    var iso='20'+m[3]+'-'+m[1]+'-'+m[2], title=m[4].replace(/\.(txt|md)$/i,'').replace(/_+/g,' ').trim();
+    var iso='20'+m[3]+'-'+m[1]+'-'+m[2], title=m[4].replace(/\.(txt|md|docx)$/i,'').replace(/_+/g,' ').trim();
     var lines=String(text||'').replace(/^\ufeff/,'').replace(/\r\n?/g,'\n').split('\n');
     var paras=[], figs={};   /* figs[i] = i번째 문단 앞에 넣을 사진 번호 (gmcDocPhotos) */
     lines.forEach(function(ln){
@@ -1594,7 +1629,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
     try{
       var tx=(files||[]).filter(isDocText);
       var got2=await Promise.all(tx.map(function(f){
-        return fetch(docTextUrl(f)).then(function(rr){ return rr.ok?rr.text():null; })
+        return (isDocx(f)?docxText(f):fetch(docTextUrl(f)).then(function(rr){ return rr.ok?rr.text():null; }))
           .then(function(t){ var d=t==null?null:parseDocText(f,t); if(d) d.gdoc=(f.mimeType==='application/vnd.google-apps.document'); return d; }).catch(function(){ return null; });
       }));
       got2.forEach(function(d){ if(d) extra.push(d); });
