@@ -11,7 +11,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&display=swap">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
 <style>
-:root{--color-primary:var(--color-primary);--color-accent:var(--color-accent);--color-accent-strong:#8A6529;--color-background:var(--color-background);--color-surface:#ffffff;--color-border:var(--color-border);
+:root{--color-primary:var(--color-primary);--color-accent:var(--color-accent);}
+html:root{--color-accent-strong:#7A5A23}
+:root{--color-background:var(--color-background);--color-surface:#ffffff;--color-border:var(--color-border);
 --color-text-primary:var(--color-text-primary);--color-text-secondary:var(--color-text-secondary);--color-focus:#2c77b0;--font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 --t-hope:#2f5d8a;--t-peace:#3b7a6a;--t-joy:#b2702a;--t-love:#a3434f;--t-xmas:var(--color-accent)}
 *{box-sizing:border-box}
@@ -133,7 +135,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 <li><i style="background:var(--t-joy)"></i>셋째 주 · 기쁨</li><li><i style="background:var(--t-love)"></i>넷째 주 · 사랑</li><li><i style="background:var(--t-xmas)"></i>성탄</li></ul>
 <p class="wait" id="wait" hidden></p>
 </section>
-<div class="grid" id="grid" role="list"></div>
+<div class="grid" id="grid"></div>
 <section class="panel" id="panel" hidden aria-live="polite"></section>
 <p class="note">성경: 새번역(대한성서공회) · ESV(Crossway). 본문은 링크를 눌러 원문으로 읽으실 수 있습니다.</p>
 </main>
@@ -153,7 +155,7 @@ var grid=document.getElementById('grid'), panel=document.getElementById('panel')
 var LOCK='<svg class="lk" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>';
 DAYS.forEach(function(d,i){
   var open=preview||d[0]<=today, b=document.createElement('button');
-  b.type='button';b.className='door';b.setAttribute('role','listitem');b.style.setProperty('--tc',TC[d[1]]);
+  b.type='button';b.className='door';b.style.setProperty('--tc',TC[d[1]]);
   b.innerHTML='<span class="bar"></span><span class="n">'+(i+1)+'</span><span class="d">'+sd(d[0])+'</span>'+(open?'':LOCK);
   if(!open){b.disabled=true;b.setAttribute('aria-label',md(d[0])+'에 열립니다');}
   else{b.setAttribute('aria-label',(i+1)+'번째 문, '+md(d[0])+', '+d[1]);b.setAttribute('aria-controls','panel');b.setAttribute('aria-expanded','false');b.onclick=function(){show(i);};}
