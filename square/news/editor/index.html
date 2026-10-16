@@ -61,6 +61,7 @@ details.sec>summary::before{content:"▸";color:var(--gold);transition:transform
 </style>
 <style id="gbcss"></style>
 <style id="gb-btn-css">.gb-meta .gb-meta-acts{gap:8px;margin-top:8px}.gb-meta .gb-meta-acts a,.gb-meta .gb-meta-acts .gb-print{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px;font-size:13.5px;line-height:1}.gb-meta .gb-meta-acts span{opacity:1;font-size:inherit;letter-spacing:0}.gb-meta .gb-print svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round}.gb-meta .gb-meta-acts a:focus-visible,.gb-meta .gb-print:focus-visible{outline:3px solid #9cc3ff;outline-offset:2px}</style>
+<style id="gb-att-css">.gb-att summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;list-style:none}.gb-att summary::-webkit-details-marker{display:none}.gb-att summary::after{content:"";width:8px;height:8px;margin-left:auto;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform .2s}.gb-att details[open] summary::after{transform:rotate(-135deg)}.gb-att summary:focus-visible{outline:3px solid #2c77b0;outline-offset:2px}.gb-att .gb-chips{margin-top:6px}@media (prefers-reduced-motion:reduce){.gb-att summary::after{transition:none}}</style>
 </head><body>
 
 <header class="top">
@@ -143,6 +144,8 @@ function gbParse(t){
 }
 function gbGet(secs,k){ for(var i=0;i<secs.length;i++) if(secs[i].k===k) return secs[i]; return null; }
 function gbVal(sc,label){ if(!sc) return ''; for(var i=0;i<sc.items.length;i++) if(sc.items[i].l===label) return sc.items[i].v; return ''; }
+/* 출석 칸은 리더만 (2026-10-15): 360 교인 확인 코드를 넣은 기기 · 주보 편집기 */
+function gbLeader(){ try{ if(/\/editor\//.test(location.pathname)) return true; return localStorage.getItem('gmc-360-ok')==='1'; }catch(e){ return false; } }
 function gbSection(sc,o){
   var k=sc.k, nm=GB_SEC[k]||[k,k], h='', it=sc.items, EN=o.lang==='en', PF=EN?'gb-en-':'gb-sec-';
   if(k==='예배'){
@@ -184,6 +187,11 @@ function gbSection(sc,o){
       +'<span class="gb-easy-ic" aria-hidden="true">?</span><span class="gb-easy-tx"><b class="gb-easy-off">'+gbBi('예배 순서 설명 보기','Explain the order of worship')+'</b><b class="gb-easy-on">'+gbBi('예배 순서 설명 닫기','Hide explanations')+'</b>'
       +'</span>'
       +'<span class="gb-easy-go" aria-hidden="true">→</span></button></section>';
+  }
+  if(k==='출석'){   /* 리더만 · 접어서 (2026-10-15) */
+    if(!gbLeader()) return '';
+    return '<section class="gb-s gb-stats gb-att"><details><summary>'+gbBi(nm[0]+' · 리더용',nm[1]+' · leaders')+'</summary><div class="gb-chips">'+it.map(function(x){
+      var tot=/총|total/i.test(x.l); return '<span'+(tot?' class="gb-tot"':'')+'>'+(x.l?'<em>'+gbEsc(x.l)+'</em>':'')+'<b>'+gbEsc(x.v)+'</b></span>'; }).join('')+'</div></details></section>';
   }
   if(k==='출석'||k==='헌신'){
     return '<section class="gb-s gb-stats"><h3>'+gbBi(nm[0],nm[1])+'</h3><div class="gb-chips">'+it.map(function(x){
