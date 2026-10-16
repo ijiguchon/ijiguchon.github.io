@@ -56,6 +56,7 @@ details.sec>summary::before{content:"▸";color:var(--gold);transition:transform
 .steps code{background:var(--soft);border-radius:5px;padding:1px 6px;font-weight:700}
 .dlg-foot{margin:14px 0 0;font-size:13px;color:var(--muted);line-height:1.6}.dlg-foot a{color:var(--navy);font-weight:700}
 .dlg-acts{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+.pub{border:1px solid var(--line);border-radius:8px;margin:10px 0 0;padding:6px 12px 8px;display:flex;flex-wrap:wrap;gap:0 18px;align-items:center}.pub legend{font-size:13px;font-weight:700;padding:0 4px}.pub label{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-size:14px;cursor:pointer}.pub input{width:18px;height:18px;accent-color:var(--navy)}.pub .hint{flex-basis:100%;margin:0;font-size:13px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <style id="gbcss"></style>
@@ -80,6 +81,7 @@ details.sec>summary::before{content:"▸";color:var(--gold);transition:transform
         <label>호 (No.)<input id="fNo" inputmode="numeric"></label>
       </div>
       <p class="hint" id="dateHint" style="margin:8px 0 0"></p>
+      <fieldset class="pub" id="pubBox"><legend>홈페이지 공개</legend><label><input type="radio" name="pub" value="auto"> 자동 · 그 주일 0시(자정)</label><label><input type="radio" name="pub" value="now"> 지금 바로</label><p class="hint" id="pubHint"></p></fieldset>
     </div>
     <div id="secs"></div>
   </div>
@@ -310,7 +312,8 @@ function textToState(t,iso){
   gbParse(t).forEach(sc=>{ st.secs[sc.k]=sc.items.map(x=>({l:x.l,v:x.v,p:x.p})); });
   const top=st.secs['주보']||[]; const kh=top.find(x=>x.l==='권호');
   if(kh){ const m=kh.v.match(/Vol\.?\s*(\d+)\s*No\.?\s*(\d+)/i); if(m){ st.vol=m[1]; st.no=m[2]; } }
-  st.secs['주보']=top.filter(x=>x.l!=='권호');
+  const pb=top.find(x=>x.l==='공개'); st.pub=(pb&&/지금/.test(pb.v))?'now':'auto'; /* 예약 공개 (2026-10-15) */
+  st.secs['주보']=top.filter(x=>x.l!=='권호'&&x.l!=='공개');
   return st;
 }
 function iso2key(iso){ const [y,m,d]=iso.split('-'); return m+d+y.slice(2); }
@@ -318,7 +321,7 @@ function key2iso(k){ return '20'+k.slice(4,6)+'-'+k.slice(0,2)+'-'+k.slice(2,4);
 function fmtKo(iso){ const d=new Date(iso+'T12:00:00'); return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일'; }
 function stateToText(){
   const L=['※ 시애틀지구촌교회 웹 주보 · '+(S.date?fmtKo(S.date):''),'※ 이 문서는 웹 주보 편집기에서 만들었습니다. 직접 고쳐도 됩니다. [대괄호] 줄은 칸 제목, "항목: 내용 | 담당" 형식입니다.',''];
-  const top=[]; if(S.vol||S.no) top.push({l:'권호',v:'Vol. '+S.vol+' No.'+S.no,p:''});
+  const top=[]; if(S.vol||S.no) top.push({l:'권호',v:'Vol. '+S.vol+' No.'+S.no,p:''}); top.push({l:'공개',v:S.pub==='now'?'지금':'자동 (주일 0시)',p:''});
   const secs=Object.assign({},S.secs,{'주보':top.concat(S.secs['주보']||[])});
   ['주보'].concat(ORDER.filter(k=>k!=='주보')).forEach(k=>{
     const rows=(secs[k]||[]).filter(r=>(r.v||'').trim()||(r.p||'').trim()); if(!rows.length) return;
@@ -371,8 +374,15 @@ $('#secs').addEventListener('click',e=>{
   if(b.dataset.a==='add'){ const last=sec&&document.querySelector(`details.sec[data-k="${k}"] .row:last-of-type input, details.sec[data-k="${k}"] .row:last-of-type textarea`); if(last) last.focus(); }
   refresh();
 });
-['fDate','fVol','fNo'].forEach(id=>$('#'+id).addEventListener('input',e=>{ S[{fDate:'date',fVol:'vol',fNo:'no'}[id]]=e.target.value.trim(); refresh(); }));
-function fillMeta(){ $('#fDate').value=S.date; $('#fVol').value=S.vol; $('#fNo').value=S.no; }
+['fDate','fVol','fNo'].forEach(id=>$('#'+id).addEventListener('input',e=>{ S[{fDate:'date',fVol:'vol',fNo:'no'}[id]]=e.target.value.trim(); refresh(); pubSync(); }));
+function fillMeta(){ $('#fDate').value=S.date; $('#fVol').value=S.vol; $('#fNo').value=S.no; pubSync(); }
+/* 예약 공개 (2026-10-15) */
+function ptToday(){ try{ return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); }catch(e){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); } }
+function pubWhen(){ if(!S.date) return ''; const d=new Date(S.date+'T12:00:00'); return (d.getMonth()+1)+'월 '+d.getDate()+'일(주일) 0시'; }
+function pubSync(){ const v=S.pub==='now'?'now':'auto'; document.querySelectorAll('input[name=pub]').forEach(r=>{ r.checked=(r.value===v); });
+  const h=document.getElementById('pubHint'); if(!h) return; const fut=!!S.date&&S.date>ptToday();
+  h.textContent=v==='now'?'올리는 즉시 교회 소식에 나옵니다.':(fut?'올려 두면 '+pubWhen()+'에 저절로 교회 소식에 나옵니다. 그 전까지는 몇 번이든 고쳐 다시 올려도 됩니다.':'그 주일이 이미 되어, 올리면 바로 나옵니다.'); }
+document.querySelectorAll('input[name=pub]').forEach(r=>r.addEventListener('change',()=>{ S.pub=r.value; pubSync(); refresh(); }));
 let stT; function status(msg,kind,html){ const el=$('#status'); el.className='status'+(kind?' '+kind:''); if(html) el.innerHTML=msg; else el.textContent=msg; el.hidden=!msg; clearTimeout(stT); if(kind==='ok') stT=setTimeout(()=>{el.hidden=true;},8000); }
 $('#status').addEventListener('click',e=>{ if(!e.target.closest('a')) $('#status').hidden=true; });
 
@@ -391,7 +401,7 @@ $('#bNext').onclick=()=>{
   if(!S.date){ status('먼저 주일 날짜를 고르세요.','err'); return; }
   snap('다음 주일 시작');
   const d=new Date(S.date+'T12:00:00'); d.setDate(d.getDate()+7);
-  S.date=d.toISOString().slice(0,10); if(S.no) S.no=String(+S.no+1);
+  S.date=d.toISOString().slice(0,10); if(S.no) S.no=String(+S.no+1); S.pub='auto';
   ['출석','헌신'].forEach(k=>(S.secs[k]||[]).forEach(r=>{ if(!/^\d{4}년/.test(r.l)) r.v=''; }));
   (S.secs['칼럼']||[]).forEach(r=>{ r.v=''; });
   fillMeta(); renderSecs(); refresh();
@@ -440,6 +450,7 @@ async function directSave(){
     setPass(pass);
     $('#saveState').textContent='마지막 게시: '+new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
     status(`올렸습니다. 1분쯤 뒤 <a href="/square/news/#news-${S.date}" target="_blank" rel="noopener">교회 소식</a>에서 확인하세요.${j.replaced?' 이전 문서는 "이전판_"으로 보관했습니다.':''}`,'ok',true);
+    if(S.pub!=='now'&&S.date>ptToday()) status('예약했습니다. '+pubWhen()+'에 교회 소식에 저절로 나옵니다. 그 전까지는 고쳐서 다시 올려도 됩니다.'+(j.replaced?' 이전 문서는 "이전판_"으로 보관했습니다.':''),'ok',true);
   }catch(e){ status('인터넷 연결 문제로 올리지 못했습니다. 잠시 뒤 다시 눌러 주세요.','err'); }
   finally{ b.disabled=false; }
 }

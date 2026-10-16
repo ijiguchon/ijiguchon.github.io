@@ -1667,6 +1667,12 @@ var GB_CSS=[
   new MutationObserver(function(){ if(isEn()&&newsCur) loadEn(newsCur); }).observe(document.body,{attributes:true,attributeFilter:['class']});
   function gbTop(){ var b=document.getElementById('newsNow'), t=document.querySelector('.topbar'); if(b) b.style.setProperty('--gb-top',((t&&t.getBoundingClientRect().height)||0)+'px'); }   /* 바로가기 줄이 상단 메뉴 바로 아래 붙도록 */
   window.addEventListener('resize',gbTop);
+  /* 예약 공개 (2026-10-15) */
+  /* 주보 날짜(주일) 0시(시애틀)부터 보임. 문서 [주보]에 '공개: 지금'이 있으면 바로 보임 */
+  function gbTodayPT(){ try{ return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); }catch(e){ var d=new Date(); return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); } }
+  async function gbSchedule(news,by){ var td=gbTodayPT(), fut=Object.keys(news).filter(function(k){ return k>td; });
+    await Promise.all(fut.map(async function(k){ var ok=false; try{ var r=await fetch('https://www.googleapis.com/drive/v3/files/'+news[k].id+'/export?mimeType=text/plain&key='+GDRIVE_API_KEY,{cache:'no-store'}); if(r.ok){ var t=await r.text(); newsCache[k]=t; ok=/^\s*공개\s*[:：]\s*지금/m.test(t); } }catch(e){}
+      if(!ok){ delete news[k]; if(by[k]&&!by[k].f) delete by[k]; } })); }
   function isNewsDoc(f){ return (f&&f.mimeType)==='application/vnd.google-apps.document' && /^\s*\d{6}[_\s.\-]*교회\s*소식/.test(f.name||''); }
   async function showNews(iso,scroll){
     var box=document.getElementById('newsNow'), f=news[iso]; if(!box||!f) return;
@@ -1728,6 +1734,7 @@ var GB_CSS=[
         var pdf=/pdf/i.test(f.mimeType||'')||/\.pdf$/i.test(n), cur=by[iso];
         if(!cur || !cur.f || (pdf && !cur.pdf)) by[iso]={f:f,pdf:pdf};
       });
+      await gbSchedule(news,by);   /* 예약 공개 (2026-10-15) */
       var dates=Object.keys(by).sort().reverse();
       if(!dates.length){ box.innerHTML='<div class="mw-row"><span class="mw-tba">'+gmBi('곧 올라옵니다','Coming soon')+'</span></div>'; return; }
       function nwRow(iso,latest){
