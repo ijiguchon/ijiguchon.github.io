@@ -789,6 +789,8 @@ if(document.readyState!=='loading')add();else document.addEventListener('DOMCont
 
 
 <style id="gw-css">.give-box h3 .gw-n{display:inline-grid;place-items:center;width:28px;height:28px;margin-right:8px;border-radius:50%;background:var(--color-primary);color:var(--color-text-inverse);font-size:15px;font-weight:800;vertical-align:2px}</style>
+
+
 <style id="hebron-ds">
 /* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
 :root{
@@ -894,7 +896,9 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
           <h3><span class="gw-n">2</span><span class="ko">온라인</span><span class="en">Online</span></h3>
           <p><span class="ko">카드로 언제든 드리실 수 있습니다. 정기 헌금도 됩니다.</span><span class="en">Give anytime by card. Recurring giving available.</span></p>
           <a class="btn-gold" href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg><span class="ko">온라인 헌금하기</span><span class="en">Give online</span></a>
-        </div>
+          <p class="og-how"><a href="/give/online/"><span class="ko">처음이세요? 그림으로 보는 방법</span><span class="en">First time? See the steps</span></a></p>
+<style id="og-css">.og-how{margin:10px 0 0}.og-how a{display:inline-flex;align-items:center;min-height:44px;font-size:14.5px;font-weight:700;color:#7A5A23;text-decoration:underline;text-underline-offset:3px}</style>
+                                      </div>
         <div class="give-box" id="giveZelle">
           <span id="zelle"></span>
           <div class="gi"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
@@ -910,8 +914,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
       <!-- give-share --><div class="gs-wrap"><button type="button" class="gs-btn" id="gsBtn"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span class="ko">헌금 안내 보내기</span><span class="en">Share giving info</span></button><p class="gs-note" id="gsNote" aria-live="polite"></p></div>
 <style id="gs-css">.gs-wrap{margin:18px auto 0;text-align:center}.gs-btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:var(--radius-pill);border:0;background:var(--color-primary);color:var(--color-text-inverse);font:inherit;font-weight:800;font-size:15.5px;cursor:pointer;box-shadow:0 6px 16px rgba(20,33,61,.15)}.gs-btn:hover{background:#1f3058}.gs-btn:focus-visible{outline:3px solid #2c77b0;outline-offset:3px}.gs-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.gs-note{margin:8px 0 0;font-size:13.5px;color:#5f6572}</style>
 <script id="gs-js">(function(){var b=document.getElementById("gsBtn"),n=document.getElementById("gsNote");if(!b)return;var KO="시애틀지구촌교회 헌금 안내\n1. 예배 때: 주일연합예배에 참석해 미리 헌금함에\n2. 온라인(카드): 아래 주소 → 온라인 헌금하기 (정기 헌금 가능)\n3. Zelle: 받는 곳 finance@ijiguchon.org / 받는 이름 Global Mission Church of Greater Seattle / 메모 \"성명 / 헌금 종류\" (예: 홍길동 / 십일조)\nhttps://www.ijiguchon.org/give",EN="Giving at Global Mission Church of Greater Seattle\n1. At worship: place your gift in the offering box when you arrive for Sunday worship\n2. Online (card): open the link below, then Give online (recurring giving available)\n3. Zelle: send to finance@ijiguchon.org / Recipient: Global Mission Church of Greater Seattle / Memo: \"Your name / Offering type\" (e.g., John Kim / Tithe)\nhttps://www.ijiguchon.org/give";function en(){return document.body.classList.contains("lang-en");}function say(k,e){n.textContent=en()?e:k;}function copy(t){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(function(){say("안내 글을 복사했습니다. 카카오톡이나 문자에 붙여 넣어 보내 주십시오.","Copied. Paste it into a text or chat.");},function(){});}else{var a=document.createElement("textarea");a.value=t;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();try{document.execCommand("copy");say("안내 글을 복사했습니다. 카카오톡이나 문자에 붙여 넣어 보내 주십시오.","Copied. Paste it into a text or chat.");}catch(_){}a.remove();}}b.addEventListener("click",function(){var t=en()?EN:KO;if(navigator.share){navigator.share({title:en()?"Giving at GMC":"시애틀지구촌교회 헌금 안내",text:t}).catch(function(e){if(e&&e.name!=="AbortError")copy(t);});}else copy(t);});})();</script><!-- /give-share -->
-<p style="text-align:center;margin-top:18px;font-size:13px;color:var(--ink-2)"><span class="ko">안전한 결제는 Tithe.ly로 처리됩니다 · EIN 27-0003955 (세금공제)</span><span class="en">Secure payments by Tithe.ly · EIN 27-0003955 (tax-deductible)</span></p>
-<p class="give-tax" style="margin:10px auto 0;max-width:640px;font-size:13px;line-height:1.7;color:var(--ink-3);text-align:center;word-break:keep-all"><span class="ko">시애틀지구촌교회는 미국 501(c)(3) 비영리 단체입니다. 한 번에 $250 이상 드린 헌금은 세금 공제를 위해 교회의 서면 확인서가 필요합니다(IRS 규정). 연말 헌금 확인서가 필요하시면 교회로 요청해 주십시오.</span><span class="en">GMC of Greater Seattle is a 501(c)(3) nonprofit. For any single gift of $250 or more, the IRS requires a written acknowledgment from the church to claim a deduction. Please contact us if you need a year-end giving statement.</span></p>
+<p class="give-tax" style="margin:16px auto 0;max-width:640px;font-size:13px;line-height:1.7;color:var(--ink-3);text-align:center;word-break:keep-all"><span class="ko">세금 공제 대상(501(c)(3) · EIN 27-0003955) · 연말 헌금 확인서는 교회로 요청해 주십시오.</span><span class="en">Tax-deductible (501(c)(3) · EIN 27-0003955) · Year-end giving statements available on request.</span></p>
     <div class="tab-cta" style="margin-top:26px"><a href="/"><span class="ko">시애틀지구촌교회 홈으로</span><span class="en">Back to GMC home</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </div>
