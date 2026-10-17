@@ -1593,6 +1593,25 @@ function row(){if(!lastQ())return;var old=box.querySelector('.gc-hand');if(old)o
 new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(x){
   if(x.nodeType===1&&x.classList.contains('gc-msg')&&x.classList.contains('bot')&&!x.classList.contains('gc-wait'))setTimeout(row,40);});});}).observe(box,{childList:true});
 })();</script><!-- /gc-hand -->
+<!-- kakao-pause --><style id="kp-css">.kp-note{margin:0 0 12px;padding:10px 12px;border-radius:10px;background:#F6F1E7;color:#14213d;font-size:14px;line-height:1.55}</style>
+<script id="kp-js">(function(){
+var EN=function(){return document.body.classList.contains('lang-en');};
+var MSG_KO='지구촌 단톡방 초대를 부탁드립니다.', MSG_EN='Please invite me to the church KakaoTalk room.';
+function note(){var b=document.getElementById('gm-contact-body');if(!b)return false;
+  if(!b.querySelector('.kp-note')){var p=document.createElement('p');p.className='kp-note';
+    p.innerHTML='<span class="ko">지구촌 단톡방 링크를 새로 준비하고 있습니다. 이름과 연락처를 남겨 주시면 초대 링크를 보내 드리겠습니다.</span><span class="en">Our KakaoTalk room link is being renewed. Leave your name and contact, and we will send you an invite.</span>';
+    b.insertBefore(p,b.firstChild);}
+  var t=b.querySelector('textarea');if(t&&!t.value)t.value=EN()?MSG_EN:MSG_KO;return true;}
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="open.kakao.com/o/gJPNOAMi"]');if(!a)return;
+  e.preventDefault();e.stopPropagation();
+  var gp=document.getElementById('gcPanel');
+  if(typeof openModal==='function'&&document.getElementById('gm-contact')){
+    try{if(gp&&gp.classList.contains('open')&&typeof gcToggle==='function')gcToggle();}catch(_){}
+    openModal('contact');setTimeout(note,60);
+  }else{try{sessionStorage.setItem('gmcKakaoPaused','1');}catch(_){} location.href='/?open=contact';}},true);
+try{if(sessionStorage.getItem('gmcKakaoPaused')){sessionStorage.removeItem('gmcKakaoPaused');
+  var n=0,iv=setInterval(function(){if(note()||++n>30)clearInterval(iv);},200);}}catch(_){}
+})();</script><!-- /kakao-pause -->
 <script id="gmc-autoupdate">(function(){
 if(!('serviceWorker' in navigator)||!window.fetch)return;
 var V0=null,had=!!navigator.serviceWorker.controller,going=false;
