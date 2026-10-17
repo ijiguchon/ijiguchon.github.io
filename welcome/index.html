@@ -1691,6 +1691,28 @@ put(visit);put(locs);put(day);
 var grid=W.querySelector(':scope > .nc-grid');if(grid){var a=grid;links.forEach(function(l){a.insertAdjacentElement('afterend',l);a=l;});}
 })();</script><!-- /wl -->
 <script id="gmc-cal-sheet">(function(){var ID="1ZhTnlt_pjGUcSk8mpP2aXpMdw3_jurNNbZVAyVkWm28";if(!ID||typeof renderSchedule!=="function")return;function csv(t){var r=[],row=[],f="",q=false;for(var i=0;i<t.length;i++){var c=t[i];if(q){if(c=='"'){if(t[i+1]=='"'){f+=c;i++;}else q=false;}else f+=c;}else if(c=='"')q=true;else if(c==","){row.push(f);f="";}else if(c=="\n"){row.push(f);r.push(row);row=[];f="";}else if(c!="\r")f+=c;}if(f||row.length){row.push(f);r.push(row);}return r;}fetch("https://docs.google.com/spreadsheets/d/"+ID+"/gviz/tq?tqx=out:csv").then(function(x){return x.ok?x.text():"";}).then(function(t){if(!t)return;function nd(v){v=(v||"").trim();var m=v.match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);if(!m){m=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);if(m)m=[0,m[3],m[1],m[2]];}if(!m)return "";return m[1]+"-"+("0"+m[2]).slice(-2)+"-"+("0"+m[3]).slice(-2);}var rows=csv(t).slice(1),sp=[],pl=[];rows.forEach(function(c){var d=nd(c[0]);if(!d||!(c[1]||"").trim())return;if((c[5]||"").indexOf("예고")>-1)pl.push({d:d,ko:c[1],en:c[2]||c[1]});else sp.push({d:d,t:c[1],tEn:c[2]||c[1],m:c[3]||"",mEn:c[4]||c[3]||""});});if(sp.length)SPECIAL_EVENTS=sp;if(pl.length)UPCOMING_PLAN=pl;renderSchedule();}).catch(function(){});})();</script><!-- perf-map --><style id="perf-map-css">.loc-fac{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:#e9eef0 linear-gradient(135deg,rgba(20,33,61,.04) 25%,transparent 25%,transparent 50%,rgba(20,33,61,.04) 50%,rgba(20,33,61,.04) 75%,transparent 75%) 0 0/28px 28px}.loc-load{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 20px;border-radius:9999px;border:1px solid #E3D9C6;background:#fff;font:inherit;font-size:15px;font-weight:800;color:var(--color-primary,#14213d);cursor:pointer;box-shadow:0 6px 16px rgba(20,33,61,.10)}.loc-load svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.loc-load:focus-visible{outline:3px solid var(--color-focus,#2c77b0);outline-offset:3px}</style><script id="perf-map-js">document.addEventListener("click",function(e){var b=e.target.closest(".loc-load");if(!b)return;var f=document.createElement("iframe");f.className="loc-map";f.title=b.getAttribute("data-title")||"지도";f.referrerPolicy="no-referrer-when-downgrade";f.src=b.getAttribute("data-src");var box=b.closest(".loc-fac");box.replaceWith(f);});</script><!-- /perf-map -->
+<!-- gc-hand --><style id="gch-css">.gc-hand{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:4px 0 10px;padding:0 4px;font-size:13.5px;color:#5f6572}
+.gc-hand-b{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:9999px;border:1.5px solid #B8924A;background:#fff;color:#14213d;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.gc-hand-b:hover{background:#F6F1E7}.gc-hand-b:focus-visible{outline:3px solid #2c77b0;outline-offset:2px}
+@media (max-width:600px){.gc-panel{top:max(12px,env(safe-area-inset-top));height:auto;max-height:none}.gc-head{padding:10px 12px 10px 16px}.gc-ai-note{padding:5px 14px}.gc-quick{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:8px 12px}.gc-quick::-webkit-scrollbar{display:none}.gc-quick>*{flex:0 0 auto}}</style>
+<script id="gch-js">(function(){
+var box=document.getElementById('gcBody'); if(!box) return;
+function lastQ(){var u=box.querySelectorAll('.gc-msg.user');return u.length?u[u.length-1].textContent.trim():'';}
+function go(){var q=lastQ();
+  var p=document.getElementById('gcPanel');
+  if(typeof openModal==='function'&&document.getElementById('gm-contact')){
+    try{if(p&&p.classList.contains('open')&&typeof gcToggle==='function')gcToggle();}catch(_){}
+    openModal('contact');
+    setTimeout(function(){var t=document.querySelector('#gm-contact textarea');if(t){if(!t.value&&q)t.value=q;t.focus();}},150);
+  }else{location.href='/?open=contact';}}
+function row(){if(!lastQ())return;var old=box.querySelector('.gc-hand');if(old)old.remove();
+  var d=document.createElement('div');d.className='gc-hand';
+  d.innerHTML='<span><span class="ko">더 자세히 알고 싶으시면</span><span class="en">Want a personal answer?</span></span>'
+   +'<button type="button" class="gc-hand-b"><span class="ko">목사님·담당자에게 연락 받기</span><span class="en">Have someone contact me</span></button>';
+  d.querySelector('button').addEventListener('click',go);box.appendChild(d);var u=box.querySelectorAll('.gc-msg.user'),m=u.length?u[u.length-1].nextElementSibling:null;box.scrollTop=(m&&d.offsetTop+d.offsetHeight-m.offsetTop>box.clientHeight)?m.offsetTop-box.offsetTop-8:box.scrollHeight;}
+new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(x){
+  if(x.nodeType===1&&x.classList.contains('gc-msg')&&x.classList.contains('bot')&&!x.classList.contains('gc-wait'))setTimeout(row,40);});});}).observe(box,{childList:true});
+})();</script><!-- /gc-hand -->
 <script id="gmc-autoupdate">(function(){
 if(!('serviceWorker' in navigator)||!window.fetch)return;
 var V0=null,had=!!navigator.serviceWorker.controller,going=false;

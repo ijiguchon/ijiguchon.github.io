@@ -1664,6 +1664,28 @@ function hook(){ if(typeof window.gcSubmit!=='function'||window.gcSubmit.__ql) r
   window.gcSubmit.__ql=1; }
 if(document.readyState!=='loading') setTimeout(hook,50); else document.addEventListener('DOMContentLoaded',function(){ setTimeout(hook,50); });
 })();</script>
+<!-- gc-hand --><style id="gch-css">.gc-hand{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:4px 0 10px;padding:0 4px;font-size:13.5px;color:#5f6572}
+.gc-hand-b{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:9999px;border:1.5px solid #B8924A;background:#fff;color:#14213d;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.gc-hand-b:hover{background:#F6F1E7}.gc-hand-b:focus-visible{outline:3px solid #2c77b0;outline-offset:2px}
+@media (max-width:600px){.gc-panel{top:max(12px,env(safe-area-inset-top));height:auto;max-height:none}.gc-head{padding:10px 12px 10px 16px}.gc-ai-note{padding:5px 14px}.gc-quick{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:8px 12px}.gc-quick::-webkit-scrollbar{display:none}.gc-quick>*{flex:0 0 auto}}</style>
+<script id="gch-js">(function(){
+var box=document.getElementById('gcBody'); if(!box) return;
+function lastQ(){var u=box.querySelectorAll('.gc-msg.user');return u.length?u[u.length-1].textContent.trim():'';}
+function go(){var q=lastQ();
+  var p=document.getElementById('gcPanel');
+  if(typeof openModal==='function'&&document.getElementById('gm-contact')){
+    try{if(p&&p.classList.contains('open')&&typeof gcToggle==='function')gcToggle();}catch(_){}
+    openModal('contact');
+    setTimeout(function(){var t=document.querySelector('#gm-contact textarea');if(t){if(!t.value&&q)t.value=q;t.focus();}},150);
+  }else{location.href='/?open=contact';}}
+function row(){if(!lastQ())return;var old=box.querySelector('.gc-hand');if(old)old.remove();
+  var d=document.createElement('div');d.className='gc-hand';
+  d.innerHTML='<span><span class="ko">더 자세히 알고 싶으시면</span><span class="en">Want a personal answer?</span></span>'
+   +'<button type="button" class="gc-hand-b"><span class="ko">목사님·담당자에게 연락 받기</span><span class="en">Have someone contact me</span></button>';
+  d.querySelector('button').addEventListener('click',go);box.appendChild(d);var u=box.querySelectorAll('.gc-msg.user'),m=u.length?u[u.length-1].nextElementSibling:null;box.scrollTop=(m&&d.offsetTop+d.offsetHeight-m.offsetTop>box.clientHeight)?m.offsetTop-box.offsetTop-8:box.scrollHeight;}
+new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(x){
+  if(x.nodeType===1&&x.classList.contains('gc-msg')&&x.classList.contains('bot')&&!x.classList.contains('gc-wait'))setTimeout(row,40);});});}).observe(box,{childList:true});
+})();</script><!-- /gc-hand -->
 <script id="gmc-autoupdate">(function(){
 if(!('serviceWorker' in navigator)||!window.fetch)return;
 var V0=null,had=!!navigator.serviceWorker.controller,going=false;
