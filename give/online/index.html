@@ -26,7 +26,7 @@ h1{margin:12px 0 6px;font-size:clamp(26px,5vw,34px);line-height:1.3;color:var(--
 .go{display:inline-flex;align-items:center;gap:8px;min-height:48px;margin:16px 0 0;padding:0 22px;border-radius:var(--radius-pill);background:var(--color-accent);color:var(--color-primary);font-weight:800;text-decoration:none}
 .go svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 figure{margin:20px 0 0;padding:10px;border-radius:16px;background:#2b3448}
-figure img{display:block;width:100%;height:auto;border-radius:8px}
+figure img{display:block;width:100%;max-width:440px;height:auto;margin:0 auto;border-radius:8px}
 figcaption{margin:8px 2px 2px;font-size:13px;color:#e6e9ef}
 ol{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px}
 li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding:12px 14px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-border)}
@@ -104,19 +104,19 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 <h1>그림으로 보는 온라인 헌금</h1>
 <p class="lead">카드나 은행 계좌로 드리는 방법입니다. 그림의 번호 순서대로 하시면 됩니다.</p>
 <p class="ok">로그인이나 회원 가입 없이 바로 드리실 수 있습니다.</p>
-<a class="go" href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1h5"/></svg>온라인 헌금 화면 열기</a>
-<figure><img src="/images/give/tithely-steps.webp" width="900" height="1029" alt="온라인 헌금 화면에 1부터 8까지 번호를 붙인 그림"><figcaption>온라인 헌금 화면 (Tithe.ly) · 번호를 아래 설명과 맞춰 보십시오</figcaption></figure>
+<a class="go" href="https://give.tithe.ly/?formId=79ef0da6-6864-11ee-90fc-1260ab546d11" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1h5"/></svg>온라인 헌금 화면 열기</a>
+<figure><img src="/images/give/tithely-steps.webp" width="512" height="1150" alt="온라인 헌금 화면에 1부터 8까지 번호를 붙인 그림"><figcaption>온라인 헌금 화면 (Tithe.ly) · 번호를 아래 설명과 맞춰 보십시오</figcaption></figure>
 <ol>
-<li><span class="n">1</span><div><b>금액</b> <code>Give</code><p>드릴 금액을 숫자로 적습니다.</p></div></li>
-<li><span class="n">2</span><div><b>헌금 종류</b> <code>To</code><p>십일조 · 주일(주정)헌금 · 감사 · 선교 · 특별 · 건축 · 구제 가운데 고릅니다.</p></div></li>
-<li><span class="n">3</span><div><b>정기 헌금 (원하실 때만)</b> <code>Recurring Giving</code><p>체크하면 매주 · 격주 · 매달 같은 날 저절로 드려집니다. 한 번만 드리실 때는 그냥 두십시오.</p></div></li>
-<li><span class="n">4</span><div><b>이름과 이메일</b> <code>First Name · Last Name · Email</code><p>이름(First), 성(Last), 이메일을 적습니다. 헌금 영수증이 이 이메일로 옵니다.</p></div></li>
-<li><span class="n">5</span><div><b>드리는 방법</b> <code>Card · Bank · G Pay</code><p>카드, 은행 계좌, 구글 페이 가운데 하나를 누릅니다.</p></div></li>
-<li><span class="n">6</span><div><b>카드 번호</b> <code>Card number</code><p>카드 번호 · 유효기간 · 보안 번호를 적습니다. (은행을 고르셨으면 계좌 정보를 적습니다)</p></div></li>
-<li><span class="n">7</span><div><b>수수료 (원하실 때만)</b> <code>Cover Fees</code><p>체크하면 카드 수수료까지 함께 드려 헌금이 온전히 교회에 전해집니다. 원하지 않으시면 체크를 푸십시오.</p></div></li>
+<li><span class="n">1</span><div><b>금액</b> <code>$</code><p>드릴 금액을 숫자로 적습니다.</p></div></li>
+<li><span class="n">2</span><div><b>헌금 종류</b> <code>Fund</code><p>십일조 · 주일(주정)헌금 · 감사 · 선교 · 특별 · 건축 · 구제 가운데 고릅니다. 다른 헌금을 함께 드리시려면 + Add Another Gift 를 누릅니다.</p></div></li>
+<li><span class="n">3</span><div><b>한 번 또는 정기</b> <code>One Time · Weekly · Monthly</code><p>한 번만 드리실 때는 One Time, 매주 · 격주 · 매달 저절로 드리실 때는 나머지 가운데 고릅니다.</p></div></li>
+<li><span class="n">4</span><div><b>수수료 (원하실 때만)</b> <code>Cover the fees</code><p>Yes 를 고르면 카드 수수료까지 함께 드려 헌금이 온전히 전해집니다. No 를 고르셔도 됩니다.</p></div></li>
+<li><span class="n">5</span><div><b>메모 (원하실 때만)</b> <code>Memo</code><p>감사 제목 같은 짧은 글을 남기실 수 있습니다.</p></div></li>
+<li><span class="n">6</span><div><b>이름 · 이메일 · 전화</b> <code>Contact Details</code><p>이름(First Name), 성(Last Name), 이메일, 전화번호를 적습니다. 헌금 영수증이 이메일로 옵니다.</p></div></li>
+<li><span class="n">7</span><div><b>카드나 은행 계좌</b> <code>Add a New Payment Method</code><p>눌러서 카드 번호나 은행 계좌를 넣습니다.</p></div></li>
 <li><span class="n">8</span><div><b>드리기</b> <code>Give</code><p>맨 아래 단추를 누르면 끝납니다. 잠시 뒤 이메일로 영수증이 옵니다.</p></div></li>
 </ol>
-<a class="go" href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1h5"/></svg>온라인 헌금 화면 열기</a>
+<a class="go" href="https://give.tithe.ly/?formId=79ef0da6-6864-11ee-90fc-1260ab546d11" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1h5"/></svg>온라인 헌금 화면 열기</a>
 <p class="help">어려우시면 주일에 안내 테이블에서 도와드립니다. 지난 헌금 기록을 보거나 정기 헌금을 바꾸고 싶으시면 화면 위쪽의 <b>Sign Up</b>으로 계정을 만드실 수 있습니다(원하실 때만). · <a href="/give/">봉헌, 세 가지 방법 보기</a></p>
 </main>
 <script id="gmc-autoupdate">(function(){
