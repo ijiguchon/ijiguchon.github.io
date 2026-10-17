@@ -11,30 +11,91 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..600&display=swap">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
 <style>
-:root{--color-primary:#14213d;--color-accent:#B8924A;--color-background:#F6F1E7;--color-surface:#fff;--color-border:#E3D9C6;--og-muted:#5f6572;--color-focus:#2c77b0;
+:root{--color-primary:var(--color-primary);--color-accent:var(--color-accent);--color-background:var(--color-background);--color-surface:#fff;--color-border:var(--color-border);--og-muted:#5f6572;--color-focus:#2c77b0;
 --font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 *{box-sizing:border-box}
-body{margin:0;background:var(--color-background);color:#1c1f26;font-family:var(--font-sans);font-size:16px;line-height:1.65;word-break:keep-all}
+body{margin:0;background:var(--color-background);color:var(--color-text-primary);font-family:var(--font-sans);font-size:16px;line-height:1.65;word-break:keep-all}
 a{color:inherit}:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px}
 .top{display:flex;align-items:center;gap:10px;max-width:760px;margin:0 auto;padding:14px 16px}
 .top a{display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;font-weight:700}
-.top img{width:36px;height:36px}.top .back{margin-left:auto;padding:0 16px;border:1px solid var(--color-border);border-radius:9999px;background:#fff;font-size:14px}
+.top img{width:36px;height:36px}.top .back{margin-left:auto;padding:0 16px;border:1px solid var(--color-border);border-radius:var(--radius-pill);background:var(--color-surface);font-size:14px}
 main{max-width:760px;margin:0 auto;padding:0 16px 56px}
 h1{margin:12px 0 6px;font-size:clamp(26px,5vw,34px);line-height:1.3;color:var(--color-primary)}
 .lead{margin:0;color:var(--og-muted)}
-.ok{margin:14px 0 0;padding:12px 14px;border-radius:12px;background:#fff;border:1px solid var(--color-border);border-left:4px solid #2f6b45;font-weight:700;color:var(--color-primary)}
-.go{display:inline-flex;align-items:center;gap:8px;min-height:48px;margin:16px 0 0;padding:0 22px;border-radius:9999px;background:var(--color-accent);color:var(--color-primary);font-weight:800;text-decoration:none}
+.ok{margin:14px 0 0;padding:12px 14px;border-radius:12px;background:var(--color-surface);border:1px solid var(--color-border);border-left:4px solid #2f6b45;font-weight:700;color:var(--color-primary)}
+.go{display:inline-flex;align-items:center;gap:8px;min-height:48px;margin:16px 0 0;padding:0 22px;border-radius:var(--radius-pill);background:var(--color-accent);color:var(--color-primary);font-weight:800;text-decoration:none}
 .go svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 figure{margin:20px 0 0;padding:10px;border-radius:16px;background:#2b3448}
 figure img{display:block;width:100%;height:auto;border-radius:8px}
 figcaption{margin:8px 2px 2px;font-size:13px;color:#e6e9ef}
 ol{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px}
-li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding:12px 14px;border-radius:14px;background:#fff;border:1px solid var(--color-border)}
+li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding:12px 14px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-border)}
 li .n{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--color-accent);color:var(--color-primary);font-weight:800}
-li b{font-size:16.5px;color:var(--color-primary)}li code{font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;padding:2px 8px;border-radius:6px;background:#F6F1E7;color:#7A5A23}
+li b{font-size:16.5px;color:var(--color-primary)}li code{font-family:var(--font-mono);font-size:13px;padding:2px 8px;border-radius:var(--radius-sm);background:var(--color-background);color:#7A5A23}
 li p{margin:4px 0 0;font-size:15px;color:#3c414b}
-.help{margin:22px 0 0;padding:14px 16px;border-radius:14px;border:1px dashed var(--color-border);font-size:15px;color:#3c414b}
+.help{margin:22px 0 0;padding:14px 16px;border-radius:var(--radius-lg);border:1px dashed var(--color-border);font-size:15px;color:#3c414b}
 .help a{font-weight:700;color:var(--color-primary)}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap">
+<style id="hebron-ds">
+/* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
+:root{
+  /* Typography */
+  --font-korean:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-english:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  /* 교회 예외: 큰 제목용 명조 — 영문 Cormorant Garamond, 한글 고운바탕 */
+  --font-display:'Cormorant Garamond','Gowun Batang','Pretendard Variable',serif;
+  --text-display:clamp(40px,6vw,64px); --text-h1:clamp(32px,4.4vw,48px); --text-h2:clamp(26px,3.4vw,36px);
+  --text-h3:clamp(22px,2.6vw,28px); --text-h4:clamp(18px,2vw,22px);
+  --text-body-lg:18px; --text-body:16px; --text-body-sm:14px; --text-caption:12.5px;
+  --weight-regular:400; --weight-medium:500; --weight-semibold:600; --weight-bold:700; --weight-extrabold:800;
+  --leading-heading:1.25; --leading-body:1.7; --leading-ui:1.5; --leading-caption:1.5;
+  --tracking-display:-0.02em; --tracking-heading:-0.015em; --tracking-body:-0.005em; --tracking-ui:0;
+  /* Color — semantic (Church theme: heritage navy · warm gold · cream) */
+  --color-background:#F6F1E7; --color-background-secondary:#F1E6D3;
+  --color-surface:#ffffff; --color-surface-muted:#FBF8F2;
+  --color-text-primary:#1c1f26; --color-text-secondary:#4a4f5a; --color-text-muted:#7c8290;
+  --color-text-disabled:#a9aeb8; --color-text-inverse:#ffffff;
+  --color-border:#E3D9C6; --color-border-subtle:#EAE3D5; --color-border-strong:#D9C7A0;
+  --color-primary:#14213d; --color-primary-hover:#1f2f55; --color-primary-active:#0d1730; --color-primary-foreground:#ffffff;
+  --color-accent:#B8924A; --color-accent-hover:#8f6a2a; --color-accent-strong:#9A7130;
+  --color-accent-bright:#CDA65B; --color-accent-deep:#A67A2E; --color-accent-on-dark:#E9C77B;
+  --color-success:#12857c; --color-success-soft:#34c3b5; --color-warning:#B7791F;
+  --color-error:#b4532a; --color-info:#2c4d8a; --color-info-soft:#5b7fb5;
+  --color-focus:#2c77b0;
+  --color-scripture:var(--color-primary);
+  --color-brand-kakao:#FEE500; --color-brand-kakao-foreground:#3A1D1D;
+  /* Spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px;
+  --space-10:40px; --space-12:48px; --space-16:64px; --space-20:80px; --space-24:96px; --space-32:128px;
+  --space-xs:var(--space-1); --space-sm:var(--space-2); --space-md:var(--space-4); --space-lg:var(--space-6);
+  --space-xl:var(--space-8); --space-2xl:var(--space-12); --space-3xl:var(--space-16);
+  /* Radius */
+  --radius-sm:6px; --radius-md:10px; --radius-lg:14px; --radius-xl:20px; --radius-pill:9999px;
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(20,33,61,.06); --shadow-md:0 6px 18px rgba(40,30,10,.06); --shadow-lg:0 18px 40px rgba(20,33,61,.12);
+  /* Layout (breakpoints: sm 560 · md 760 · lg 900 — CSS 변수는 media query에 못 쓰므로 값으로 사용) */
+  --container-max:1200px; --container-reading:760px; --touch-target:44px;
+  /* Motion · Layers */
+  --transition-fast:.15s ease; --transition-base:.2s ease;
+  --z-header:50; --z-dropdown:60; --z-floating:1100; --z-modal:1200;
+}
+html,body{font-family:var(--font-sans)}
+body{font-weight:var(--weight-regular)}
+button,input,select,textarea,optgroup{font-family:inherit}
+code,pre,kbd,samp{font-family:var(--font-mono)}
+:focus-visible{outline:3px solid var(--color-focus)!important;outline-offset:2px!important}
+.host-acts a,.member .mct a,.bd-chip,.loc-go,.cb-acts button,.cb-more,.gm-x,.tm-i,.pgnav button,.d-settle,.ms-kakao,.dp-others a,.dp-hosp button{min-height:var(--touch-target)}
+.gm-x{min-width:var(--touch-target)}
+.lang,.psnav,.gc-send,.gc-x,.d-more{min-height:var(--touch-target)}
+.psnav,.gc-send,.gc-x{min-width:var(--touch-target)}
+.d-greet{display:inline-flex;align-items:center;min-height:var(--touch-target)}
+.tabs .tab{min-height:40px} /* 예외: 모바일 헤더 높이 — 문서화됨 */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
 </style>
 </head>
 <body>
@@ -56,7 +117,7 @@ li p{margin:4px 0 0;font-size:15px;color:#3c414b}
 <li><span class="n">8</span><div><b>드리기</b> <code>Give</code><p>맨 아래 단추를 누르면 끝납니다. 잠시 뒤 이메일로 영수증이 옵니다.</p></div></li>
 </ol>
 <a class="go" href="https://tithe.ly/give_new/www/#/tithely/give-one-time/1300720" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1h5"/></svg>온라인 헌금 화면 열기</a>
-<p class="help">어려우시면 주일에 안내 테이블에서 도와드립니다. 지난 헌금 기록을 보거나 정기 헌금을 바꾸고 싶으시면 화면 위쪽의 <b>Sign Up</b>으로 계정을 만드실 수 있습니다(원하실 때만). · <a href="/give/">헌금, 세 가지 방법 보기</a></p>
+<p class="help">어려우시면 주일에 안내 테이블에서 도와드립니다. 지난 헌금 기록을 보거나 정기 헌금을 바꾸고 싶으시면 화면 위쪽의 <b>Sign Up</b>으로 계정을 만드실 수 있습니다(원하실 때만). · <a href="/give/">봉헌, 세 가지 방법 보기</a></p>
 </main>
 <script id="gmc-autoupdate">(function(){
 if(!('serviceWorker' in navigator)||!window.fetch)return;
