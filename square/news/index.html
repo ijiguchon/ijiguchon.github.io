@@ -1561,7 +1561,15 @@ function gbSection(sc,o){
   return '<section class="gb-s gb-kv-s"><h3>'+gbBi(nm[0],nm[1])+'</h3><dl class="gb-kv">'+it.map(function(x){
     return '<div><dt>'+gbEsc(x.l)+'</dt><dd>'+gbEsc(x.v)+(x.p?'<small>'+gbEsc(x.p)+'</small>':'')+'</dd></div>'; }).join('')+'</dl></section>';
 }
-var GB_LOGO=(typeof GB_LOGO!=='undefined'&&GB_LOGO)||'/images/logo-mark.png';   /* 교회 로고 (홈페이지와 같은 마크) */
+var GB_LOGO=(typeof GB_LOGO!=='undefined'&&GB_LOGO)||'/images/logo-mark.png';   /* 교회 로고 (홈페이지와 같은 마크) *//* 한글 / English 겸용 (2026-10-16) */
+function gbBilSplit(v){ var p=String(v||'').split(' / '); if(p.length<2) return null; var en=p[p.length-1].trim(), ko=p.slice(0,-1).join(' / ').trim();
+  return (/[가-힣]/.test(ko)&&!/[가-힣]/.test(en)&&/[A-Za-z]/.test(en))?{ko:ko,en:en}:null; }
+var gbHTML0=gbHTML; gbHTML=function(iso,secs,o){ var EN=!!(o&&o.lang==='en');
+  var s2=(secs||[]).map(function(sc){ return Object.assign({},sc,{items:(sc.items||[]).map(function(it){ var b=gbBilSplit(it.v); return b?Object.assign({},it,{v:EN?b.en:b.ko}):it; })}); });
+  return gbHTML0(iso,s2,o); };
+function gbBilMerge(enSecs,koText){ try{ var ko=gbParse(koText||''); (enSecs||[]).forEach(function(sc,i){ var ks=ko[i]; if(!ks) return;
+    (sc.items||[]).forEach(function(it,j){ var k=ks.items[j], b=k&&gbBilSplit(k.v); if(b) it.v=b.en; }); }); }catch(e){} return enSecs; }
+/* /한글 / English 겸용 */
 function gbHTML(iso,secs,o){
   o=o||{}; var EN=o.lang==='en', PF=EN?'gb-en-':'gb-sec-', d=new Date(iso+'T12:00:00'), MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var top=gbGet(secs,'주보'), church=gbGet(secs,'교회'), staff=gbGet(secs,'사역자');
@@ -1674,7 +1682,7 @@ var GB_CSS=[
     try{
       var en=newsEn[iso]; if(en==null){ var r=await fetch(TR_URL+'?action=tr&id='+encodeURIComponent(f.id)); var j=await r.json(); if(!j||!j.ok||!j.en) throw new Error('tr'); en=newsEn[iso]=j.en; }
       var b=byRef[iso], pdf=(b&&b.f&&b.pdf)?(b.f.webViewLink||('https://drive.google.com/file/d/'+b.f.id+'/view')):'';
-      w.innerHTML='<p class="gbl-note">Translated automatically from the Korean bulletin.</p>'+gbHTML(iso,gbParse(en),{pdf:pdf,ts:!!document.getElementById('tsBtn'),lang:'en'});
+      w.innerHTML='<p class="gbl-note">Translated automatically from the Korean bulletin.</p>'+gbHTML(iso,gbBilMerge(gbParse(en),newsCache[iso]||''),{pdf:pdf,ts:!!document.getElementById('tsBtn'),lang:'en'});
     }catch(e){ w.removeAttribute('data-done'); w.innerHTML='<p class="gbl-wait">The English version is not ready right now. Showing the Korean bulletin.</p>'; box.classList.add('gbl-fail'); }
   }
   new MutationObserver(function(){ if(isEn()&&newsCur) loadEn(newsCur); }).observe(document.body,{attributes:true,attributeFilter:['class']});
@@ -1782,6 +1790,7 @@ var GB_CSS=[
     loadNews(); loadPosters();   /* 행사 포스터 (gmcNewsDoc) */
   });
 })();
+
 </script>
 <style>
   .tmenu{position:absolute;z-index:60;background:var(--color-surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 40px rgba(20,33,61,.18);padding:8px;animation:tmIn .16s ease}

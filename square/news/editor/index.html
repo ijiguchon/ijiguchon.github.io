@@ -212,7 +212,15 @@ function gbSection(sc,o){
   return '<section class="gb-s gb-kv-s"><h3>'+gbBi(nm[0],nm[1])+'</h3><dl class="gb-kv">'+it.map(function(x){
     return '<div><dt>'+gbEsc(x.l)+'</dt><dd>'+gbEsc(x.v)+(x.p?'<small>'+gbEsc(x.p)+'</small>':'')+'</dd></div>'; }).join('')+'</dl></section>';
 }
-var GB_LOGO=(typeof GB_LOGO!=='undefined'&&GB_LOGO)||'/images/logo-mark.png';   /* 교회 로고 (홈페이지와 같은 마크) */
+var GB_LOGO=(typeof GB_LOGO!=='undefined'&&GB_LOGO)||'/images/logo-mark.png';   /* 교회 로고 (홈페이지와 같은 마크) *//* 한글 / English 겸용 (2026-10-16) */
+function gbBilSplit(v){ var p=String(v||'').split(' / '); if(p.length<2) return null; var en=p[p.length-1].trim(), ko=p.slice(0,-1).join(' / ').trim();
+  return (/[가-힣]/.test(ko)&&!/[가-힣]/.test(en)&&/[A-Za-z]/.test(en))?{ko:ko,en:en}:null; }
+var gbHTML0=gbHTML; gbHTML=function(iso,secs,o){ var EN=!!(o&&o.lang==='en');
+  var s2=(secs||[]).map(function(sc){ return Object.assign({},sc,{items:(sc.items||[]).map(function(it){ var b=gbBilSplit(it.v); return b?Object.assign({},it,{v:EN?b.en:b.ko}):it; })}); });
+  return gbHTML0(iso,s2,o); };
+function gbBilMerge(enSecs,koText){ try{ var ko=gbParse(koText||''); (enSecs||[]).forEach(function(sc,i){ var ks=ko[i]; if(!ks) return;
+    (sc.items||[]).forEach(function(it,j){ var k=ks.items[j], b=k&&gbBilSplit(k.v); if(b) it.v=b.en; }); }); }catch(e){} return enSecs; }
+/* /한글 / English 겸용 */
 function gbHTML(iso,secs,o){
   o=o||{}; var EN=o.lang==='en', PF=EN?'gb-en-':'gb-sec-', d=new Date(iso+'T12:00:00'), MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var top=gbGet(secs,'주보'), church=gbGet(secs,'교회'), staff=gbGet(secs,'사역자');
@@ -314,6 +322,7 @@ var GB_CSS=[
 '.gb-terms div{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:8px}.gb-terms dt{font-weight:700}.gb-terms dd{margin:0;color:var(--gb-muted)}',
 '@media(max-width:760px){.gb-grid{grid-template-columns:minmax(0,1fr)}.gb-colL{border-right:0;border-bottom:1px solid var(--gb-line)}.gb-top{grid-template-columns:1fr}.gb-meta{text-align:left;align-items:flex-start}.gb-pi{grid-template-columns:7.2em minmax(0,1fr)}.gb-pp{grid-column:2;text-align:left}.gb-s{padding:16px}}'
 ].join('');
+
 
 </script>
 <script>
