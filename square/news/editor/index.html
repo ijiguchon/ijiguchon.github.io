@@ -266,15 +266,35 @@ var GB_PRINT_CSS='body.lang-en .gb-pw .ko{display:none}body.lang-en .gb-pw .en{d
  +'.gb-pw .gb-terms{display:none!important}.gb-pw .gb-foot{padding:10px 14px!important}'
  +'.gb-pw-bar{display:flex;gap:8px;justify-content:center;padding:12px;font:600 14px system-ui,sans-serif}.gb-pw-bar button{font:inherit;padding:8px 16px;border-radius:8px;border:1px solid #1f3a5f;background:#1f3a5f;color:#fff;cursor:pointer}.gb-pw-bar button+button{background:#fff;color:#1f3a5f}'
  +'@media print{.gb-pw-bar{display:none}.gb-pw{max-width:none;zoom:.7}}';
-function gbPrint(btn){
+function gbPrint(btn){ /* 인쇄 덮개 (2026-10-18) — 새 창 대신 같은 페이지 위에 띄움(아이폰에서도 닫기 됨) */
   var g=btn.closest('.gb'); if(!g) return;
-  var html=g.outerHTML.replace(/ src="\/(?!\/)/g,' src="'+location.origin+'/');
-  var w=window.open('','_blank'); if(!w){ window.print(); return; }
-  w.document.open();
-  w.document.write('<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>시애틀지구촌교회 주보</title>'
-    +'<style>'+GB_CSS+GB_PRINT_CSS+'</style></head><body'+(document.body.classList.contains('lang-en')?' class="lang-en"':'')+'><div class="gb-pw-bar"><button onclick="print()">인쇄하기</button><button onclick="window.close();setTimeout(function(){if(!window.closed)location.replace(\''+location.origin+location.pathname+'\')},300)">닫기</button></div><div class="gb-pw">'+html+'</div>'
-    +'<scr'+'ipt>window.onload=function(){setTimeout(function(){print()},400)};</scr'+'ipt></body></html>');
-  w.document.close();
+  var en=document.body.classList.contains('lang-en');
+  var old=document.getElementById('gbPW'); if(old) old.remove();
+  var scr=GB_PRINT_CSS.replace(/@page\{[^}]*\}/g,'').replace(/html,body\{[^}]*\}/g,'').replace(/body\{font-family[^}]*\}/g,'');
+  var st=document.getElementById('gbPWcss');
+  if(!st){ st=document.createElement('style'); st.id='gbPWcss'; document.head.appendChild(st); }
+  st.textContent='#gbPW{position:fixed;inset:0;z-index:2147483000;background:#fff;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}'
+    +'#gbPW .gb-pw-bar{position:sticky;top:0;z-index:2;background:#fff;border-bottom:1px solid #e6e1d6;padding:max(12px,env(safe-area-inset-top)) 12px 12px}'
+    +'#gbPW .gb-pw-bar{display:flex;gap:8px;justify-content:center;font:600 15px system-ui,sans-serif}'
+    +'#gbPW .gb-pw-bar button{font:inherit;min-height:44px;padding:0 20px;border-radius:8px;border:1px solid #1f3a5f;background:#1f3a5f;color:#fff;cursor:pointer}#gbPW .gb-pw-bar button+button{background:#fff;color:#1f3a5f}'
+    +'#gbPW .gb-pw-bar button:focus-visible{outline:3px solid #2c77b0;outline-offset:2px}'
+    +'#gbPW .gb-nav,#gbPW .gb-easy-btn,#gbPW .gb-commit,#gbPW .gb-meta-acts,#gbPW .gb-more,#gbPW .gb-col-go,#gbPW .gb-give{display:none!important}#gbPW .gb{margin:0!important;border-radius:0!important;box-shadow:none!important}'
+    +'@media print,(min-width:760px){'+scr+'}'   /* 인쇄용 두 칸 배치는 인쇄할 때와 넓은 화면에서만 — 휴대폰 화면은 평소 주보 모양 */
+    +'@media print{body>*:not(#gbPW){display:none!important}#gbPW{position:static!important;overflow:visible!important}html,body{margin:0!important;background:#fff!important;overflow:visible!important}@page{size:auto;margin:10mm}}';
+  var box=document.createElement('div'); box.id='gbPW'; box.setAttribute('role','dialog'); box.setAttribute('aria-modal','true'); box.setAttribute('aria-label',en?'Print bulletin':'주보 인쇄');
+  box.innerHTML='<div class="gb-pw-bar"><button type="button" data-a="print">'+(en?'Print / PDF':'인쇄하기')+'</button><button type="button" data-a="close">'+(en?'Close':'닫기')+'</button></div><div class="gb-pw">'+g.outerHTML+'</div>';
+  [].forEach.call(box.querySelectorAll('[id]'),function(e){ if(e.id) e.removeAttribute('id'); });  /* 같은 id 두 번 생기지 않게 */
+  var html=document.documentElement, prevOv=html.style.overflow, pushed=false, closed=false;
+  function close(){ if(closed) return; closed=true; box.remove(); html.style.overflow=prevOv; document.removeEventListener('keydown',onKey); window.removeEventListener('popstate',onPop); try{ btn.focus(); }catch(e){} }
+  function onKey(e){ if(e.key==='Escape') shut(); }
+  function onPop(){ pushed=false; close(); }
+  function shut(){ if(pushed){ pushed=false; history.back(); } else close(); }
+  box.addEventListener('click',function(e){ var b=e.target.closest('button[data-a]'); if(!b) return; if(b.getAttribute('data-a')==='print') window.print(); else shut(); });
+  document.body.appendChild(box); html.style.overflow='hidden';
+  try{ history.pushState({gbpw:1},''); pushed=true; }catch(e){}
+  window.addEventListener('popstate',onPop); document.addEventListener('keydown',onKey);
+  var cb=box.querySelector('button[data-a="close"]'); if(cb) cb.focus();
+  setTimeout(function(){ if(!closed) window.print(); },400);
 }
 try{ window.gbPrint=gbPrint; }catch(e){}
 var GB_CSS=[
