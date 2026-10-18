@@ -793,7 +793,7 @@ background:linear-gradient(100deg,#FFF3D6 0%,#E9C77B 38%,#C99A4E 62%,#F6E7C6 100
 .nh-d{display:block;margin-top:18px;font-size:17px;font-weight:500;color:rgba(255,255,255,.86)}
 .nh-c{position:absolute;right:20px;bottom:16px;font-size:13px;color:rgba(255,255,255,.72)}
 @media (max-width:600px){.nh-art{min-height:240px;align-items:flex-start}.nh-t{padding:28px 24px}.nh-t b{font-size:42px}.nh-d{font-size:15px}
-.nh-art img{object-position:78% center}.nh-art::before{background:linear-gradient(180deg,rgba(11,20,40,.6),rgba(11,20,40,.1) 70%)}.nh-c{display:none}}</style>
+.nh-art img{object-position:78% center}.nh-art[data-art=ferry]{min-height:300px}.nh-art[data-art=ferry] img{object-position:61% center}.nh-art::before{background:linear-gradient(180deg,rgba(11,20,40,.6),rgba(11,20,40,.1) 70%)}.nh-c{display:none}}</style>
 <script id="nh-js">(function(){var el=document.getElementById('nhDate');if(!el)return;
 var t=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles'}));var d=new Date(t);d.setDate(t.getDate()+((7-t.getDay())%7));
 var ko=d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 주일';var en=d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+' · Sunday';
@@ -802,7 +802,7 @@ el.innerHTML='<span class="ko">'+ko+'</span><span class="en">'+en+'</span>';
 var A=[['table','목장의 저녁 식탁','An evening at the house church table'],['globe','지구촌 곳곳의 빛','Lights across the global village'],['coffee','시애틀의 커피 한 잔','A cup of Seattle coffee'],['rainier','새벽의 레이니어 산','Mount Rainier at dawn'],['rain','비 오는 시애틀의 밤','A rainy night in Seattle'],['ferry','노을 속 시애틀 페리','A Seattle ferry at sunset'],['hands','손 맞잡은 기도','Hands joined in prayer']];
 var wk=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5+3)/7),a=A[((wk-2960)%A.length+A.length)%A.length],im=document.getElementById('nhImg'),c=document.getElementById('nhCap');
 if(a[0]!=='table'){im.srcset='/images/art/news-'+a[0]+'-900.webp 900w, /images/art/news-'+a[0]+'.webp 1800w';im.src='/images/art/news-'+a[0]+'.webp';}
-if(c)c.innerHTML='<span class="ko">'+a[1]+'</span><span class="en">'+a[2]+'</span>';})();</script><!-- /nh-art -->
+if(c)c.innerHTML='<span class="ko">'+a[1]+'</span><span class="en">'+a[2]+'</span>';var fg=im.closest('.nh-art');if(fg)fg.setAttribute('data-art',a[0]);})();</script><!-- /nh-art -->
     <div class="sec-eyebrow"><span class="ko">지구촌 마당</span><span class="en">Square</span></div>
     <h2 class="sec-title"><span class="ko">교회 소식</span><span class="en">Church news</span></h2>
     <p class="sec-lead"><span class="ko">매주 올라오는 주보로 교회 소식을 전합니다.</span><span class="en">Church news, shared through the weekly bulletin.</span></p>
