@@ -272,7 +272,7 @@ function gbPrint(btn){
   var w=window.open('','_blank'); if(!w){ window.print(); return; }
   w.document.open();
   w.document.write('<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>시애틀지구촌교회 주보</title>'
-    +'<style>'+GB_CSS+GB_PRINT_CSS+'</style></head><body'+(document.body.classList.contains('lang-en')?' class="lang-en"':'')+'><div class="gb-pw-bar"><button onclick="print()">인쇄하기</button><button onclick="close()">닫기</button></div><div class="gb-pw">'+html+'</div>'
+    +'<style>'+GB_CSS+GB_PRINT_CSS+'</style></head><body'+(document.body.classList.contains('lang-en')?' class="lang-en"':'')+'><div class="gb-pw-bar"><button onclick="print()">인쇄하기</button><button onclick="window.close();setTimeout(function(){if(!window.closed)location.replace(\''+location.origin+location.pathname+'\')},300)">닫기</button></div><div class="gb-pw">'+html+'</div>'
     +'<scr'+'ipt>window.onload=function(){setTimeout(function(){print()},400)};</scr'+'ipt></body></html>');
   w.document.close();
 }
