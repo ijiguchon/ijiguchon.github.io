@@ -798,8 +798,8 @@ background:linear-gradient(100deg,#FFF3D6 0%,#E9C77B 38%,#C99A4E 62%,#F6E7C6 100
 var t=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles'}));var d=new Date(t);d.setDate(t.getDate()+((7-t.getDay())%7));
 var ko=d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 주일';var en=d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+' · Sunday';
 el.innerHTML='<span class="ko">'+ko+'</span><span class="en">'+en+'</span>';
-/* 주마다 그림 바꾸기: 목장의 저녁 식탁 → 지구촌 → 시애틀 커피 → 레이니어 산 → 비 오는 시애틀 */
-var A=[['table','목장의 저녁 식탁','An evening at the house church table'],['globe','지구촌 곳곳의 빛','Lights across the global village'],['coffee','시애틀의 커피 한 잔','A cup of Seattle coffee'],['rainier','새벽의 레이니어 산','Mount Rainier at dawn'],['rain','비 오는 시애틀의 밤','A rainy night in Seattle']];
+/* 주마다 그림 바꾸기: 목장의 저녁 식탁 → 지구촌 → 시애틀 커피 → 레이니어 산 → 비 오는 시애틀 → 페리 */
+var A=[['table','목장의 저녁 식탁','An evening at the house church table'],['globe','지구촌 곳곳의 빛','Lights across the global village'],['coffee','시애틀의 커피 한 잔','A cup of Seattle coffee'],['rainier','새벽의 레이니어 산','Mount Rainier at dawn'],['rain','비 오는 시애틀의 밤','A rainy night in Seattle'],['ferry','노을 속 시애틀 페리','A Seattle ferry at sunset']];
 var wk=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5+3)/7),a=A[((wk-2960)%A.length+A.length)%A.length],im=document.getElementById('nhImg'),c=document.getElementById('nhCap');
 if(a[0]!=='table'){im.srcset='/images/art/news-'+a[0]+'-900.webp 900w, /images/art/news-'+a[0]+'.webp 1800w';im.src='/images/art/news-'+a[0]+'.webp';}
 if(c)c.innerHTML='<span class="ko">'+a[1]+'</span><span class="en">'+a[2]+'</span>';})();</script><!-- /nh-art -->

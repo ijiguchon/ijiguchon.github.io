@@ -828,6 +828,10 @@ if(document.readyState!=='loading')add();else document.addEventListener('DOMCont
 
 
 
+
+
+
+
 <style id="hp-css">
 #hp,#hpClose{--hp-s2:8px;--hp-s3:12px;--hp-s4:16px;--hp-s5:20px;--hp-s6:24px;--hp-s8:32px;--hp-s10:40px;--hp-s12:48px;--hp-s16:64px;--hp-s20:80px;--hp-s24:96px;
  --hp-navy:var(--color-primary,var(--color-primary));--hp-gold:var(--color-accent,var(--color-accent));--hp-gold-soft:#E7D2A6;--hp-line:var(--color-border,var(--color-border));--hp-text2:var(--color-text-secondary,var(--color-text-secondary));
@@ -907,8 +911,6 @@ if(document.readyState!=='loading')add();else document.addEventListener('DOMCont
 html:not(.hp-off) #p-newcomer #doors{display:none}
 html.hp-off #hp,html.hp-off #hpClose{display:none}
 </style>
-
-
 <style id="hebron-ds">
 /* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
 :root{
@@ -2740,9 +2742,9 @@ if(/[?&]hp=0\b/.test(location.search)){document.documentElement.classList.add('h
 /* 위쪽 고정 메뉴(.topbar) 높이만큼 첫 화면을 내림 */
 var hp=document.getElementById('hp'),tb=document.querySelector('.topbar');
 function fit(){if(hp&&tb)hp.style.setProperty('--hp-top',tb.offsetHeight+'px');}fit();addEventListener('resize',fit);addEventListener('load',fit);
-/* 주마다 그림 바꾸기 (교회 소식 머리와 같은 순서): 목장의 저녁 식탁 → 지구촌 → 시애틀 커피 → 레이니어 산 → 비 오는 시애틀 */
+/* 주마다 그림 바꾸기 (교회 소식 머리와 같은 순서): 목장의 저녁 식탁 → 지구촌 → 시애틀 커피 → 레이니어 산 → 비 오는 시애틀 → 페리 */
 var t=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles'}));var d=new Date(t);d.setDate(t.getDate()+((7-t.getDay())%7));
-var A=[['table','목장의 저녁 식탁','An evening at the house church table'],['globe','지구촌 곳곳의 빛','Lights across the global village'],['coffee','시애틀의 커피 한 잔','A cup of Seattle coffee'],['rainier','새벽의 레이니어 산','Mount Rainier at dawn'],['rain','비 오는 시애틀의 밤','A rainy night in Seattle']];
+var A=[['table','목장의 저녁 식탁','An evening at the house church table'],['globe','지구촌 곳곳의 빛','Lights across the global village'],['coffee','시애틀의 커피 한 잔','A cup of Seattle coffee'],['rainier','새벽의 레이니어 산','Mount Rainier at dawn'],['rain','비 오는 시애틀의 밤','A rainy night in Seattle'],['ferry','노을 속 시애틀 페리','A Seattle ferry at sunset']];
 var wk=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5+3)/7),a=A[((wk-2960)%A.length+A.length)%A.length],im=document.getElementById('hpArt'),c=document.getElementById('hpCap');
 if(im&&a[0]!=='table'){im.srcset='/images/art/news-'+a[0]+'-900.webp 900w, /images/art/news-'+a[0]+'.webp 1800w';im.src='/images/art/news-'+a[0]+'.webp';}
 if(c)c.innerHTML='<span class="ko">'+a[1]+'</span><span class="en">'+a[2]+'</span>';
