@@ -777,7 +777,32 @@ if(document.readyState!=='loading')add();else document.addEventListener('DOMCont
 <main id="main">
 <section class="panel show sec" style="padding-top:34px">
   <div class="wrap">
-<figure class="phw" data-th="hdr"><img src="/images/nature/news-handoff.webp" srcset="/images/nature/news-handoff-900.webp 900w, /images/nature/news-handoff.webp 1800w" sizes="(max-width:900px) 100vw, 1040px" width="1800" height="788" decoding="async" style="object-position:50% 50%" alt="안내지를 건네는 손과 반갑게 받으려 내미는 손"></figure>
+<!-- nh-art --><figure class="nh-art" data-th="hdr" aria-label="이번 주 주보">
+<img id="nhImg" src="/images/art/news-table.webp" srcset="/images/art/news-table-900.webp 900w, /images/art/news-table.webp 1800w" sizes="(max-width:900px) 100vw, 1040px" width="1800" height="720" decoding="async" alt="">
+<div class="nh-t"><span class="nh-k">Weekly Bulletin</span>
+<b><span class="ko">이번 주 주보</span><span class="en">This Week's Bulletin</span></b>
+<span class="nh-d" id="nhDate"></span></div>
+<figcaption class="nh-c" id="nhCap"><span class="ko">목장의 저녁 식탁</span><span class="en">An evening at the house church table</span></figcaption></figure>
+<style id="nh-css">.nh-art{position:relative;isolation:isolate;display:flex;align-items:center;margin:0 0 28px;border-radius:20px;overflow:hidden;min-height:300px;background:#0b1428;color:#fff}
+.nh-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center;z-index:-2}
+.nh-art::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(11,20,40,.55),rgba(11,20,40,0) 60%)}
+.nh-t{padding:44px 52px}
+.nh-k{display:block;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent-on-dark,#E9C77B)}
+.nh-t b{display:block;font-size:clamp(40px,7vw,76px);font-weight:800;letter-spacing:-.04em;line-height:1.06;margin-top:14px;word-break:keep-all;color:#F3D9A4;
+background:linear-gradient(100deg,#FFF3D6 0%,#E9C77B 38%,#C99A4E 62%,#F6E7C6 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nh-d{display:block;margin-top:18px;font-size:17px;font-weight:500;color:rgba(255,255,255,.86)}
+.nh-c{position:absolute;right:20px;bottom:16px;font-size:13px;color:rgba(255,255,255,.72)}
+@media (max-width:600px){.nh-art{min-height:240px;align-items:flex-start}.nh-t{padding:28px 24px}.nh-t b{font-size:42px}.nh-d{font-size:15px}
+.nh-art img{object-position:78% center}.nh-art::before{background:linear-gradient(180deg,rgba(11,20,40,.6),rgba(11,20,40,.1) 70%)}.nh-c{display:none}}</style>
+<script id="nh-js">(function(){var el=document.getElementById('nhDate');if(!el)return;
+var t=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles'}));var d=new Date(t);d.setDate(t.getDate()+((7-t.getDay())%7));
+var ko=d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일 주일';var en=d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+' · Sunday';
+el.innerHTML='<span class="ko">'+ko+'</span><span class="en">'+en+'</span>';
+/* 주마다 그림 바꾸기: 목장의 저녁 식탁 → 지구촌 → 시애틀 커피 → 레이니어 산 */
+var A=[['table','목장의 저녁 식탁','An evening at the house church table'],['globe','지구촌 곳곳의 빛','Lights across the global village'],['coffee','시애틀의 커피 한 잔','A cup of Seattle coffee'],['rainier','새벽의 레이니어 산','Mount Rainier at dawn']];
+var wk=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5+3)/7),a=A[((wk-2960)%4+4)%4],im=document.getElementById('nhImg'),c=document.getElementById('nhCap');
+if(a[0]!=='table'){im.srcset='/images/art/news-'+a[0]+'-900.webp 900w, /images/art/news-'+a[0]+'.webp 1800w';im.src='/images/art/news-'+a[0]+'.webp';}
+if(c)c.innerHTML='<span class="ko">'+a[1]+'</span><span class="en">'+a[2]+'</span>';})();</script><!-- /nh-art -->
     <div class="sec-eyebrow"><span class="ko">지구촌 마당</span><span class="en">Square</span></div>
     <h2 class="sec-title"><span class="ko">교회 소식</span><span class="en">Church news</span></h2>
     <p class="sec-lead"><span class="ko">매주 올라오는 주보로 교회 소식을 전합니다.</span><span class="en">Church news, shared through the weekly bulletin.</span></p>
