@@ -482,7 +482,8 @@ async function directSave(mode){
   let pass=getPass();
   if(!pass){ pass=await askPass(); if(!pass) return; }
   b.disabled=true; status('다른 분이 그사이 저장했는지 확인하는 중…');
-  try{ const rd=await remoteDoc(title); if(rd&&(rd.st.base||'')!==(S.base||'')){
+  let KEPT=false;  /* 공개 지키기 (2026-10-18) */
+  try{ const rd=await remoteDoc(title); if(rd&&mode==='draft'&&rd.st.draft===false){ mode='live'; KEPT=true; } if(rd&&(rd.st.base||'')!==(S.base||'')){
     const by=rd.st.base||'다른 분이 (이름 없이)';
     const c=await choose('<b>'+esc(by)+'</b>에 이 주일 주보가 저장되었습니다. 지금 화면은 그보다 앞선 내용에서 고친 것입니다.<br>그 내용을 불러와 이어서 고치시기를 권합니다. 지금 화면으로 저장해도 앞 문서는 \'이전판_\'으로 보관됩니다.');
     if(c==='load'){ b.disabled=false; useRemote(rd,'먼저 저장된 내용을 불러왔습니다. 이어서 고친 뒤 다시 저장하세요. 방금 화면은 되돌리기로 돌아갈 수 있습니다.'); return; }
@@ -497,6 +498,7 @@ async function directSave(mode){
     showStamp();
     status(`올렸습니다. 1분쯤 뒤 <a href="/square/news/#news-${S.date}" target="_blank" rel="noopener">교회 소식</a>에서 확인하세요.${j.replaced?' 이전 문서는 "이전판_"으로 보관했습니다.':''}`,'ok',true);
     if(S.pub!=='now'&&S.date>ptToday()) status('예약했습니다. '+pubWhen()+'에 교회 소식에 저절로 나옵니다. 그 전까지는 고쳐서 다시 올려도 됩니다.'+(j.replaced?' 이전 문서는 "이전판_"으로 보관했습니다.':''),'ok',true);
+    if(KEPT) status('이미 홈페이지에 올라간 주보라서 공개 상태를 그대로 두고 저장했습니다. 고친 내용이 교회 소식에 바로 반영됩니다.','ok',true);
     if(mode==='draft') status('저장했습니다. 설교 제목·본문·끝 찬송·나눔 질문은 예배 탭에 바로 나옵니다. 주보 전체는 4번을 누른 뒤 교회 소식에 나옵니다. 누구든 편집기를 열면 이 내용에서 이어서 고칠 수 있습니다. 다 되면 4번 \'홈페이지에 올리기\'를 누르세요.','ok');
   }catch(e){ status('인터넷 연결 문제로 '+(mode==='draft'?'저장하지':'올리지')+' 못했습니다. 잠시 뒤 다시 눌러 주세요.','err'); }
   finally{ b.disabled=false; }
