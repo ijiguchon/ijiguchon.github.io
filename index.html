@@ -836,87 +836,93 @@ if(document.readyState!=='loading')add();else document.addEventListener('DOMCont
 
 
 
+
+
+
+
+
+
 <style id="hp-css">
-#hp,#hpClose{--hp-s2:8px;--hp-s3:12px;--hp-s4:16px;--hp-s5:20px;--hp-s6:24px;--hp-s8:32px;--hp-s10:40px;--hp-s12:48px;--hp-s16:64px;--hp-s20:80px;--hp-s24:96px;
+:is(#hp,#hp2),#hpClose{--hp-s2:8px;--hp-s3:12px;--hp-s4:16px;--hp-s5:20px;--hp-s6:24px;--hp-s8:32px;--hp-s10:40px;--hp-s12:48px;--hp-s16:64px;--hp-s20:80px;--hp-s24:96px;
  --hp-navy:var(--color-primary,var(--color-primary));--hp-gold:var(--color-accent,var(--color-accent));--hp-gold-soft:#E7D2A6;--hp-line:var(--color-border,var(--color-border));--hp-text2:var(--color-text-secondary,var(--color-text-secondary));
  font-family:var(--font-sans);line-height:1.6;word-break:keep-all;text-align:left;color:var(--hp-navy)}
-#hp{margin:0}
+:is(#hp,#hp2){margin:0}
 #hpClose{margin:var(--hp-s16) 0 0}
-#hp *,#hpClose *{box-sizing:border-box}
-#hp h1,#hp h2,#hp h3,#hp p,#hp ul,#hp li,#hpClose h2,#hpClose p{margin:0;padding:0;font-family:inherit;letter-spacing:inherit}
-#hp section,#hpClose{display:block;border:0;border-radius:0;box-shadow:none;max-width:none}
-#hp a,#hpClose a{color:inherit}
-#hp .hp-wrap,#hpClose .hp-wrap{max-width:1180px;margin:0 auto;padding:0 var(--hp-s6)}
-#hp .hp-eye{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--hp-gold)}
-#hp .hp-btn,#hpClose .hp-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 var(--hp-s8);border-radius:var(--radius-pill);font:inherit;font-size:16px;font-weight:700;text-decoration:none;border:1.5px solid transparent;transition:background .2s,color .2s}
-#hp .hp-gold{background:var(--hp-gold);color:var(--color-text-inverse)}#hp .hp-gold:hover{background:#a37f3d}
-#hp .hp-ghost,#hpClose .hp-ghost{border-color:rgba(255,255,255,.6);color:var(--color-text-inverse)}#hp .hp-ghost:hover,#hpClose .hp-ghost:hover{background:rgba(255,255,255,.1)}
-#hp .hp-navy,#hpClose .hp-navy{background:var(--hp-navy);color:var(--color-text-inverse)}#hp .hp-navy:hover,#hpClose .hp-navy:hover{background:var(--color-primary-hover)}
-#hp .hp-line{border-color:var(--hp-navy);color:var(--hp-navy)}#hp .hp-line:hover{background:var(--hp-navy);color:var(--color-text-inverse)}
-#hp a:focus-visible,#hpClose a:focus-visible{outline:3px solid var(--color-focus,#2c77b0);outline-offset:3px}
+:is(#hp,#hp2) *,#hpClose *{box-sizing:border-box}
+:is(#hp,#hp2) h1,:is(#hp,#hp2) h2,:is(#hp,#hp2) h3,:is(#hp,#hp2) p,:is(#hp,#hp2) ul,:is(#hp,#hp2) li,#hpClose h2,#hpClose p{margin:0;padding:0;font-family:inherit;letter-spacing:inherit}
+:is(#hp,#hp2) section,#hpClose{display:block;border:0;border-radius:0;box-shadow:none;max-width:none}
+:is(#hp,#hp2) a,#hpClose a{color:inherit}
+:is(#hp,#hp2) .hp-wrap,#hpClose .hp-wrap{max-width:1180px;margin:0 auto;padding:0 var(--hp-s6)}
+:is(#hp,#hp2) .hp-eye{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--hp-gold)}
+:is(#hp,#hp2) .hp-btn,#hpClose .hp-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 var(--hp-s8);border-radius:var(--radius-pill);font:inherit;font-size:16px;font-weight:700;text-decoration:none;border:1.5px solid transparent;transition:background .2s,color .2s}
+:is(#hp,#hp2) .hp-gold{background:var(--hp-gold);color:var(--color-text-inverse)}:is(#hp,#hp2) .hp-gold:hover{background:#a37f3d}
+:is(#hp,#hp2) .hp-ghost,#hpClose .hp-ghost{border-color:rgba(255,255,255,.6);color:var(--color-text-inverse)}:is(#hp,#hp2) .hp-ghost:hover,#hpClose .hp-ghost:hover{background:rgba(255,255,255,.1)}
+:is(#hp,#hp2) .hp-navy,#hpClose .hp-navy{background:var(--hp-navy);color:var(--color-text-inverse)}:is(#hp,#hp2) .hp-navy:hover,#hpClose .hp-navy:hover{background:var(--color-primary-hover)}
+:is(#hp,#hp2) .hp-line{border-color:var(--hp-navy);color:var(--hp-navy)}:is(#hp,#hp2) .hp-line:hover{background:var(--hp-navy);color:var(--color-text-inverse)}
+:is(#hp,#hp2) a:focus-visible,#hpClose a:focus-visible{outline:3px solid var(--color-focus,#2c77b0);outline-offset:3px}
 /* 1 */
-#hp .hp-hero{background:#0b1428;color:var(--color-text-inverse);padding:calc(var(--hp-top,140px) + var(--hp-s16)) 0 var(--hp-s16);position:relative;overflow:hidden;isolation:isolate}
-#hp .hp-bg{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:right center;z-index:-2;border-radius:0}
-#hp .hp-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(11,20,40,.82) 0%,rgba(11,20,40,.55) 42%,rgba(11,20,40,0) 72%)}
-#hp .hp-copy{max-width:640px}
-#hp .hp-hero h1{margin-top:var(--hp-s5);font-size:clamp(40px,6.4vw,80px);font-weight:800;line-height:1.12;letter-spacing:-.03em;color:var(--color-text-inverse)}
-#hp .hp-hero h1 em{font-style:normal;color:#F3D9A4;background:linear-gradient(100deg,#FFF3D6 0%,var(--color-accent-on-dark) 40%,#C99A4E 70%,#F6E7C6 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-#hp .hp-sub{margin-top:var(--hp-s6);font-size:clamp(17px,2vw,20px);color:rgba(255,255,255,.86);max-width:28em}
-#hp .hp-acts{display:flex;flex-wrap:wrap;gap:var(--hp-s3);margin-top:var(--hp-s10)}
-#hp .hp-cap{position:absolute;right:24px;top:calc(var(--hp-top,140px) + 16px);font-size:13px;color:rgba(255,255,255,.72)}
-#hp .hp-strip{margin-top:var(--hp-s20);display:flex;flex-wrap:wrap;gap:var(--hp-s4) var(--hp-s12);padding-top:var(--hp-s6);border-top:1px solid rgba(255,255,255,.18);font-size:15px;color:rgba(255,255,255,.82)}
-#hp .hp-strip b{color:var(--color-text-inverse);font-size:17px;margin-right:var(--hp-s2)}
-@media (max-width:860px){#hp .hp-hero{padding-top:calc(var(--hp-top,134px) + var(--hp-s8))}#hp .hp-bg{top:auto;bottom:0;height:min(62%,440px);object-position:74% center}
- #hp .hp-hero::before{background:linear-gradient(180deg,#0b1428 0%,#0b1428 40%,rgba(11,20,40,.35) 66%,rgba(11,20,40,.7) 100%)}#hp .hp-cap{display:none}}
+:is(#hp,#hp2) .hp-hero{background:#0b1428;color:var(--color-text-inverse);padding:calc(var(--hp-top,140px) + var(--hp-s16)) 0 var(--hp-s16);position:relative;overflow:hidden;isolation:isolate}
+:is(#hp,#hp2) .hp-bg{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:right center;z-index:-2;border-radius:0}
+:is(#hp,#hp2) .hp-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(11,20,40,.82) 0%,rgba(11,20,40,.55) 42%,rgba(11,20,40,0) 72%)}
+:is(#hp,#hp2) .hp-copy{max-width:640px}
+:is(#hp,#hp2) .hp-hero h1{margin-top:var(--hp-s5);font-size:clamp(40px,6.4vw,80px);font-weight:800;line-height:1.12;letter-spacing:-.03em;color:var(--color-text-inverse)}
+:is(#hp,#hp2) .hp-hero h1 em{font-style:normal;color:#F3D9A4;background:linear-gradient(100deg,#FFF3D6 0%,var(--color-accent-on-dark) 40%,#C99A4E 70%,#F6E7C6 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+:is(#hp,#hp2) .hp-sub{margin-top:var(--hp-s6);font-size:clamp(17px,2vw,20px);color:rgba(255,255,255,.86);max-width:28em}
+:is(#hp,#hp2) .hp-acts{display:flex;flex-wrap:wrap;gap:var(--hp-s3);margin-top:var(--hp-s10)}
+:is(#hp,#hp2) .hp-cap{position:absolute;right:24px;top:calc(var(--hp-top,140px) + 16px);font-size:13px;color:rgba(255,255,255,.72)}
+@media (max-width:860px){:is(#hp,#hp2) .hp-hero{padding-top:calc(var(--hp-top,134px) + var(--hp-s8))}:is(#hp,#hp2) .hp-bg{top:auto;bottom:0;height:min(62%,440px);object-position:74% center}
+ :is(#hp,#hp2) .hp-hero::before{background:linear-gradient(180deg,#0b1428 0%,#0b1428 40%,rgba(11,20,40,.35) 66%,rgba(11,20,40,.7) 100%)}:is(#hp,#hp2) .hp-cap{display:none}}
 /* 2 */
-#hp .hp-house{padding:var(--hp-s24) 0;background:var(--color-background,var(--color-background))}
-#hp .hp-big{margin-top:14px;font-size:clamp(30px,4.6vw,56px);font-weight:800;line-height:1.25;letter-spacing:-.025em;max-width:15em;color:var(--hp-navy)}
-#hp .hp-big span{color:var(--hp-gold)}
-#hp .hp-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--hp-s8);margin-top:var(--hp-s16)}
-#hp .hp-three>div{border-top:2px solid var(--hp-navy);padding-top:var(--hp-s5)}
-#hp .hp-three b{display:block;font-size:22px;font-weight:800}
-#hp .hp-three p{font-size:16px;color:var(--hp-text2);margin-top:var(--hp-s2)}
-@media (max-width:760px){#hp .hp-three{grid-template-columns:minmax(0,1fr);gap:var(--hp-s6)}}
+:is(#hp,#hp2) .hp-house{padding:var(--hp-s24) 0;background:var(--color-background,var(--color-background))}
+:is(#hp,#hp2) .hp-big{margin-top:14px;font-size:clamp(30px,4.6vw,56px);font-weight:800;line-height:1.25;letter-spacing:-.025em;max-width:15em;color:var(--hp-navy)}
+:is(#hp,#hp2) .hp-big span span{color:var(--hp-gold)}
+:is(#hp,#hp2) .hp-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--hp-s8);margin-top:var(--hp-s16)}
+:is(#hp,#hp2) .hp-three>div{border-top:2px solid var(--hp-navy);padding-top:var(--hp-s5)}
+:is(#hp,#hp2) .hp-three b{display:block;font-size:22px;font-weight:800}
+:is(#hp,#hp2) .hp-three p{font-size:16px;color:var(--hp-text2);margin-top:var(--hp-s2)}
+@media (max-width:760px){:is(#hp,#hp2) .hp-three{grid-template-columns:minmax(0,1fr);gap:var(--hp-s6)}}
 /* 3 */
-#hp .hp-dsec{padding:var(--hp-s24) 0;background:var(--color-surface)}
-#hp .hp-dsec h2{font-size:clamp(28px,3.6vw,44px);font-weight:800;letter-spacing:-.02em;margin-top:var(--hp-s3);color:var(--hp-navy)}
-#hp .hp-doors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:var(--hp-s12);border-top:1px solid var(--hp-line);border-left:1px solid var(--hp-line)}
-#hp .hp-door{display:flex;flex-direction:column;gap:var(--hp-s2);min-height:220px;padding:var(--hp-s8);border-right:1px solid var(--hp-line);border-bottom:1px solid var(--hp-line);text-decoration:none;color:var(--hp-navy);transition:background .25s,color .25s}
-#hp .hp-n{font-size:14px;font-weight:700;color:var(--hp-gold)}
-#hp .hp-door h3{font-size:30px;font-weight:800;letter-spacing:-.02em;margin-top:auto}
-#hp .hp-door p{font-size:16px;color:var(--hp-text2)}
-#hp .hp-go{font-size:15px;font-weight:700;margin-top:var(--hp-s2)}
-#hp .hp-door:hover{background:var(--hp-navy);color:var(--color-text-inverse)}#hp .hp-door:hover p{color:rgba(255,255,255,.75)}#hp .hp-door:hover .hp-n{color:var(--hp-gold-soft)}
-@media (max-width:860px){#hp .hp-doors{grid-template-columns:repeat(2,minmax(0,1fr))}#hp .hp-door{min-height:180px;padding:var(--hp-s6)}#hp .hp-door h3{font-size:24px}}
+:is(#hp,#hp2) .hp-dsec{padding:var(--hp-s24) 0;background:var(--color-surface)}
+:is(#hp,#hp2) .hp-dsec h2{font-size:clamp(28px,3.6vw,44px);font-weight:800;letter-spacing:-.02em;margin-top:var(--hp-s3);color:var(--hp-navy)}
+:is(#hp,#hp2) .hp-doors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:var(--hp-s12);border-top:1px solid var(--hp-line);border-left:1px solid var(--hp-line)}
+:is(#hp,#hp2) .hp-door{display:flex;flex-direction:column;gap:var(--hp-s2);min-height:220px;padding:var(--hp-s8);border-right:1px solid var(--hp-line);border-bottom:1px solid var(--hp-line);text-decoration:none;color:var(--hp-navy);transition:background .25s,color .25s}
+:is(#hp,#hp2) .hp-n{font-size:14px;font-weight:700;color:var(--hp-gold)}
+:is(#hp,#hp2) .hp-door h3{font-size:30px;font-weight:800;letter-spacing:-.02em;margin-top:auto}
+:is(#hp,#hp2) .hp-door p{font-size:16px;color:var(--hp-text2)}
+:is(#hp,#hp2) .hp-go{font-size:15px;font-weight:700;margin-top:var(--hp-s2)}
+:is(#hp,#hp2) .hp-door:hover{background:var(--hp-navy);color:var(--color-text-inverse)}:is(#hp,#hp2) .hp-door:hover p{color:rgba(255,255,255,.75)}:is(#hp,#hp2) .hp-door:hover .hp-n{color:var(--hp-gold-soft)}
+@media (max-width:860px){:is(#hp,#hp2) .hp-doors{grid-template-columns:repeat(2,minmax(0,1fr))}:is(#hp,#hp2) .hp-door{min-height:180px;padding:var(--hp-s6)}:is(#hp,#hp2) .hp-door h3{font-size:24px}}
 /* 4 */
-#hp .hp-sunday{padding:var(--hp-s24) 0;background:var(--color-background,var(--color-background))}
-#hp .hp-sun{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--hp-s12);align-items:end}
-#hp .hp-time{font-size:clamp(72px,12vw,160px);font-weight:800;line-height:.95;letter-spacing:-.05em;color:var(--hp-navy)}
-#hp .hp-time small{display:block;font-size:clamp(18px,2vw,22px);font-weight:700;letter-spacing:0;color:var(--hp-gold);margin-bottom:var(--hp-s4)}
-#hp .hp-pm{font-size:.35em;letter-spacing:0}
-#hp .hp-sun ul{list-style:none;border-top:1px solid var(--hp-line)}
-#hp .hp-sun li{display:flex;justify-content:space-between;gap:var(--hp-s4);padding:var(--hp-s4) 0;border-bottom:1px solid var(--hp-line);font-size:17px}
-#hp .hp-sun li b{font-weight:700}#hp .hp-sun li>span{color:var(--hp-text2);text-align:right}
-#hp .hp-sun .hp-acts{margin-top:var(--hp-s8)}
-@media (max-width:860px){#hp .hp-sun{grid-template-columns:minmax(0,1fr);gap:var(--hp-s8)}}
+:is(#hp,#hp2) .hp-sunday{padding:var(--hp-s24) 0;background:var(--color-background,var(--color-background))}
+:is(#hp,#hp2) .hp-sun{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--hp-s12);align-items:end}
+:is(#hp,#hp2) .hp-time{font-size:clamp(72px,12vw,160px);font-weight:800;line-height:.95;letter-spacing:-.05em;color:var(--hp-navy)}
+:is(#hp,#hp2) .hp-time small{display:block;font-size:clamp(18px,2vw,22px);font-weight:700;letter-spacing:0;color:var(--hp-gold);margin-bottom:var(--hp-s4)}
+:is(#hp,#hp2) .hp-pm{font-size:.35em;letter-spacing:0}
+:is(#hp,#hp2) .hp-sun ul{list-style:none;border-top:1px solid var(--hp-line)}
+:is(#hp,#hp2) .hp-sun li{display:flex;justify-content:space-between;gap:var(--hp-s4);padding:var(--hp-s4) 0;border-bottom:1px solid var(--hp-line);font-size:17px}
+:is(#hp,#hp2) .hp-sun li b{font-weight:700}:is(#hp,#hp2) .hp-sun li>span{color:var(--hp-text2);text-align:right}
+:is(#hp,#hp2) .hp-sun .hp-acts{margin-top:var(--hp-s8)}
+@media (max-width:860px){:is(#hp,#hp2) .hp-sun{grid-template-columns:minmax(0,1fr);gap:var(--hp-s8)}}
 /* 5 */
 #hpClose{background:var(--hp-gold);color:var(--color-text-inverse);padding:var(--hp-s24) 0;text-align:center}
 #hpClose h2{font-size:clamp(30px,4.6vw,56px);font-weight:800;letter-spacing:-.025em;line-height:1.2;color:var(--color-text-inverse)}
 #hpClose p{font-size:18px;margin-top:var(--hp-s4);color:rgba(255,255,255,.92)}
 #hpClose .hp-acts{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--hp-s3);margin-top:var(--hp-s8)}
-@media (max-width:600px){#hp .hp-wrap,#hpClose .hp-wrap{padding:0 var(--hp-s4)}#hp .hp-dsec h2,#hp .hp-big{font-size:26px}
- #hp .hp-door{padding:var(--hp-s5);min-height:160px}#hp .hp-door h3{font-size:21px}#hp .hp-door p{font-size:15px}
- #hp .hp-sun li{flex-direction:column;gap:2px}#hp .hp-sun li>span{text-align:left}
- #hp .hp-acts .hp-btn,#hpClose .hp-acts .hp-btn{flex:1 1 auto}}
+@media (max-width:600px){:is(#hp,#hp2) .hp-wrap,#hpClose .hp-wrap{padding:0 var(--hp-s4)}:is(#hp,#hp2) .hp-dsec h2,:is(#hp,#hp2) .hp-big{font-size:26px}
+ :is(#hp,#hp2) .hp-door{padding:var(--hp-s5);min-height:160px}:is(#hp,#hp2) .hp-door h3{font-size:21px}:is(#hp,#hp2) .hp-door p{font-size:15px}
+ :is(#hp,#hp2) .hp-sun li{flex-direction:column;gap:2px}:is(#hp,#hp2) .hp-sun li>span{text-align:left}
+ :is(#hp,#hp2) .hp-acts .hp-btn,#hpClose .hp-acts .hp-btn{flex:1 1 auto}}
 /* 나타나기 — 움직임 줄이기 존중 */
 .hp-rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}.hp-rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.hp-rv{opacity:1;transform:none;transition:none}#hp .hp-door{transition:none}}
+@media (prefers-reduced-motion:reduce){.hp-rv{opacity:1;transform:none;transition:none}:is(#hp,#hp2) .hp-door{transition:none}}
 /* 예전 첫 화면(물결 + 문 6개)은 숨김 — ?hp=0 이면 예전 모양 */
 html:not(.hp-off) #p-newcomer #doors{display:none}
-html.hp-off #hp,html.hp-off #hpClose{display:none}
+html.hp-off :is(#hp,#hp2),html.hp-off #hpClose{display:none}
+/* 1면과 바로가기 이어 붙이기 (2026-10-18) — 그림 아래가 바로가기의 남색으로 스며듦 */
+#p-newcomer .mstrip.hp-joined{margin-top:0!important;background:linear-gradient(180deg,#0b1428 0%,var(--color-primary) 55%,var(--color-primary-active) 100%)!important}
+:is(#hp,#hp2) .hp-hero{padding-bottom:var(--hp-s12)}
+:is(#hp,#hp2) .hp-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:140px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(11,20,40,0),#0b1428)}
 </style>
-
-
 <style id="hebron-ds">
 /* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
 :root{
@@ -1019,8 +1025,14 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 <p class="hp-sub"><span class="ko">처음 오신 분도, 오랜만에 다시 교회를 찾으시는 분도 지금 모습 그대로 오시면 됩니다.</span><span class="en">Whether it is your first visit or you are returning after a long time, come just as you are.</span></p>
 <div class="hp-acts"><a class="hp-btn hp-gold" href="/welcome/"><span class="ko">처음 오셨나요</span><span class="en">New here?</span></a><a class="hp-btn hp-ghost" href="/?tab=worship"><span class="ko">이번 주 예배</span><span class="en">This week's worship</span></a></div>
 </div>
-<div class="hp-strip"><span><b><span class="ko">주일연합예배</span><span class="en">Sunday Worship</span></b><span class="ko">주일 오후 1:30</span><span class="en">Sundays 1:30 PM</span></span><span><b><span class="ko">토요가족기도회</span><span class="en">Saturday Family Prayer</span></b><span class="ko">토요일 오전 6:00</span><span class="en">Saturdays 6:00 AM</span></span><span><b><span class="ko">장소</span><span class="en">Place</span></b>12918 35th Ave SE, Everett</span></div></div>
+</div>
 </section>
+</div><!-- /hp:top -->
+<section class="mstrip hp-joined"><div class="ms-w">
+    <div class="ms-h"><svg class="ms-globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.5 3.9 5.5 3.9 9s-1.3 6.5-3.9 9c-2.6-2.5-3.9-5.5-3.9-9S9.4 5.5 12 3z"/></svg><div class="ms-hx"><div class="ms-e"><span class="ko">바로가기</span><span class="en">Quick links</span></div></div></div>
+    <div class="ms-g"><a class="hqb l21-hq" href="/listen21/" style="grid-column:1/-1;text-decoration:none"><span class="qi"><svg viewBox="0 0 24 24"><path d="M3 13a9 9 0 0 1 18 0"/><path d="M3 13v3a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 1z"/><path d="M21 13v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 1z"/></svg></span><span class="qb"><span class="qt"><span class="ko">경청 21일 · 10월 7일 시작</span><span class="en">Listening, 21 Days · starts Oct 7</span></span><span class="qs"><span class="ko">다시 주님을 바라봅니다 · 매일 5분 기도 캠페인</span><span class="en">We look to the Lord again · five minutes of prayer a day</span></span></span></a><button class="hqb" type="button" onclick="location.href='/gatherings/'"><span class="qi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="qb"><span class="qt"><span class="ko">주일 오후 1시 30분</span><span class="en">Sundays 1:30 PM</span></span><span class="qs"><span class="ko">시애틀지구촌교회 오시는 길</span><span class="en">Directions to our church</span></span></span></button><button class="hqb hq-sat" type="button" onclick="location.href='/welcome/#location'"><span class="qi"><svg viewBox="0 0 24 24"><path d="M17 18a5 5 0 0 0-10 0"/><path d="M12 2.5v3M4.6 11l1.3 1.3M19.4 11l-1.3 1.3M2 18h2M20 18h2"/><path d="M8.5 6L12 2.5 15.5 6"/><path d="M2.5 22h19"/></svg></span><span class="qb"><span class="qt"><span class="ko">토요일 오전 6시</span><span class="en">Saturdays 6 AM</span></span><span class="qs"><span class="ko">토요가족기도회 · 11월부터 에버렛 (Silver Lake Baptist Church)</span><span class="en">Saturday family prayer · Everett (Silver Lake Baptist Church) from Nov 7</span></span></span></button><button class="hqb hq-new" type="button" onclick="location.href='/welcome/'"><span class="qi"><svg viewBox="0 0 24 24"><path d="M4 21h16"/><path d="M6 21V4h12v17"/><path d="M14 12.5h.01"/></svg></span><span class="qb"><span class="qt"><span class="ko">처음 오시나요?</span><span class="en">First time here?</span></span><span class="qs"><span class="ko">방문자 카드 · 연락처만 남겨 주시면 편하게 안내해 드리겠습니다.</span><span class="en">Visitor card · leave your contact and we will gladly help you settle in.</span></span></span><span class="hq-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></button><button class="hqb" type="button" onclick="location.href='/square/news/'"><span class="qi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M8 7h8M8 10.5h6"/></svg></span><span class="qb"><span class="qt"><span class="ko">교회 소식</span><span class="en">Church news</span></span><span class="qs"><span class="ko">주보 · 교회 일정</span><span class="en">Bulletin · calendar</span></span></span></button><button class="hqb" type="button" onclick="location.href='/corner/'"><span class="qi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M8 7h8M8 10.5h8M8 14h5"/></svg></span><span class="qb"><span class="qt"><span class="ko">성수생각</span><span class="en">Sung Soo's Thoughts</span></span><span class="qs" id="hqCol"><span class="ko">이번 주 글</span><span class="en">This week's column</span></span></span></button><button class="hqb" type="button" onclick="goTab('square');setTimeout(function(){var d=document.getElementById('sqf-network');if(d){d.open=true;window.scrollTo({top:d.getBoundingClientRect().top+window.pageYOffset-80,behavior:'smooth'})}},80)"><span class="qi"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.6"/><path d="M2.5 20c.6-3.4 2.8-5.5 5.5-5.5s4.9 2.1 5.5 5.5"/><path d="M14 14.8c.8-.4 1.6-.6 2.5-.6 2.4 0 4.3 1.9 5 5.8"/></svg></span><span class="qb"><span class="qt"><span class="ko">네트워크 사역</span><span class="en">Network Ministry</span></span><span class="qs"><span class="ko">좋아하는 일로 이웃 섬기기</span><span class="en">Serve with what you love</span></span></span></button><button class="hqb" type="button" onclick="goTab('square');setTimeout(function(){var d=document.getElementById('sqf-community');if(d){d.open=true;window.scrollTo({top:d.getBoundingClientRect().top+window.pageYOffset-80,behavior:'smooth'})}},80)"><span class="qi"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span><span class="qb"><span class="qt"><span class="ko">커뮤니티와 함께</span><span class="en">With our community</span></span><span class="qs"><span class="ko">영어 톡타임 · 가정행복학교</span><span class="en">English talk time · family</span></span></span></button></div>
+  </div></section>
+<!-- hp:mid --><div id="hp2">
 <section class="hp-house" aria-labelledby="hpHouseH"><div class="hp-wrap">
 <p class="hp-eye hp-rv">House Church</p>
 <h2 class="hp-big hp-rv" id="hpHouseH"><span class="ko">주중에는 <span>여러 가정</span>에서,<br>주일에는 <span>한 교회</span>로 모입니다.</span><span class="en">On weekdays in <span>many homes</span>,<br>on Sunday as <span>one church</span>.</span></h2>
@@ -1035,7 +1047,7 @@ code,pre,kbd,samp{font-family:var(--font-mono)}
 <div class="hp-rv"><ul><li><b><span class="ko">주일연합예배</span><span class="en">Sunday Worship</span></b><span><span class="ko">주일 오후 1:30</span><span class="en">Sundays 1:30 PM</span></span></li><li><b><span class="ko">어린이 · 청소년 예배</span><span class="en">Children · Youth worship</span></b><span><span class="ko">같은 시간, 따로</span><span class="en">Same time, in their own rooms</span></span></li><li><b><span class="ko">예배 후</span><span class="en">After worship</span></b><span><span class="ko">온 세대가 한 식탁에서</span><span class="en">All generations at one table</span></span></li><li><b><span class="ko">토요가족기도회</span><span class="en">Saturday Family Prayer</span></b><span><span class="ko">토요일 오전 6:00</span><span class="en">Saturdays 6:00 AM</span></span></li><li><b><span class="ko">장소</span><span class="en">Place</span></b><span><span class="ko">시애틀지구촌교회</span><span class="en">GMC of Greater Seattle</span><br>12918 35th Ave SE, Everett</span></li></ul>
 <div class="hp-acts"><a class="hp-btn hp-navy" href="https://www.google.com/maps/dir/?api=1&amp;destination=12918+35th+Ave+SE,+Everett,+WA+98208" target="_blank" rel="noopener"><span class="ko">길찾기</span><span class="en">Directions</span></a><a class="hp-btn hp-line" href="/welcome/"><span class="ko">처음 오신 날 안내</span><span class="en">Your first visit</span></a></div>
 </div></div></section>
-</div><!-- /hp:top -->
+</div><!-- /hp:mid -->
 
 
 
@@ -1106,10 +1118,7 @@ img.onload=function(){
   <div class="d-waves" aria-hidden="true"><svg class="w3" viewBox="0 0 2880 150" preserveAspectRatio="none"><path d="M0 80 C360 40 720 120 1080 80 S1800 40 2160 80 S2520 120 2880 80 V150 H0Z" fill="rgba(184,146,74,.07)"/></svg><svg class="w2" viewBox="0 0 2880 150" preserveAspectRatio="none"><path d="M0 70 C240 30 480 30 720 70 S1200 110 1440 70 S1920 30 2160 70 S2640 110 2880 70 V150 H0Z" fill="rgba(90,150,210,.08)"/></svg><svg class="w1" viewBox="0 0 2880 150" preserveAspectRatio="none"><path d="M0 95 C360 70 720 120 1080 95 S1800 70 2160 95 S2520 120 2880 95 V150 H0Z" fill="rgba(90,150,210,.10)"/></svg></div>
 </section>
 <div id="explore"></div>
-  <section class="mstrip"><div class="ms-w">
-    <div class="ms-h"><svg class="ms-globe" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.5 3.9 5.5 3.9 9s-1.3 6.5-3.9 9c-2.6-2.5-3.9-5.5-3.9-9S9.4 5.5 12 3z"/></svg><div class="ms-hx"><div class="ms-e"><span class="ko">바로가기</span><span class="en">Quick links</span></div></div></div>
-    <div class="ms-g"><a class="hqb l21-hq" href="/listen21/" style="grid-column:1/-1;text-decoration:none"><span class="qi"><svg viewBox="0 0 24 24"><path d="M3 13a9 9 0 0 1 18 0"/><path d="M3 13v3a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 1z"/><path d="M21 13v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 1z"/></svg></span><span class="qb"><span class="qt"><span class="ko">경청 21일 · 10월 7일 시작</span><span class="en">Listening, 21 Days · starts Oct 7</span></span><span class="qs"><span class="ko">다시 주님을 바라봅니다 · 매일 5분 기도 캠페인</span><span class="en">We look to the Lord again · five minutes of prayer a day</span></span></span></a><button class="hqb" type="button" onclick="location.href='/gatherings/'"><span class="qi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="qb"><span class="qt"><span class="ko">주일 오후 1시 30분</span><span class="en">Sundays 1:30 PM</span></span><span class="qs"><span class="ko">시애틀지구촌교회 오시는 길</span><span class="en">Directions to our church</span></span></span></button><button class="hqb hq-sat" type="button" onclick="location.href='/welcome/#location'"><span class="qi"><svg viewBox="0 0 24 24"><path d="M17 18a5 5 0 0 0-10 0"/><path d="M12 2.5v3M4.6 11l1.3 1.3M19.4 11l-1.3 1.3M2 18h2M20 18h2"/><path d="M8.5 6L12 2.5 15.5 6"/><path d="M2.5 22h19"/></svg></span><span class="qb"><span class="qt"><span class="ko">토요일 오전 6시</span><span class="en">Saturdays 6 AM</span></span><span class="qs"><span class="ko">토요가족기도회 · 11월부터 에버렛 (Silver Lake Baptist Church)</span><span class="en">Saturday family prayer · Everett (Silver Lake Baptist Church) from Nov 7</span></span></span></button><button class="hqb hq-new" type="button" onclick="location.href='/welcome/'"><span class="qi"><svg viewBox="0 0 24 24"><path d="M4 21h16"/><path d="M6 21V4h12v17"/><path d="M14 12.5h.01"/></svg></span><span class="qb"><span class="qt"><span class="ko">처음 오시나요?</span><span class="en">First time here?</span></span><span class="qs"><span class="ko">방문자 카드 · 연락처만 남겨 주시면 편하게 안내해 드리겠습니다.</span><span class="en">Visitor card · leave your contact and we will gladly help you settle in.</span></span></span><span class="hq-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></button><button class="hqb" type="button" onclick="location.href='/square/news/'"><span class="qi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M8 7h8M8 10.5h6"/></svg></span><span class="qb"><span class="qt"><span class="ko">교회 소식</span><span class="en">Church news</span></span><span class="qs"><span class="ko">주보 · 교회 일정</span><span class="en">Bulletin · calendar</span></span></span></button><button class="hqb" type="button" onclick="location.href='/corner/'"><span class="qi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M8 7h8M8 10.5h8M8 14h5"/></svg></span><span class="qb"><span class="qt"><span class="ko">성수생각</span><span class="en">Sung Soo's Thoughts</span></span><span class="qs" id="hqCol"><span class="ko">이번 주 글</span><span class="en">This week's column</span></span></span></button><button class="hqb" type="button" onclick="goTab('square');setTimeout(function(){var d=document.getElementById('sqf-network');if(d){d.open=true;window.scrollTo({top:d.getBoundingClientRect().top+window.pageYOffset-80,behavior:'smooth'})}},80)"><span class="qi"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.6"/><path d="M2.5 20c.6-3.4 2.8-5.5 5.5-5.5s4.9 2.1 5.5 5.5"/><path d="M14 14.8c.8-.4 1.6-.6 2.5-.6 2.4 0 4.3 1.9 5 5.8"/></svg></span><span class="qb"><span class="qt"><span class="ko">네트워크 사역</span><span class="en">Network Ministry</span></span><span class="qs"><span class="ko">좋아하는 일로 이웃 섬기기</span><span class="en">Serve with what you love</span></span></span></button><button class="hqb" type="button" onclick="goTab('square');setTimeout(function(){var d=document.getElementById('sqf-community');if(d){d.open=true;window.scrollTo({top:d.getBoundingClientRect().top+window.pageYOffset-80,behavior:'smooth'})}},80)"><span class="qi"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span><span class="qb"><span class="qt"><span class="ko">커뮤니티와 함께</span><span class="en">With our community</span></span><span class="qs"><span class="ko">영어 톡타임 · 가정행복학교</span><span class="en">English talk time · family</span></span></span></button></div>
-  </div></section>
+  
 <style id="hq-more">@media(min-width:761px){.mstrip .ms-g{grid-template-columns:repeat(3,1fr)}}</style>
 <style id="cflow-css">.cflow{max-width:1000px;margin:0 auto 44px;padding:0 22px}.cflow .cf-e{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--gold-2,var(--color-accent));text-align:center}.cflow .cf-t{margin:6px 0 0;text-align:center;font-family:var(--font-display);font-size:clamp(21px,3.2vw,28px);font-weight:800;letter-spacing:-.4px;color:var(--navy);word-break:keep-all}.cflow .cf-l{max-width:640px;margin:10px auto 0;text-align:center;font-size:14.5px;line-height:1.75;color:var(--ink-2);word-break:keep-all}.cflow .cf-n{max-width:640px;margin:8px auto 0;text-align:center;font-size:13px;line-height:1.65;color:var(--ink-3);word-break:keep-all}.cflow .cf-g{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.cflow .cf-s{position:relative;display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--line);border-radius:16px;padding:18px 16px 16px}.cflow .cf-s::after{content:"";position:absolute;top:35px;right:-15px;width:16px;height:2px;background:linear-gradient(90deg,var(--gold-2,var(--color-accent)),rgba(184,146,74,.25))}.cflow .cf-s:last-child::after{display:none}.cflow .cf-b{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:var(--color-text-inverse);background:linear-gradient(180deg,var(--color-primary-hover),var(--color-primary))}.cflow .cf-k{margin-top:10px;font-size:12px;font-weight:800;letter-spacing:1.4px;color:var(--gold-2,var(--color-accent))}.cflow .cf-h{margin:2px 0 0;font-size:16.5px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}.cflow .cf-p{margin:6px 0 0;font-size:13.5px;line-height:1.65;color:var(--ink-2);word-break:keep-all;flex:1}.cflow .cf-a{margin-top:12px}.cflow .cf-a .pw-btn{min-height:44px}@media(max-width:860px){.cflow .cf-g{grid-template-columns:1fr 1fr}.cflow .cf-s::after{display:none}}@media(max-width:520px){.cflow .cf-g{grid-template-columns:1fr}}</style>
 <section class="cflow" id="cityflow" aria-labelledby="cfT"><div class="cf-head"><div class="cf-e"><span class="ko">이 도시와 함께</span><span class="en">WITH THIS CITY</span></div><h2 class="cf-t" id="cfT"><span class="ko">이 도시 어디에 계시든, 곁에서 함께 걷겠습니다</span><span class="en">Wherever you are in this city, we will walk beside you</span></h2><p class="cf-l"><span class="ko">우리 교회의 문은 예배당 안에서만 열리지 않습니다. 담임목사가 20여 년 목회의 길에서 세운 도시 환대 플랫폼 HebronGuide로 첫걸음을 돕고, 원하시는 만큼 예배와 삶공부, 목장으로 천천히 이어 가십시오. 서두르지 않습니다.</span><span class="en">Our doors do not open only inside a sanctuary. Through HebronGuide, a city hospitality platform our lead pastor built over 20-plus years of ministry, we help with first steps — and you may move on to worship, Life Study and a house church as slowly as you wish. There is no hurry.</span></p><p class="cf-n"><span class="ko">HebronGuide는 이 도시에서의 첫걸음을 친절하게 도울 것입니다.</span><span class="en">HebronGuide will kindly help you take your first steps in this city.</span></p></div><ol class="cf-g"><li class="cf-s"><span class="cf-b">1</span><div class="cf-k"><span class="ko">도시</span><span class="en">THE CITY</span></div><h3 class="cf-h"><span class="ko">HebronGuide</span><span class="en">HebronGuide</span></h3><p class="cf-p"><span class="ko">도시에 막 오셨거나 필요가 있는 이웃과 함께, 정착의 길을 찾습니다.</span><span class="en">Finding a way to settle, together with neighbors who are new or in need.</span></p><div class="cf-a"><a class="pw-btn" href="https://hebronguide.com" target="_blank" rel="noopener"><span class="ko">HebronGuide 열기</span><span class="en">Open HebronGuide</span><svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;margin-left:4px"><path d="M9 5l7 7-7 7"/></svg></a></div></li><li class="cf-s"><span class="cf-b">2</span><div class="cf-k"><span class="ko">동행</span><span class="en">TOGETHER</span></div><h3 class="cf-h"><span class="ko">우리 목장과 사역</span><span class="en">House church and ministry</span></h3><p class="cf-p"><span class="ko">목장에서 식탁을 나누고, 네트워크 사역으로 섬기며 커뮤니티와 함께 이웃을 품습니다.</span><span class="en">Share a table in a house church, and serve together through network ministry and alongside our community.</span></p><div class="cf-a"><button type="button" class="pw-btn" onclick="openModal('mokjang')"><span class="ko">우리 목장과 연결하기</span><span class="en">Connect with a house church</span><svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;margin-left:4px"><path d="M9 5l7 7-7 7"/></svg></button></div></li><li class="cf-s"><span class="cf-b">3</span><div class="cf-k"><span class="ko">예배</span><span class="en">WORSHIP</span></div><h3 class="cf-h"><span class="ko">주일 연합예배</span><span class="en">Sunday worship</span></h3><p class="cf-p"><span class="ko">편하게 오셔서 함께 앉아 예배하시면 됩니다. 처음 오시는 분은 자리로 안내해 드립니다.</span><span class="en">Come as you are, even just to sit. First-time guests are welcomed and shown to a seat.</span></p><div class="cf-a"><a class="pw-btn" href="/welcome/"><span class="ko">처음 오시나요</span><span class="en">First time?</span><svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;margin-left:4px"><path d="M9 5l7 7-7 7"/></svg></a></div></li><li class="cf-s"><span class="cf-b">4</span><div class="cf-k"><span class="ko">배움</span><span class="en">LEARNING</span></div><h3 class="cf-h"><span class="ko">삶공부</span><span class="en">Life Bible Study</span></h3><p class="cf-p"><span class="ko">성경을 삶에 닿게 배우는 시간입니다. 어디서 시작할지 몰라도 괜찮습니다.</span><span class="en">Learning Scripture in a way that touches daily life. No need to know where to start.</span></p><div class="cf-a"><button type="button" class="pw-btn" onclick="goTab('study')"><span class="ko">삶공부 알아보기</span><span class="en">About Life Study</span><svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;margin-left:4px"><path d="M9 5l7 7-7 7"/></svg></button></div></li></ol></section>
@@ -2743,6 +2752,17 @@ function row(){if(!lastQ())return;var old=box.querySelector('.gc-hand');if(old)o
 new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(x){
   if(x.nodeType===1&&x.classList.contains('gc-msg')&&x.classList.contains('bot')&&!x.classList.contains('gc-wait'))setTimeout(row,40);});});}).observe(box,{childList:true});
 })();</script><!-- /gc-hand -->
+<script id="wv-ppt-js">(function(){
+/* 예배 탭 말씀 칸에 '주일예배 PPT' 단추 (2026-10-18) — 주소는 #pptCard(이번 주일 PPT 자동 찾기)를 따라감 */
+function add(){var w=document.querySelector('#wvWord .wbtns')||document.querySelector('#p-worship .wbtns'),c=document.getElementById('pptCard');
+ if(!w||!c)return false; if(document.getElementById('wvPpt'))return true;
+ var a=document.createElement('a');a.className='wb';a.id='wvPpt';a.target='_blank';a.rel='noopener';a.href=c.href;
+ a.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M12 16v4M8 20h8"></path></svg><span class="ko">주일예배 PPT</span><span class="en">Sunday slides</span><small>PDF</small>';
+ w.appendChild(a);
+ new MutationObserver(function(){a.href=c.href;}).observe(c,{attributes:true,attributeFilter:['href']});
+ return true;}
+if(!add()){var n=0,t=setInterval(function(){if(add()||++n>40)clearInterval(t);},250);}
+})();</script>
 <script id="hp-js">(function(){
 if(/[?&]hp=0\b/.test(location.search)){document.documentElement.classList.add('hp-off');return;}
 /* 위쪽 고정 메뉴(.topbar) 높이만큼 첫 화면을 내림 */
@@ -2758,17 +2778,6 @@ var els=[].slice.call(document.querySelectorAll('.hp-rv'));
 if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px'});
 els.forEach(function(e){io.observe(e)});
-})();</script>
-<script id="wv-ppt-js">(function(){
-/* 예배 탭 말씀 칸에 '주일예배 PPT' 단추 (2026-10-18) — 주소는 #pptCard(이번 주일 PPT 자동 찾기)를 따라감 */
-function add(){var w=document.querySelector('#wvWord .wbtns')||document.querySelector('#p-worship .wbtns'),c=document.getElementById('pptCard');
- if(!w||!c)return false; if(document.getElementById('wvPpt'))return true;
- var a=document.createElement('a');a.className='wb';a.id='wvPpt';a.target='_blank';a.rel='noopener';a.href=c.href;
- a.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M12 16v4M8 20h8"></path></svg><span class="ko">주일예배 PPT</span><span class="en">Sunday slides</span><small>PDF</small>';
- w.appendChild(a);
- new MutationObserver(function(){a.href=c.href;}).observe(c,{attributes:true,attributeFilter:['href']});
- return true;}
-if(!add()){var n=0,t=setInterval(function(){if(add()||++n>40)clearInterval(t);},250);}
 })();</script>
 <script id="gmc-cal-sheet">(function(){var ID="1ZhTnlt_pjGUcSk8mpP2aXpMdw3_jurNNbZVAyVkWm28";if(!ID||typeof renderSchedule!=="function")return;function csv(t){var r=[],row=[],f="",q=false;for(var i=0;i<t.length;i++){var c=t[i];if(q){if(c=='"'){if(t[i+1]=='"'){f+=c;i++;}else q=false;}else f+=c;}else if(c=='"')q=true;else if(c==","){row.push(f);f="";}else if(c=="\n"){row.push(f);r.push(row);row=[];f="";}else if(c!="\r")f+=c;}if(f||row.length){row.push(f);r.push(row);}return r;}fetch("https://docs.google.com/spreadsheets/d/"+ID+"/gviz/tq?tqx=out:csv").then(function(x){return x.ok?x.text():"";}).then(function(t){if(!t)return;function nd(v){v=(v||"").trim();var m=v.match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);if(!m){m=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);if(m)m=[0,m[3],m[1],m[2]];}if(!m)return "";return m[1]+"-"+("0"+m[2]).slice(-2)+"-"+("0"+m[3]).slice(-2);}var rows=csv(t).slice(1),sp=[],pl=[];rows.forEach(function(c){var d=nd(c[0]);if(!d||!(c[1]||"").trim())return;if((c[5]||"").indexOf("예고")>-1)pl.push({d:d,ko:c[1],en:c[2]||c[1]});else sp.push({d:d,t:c[1],tEn:c[2]||c[1],m:c[3]||"",mEn:c[4]||c[3]||""});});if(sp.length)SPECIAL_EVENTS=sp;if(pl.length)UPCOMING_PLAN=pl;renderSchedule();}).catch(function(){});})();</script><script id="gmc-autoupdate">(function(){
 if(!('serviceWorker' in navigator)||!window.fetch)return;
