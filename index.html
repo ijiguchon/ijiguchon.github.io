@@ -928,6 +928,8 @@ html.hp-off :is(#hp,#hp2),html.hp-off #hpClose{display:none}
 :is(#hp,#hp2) .hp-hero{padding-bottom:var(--hp-s12)}
 :is(#hp,#hp2) .hp-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:140px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(11,20,40,0),#0b1428)}
 </style>
+
+
 <style id="hebron-ds">
 /* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
 :root{
@@ -2783,6 +2785,21 @@ var els=[].slice.call(document.querySelectorAll('.hp-rv'));
 if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px'});
 els.forEach(function(e){io.observe(e)});
+})();</script>
+<script id="l21-hide-js">(function(){
+/* 경청 21일 입구 자동 숨김 — 시애틀 날짜 기준 (2026-10-19) */
+var END='2026-10-31';
+function seattleDay(){
+ try{ var p=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()),o={};
+  p.forEach(function(x){o[x.type]=x.value;}); return o.year+'-'+o.month+'-'+o.day; }
+ catch(e){ return new Date(Date.now()-7*36e5).toISOString().slice(0,10); }  /* 시간대 기능이 없는 옛 기기: 태평양 서머타임(UTC-7)으로 어림 */
+}
+function run(){ if(seattleDay()<END) return false;
+ [].forEach.call(document.querySelectorAll('.l21-hq,[id="l21-pr"]'),function(e){ e.hidden=true; e.style.display='none'; });
+ return true; }
+window.gmcSeattleDay=seattleDay;
+if(!run()){ var t=setInterval(function(){ if(run()) clearInterval(t); },60000);
+ document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='visible') run(); }); }
 })();</script>
 <script id="gmc-cal-sheet">(function(){var ID="1ZhTnlt_pjGUcSk8mpP2aXpMdw3_jurNNbZVAyVkWm28";if(!ID||typeof renderSchedule!=="function")return;function csv(t){var r=[],row=[],f="",q=false;for(var i=0;i<t.length;i++){var c=t[i];if(q){if(c=='"'){if(t[i+1]=='"'){f+=c;i++;}else q=false;}else f+=c;}else if(c=='"')q=true;else if(c==","){row.push(f);f="";}else if(c=="\n"){row.push(f);r.push(row);row=[];f="";}else if(c!="\r")f+=c;}if(f||row.length){row.push(f);r.push(row);}return r;}fetch("https://docs.google.com/spreadsheets/d/"+ID+"/gviz/tq?tqx=out:csv").then(function(x){return x.ok?x.text():"";}).then(function(t){if(!t)return;function nd(v){v=(v||"").trim();var m=v.match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);if(!m){m=v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);if(m)m=[0,m[3],m[1],m[2]];}if(!m)return "";return m[1]+"-"+("0"+m[2]).slice(-2)+"-"+("0"+m[3]).slice(-2);}var rows=csv(t).slice(1),sp=[],pl=[];rows.forEach(function(c){var d=nd(c[0]);if(!d||!(c[1]||"").trim())return;if((c[5]||"").indexOf("예고")>-1)pl.push({d:d,ko:c[1],en:c[2]||c[1]});else sp.push({d:d,t:c[1],tEn:c[2]||c[1],m:c[3]||"",mEn:c[4]||c[3]||""});});if(sp.length)SPECIAL_EVENTS=sp;if(pl.length)UPCOMING_PLAN=pl;renderSchedule();}).catch(function(){});})();</script><script id="gmc-autoupdate">(function(){
 if(!('serviceWorker' in navigator)||!window.fetch)return;
