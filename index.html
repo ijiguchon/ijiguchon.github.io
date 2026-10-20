@@ -844,6 +844,8 @@ if(document.readyState!=='loading')add();else document.addEventListener('DOMCont
 
 
 
+
+
 <style id="hp-css">
 :is(#hp,#hp2),#hpClose{--hp-s2:8px;--hp-s3:12px;--hp-s4:16px;--hp-s5:20px;--hp-s6:24px;--hp-s8:32px;--hp-s10:40px;--hp-s12:48px;--hp-s16:64px;--hp-s20:80px;--hp-s24:96px;
  --hp-navy:var(--color-primary,var(--color-primary));--hp-gold:var(--color-accent,var(--color-accent));--hp-gold-soft:#E7D2A6;--hp-line:var(--color-border,var(--color-border));--hp-text2:var(--color-text-secondary,var(--color-text-secondary));
@@ -921,6 +923,7 @@ if(document.readyState!=='loading')add();else document.addEventListener('DOMCont
 html:not(.hp-off) #p-newcomer #doors{display:none}
 html.hp-off :is(#hp,#hp2),html.hp-off #hpClose{display:none}
 /* 1면과 바로가기 이어 붙이기 (2026-10-18) — 그림 아래가 바로가기의 남색으로 스며듦 */
+#p-newcomer .mstrip.hp-joined .hq-new{display:none!important}  /* 1면 '처음 오셨나요' 단추와 겹쳐서 뺌 (2026-10-19) */
 #p-newcomer .mstrip.hp-joined{margin-top:0!important;background:linear-gradient(180deg,#0b1428 0%,var(--color-primary) 55%,var(--color-primary-active) 100%)!important}
 :is(#hp,#hp2) .hp-hero{padding-bottom:var(--hp-s12)}
 :is(#hp,#hp2) .hp-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:140px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(11,20,40,0),#0b1428)}
