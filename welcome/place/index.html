@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>새 예배 처소 안내 · 시애틀지구촌교회</title>
+<meta name="description" content="시애틀지구촌교회가 새 예배 처소로 여러분을 초대합니다. 주일연합예배 주일 오후 1:30, 장소는 12918 35th Ave SE, Everett, WA 98208.">
+<meta name="theme-color" content="#14213d">
+<link rel="icon" href="/favicon.ico">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="새 예배 처소로 초대합니다 · 시애틀지구촌교회">
+<meta property="og:description" content="처음 오시는 분도 편하게 오세요. 환대팀이 반갑게 맞이합니다. 주일 오후 1:30, 12918 35th Ave SE, Everett, WA 98208.">
+<meta property="og:url" content="https://www.ijiguchon.org/welcome/place/">
+<meta property="og:image" content="https://www.ijiguchon.org/images/genesis1314.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="새 예배 처소로 초대합니다 · 시애틀지구촌교회">
+<meta name="twitter:description" content="처음 오시는 분도 편하게 오세요. 환대팀이 반갑게 맞이합니다.">
+<meta name="twitter:image" content="https://www.ijiguchon.org/images/genesis1314.jpg">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+
+<style>
+  :root{
+    /* 교회 브랜드 semantic token */
+    --color-primary: var(--color-primary);      /* heritage navy */
+    --color-accent: var(--color-accent);       /* warm gold */
+    --color-background: var(--color-background);    /* cream */
+    --color-surface: #ffffff;
+    --color-ink: #26211a;          /* 본문 먹색 */
+    --color-ink-soft: #5c5346;
+    --color-line: rgba(20,33,61,.12);
+    --color-accent-soft: rgba(184,146,74,.14);
+    --color-primary-soft: rgba(20,33,61,.06);
+
+    --radius-card: 22px;
+    --radius-btn: 14px;
+    --radius-chip: 999px;
+
+    --font-ko:var(--font-sans);
+    --font-en:var(--font-sans);
+    --shadow-card: 0 18px 48px rgba(20,33,61,.16), 0 2px 8px rgba(20,33,61,.08);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:var(--font-ko);
+    color:var(--color-ink);
+    background:
+      radial-gradient(1200px 520px at 50% -8%, rgba(184,146,74,.16), transparent 60%),
+      var(--color-background);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+    min-height:100vh;
+    padding:22px 16px calc(28px + env(safe-area-inset-bottom));
+    display:flex;
+    justify-content:center;
+  }
+  .en{display:none}
+  body.lang-en .ko{display:none}
+  body.lang-en .en{display:inline}
+  body.lang-en{font-family:var(--font-en)}
+
+  .card{
+    width:100%;
+    max-width:460px;
+    background:var(--color-surface);
+    border-radius:var(--radius-card);
+    box-shadow:var(--shadow-card);
+    overflow:hidden;
+    position:relative;
+  }
+
+  /* 언어 토글 */
+  .lang-toggle{
+    position:absolute;
+    top:14px;
+    right:14px;
+    z-index:5;
+    min-height:36px;
+    min-width:44px;
+    padding:0 14px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    font-family:var(--font-en);
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--color-text-inverse);
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.4);
+    border-radius:var(--radius-chip);
+    cursor:pointer;
+  }
+  .lang-toggle:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
+  .lang-toggle .on{color:var(--color-accent-soft);color:#f3e7cf}
+  .lang-toggle .sep{opacity:.5}
+
+  /* 헤더 (네이비) */
+  .hero{
+    background:
+      radial-gradient(520px 260px at 82% -30%, rgba(184,146,74,.34), transparent 62%),
+      linear-gradient(160deg, #1a2a4d 0%, var(--color-primary) 60%, #0f1830 100%);
+    color:var(--color-text-inverse);
+    padding:30px 26px 32px;
+    position:relative;
+  }
+  .eyebrow{
+    display:inline-block;
+    font-family:var(--font-en);
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#e4c98b;
+    margin-bottom:14px;
+  }
+  .hero h1{
+    margin:0;
+    font-size:27px;
+    line-height:1.3;
+    font-weight:700;
+    letter-spacing:-.01em;
+  }
+  .hero .welcome{
+    margin:14px 0 0;
+    font-size:15px;
+    color:rgba(255,255,255,.86);
+    line-height:1.65;
+  }
+  .rule{
+    height:3px;width:46px;
+    background:var(--color-accent);
+    border-radius:3px;
+    margin:18px 0 0;
+  }
+
+  .body{padding:22px 22px 8px}
+
+  .block{margin-bottom:20px}
+  .block-head{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    margin-bottom:12px;
+  }
+  .block-head .ic{
+    width:30px;height:30px;
+    flex:0 0 30px;
+    border-radius:9px;
+    background:var(--color-accent-soft);
+    display:inline-flex;align-items:center;justify-content:center;
+    color:var(--color-accent);
+  }
+  .block-head .ic svg{width:17px;height:17px;display:block}
+  .block-head h2{
+    margin:0;
+    font-size:15px;
+    font-weight:700;
+    color:var(--color-primary);
+    letter-spacing:.01em;
+  }
+
+  /* 예배 시간 */
+  .svc{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+    padding:12px 14px;
+    border:1px solid var(--color-line);
+    border-radius:var(--radius-btn);
+    margin-bottom:9px;
+    background:var(--color-primary-soft);
+  }
+  .svc .name{font-size:14.5px;font-weight:600;color:var(--color-ink)}
+  .svc .time{
+    font-family:var(--font-en);
+    font-size:15px;font-weight:700;
+    color:var(--color-primary);
+    white-space:nowrap;
+    text-align:right;
+  }
+  .svc .time .day{display:block;font-size:12px;font-weight:600;color:var(--color-ink-soft);letter-spacing:.02em}
+
+  /* 장소 */
+  .place{
+    padding:14px 16px;
+    border:1px solid var(--color-line);
+    border-radius:var(--radius-btn);
+    background:var(--color-surface);
+  }
+  .place .pname{font-size:15px;font-weight:700;color:var(--color-primary)}
+  .place .pen{font-family:var(--font-en);font-size:12.5px;color:var(--color-ink-soft);margin-top:2px}
+  .place .addr{
+    font-family:var(--font-en);
+    font-size:14.5px;font-weight:600;
+    color:var(--color-ink);
+    margin-top:10px;line-height:1.5;
+  }
+  .place .sub{
+    font-family:var(--font-en);
+    font-size:12.5px;color:var(--color-ink-soft);
+    margin-top:3px;
+  }
+
+  /* 소요시간 chip */
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{
+    display:inline-flex;align-items:baseline;gap:5px;
+    padding:7px 12px;
+    border-radius:var(--radius-chip);
+    background:var(--color-primary-soft);
+    border:1px solid var(--color-line);
+    font-size:13px;
+  }
+  .chip .ct{font-weight:600;color:var(--color-ink)}
+  .chip .cv{font-family:var(--font-en);font-size:12.5px;font-weight:700;color:var(--color-accent)}
+
+  /* 찾기 편합니다 */
+  .finds{list-style:none;margin:0;padding:0}
+  .finds li{
+    display:flex;gap:10px;align-items:flex-start;
+    font-size:14px;color:var(--color-ink);
+    padding:7px 0;
+  }
+  .finds li:not(:last-child){border-bottom:1px solid var(--color-line)}
+  .finds li .dot{
+    flex:0 0 16px;width:16px;height:16px;margin-top:3px;
+    color:var(--color-accent);
+  }
+  .finds li .dot svg{width:16px;height:16px;display:block}
+
+  /* CTA */
+  .cta{padding:4px 0 2px}
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:9px;
+    width:100%;
+    min-height:50px;
+    padding:12px 18px;
+    border-radius:var(--radius-btn);
+    font-size:15px;font-weight:700;
+    text-decoration:none;
+    margin-bottom:11px;
+    letter-spacing:.01em;
+    border:1.5px solid transparent;
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn svg{width:18px;height:18px;flex:0 0 18px}
+  .btn-primary{background:var(--color-primary);color:var(--color-text-inverse);box-shadow:0 8px 20px rgba(20,33,61,.22)}
+  .btn-accent{background:var(--color-accent);color:#1b1407;box-shadow:0 8px 20px rgba(184,146,74,.28)}
+  .btn-ghost{background:var(--color-surface);color:var(--color-primary);border-color:var(--color-line)}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
+
+  /* footer */
+  .foot{
+    text-align:center;
+    padding:20px 22px 26px;
+    border-top:1px solid var(--color-line);
+    margin-top:8px;
+  }
+  .foot .motto{
+    font-size:13.5px;color:var(--color-ink-soft);
+    letter-spacing:.01em;
+  }
+  .foot .brand{
+    font-family:var(--font-en);
+    font-size:12px;color:var(--color-ink-soft);
+    opacity:.75;margin-top:8px;letter-spacing:.04em;
+  }
+
+  @media (max-width:360px){
+    .hero h1{font-size:24px}
+    .hero{padding:28px 20px 28px}
+    .body{padding:20px 18px 6px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .btn{transition:none}
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap">
+<style id="hebron-ds">
+/* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
+:root{
+  /* Typography */
+  --font-korean:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-english:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  /* 교회 예외: 큰 제목용 명조 — 영문 Cormorant Garamond, 한글 고운바탕 */
+  --font-display:'Cormorant Garamond','Gowun Batang','Pretendard Variable',serif;
+  --text-display:clamp(40px,6vw,64px); --text-h1:clamp(32px,4.4vw,48px); --text-h2:clamp(26px,3.4vw,36px);
+  --text-h3:clamp(22px,2.6vw,28px); --text-h4:clamp(18px,2vw,22px);
+  --text-body-lg:18px; --text-body:16px; --text-body-sm:14px; --text-caption:12.5px;
+  --weight-regular:400; --weight-medium:500; --weight-semibold:600; --weight-bold:700; --weight-extrabold:800;
+  --leading-heading:1.25; --leading-body:1.7; --leading-ui:1.5; --leading-caption:1.5;
+  --tracking-display:-0.02em; --tracking-heading:-0.015em; --tracking-body:-0.005em; --tracking-ui:0;
+  /* Color — semantic (Church theme: heritage navy · warm gold · cream) */
+  --color-background:#F6F1E7; --color-background-secondary:#F1E6D3;
+  --color-surface:#ffffff; --color-surface-muted:#FBF8F2;
+  --color-text-primary:#1c1f26; --color-text-secondary:#4a4f5a; --color-text-muted:#7c8290;
+  --color-text-disabled:#a9aeb8; --color-text-inverse:#ffffff;
+  --color-border:#E3D9C6; --color-border-subtle:#EAE3D5; --color-border-strong:#D9C7A0;
+  --color-primary:#14213d; --color-primary-hover:#1f2f55; --color-primary-active:#0d1730; --color-primary-foreground:#ffffff;
+  --color-accent:#B8924A; --color-accent-hover:#8f6a2a; --color-accent-strong:#9A7130;
+  --color-accent-bright:#CDA65B; --color-accent-deep:#A67A2E; --color-accent-on-dark:#E9C77B;
+  --color-success:#12857c; --color-success-soft:#34c3b5; --color-warning:#B7791F;
+  --color-error:#b4532a; --color-info:#2c4d8a; --color-info-soft:#5b7fb5;
+  --color-focus:#2c77b0;
+  --color-scripture:var(--color-primary);
+  --color-brand-kakao:#FEE500; --color-brand-kakao-foreground:#3A1D1D;
+  /* Spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px;
+  --space-10:40px; --space-12:48px; --space-16:64px; --space-20:80px; --space-24:96px; --space-32:128px;
+  --space-xs:var(--space-1); --space-sm:var(--space-2); --space-md:var(--space-4); --space-lg:var(--space-6);
+  --space-xl:var(--space-8); --space-2xl:var(--space-12); --space-3xl:var(--space-16);
+  /* Radius */
+  --radius-sm:6px; --radius-md:10px; --radius-lg:14px; --radius-xl:20px; --radius-pill:9999px;
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(20,33,61,.06); --shadow-md:0 6px 18px rgba(40,30,10,.06); --shadow-lg:0 18px 40px rgba(20,33,61,.12);
+  /* Layout (breakpoints: sm 560 · md 760 · lg 900 — CSS 변수는 media query에 못 쓰므로 값으로 사용) */
+  --container-max:1200px; --container-reading:760px; --touch-target:44px;
+  /* Motion · Layers */
+  --transition-fast:.15s ease; --transition-base:.2s ease;
+  --z-header:50; --z-dropdown:60; --z-floating:1100; --z-modal:1200;
+}
+html,body{font-family:var(--font-sans)}
+body{font-weight:var(--weight-regular)}
+button,input,select,textarea,optgroup{font-family:inherit}
+code,pre,kbd,samp{font-family:var(--font-mono)}
+:focus-visible{outline:3px solid var(--color-focus)!important;outline-offset:2px!important}
+.host-acts a,.member .mct a,.bd-chip,.loc-go,.cb-acts button,.cb-more,.gm-x,.tm-i,.pgnav button,.d-settle,.ms-kakao,.dp-others a,.dp-hosp button{min-height:var(--touch-target)}
+.gm-x{min-width:var(--touch-target)}
+.lang,.psnav,.gc-send,.gc-x,.d-more{min-height:var(--touch-target)}
+.psnav,.gc-send,.gc-x{min-width:var(--touch-target)}
+.d-greet{display:inline-flex;align-items:center;min-height:var(--touch-target)}
+.tabs .tab{min-height:40px} /* 예외: 모바일 헤더 높이 — 문서화됨 */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+<link id="gmc-name-font-link" rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Serif+KR:wght@700&text=%EC%8B%9C%EC%95%A0%ED%8B%80%EC%A7%80%EA%B5%AC%EC%B4%8C%EA%B5%90%ED%9A%8C">
+<style id="gmc-name-font">.brand b,.brand .wm b,footer .fc .nm{font-family:'Noto Serif KR','Gowun Batang',serif!important;font-weight:700!important;letter-spacing:-.3px}.tabs .tab{min-height:32px!important;padding-top:5px!important;padding-bottom:5px!important}.topbar .row{height:52px}@media(max-width:860px){.topbar .row{height:auto;padding-top:5px!important;padding-bottom:4px!important;row-gap:2px!important}.topbar .tabs{margin-top:0!important}}body:not(:has(#p-newcomer)) footer .fg,body:not(:has(#p-newcomer)) footer .fmin{display:none}body:not(:has(#p-newcomer)) footer{padding:14px 0 16px}body:not(:has(#p-newcomer)) footer .fcopy{margin-top:0;padding-top:0;border-top:0}</style>
+</head>
+<body>
+<main class="card" role="main">
+
+  <button class="lang-toggle" id="langBtn" type="button" aria-label="한국어/English">
+    <span class="l-ko on">한</span><span class="sep">/</span><span class="l-en">EN</span>
+  </button>
+
+  <header class="hero">
+    <span class="eyebrow">시애틀지구촌교회 · Genesis 1314</span>
+    <h1>
+      <span class="ko">새 예배 처소로<br>초대합니다</span>
+      <span class="en">Welcome to our<br>new worship home</span>
+    </h1>
+    <p class="welcome">
+      <span class="ko">처음 오시는 분도 편하게 오세요. 환대팀이 반갑게 맞이합니다.</span>
+      <span class="en">First-time guests are warmly welcome. Our hospitality team will greet you.</span>
+    </p>
+    <div class="rule" aria-hidden="true"></div>
+  </header>
+
+  <div class="body">
+
+    <!-- 예배 시간 -->
+    <section class="block">
+      <div class="block-head">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <h2><span class="ko">예배 시간</span><span class="en">Service times</span></h2>
+      </div>
+      <div class="svc">
+        <span class="name"><span class="ko">주일연합예배</span><span class="en">Sunday Worship</span></span>
+        <span class="time"><span class="day"><span class="ko">주일</span><span class="en">Sunday</span></span> <span class="ko">오후 1:30</span><span class="en">1:30 PM</span></span>
+      </div>
+      <div class="svc">
+        <span class="name"><span class="ko">토요가족기도회</span><span class="en">Saturday Family Prayer</span></span>
+        <span class="time"><span class="day"><span class="ko">토요일</span><span class="en">Saturday</span></span> <span class="ko">오전 6:00</span><span class="en">6:00 AM</span></span>
+      </div>
+    </section>
+
+    <!-- 장소 -->
+    <section class="block">
+      <div class="block-head">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        </span>
+        <h2><span class="ko">장소</span><span class="en">Location</span></h2>
+      </div>
+      <div class="place">
+        <div class="pname"><span class="ko">시애틀지구촌교회</span><span class="en">Global Mission Church of Greater Seattle</span></div>
+        <div class="pen"><span class="ko">Global Mission Church of Greater Seattle</span><span class="en">시애틀지구촌교회</span></div>
+        <div class="addr">12918 35th Ave SE, Everett, WA 98208</div>
+        <div class="sub">(Silver Lake Baptist Church)</div>
+      </div>
+    </section>
+
+    <!-- 어디서 오시나요 -->
+    <section class="block">
+      <div class="block-head">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-7-7 18-2.5-8L3 11z"/></svg>
+        </span>
+        <h2><span class="ko">어디서 오시나요</span><span class="en">How far from you</span></h2>
+      </div>
+      <div class="chips">
+        <span class="chip"><span class="ct">Silver Lake</span><span class="cv"><span class="ko">약 5분</span><span class="en">~5 min</span></span></span>
+        <span class="chip"><span class="ct">Mill Creek</span><span class="cv"><span class="ko">약 10분</span><span class="en">~10 min</span></span></span>
+        <span class="chip"><span class="ct">Lynnwood</span><span class="cv"><span class="ko">약 10–15분</span><span class="en">~10–15 min</span></span></span>
+        <span class="chip"><span class="ct">Mukilteo</span><span class="cv"><span class="ko">약 15–20분</span><span class="en">~15–20 min</span></span></span>
+        <span class="chip"><span class="ct">Bothell</span><span class="cv"><span class="ko">약 15–20분</span><span class="en">~15–20 min</span></span></span>
+        <span class="chip"><span class="ct">Snohomish</span><span class="cv"><span class="ko">약 15–20분</span><span class="en">~15–20 min</span></span></span>
+      </div>
+    </section>
+
+    <!-- 찾기 편합니다 -->
+    <section class="block">
+      <div class="block-head">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </span>
+        <h2><span class="ko">찾기 편합니다</span><span class="en">Easy to find</span></h2>
+      </div>
+      <ul class="finds">
+        <li>
+          <span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <span><span class="ko">넉넉한 주차 공간이 준비되어 있습니다.</span><span class="en">Plenty of free parking is available.</span></span>
+        </li>
+        <li>
+          <span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <span><span class="ko">132nd St SE와 35th Ave SE 교차로 근처입니다.</span><span class="en">Near the corner of 132nd St SE and 35th Ave SE.</span></span>
+        </li>
+        <li>
+          <span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <span><span class="ko">Bothell-Everett Hwy(527)와 I-5에서 오시기 편합니다.</span><span class="en">Easy access from Bothell-Everett Hwy (527) and I-5.</span></span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=Silver+Lake+Baptist+Church,+12918+35th+Ave+SE,+Everett,+WA+98208" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <span class="ko">구글 지도 길찾기</span><span class="en">Directions on Google Maps</span>
+      </a>
+      <a class="btn btn-accent" href="https://www.ijiguchon.org/welcome/#location" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h8l6 6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M14 3v6h6"/></svg>
+        <span class="ko">오시는 길 자세히</span><span class="en">Full visit guide</span>
+      </a>
+      <a class="btn btn-ghost" href="https://www.ijiguchon.org" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/></svg>
+        <span class="ko">교회 홈페이지</span><span class="en">Church home</span>
+      </a>
+    </section>
+
+  </div>
+
+  <footer class="foot">
+    <div class="motto"><span class="ko">시애틀에서 지구촌 땅 끝까지</span><span class="en">From Seattle to the ends of the earth</span></div>
+    <div class="brand">Genesis 1314 · 시애틀지구촌교회</div>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  var body=document.body, btn=document.getElementById('langBtn');
+  function apply(lang){
+    var en = lang==='en';
+    body.classList.toggle('lang-en', en);
+    document.documentElement.setAttribute('lang', en?'en':'ko');
+    btn.querySelector('.l-ko').classList.toggle('on', !en);
+    btn.querySelector('.l-en').classList.toggle('on', en);
+    try{ localStorage.setItem('gmc-place-lang', lang); }catch(e){}
+  }
+  var saved=null;
+  try{ saved=localStorage.getItem('gmc-place-lang'); }catch(e){}
+  if(!saved){
+    var nav=(navigator.language||'ko').toLowerCase();
+    saved = nav.indexOf('ko')===0 ? 'ko' : 'en';
+  }
+  apply(saved);
+  btn.addEventListener('click', function(){
+    apply(body.classList.contains('lang-en') ? 'ko' : 'en');
+  });
+})();
+</script>
+</body>
+</html>
