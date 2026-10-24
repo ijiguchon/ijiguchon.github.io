@@ -803,6 +803,15 @@ var A=[['table','목장의 저녁 식탁','An evening at the house church table'
 var wk=Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5+3)/7),a=A[((wk-2960)%A.length+A.length)%A.length],im=document.getElementById('nhImg'),c=document.getElementById('nhCap');
 if(a[0]!=='table'){im.srcset='/images/art/news-'+a[0]+'-900.webp 900w, /images/art/news-'+a[0]+'.webp 1800w';im.src='/images/art/news-'+a[0]+'.webp';}
 if(c)c.innerHTML='<span class="ko">'+a[1]+'</span><span class="en">'+a[2]+'</span>';var fg=im.closest('.nh-art');if(fg)fg.setAttribute('data-art',a[0]);})();</script><!-- /nh-art -->
+<!-- np --><section class="np" id="newsPoster" aria-labelledby="npH">
+<h2 class="np-h" id="npH"><span class="ko">알림 · 새 예배 처소와 토요가족기도모임</span><span class="en">Notice · Our new place of worship and Saturday family prayer</span></h2>
+<a class="np-img" href="/images/notice/poster-20261107.webp" target="_blank" rel="noopener"><img src="/images/notice/poster-20261107.webp" srcset="/images/notice/poster-20261107-720.webp 720w, /images/notice/poster-20261107.webp 1080w" sizes="(max-width:600px) 92vw, 520px" width="1080" height="1440" decoding="async" alt="새 예배 처소 안내 포스터: 10월 11일 주일부터 Silver Lake Baptist Church에서 주일연합예배(매주 주일 오후 1시 30분). 자녀들과 함께하는 토요가족기도모임, 11월 7일(토) 시작, 매주 토요일 오전 6시, 찬양과 기도, 얼큰한 우동 한 그릇. 시애틀지구촌교회 · 12918 35th Ave SE, Everett, WA 98208 (Silver Lake Baptist Church)"></a>
+<p class="np-tip"><span class="ko">포스터를 길게 누르면 저장하거나 단톡방 · 스레드에 나눌 수 있습니다.</span><span class="en">Press and hold the poster to save or share it.</span></p>
+</section>
+<style id="np-css">.np{margin:0 0 28px;padding:20px;border:1px solid #E3D9C6;border-radius:20px;background:#fff;text-align:center}.np-h{margin:0 0 14px;font-size:18px;font-weight:800;color:#14213d;letter-spacing:-.01em}.np-img{display:block;max-width:520px;margin:0 auto;border-radius:14px;overflow:hidden;box-shadow:0 10px 26px rgba(20,33,61,.12)}.np-img img{display:block;width:100%;height:auto}.np-img:focus-visible{outline:3px solid #2c77b0;outline-offset:3px}.np-tip{margin:12px 0 0;font-size:14px;color:#4a4f5a}</style>
+<script id="np-js">(function(){function day(){ try{ var p=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()),o={}; p.forEach(function(x){o[x.type]=x.value;}); return o.year+'-'+o.month+'-'+o.day; }catch(e){ return new Date(Date.now()-7*36e5).toISOString().slice(0,10); } } if(day()>='2026-11-08'){var e=document.getElementById('newsPoster');if(e)e.hidden=true;}})();</script><!-- /np -->
+
+
     <div class="sec-eyebrow"><span class="ko">지구촌 마당</span><span class="en">Square</span></div>
     <h2 class="sec-title"><span class="ko">교회 소식</span><span class="en">Church news</span></h2>
     <p class="sec-lead"><span class="ko">매주 올라오는 주보로 교회 소식을 전합니다.</span><span class="en">Church news, shared through the weekly bulletin.</span></p>
