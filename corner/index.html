@@ -1598,10 +1598,10 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
         if(!n) return ''; return [].concat(n).map(function(v){ var src=(typeof v==='string')?v:(imgs[v-1]?'https://lh3.googleusercontent.com/d/'+imgs[v-1].id+'=w1600':'');
           return src?'<figure class="cb-fig"><img src="'+esc(src)+'" alt="" loading="lazy"></figure>':''; }).join(''); }
       h+='<div class="cb-body">'+ps.map(function(p,j){ var sub=(j===0 && p.length<60); return figAt(j+off)+'<p'+(sub?' class="cb-sub"':'')+'>'+esc(p)+'</p>'; }).join('')+figAt(x.paras.length)+'</div>';
-      if(x.pdf) h+='<a class="cb-open" href="https://drive.google.com/file/d/'+x.pdf+'/view" target="_blank" rel="noopener">'+gmBi('PDF로 보기 →','Open PDF →')+'</a>';
+      if(x.pdf) h+='<a class="cb-open" href="https://drive.google.com/file/d/'+x.pdf+'/view" target="_blank" rel="noopener">'+gmBi('그림으로 읽는 칼럼 →','Read the illustrated column →')+'</a>';
     } else if(x.pdf){
       h+='<div class="cb-pdf"><iframe src="https://drive.google.com/file/d/'+x.pdf+'/preview" loading="lazy" title="'+esc(t)+'"></iframe></div>'
-        +'<a class="cb-open" href="https://drive.google.com/file/d/'+x.pdf+'/view" target="_blank" rel="noopener">'+gmBi('PDF 크게 보기 →','Open PDF full size →')+'</a>';
+        +'<a class="cb-open" href="https://drive.google.com/file/d/'+x.pdf+'/view" target="_blank" rel="noopener">'+gmBi('그림으로 읽는 칼럼 크게 보기 →','Illustrated column, full size →')+'</a>';
     }
     h+='<div class="cb-acts"><button type="button" class="pri" onclick="openModal(\'topastor\')">'+gmBi('목사님께 한마디','A word to the pastor')+'</button>'
       +'<button type="button" class="cb-share">'+gmBi('공유하기','Share')+'</button></div>'
