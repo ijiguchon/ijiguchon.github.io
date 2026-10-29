@@ -1595,8 +1595,8 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
       if(ps.length && nt && norm(ps[0]).indexOf(nt)>-1) ps.shift();                 // 첫 줄이 제목 반복이면 생략
       var off=x.paras.length-ps.length, imgs=x.imgs||[], figs=x.figs||{}, auto=!Object.keys(figs).length;
       function figAt(i){ var n=figs[i]; if(auto&&imgs.length){ var N=x.paras.length, M=imgs.length; for(var k=0;k<M;k++){ if(Math.round((k+1)*N/(M+1))===i) n=k+1; } }
-        if(!n) return ''; return [].concat(n).map(function(v){ var src=(typeof v==='string')?v:(imgs[v-1]?'https://lh3.googleusercontent.com/d/'+imgs[v-1].id+'=w1600':'');
-          return src?'<figure class="cb-fig"><img src="'+esc(src)+'" alt="" loading="lazy"></figure>':''; }).join(''); }
+        if(!n) return ''; return [].concat(n).map(function(v){ var src=(typeof v==='string')?v:(imgs[v-1]?(imgs[v-1].url||'https://lh3.googleusercontent.com/d/'+imgs[v-1].id+'=w1600'):''), alt=(typeof v!=='string'&&imgs[v-1]&&imgs[v-1].alt)||'';
+          return src?'<figure class="cb-fig"><img src="'+esc(src)+'" alt="'+esc(alt)+'" loading="lazy"></figure>':''; }).join(''); }
       h+='<div class="cb-body">'+ps.map(function(p,j){ var sub=(j===0 && p.length<60); return figAt(j+off)+'<p'+(sub?' class="cb-sub"':'')+'>'+esc(p)+'</p>'; }).join('')+figAt(x.paras.length)+'</div>';
       if(x.pdf) h+='<a class="cb-open" href="https://drive.google.com/file/d/'+x.pdf+'/view" target="_blank" rel="noopener">'+gmBi('그림으로 읽는 칼럼 →','Read the illustrated column →')+'</a>';
     } else if(x.pdf){
@@ -1645,6 +1645,10 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
         d.imgs=im.filter(function(f){ return (f.name||'').replace(/^\s+/,'').indexOf(key)===0; })
           .sort(function(a,b){ return String(a.name||'').localeCompare(String(b.name||''),undefined,{numeric:true}); })
           .map(function(f){ return {id:f.id,name:f.name}; }); });
+      /* 사이트에 둔 그림도 같은 자리에 (gmcSiteImgs) */
+      var SITE_IMGS={'110126':[['/images/notice/poster-20261107-social.webp','토요가족기도모임 포스터: 11월 7일(토) Grand Opening, 매주 토요일 오전 6시 찬양과 기도, 오전 7시 우동집. 자녀들과 함께하는 토요가족기도모임, 찬양과 기도, 따끈한 우동 한 그릇. 시애틀지구촌교회 12918 35th Ave SE, Everett, WA 98208']]};
+      extra.forEach(function(d){ var key=d.date.slice(5,7)+d.date.slice(8,10)+d.date.slice(2,4);
+        (SITE_IMGS[key]||[]).forEach(function(u){ d.imgs.push({url:u[0],alt:u[1]}); }); });
     }catch(e){}
     build(files,extra); chips(); route();
   }
