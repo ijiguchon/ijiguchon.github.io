@@ -1705,5 +1705,30 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 window.addEventListener('pageshow',function(e){if(e.persisted)check();});
 setInterval(function(){if(document.visibilityState==='visible')check();},20*60*1000);
 })();</script>
+<script id="fg-js">(function(){
+var WAIT=3000;
+function isApp(f){ if(f.getAttribute('data-fg')==='off'||f.classList.contains('gc-in'))return false;
+  if(f.querySelector('input[type=password],input[type=search]'))return false;
+  return !!f.querySelector('input[name]:not([type=hidden]),textarea[name],select[name]'); }
+function arm(f){ if(f.__fg||!isApp(f))return; f.__fg=Date.now();
+  var d=document.createElement('div'); d.className='fg-hp'; d.setAttribute('aria-hidden','true');
+  d.style.cssText='position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden';
+  d.innerHTML='<label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>';
+  f.appendChild(d); }
+function scan(r){ if(r.tagName==='FORM')arm(r); if(r.querySelectorAll)r.querySelectorAll('form').forEach(arm); }
+function say(f){ var en=document.body.classList.contains('lang-en'), p=f.querySelector('.fg-wait');
+  if(!p){ p=document.createElement('p'); p.className='fg-wait'; p.setAttribute('role','status');
+    p.style.cssText='margin:8px 0 0;font-size:13px;line-height:1.5;color:var(--color-error,#B42318)'; f.appendChild(p); }
+  p.textContent=en?'Please tap send again in a moment.':'잠시 후 한 번 더 눌러 주세요.'; }
+document.addEventListener('submit',function(e){ var f=e.target; if(!f||!f.__fg)return;
+  var hp=f.querySelector('.fg-hp input'), bot=hp&&hp.value!=='', fast=Date.now()-f.__fg<WAIT;
+  if(bot||fast){ e.preventDefault(); e.stopImmediatePropagation(); if(!bot)say(f); return; }
+  var p=f.querySelector('.fg-wait'); if(p)p.remove();
+  if(hp){ hp.disabled=true; setTimeout(function(){ hp.disabled=false; },0); } },true);
+function start(){ scan(document.body);
+  new MutationObserver(function(ms){ ms.forEach(function(m){ m.addedNodes.forEach(function(n){ if(n.nodeType===1)scan(n); }); }); })
+    .observe(document.body,{childList:true,subtree:true}); }
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start); else start();
+})();</script>
 </body>
 </html>
