@@ -50,9 +50,12 @@ h1{font-size:30px;margin:8px 0 6px;font-weight:800;letter-spacing:-.01em}
 .row .what .pr li .blank{color:var(--muted);border-bottom:1px dashed var(--line)}
 .row .what .pr li .ref{color:var(--muted);font-size:12px;margin-left:4px}
 .row .what .how{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;color:var(--gold2);background:var(--tint);border-radius:999px;padding:2px 9px}
-.row .what .scr2{display:block;margin-top:8px;background:var(--ink);color:#e8ecf7;border-radius:10px;padding:10px 12px}
-.row .what .scr2 b{display:block;font-size:16px;font-weight:800}
-.row .what .scr2 span{display:block;font-size:12.5px;color:#c9d2ef;margin-top:3px;word-break:keep-all;font-weight:400}
+.row.scr-row{grid-template-columns:52px 1fr auto}
+.row .scr2{grid-column:1/-1;display:block;margin:4px 0 2px;background:var(--ink);color:#e8ecf7;border-radius:14px;padding:18px 18px 20px;position:relative;overflow:hidden;box-shadow:0 8px 20px rgba(20,33,61,.18)}
+.row .scr2::after{content:"";position:absolute;right:-36px;bottom:-52px;width:130px;height:130px;border-radius:50%;background:var(--sun);opacity:.92}
+.row .scr2 .ey{display:block;position:relative;font-size:11px;letter-spacing:.16em;color:var(--sun);font-weight:800;text-transform:uppercase}
+.row .scr2 b{display:block;position:relative;font-size:22px;line-height:1.3;font-weight:800;margin:6px 0 6px;word-break:keep-all;max-width:85%}
+.row .scr2 span{display:block;position:relative;font-size:14px;color:#c9d2ef;word-break:keep-all;font-weight:400;max-width:85%}
 .row .t{align-self:start;padding-top:2px}
 .hymns{display:grid;gap:8px}
 .hymn{display:grid;grid-template-columns:62px 62px 1fr;gap:8px;align-items:center;background:var(--tint);border-radius:10px;padding:10px 12px;min-width:0}
@@ -174,8 +177,9 @@ function render(d){
     var extra='';
     if(o.round){ var r=(d.prayerRounds||[]).filter(function(x){return x.no===o.round;})[0];
       if(r){ extra='<ol class="pr">'+(r.items||[]).map(function(it,i){ return '<li><i>'+(i+1)+'</i><span class="'+(it.blank?'blank':'')+'">'+esc(it.text)+(it.ref?'<span class="ref">('+esc(it.ref)+')</span>':'')+'</span></li>'; }).join('')+'</ol>'; } }
-    if(/말씀/.test(o.name)&&d.scripture){ var sc=d.scripture; extra='<span class="scr2"><b>'+esc(sc.title||'')+'</b><span>'+esc(sc.proposition||'')+(sc.summary?' · '+esc(sc.summary):'')+'</span></span>'; detail=sc.refLong||detail; }
-    return '<div class="row"><span class="t">'+esc(hm(o.time))+'</span><span class="what">'+esc(o.name)+(detail?'<small>'+esc(detail)+'</small>':'')+hy+extra+'</span><span class="h">'+esc(o.minutes)+'분</span></div>'; }).join('');
+    var tail='';
+    if(/말씀/.test(o.name)&&d.scripture){ var sc=d.scripture; tail='<span class="scr2"><span class="ey">말씀 · '+esc(sc.refLong||sc.ref||'')+'</span><b>'+esc(sc.title||'')+'</b><span>'+esc(sc.proposition||'')+(sc.summary?'. '+esc(sc.summary):'')+'</span></span>'; detail=''; }
+    return '<div class="row"><span class="t">'+esc(hm(o.time))+'</span><span class="what">'+esc(o.name)+(detail?'<small>'+esc(detail)+'</small>':'')+hy+extra+'</span><span class="h">'+esc(o.minutes)+'분</span>'+tail+'</div>'; }).join('');
   var links='';
   links+='<a class="link" href="/square/news/"><div><strong>'+(d.links&&d.links.sundayBulletinId?mdate(isoFromId(d.links.sundayBulletinId))+' ':'')+'주일 교회 소식</strong><span>주일연합예배 오후 1:30 · 주보</span></div><span class="arrow">›</span></a>';
   var s=d.scripture||{}, nw=d.nextWeek||{}, m=d.meeting||{};
