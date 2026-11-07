@@ -1375,6 +1375,11 @@ img.onload=function(){
           <span class="wb2"><h3><span class="ko">주일예배 PPT</span><span class="en">Sunday worship slides</span></h3><p><span class="ko">오는 주일 찬양 슬라이드 <span data-ppt-when></span></span><span class="en">This Sunday's slides <span data-ppt-when-en></span></span></p></span>
           <span class="wgo"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span>
         </a>
+        <a class="wkc" id="satCard" href="/saturday/">
+          <span class="wi"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="4"/><path d="M12 3v3M4.9 6.4l2.1 2.1M3 13h3M21 13h-3M19.1 6.4L17 8.5"/><path d="M3 21h18"/></svg></span>
+          <span class="wb2"><h3><span class="ko">토요가족기도모임</span><span class="en">Saturday family prayer</span></h3><p><span class="ko">매주 토요일 오전 6시 · 순서 · 찬송 · 기도제목 <span data-sat-when></span></span><span class="en">Saturdays 6 AM · order, hymns, prayers <span data-sat-when-en></span></span></p></span>
+          <span class="wgo"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span>
+        </a>
         <a class="wkc" id="commitCard" href="#" role="button" onclick="openModal('commit');return false">
           <span class="wi"><svg viewBox="0 0 24 24"><path d="M6 2.5h9l5 5v14H6z"/><path d="M15 2.5v5h5"/><path d="M9 13h8M9 17h5"/></svg></span>
           <span class="wb2"><h3><span class="ko">헌신카드</span><span class="en">Commitment card</span></h3><p><span class="ko">등록 · 영접 · 침례 · 헌신 · 기도 제목</span><span class="en">Register · faith · baptism · commit · prayer</span></p></span>
@@ -1863,6 +1868,18 @@ async function driveLatestByDate(folderUrl, maxIso){
   var pick=bestPdf||best, pickIso=bestPdf?bestPdfIso:bestIso;
   return pick?{url:(pick.webViewLink||('https://drive.google.com/file/d/'+pick.id+'/view')), iso:pickIso}:'';
 }
+async function resolveSaturday(){
+  /* 토요가족기도모임 — 토요기도모임 폴더(17kLNfm…)의 MMDDYY_토요가족기도모임.json 이 이번 토요일 것이면 날짜를 카드에 표시 */
+  try{
+    var d=new Date(), n=new Date(d); n.setDate(d.getDate()+((6-d.getDay()+7)%7));
+    var p=function(x){return (x<10?'0':'')+x;}, want=p(n.getMonth()+1)+p(n.getDate())+String(n.getFullYear()).slice(2);
+    var q="'17kLNfm_S_m77zX_QDaxYFcb3Ia7ufiFg' in parents and trashed=false and name='"+want+"_토요가족기도모임.json'";
+    var r=await fetch('https://www.googleapis.com/drive/v3/files?q='+encodeURIComponent(q)+'&key='+GDRIVE_API_KEY+'&fields='+encodeURIComponent('files(id)'));
+    var j=r.ok?await r.json():{}; if(!(j.files&&j.files.length)) return;
+    var isSat=d.getDay()===6, md=(n.getMonth()+1)+'/'+n.getDate();
+    setT('[data-sat-when]', '· '+(isSat?'오늘 ':'이번 주 ')+md); setT('[data-sat-when-en]', '· '+(isSat?'today ':'this Sat ')+md);
+  }catch(_){}
+}
 async function resolvePpt(){
   var u='', iso=''; var card=document.getElementById('pptCard');
   try{ u=await driveFindByDate(PPT_FOLDER, relevantSunday()); if(u) iso=relevantSunday(); }catch(_){}
@@ -1924,7 +1941,7 @@ document.addEventListener('DOMContentLoaded', function(){
   try{ renderSaturday(); }catch(_){}
   try{ renderSermonList(); }catch(_){}
   try{ psInit(); }catch(_){}
-  window.__afterLoad().then(function(){ resolvePpt(); resolveBulletin(); resolveShare(); });
+  window.__afterLoad().then(function(){ resolvePpt(); resolveSaturday(); resolveBulletin(); resolveShare(); });
 });
 </script>
 <script>
