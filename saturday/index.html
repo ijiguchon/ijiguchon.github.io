@@ -36,6 +36,14 @@ h1{font-size:30px;margin:8px 0 6px;font-weight:800;letter-spacing:-.01em}
 .row .what{font-weight:600}
 .row .what small{display:block;color:var(--muted);font-weight:400;font-size:12px}
 .row .h{font-size:13px;color:var(--ink2);white-space:nowrap}
+.row .what .hy{display:grid;gap:6px;margin-top:7px}
+.row .what .hy a,.row .what .hy span.nolink{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;text-decoration:none;color:inherit;background:var(--tint);border:1px solid var(--line);border-radius:10px;padding:7px 10px;font-size:13.5px;font-weight:600;min-height:40px}
+.row .what .hy b{font-size:16px;font-weight:800;white-space:nowrap;display:inline-flex;align-items:baseline;gap:1px}
+.row .what .hy b small{font-size:11px;color:var(--gold2);font-weight:700}
+.row .what .hy .ti{min-width:0;word-break:keep-all}
+.row .what .hy em{font-style:normal;font-size:11.5px;color:var(--muted);margin-left:4px;white-space:nowrap}
+.row .what .hy .sc{font-size:10.5px;font-weight:700;color:var(--gold2);border:1px solid var(--gold);border-radius:999px;padding:1px 7px;white-space:nowrap}
+.row .what .hy a:hover,.row .what .hy a:focus-visible{background:#f3ecdc}
 .hymns{display:grid;gap:8px}
 .hymn{display:grid;grid-template-columns:62px 62px 1fr;gap:8px;align-items:center;background:var(--tint);border-radius:10px;padding:10px 12px;min-width:0}
 .hymn .ht{font-variant-numeric:tabular-nums;font-weight:800;font-size:14px}
@@ -147,11 +155,13 @@ document.getElementById('lb-x').addEventListener('click',closeScore);
 document.getElementById('lb').addEventListener('click',function(e){ if(e.target.id==='lb'||e.target.id==='lb-b') closeScore(); });
 document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeScore(); });
 function render(d){
-  var order=(d.order||[]).map(function(o){ return '<div class="row"><span class="t">'+esc(hm(o.time))+'</span><span class="what">'+esc(o.name)+'<small>'+esc(o.detail||'')+'</small></span><span class="h">'+esc(o.minutes)+'분</span></div>'; }).join('');
-  var roleName={opening:'여는 찬양',round1:'기도 ① 교회',round2:'기도 ② 가정',round3:'기도 ③ 이웃',closing:'마침 찬양'};
-  var timeOf=function(no){ var o=(d.order||[]).filter(function(x){return (x.hymns||[]).indexOf(+no)>=0;})[0]; return o?hm(o.time):''; };
-  var hymns=(d.hymns||[]).map(function(h){ var fid=scoreMap[+h.no]; var inner='<span class="ht">'+esc(timeOf(h.no))+'<small>'+esc(roleName[h.role]||'')+'</small></span><b>'+esc(h.no)+'<small>장</small></b><span class="hn"><span class="ti">'+esc(h.title)+'</span><em>'+esc(h.verses||'')+'</em></span>';
-    return fid?'<a class="hymn" href="https://drive.google.com/file/d/'+esc(fid)+'/view" data-no="'+esc(h.no)+'" data-title="'+esc(h.title)+'" data-fid="'+esc(fid)+'">'+inner+'</a>':'<div class="hymn">'+inner+'</div>'; }).join('');
+  var byNo={}; (d.hymns||[]).forEach(function(h){ byNo[+h.no]=h; });
+  var chip=function(no){ var h=byNo[+no]||{no:no,title:''}; var fid=scoreMap[+no];
+    var inner='<b>'+esc(h.no)+'<small>장</small></b><span class="ti">'+esc(h.title)+(h.verses?'<em>'+esc(h.verses)+'</em>':'')+'</span>';
+    return fid?'<a href="https://drive.google.com/file/d/'+esc(fid)+'/view" data-no="'+esc(h.no)+'" data-title="'+esc(h.title)+'" data-fid="'+esc(fid)+'">'+inner+'<span class="sc">악보</span></a>':'<span class="nolink">'+inner+'<span></span></span>'; };
+  var order=(d.order||[]).map(function(o){ var hy=(o.hymns&&o.hymns.length)?'<span class="hy">'+o.hymns.map(chip).join('')+'</span>':'';
+    var detail=o.detail||''; if(o.hymns&&o.hymns.length){ detail = detail.indexOf('→')>=0 ? detail.split('→').slice(1).join('→').trim() : (/^\s*\d{1,3}장/.test(detail) ? '' : detail); }
+    return '<div class="row"><span class="t">'+esc(hm(o.time))+'</span><span class="what">'+esc(o.name)+(detail?'<small>'+esc(detail)+'</small>':'')+hy+'</span><span class="h">'+esc(o.minutes)+'분</span></div>'; }).join('');
   var rounds=(d.prayerRounds||[]).map(function(r){ return '<div class="meta"><span><b>'+(circ[r.no]||'')+'</b> '+esc(r.theme)+'</span><span>'+esc(r.method||'')+'</span></div><ol class="pr">'+(r.items||[]).map(function(it,i){ return '<li><i>'+(i+1)+'</i><span class="'+(it.blank?'blank':'')+'">'+esc(it.text)+(it.ref?'<span class="ref">('+esc(it.ref)+')</span>':'')+'</span></li>'; }).join('')+'</ol>'; }).join('');
   var links='';
   links+='<a class="link" href="/square/news/"><div><strong>'+(d.links&&d.links.sundayBulletinId?mdate(isoFromId(d.links.sundayBulletinId))+' ':'')+'주일 교회 소식</strong><span>주일연합예배 오후 1:30 · 주보</span></div><span class="arrow">›</span></a>';
@@ -160,14 +170,13 @@ function render(d){
     '<header class="hero"><div class="eyebrow">Saturday Family Prayer</div><h1>'+esc(m.name||'토요가족기도모임')+'</h1><div class="rule"></div>'+
     '<div class="date">'+esc(kdate(d.date))+' · 오전 '+esc(hm(m.start||'06:00'))+' – '+esc(hm(m.end||'06:50'))+'</div>'+
     '<p class="lead">'+esc(d.intro||'')+'</p></header>'+
-    '<section class="card"><h2><span class="n">1</span>오늘의 순서</h2>'+order+'</section>'+
-    '<section class="card"><h2><span class="n">2</span>오늘의 찬송<span class="tag">새찬송가 · 순서대로</span></h2><div class="hymns">'+hymns+'</div></section>'+
+    '<section class="card"><h2><span class="n">1</span>오늘의 순서<span class="tag">찬송을 누르면 악보</span></h2>'+order+'</section>'+
     '<section class="scr"><div class="eyebrow">말씀 · '+esc(s.refLong||s.ref||'')+'</div><h2>'+esc(s.title||'')+'</h2><p>'+esc(s.proposition||'')+(s.proposition?'. ':'')+esc(s.summary||'')+'</p></section>'+
-    '<section class="card"><h2><span class="n">3</span>기도 세 바퀴</h2>'+rounds+'</section>'+
+    '<section class="card"><h2><span class="n">2</span>기도 세 바퀴</h2>'+rounds+'</section>'+
     '<div class="links">'+links+'</div>'+
     (nw.date?'<p class="foot">다음 주 '+esc(mdate(nw.date))+'(토) 오전 6시 · '+esc(nw.ref||'')+(nw.title?' 「'+esc(nw.title)+'」':'')+'<br>시애틀지구촌교회</p>':'<p class="foot">시애틀지구촌교회</p>');
   document.title=(d.date?mdate(d.date)+' ':'')+'토요가족기도모임 · 시애틀지구촌교회';
-  document.querySelectorAll('a.hymn').forEach(function(a){ a.addEventListener('click',function(e){ e.preventDefault(); openScore(a.dataset.no,a.dataset.title,a.dataset.fid); }); });
+  document.querySelectorAll('.hy a[data-fid]').forEach(function(a){ a.addEventListener('click',function(e){ e.preventDefault(); openScore(a.dataset.no,a.dataset.title,a.dataset.fid); }); });
 }
 (async function(){
   try{ var pr=loadScores(); var d=await loadData(); if(!d) throw new Error('none'); await pr; render(d); }
