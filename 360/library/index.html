@@ -1556,6 +1556,13 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
   });
   panel.addEventListener('mouseenter',function(){ clearTimeout(hideT); });
   if(hov) panel.addEventListener('mouseleave',function(){ hideT=setTimeout(close,280); });
+  /* 2026-11-07 목사님: 클릭으로 연 목록도 커서가 탭·목록 밖으로 나가면 바로 닫힘 (마우스 환경에서만) */
+  if(!hov&&window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var leaveT=null;
+    function armLeave(){ clearTimeout(leaveT); leaveT=setTimeout(function(){ if(!panel.hidden) close(); },120); }
+    document.querySelectorAll('.tabs .tab').forEach(function(b){ b.addEventListener('mouseleave',function(){ if(!panel.hidden) armLeave(); }); b.addEventListener('mouseenter',function(){ clearTimeout(leaveT); }); });
+    panel.addEventListener('mouseleave',armLeave); panel.addEventListener('mouseenter',function(){ clearTimeout(leaveT); });
+  }
   document.addEventListener('click',function(e){ if(!panel.hidden&&!panel.contains(e.target)) close(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
   window.addEventListener('resize',close);
