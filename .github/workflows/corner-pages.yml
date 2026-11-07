@@ -1,0 +1,22 @@
+name: 성수생각 글 페이지 생성
+on:
+  schedule:
+    - cron: '37 15 * * *'   # 매일 15:37 UTC (시애틀 오전 7:37 / 8:37)
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install pillow python-docx
+      - run: python tools/build_corner_pages.py
+      - name: commit
+        run: |
+          git config user.name "gmc-bot"
+          git config user.email "pastor@ijiguchon.org"
+          git add -A corner images/corner sitemap.xml
+          git diff --cached --quiet || (git commit -m "성수생각: 새 글 페이지 자동 생성" && git push)

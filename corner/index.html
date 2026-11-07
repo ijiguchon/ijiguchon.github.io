@@ -1614,7 +1614,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
     art.querySelector('.cb-back').onclick=function(){ showList(true); window.scrollTo({top:0}); };
     art.querySelectorAll('.cb-nav a').forEach(function(a){ a.onclick=function(e){ e.preventDefault(); openItem(a.getAttribute('data-k'),true); }; });
     art.querySelector('.cb-share').onclick=async function(){
-      var url=location.origin+'/corner/?c='+x.key, data={title:t+' · 성수생각 · 시애틀지구촌교회', url:url};
+      var url=location.origin+'/corner/'+x.key+'/', data={title:t+' · 성수생각 · 시애틀지구촌교회', url:url};   /* 글마다 고정 주소(미리보기 그림 포함) — tools/build_corner_pages.py 가 만든다 */
       if(navigator.share){ try{ await navigator.share(data); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
       try{ await navigator.clipboard.writeText(url); alert(gmEn()?'Link copied.':'글 주소를 복사했습니다. 붙여넣기로 전해 주십시오.'); }catch(e){ window.prompt(gmEn()?'Copy this link':'아래 주소를 복사해 전해 주십시오', url); }
     };
