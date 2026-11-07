@@ -40,6 +40,15 @@ h1{font-size:28px;line-height:1.3;margin:0 0 6px;font-weight:800;word-break:keep
 .btn.g{background:linear-gradient(135deg,#F3DA9B,#E2BB63);color:var(--ink);border:1px solid rgba(130,96,40,.35)}
 .btn.o{border:1.5px solid var(--ink);color:var(--ink)}
 .foot{text-align:center;color:var(--muted);font-size:12.5px;margin-top:36px}
+.share{margin-top:18px;background:var(--card,#fff);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.share h3{margin:0 0 10px;font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.04em}
+.share .sb{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:420px){.share .sb{grid-template-columns:repeat(2,1fr)}}
+.share button,.share a{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--tint,#fbf7ef);color:var(--ink);font:700 13.5px inherit;font-family:inherit;text-decoration:none;cursor:pointer;padding:8px 10px}
+.share button:hover,.share a:hover{background:#f3ecdc}
+.share .pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+.share svg{width:18px;height:18px;flex:none}
+.share .msg{font-size:12.5px;color:var(--muted);margin:8px 0 0;min-height:1.2em}
 </style>
 </head>
 <body>
@@ -52,7 +61,25 @@ h1{font-size:28px;line-height:1.3;margin:0 0 6px;font-weight:800;word-break:keep
   <div class="body"><p>우리의 말이 멈춘 바로 그 자리에서, 하나님의 말씀이 시작됩니다</p><p>우리는 지금 경청 21일 기도를 이어가고 있습니다. 그런 가운데 지난 주일, 우리 공동체의 한 가정에 갑작스러운 이별의 소식이 찾아왔습니다. 건강하시던 어른이 하루아침에 의식을 잃으셨고, 가족들은 마음의 준비를 할 새도 없이 병실을 지켜야 했습니다. 병원에서 돌아오는 차 안에서 아내와 “인생은 정말 하나님 손에 달려 있구나” 하고 나직이 나눈 뒤, 한동안 말없이 집으로 왔습니다.</p><p>돌아보니 그 침묵은 비어 있는 시간이 아니라 하나님의 음성에 귀 기울이는 자리였습니다. 우리는 기도할 때 말하고, 채우고, 나의 소리를 앞세우는 데 익숙합니다. 그러나 지금 필요한 기도는 듣고, 비우고, 그분의 음성이 중심이 되는 기도입니다. 엘리야는 지진과 불 가운데가 아니라 “부드럽고 조용한 소리”(왕상 19:12)로 하나님을 만났습니다.</p><p>그 자리에서 세 말씀이 한곳에서 만났습니다. 시편 기자는 “우리에게 우리의 날 수를 계산할 줄 알도록 가르쳐 주셔서, 지혜로운 마음을 얻게 하여 주십시오”(시 90:12)라고 기도했습니다. 삶이 하나님 손에 얼마나 가까이 있는지 깨달을 때, 우리는 오늘이라는 시간이 선물임을 듣게 됩니다. 그리고 예수님은 “나는 부활이요 생명이다”(요 11:25)라고 말씀하십니다. 이별 앞에서도 소망을 놓지 않는 것은 생명의 주인이 우리 손을 붙들고 계시기 때문입니다. 삶의 유한함, 영원한 소망, 침묵 속의 음성이 만나는 자리에 “오늘, 그리고 내 곁의 사람”이 있습니다. 생명의 주인이 우리를 붙들고 계시기에, 오늘 우리에게 주어진 시간과 내 곁의 사람은 귀한 선물이 됩니다.</p><p>이번 주, 침묵과 사랑을 실천하는 세 가지 걸음을 권해 드립니다.</p><p>1. 멈춤과 듣기 하루 5분, 스마트폰을 내려놓고 조용히 앉아 “주님, 말씀하십시오. 제가 듣겠습니다” 하고 기도해 보십시오.</p><p>2. 안부와 사랑 마음에 떠오르는 한 분께 안부 전화를 걸어 “고맙습니다, 사랑합니다” 한마디를 진심으로 전해 보십시오.</p><p>3. 함께 걷기 갑작스러운 이별의 아픔과 슬픔 가운데 있는 가정을 위해 우리의 마음을 모아 함께 기도해 주십시오.</p><p>하나님은 오늘도 말씀하고 계십니다.</p><p>김성수 목사 시애틀지구촌교회</p></div>
   <div class="sig">김성수 목사 드림</div>
   <div class="acts"><a class="btn g" href="https://drive.google.com/file/d/1yCbvMENr7ZpAjnn9dKFoEDovzLBEfuDY/view" target="_blank" rel="noopener">그림으로 읽는 칼럼 →</a><a class="btn o" href="/corner/?c=2026-10-25">성수생각에서 보기</a></div>
+  <div class="share" id="share"><h3>이 페이지 보내기</h3><div class="sb">
+<button type="button" class="pri" id="sh-native"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/></svg>공유 · 카톡</button>
+<a id="sh-fb" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg>페이스북</a>
+<a id="sh-th" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.2 2C6.9 2 3.6 5.5 3.6 11.9S6.9 22 12.2 22c3.8 0 6.3-1.8 7.4-4.3l-2.3-1.1c-.8 1.9-2.6 3-5.1 3-3.9 0-6-2.6-6-7.6s2.1-7.6 6-7.6c3.1 0 4.9 1.4 5.5 4.1-1-.5-2.2-.8-3.4-.8-2.7 0-4.6 1.5-4.6 3.7 0 2.1 1.7 3.5 4.1 3.5 2.9 0 4.6-1.8 4.8-5v-.3c1.4.9 2.1 2.2 2.1 3.9h2.4c0-3.1-1.5-5.3-4.2-6.5C18.4 4.1 15.9 2 12.2 2zm2.1 11.2c-.1 1.9-.9 2.9-2.5 2.9-1.1 0-1.8-.5-1.8-1.3 0-.9.9-1.5 2.3-1.5.7 0 1.4.1 2 .3v-.4z"/></svg>스레드</a>
+<button type="button" id="sh-copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>링크 복사 · 인스타</button>
+</div><p class="msg" id="sh-msg"></p></div>
   <p class="foot">시애틀지구촌교회 · www.ijiguchon.org</p>
 </div>
+<script>(function(){
+  var url=location.origin+location.pathname, title=document.title, msg=document.getElementById('sh-msg');
+  function say(t){ msg.textContent=t; }
+  document.getElementById('sh-fb').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);
+  document.getElementById('sh-th').href='https://www.threads.net/intent/post?text='+encodeURIComponent(title+' '+url);
+  document.getElementById('sh-native').addEventListener('click',async function(){
+    if(navigator.share){ try{ await navigator.share({title:title,url:url}); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
+    copy('이 기기에는 공유창이 없어 주소를 복사했습니다. 카톡에 붙여넣어 보내 주세요.');
+  });
+  document.getElementById('sh-copy').addEventListener('click',function(){ copy('주소를 복사했습니다. 인스타그램·카톡에 붙여넣어 보내 주세요.'); });
+  async function copy(ok){ try{ await navigator.clipboard.writeText(url); say(ok); }catch(e){ window.prompt('아래 주소를 복사해 주세요', url); } }
+})();</script>
 </body>
 </html>

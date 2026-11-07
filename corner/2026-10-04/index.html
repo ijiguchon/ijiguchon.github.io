@@ -40,6 +40,15 @@ h1{font-size:28px;line-height:1.3;margin:0 0 6px;font-weight:800;word-break:keep
 .btn.g{background:linear-gradient(135deg,#F3DA9B,#E2BB63);color:var(--ink);border:1px solid rgba(130,96,40,.35)}
 .btn.o{border:1.5px solid var(--ink);color:var(--ink)}
 .foot{text-align:center;color:var(--muted);font-size:12.5px;margin-top:36px}
+.share{margin-top:18px;background:var(--card,#fff);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.share h3{margin:0 0 10px;font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.04em}
+.share .sb{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:420px){.share .sb{grid-template-columns:repeat(2,1fr)}}
+.share button,.share a{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--tint,#fbf7ef);color:var(--ink);font:700 13.5px inherit;font-family:inherit;text-decoration:none;cursor:pointer;padding:8px 10px}
+.share button:hover,.share a:hover{background:#f3ecdc}
+.share .pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+.share svg{width:18px;height:18px;flex:none}
+.share .msg{font-size:12.5px;color:var(--muted);margin:8px 0 0;min-height:1.2em}
 </style>
 </head>
 <body>
@@ -52,7 +61,25 @@ h1{font-size:28px;line-height:1.3;margin:0 0 6px;font-weight:800;word-break:keep
   <div class="body"><p>&quot;내 양들은 내 목소리를 알아듣는다. 나는 내 양들을 알고, 내 양들은 나를 따른다.&quot; (요10:27, 새번역)</p><p>신앙생활이 재미없어지는 이유는 교회를 오래 다녀서가 아닙니다. 오래 다니면서도 하나님의 음성을 듣지 못하기 때문입니다. 오래 헌신하고도 나중에는 하나님이 없는 것처럼 말하는 사람들이 있습니다. 이 교회에서는 열심히 섬겼다면서 다른 교회로 옮긴 뒤에는 숨어서 출석만 하는 경우도 봅니다. 저도 목회하며 이런 두려움을 가진 적이 있습니다. 나도 언젠가 “그 사람들 때문에 헛고생했다&quot;고 말하게 되지 않을까 싶었기 때문입니다.</p><p>그런데 여기 반전이 있습니다. 마음에 맞지 않는 사람과 나를 화나고 불쾌하게 만드는 일은 반드시 찾아옵니다. 하지만 그들이 내 인생과 사역을 망친 게 아닙니다. 그들을 통해 내가 누구인지, 무엇을 위해 이 자리에 왔고, 여기에 있는지 내 말과 행동으로 다 드러나게 만들어 힘든 것입니다.</p><p>역설은 또 있습니다. 우리는 중요한 결정을 스스로 내린다고 믿습니다. 그러나 부모와 형제, 주변 사람들을 통해 그동안 보고 듣고 읽고 겪은 일이 몸에 배어 있어서 내 마음의 소리를 따를수록 사실은 내 과거를 따르게 됩니다(잠 28:26). 신앙도 그렇습니다. 어머니 손에, 배우자 손에 이끌려 교회에 왔더라도 언젠가는 하나님 앞에 홀로 서서 결정해야 합니다.</p><p>먼저 부르신 분은 하나님이지만, 그 부르심에 응답하는 믿음은 선택이고, 그 선택에는 책임이 따릅니다. 내 안의 소리만으로는 나를 볼 수 없습니다. 내 밖에서 나를 비추는 음성이 필요합니다. 저는 그것이 말씀을 통해 들려주시는 성령님의 음성이라고 믿습니다. 그 음성을 듣는 사람이 역설적으로 가장 자유롭습니다. 진리가 우리를 자유롭게 하기 때문입니다(요 8:32).</p><p>그래서 신앙은 다 아는 사람에게는 지루하고, 듣는 사람에게는 매일 새롭습니다. 10월 7일에 시작하는 &quot;경청 21일&quot;을 통해 여러분의 신앙생활이 다시 흥미롭고 재밌어지는 새 여정이 열리기를 축복합니다.</p></div>
   <div class="sig">김성수 목사 드림</div>
   <div class="acts"><a class="btn o" href="/corner/?c=2026-10-04">성수생각에서 보기</a></div>
+  <div class="share" id="share"><h3>이 페이지 보내기</h3><div class="sb">
+<button type="button" class="pri" id="sh-native"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/></svg>공유 · 카톡</button>
+<a id="sh-fb" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg>페이스북</a>
+<a id="sh-th" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.2 2C6.9 2 3.6 5.5 3.6 11.9S6.9 22 12.2 22c3.8 0 6.3-1.8 7.4-4.3l-2.3-1.1c-.8 1.9-2.6 3-5.1 3-3.9 0-6-2.6-6-7.6s2.1-7.6 6-7.6c3.1 0 4.9 1.4 5.5 4.1-1-.5-2.2-.8-3.4-.8-2.7 0-4.6 1.5-4.6 3.7 0 2.1 1.7 3.5 4.1 3.5 2.9 0 4.6-1.8 4.8-5v-.3c1.4.9 2.1 2.2 2.1 3.9h2.4c0-3.1-1.5-5.3-4.2-6.5C18.4 4.1 15.9 2 12.2 2zm2.1 11.2c-.1 1.9-.9 2.9-2.5 2.9-1.1 0-1.8-.5-1.8-1.3 0-.9.9-1.5 2.3-1.5.7 0 1.4.1 2 .3v-.4z"/></svg>스레드</a>
+<button type="button" id="sh-copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>링크 복사 · 인스타</button>
+</div><p class="msg" id="sh-msg"></p></div>
   <p class="foot">시애틀지구촌교회 · www.ijiguchon.org</p>
 </div>
+<script>(function(){
+  var url=location.origin+location.pathname, title=document.title, msg=document.getElementById('sh-msg');
+  function say(t){ msg.textContent=t; }
+  document.getElementById('sh-fb').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);
+  document.getElementById('sh-th').href='https://www.threads.net/intent/post?text='+encodeURIComponent(title+' '+url);
+  document.getElementById('sh-native').addEventListener('click',async function(){
+    if(navigator.share){ try{ await navigator.share({title:title,url:url}); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
+    copy('이 기기에는 공유창이 없어 주소를 복사했습니다. 카톡에 붙여넣어 보내 주세요.');
+  });
+  document.getElementById('sh-copy').addEventListener('click',function(){ copy('주소를 복사했습니다. 인스타그램·카톡에 붙여넣어 보내 주세요.'); });
+  async function copy(ok){ try{ await navigator.clipboard.writeText(url); say(ok); }catch(e){ window.prompt('아래 주소를 복사해 주세요', url); } }
+})();</script>
 </body>
 </html>

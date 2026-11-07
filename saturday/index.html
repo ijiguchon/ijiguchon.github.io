@@ -95,6 +95,15 @@ ol.pr li .ref{color:var(--muted);font-size:12px;margin-left:4px}
 .link strong{display:block;font-size:14.5px}.link span{display:block;font-size:12.5px;color:var(--muted)}
 .link .arrow{font-size:18px;flex:none}
 .foot{text-align:center;color:var(--muted);font-size:12.5px;margin-top:26px;line-height:1.7;word-break:keep-all}
+.share{margin-top:18px;background:var(--card,#fff);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.share h3{margin:0 0 10px;font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.04em}
+.share .sb{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:420px){.share .sb{grid-template-columns:repeat(2,1fr)}}
+.share button,.share a{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--tint,#fbf7ef);color:var(--ink);font:700 13.5px inherit;font-family:inherit;text-decoration:none;cursor:pointer;padding:8px 10px}
+.share button:hover,.share a:hover{background:#f3ecdc}
+.share .pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+.share svg{width:18px;height:18px;flex:none}
+.share .msg{font-size:12.5px;color:var(--muted);margin:8px 0 0;min-height:1.2em}
 .state{text-align:center;color:var(--muted);padding:40px 0}
 a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 </style>
@@ -167,6 +176,18 @@ function closeScore(){ document.getElementById('lb').hidden=true; document.body.
 document.getElementById('lb-x').addEventListener('click',closeScore);
 document.getElementById('lb').addEventListener('click',function(e){ if(e.target.id==='lb'||e.target.id==='lb-b') closeScore(); });
 document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeScore(); });
+function initShare(){
+  var url=location.origin+location.pathname, title=document.title, msg=document.getElementById('sh-msg');
+  function say(t){ msg.textContent=t; }
+  document.getElementById('sh-fb').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);
+  document.getElementById('sh-th').href='https://www.threads.net/intent/post?text='+encodeURIComponent(title+' '+url);
+  document.getElementById('sh-native').addEventListener('click',async function(){
+    if(navigator.share){ try{ await navigator.share({title:title,url:url}); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
+    copy('이 기기에는 공유창이 없어 주소를 복사했습니다. 카톡에 붙여넣어 보내 주세요.');
+  });
+  document.getElementById('sh-copy').addEventListener('click',function(){ copy('주소를 복사했습니다. 인스타그램·카톡에 붙여넣어 보내 주세요.'); });
+  async function copy(ok){ try{ await navigator.clipboard.writeText(url); say(ok); }catch(e){ window.prompt('아래 주소를 복사해 주세요', url); } }
+}
 function render(d){
   var byNo={}; (d.hymns||[]).forEach(function(h){ byNo[+h.no]=h; });
   var chip=function(no){ var h=byNo[+no]||{no:no,title:''}; var fid=scoreMap[+no];
@@ -189,8 +210,10 @@ function render(d){
     '<p class="lead">'+esc(d.intro||'')+'</p></header>'+
     '<section class="card"><h2>오늘의 순서<span class="tag">찬송을 누르면 악보</span></h2>'+order+'</section>'+
     '<div class="links">'+links+'</div>'+
+    '<div class="share" id="share"><h3>이 페이지 보내기</h3><div class="sb"><button type="button" class="pri" id="sh-native"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/></svg>공유 · 카톡</button><a id="sh-fb" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg>페이스북</a><a id="sh-th" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.2 2C6.9 2 3.6 5.5 3.6 11.9S6.9 22 12.2 22c3.8 0 6.3-1.8 7.4-4.3l-2.3-1.1c-.8 1.9-2.6 3-5.1 3-3.9 0-6-2.6-6-7.6s2.1-7.6 6-7.6c3.1 0 4.9 1.4 5.5 4.1-1-.5-2.2-.8-3.4-.8-2.7 0-4.6 1.5-4.6 3.7 0 2.1 1.7 3.5 4.1 3.5 2.9 0 4.6-1.8 4.8-5v-.3c1.4.9 2.1 2.2 2.1 3.9h2.4c0-3.1-1.5-5.3-4.2-6.5C18.4 4.1 15.9 2 12.2 2zm2.1 11.2c-.1 1.9-.9 2.9-2.5 2.9-1.1 0-1.8-.5-1.8-1.3 0-.9.9-1.5 2.3-1.5.7 0 1.4.1 2 .3v-.4z"/></svg>스레드</a><button type="button" id="sh-copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>링크 복사 · 인스타</button></div><p class="msg" id="sh-msg"></p></div>'+
     (nw.date?'<p class="foot">다음 주 '+esc(mdate(nw.date))+'(토) 오전 6시 · '+esc(nw.ref||'')+(nw.title?' 「'+esc(nw.title)+'」':'')+'<br>시애틀지구촌교회</p>':'<p class="foot">시애틀지구촌교회</p>');
   document.title=(d.date?mdate(d.date)+' ':'')+'토요가족기도모임 · 시애틀지구촌교회';
+  initShare();
   document.querySelectorAll('.hy a[data-fid]').forEach(function(a){ a.addEventListener('click',function(e){ e.preventDefault(); openScore(a.dataset.no,a.dataset.title,a.dataset.fid); }); });
 }
 (async function(){

@@ -40,6 +40,15 @@ h1{font-size:28px;line-height:1.3;margin:0 0 6px;font-weight:800;word-break:keep
 .btn.g{background:linear-gradient(135deg,#F3DA9B,#E2BB63);color:var(--ink);border:1px solid rgba(130,96,40,.35)}
 .btn.o{border:1.5px solid var(--ink);color:var(--ink)}
 .foot{text-align:center;color:var(--muted);font-size:12.5px;margin-top:36px}
+.share{margin-top:18px;background:var(--card,#fff);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.share h3{margin:0 0 10px;font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.04em}
+.share .sb{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:420px){.share .sb{grid-template-columns:repeat(2,1fr)}}
+.share button,.share a{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--tint,#fbf7ef);color:var(--ink);font:700 13.5px inherit;font-family:inherit;text-decoration:none;cursor:pointer;padding:8px 10px}
+.share button:hover,.share a:hover{background:#f3ecdc}
+.share .pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+.share svg{width:18px;height:18px;flex:none}
+.share .msg{font-size:12.5px;color:var(--muted);margin:8px 0 0;min-height:1.2em}
 </style>
 </head>
 <body>
@@ -52,7 +61,25 @@ h1{font-size:28px;line-height:1.3;margin:0 0 6px;font-weight:800;word-break:keep
   <div class="body"><p>당신의 삶이 곧 설교입니다</p><p>시애틀지구촌교회는 그리스도의 제자를 만드는 교회입니다. 그래서 모든 성도들은 목자, 목녀로 살아가거나 준비하는 사람들입니다. 그런데 목자·목녀로 섬기는 일이 때로는 무겁게 느껴질 때가 있습니다. 준비해야 할 것, 챙겨야 할 사람, 신경 써야 할 것들이 많습니다. &quot;내가 잘 하고 있는 걸까?&quot; 하는 의문이 드는 날도 있습니다. 섬김이 의무처럼 느껴지고 지쳐갈 때, 이 말씀을 품으면 우리에게 새로운 눈이 열릴 것입니다. 즉, &quot;섬김의 리더십과 영적 리더십을 통해서 사람을 변하게 하는 목자·목녀의 삶은 결국 이 땅에서 예수님의 삶을 따라 살아가는 것&quot;이라는 말입니다.</p><p>목자·목녀의 사역은 두 리더십으로 이루어집니다. 섬김의 리더십은 아직 믿음이 없는 VIP를 사랑으로 품는 것이고, 영적 리더십은 이미 크리스천인 목원들이 예수님의 제자로 자라갈 수 있도록 이끄는 것입니다. 이 두 가지를 함께 행하는 삶이 곧 예수님의 삶이었습니다.</p><p>예수님도 잃어버린 양을 찾아가셨고, 함께한 열두 제자를 훈련시키셨습니다. 사역의 현장이 화려하지 않아도 괜찮습니다. 작은 거실, 둘러앉은 몇 명의 식구들, 그 자리에서 귀를 기울이고 함께 기도하는 것이 예수님이 하신 일입니다.</p><p>목자·목녀님, 그리고 목장을 준비하는 예비 목자님들, 당신이 목장식구를 위해 기도하고, VIP를 위해 문을 여는 그 삶 자체가 예수님의 삶을 따르는 것입니다. 완벽하지 않아도 됩니다. 예수님을 바라보며 오늘 한 걸음 걷는 것, 그것이 목자의 사역이고, 목자의 설교입니다.</p><p>이번 한 주, 나의 목장 식구 한 명을 떠올려 보세요. 그리고 스스로에게 물어보세요. &quot;이 사람을 위해 예수님이라면 오늘 어떻게 하셨을까?&quot; 그 질문 하나가 목자님의 리더십을 새롭게 할 것입니다. 목자,목녀의 삶이 곧 목장의 설교입니다.</p></div>
   <div class="sig">김성수 목사 드림</div>
   <div class="acts"><a class="btn o" href="/corner/?c=2026-08-29">성수생각에서 보기</a></div>
+  <div class="share" id="share"><h3>이 페이지 보내기</h3><div class="sb">
+<button type="button" class="pri" id="sh-native"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/></svg>공유 · 카톡</button>
+<a id="sh-fb" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg>페이스북</a>
+<a id="sh-th" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.2 2C6.9 2 3.6 5.5 3.6 11.9S6.9 22 12.2 22c3.8 0 6.3-1.8 7.4-4.3l-2.3-1.1c-.8 1.9-2.6 3-5.1 3-3.9 0-6-2.6-6-7.6s2.1-7.6 6-7.6c3.1 0 4.9 1.4 5.5 4.1-1-.5-2.2-.8-3.4-.8-2.7 0-4.6 1.5-4.6 3.7 0 2.1 1.7 3.5 4.1 3.5 2.9 0 4.6-1.8 4.8-5v-.3c1.4.9 2.1 2.2 2.1 3.9h2.4c0-3.1-1.5-5.3-4.2-6.5C18.4 4.1 15.9 2 12.2 2zm2.1 11.2c-.1 1.9-.9 2.9-2.5 2.9-1.1 0-1.8-.5-1.8-1.3 0-.9.9-1.5 2.3-1.5.7 0 1.4.1 2 .3v-.4z"/></svg>스레드</a>
+<button type="button" id="sh-copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>링크 복사 · 인스타</button>
+</div><p class="msg" id="sh-msg"></p></div>
   <p class="foot">시애틀지구촌교회 · www.ijiguchon.org</p>
 </div>
+<script>(function(){
+  var url=location.origin+location.pathname, title=document.title, msg=document.getElementById('sh-msg');
+  function say(t){ msg.textContent=t; }
+  document.getElementById('sh-fb').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);
+  document.getElementById('sh-th').href='https://www.threads.net/intent/post?text='+encodeURIComponent(title+' '+url);
+  document.getElementById('sh-native').addEventListener('click',async function(){
+    if(navigator.share){ try{ await navigator.share({title:title,url:url}); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
+    copy('이 기기에는 공유창이 없어 주소를 복사했습니다. 카톡에 붙여넣어 보내 주세요.');
+  });
+  document.getElementById('sh-copy').addEventListener('click',function(){ copy('주소를 복사했습니다. 인스타그램·카톡에 붙여넣어 보내 주세요.'); });
+  async function copy(ok){ try{ await navigator.clipboard.writeText(url); say(ok); }catch(e){ window.prompt('아래 주소를 복사해 주세요', url); } }
+})();</script>
 </body>
 </html>

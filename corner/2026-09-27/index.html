@@ -40,6 +40,15 @@ h1{font-size:28px;line-height:1.3;margin:0 0 6px;font-weight:800;word-break:keep
 .btn.g{background:linear-gradient(135deg,#F3DA9B,#E2BB63);color:var(--ink);border:1px solid rgba(130,96,40,.35)}
 .btn.o{border:1.5px solid var(--ink);color:var(--ink)}
 .foot{text-align:center;color:var(--muted);font-size:12.5px;margin-top:36px}
+.share{margin-top:18px;background:var(--card,#fff);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.share h3{margin:0 0 10px;font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.04em}
+.share .sb{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:420px){.share .sb{grid-template-columns:repeat(2,1fr)}}
+.share button,.share a{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--tint,#fbf7ef);color:var(--ink);font:700 13.5px inherit;font-family:inherit;text-decoration:none;cursor:pointer;padding:8px 10px}
+.share button:hover,.share a:hover{background:#f3ecdc}
+.share .pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+.share svg{width:18px;height:18px;flex:none}
+.share .msg{font-size:12.5px;color:var(--muted);margin:8px 0 0;min-height:1.2em}
 </style>
 </head>
 <body>
@@ -52,7 +61,25 @@ h1{font-size:28px;line-height:1.3;margin:0 0 6px;font-weight:800;word-break:keep
   <div class="body"><p>오는 10월 7일(수)부터 30일(금)까지(주일 제외), 21일간 &quot;하나님의 음성 듣기-제2차 경청 21일&quot;을 시작합니다. 이 기간 새 예배 처소를 위해 짧게라도 매일 한 마음으로 기도합시다(사도행전 1:14).</p><p>우리 교회는 지금 김 목사집에서 주일예배를 드리며, 새 예배 처소를 놓고 기도하며 찾고 있습니다. 앞이 훤히 보이지 않을 때 마음이 무거워지는 것은 자연스러운 일입니다. 그러나 이런 때일수록 가장 중요한 것은 &quot;무엇을 바라보는가&quot;입니다. 상황을 바라보면 걱정이 자라고, 하나님을 바라보면 믿음이 자랍니다. 부디, 믿음이 자라는 이 기간이 되기를 소망합니다.</p><p>초대교회의 첫 장면을 기억하십니까. 예수님이 승천하신 뒤, 제자들에게 남은 것은 빌려 쓰는 다락방 하나였습니다. 그들도 불확실한 미래 앞에 불안한 마음이 왜 없었겠습니까. 하지만 성경은 그들이 &quot;한 마음으로 기도에 힘썼다&quot;라고 기록합니다. 교회의 역사는 결코 좋은 조건에서 시작되지 않았습니다. 한마음이 된 기도에서 시작되었습니다.</p><p>그렇다면 우리가 지금 겪는 불편은 결핍이 아닙니다. 집에서 모여 밥상을 나누고 기도를 하는 것. 그것이 바로 2,000년 전 신약교회의 원형입니다. 하나님은 조건을 갖춘 사람들이 아니라, 당신을 바라보는 사람들과 새 일을 시작하십니다. 지금은 낙심할 때가 아니라, 다시 시작할 은혜의 시간입니다. 그런 차원에서 &quot;경청 21일&quot;은 하나님의 음성 듣기에 최고 시간입니다.</p></div>
   <div class="sig">김성수 목사 드림</div>
   <div class="acts"><a class="btn o" href="/corner/?c=2026-09-27">성수생각에서 보기</a></div>
+  <div class="share" id="share"><h3>이 페이지 보내기</h3><div class="sb">
+<button type="button" class="pri" id="sh-native"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/></svg>공유 · 카톡</button>
+<a id="sh-fb" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg>페이스북</a>
+<a id="sh-th" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.2 2C6.9 2 3.6 5.5 3.6 11.9S6.9 22 12.2 22c3.8 0 6.3-1.8 7.4-4.3l-2.3-1.1c-.8 1.9-2.6 3-5.1 3-3.9 0-6-2.6-6-7.6s2.1-7.6 6-7.6c3.1 0 4.9 1.4 5.5 4.1-1-.5-2.2-.8-3.4-.8-2.7 0-4.6 1.5-4.6 3.7 0 2.1 1.7 3.5 4.1 3.5 2.9 0 4.6-1.8 4.8-5v-.3c1.4.9 2.1 2.2 2.1 3.9h2.4c0-3.1-1.5-5.3-4.2-6.5C18.4 4.1 15.9 2 12.2 2zm2.1 11.2c-.1 1.9-.9 2.9-2.5 2.9-1.1 0-1.8-.5-1.8-1.3 0-.9.9-1.5 2.3-1.5.7 0 1.4.1 2 .3v-.4z"/></svg>스레드</a>
+<button type="button" id="sh-copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>링크 복사 · 인스타</button>
+</div><p class="msg" id="sh-msg"></p></div>
   <p class="foot">시애틀지구촌교회 · www.ijiguchon.org</p>
 </div>
+<script>(function(){
+  var url=location.origin+location.pathname, title=document.title, msg=document.getElementById('sh-msg');
+  function say(t){ msg.textContent=t; }
+  document.getElementById('sh-fb').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);
+  document.getElementById('sh-th').href='https://www.threads.net/intent/post?text='+encodeURIComponent(title+' '+url);
+  document.getElementById('sh-native').addEventListener('click',async function(){
+    if(navigator.share){ try{ await navigator.share({title:title,url:url}); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
+    copy('이 기기에는 공유창이 없어 주소를 복사했습니다. 카톡에 붙여넣어 보내 주세요.');
+  });
+  document.getElementById('sh-copy').addEventListener('click',function(){ copy('주소를 복사했습니다. 인스타그램·카톡에 붙여넣어 보내 주세요.'); });
+  async function copy(ok){ try{ await navigator.clipboard.writeText(url); say(ok); }catch(e){ window.prompt('아래 주소를 복사해 주세요', url); } }
+})();</script>
 </body>
 </html>
