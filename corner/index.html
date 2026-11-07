@@ -1411,8 +1411,18 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
   .cb-fig img{display:block;width:100%;height:auto}
   .cb-open{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:12px 18px;min-height:48px;font-size:16px;font-weight:800;color:var(--color-primary,#14213d);background:linear-gradient(135deg,#F3DA9B,#E2BB63);border:1px solid rgba(130,96,40,.35);border-radius:12px;text-decoration:none;box-shadow:0 4px 12px rgba(20,33,61,.12)}.cb-open:hover{filter:brightness(1.03)}
   .cb-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
-  .cb-acts a.cb-share2{display:inline-flex;align-items:center;text-decoration:none;min-height:44px}
-  .cb-acts button,.cb-acts a.cb-share2{border:1px solid var(--line);background:var(--cream);border-radius:var(--radius-pill);padding:10px 16px;font-family:inherit;font-size:13.5px;font-weight:800;color:var(--navy);cursor:pointer}
+.sns{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+  .sns .lab{width:100%;font-size:12.5px;font-weight:800;color:var(--muted,#5F6573);letter-spacing:.04em;margin-bottom:2px}
+  .sns a,.sns button{display:flex;flex-direction:column;align-items:center;gap:6px;width:64px;background:none;border:0;padding:0;cursor:pointer;text-decoration:none;color:var(--ink,#14213d);font:700 12px inherit;font-family:inherit}
+  .sns .ic{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;box-shadow:0 4px 12px rgba(20,33,61,.16)}
+  .sns .ic i{display:block;width:26px;height:26px;background:#fff;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+  .sns .kakao .ic{background:#FEE500}.sns .kakao .ic i{background:#191919;--m:url(https://cdn.jsdelivr.net/npm/simple-icons@13.0.0/icons/kakaotalk.svg)}
+  .sns .fb .ic{background:#1877F2}.sns .fb .ic i{--m:url(https://cdn.jsdelivr.net/npm/simple-icons@13.0.0/icons/facebook.svg)}
+  .sns .ig .ic{background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)}.sns .ig .ic i{--m:url(https://cdn.jsdelivr.net/npm/simple-icons@13.0.0/icons/instagram.svg)}
+  .sns .th .ic{background:#000}.sns .th .ic i{--m:url(https://cdn.jsdelivr.net/npm/simple-icons@13.0.0/icons/threads.svg)}
+  .sns a:hover .ic,.sns button:hover .ic{transform:translateY(-2px)}
+  .sns .msg{width:100%;font-size:12.5px;color:var(--muted,#5F6573);min-height:1.2em;margin:0}
+  .cb-acts button{border:1px solid var(--line);background:var(--cream);border-radius:var(--radius-pill);padding:10px 16px;font-family:inherit;font-size:13.5px;font-weight:800;color:var(--navy);cursor:pointer}
   .cb-acts button.pri{background:linear-gradient(180deg,var(--color-accent-bright),var(--color-accent-deep));color:var(--color-text-inverse);border-color:transparent}
   .cb-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
   .cb-nav a{display:block;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--navy);font-size:13px;font-weight:700;background:var(--color-surface);line-height:1.45}
@@ -1514,6 +1524,16 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
       if(new URLSearchParams(location.search).get('c')===String(x.key)) openItem(x.key,false);
     }).catch(function(){});
   }
+  function wireSns(root,url,title){
+    var msg=root.querySelector('.msg'); function say(t){ if(msg) msg.textContent=t; }
+    async function copy(ok){ try{ await navigator.clipboard.writeText(url); say(ok); }catch(e){ window.prompt('아래 주소를 복사해 주세요', url); } }
+    root.querySelectorAll('[data-sh]').forEach(function(el){ var k=el.getAttribute('data-sh');
+      if(k==='fb') el.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);
+      if(k==='th') el.href='https://www.threads.net/intent/post?text='+encodeURIComponent(title+' '+url);
+      if(k==='kakao') el.onclick=async function(){ if(navigator.share){ try{ await navigator.share({title:title,url:url}); return; }catch(e){ if(e&&e.name==='AbortError') return; } } copy('주소를 복사했습니다. 카카오톡 대화창에 붙여넣어 보내 주세요.'); };
+      if(k==='ig') el.onclick=function(){ copy('주소를 복사했습니다. 인스타그램 스토리·DM·프로필 링크에 붙여넣어 주세요.'); };
+    });
+  }
   function build(files,extra){
     var list=CB_TEXT.map(function(c){ return {date:c.date,title:c.title,paras:c.paras||[],author:c.author||'김성수목사',kind:'text'}; });
     /* 드라이브 칼럼 폴더의 Google 문서·txt·md 본문을 합친다. 같은 날짜가 이미 있으면 드라이브 쪽이 최신이다. (gmcDocText) */
@@ -1607,27 +1627,15 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
         +'<a class="cb-open" href="https://drive.google.com/file/d/'+x.pdf+'/view" target="_blank" rel="noopener">'+gmBi('그림으로 읽는 칼럼 크게 보기 →','Illustrated column, full size →')+'</a>';
     }
     h+='<div class="cb-acts"><button type="button" class="pri" onclick="openModal(\'topastor\')">'+gmBi('목사님께 한마디','A word to the pastor')+'</button>'
-      +'<button type="button" class="cb-share">'+gmBi('공유 · 카톡','Share')+'</button>'
-      +'<a class="cb-share2" data-sh="fb" href="#" target="_blank" rel="noopener">'+gmBi('페이스북','Facebook')+'</a>'
-      +'<a class="cb-share2" data-sh="th" href="#" target="_blank" rel="noopener">'+gmBi('스레드','Threads')+'</a>'
-      +'<button type="button" class="cb-share2" data-sh="copy">'+gmBi('링크 복사 · 인스타','Copy link · Instagram')+'</button></div>'
+      +'</div>'+'<div class="sns"><span class="lab">글과 그림으로 함께 읽도록 보내기</span><button type="button" class="kakao" data-sh="kakao"><span class="ic"><i></i></span>카카오톡</button><a class="fb" data-sh="fb" href="#" target="_blank" rel="noopener"><span class="ic"><i></i></span>페이스북</a><button type="button" class="ig" data-sh="ig"><span class="ic"><i></i></span>인스타그램</button><a class="th" data-sh="th" href="#" target="_blank" rel="noopener"><span class="ic"><i></i></span>스레드</a><p class="msg"></p></div>'
       +'<div class="cb-nav">'+(older?'<a href="/corner/?c='+older.key+'" data-k="'+older.key+'"><small>'+gmBi('← 이전 글','← Previous')+'</small>'+esc(short(older.title))+'</a>':'')
       +(newer?'<a class="nx" href="/corner/?c='+newer.key+'" data-k="'+newer.key+'"><small>'+gmBi('다음 글 →','Next →')+'</small>'+esc(short(newer.title))+'</a>':'')+'</div>';
     var art=g('cbRead'); art.innerHTML=h; setMode(true);
     enrichDoc(x);   /* 문서 속 그림 (gmcDocImages) */
     art.querySelector('.cb-back').onclick=function(){ showList(true); window.scrollTo({top:0}); };
     art.querySelectorAll('.cb-nav a').forEach(function(a){ a.onclick=function(e){ e.preventDefault(); openItem(a.getAttribute('data-k'),true); }; });
-    var shareUrl=location.origin+'/corner/'+x.key+'/';   /* 글마다 고정 주소(미리보기 그림 포함) — tools/build_corner_pages.py 가 만든다 */
-    art.querySelectorAll('.cb-share2').forEach(function(el){ var k=el.getAttribute('data-sh');
-      if(k==='fb') el.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(shareUrl);
-      if(k==='th') el.href='https://www.threads.net/intent/post?text='+encodeURIComponent(t+' · 성수생각 '+shareUrl);
-      if(k==='copy') el.onclick=async function(){ try{ await navigator.clipboard.writeText(shareUrl); alert(gmEn()?'Link copied. Paste it in Instagram or KakaoTalk.':'주소를 복사했습니다. 인스타그램·카톡에 붙여넣어 보내 주세요.'); }catch(e){ window.prompt(gmEn()?'Copy this link':'아래 주소를 복사해 주세요', shareUrl); } };
-    });
-    art.querySelector('.cb-share').onclick=async function(){
-      var url=shareUrl, data={title:t+' · 성수생각 · 시애틀지구촌교회', url:url};
-      if(navigator.share){ try{ await navigator.share(data); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
-      try{ await navigator.clipboard.writeText(url); alert(gmEn()?'Link copied.':'글 주소를 복사했습니다. 붙여넣기로 전해 주십시오.'); }catch(e){ window.prompt(gmEn()?'Copy this link':'아래 주소를 복사해 전해 주십시오', url); }
-    };
+    var shareUrl=location.origin+'/corner/'+x.key+'/';   /* 글마다 고정 주소(그림 칼럼 미리보기 포함) — tools/build_corner_pages.py 가 만든다 */
+    wireSns(art.querySelector('.sns'), shareUrl, t+' · 성수생각');
     document.title=t+' · 성수생각';
     if(push) history.pushState({c:x.key},'','/corner/?c='+x.key);
     window.scrollTo({top:0});

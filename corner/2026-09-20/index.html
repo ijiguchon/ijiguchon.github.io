@@ -40,15 +40,17 @@ h1{font-size:28px;line-height:1.3;margin:0 0 6px;font-weight:800;word-break:keep
 .btn.g{background:linear-gradient(135deg,#F3DA9B,#E2BB63);color:var(--ink);border:1px solid rgba(130,96,40,.35)}
 .btn.o{border:1.5px solid var(--ink);color:var(--ink)}
 .foot{text-align:center;color:var(--muted);font-size:12.5px;margin-top:36px}
-.share{margin-top:18px;background:var(--card,#fff);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-.share h3{margin:0 0 10px;font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.04em}
-.share .sb{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-@media (max-width:420px){.share .sb{grid-template-columns:repeat(2,1fr)}}
-.share button,.share a{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--tint,#fbf7ef);color:var(--ink);font:700 13.5px inherit;font-family:inherit;text-decoration:none;cursor:pointer;padding:8px 10px}
-.share button:hover,.share a:hover{background:#f3ecdc}
-.share .pri{background:var(--ink);color:#fff;border-color:var(--ink)}
-.share svg{width:18px;height:18px;flex:none}
-.share .msg{font-size:12.5px;color:var(--muted);margin:8px 0 0;min-height:1.2em}
+.sns{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.sns .lab{width:100%;font-size:12.5px;font-weight:800;color:var(--muted,#5F6573);letter-spacing:.04em;margin-bottom:2px}
+.sns a,.sns button{display:flex;flex-direction:column;align-items:center;gap:6px;width:64px;background:none;border:0;padding:0;cursor:pointer;text-decoration:none;color:var(--ink,#14213d);font:700 12px inherit;font-family:inherit}
+.sns .ic{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;box-shadow:0 4px 12px rgba(20,33,61,.16)}
+.sns .ic i{display:block;width:26px;height:26px;background:#fff;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+.sns .kakao .ic{background:#FEE500}.sns .kakao .ic i{background:#191919;--m:url(https://cdn.jsdelivr.net/npm/simple-icons@13.0.0/icons/kakaotalk.svg)}
+.sns .fb .ic{background:#1877F2}.sns .fb .ic i{--m:url(https://cdn.jsdelivr.net/npm/simple-icons@13.0.0/icons/facebook.svg)}
+.sns .ig .ic{background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)}.sns .ig .ic i{--m:url(https://cdn.jsdelivr.net/npm/simple-icons@13.0.0/icons/instagram.svg)}
+.sns .th .ic{background:#000}.sns .th .ic i{--m:url(https://cdn.jsdelivr.net/npm/simple-icons@13.0.0/icons/threads.svg)}
+.sns a:hover .ic,.sns button:hover .ic{transform:translateY(-2px)}
+.sns .msg{width:100%;font-size:12.5px;color:var(--muted,#5F6573);min-height:1.2em;margin:0}
 </style>
 </head>
 <body>
@@ -61,25 +63,19 @@ h1{font-size:28px;line-height:1.3;margin:0 0 6px;font-weight:800;word-break:keep
   <div class="body"><p>요즘 온 천지가 AI 이야기로 뒤 덮인 것 같습니다. 목장에서도 AI 이야기가 심심치 않게 나옵니다. 어떤 분은 신기해하고, 어떤 분은 두려워합니다. &quot;이러다 사람 자리를 기계가 대신하는 것 아니냐&quot;는 걱정도 듣습니다. 빠르게 변하는 세상 앞에서 마음이 흔들리는 것은 자연스러운 일입니다.</p><p>저는 AI를 두 가지 눈으로 바라볼 수 있다고 생각합니다. 하나는 두려움의 눈, 나를 대신하고 내 자리를 빼앗을 것 같은 시선입니다. 다른 하나는 감사의 눈, 하나님이 주신 지혜로 사람이 만든 도구로 더 편리한 세상이 올 것이라는 시선입니다. 백 년 전, 전기가 처음 들어왔을 때도 두려워하는 이들이 있었지만, 지금은 누구나 의식 없이 씁니다. AI도 머지않아 그렇게 될 것입니다. 중요한 것은 무엇을 위해, 어떻게 쓰느냐 입니다.</p><p>히브리서 기자는 이렇게 말합니다. &quot;예수 그리스도는 어제나 오늘이나 또 영원토록 한결같으십니다&quot;(히 13:8, 새번역). 세상의 도구는 계속 바뀌지만, 우리가 붙들 분은 바뀌지 않으십니다. 오히려 기술이 발달할수록, 작은 거실에 둘러앉아 얼굴을 마주하고 삶을 나누는 우리 가정교회가 얼마나 귀한 것인지 더 선명해질 것입니다. 그 자리에서 우리와 함께 하시는 하나님이 드러난다면 이 보다 더 소중한 것은 없을 것입니다.</p><p>AI를 두려워하지 않으셔도 됩니다. 그것이 하나님을 대신하지만 않으면 됩니다. 세상이 아무리 변해도, 하나님과 인간은 변하지 않습니다. 인간의 끝은 죽음입니다. 그것은 죄로부터 왔고, 그 문제를 해결하신 구원자는 오직 예수 그리스도뿐입니다. 우리는 그분을 전하기 위해 목장에 모입니다.</p><p>사실, AI로 저는 교회 홈페이지를 새로 단장할 수 있었습니다. 이 홈페이지가 성도들이 원활한 소통을 하고 서로를 위해 기도하며, 교회 밖에 하나님의 자녀가 될 소중한 분들과 연결되는 데 잘 활용되기를 심히 기대합니다. 시대의 변화는 우리 손 안에 있는 게 아닙니다. 성령의 인도를 받아 문명의 이기를 잘 활용해 복음을 전하는 지혜자가 되기를 부탁드립니다.</p></div>
   <div class="sig">김성수 목사 드림</div>
   <div class="acts"><a class="btn o" href="/corner/?c=2026-09-20">성수생각에서 보기</a></div>
-  <div class="share" id="share"><h3>이 페이지 보내기</h3><div class="sb">
-<button type="button" class="pri" id="sh-native"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/></svg>공유 · 카톡</button>
-<a id="sh-fb" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg>페이스북</a>
-<a id="sh-th" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.2 2C6.9 2 3.6 5.5 3.6 11.9S6.9 22 12.2 22c3.8 0 6.3-1.8 7.4-4.3l-2.3-1.1c-.8 1.9-2.6 3-5.1 3-3.9 0-6-2.6-6-7.6s2.1-7.6 6-7.6c3.1 0 4.9 1.4 5.5 4.1-1-.5-2.2-.8-3.4-.8-2.7 0-4.6 1.5-4.6 3.7 0 2.1 1.7 3.5 4.1 3.5 2.9 0 4.6-1.8 4.8-5v-.3c1.4.9 2.1 2.2 2.1 3.9h2.4c0-3.1-1.5-5.3-4.2-6.5C18.4 4.1 15.9 2 12.2 2zm2.1 11.2c-.1 1.9-.9 2.9-2.5 2.9-1.1 0-1.8-.5-1.8-1.3 0-.9.9-1.5 2.3-1.5.7 0 1.4.1 2 .3v-.4z"/></svg>스레드</a>
-<button type="button" id="sh-copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>링크 복사 · 인스타</button>
-</div><p class="msg" id="sh-msg"></p></div>
+  <div class="sns"><span class="lab">글과 그림으로 함께 읽도록 보내기</span><button type="button" class="kakao" data-sh="kakao"><span class="ic"><i></i></span>카카오톡</button><a class="fb" data-sh="fb" href="#" target="_blank" rel="noopener"><span class="ic"><i></i></span>페이스북</a><button type="button" class="ig" data-sh="ig"><span class="ic"><i></i></span>인스타그램</button><a class="th" data-sh="th" href="#" target="_blank" rel="noopener"><span class="ic"><i></i></span>스레드</a><p class="msg"></p></div>
   <p class="foot">시애틀지구촌교회 · www.ijiguchon.org</p>
 </div>
-<script>(function(){
-  var url=location.origin+location.pathname, title=document.title, msg=document.getElementById('sh-msg');
-  function say(t){ msg.textContent=t; }
-  document.getElementById('sh-fb').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);
-  document.getElementById('sh-th').href='https://www.threads.net/intent/post?text='+encodeURIComponent(title+' '+url);
-  document.getElementById('sh-native').addEventListener('click',async function(){
-    if(navigator.share){ try{ await navigator.share({title:title,url:url}); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
-    copy('이 기기에는 공유창이 없어 주소를 복사했습니다. 카톡에 붙여넣어 보내 주세요.');
-  });
-  document.getElementById('sh-copy').addEventListener('click',function(){ copy('주소를 복사했습니다. 인스타그램·카톡에 붙여넣어 보내 주세요.'); });
+<script>function wireSns(root,url,title){
+  var msg=root.querySelector('.msg'); function say(t){ if(msg) msg.textContent=t; }
   async function copy(ok){ try{ await navigator.clipboard.writeText(url); say(ok); }catch(e){ window.prompt('아래 주소를 복사해 주세요', url); } }
-})();</script>
+  root.querySelectorAll('[data-sh]').forEach(function(el){ var k=el.getAttribute('data-sh');
+    if(k==='fb') el.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);
+    if(k==='th') el.href='https://www.threads.net/intent/post?text='+encodeURIComponent(title+' '+url);
+    if(k==='kakao') el.onclick=async function(){ if(navigator.share){ try{ await navigator.share({title:title,url:url}); return; }catch(e){ if(e&&e.name==='AbortError') return; } } copy('주소를 복사했습니다. 카카오톡 대화창에 붙여넣어 보내 주세요.'); };
+    if(k==='ig') el.onclick=function(){ copy('주소를 복사했습니다. 인스타그램 스토리·DM·프로필 링크에 붙여넣어 주세요.'); };
+  });
+}
+wireSns(document.querySelector('.sns'), location.origin+location.pathname, document.title);</script>
 </body>
 </html>
