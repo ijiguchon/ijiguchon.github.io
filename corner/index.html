@@ -1411,7 +1411,8 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
   .cb-fig img{display:block;width:100%;height:auto}
   .cb-open{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:12px 18px;min-height:48px;font-size:16px;font-weight:800;color:var(--color-primary,#14213d);background:linear-gradient(135deg,#F3DA9B,#E2BB63);border:1px solid rgba(130,96,40,.35);border-radius:12px;text-decoration:none;box-shadow:0 4px 12px rgba(20,33,61,.12)}.cb-open:hover{filter:brightness(1.03)}
   .cb-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
-  .cb-acts button{border:1px solid var(--line);background:var(--cream);border-radius:var(--radius-pill);padding:10px 16px;font-family:inherit;font-size:13.5px;font-weight:800;color:var(--navy);cursor:pointer}
+  .cb-acts a.cb-share2{display:inline-flex;align-items:center;text-decoration:none;min-height:44px}
+  .cb-acts button,.cb-acts a.cb-share2{border:1px solid var(--line);background:var(--cream);border-radius:var(--radius-pill);padding:10px 16px;font-family:inherit;font-size:13.5px;font-weight:800;color:var(--navy);cursor:pointer}
   .cb-acts button.pri{background:linear-gradient(180deg,var(--color-accent-bright),var(--color-accent-deep));color:var(--color-text-inverse);border-color:transparent}
   .cb-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
   .cb-nav a{display:block;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--navy);font-size:13px;font-weight:700;background:var(--color-surface);line-height:1.45}
@@ -1606,15 +1607,24 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
         +'<a class="cb-open" href="https://drive.google.com/file/d/'+x.pdf+'/view" target="_blank" rel="noopener">'+gmBi('그림으로 읽는 칼럼 크게 보기 →','Illustrated column, full size →')+'</a>';
     }
     h+='<div class="cb-acts"><button type="button" class="pri" onclick="openModal(\'topastor\')">'+gmBi('목사님께 한마디','A word to the pastor')+'</button>'
-      +'<button type="button" class="cb-share">'+gmBi('공유하기','Share')+'</button></div>'
+      +'<button type="button" class="cb-share">'+gmBi('공유 · 카톡','Share')+'</button>'
+      +'<a class="cb-share2" data-sh="fb" href="#" target="_blank" rel="noopener">'+gmBi('페이스북','Facebook')+'</a>'
+      +'<a class="cb-share2" data-sh="th" href="#" target="_blank" rel="noopener">'+gmBi('스레드','Threads')+'</a>'
+      +'<button type="button" class="cb-share2" data-sh="copy">'+gmBi('링크 복사 · 인스타','Copy link · Instagram')+'</button></div>'
       +'<div class="cb-nav">'+(older?'<a href="/corner/?c='+older.key+'" data-k="'+older.key+'"><small>'+gmBi('← 이전 글','← Previous')+'</small>'+esc(short(older.title))+'</a>':'')
       +(newer?'<a class="nx" href="/corner/?c='+newer.key+'" data-k="'+newer.key+'"><small>'+gmBi('다음 글 →','Next →')+'</small>'+esc(short(newer.title))+'</a>':'')+'</div>';
     var art=g('cbRead'); art.innerHTML=h; setMode(true);
     enrichDoc(x);   /* 문서 속 그림 (gmcDocImages) */
     art.querySelector('.cb-back').onclick=function(){ showList(true); window.scrollTo({top:0}); };
     art.querySelectorAll('.cb-nav a').forEach(function(a){ a.onclick=function(e){ e.preventDefault(); openItem(a.getAttribute('data-k'),true); }; });
+    var shareUrl=location.origin+'/corner/'+x.key+'/';   /* 글마다 고정 주소(미리보기 그림 포함) — tools/build_corner_pages.py 가 만든다 */
+    art.querySelectorAll('.cb-share2').forEach(function(el){ var k=el.getAttribute('data-sh');
+      if(k==='fb') el.href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(shareUrl);
+      if(k==='th') el.href='https://www.threads.net/intent/post?text='+encodeURIComponent(t+' · 성수생각 '+shareUrl);
+      if(k==='copy') el.onclick=async function(){ try{ await navigator.clipboard.writeText(shareUrl); alert(gmEn()?'Link copied. Paste it in Instagram or KakaoTalk.':'주소를 복사했습니다. 인스타그램·카톡에 붙여넣어 보내 주세요.'); }catch(e){ window.prompt(gmEn()?'Copy this link':'아래 주소를 복사해 주세요', shareUrl); } };
+    });
     art.querySelector('.cb-share').onclick=async function(){
-      var url=location.origin+'/corner/'+x.key+'/', data={title:t+' · 성수생각 · 시애틀지구촌교회', url:url};   /* 글마다 고정 주소(미리보기 그림 포함) — tools/build_corner_pages.py 가 만든다 */
+      var url=shareUrl, data={title:t+' · 성수생각 · 시애틀지구촌교회', url:url};
       if(navigator.share){ try{ await navigator.share(data); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
       try{ await navigator.clipboard.writeText(url); alert(gmEn()?'Link copied.':'글 주소를 복사했습니다. 붙여넣기로 전해 주십시오.'); }catch(e){ window.prompt(gmEn()?'Copy this link':'아래 주소를 복사해 전해 주십시오', url); }
     };
