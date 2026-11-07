@@ -36,15 +36,17 @@ h1{font-size:30px;margin:8px 0 6px;font-weight:800;letter-spacing:-.01em}
 .row .what{font-weight:600}
 .row .what small{display:block;color:var(--muted);font-weight:400;font-size:12px}
 .row .h{font-size:13px;color:var(--ink2);white-space:nowrap}
-.hymns{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-@media (max-width:420px){.hymns{grid-template-columns:repeat(2,1fr)}}
-.hymn{background:var(--tint);border-radius:10px;padding:10px 12px;min-width:0}
-.hymn b{font-size:26px;display:block;line-height:1.1;font-weight:800}
-.hymn b small{font-size:13px;font-weight:700;color:var(--gold2);margin-left:2px}
-.hymn span{font-size:12.5px;color:var(--ink2);display:block;margin-top:4px}
-.hymn em{font-style:normal;font-size:11px;color:var(--muted)}
-a.hymn{text-decoration:none;color:inherit;display:block;position:relative;cursor:pointer}
-a.hymn::after{content:"악보";position:absolute;right:10px;top:10px;font-size:10.5px;font-weight:700;color:var(--gold2);border:1px solid var(--gold);border-radius:999px;padding:1px 7px}
+.hymns{display:grid;gap:8px}
+.hymn{display:grid;grid-template-columns:62px 62px 1fr;gap:8px;align-items:center;background:var(--tint);border-radius:10px;padding:10px 12px;min-width:0}
+.hymn .ht{font-variant-numeric:tabular-nums;font-weight:800;font-size:14px}
+.hymn .ht small{display:block;font-weight:600;font-size:11px;color:var(--gold2);white-space:nowrap}
+.hymn b{font-size:24px;line-height:1.1;font-weight:800}
+.hymn b small{font-size:12px;font-weight:700;color:var(--gold2);margin-left:2px}
+.hymn .hn{min-width:0}
+.hymn span.ti{font-size:14px;font-weight:600;display:block}
+.hymn em{font-style:normal;font-size:11.5px;color:var(--muted)}
+a.hymn{text-decoration:none;color:inherit;position:relative;cursor:pointer;padding-right:56px}
+a.hymn::after{content:"악보";position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:10.5px;font-weight:700;color:var(--gold2);border:1px solid var(--gold);border-radius:999px;padding:1px 7px}
 a.hymn:hover,a.hymn:focus-visible{background:#f3ecdc}
 .lb{position:fixed;inset:0;z-index:1000;background:rgba(10,16,32,.92);display:flex;flex-direction:column}
 .lb[hidden]{display:none}
@@ -146,7 +148,9 @@ document.getElementById('lb').addEventListener('click',function(e){ if(e.target.
 document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeScore(); });
 function render(d){
   var order=(d.order||[]).map(function(o){ return '<div class="row"><span class="t">'+esc(hm(o.time))+'</span><span class="what">'+esc(o.name)+'<small>'+esc(o.detail||'')+'</small></span><span class="h">'+esc(o.minutes)+'분</span></div>'; }).join('');
-  var hymns=(d.hymns||[]).map(function(h){ var fid=scoreMap[+h.no]; var inner='<b>'+esc(h.no)+'<small>장</small></b><span>'+esc(h.title)+'</span><em>'+esc(h.verses||'')+'</em>';
+  var roleName={opening:'여는 찬양',round1:'기도 ① 교회',round2:'기도 ② 가정',round3:'기도 ③ 이웃',closing:'마침 찬양'};
+  var timeOf=function(no){ var o=(d.order||[]).filter(function(x){return (x.hymns||[]).indexOf(+no)>=0;})[0]; return o?hm(o.time):''; };
+  var hymns=(d.hymns||[]).map(function(h){ var fid=scoreMap[+h.no]; var inner='<span class="ht">'+esc(timeOf(h.no))+'<small>'+esc(roleName[h.role]||'')+'</small></span><b>'+esc(h.no)+'<small>장</small></b><span class="hn"><span class="ti">'+esc(h.title)+'</span><em>'+esc(h.verses||'')+'</em></span>';
     return fid?'<a class="hymn" href="https://drive.google.com/file/d/'+esc(fid)+'/view" data-no="'+esc(h.no)+'" data-title="'+esc(h.title)+'" data-fid="'+esc(fid)+'">'+inner+'</a>':'<div class="hymn">'+inner+'</div>'; }).join('');
   var rounds=(d.prayerRounds||[]).map(function(r){ return '<div class="meta"><span><b>'+(circ[r.no]||'')+'</b> '+esc(r.theme)+'</span><span>'+esc(r.method||'')+'</span></div><ol class="pr">'+(r.items||[]).map(function(it,i){ return '<li><i>'+(i+1)+'</i><span class="'+(it.blank?'blank':'')+'">'+esc(it.text)+(it.ref?'<span class="ref">('+esc(it.ref)+')</span>':'')+'</span></li>'; }).join('')+'</ol>'; }).join('');
   var links='';
@@ -157,7 +161,7 @@ function render(d){
     '<div class="date">'+esc(kdate(d.date))+' · 오전 '+esc(hm(m.start||'06:00'))+' – '+esc(hm(m.end||'06:50'))+'</div>'+
     '<p class="lead">'+esc(d.intro||'')+'</p></header>'+
     '<section class="card"><h2><span class="n">1</span>오늘의 순서</h2>'+order+'</section>'+
-    '<section class="card"><h2><span class="n">2</span>오늘의 찬송<span class="tag">새찬송가</span></h2><div class="hymns">'+hymns+'</div></section>'+
+    '<section class="card"><h2><span class="n">2</span>오늘의 찬송<span class="tag">새찬송가 · 순서대로</span></h2><div class="hymns">'+hymns+'</div></section>'+
     '<section class="scr"><div class="eyebrow">말씀 · '+esc(s.refLong||s.ref||'')+'</div><h2>'+esc(s.title||'')+'</h2><p>'+esc(s.proposition||'')+(s.proposition?'. ':'')+esc(s.summary||'')+'</p></section>'+
     '<section class="card"><h2><span class="n">3</span>기도 세 바퀴</h2>'+rounds+'</section>'+
     '<div class="links">'+links+'</div>'+
