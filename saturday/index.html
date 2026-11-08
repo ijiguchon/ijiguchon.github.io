@@ -140,7 +140,7 @@ async function loadData(){
   if(!pick){ files.sort(function(a,b){ return isoFromId(b.name.slice(0,6)).localeCompare(isoFromId(a.name.slice(0,6))); }); pick=files[0]; }
   var r=await fetch('https://www.googleapis.com/drive/v3/files/'+pick.id+'?alt=media&key='+GDRIVE_API_KEY,{cache:'no-store'});
   if(!r.ok) throw new Error('get '+r.status);
-  return await r.json();
+  /* 2026-11-08 이름을 토요가족기도회로 — 드라이브 자료 안의 옛 이름도 화면에서는 새 이름으로 */ return JSON.parse((await r.text()).replace(/토요가족기도모임/g,'토요가족기도회'));
 }
 
 var SCORE_FOLDER='1-pvJPwjgOWYqVn3NY-BDUigkln8iMkwE', scoreMap={};
