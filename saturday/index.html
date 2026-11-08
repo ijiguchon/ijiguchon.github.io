@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>토요가족기도모임 · 시애틀지구촌교회</title>
-<meta name="description" content="시애틀지구촌교회 토요가족기도모임 — 매주 토요일 오전 6시. 이번 주 순서, 찬송, 말씀, 기도제목.">
+<title>토요가족기도회 · 시애틀지구촌교회</title>
+<meta name="description" content="시애틀지구촌교회 토요가족기도회 — 매주 토요일 오전 6시. 이번 주 순서, 찬송, 말씀, 기도제목.">
 <link rel="canonical" href="https://www.ijiguchon.org/saturday/">
 <link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192-r.png">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon-r.png">
@@ -102,7 +102,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 <body>
 <div class="wrap">
   <div class="top">
-    <a class="brand" href="/"><img src="/images/logo-mark-96.webp" alt="" width="34" height="34"><span>시애틀지구촌교회<small>토요가족기도모임</small></span></a>
+    <a class="brand" href="/"><img src="/images/logo-mark-96.webp" alt="" width="34" height="34"><span>시애틀지구촌교회<small>토요가족기도회</small></span></a>
     <a class="pill" href="/?tab=worship">예배 안내 ›</a>
   </div>
   <div id="app"><p class="state">이번 주 순서를 불러오는 중입니다…</p></div>
@@ -113,7 +113,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 </div>
 
 <script>
-/* 토요가족기도모임 — 내 드라이브 › 02_GMC 공개자료_웹앱 › 토요기도모임 폴더의 MMDDYY_토요가족기도모임.json 을 읽어 그린다.
+/* 토요가족기도회 — 내 드라이브 › 02_GMC 공개자료_웹앱 › 토요기도모임 폴더의 MMDDYY_토요가족기도모임.json 을 읽어 그린다.
    JSON 구조: 같은 폴더의 _schema_토요가족기도모임.md */
 var GDRIVE_API_KEY = 'AIzaSyBL3EXN_i8b9RkcXPa4x_FD2M3sKTQpVgY';
 var SATURDAY_FOLDER = '17kLNfm_S_m77zX_QDaxYFcb3Ia7ufiFg';
@@ -184,13 +184,13 @@ function render(d){
   links+='<a class="link" href="/square/news/"><div><strong>'+(d.links&&d.links.sundayBulletinId?mdate(isoFromId(d.links.sundayBulletinId))+' ':'')+'주일 교회 소식</strong><span>주일연합예배 오후 1:30 · 주보</span></div><span class="arrow">›</span></a>';
   var s=d.scripture||{}, nw=d.nextWeek||{}, m=d.meeting||{};
   document.getElementById('app').innerHTML=
-    '<header class="hero"><div class="eyebrow">Saturday Family Prayer</div><h1>'+esc(m.name||'토요가족기도모임')+'</h1><div class="rule"></div>'+
+    '<header class="hero"><div class="eyebrow">Saturday Family Prayer</div><h1>'+esc(m.name||'토요가족기도회')+'</h1><div class="rule"></div>'+
     '<div class="date">'+esc(kdate(d.date))+' · 오전 '+esc(hm(m.start||'06:00'))+' – '+esc(hm(m.end||'06:50'))+'</div>'+
     '<p class="lead">'+esc(d.intro||'')+'</p></header>'+
     '<section class="card"><h2>오늘의 순서<span class="tag">찬송을 누르면 악보</span></h2>'+order+'</section>'+
     '<div class="links">'+links+'</div>'+
     (nw.date?'<p class="foot">다음 주 '+esc(mdate(nw.date))+'(토) 오전 6시 · '+esc(nw.ref||'')+(nw.title?' 「'+esc(nw.title)+'」':'')+'<br>시애틀지구촌교회</p>':'<p class="foot">시애틀지구촌교회</p>');
-  document.title=(d.date?mdate(d.date)+' ':'')+'토요가족기도모임 · 시애틀지구촌교회';
+  document.title=(d.date?mdate(d.date)+' ':'')+'토요가족기도회 · 시애틀지구촌교회';
   document.querySelectorAll('.hy a[data-fid]').forEach(function(a){ a.addEventListener('click',function(e){ e.preventDefault(); openScore(a.dataset.no,a.dataset.title,a.dataset.fid); }); });
 }
 (async function(){
