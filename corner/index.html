@@ -1666,7 +1666,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
           .sort(function(a,b){ return String(a.name||'').localeCompare(String(b.name||''),undefined,{numeric:true}); })
           .map(function(f){ return {id:f.id,name:f.name}; }); });
       /* 사이트에 둔 그림도 같은 자리에 (gmcSiteImgs) */
-      var SITE_IMGS={'110126':[['/images/notice/poster-20261107-social.webp','토요가족기도회 포스터: 11월 7일(토) Grand Opening, 매주 토요일 오전 6시 찬양과 기도, 오전 7시 우동집. 자녀들과 함께하는 토요가족기도회, 찬양과 기도, 따끈한 우동 한 그릇. 시애틀지구촌교회 12918 35th Ave SE, Everett, WA 98208']]};
+      var SITE_IMGS={'110126':[['/images/notice/poster-20261107-social.webp','토요가족기도회 포스터: 매주 토요일 오전 6시 찬양과 기도, 오전 7시 우동집. 자녀들과 함께하는 토요가족기도회, 찬양과 기도, 따끈한 우동 한 그릇. 시애틀지구촌교회 12918 35th Ave SE, Everett, WA 98208']]};
       extra.forEach(function(d){ var key=d.date.slice(5,7)+d.date.slice(8,10)+d.date.slice(2,4);
         (SITE_IMGS[key]||[]).forEach(function(u){ d.imgs.push({url:u[0],alt:u[1]}); }); });
     }catch(e){}
