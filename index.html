@@ -3016,8 +3016,11 @@ var c=document.querySelector('.hsa-naru'); if(!c||!window.fetch||!window.DOMPars
 function pick(h){ var d=new DOMParser().parseFromString(h,'text/html'), w=d.querySelector('.week'); if(!w) return null;
   var n=w.querySelector('h3'), t=w.querySelector('.wk-tag'); return n&&t&&n.textContent.trim()&&t.textContent.trim()?{n:n.textContent.trim(),t:t.textContent.trim()}:null; }
 function put(sel,lang,v){ var e=c.querySelector(sel+' .'+lang); if(e) e.textContent=v; }
+function photo(name){ var im=c.querySelector('.hsa-ph img'), t=new Image(); if(!im) return;
+  t.onload=function(){ im.removeAttribute('srcset'); im.removeAttribute('sizes'); im.src=t.src; im.alt=name; };
+  t.src='/images/naru/'+encodeURIComponent(name.split(' ').join(''))+'.webp'; }
 function grab(u,lang,eye,when){ fetch(u).then(function(r){ return r.ok?r.text():''; }).then(function(h){ var w=h&&pick(h); if(!w) return;
-  put('.hsa-eye',lang,eye); put('.hsa-t',lang,w.n); put('.hsa-l',lang,w.t+when); var x=c.querySelector('.hsa-time'); if(x) x.hidden=true; }).catch(function(){}); }
+  put('.hsa-eye',lang,eye); put('.hsa-t',lang,w.n); put('.hsa-l',lang,w.t+when); var x=c.querySelector('.hsa-time'); if(x) x.hidden=true; if(lang==='ko') photo(w.n); }).catch(function(){}); }
 function go(){ grab('https://www.naruudon.com/','ko','나루 우동 · 이번 주 우동',' 오전 7시'); grab('https://www.naruudon.com/en/','en','Naru Udon · This week',', 7 AM'); }
 if('IntersectionObserver' in window){ var o=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ o.disconnect(); go(); } },{rootMargin:'400px'}); o.observe(c); } else go();
 })();</script>
