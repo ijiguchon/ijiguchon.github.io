@@ -1428,7 +1428,7 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
   function findCut(label){ var cs=document.querySelectorAll('.cut'); for(var i=0;i<cs.length;i++){ var k=cs[i].querySelector('.ko'); if(k&&k.textContent.trim()===label) return cs[i]; } return null; }
   function target(it){ return it.sel?document.querySelector(it.sel):(it.cut?findCut(it.cut):null); }
   function scrollTo(el,smooth){ var y=el.getBoundingClientRect().top+window.pageYOffset-off(); window.scrollTo({top:y,behavior:smooth?'smooth':'auto'}); }
-  function close(){ panel.hidden=true; cur=null; bar.classList.remove('tm-open'); }
+  function close(){ clearTimeout(idleT); inPanel=false; panel.hidden=true; cur=null; bar.classList.remove('tm-open'); }
   function goItem(tab,i){ var it=M[tab][i]; close();
     if(it.href){ location.href=it.href; return; }
     if(!home){ location.href='/?tab='+tab+(it.open?'&open='+it.open:'&go='+i); return; }
@@ -1442,7 +1442,7 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
     var br=bar.getBoundingClientRect(), r=btn.getBoundingClientRect(), w=Math.min(290, window.innerWidth-24);
     var left=Math.max(12, Math.min(r.left, window.innerWidth-w-12));
     panel.style.width=w+'px'; panel.style.left=(left-br.left)+'px'; panel.style.top=(r.bottom-br.top+6)+'px';
-    panel.hidden=false; cur=tab; openedAt=Date.now(); bar.classList.add('tm-open');
+    panel.hidden=false; cur=tab; openedAt=Date.now(); bar.classList.add('tm-open'); armIdle();
   }
   document.querySelectorAll('.tabs .tab').forEach(function(btn){
     var tab=btn.getAttribute('data-tab');
@@ -1474,6 +1474,13 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
   }
   document.addEventListener('click',function(e){ if(!panel.hidden&&!panel.contains(e.target)) close(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+  /* 2026-11-09 목사님: 열린 목록은 쓰지 않으면 저절로 닫힘 (휴대폰 포함). 마우스가 목록 위에 있는 동안은 기다림 */
+  var idleT=null, inPanel=false;
+  function armIdle(){ clearTimeout(idleT); idleT=setTimeout(function(){ if(inPanel){ armIdle(); return; } close(); },6000); }
+  panel.addEventListener('mouseenter',function(){ inPanel=true; });
+  panel.addEventListener('mouseleave',function(){ inPanel=false; armIdle(); });
+  panel.addEventListener('touchstart',armIdle,{passive:true});
+  window.addEventListener('pageshow',function(e){ if(e.persisted) close(); });
   window.addEventListener('resize',close);
   if(!hov) window.addEventListener('scroll',function(){ if(!panel.hidden&&Date.now()-openedAt>800) close(); },{passive:true});
   if(home) document.addEventListener('DOMContentLoaded',function(){ setTimeout(function(){
