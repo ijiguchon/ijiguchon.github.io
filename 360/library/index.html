@@ -1503,12 +1503,12 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
 <script>
 (function(){
   var M={
-    newcomer:[{ko:'마음의 문',en:'Where to begin',sel:'#doors'},{ko:'첫 방문 · 오시는 길',en:'Your first visit · directions',href:'/welcome/#visit'},{ko:'환영 인사',en:'Welcome',href:'/greeting/'},{ko:'교회 소개',en:'About us',href:'/welcome/#about'},{ko:'사역자',en:'Pastors & staff',href:'/welcome/#team'},{ko:'자주 묻는 질문',en:'FAQ',href:'/faq/'}],
+    newcomer:[{ko:'마음의 문',en:'Where to begin',sel:'#hpDoorsH'},{ko:'첫 방문 · 오시는 길',en:'Your first visit · directions',href:'/welcome/#visit'},{ko:'환영 인사',en:'Welcome',href:'/greeting/'},{ko:'교회 소개',en:'About us',href:'/welcome/#about'},{ko:'사역자',en:'Pastors & staff',href:'/welcome/#team'},{ko:'자주 묻는 질문',en:'FAQ',href:'/faq/'}],
     mokjang:[{ko:'목장, 가정교회란?',en:'What is a house church?',sel:'#p-mokjang .mj-intro'},{cut:'목장 소개',en:'Our house churches'},{ko:'목장 나눔지',en:'Sharing guide',sel:'#shareCard'},{ko:'우리 목장 기도 · 축하',en:'Prayer & celebration',href:'/house-church/prayer/'},{ko:'세 축, 네 기둥',en:'Three axes & four pillars',href:'/house-church/pillars/'},{ko:'목장 개척',en:'Start a house church',open:'plant'}],
-    worship:[{ko:'주일연합예배',en:'Sunday united worship',sel:'#wkHero'},{cut:'공동기도',en:'Church prayer'},{cut:'지난 말씀',en:'Past messages'},{ko:'온라인 헌금',en:'Give online',href:'/give/'}],
-    study:[{ko:'삶공부가 뭔가요?',en:'What is a Life Study?',sel:'#p-study .st-wrap'},{cut:'기본 과정',en:'Core courses'},{cut:'선택 과정',en:'Electives'},{cut:'등록',en:'Register'},{cut:'첫걸음',en:'First steps'}],
-    newgen:[{ko:'새 세대 소개',en:'About New Gen',sel:'#p-newgen .care-grid'},{ko:'부모·교사 모임 (PTA)',en:'Parents & teachers (PTA)',sel:'#pta'},{ko:'헌아식 신청',en:'Child dedication',open:'heonasik'},{ko:'어린이',en:'Children',open:'children'},{ko:'청소년',en:'Youth',open:'youth'}],
-    square:[{ko:'교회 소식',en:'Church news',href:'/square/news/'},{ko:'성수생각',en:"Sung Soo's Thoughts",href:'/corner/'},{ko:'나눔터',en:'Sharing board',href:'/square/board/'},{cut:'네트워크 사역',en:'Network Ministry'},{cut:'커뮤니티와 함께',en:'With our community'}]
+    worship:[{ko:'주일연합예배',en:'Sunday united worship',sel:'#p-worship .wrap > .wk'},{ko:'토요가족기도회',en:'Saturday family prayer',href:'/saturday/'},{cut:'지난 말씀',en:'Past messages'},{ko:'오시는 길',en:'Directions',href:'/welcome/#visit'},{ko:'봉헌 방법',en:'Ways to give',href:'/give/'}],
+    study:[{ko:'삶공부가 뭔가요?',en:'What is a Life Study?',sel:'#p-study .st-wrap'},{cut:'기본 과정',en:'Core courses'},{cut:'선택 과정',en:'Electives'},{cut:'등록',en:'Register'},{cut:'첫걸음',en:'First steps'},{ko:'제자의 길',en:"Disciple's path",href:'/path/'}],
+    newgen:[{ko:'새 세대 소개',en:'About New Gen',sel:'#p-newgen .care-grid'},{ko:'부모·교사 모임 (PTA)',en:'Parents & teachers (PTA)',sel:'#pta'},{ko:'헌아식 신청',en:'Child dedication',open:'heonasik'},{ko:'어린이 문의',en:'Children inquiry',open:'children'},{ko:'청소년 문의',en:'Youth inquiry',open:'youth'}],
+    square:[{ko:'교회 소식',en:'Church news',href:'/square/news/'},{ko:'성수생각',en:"Sung Soo's Thoughts",href:'/corner/'},{ko:'나눔터',en:'Sharing board',href:'/square/board/'},{ko:'가정행복학교 · 라이프 코칭',cut:'커뮤니티와 함께',en:'Family school · life coaching'},{ko:'좋아하는 일로 이웃 섬기기',cut:'네트워크 사역',en:'Serve with what you love'},{ko:'땅 끝까지',cut:'땅 끝까지',en:'To the ends of the earth'}]
   };
   var bar=document.querySelector('.topbar'); if(!bar) return;
   var home=!!document.getElementById('p-newcomer');
@@ -1517,7 +1517,7 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
   var cur=null, hideT=null, openedAt=0;
   function off(){ return (bar.offsetHeight||60)+14; }
   function findCut(label){ var cs=document.querySelectorAll('.cut'); for(var i=0;i<cs.length;i++){ var k=cs[i].querySelector('.ko'); if(k&&k.textContent.trim()===label) return cs[i]; } return null; }
-  function target(it){ return it.sel?document.querySelector(it.sel):(it.cut?findCut(it.cut):null); }
+  function target(it){ var el=it.sel?document.querySelector(it.sel):(it.cut?findCut(it.cut):null); if(el&&el.tagName==='DETAILS') el.open=true; return el; }
   function scrollTo(el,smooth){ var y=el.getBoundingClientRect().top+window.pageYOffset-off(); window.scrollTo({top:y,behavior:smooth?'smooth':'auto'}); }
   function close(){ clearTimeout(idleT); inPanel=false; panel.hidden=true; cur=null; bar.classList.remove('tm-open'); }
   function goItem(tab,i){ var it=M[tab][i]; close();
@@ -1547,7 +1547,7 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
       },true);
     }
     if(!tab||!M[tab]) return;
-    if(home&&tab==='newcomer') btn.addEventListener('click',function(e){ e.preventDefault(); e.stopImmediatePropagation(); if(cur===tab&&!panel.hidden){ close(); return; } render(tab,btn); },true);
+    if(home&&tab==='newcomer') btn.addEventListener('click',function(e){ e.preventDefault(); e.stopImmediatePropagation(); if(cur===tab&&!panel.hidden){ close(); return; } goTab(tab); render(tab,btn); },true);
     else if(home) btn.addEventListener('click',function(e){ e.stopPropagation(); if(!hov&&cur===tab&&!panel.hidden){ close(); return; } render(tab,btn); });
     if(hov){
       btn.addEventListener('mouseenter',function(){ render(tab,btn); });
