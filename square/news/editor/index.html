@@ -180,7 +180,7 @@ function gbSection(sc,o){
   }
   if(k==='환영'||k==='헌금'){
     h=it.map(function(x){ return '<p>'+gbEsc(x.l?x.l+': '+x.v:x.v)+'</p>'; }).join('');
-    if(k==='헌금') h+='<a class="gb-give" href="/give/">'+gbBi('온라인 헌금 →','Give online →')+'</a>';
+    if(k==='헌금') h+='<a class="gb-give" href="/give/">'+gbBi('봉헌 방법 →','Ways to give →')+'</a>';
     return '<section class="gb-s gb-'+(k==='환영'?'welcome':'give-s')+'"><h3>'+gbBi(nm[0],nm[1])+'</h3>'+h+'</section>';
   }
   if(k==='소식'){
