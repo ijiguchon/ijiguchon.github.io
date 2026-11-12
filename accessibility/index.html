@@ -1477,9 +1477,9 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
   }
   document.addEventListener('click',function(e){ if(!panel.hidden&&!panel.contains(e.target)) close(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
-  /* 2026-11-09 목사님: 열린 목록은 쓰지 않으면 저절로 닫힘 (휴대폰 포함). 마우스가 목록 위에 있는 동안은 기다림 */
+  /* 2026-11-09 목사님: 열린 목록은 2초 동안 쓰지 않으면 저절로 닫힘 (휴대폰 포함). 마우스가 목록 위에 있는 동안은 기다림 */
   var idleT=null, inPanel=false;
-  function armIdle(){ clearTimeout(idleT); idleT=setTimeout(function(){ if(inPanel){ armIdle(); return; } close(); },6000); }
+  function armIdle(){ clearTimeout(idleT); idleT=setTimeout(function(){ if(inPanel){ armIdle(); return; } close(); },2000); }
   panel.addEventListener('mouseenter',function(){ inPanel=true; });
   panel.addEventListener('mouseleave',function(){ inPanel=false; armIdle(); });
   panel.addEventListener('touchstart',armIdle,{passive:true});
