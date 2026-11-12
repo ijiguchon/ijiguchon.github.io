@@ -1474,7 +1474,7 @@ img.onload=function(){
         <div class="gok"><div class="ok1"><span class="ko">등록되었습니다</span><span class="en">You're registered</span></div><div class="ok2"><span class="ko">개강 안내를 곧 보내드리겠습니다. 감사합니다.</span><span class="en">We'll send you the start details. Thank you.</span></div></div>
       </form></div></details>
 
-<div class="cut"><span><span class="ko">첫걸음</span><span class="en">First steps</span></span></div>
+<div class="cut" id="firststep" style="scroll-margin-top:96px"><span><span class="ko">첫걸음</span><span class="en">First steps</span></span></div>
       <div class="mem-row"><button class="mbtn" type="button" onclick="openModal('accept')"><span class="mi "><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12"/></svg></span><span class="mb"><span class="mt"><span class="ko">예수 영접 모임</span><span class="en">Starting Point</span></span><span class="ms"><span class="ko">처음부터 천천히, 편안하게</span><span class="en">Explore faith from the beginning</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></button><button class="mbtn" type="button" onclick="openModal('baptism')"><span class="mi t"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span><span class="mb"><span class="mt"><span class="ko">침례 신청</span><span class="en">Baptism</span></span><span class="ms"><span class="ko">새로운 시작을 공동체가 함께 축하합니다</span><span class="en">A new beginning, celebrated together</span></span></span><span class="mg"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></button></div>
       <div class="tab-cta" style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 24px"><a href="/path/"><span class="ko">제자의 길 전체 여정 보기</span><span class="en">See the whole disciple's path</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="https://www.drahnsntot.com/120/" target="_blank" rel="noopener" data-q120><span class="ko">120문 120답 · 인생 질문</span><span class="en">120 Q&amp;A · life questions</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
@@ -3025,5 +3025,6 @@ function go(){ grab('https://www.naruudon.com/','ko','나루 우동 · 이번 �
 if('IntersectionObserver' in window){ var o=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ o.disconnect(); go(); } },{rootMargin:'400px'}); o.observe(c); } else go();
 })();</script>
 
+<script id="hash-js">(function(){var h=location.hash.slice(1);if(!/^[a-z][\w-]*$/i.test(h))return;function go(){var e=document.getElementById(h);if(e&&e.getBoundingClientRect().height>0)e.scrollIntoView({block:"start"});}if(document.readyState==="complete")setTimeout(go,400);else window.addEventListener("load",function(){setTimeout(go,400);});})();</script>
 </body>
 </html>
