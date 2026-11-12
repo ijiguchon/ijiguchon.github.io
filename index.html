@@ -3026,5 +3026,6 @@ if('IntersectionObserver' in window){ var o=new IntersectionObserver(function(es
 })();</script>
 
 <script id="hash-js">(function(){var h=location.hash.slice(1);if(!/^[a-z][\w-]*$/i.test(h))return;function go(){var e=document.getElementById(h);if(e&&e.getBoundingClientRect().height>0)e.scrollIntoView({block:"start"});}if(document.readyState==="complete")setTimeout(go,400);else window.addEventListener("load",function(){setTimeout(go,400);});})();</script>
+<script id="share-top-js">(function(){function mv(){var c=document.getElementById("shareCard"),l=document.querySelector("#p-mokjang .wrap > figure.phw")||document.querySelector("#p-mokjang .sec-lead");if(!c||!l||l.nextElementSibling===c)return;l.parentNode.insertBefore(c,l.nextSibling);}if(document.readyState==="complete")setTimeout(mv,0);else window.addEventListener("load",function(){setTimeout(mv,0);});document.addEventListener("DOMContentLoaded",function(){setTimeout(mv,0);});})();</script>
 </body>
 </html>
