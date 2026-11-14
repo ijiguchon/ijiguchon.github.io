@@ -54,6 +54,20 @@ def paras_of(text):
         out.append(s)
     return out
 
+def content_top(im, H):
+    """세로로 긴 그림에서 잘라 낼 시작 줄. 위쪽에 내용이 있으면 0(예전과 같음)."""
+    if im.height <= H or im.height <= im.width: return 0   # 가로 그림은 예전 그대로
+    g = im.convert('L').resize((64, im.height), Image.BILINEAR)
+    px = g.load()
+    rows = []
+    for y in range(1, im.height):
+        rows.append(sum(abs(px[x, y] - px[x, y - 1]) for x in range(64)) / 64.0)
+    busy = [i + 1 for i, v in enumerate(rows) if v > 1.5]
+    if not busy: return 0
+    a, b = busy[0], busy[-1]
+    if a < H * 0.25: return 0
+    return max(0, min(im.height - H, a + (b - a - H) // 2))
+
 def og_image(iso, pdf_id, img_id):
     dst = os.path.join(ROOT, 'images', 'corner', f'{iso}.jpg')
     if os.path.exists(dst) and not FORCE: return f'/images/corner/{iso}.jpg'
@@ -68,8 +82,10 @@ def og_image(iso, pdf_id, img_id):
     W, H = 1200, 630
     r = max(W / src.width, H / src.height)
     im = src.resize((round(src.width * r), round(src.height * r)), Image.LANCZOS)
-    # 세로형(그림 칼럼 첫 장)은 위쪽(제목·그림)을 살린다
-    canvas = im.crop((max(0, (im.width - W) // 2), 0, max(0, (im.width - W) // 2) + W, H))
+    # 세로형(그림 칼럼 첫 장)은 위쪽(제목·그림)을 살린다.
+    # 다만 위쪽이 빈 바탕뿐이면(가로 표지를 세로 면 가운데에 넣은 PDF) 내용이 있는 자리를 가운데로 잡는다 (2026-11-14)
+    top = content_top(im, H)
+    canvas = im.crop((max(0, (im.width - W) // 2), top, max(0, (im.width - W) // 2) + W, top + H))
     os.makedirs(os.path.dirname(dst), exist_ok=True)
     canvas.save(dst, quality=88, optimize=True)
     return f'/images/corner/{iso}.jpg'

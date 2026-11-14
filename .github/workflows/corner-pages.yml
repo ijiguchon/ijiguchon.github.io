@@ -1,7 +1,7 @@
 name: 성수생각 글 페이지 생성
 on:
   schedule:
-    - cron: '37 15 * * *'   # 매일 15:37 UTC (시애틀 오전 7:37 / 8:37)
+    - cron: '37 * * * *'   # 매시 37분 — 드라이브에 새 글을 넣으면 한 시간 안에 공유 주소가 생긴다 (2026-11-14, 예전: 하루 한 번 15:37 UTC)
   workflow_dispatch:
 permissions:
   contents: write
@@ -14,9 +14,12 @@ jobs:
         with: { python-version: '3.12' }
       - run: pip install pillow python-docx
       - run: python tools/build_corner_pages.py
+      - name: RSS (새 글 페이지가 생겼을 때만)
+        run: |
+          if [ -n "$(git status --porcelain corner)" ]; then python tools/rss_build.py .; fi
       - name: commit
         run: |
           git config user.name "gmc-bot"
           git config user.email "pastor@ijiguchon.org"
-          git add -A corner images/corner sitemap.xml
+          git add -A corner images/corner sitemap.xml feed.xml
           git diff --cached --quiet || (git commit -m "성수생각: 새 글 페이지 자동 생성" && git push)
