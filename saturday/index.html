@@ -137,10 +137,11 @@ async function loadData(){
   var files=await listJson(); if(!files.length) return null;
   var want=mmddyy(targetSaturday());
   var pick=files.filter(function(f){return f.name.slice(0,6)===want;})[0];
+  var stale=!pick;
   if(!pick){ files.sort(function(a,b){ return isoFromId(b.name.slice(0,6)).localeCompare(isoFromId(a.name.slice(0,6))); }); pick=files[0]; }
   var r=await fetch('https://www.googleapis.com/drive/v3/files/'+pick.id+'?alt=media&key='+GDRIVE_API_KEY,{cache:'no-store'});
   if(!r.ok) throw new Error('get '+r.status);
-  /* 2026-11-08 이름을 토요가족기도회로 — 드라이브 자료 안의 옛 이름도 화면에서는 새 이름으로 */ return JSON.parse((await r.text()).replace(/토요가족기도모임/g,'토요가족기도회'));
+  /* 2026-11-08 이름을 토요가족기도회로 — 드라이브 자료 안의 옛 이름도 화면에서는 새 이름으로 */ var dd=JSON.parse((await r.text()).replace(/토요가족기도모임/g,'토요가족기도회')); if(stale){ dd.__stale=true; dd.__want=isoFromId(want); } return dd;
 }
 
 var SCORE_FOLDER='1-pvJPwjgOWYqVn3NY-BDUigkln8iMkwE', scoreMap={};
@@ -168,6 +169,17 @@ document.getElementById('lb-x').addEventListener('click',closeScore);
 document.getElementById('lb').addEventListener('click',function(e){ if(e.target.id==='lb'||e.target.id==='lb-b') closeScore(); });
 document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeScore(); });
 function render(d){
+  /* 2026-11-16 이번 토요일 파일이 아직 없으면: 다가오는 토요일 날짜로, 지난주 순서는 접어 둠 */
+  if(d.__stale&&!d.__inner){ var w=d.__want, nw0=d.nextWeek||{}, m0=d.meeting||{};
+    d.__inner=true; render(d); var past=document.getElementById('app').innerHTML;
+    var word=(nw0.date===w&&(nw0.ref||nw0.title))?'<section class="card"><h2>이번 주 말씀</h2><p class="lead" style="margin:0">'+esc(nw0.ref||'')+(nw0.title?' 「'+esc(nw0.title)+'」':'')+'</p></section>':'';
+    document.getElementById('app').innerHTML='<header class="hero"><div class="eyebrow">Saturday Family Prayer</div><h1>'+esc(m0.name||'토요가족기도회')+'</h1><div class="rule"></div>'+
+      '<div class="date">'+esc(kdate(w))+' · 오전 '+esc(hm(m0.start||'06:00'))+' – '+esc(hm(m0.end||'06:50'))+'</div>'+
+      '<p class="lead">이번 주 순서는 준비되는 대로 이곳에 올라옵니다.</p></header>'+word+
+      '<details class="card" style="padding-top:14px;padding-bottom:14px"><summary style="cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center">지난주('+esc(mdate(d.date))+') 순서 보기</summary>'+past+'</details>';
+    document.title=mdate(w)+' 토요가족기도회 · 시애틀지구촌교회';
+    document.querySelectorAll('.hy a[data-fid]').forEach(function(a){ a.addEventListener('click',function(e){ e.preventDefault(); openScore(a.dataset.no,a.dataset.title,a.dataset.fid); }); });
+    return; }
   var byNo={}; (d.hymns||[]).forEach(function(h){ byNo[+h.no]=h; });
   var chip=function(no){ var h=byNo[+no]||{no:no,title:''}; var fid=scoreMap[+no];
     var inner='<b>'+esc(h.no)+'<small>장</small></b><span class="ti">'+esc(h.title)+(h.verses?'<em>'+esc(h.verses)+'</em>':'')+'</span>';
