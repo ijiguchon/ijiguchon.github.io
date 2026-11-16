@@ -3018,7 +3018,19 @@ function photo(name){ var im=c.querySelector('.hsa-ph img'), t=new Image(); if(!
   t.src='/images/naru/'+encodeURIComponent(name.split(' ').join(''))+'.webp'; }
 function grab(u,lang,eye,tail){ fetch(u,{cache:'no-store'}).then(function(r){ return r.ok?r.text():''; }).then(function(h){ var w=h&&pick(h,lang); if(!w) return;
   put('.hsa-eye',lang,eye); put('.hsa-t',lang,w.n); put('.hsa-l',lang,w.t+tail); var x=c.querySelector('.hsa-time'); if(x) x.hidden=true; if(lang==='ko') photo(w.n); }).catch(function(){}); }
-function go(){ grab('https://www.naruudon.com/','ko','나루 우동 · 이번 주 우동',' 오전 7시'); grab('https://www.naruudon.com/en/','en','Naru Udon · This week',', 7 AM'); }
+/* 2026-11-15 나루 우동 차림표(menu.json) 하나를 두 사이트가 함께 읽음 — 실패하면 예전처럼 첫 화면 글을 읽음 */
+function iso(){ return T.y+'-'+('0'+T.m).slice(-2)+'-'+('0'+T.d).slice(-2); }
+function fromMenu(j){ var td=iso(), up=(j&&j.weeks||[]).filter(function(w){ return w&&w.date&&w.name&&!(w.date<td||(w.date===td&&w.dish)); });
+  if(!up.length) return false; var r=up[0], p=r.date.split('-'), m=+p[1], d=+p[2];
+  put('.hsa-eye','ko','나루 우동 · 이번 주 우동'); put('.hsa-t','ko',r.name.ko); put('.hsa-l','ko',label('ko',m,d)+' 오전 7시');
+  put('.hsa-eye','en','Naru Udon · This week'); put('.hsa-t','en',r.name.en); put('.hsa-l','en',label('en',m,d)+', 7 AM');
+  var x=c.querySelector('.hsa-time'); if(x) x.hidden=true;
+  var im=c.querySelector('.hsa-ph img');
+  if(r.pic&&im){ var t=new Image(); t.onload=function(){ im.removeAttribute('srcset'); im.removeAttribute('sizes'); im.src=t.src; im.alt=r.name.ko; }; t.src='https://www.naruudon.com'+r.pic; }
+  else photo(r.name.ko);
+  return true; }
+function old(){ grab('https://www.naruudon.com/','ko','나루 우동 · 이번 주 우동',' 오전 7시'); grab('https://www.naruudon.com/en/','en','Naru Udon · This week',', 7 AM'); }
+function go(){ fetch('https://www.naruudon.com/menu.json',{cache:'no-store'}).then(function(r){ return r.ok?r.json():null; }).then(function(j){ if(!fromMenu(j)) old(); }).catch(old); }
 if('IntersectionObserver' in window){ var o=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ o.disconnect(); go(); } },{rootMargin:'400px'}); o.observe(c); } else go();
 })();</script>
 
@@ -3026,7 +3038,7 @@ if('IntersectionObserver' in window){ var o=new IntersectionObserver(function(es
 <script id="share-top-js">(function(){function mv(){var c=document.getElementById("shareCard"),l=document.querySelector("#p-mokjang .wrap > figure.phw")||document.querySelector("#p-mokjang .sec-lead");if(!c||!l||l.nextElementSibling===c)return;l.parentNode.insertBefore(c,l.nextSibling);}if(document.readyState==="complete")setTimeout(mv,0);else window.addEventListener("load",function(){setTimeout(mv,0);});document.addEventListener("DOMContentLoaded",function(){setTimeout(mv,0);});})();</script>
 <script id="gmc-autoupdate">(function(){
 if(!window.fetch)return;
-var PV='20261115-101833',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
+var PV='20261115-234711',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
 function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='search')return true;
 var f=document.querySelectorAll('textarea,input:not([type=hidden]):not([type=search]):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])');
 for(var i=0;i<f.length;i++){if(f[i].value&&f[i].value!==f[i].defaultValue)return true;}return false;}
