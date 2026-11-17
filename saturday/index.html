@@ -194,6 +194,7 @@ function render(d){
     return '<div class="row"><span class="t">'+esc(hm(o.time))+'</span><span class="what">'+esc(o.name)+(detail?'<small>'+esc(detail)+'</small>':'')+hy+extra+'</span><span class="h">'+esc(o.minutes)+'분</span>'+tail+'</div>'; }).join('');
   var links='';
   links+='<a class="link" href="/square/news/"><div><strong>'+(d.links&&d.links.sundayBulletinId?mdate(isoFromId(d.links.sundayBulletinId))+' ':'')+'주일 교회 소식</strong><span>주일연합예배 오후 1:30 · 주보</span></div><span class="arrow">›</span></a>';
+  links+='<a class="link" data-altar href="https://hebronaltar.com/" target="_blank" rel="noopener"><div><strong>HebronAltar 말씀 묵상</strong><span>'+(d.date?mdate(d.__want||d.date)+' 토요일 묵상 · ':'')+'아이와 함께 읽는 말씀</span></div><span class="arrow">›</span></a>';
   var s=d.scripture||{}, nw=d.nextWeek||{}, m=d.meeting||{};
   document.getElementById('app').innerHTML=
     '<header class="hero"><div class="eyebrow">Saturday Family Prayer</div><h1>'+esc(m.name||'토요가족기도회')+'</h1><div class="rule"></div>'+
