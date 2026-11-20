@@ -1005,7 +1005,7 @@ https://www.ijiguchon.org/corner/?c=2026-09-20</p><button type="button" class="l
         <div><a href="/give/"><span class="ko">봉헌 방법</span><span class="en">Ways to give</span></a> · 501(c)(3) · EIN 27-0003955</div>
       </div>
     </div>
-    <div class="fcopy">Copyright © <span class="yr">2026</span> <span class="ko">시애틀지구촌교회</span><span class="en">GMC of Greater Seattle</span>. All rights reserved. Powered by <a href="https://www.nanuriweb.com" target="_blank" rel="noopener">NanuriWeb</a><span class="flegal"><a href="/privacy/"><span class="ko">개인정보 처리방침</span><span class="en">Privacy</span></a><a href="/accessibility/"><span class="ko">접근성</span><span class="en">Accessibility</span></a><a href="/admin/" rel="nofollow"><span class="ko">관리</span><span class="en">Admin</span></a></span></div>
+    <div class="fcopy">Copyright © <span class="yr">2026</span> <span class="ko">시애틀지구촌교회</span><span class="en">GMC of Greater Seattle</span>. All rights reserved. <span class="ko">무단 전재·복제 금지.</span><span class="en">No copying without permission.</span> Powered by <a href="https://www.nanuriweb.com" target="_blank" rel="noopener">NanuriWeb</a><span class="flegal"><a href="/terms/"><span class="ko">이용약관</span><span class="en">Terms</span></a><a href="/privacy/"><span class="ko">개인정보 처리방침</span><span class="en">Privacy</span></a><a href="/accessibility/"><span class="ko">접근성</span><span class="en">Accessibility</span></a><a href="/admin/" rel="nofollow"><span class="ko">관리</span><span class="en">Admin</span></a></span></div>
     <script>document.querySelectorAll('footer .yr').forEach(function(e){ e.textContent=new Date().getFullYear(); });</script>
   </div>
 </footer>
@@ -1565,9 +1565,9 @@ document.addEventListener('DOMContentLoaded',function(){ try{ gmBuild(); }catch(
   }
   document.addEventListener('click',function(e){ if(!panel.hidden&&!panel.contains(e.target)) close(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
-  /* 2026-11-09 목사님: 열린 목록은 2초 동안 쓰지 않으면 저절로 닫힘 (휴대폰 포함). 마우스가 목록 위에 있는 동안은 기다림 */
+  /* 2026-11-09 목사님: 열린 목록은 1초 동안(2026-11-20 2초→1초) 쓰지 않으면 저절로 닫힘 (휴대폰 포함). 마우스가 목록 위에 있는 동안은 기다림 */
   var idleT=null, inPanel=false;
-  function armIdle(){ clearTimeout(idleT); idleT=setTimeout(function(){ if(inPanel){ armIdle(); return; } close(); },2000); }
+  function armIdle(){ clearTimeout(idleT); idleT=setTimeout(function(){ if(inPanel){ armIdle(); return; } close(); },1000); }
   panel.addEventListener('mouseenter',function(){ inPanel=true; });
   panel.addEventListener('mouseleave',function(){ inPanel=false; armIdle(); });
   panel.addEventListener('touchstart',armIdle,{passive:true});
@@ -1821,7 +1821,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();</script>
 <script id="gmc-autoupdate">(function(){
 if(!window.fetch)return;
-var PV='20261120-043609',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
+var PV='20261120-065257',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
 function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='search')return true;
 var f=document.querySelectorAll('textarea,input:not([type=hidden]):not([type=search]):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])');
 for(var i=0;i<f.length;i++){if(f[i].value&&f[i].value!==f[i].defaultValue)return true;}return false;}
