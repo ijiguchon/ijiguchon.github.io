@@ -205,7 +205,7 @@ window.gmcMasterClear=clear;
 <div class="top"><div class="row">
   <a href="/" style="display:flex;align-items:center;gap:9px"><img src="/images/logo-mark.png" alt="" style="width:40px;height:40px;border-radius:0;box-shadow:none;filter:drop-shadow(0 1px 2px rgba(20,33,61,.18))"><span style="display:flex;flex-direction:column;line-height:1.05"><b><span class="ko">시애틀지구촌교회</span><span class="en">GMC of Greater Seattle</span></b><small style="font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-2);margin-top:3px;white-space:nowrap"><span class="ko">가정교회 360</span><span class="en">House Church 360</span></small></span></a>
   <div class="r">
-    <button onclick="toggleLang()" aria-label="Language"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg><span id="langTxt">EN</span></button>
+    <button onclick="toggleLang()" aria-label="Language"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20a14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><span id="langTxt">EN</span></button>
     <a href="/"><span class="ko">홈</span><span class="en">Home</span></a>
     <button id="outBtn" style="display:none" onclick="lock()"><span class="ko"><svg class="ic-lock" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" style="vertical-align:-.12em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg> 잠금</span><span class="en"><svg class="ic-lock" viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" style="vertical-align:-.12em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg> Lock</span></button>
   </div>
@@ -495,7 +495,7 @@ if(window.MutationObserver)new MutationObserver(later).observe(document.document
     fetch('/corner/archive/columns.json').then(function(r){ return r.json(); }).then(function(j){ COLS=j; CB.hidden=true; run(); }).catch(function(){ if(lab) lab.textContent='불러오지 못했습니다. 다시 눌러 주십시오.'; CB.disabled=false; }); };
 })();</script>
 <script id="gmcLangSync">/* 언어 기억 + 지구본 단추 (gmcLangSync) */(function(){
-var K='gmc-lang', G='<svg class="gls-globe" viewBox="0 0 24 24" aria-hidden="true" style="width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;flex:none;vertical-align:-3px;margin-right:4px"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>';
+var K='gmc-lang', G='<svg class="gls-globe" viewBox="0 0 24 24" aria-hidden="true" style="width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;flex:none;vertical-align:-3px;margin-right:4px"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20a14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>';
 function btn(){ return document.querySelector('[onclick*="toggleLang"],#langBtn,button.lang,button.langbtn,button.lang-btn'); }
 function en(){ try{ if(typeof currentLang==='string') return currentLang==='en'; }catch(e){} return document.body.classList.contains('lang-en'); }
 function save(){ try{ localStorage.setItem(K,en()?'en':'ko'); }catch(e){} }
@@ -533,7 +533,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();</script>
 <script id="gmc-autoupdate">(function(){
 if(!window.fetch)return;
-var PV='20261121-021550',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
+var PV='20261121-022042',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
 function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='search')return true;
 var f=document.querySelectorAll('textarea,input:not([type=hidden]):not([type=search]):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])');
 for(var i=0;i<f.length;i++){if(f[i].value&&f[i].value!==f[i].defaultValue)return true;}return false;}
