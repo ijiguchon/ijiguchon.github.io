@@ -20,6 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&display=swap">
+<script>/* 칼럼 고정 주소가 아직 만들어지지 않았을 때(자동 작업이 늦을 때) 그 칼럼으로 바로 (2026-11-21) */(function(){var m=location.pathname.match(/^\/corner\/(\d{4}-\d{2}-\d{2})\/?$/);if(m)location.replace('/corner/?c='+m[1]);})();</script>
 <style>
 :root{--color-background:#F6F1E7;--color-surface:#ffffff;--color-text-primary:#1c1f26;--color-text-secondary:#4a4f5a;
   --color-border:#E3D9C6;--color-primary:#14213d;--color-primary-hover:#1f2f55;--color-primary-foreground:#ffffff;--color-accent:#B8924A;
@@ -69,7 +70,7 @@ if(document.readyState!=='loading')add();else document.addEventListener('DOMCont
 </main>
 <script id="gmc-autoupdate">(function(){
 if(!window.fetch)return;
-var PV='20261120-065257',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
+var PV='20261121-001847',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
 function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='search')return true;
 var f=document.querySelectorAll('textarea,input:not([type=hidden]):not([type=search]):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])');
 for(var i=0;i<f.length;i++){if(f[i].value&&f[i].value!==f[i].defaultValue)return true;}return false;}
