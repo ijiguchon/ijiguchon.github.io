@@ -1637,7 +1637,7 @@ function gbHTML(iso,secs,o){
   if(staff) h+='<dl class="gb-staff">'+staff.items.map(function(x){ return '<div><dt>'+gbEsc(x.l)+'</dt><dd>'+gbEsc(x.v)+(x.p?' <small>'+gbEsc(x.p)+'</small>':'')+'</dd></div>'; }).join('')+'</dl>';
   var addr=gbVal(church,'주소'), web=gbVal(church,'웹');
   h+='<p class="gb-addr">'+gbEsc(gbVal(church,'영문')||'Global Mission Church of Greater Seattle')+(addr?' · '+gbEsc(addr):'')+(web?' · '+gbEsc(web):'')+'</p>';
-  h+='</footer></article>';
+  h+='<style id="footer-slim-css">footer{padding:18px 0 18px}footer .fg{gap:10px 14px}footer .fc{line-height:1.45;color:rgba(255,255,255,.7)}footer .fc>div,footer .fmin{margin-top:1px}footer .fc a{font-weight:500;text-shadow:none}footer .fc .nm{font-weight:600!important;text-shadow:none;margin-bottom:1px}footer .fc .sub{font-weight:400;color:rgba(255,255,255,.7);margin-bottom:3px}footer .fc li{font-weight:500;text-shadow:none}footer .fcopy{line-height:1.5;color:rgba(255,255,255,.55);margin-top:12px;padding-top:10px}footer .fcopy a{font-weight:600}footer:has(.fg) .fcopy{border-top:1px solid rgba(255,255,255,.12)}</style></footer></article>';
   return h;
 }
 /* 인쇄용 보기: 주보만 새 창에 띄워 A4/레터 한 장 크기로 인쇄 (홈페이지 메뉴·단추는 빠짐) */
@@ -2176,7 +2176,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();</script>
 <script id="gmc-autoupdate">(function(){
 if(!window.fetch)return;
-var PV='20261121-001847',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
+var PV='20261121-020007',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
 function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='search')return true;
 var f=document.querySelectorAll('textarea,input:not([type=hidden]):not([type=search]):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])');
 for(var i=0;i<f.length;i++){if(f[i].value&&f[i].value!==f[i].defaultValue)return true;}return false;}

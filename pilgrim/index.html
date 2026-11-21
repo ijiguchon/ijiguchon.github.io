@@ -918,7 +918,7 @@ if(document.readyState!=='loading')add();else document.addEventListener('DOMCont
     <div class="fcopy">Copyright © <span class="yr">2026</span> <span class="ko">시애틀지구촌교회</span><span class="en">GMC of Greater Seattle</span>. All rights reserved. <span class="ko">무단 전재·복제 금지.</span><span class="en">No copying without permission.</span> Powered by <a href="https://www.nanuriweb.com" target="_blank" rel="noopener">NanuriWeb</a><span class="flegal"><a href="/terms/"><span class="ko">이용약관</span><span class="en">Terms</span></a><a href="/privacy/"><span class="ko">개인정보 처리방침</span><span class="en">Privacy</span></a><a href="/accessibility/"><span class="ko">접근성</span><span class="en">Accessibility</span></a></span></div>
     <script>document.querySelectorAll('footer .yr').forEach(function(e){ e.textContent=new Date().getFullYear(); });</script>
   </div>
-</footer>
+<style id="footer-slim-css">footer{padding:18px 0 18px}footer .fg{gap:10px 14px}footer .fc{line-height:1.45;color:rgba(255,255,255,.7)}footer .fc>div,footer .fmin{margin-top:1px}footer .fc a{font-weight:500;text-shadow:none}footer .fc .nm{font-weight:600!important;text-shadow:none;margin-bottom:1px}footer .fc .sub{font-weight:400;color:rgba(255,255,255,.7);margin-bottom:3px}footer .fc li{font-weight:500;text-shadow:none}footer .fcopy{line-height:1.5;color:rgba(255,255,255,.55);margin-top:12px;padding-top:10px}footer .fcopy a{font-weight:600}footer:has(.fg) .fcopy{border-top:1px solid rgba(255,255,255,.12)}</style></footer>
 <script>
   function goTab(id){ if(!document.getElementById("p-"+id)){ location.href="/?tab="+id; return; }
     document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
@@ -1731,7 +1731,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();</script>
 <script id="gmc-autoupdate">(function(){
 if(!window.fetch)return;
-var PV='20261121-001847',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
+var PV='20261121-020007',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
 function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='search')return true;
 var f=document.querySelectorAll('textarea,input:not([type=hidden]):not([type=search]):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])');
 for(var i=0;i<f.length;i++){if(f[i].value&&f[i].value!==f[i].defaultValue)return true;}return false;}
