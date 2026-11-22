@@ -1666,7 +1666,7 @@ var CB_TEXT = [{"date": "2026-09-05", "title": "성경적 가정교회는 과연
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
   /* 2026-11-09 목사님: 열린 목록은 1초 동안(2026-11-20 2초→1초) 쓰지 않으면 저절로 닫힘 (휴대폰 포함). 마우스가 목록 위에 있는 동안은 기다림 */
   var idleT=null, inPanel=false;
-  function armIdle(){ clearTimeout(idleT); idleT=setTimeout(function(){ if(inPanel){ armIdle(); return; } close(); },1000); }
+  function armIdle(){ clearTimeout(idleT); /* 2026-11-22: 저절로 닫힘 끔 — 고르기 · 밖 누르기 · 화면 내리기 · Esc 로 닫힘 */ }
   panel.addEventListener('mouseenter',function(){ inPanel=true; });
   panel.addEventListener('mouseleave',function(){ inPanel=false; armIdle(); });
   panel.addEventListener('touchstart',armIdle,{passive:true});
@@ -1919,7 +1919,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();</script>
 <script id="gmc-autoupdate">(function(){
 if(!window.fetch)return;
-var PV='20261122-060458',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
+var PV='20261122-061141',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
 function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='search')return true;
 var f=document.querySelectorAll('textarea,input:not([type=hidden]):not([type=search]):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])');
 for(var i=0;i<f.length;i++){if(f[i].value&&f[i].value!==f[i].defaultValue)return true;}return false;}
