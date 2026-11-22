@@ -45,6 +45,7 @@ h1{font-size:34px;line-height:1.25;margin:0 0 6px;font-weight:800}
 .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s}
 .ph button:hover img{transform:scale(1.02)}
 .plaque{margin:0 16px 16px}.plaque summary{cursor:pointer;min-height:44px;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--color-primary)}.plaque summary:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px;border-radius:12px}.pq{background:#151515;padding:12px;border-radius:6px;box-shadow:0 10px 24px rgba(20,33,61,.18);max-width:620px;margin:0 auto}.pq-in{background:#fff;border:2px solid var(--color-accent);outline:6px solid #fff;outline-offset:-10px;padding:36px 24px 30px;text-align:center;font-family:"Noto Serif KR",serif;color:#1d2a4a;font-size:16px;line-height:1.85}.pq-in p{margin:0 0 14px}.ev .pq-in p{color:#1d2a4a}.ev .pq-in .pq-v{color:var(--color-plaque-verse)}.pq-em{width:96px;height:auto;display:block;margin:0 auto 10px}.pq-t{font-size:40px;font-weight:800;letter-spacing:.35em;margin:0 0 4px!important;padding-left:.35em;color:#14213d}.pq-div{display:flex;align-items:center;justify-content:center;gap:8px}.pq-div span{display:block;width:72px;height:1px;background:#9aa6bf}.pq-div i{display:block;width:7px;height:7px;background:#14213d;transform:rotate(45deg)}.pq-n{font-size:22px;font-weight:700;letter-spacing:.12em;color:#14213d}.pq-b{font-weight:700}.pq-in hr{border:0;border-top:1px solid #c9cfdb;margin:18px 0}.pq-v{color:var(--color-plaque-verse);font-weight:700}.pq-v small{font-size:14px}.pq-c{font-size:20px;font-weight:700;letter-spacing:.12em;color:#14213d}.pq-s{font-weight:700;margin:0!important}
+.en{display:none}body.lang-en .ko{display:none}body.lang-en .en{display:inline}.tr{display:inline-flex;align-items:center;gap:8px}.top button.lang{width:44px;height:44px;border-radius:50%;border:1.4px solid rgba(255,255,255,.35);background:transparent;color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}.top button.lang svg{width:22px;height:22px}.top button.lang:hover{border-color:var(--color-accent)}
 .soon{border:1px dashed var(--color-border);border-radius:20px;padding:20px;color:var(--color-text-secondary);text-align:center}
 .lb{position:fixed;inset:0;background:rgba(10,14,28,.92);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
 .lb.on{display:flex}
@@ -55,26 +56,26 @@ footer{text-align:center;color:var(--color-text-secondary);font-size:15px;paddin
 @media (max-width:560px){.top small{display:none}.pq-in p:not(.pq-v):not(.pq-s) br{display:none}.pq-in p{text-wrap:pretty}.pq-t{font-size:32px}.plaque{margin:0 2px 12px}.pq{padding:7px}.pq-in{padding:24px 10px 20px;font-size:15px;outline-width:4px;outline-offset:-7px}h1{font-size:28px}.ph button,.ph button:nth-child(2),.ph button:nth-child(3){grid-column:span 3}.ph button:first-child{grid-column:span 6}}
 @media (prefers-reduced-motion:reduce){.ph img{transition:none}.ph button:hover img{transform:none}}
 </style>
-</head>
+<style id="lang-globe-css">.topbar button.lang{width:44px;height:44px;min-height:44px;padding:0;gap:0;justify-content:center;border-radius:50%}.topbar button.lang svg{display:block!important;width:22px;height:22px;stroke-width:1.8}.topbar button.lang #langTxt{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.topbar button.lang:hover{border-color:var(--color-accent,#B8924A)}.topbar button.lang:focus-visible{outline:3px solid var(--color-focus,#B8924A);outline-offset:2px}.topbar .ts-btn{order:1;margin-left:auto;margin-right:0;width:44px;min-width:44px;height:44px;padding:0;border:1.4px solid var(--line);background:var(--color-surface);border-radius:50%;color:var(--navy);letter-spacing:-.04em}.topbar .ts-btn~button.lang{margin-left:6px}</style></head>
 <body>
 <header class="top"><div class="in">
   <a href="/">시애틀지구촌교회 <small>&nbsp;GMC of Greater Seattle</small></a>
-  <a href="/?tab=square">공동체로 돌아가기</a>
+  <span class="tr"><a href="/?tab=square"><span class="ko">공동체로 돌아가기</span><span class="en">Back to Community</span></a><button type="button" class="lang" id="langBtn" aria-label="언어 바꾸기 · Language" title="한국어 / English"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20a14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></button></span>
 </div></header>
 <main>
   <p class="eye">OUR JOURNEY TOGETHER</p>
-  <h1>함께 걸어온 길</h1>
-  <p class="lead">여기까지 도우신 은혜의 기록 — 교회의 중요한 날들을 사진으로 남깁니다.</p>
+  <h1><span class="ko">함께 걸어온 길</span><span class="en">Our Journey Together</span></h1>
+  <p class="lead"><span class="ko">여기까지 도우신 은혜의 기록 — 교회의 중요한 날들을 사진으로 남깁니다.</span><span class="en">A record of the grace that has carried us this far — the important days of our church, kept in photos.</span></p>
 
   <article class="ev" id="2026-10-11">
     <div class="ev-h">
-      <p class="ev-d">2026년 10월 11일 (주일) · 주일연합예배</p>
-      <h2>새 예배 처소를 이어 주셔서 감사합니다</h2>
-      <p class="who">이모세, 이조에나 목사님 부부께 드린 감사패</p>
-      <p>베들레헴 침례교회에서 27년 동안 목회하신 이모세 목사님이 우리 교회에 새 예배 처소를 이어 주셨습니다. 온 교회가 감사의 마음을 담아 감사패를 드렸습니다.</p>
+      <p class="ev-d"><span class="ko">2026년 10월 11일 (주일) · 주일연합예배</span><span class="en">Sunday, October 11, 2026 · Sunday United Worship</span></p>
+      <h2><span class="ko">새 예배 처소를 이어 주셔서 감사합니다</span><span class="en">Thank you for opening a new place of worship to us</span></h2>
+      <p class="who"><span class="ko">이모세, 이조에나 목사님 부부께 드린 감사패</span><span class="en">A plaque of appreciation for Pastors 이모세 and 이조에나</span></p>
+      <p><span class="ko">베들레헴 침례교회에서 27년 동안 목회하신 이모세 목사님이 우리 교회에 새 예배 처소를 이어 주셨습니다. 온 교회가 감사의 마음을 담아 감사패를 드렸습니다.</span><span class="en">Pastor 이모세, who served Bethlehem Baptist Church for 27 years, opened a new place of worship to our church. With grateful hearts, the whole church presented a plaque of appreciation.</span></p>
     </div>
     <details class="plaque" open>
-      <summary>감사패</summary>
+      <summary><span class="ko">감사패</span><span class="en">Plaque of appreciation (original Korean text)</span></summary>
       <div class="pq"><div class="pq-in">
         <img class="pq-em" src="/images/album/emblem-navy.webp" alt="지구촌교회 엠블럼" width="240" height="238">
         <p class="pq-t">감 사 패</p>
@@ -93,21 +94,21 @@ footer{text-align:center;color:var(--color-text-secondary);font-size:15px;paddin
       </div></div>
     </details>
     <div class="ph">
-      <button type="button" data-i="1" aria-label="사진 1 크게 보기"><img src="/images/album/2026-10-11/1-800.webp" srcset="/images/album/2026-10-11/1-800.webp 800w, /images/album/2026-10-11/1.webp 1600w" sizes="(max-width:960px) 100vw, 960px" alt="감사패와 꽃다발을 들고 함께 선 모습 — 이모세, 이조에나 목사님 부부" width="1600" height="1200"></button>
-      <button type="button" data-i="2" aria-label="사진 2 크게 보기"><img src="/images/album/2026-10-11/2-800.webp" alt="감사패 글을 읽는 모습" width="800" height="600" loading="lazy"></button>
-      <button type="button" data-i="3" aria-label="사진 3 크게 보기"><img src="/images/album/2026-10-11/3-800.webp" alt="감사패를 건네며 함께 웃는 모습" width="800" height="600" loading="lazy"></button>
-      <button type="button" data-i="4" aria-label="사진 4 크게 보기"><img src="/images/album/2026-10-11/4-800.webp" alt="꽃다발을 전하는 모습" width="800" height="600" loading="lazy"></button>
-      <button type="button" data-i="5" aria-label="사진 5 크게 보기"><img src="/images/album/2026-10-11/5-800.webp" alt="서로 안아 주며 감사를 나누는 모습" width="800" height="600" loading="lazy"></button>
+      <button type="button" data-i="1" aria-label="사진 1 크게 보기"><img src="/images/album/2026-10-11/1-800.webp" srcset="/images/album/2026-10-11/1-800.webp 800w, /images/album/2026-10-11/1.webp 1600w" sizes="(max-width:960px) 100vw, 960px" alt="감사패와 꽃다발을 들고 함께 선 모습 — 이모세, 이조에나 목사님 부부" data-en-alt="Standing together with the plaque and flowers — Pastors 이모세 and 이조에나" width="1600" height="1200"></button>
+      <button type="button" data-i="2" aria-label="사진 2 크게 보기"><img src="/images/album/2026-10-11/2-800.webp" alt="감사패 글을 읽는 모습" data-en-alt="Reading the plaque aloud" width="800" height="600" loading="lazy"></button>
+      <button type="button" data-i="3" aria-label="사진 3 크게 보기"><img src="/images/album/2026-10-11/3-800.webp" alt="감사패를 건네며 함께 웃는 모습" data-en-alt="Smiling together as the plaque is presented" width="800" height="600" loading="lazy"></button>
+      <button type="button" data-i="4" aria-label="사진 4 크게 보기"><img src="/images/album/2026-10-11/4-800.webp" alt="꽃다발을 전하는 모습" data-en-alt="Presenting the flowers" width="800" height="600" loading="lazy"></button>
+      <button type="button" data-i="5" aria-label="사진 5 크게 보기"><img src="/images/album/2026-10-11/5-800.webp" alt="서로 안아 주며 감사를 나누는 모습" data-en-alt="Sharing thanks with an embrace" width="800" height="600" loading="lazy"></button>
     </div>
   </article>
 
-  <p class="soon">다음 기록을 기다립니다 · 목자 임명, 임직, 침례, 창립 기념처럼 오래 남길 날들을 이곳에 모읍니다.</p>
+  <p class="soon"><span class="ko">다음 기록을 기다립니다 · 목자 임명, 임직, 침례, 창립 기념처럼 오래 남길 날들을 이곳에 모읍니다.</span><span class="en">More to come · Shepherd commissionings, ordinations, baptisms, anniversaries — the days we want to remember are gathered here.</span></p>
 </main>
-<footer>&copy; 2026 시애틀지구촌교회 (GMC of Greater Seattle) · 무단 전재·복제 금지 · <a href="/terms/">이용약관</a></footer>
+<footer>&copy; 2026 시애틀지구촌교회 (GMC of Greater Seattle) · <span class="ko">무단 전재·복제 금지</span><span class="en">No copying without permission</span> · <a href="/terms/"><span class="ko">이용약관</span><span class="en">Terms</span></a></footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="사진 크게 보기">
   <img id="lbImg" alt="">
-  <div class="bar"><button type="button" id="lbPrev" aria-label="이전 사진">이전</button><button type="button" id="lbClose">닫기</button><button type="button" id="lbNext" aria-label="다음 사진">다음</button></div>
+  <div class="bar"><button type="button" id="lbPrev" aria-label="이전 사진 · Previous"><span class="ko">이전</span><span class="en">Previous</span></button><button type="button" id="lbClose"><span class="ko">닫기</span><span class="en">Close</span></button><button type="button" id="lbNext" aria-label="다음 사진 · Next"><span class="ko">다음</span><span class="en">Next</span></button></div>
 </div>
 <script>
 (function(){
@@ -123,9 +124,20 @@ footer{text-align:center;color:var(--color-text-secondary);font-size:15px;paddin
   document.addEventListener('keydown',function(e){ if(!lb.classList.contains('on')) return; if(e.key==='Escape') close(); if(e.key==='ArrowLeft') show(cur-1); if(e.key==='ArrowRight') show(cur+1); });
 })();
 </script>
+<script>/* 언어: 사이트 전체와 같은 기억(gmc-lang)을 읽고 쓴다 (2026-11-22) */
+(function(){
+  var K='gmc-lang', b=document.getElementById('langBtn');
+  function set(en){ document.body.classList.toggle('lang-en',en); document.documentElement.lang=en?'en':'ko';
+    document.querySelectorAll('img[data-en-alt]').forEach(function(i){ if(!i.dataset.koAlt) i.dataset.koAlt=i.alt; i.alt=en?i.dataset.enAlt:i.dataset.koAlt; });
+    document.title=en?'Our Journey Together · GMC of Greater Seattle':'함께 걸어온 길 · 시애틀지구촌교회'; }
+  var want=''; try{ want=localStorage.getItem(K)||''; }catch(e){}
+  set(want==='en');
+  if(b) b.addEventListener('click',function(){ var en=!document.body.classList.contains('lang-en'); set(en); try{ localStorage.setItem(K,en?'en':'ko'); }catch(e){} });
+})();
+</script>
 <script id="gmc-autoupdate">(function(){
 if(!window.fetch)return;
-var PV='20261122-061141',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
+var PV='20261122-061916',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
 function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='search')return true;
 var f=document.querySelectorAll('textarea,input:not([type=hidden]):not([type=search]):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])');
 for(var i=0;i<f.length;i++){if(f[i].value&&f[i].value!==f[i].defaultValue)return true;}return false;}
