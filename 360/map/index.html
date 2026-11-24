@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시애틀지구촌교회 사역 한눈에 보기 · Our Ministry at a Glance</title><meta name="robots" content="noindex,nofollow"><link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+:root{--bg:var(--color-background);--navy:var(--color-primary);--gold:var(--color-accent);--line:var(--color-border)}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);font-family:var(--font-sans);color:var(--navy)}
+.bar{position:sticky;top:0;display:flex;justify-content:flex-end;padding:12px 16px;background:var(--bg);z-index:2}
+button.lang{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:var(--radius-pill);border:1.4px solid var(--line);background:var(--color-surface);color:var(--navy);font:700 15px inherit;font-family:inherit;cursor:pointer}
+button.lang:hover{border-color:var(--gold)}button.lang:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+button.lang svg{width:22px;height:22px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 8px 24px}.wrap svg{width:100%;height:auto;display:block}
+.en{display:none}body.lang-en .ko{display:none}body.lang-en .en{display:block}
+.bar{gap:8px;flex-wrap:wrap}a.dl,a.back{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px;border-radius:var(--radius-pill);border:1.4px solid var(--line);background:var(--color-surface);color:var(--navy);font-size:15px;font-weight:700;text-decoration:none}a.back{margin-right:auto}a.dl:focus-visible,a.back:focus-visible{outline:3px solid var(--gold);outline-offset:2px}.hint{display:none;margin:0 16px 8px;font-size:14px;color:#5a5f6a}@media (max-width:760px){.wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}.wrap svg{width:1000px;max-width:none}.hint{display:block}}@media print{.hint{display:none}}@media print{.bar{display:none}}
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap">
+<style id="hebron-ds">
+/* HEBRON MASTER DESIGN SYSTEM v1.0 · Product theme: Church Website (시애틀지구촌교회) */
+:root{
+  /* Typography */
+  --font-korean:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-english:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-sans:'Geist','Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  /* 교회 예외: 큰 제목용 명조 — 영문 Cormorant Garamond, 한글 고운바탕 */
+  --font-display:'Cormorant Garamond','Gowun Batang','Pretendard Variable',serif;
+  --text-display:clamp(40px,6vw,64px); --text-h1:clamp(32px,4.4vw,48px); --text-h2:clamp(26px,3.4vw,36px);
+  --text-h3:clamp(22px,2.6vw,28px); --text-h4:clamp(18px,2vw,22px);
+  --text-body-lg:18px; --text-body:16px; --text-body-sm:14px; --text-caption:12.5px;
+  --weight-regular:400; --weight-medium:500; --weight-semibold:600; --weight-bold:700; --weight-extrabold:800;
+  --leading-heading:1.25; --leading-body:1.7; --leading-ui:1.5; --leading-caption:1.5;
+  --tracking-display:-0.02em; --tracking-heading:-0.015em; --tracking-body:-0.005em; --tracking-ui:0;
+  /* Color — semantic (Church theme: heritage navy · warm gold · cream) */
+  --color-background:#F6F1E7; --color-background-secondary:#F1E6D3;
+  --color-surface:#ffffff; --color-surface-muted:#FBF8F2;
+  --color-text-primary:#1c1f26; --color-text-secondary:#4a4f5a; --color-text-muted:#5F6573;
+  --color-text-disabled:#a9aeb8; --color-text-inverse:#ffffff;
+  --color-border:#E3D9C6; --color-border-subtle:#EAE3D5; --color-border-strong:#D9C7A0;
+  --color-primary:#14213d; --color-primary-hover:#1f2f55; --color-primary-active:#0d1730; --color-primary-foreground:#ffffff;
+  --color-accent:#B8924A; --color-accent-hover:#8f6a2a; --color-accent-strong:#826028;
+  --color-accent-bright:#CDA65B; --color-accent-deep:#A67A2E; --color-accent-on-dark:#E9C77B;
+  --color-success:#12857c; --color-success-soft:#34c3b5; --color-warning:#B7791F;
+  --color-error:#b4532a; --color-info:#2c4d8a; --color-info-soft:#5b7fb5;
+  --color-focus:#2c77b0;
+  --color-scripture:var(--color-primary);
+  --color-brand-kakao:#FEE500; --color-brand-kakao-foreground:#3A1D1D;
+  /* Spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px;
+  --space-10:40px; --space-12:48px; --space-16:64px; --space-20:80px; --space-24:96px; --space-32:128px;
+  --space-xs:var(--space-1); --space-sm:var(--space-2); --space-md:var(--space-4); --space-lg:var(--space-6);
+  --space-xl:var(--space-8); --space-2xl:var(--space-12); --space-3xl:var(--space-16);
+  /* Radius */
+  --radius-sm:6px; --radius-md:10px; --radius-lg:14px; --radius-xl:20px; --radius-pill:9999px;
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(20,33,61,.06); --shadow-md:0 6px 18px rgba(40,30,10,.06); --shadow-lg:0 18px 40px rgba(20,33,61,.12);
+  /* Layout (breakpoints: sm 560 · md 760 · lg 900 — CSS 변수는 media query에 못 쓰므로 값으로 사용) */
+  --container-max:1200px; --container-reading:760px; --touch-target:44px;
+  /* Motion · Layers */
+  --transition-fast:.15s ease; --transition-base:.2s ease;
+  --z-header:50; --z-dropdown:60; --z-floating:1100; --z-modal:1200;
+}
+html,body{font-family:var(--font-sans)}
+body{font-weight:var(--weight-regular)}
+button,input,select,textarea,optgroup{font-family:inherit}
+code,pre,kbd,samp{font-family:var(--font-mono)}
+:focus-visible{outline:3px solid var(--color-focus)!important;outline-offset:2px!important}
+.host-acts a,.member .mct a,.bd-chip,.loc-go,.cb-acts button,.cb-more,.gm-x,.tm-i,.pgnav button,.d-settle,.ms-kakao,.dp-others a,.dp-hosp button{min-height:var(--touch-target)}
+.gm-x{min-width:var(--touch-target)}
+.lang,.psnav,.gc-send,.gc-x,.d-more{min-height:var(--touch-target)}
+.psnav,.gc-send,.gc-x{min-width:var(--touch-target)}
+.d-greet{display:inline-flex;align-items:center;min-height:var(--touch-target)}
+.tabs .tab{min-height:40px} /* 예외: 모바일 헤더 높이 — 문서화됨 */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+<style id="lang-globe-css">.topbar button.lang{width:44px;height:44px;min-height:44px;padding:0;gap:0;justify-content:center;border-radius:50%}.topbar button.lang svg{display:block!important;width:22px;height:22px;stroke-width:1.8}.topbar button.lang #langTxt{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.topbar button.lang:hover{border-color:var(--color-accent,#B8924A)}.topbar button.lang:focus-visible{outline:3px solid var(--color-focus,#B8924A);outline-offset:2px}.topbar .ts-btn{order:1;margin-left:auto;margin-right:0;width:44px;min-width:44px;height:44px;padding:0;border:1.4px solid var(--line);background:var(--color-surface);border-radius:50%;color:var(--navy);letter-spacing:-.04em}.topbar .ts-btn~button.lang{margin-left:6px}</style></head>
+<body>
+<div class="bar"><a class="back" href="/360/"><span class="k">가정교회 360</span></a><a class="dl" id="dlPng" href="gmc-ministry-map-ko.png" download>PNG</a><a class="dl" id="dlPdf" href="gmc-ministry-map-ko.pdf" download>PDF</a><button type="button" class="lang" id="langBtn" aria-label="언어 바꾸기 · Language" title="한국어 / English">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20a14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+<span id="langTxt">English</span></button></div>
+<p class="hint"><span class="k2">그림을 옆으로 밀어서 보십시오.</span></p><div class="wrap"><div class="ko"><svg viewBox="0 0 1100 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t_ko d_ko" font-family="'Pretendard Variable','Pretendard','Geist','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <title id="t_ko">시애틀지구촌교회 사역 한눈에 보기</title>
+  <desc id="d_ko">사명: 영혼구원하여 그리스도의 제자 만드는 교회. 가운데 시애틀지구촌교회(연합교회: 주일연합예배 · 토요가족기도회 · 어린이주일학교 · 청소년 · 성인 가족)를 두고, 둘레에 교회 홈페이지(ijiguchon.org) · HebronGuide(hebronguide.com) · 이웃 사랑(환대와 섬김: 나루 우동 naruudon.com · 영어 톡타임) · 목장 · 삶공부 · HebronAltar(hebronaltar.com)를 놓은 그림. 교회 홈페이지는 HebronGuide · 이웃 사랑 · 목장 · 삶공부 · HebronAltar와, 이웃 사랑은 HebronAltar와 서로 이어져 있다. 교회 홈페이지 · HebronGuide · 이웃 사랑 · 목장 · 삶공부 · HebronAltar는 모두 연합교회와 서로 오간다. 아래 줄은 공항 · 이웃에서 목자 · 배가까지의 길. 2026-11-22.</desc>
+  <defs>
+    <marker id="aIn_ko" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#B8924A"/></marker>
+    <marker id="aBoth_ko" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto-start-reverse"><path d="M0,0 L16,8 L0,16 z" fill="#14213d"/></marker>
+    <marker id="aBothG_ko" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="13" refX="12" refY="6.5" orient="auto-start-reverse"><path d="M0,0 L13,6.5 L0,13 z" fill="#2d6a4f"/></marker>
+    <marker id="aBothY_ko" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto-start-reverse"><path d="M0,0 L16,8 L0,16 z" fill="#B8924A"/></marker>
+    <marker id="aNavy_ko" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#14213d"/></marker>
+    <g id="iPhone_ko" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></g>
+    <g id="iCompass_ko" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></g>
+    <g id="iBowl_ko" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20a10 10 0 0 1-20 0zM7 21h10M8 8c0-2 2-2 2-4M12 8c0-2 2-2 2-4M16 8c0-2 2-2 2-4"/></g>
+    <g id="iHome_ko" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9 21v-6h6v6"/></g>
+    <g id="iBook_ko" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h7a3 3 0 0 1 3 3v14a2 2 0 0 0-2-2H2zM22 4h-7a3 3 0 0 0-3 3v14a2 2 0 0 1 2-2h8z"/></g>
+    <g id="iFlame_ko" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></g>
+    <g id="iChurch_ko" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M10 4h4M6 22V11l6-5 6 5v11M2 22h20M10 22v-5h4v5"/></g>
+  </defs>
+
+  <rect width="1100" height="900" fill="#F6F1E7"/>
+
+  <!-- 제목 -->
+  <text x="550" y="40" text-anchor="middle" font-size="28" font-weight="800" fill="#14213d">시애틀지구촌교회 사역 한눈에 보기</text>
+  <text x="550" y="72" text-anchor="middle" font-size="17" font-weight="700" fill="#B8924A">사명: 영혼구원하여 그리스도의 제자 만드는 교회</text>
+
+  <!-- 바퀴살: 둘레 → 가운데 (들어오는 길은 금색 화살표, 자라는 길은 남색) -->
+  <g stroke-width="2.4" fill="none">
+    <line x1="550" y1="220" x2="550" y2="266" stroke="#14213d" marker-start="url(#aBoth_ko)" marker-end="url(#aBoth_ko)"/>
+    <line x1="334" y1="302" x2="410" y2="340" stroke="#B8924A" marker-start="url(#aBothY_ko)" marker-end="url(#aBothY_ko)"/>
+    <line x1="334" y1="558" x2="410" y2="510" stroke="#B8924A" marker-start="url(#aBothY_ko)" marker-end="url(#aBothY_ko)"/>
+    <line x1="700" y1="345" x2="768" y2="301" stroke="#14213d" marker-start="url(#aBoth_ko)" marker-end="url(#aBoth_ko)"/>
+    <line x1="700" y1="505" x2="768" y2="558" stroke="#14213d" marker-start="url(#aBoth_ko)" marker-end="url(#aBoth_ko)"/>
+    <line x1="550" y1="574" x2="550" y2="618" stroke="#14213d" marker-start="url(#aBoth_ko)" marker-end="url(#aBoth_ko)"/>
+  </g>
+
+  <!-- guide-links: HebronGuide <-> 교회 홈페이지 · 나루 우동 -->
+  <g stroke="#2d6a4f" stroke-width="2.4" fill="none" stroke-linejoin="round">
+    <!-- left-bus: 교회 홈페이지 <-> HebronGuide · 이웃 사랑(나루 우동) -->
+    <path d="M388 152 H18 V680 H388" marker-start="url(#aBothG_ko)" marker-end="url(#aBothG_ko)"/>
+    <path d="M18 578 H38" marker-end="url(#aBothG_ko)"/>
+    <circle cx="18" cy="578" r="3.5" fill="#2d6a4f" stroke="none"/>
+    <path d="M18 298 H38" marker-end="url(#aBothG_ko)"/>
+    <circle cx="18" cy="298" r="3.5" fill="#2d6a4f" stroke="none"/>
+    <!-- altar-link: HebronAltar <-> 교회 홈페이지 -->
+    <path d="M714 152 H1082 V680 H714" marker-start="url(#aBothG_ko)" marker-end="url(#aBothG_ko)"/>
+    <!-- home-bus: 같은 줄에서 목장 · 삶공부로 -->
+    <path d="M1082 298 H1062" marker-end="url(#aBothG_ko)"/>
+    <path d="M1082 560 H1062" marker-end="url(#aBothG_ko)"/>
+    <circle cx="1082" cy="298" r="3.5" fill="#2d6a4f" stroke="none"/><circle cx="1082" cy="560" r="3.5" fill="#2d6a4f" stroke="none"/>
+  </g>
+
+  <!-- 가운데: 시애틀지구촌교회 -->
+  <circle cx="550" cy="420" r="152" fill="#14213d"/>
+  <circle cx="550" cy="420" r="140" fill="none" stroke="#B8924A" stroke-width="1.5"/>
+  <use href="#iChurch_ko" transform="translate(534 300) scale(1.35)" color="#E8D3A8"/>
+  <text x="550" y="370" text-anchor="middle" font-size="25" font-weight="800" fill="#fff">시애틀지구촌교회</text>
+  <text x="550" y="396" text-anchor="middle" font-size="15" font-weight="700" fill="#E8D3A8">연합교회</text>
+  <text x="550" y="430" text-anchor="middle" font-size="15" fill="#fff">주일연합예배 · 주일 오후 1:30</text>
+  <text x="550" y="454" text-anchor="middle" font-size="15" fill="#fff">토요가족기도회 · 토요일 오전 6:00</text>
+  <line x1="460" y1="474" x2="640" y2="474" stroke="#B8924A" stroke-width="1"/>
+  <text x="550" y="500" text-anchor="middle" font-size="14" fill="#d7dbe4">어린이주일학교 · 청소년</text>
+  <text x="550" y="522" text-anchor="middle" font-size="14" fill="#d7dbe4">성인 가족 · 예배 후 한 식탁</text>
+
+  <!-- 위: 홈페이지 -->
+  <rect x="390" y="88" width="320" height="128" rx="18" fill="#7a1c2e"/>
+  <use href="#iPhone_ko" transform="translate(414 108)" color="#ffd9b8"/>
+  <text x="448" y="127" font-size="19" font-weight="800" fill="#fff">교회 홈페이지</text>
+  <text x="686" y="127" text-anchor="end" font-family="'Geist','Pretendard Variable',sans-serif" font-size="15" font-weight="600" fill="#ffd9b8">ijiguchon.org</text>
+  <text x="414" y="158" font-size="14" fill="#fde2e2">설교 · 주보 · 교회 소식</text>
+  <text x="414" y="182" font-size="14" fill="#fde2e2">성수생각(목회 칼럼) · 함께 걸어온 길</text>
+
+  <!-- 왼쪽 위: 공항 · HebronGuide -->
+  <rect x="40" y="232" width="290" height="160" rx="18" fill="#2d6a4f"/>
+  <use href="#iCompass_ko" transform="translate(64 252)" color="#cdeedd"/>
+  <text x="98" y="271" font-size="19" font-weight="800" fill="#fff">HebronGuide</text>
+  <text x="64" y="302" font-size="14" fill="#e3f5ec">새 이민자 · 유학생 · 방문자</text>
+  <text x="64" y="326" font-size="14" fill="#e3f5ec">정착 안내 · 생활 정보</text>
+  <text x="64" y="350" font-size="14" fill="#cdeedd">글로벌 환대 플랫폼</text>
+  <text x="64" y="376" font-family="'Geist','Pretendard Variable',sans-serif" font-size="14" font-weight="600" fill="#cdeedd">hebronguide.com</text>
+
+  <!-- 왼쪽 아래: 이웃 사랑 -->
+  <rect x="40" y="494" width="290" height="168" rx="18" fill="#fff6e6" stroke="#E8C98F" stroke-width="1.5"/>
+  <use href="#iBowl_ko" transform="translate(64 514)" color="#B8924A"/>
+  <text x="98" y="533" font-size="19" font-weight="800" fill="#8a5a12">이웃 사랑<tspan font-size="15" font-weight="600"> (환대와 섬김)</tspan></text>
+  <text x="64" y="562" font-size="14" fill="#5a5f6a">하나님의 사랑을 나누는 사역</text>
+  <text x="64" y="592" font-size="15" font-weight="700" fill="#2b2f38">나루 우동</text>
+  <text x="150" y="592" font-size="14" fill="#5a5f6a">토요일 아침 한 그릇</text>
+  <text x="64" y="615" font-family="'Geist','Pretendard Variable',sans-serif" font-size="14" font-weight="600" fill="#8a5a12">naruudon.com</text>
+  <text x="64" y="643" font-size="15" font-weight="700" fill="#2b2f38">영어 톡타임</text>
+  <text x="164" y="643" font-size="14" fill="#5a5f6a">주일 오후</text>
+
+  <!-- 오른쪽 위: 목장 -->
+  <rect x="770" y="232" width="290" height="132" rx="18" fill="#fff" stroke="#E3D9C6" stroke-width="1.5"/>
+  <use href="#iHome_ko" transform="translate(794 252)" color="#2d6a4f"/>
+  <text x="828" y="271" font-size="19" font-weight="800" fill="#2d6a4f">목장</text>
+  <text x="794" y="302" font-size="14" fill="#3b404b">가정교회 · 매주 목장 모임</text>
+  <text x="794" y="326" font-size="14" fill="#3b404b">VIP를 한 식탁으로</text>
+
+  <!-- 오른쪽 아래: 삶공부 -->
+  <rect x="770" y="494" width="290" height="132" rx="18" fill="#fff" stroke="#E3D9C6" stroke-width="1.5"/>
+  <use href="#iBook_ko" transform="translate(794 514)" color="#B8924A"/>
+  <text x="828" y="533" font-size="19" font-weight="800" fill="#B8924A">삶공부</text>
+  <text x="794" y="564" font-size="14" fill="#3b404b">단계별 제자 훈련</text>
+  <text x="794" y="588" font-size="14" fill="#3b404b">과정 안내 · 등록 · 일정</text>
+
+  <!-- 아래: HebronAltar -->
+  <rect x="390" y="620" width="320" height="120" rx="18" fill="#2d6a4f"/>
+  <use href="#iFlame_ko" transform="translate(414 640)" color="#cdeedd"/>
+  <text x="448" y="659" font-size="19" font-weight="800" fill="#fff">HebronAltar</text>
+  <text x="686" y="659" text-anchor="end" font-family="'Geist','Pretendard Variable',sans-serif" font-size="14" font-weight="600" fill="#cdeedd">hebronaltar.com</text>
+  <text x="414" y="690" font-size="14" fill="#e3f5ec">매일 묵상 · 침묵 기도 · 영적 일지</text>
+  <text x="414" y="714" font-size="14" fill="#e3f5ec">목장 나눔 · 기도제목 · 21일 경청 훈련</text>
+
+  <!-- 아래 줄: 한 사람이 걸어가는 길 -->
+  <text x="550" y="788" text-anchor="middle" font-size="15" font-weight="700" fill="#5a5f6a">한 사람이 걸어가는 길</text>
+  <g font-size="15" font-weight="700" text-anchor="middle">
+    <rect x="62" y="806" width="150" height="44" rx="22" fill="#fff6e6" stroke="#E8C98F"/><text x="137" y="834" fill="#8a5a12">공항 · 이웃</text>
+    <rect x="242" y="806" width="120" height="44" rx="22" fill="#fff" stroke="#E3D9C6"/><text x="302" y="834" fill="#14213d">VIP</text>
+    <rect x="392" y="806" width="150" height="44" rx="22" fill="#fff" stroke="#E3D9C6"/><text x="467" y="834" fill="#2d6a4f">목장 식구</text>
+    <rect x="572" y="806" width="120" height="44" rx="22" fill="#fff" stroke="#E3D9C6"/><text x="632" y="834" fill="#B8924A">제자</text>
+    <rect x="722" y="806" width="120" height="44" rx="22" fill="#14213d"/><text x="782" y="834" fill="#fff">목자</text>
+    <rect x="872" y="806" width="166" height="44" rx="22" fill="#B8924A"/><text x="955" y="834" fill="#fff">배가 · 새 목장</text>
+  </g>
+  <g stroke="#8a8f99" stroke-width="2" fill="none">
+    <path d="M214 828h24M364 828h24M544 828h24M694 828h24M844 828h24"/>
+  </g>
+  <path d="M955 852 C 955 884, 137 884, 137 856" fill="none" stroke="#B8924A" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#aIn_ko)"/>
+</svg>
+</div><div class="en"><svg viewBox="0 0 1100 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t_en d_en" font-family="'Geist','Pretendard Variable','Pretendard','Geist','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <title id="t_en">GMC of Greater Seattle — Our Ministry at a Glance</title>
+  <desc id="d_en">[English] 사명: 영혼구원하여 그리스도의 제자 만드는 교회. 가운데 시애틀지구촌교회(연합교회: 주일연합예배 · 토요가족기도회 · 어린이주일학교 · 청소년 · 성인 가족)를 두고, 둘레에 교회 홈페이지(ijiguchon.org) · HebronGuide(hebronguide.com) · 이웃 사랑(환대와 섬김: 나루 우동 naruudon.com · 영어 톡타임) · 목장 · 삶공부 · HebronAltar(hebronaltar.com)를 놓은 그림. 교회 홈페이지는 HebronGuide · 이웃 사랑 · 목장 · 삶공부 · HebronAltar와, 이웃 사랑은 HebronAltar와 서로 이어져 있다. 교회 홈페이지 · HebronGuide · 이웃 사랑 · 목장 · 삶공부 · HebronAltar는 모두 연합교회와 서로 오간다. 아래 줄은 공항 · 이웃에서 목자 · 배가까지의 길. 2026-11-22.</desc>
+  <defs>
+    <marker id="aIn_en" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#B8924A"/></marker>
+    <marker id="aBoth_en" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto-start-reverse"><path d="M0,0 L16,8 L0,16 z" fill="#14213d"/></marker>
+    <marker id="aBothG_en" markerUnits="userSpaceOnUse" markerWidth="13" markerHeight="13" refX="12" refY="6.5" orient="auto-start-reverse"><path d="M0,0 L13,6.5 L0,13 z" fill="#2d6a4f"/></marker>
+    <marker id="aBothY_en" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="14" refY="8" orient="auto-start-reverse"><path d="M0,0 L16,8 L0,16 z" fill="#B8924A"/></marker>
+    <marker id="aNavy_en" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#14213d"/></marker>
+    <g id="iPhone_en" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></g>
+    <g id="iCompass_en" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></g>
+    <g id="iBowl_en" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20a10 10 0 0 1-20 0zM7 21h10M8 8c0-2 2-2 2-4M12 8c0-2 2-2 2-4M16 8c0-2 2-2 2-4"/></g>
+    <g id="iHome_en" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9 21v-6h6v6"/></g>
+    <g id="iBook_en" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h7a3 3 0 0 1 3 3v14a2 2 0 0 0-2-2H2zM22 4h-7a3 3 0 0 0-3 3v14a2 2 0 0 1 2-2h8z"/></g>
+    <g id="iFlame_en" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></g>
+    <g id="iChurch_en" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M10 4h4M6 22V11l6-5 6 5v11M2 22h20M10 22v-5h4v5"/></g>
+  </defs>
+
+  <rect width="1100" height="900" fill="#F6F1E7"/>
+
+  <!-- 제목 -->
+  <text x="550" y="40" text-anchor="middle" font-size="26" font-weight="800" fill="#14213d">GMC of Greater Seattle — Our Ministry at a Glance</text>
+  <text x="550" y="72" text-anchor="middle" font-size="17" font-weight="700" fill="#B8924A">Mission: A church that saves souls and makes disciples of Christ</text>
+
+  <!-- 바퀴살: 둘레 → 가운데 (들어오는 길은 금색 화살표, 자라는 길은 남색) -->
+  <g stroke-width="2.4" fill="none">
+    <line x1="550" y1="220" x2="550" y2="266" stroke="#14213d" marker-start="url(#aBoth_en)" marker-end="url(#aBoth_en)"/>
+    <line x1="334" y1="302" x2="410" y2="340" stroke="#B8924A" marker-start="url(#aBothY_en)" marker-end="url(#aBothY_en)"/>
+    <line x1="334" y1="558" x2="410" y2="510" stroke="#B8924A" marker-start="url(#aBothY_en)" marker-end="url(#aBothY_en)"/>
+    <line x1="700" y1="345" x2="768" y2="301" stroke="#14213d" marker-start="url(#aBoth_en)" marker-end="url(#aBoth_en)"/>
+    <line x1="700" y1="505" x2="768" y2="558" stroke="#14213d" marker-start="url(#aBoth_en)" marker-end="url(#aBoth_en)"/>
+    <line x1="550" y1="574" x2="550" y2="618" stroke="#14213d" marker-start="url(#aBoth_en)" marker-end="url(#aBoth_en)"/>
+  </g>
+
+  <!-- guide-links: HebronGuide <-> 교회 홈페이지 · 나루 우동 -->
+  <g stroke="#2d6a4f" stroke-width="2.4" fill="none" stroke-linejoin="round">
+    <!-- left-bus: 교회 홈페이지 <-> HebronGuide · 이웃 사랑(나루 우동) -->
+    <path d="M388 152 H18 V680 H388" marker-start="url(#aBothG_en)" marker-end="url(#aBothG_en)"/>
+    <path d="M18 578 H38" marker-end="url(#aBothG_en)"/>
+    <circle cx="18" cy="578" r="3.5" fill="#2d6a4f" stroke="none"/>
+    <path d="M18 298 H38" marker-end="url(#aBothG_en)"/>
+    <circle cx="18" cy="298" r="3.5" fill="#2d6a4f" stroke="none"/>
+    <!-- altar-link: HebronAltar <-> 교회 홈페이지 -->
+    <path d="M714 152 H1082 V680 H714" marker-start="url(#aBothG_en)" marker-end="url(#aBothG_en)"/>
+    <!-- home-bus: 같은 줄에서 목장 · 삶공부로 -->
+    <path d="M1082 298 H1062" marker-end="url(#aBothG_en)"/>
+    <path d="M1082 560 H1062" marker-end="url(#aBothG_en)"/>
+    <circle cx="1082" cy="298" r="3.5" fill="#2d6a4f" stroke="none"/><circle cx="1082" cy="560" r="3.5" fill="#2d6a4f" stroke="none"/>
+  </g>
+
+  <!-- 가운데: 시애틀지구촌교회 -->
+  <circle cx="550" cy="420" r="152" fill="#14213d"/>
+  <circle cx="550" cy="420" r="140" fill="none" stroke="#B8924A" stroke-width="1.5"/>
+  <use href="#iChurch_en" transform="translate(534 300) scale(1.35)" color="#E8D3A8"/>
+  <text x="550" y="370" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">GMC of Greater Seattle</text>
+  <text x="550" y="396" text-anchor="middle" font-size="15" font-weight="700" fill="#E8D3A8">United Church</text>
+  <text x="550" y="430" text-anchor="middle" font-size="14" fill="#fff">Sunday United Worship · Sun 1:30 PM</text>
+  <text x="550" y="454" text-anchor="middle" font-size="14" fill="#fff">Saturday Family Prayer · Sat 6:00 AM</text>
+  <line x1="460" y1="474" x2="640" y2="474" stroke="#B8924A" stroke-width="1"/>
+  <text x="550" y="500" text-anchor="middle" font-size="14" fill="#d7dbe4">Sunday School · Youth · Families</text>
+  <text x="550" y="522" text-anchor="middle" font-size="14" fill="#d7dbe4">One table after worship</text>
+
+  <!-- 위: 홈페이지 -->
+  <rect x="390" y="88" width="320" height="128" rx="18" fill="#7a1c2e"/>
+  <use href="#iPhone_en" transform="translate(414 108)" color="#ffd9b8"/>
+  <text x="448" y="127" font-size="18" font-weight="800" fill="#fff">Church Website</text>
+  <text x="686" y="127" text-anchor="end" font-family="'Geist','Pretendard Variable',sans-serif" font-size="14" font-weight="600" fill="#ffd9b8">ijiguchon.org</text>
+  <text x="414" y="158" font-size="14" fill="#fde2e2">Sermons · Bulletins · Church News</text>
+  <text x="414" y="182" font-size="14" fill="#fde2e2">Pastor's Column · Our Journey Together</text>
+
+  <!-- 왼쪽 위: 공항 · HebronGuide -->
+  <rect x="40" y="232" width="290" height="160" rx="18" fill="#2d6a4f"/>
+  <use href="#iCompass_en" transform="translate(64 252)" color="#cdeedd"/>
+  <text x="98" y="271" font-size="19" font-weight="800" fill="#fff">HebronGuide</text>
+  <text x="64" y="302" font-size="14" fill="#e3f5ec">New immigrants · Students · Visitors</text>
+  <text x="64" y="326" font-size="14" fill="#e3f5ec">Settling-in guide · Local life info</text>
+  <text x="64" y="350" font-size="14" fill="#cdeedd">A global hospitality platform</text>
+  <text x="64" y="376" font-family="'Geist','Pretendard Variable',sans-serif" font-size="14" font-weight="600" fill="#cdeedd">hebronguide.com</text>
+
+  <!-- 왼쪽 아래: 이웃 사랑 -->
+  <rect x="40" y="494" width="290" height="168" rx="18" fill="#fff6e6" stroke="#E8C98F" stroke-width="1.5"/>
+  <use href="#iBowl_en" transform="translate(64 514)" color="#B8924A"/>
+  <text x="98" y="533" font-size="19" font-weight="800" fill="#8a5a12">Loving Our Neighbors</text>
+  <text x="64" y="562" font-size="14" fill="#5a5f6a">Hospitality &amp; Service in God's love</text>
+  <text x="64" y="592" font-size="15" fill="#2b2f38"><tspan font-weight="700">Naru Udon</tspan> · Saturday mornings</text>
+  <text x="64" y="615" font-family="'Geist','Pretendard Variable',sans-serif" font-size="14" font-weight="600" fill="#8a5a12">naruudon.com</text>
+  <text x="64" y="643" font-size="15" fill="#2b2f38"><tspan font-weight="700">English Talk Time</tspan> · Sundays</text>
+
+  <!-- 오른쪽 위: 목장 -->
+  <rect x="770" y="232" width="290" height="132" rx="18" fill="#fff" stroke="#E3D9C6" stroke-width="1.5"/>
+  <use href="#iHome_en" transform="translate(794 252)" color="#2d6a4f"/>
+  <text x="828" y="271" font-size="19" font-weight="800" fill="#2d6a4f">House Churches</text>
+  <text x="794" y="302" font-size="14" fill="#3b404b">Weekly house church gatherings</text>
+  <text x="794" y="326" font-size="14" fill="#3b404b">Welcoming VIPs to the table</text>
+
+  <!-- 오른쪽 아래: 삶공부 -->
+  <rect x="770" y="494" width="290" height="132" rx="18" fill="#fff" stroke="#E3D9C6" stroke-width="1.5"/>
+  <use href="#iBook_en" transform="translate(794 514)" color="#B8924A"/>
+  <text x="828" y="533" font-size="19" font-weight="800" fill="#B8924A">Life Study</text>
+  <text x="794" y="564" font-size="14" fill="#3b404b">Step-by-step discipleship</text>
+  <text x="794" y="588" font-size="14" fill="#3b404b">Courses · Registration · Schedule</text>
+
+  <!-- 아래: HebronAltar -->
+  <rect x="390" y="620" width="320" height="120" rx="18" fill="#2d6a4f"/>
+  <use href="#iFlame_en" transform="translate(414 640)" color="#cdeedd"/>
+  <text x="448" y="659" font-size="19" font-weight="800" fill="#fff">HebronAltar</text>
+  <text x="686" y="659" text-anchor="end" font-family="'Geist','Pretendard Variable',sans-serif" font-size="14" font-weight="600" fill="#cdeedd">hebronaltar.com</text>
+  <text x="414" y="690" font-size="14" fill="#e3f5ec">Daily devotion · Silent prayer · Journal</text>
+  <text x="414" y="714" font-size="14" fill="#e3f5ec">Sharing · Prayer requests · 21-day listening</text>
+
+  <!-- 아래 줄: 한 사람이 걸어가는 길 -->
+  <text x="550" y="788" text-anchor="middle" font-size="15" font-weight="700" fill="#5a5f6a">One person's journey</text>
+  <g font-size="15" font-weight="700" text-anchor="middle">
+    <rect x="69" y="806" width="168" height="44" rx="22" fill="#fff6e6" stroke="#E8C98F"/><text x="153" y="834" fill="#8a5a12">Airport · Neighbors</text>
+    <rect x="263" y="806" width="80" height="44" rx="22" fill="#fff" stroke="#E3D9C6"/><text x="303" y="834" fill="#14213d">VIP</text>
+    <rect x="369" y="806" width="196" height="44" rx="22" fill="#fff" stroke="#E3D9C6"/><text x="467" y="834" fill="#2d6a4f">House church member</text>
+    <rect x="591" y="806" width="104" height="44" rx="22" fill="#fff" stroke="#E3D9C6"/><text x="643" y="834" fill="#B8924A">Disciple</text>
+    <rect x="721" y="806" width="112" height="44" rx="22" fill="#14213d"/><text x="777" y="834" fill="#fff">Shepherd</text>
+    <rect x="859" y="806" width="172" height="44" rx="22" fill="#B8924A"/><text x="945" y="834" fill="#fff">New house church</text>
+  </g>
+  <g stroke="#8a8f99" stroke-width="2" fill="none">
+    <path d="M239 828h22M345 828h22M567 828h22M697 828h22M835 828h22"/>
+  </g>
+  <path d="M945 852 C 945 884, 153 884, 153 856" fill="none" stroke="#B8924A" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#aIn_en)"/>
+</svg>
+</div></div>
+<script>
+(function(){var b=document.getElementById('langBtn'),t=document.getElementById('langTxt');
+function set(en){document.body.classList.toggle('lang-en',en);document.documentElement.lang=en?'en':'ko';t.textContent=en?'한국어':'English';var L=en?'en':'ko';document.getElementById('dlPng').href='gmc-ministry-map-'+L+'.png';document.getElementById('dlPdf').href='gmc-ministry-map-'+L+'.pdf';var k=document.querySelector('.hint .k2');if(k)k.textContent=en?'Swipe sideways to see the whole map.':'그림을 옆으로 밀어서 보십시오.';}
+var en=/[?&]lang=en/.test(location.search);try{if(!/[?&]lang=/.test(location.search)&&localStorage.getItem('gmc-360-lang')==='en')en=true;}catch(_){}set(en);
+b.addEventListener('click',function(){en=!en;set(en);});})();
+</script>
+</body></html>
