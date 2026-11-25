@@ -780,9 +780,39 @@ if(document.readyState!=='loading')add();else document.addEventListener('DOMCont
 <div class="hero">
   <div class="hero-badge" id="h_badge">지구촌 중보기도 사역</div>
   <h1 id="h_title">중보기도 요청서</h1>
-  <p class="hero-verse" id="h_verse">"그는 항상 살아 계셔서 그들을 위하여 간구하시느니라." — 히 7:25</p>
+  <p class="hero-verse" id="h_verse">"그는 늘 살아 계셔서 그들을 위하여 중재의 간구를 하십니다." — 히 7:25, 새번역</p>
 </div>
 
+<!-- p123:start -->
+<style id="p123-style">
+/* 요청서는 쉬는 동안 가려 둔다. 다시 열 때는 이 묶음(p123:start ~ p123:end)을 지운다. */
+.tab-nav, .process-bar, .mission-note, #page1 > .main, #page2, .footer-note { display: none !important; }
+.p123 { max-width: 580px; margin: 0 auto; padding: 14px 16px 80px; }
+.p123-card { background: var(--color-surface, #fff); border: 1px solid var(--color-border, #E3D9C6); border-radius: var(--radius-lg, 14px); box-shadow: var(--shadow); padding: 24px 20px; word-break: keep-all; }
+.p123-card h2 { margin: 0 0 8px; font-size: 22px; line-height: 1.35; font-weight: 700; letter-spacing: -.015em; color: var(--color-text-primary, #14213d); }
+.p123-card p { margin: 0 0 16px; font-size: 16px; line-height: 1.7; color: var(--color-text-secondary, #3d4863); }
+.p123-btn { display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 20px; border-radius: var(--radius-lg, 14px); background: var(--color-primary, #14213d); color: var(--color-text-inverse, #fff); font-size: 16px; font-weight: 700; text-decoration: none; }
+.p123-btn:hover { background: var(--color-primary-hover, #1d2f57); }
+.p123-btn:focus-visible { outline: 3px solid var(--color-focus, #2c77b0); outline-offset: 2px; }
+.p123-card .p123-note { margin: 12px 0 0; font-size: 14px; color: var(--color-text-muted, #6b7385); }
+.p123 [lang="en"] { display: none; }
+html[lang="en"] .p123 [lang="en"] { display: block; }
+html[lang="en"] .p123 a[lang="en"] { display: flex; }
+html[lang="en"] .p123 [lang="ko"] { display: none; }
+</style>
+<div class="p123" id="p123">
+  <div class="p123-card">
+    <h2 lang="ko">기도 제목은 123 기도에서 받습니다</h2>
+    <h2 lang="en">Prayer requests are received through 123 Prayer</h2>
+    <p lang="ko">기도 제목을 보내 주시면 김성수 목사가 한 사람 한 사람의 이름을 부르며 기도합니다. 한 주에 두 번, 3초 이상 서로를 위해 기도하는 약속입니다.</p>
+    <p lang="en">Send a request and Pastor Sung Soo Kim will pray for you by name. It is a covenant to pray for one another twice a week, for at least three seconds.</p>
+    <a class="p123-btn" lang="ko" href="https://kchurch911.com/123prayer/" target="_blank" rel="noopener">기도 제목 보내기</a>
+    <a class="p123-btn" lang="en" href="https://kchurch911.com/123prayer/" target="_blank" rel="noopener">Send a prayer request</a>
+    <p class="p123-note" lang="ko">이 쪽에 있던 중보기도 요청서는 123 기도로 옮겼습니다.</p>
+    <p class="p123-note" lang="en">The request form that used to be on this page has moved to 123 Prayer.</p>
+  </div>
+</div>
+<!-- p123:end -->
 <!-- Process bar -->
 <div class="process-bar">
   <div class="proc-step">
@@ -1099,7 +1129,7 @@ const S = {
     langBtn: 'English',
     h_badge: '지구촌 중보기도 사역', h_title: '중보기도 요청서',
     h_sub: '기도는 가장 강력한 선교입니다.\n당신의 기도 제목을 나눠 주세요.',
-    h_verse: '"그는 항상 살아 계셔서 그들을 위하여 간구하시느니라." — 히브리서 7:25',
+    h_verse: '"그는 늘 살아 계셔서 그들을 위하여 중재의 간구를 하십니다." — 히브리서 7:25, 새번역',
     h_mission: '중보기도팀이 접수된 기도 제목을 위해 <strong>1주 2회, 3분</strong> 기도합니다. 기도 응답은 공동체 안에서 나눕니다.',
     proc: ['수집','전달','기도','응답'],
     t_who: '기도 요청 유형',
@@ -1701,7 +1731,7 @@ if(document.readyState!=='loading') setTimeout(apply,30); else document.addEvent
 })();</script>
 <script id="gmc-autoupdate">(function(){
 if(!window.fetch)return;
-var PV='20261123-174200',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
+var PV='20261125-051250',V0=null,SW='serviceWorker' in navigator,had=SW&&!!navigator.serviceWorker.controller,going=false;
 function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&a.type!=='search')return true;
 var f=document.querySelectorAll('textarea,input:not([type=hidden]):not([type=search]):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit])');
 for(var i=0;i<f.length;i++){if(f[i].value&&f[i].value!==f[i].defaultValue)return true;}return false;}
